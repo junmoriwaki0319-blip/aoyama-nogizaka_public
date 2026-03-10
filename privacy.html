@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人情報保護方針 | 青山乃木坂パートナーズ合同会社</title>
+  <meta name="description" content="青山乃木坂パートナーズ合同会社の個人情報保護方針です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2d4f;
+      --navy-light: #243b63;
+      --gold: #9b8b6e;
+      --gold-light: #c8b99a;
+      --white: #ffffff;
+      --off-white: #f8f7f5;
+      --light-gray: #f0eee9;
+      --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a;
+      --text-mid: #444444;
+      --text-light: #888888;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--mid-gray);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .nav-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      padding: 9px 22px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--navy-light); }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 80px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(26,45,79,0.04) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(155,139,110,0.06) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--mid-gray) 1px, transparent 1px),
+        linear-gradient(90deg, var(--mid-gray) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.25;
+    }
+    .page-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 70px;
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero-watermark {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(60px, 10vw, 120px);
+      font-weight: 300;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,45,79,0.07);
+      letter-spacing: 0.06em;
+      user-select: none;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .page-hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .page-hero-sub {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+    .page-hero-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--mid-gray);
+      margin-top: 40px;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== INTRO SECTION ===== */
+    .intro-section {
+      background: var(--navy);
+      padding: 70px 0;
+    }
+    .intro-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .intro-section .section-label {
+      color: var(--gold-light);
+    }
+    .intro-section .section-label::before {
+      background: var(--gold-light);
+    }
+    .intro-lead {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 2vw, 17px);
+      font-weight: 300;
+      line-height: 2.2;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      max-width: 760px;
+    }
+
+    /* ===== POLICY SECTIONS ===== */
+    .policy-section {
+      padding: 80px 0;
+    }
+    .policy-section.bg-white { background: var(--white); }
+    .policy-section.bg-off { background: var(--off-white); }
+
+    .policy-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0 60px;
+      align-items: start;
+    }
+    .article-num-col {
+      padding-top: 4px;
+    }
+    .article-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(26,45,79,0.07);
+      -webkit-text-stroke: 1px rgba(26,45,79,0.12);
+      margin-bottom: 8px;
+    }
+    .article-label-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .article-body {
+      border-left: 2px solid var(--gold);
+      padding-left: 32px;
+    }
+    .article-body h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .article-body p {
+      font-size: 14px;
+      line-height: 2.2;
+      color: var(--text-mid);
+      letter-spacing: 0.05em;
+    }
+    .article-body ul {
+      list-style: none;
+    }
+    .article-body ul li {
+      font-size: 14px;
+      line-height: 2.2;
+      color: var(--text-mid);
+      letter-spacing: 0.05em;
+      padding-left: 20px;
+      position: relative;
+    }
+    .article-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ===== CONTACT BLOCK ===== */
+    .contact-block-section {
+      background: var(--light-gray);
+      padding: 80px 0;
+    }
+    .contact-block-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      padding: 48px 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--navy);
+    }
+    .contact-card-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .contact-card h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .contact-card p {
+      font-size: 14px;
+      line-height: 2.0;
+      color: var(--text-mid);
+      letter-spacing: 0.05em;
+    }
+    .contact-info-item {
+      margin-bottom: 24px;
+    }
+    .contact-info-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .contact-info-value {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-mid);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== POLICY DATE ===== */
+    .policy-date-section {
+      background: var(--white);
+      padding: 0 0 80px;
+    }
+    .policy-date-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 40px 0;
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid var(--mid-gray);
+    }
+    .policy-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: var(--text-light);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 0 40px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+    .footer-brand {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-nav a.active { color: rgba(255,255,255,0.85); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-address {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 24px; }
+      .nav-back-label { display: none; }
+      .page-hero-watermark { display: none; }
+      .page-hero-inner { padding: 60px 24px 50px; }
+      .intro-inner,
+      .policy-inner,
+      .contact-block-inner,
+      .footer-inner { padding: 0 24px; }
+      .policy-date-inner { padding: 24px 24px 0; }
+      .article-layout { grid-template-columns: 1fr; gap: 16px 0; }
+      .article-num { font-size: 48px; }
+      .article-num-col { display: flex; align-items: center; gap: 16px; }
+      .contact-card { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
+      .footer-top { flex-direction: column; gap: 28px; }
+      .footer-nav { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+        青山乃木坂パートナーズ合同会社
+        <span>Aoyama Nogizaka Partners</span>
+      </a>
+      <div class="nav-right">
+        <a href="https://aoyama-nogizaka.com/" class="nav-back">
+          <span>← </span>
+          <span class="nav-back-label">トップへ戻る</span>
+        </a>
+        <a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-watermark">Privacy</div>
+      <div class="section-label reveal">Privacy Policy</div>
+      <h1 class="page-hero-title reveal">個人情報保護方針</h1>
+      <p class="page-hero-sub reveal">青山乃木坂パートナーズ合同会社</p>
+      <div class="page-hero-divider"></div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="intro-inner">
+      <div class="section-label reveal">Our Commitment</div>
+      <p class="intro-lead reveal">
+        青山乃木坂パートナーズ合同会社（以下「当社」）は、お客様の個人情報の保護を重要な責務と認識し、以下の方針に基づき適切に管理いたします。
+      </p>
+    </div>
+  </section>
+
+  <!-- ARTICLE 01 -->
+  <section class="policy-section bg-white">
+    <div class="policy-inner">
+      <div class="article-layout reveal">
+        <div class="article-num-col">
+          <div class="article-num">01</div>
+          <div class="article-label-en">Article</div>
+        </div>
+        <div class="article-body">
+          <h2>個人情報の取得</h2>
+          <p>当社は、業務上必要な範囲において、適法かつ公正な手段により個人情報を取得いたします。お問い合わせフォーム等を通じてご提供いただく情報（会社名、氏名、メールアドレス等）は、ご連絡およびサービスのご案内に利用いたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE 02 -->
+  <section class="policy-section bg-off">
+    <div class="policy-inner">
+      <div class="article-layout reveal">
+        <div class="article-num-col">
+          <div class="article-num">02</div>
+          <div class="article-label-en">Article</div>
+        </div>
+        <div class="article-body">
+          <h2>利用目的</h2>
+          <ul>
+            <li>お問い合わせへの対応およびご連絡</li>
+            <li>当社サービスに関するご案内</li>
+            <li>サービスの改善および新サービスの開発</li>
+            <li>その他上記利用目的に付随する業務</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE 03 -->
+  <section class="policy-section bg-white">
+    <div class="policy-inner">
+      <div class="article-layout reveal">
+        <div class="article-num-col">
+          <div class="article-num">03</div>
+          <div class="article-label-en">Article</div>
+        </div>
+        <div class="article-body">
+          <h2>第三者への提供</h2>
+          <p>当社は、法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはいたしません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE 04 -->
+  <section class="policy-section bg-off">
+    <div class="policy-inner">
+      <div class="article-layout reveal">
+        <div class="article-num-col">
+          <div class="article-num">04</div>
+          <div class="article-label-en">Article</div>
+        </div>
+        <div class="article-body">
+          <h2>安全管理措置</h2>
+          <p>当社は、個人情報の漏洩、滅失またはき損の防止のため、適切な安全管理措置を講じます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE 05 -->
+  <section class="policy-section bg-white">
+    <div class="policy-inner">
+      <div class="article-layout reveal">
+        <div class="article-num-col">
+          <div class="article-num">05</div>
+          <div class="article-label-en">Article</div>
+        </div>
+        <div class="article-body">
+          <h2>開示・訂正・削除の請求</h2>
+          <p>お客様ご自身の個人情報について、開示・訂正・削除等をご希望される場合は、下記お問い合わせ先までご連絡ください。ご本人確認のうえ、合理的な範囲で対応いたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT BLOCK -->
+  <section class="contact-block-section">
+    <div class="contact-block-inner">
+      <div class="contact-card reveal">
+        <div>
+          <div class="contact-card-label">Article 06</div>
+          <h2>お問い合わせ先</h2>
+          <p>個人情報に関するお問い合わせは、下記までご連絡ください。ご本人確認のうえ、誠実に対応いたします。</p>
+        </div>
+        <div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Company</div>
+            <div class="contact-info-value">青山乃木坂パートナーズ合同会社</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Address</div>
+            <div class="contact-info-value">〒106-0032<br>東京都港区六本木7-2-28-602</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATE -->
+  <div class="policy-date-section">
+    <div class="policy-date-inner reveal">
+      <p class="policy-date">制定日：2026年3月5日</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">青山乃木坂パートナーズ合同会社</div>
+          <div class="footer-tagline">Aoyama Nogizaka Partners LLC.</div>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+          <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+          <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+          <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+          <li><a href="https://aoyama-nogizaka.com/privacy" class="active">個人情報保護方針</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <address style="font-style:normal;" class="footer-address">
+          〒106-0032 東京都港区六本木7-2-28-602
+        </address>
+        <p class="footer-copy">© 2026 Aoyama Nogizaka Partners LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav scroll style
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Trigger hero reveals immediately on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.page-hero .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), 100 + i * 130);
+      });
+    });
+  </script>
+</body>
+</html>
