@@ -1,3 +1,705 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>チーム | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="青山乃木坂パートナーズのチームメンバーをご紹介します。経営コンサルティングとPEファンド投資の経験を持つプロフェッショナルが揃っています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2d4f;
+      --navy-light: #243b63;
+      --gold: #9b8b6e;
+      --gold-light: #c8b99a;
+      --white: #ffffff;
+      --off-white: #f8f7f5;
+      --light-gray: #f0eee9;
+      --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a;
+      --text-mid: #444444;
+      --text-light: #888888;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--mid-gray);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .nav-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      padding: 9px 22px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--navy-light); }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 80px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(26,45,79,0.04) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(155,139,110,0.06) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--mid-gray) 1px, transparent 1px),
+        linear-gradient(90deg, var(--mid-gray) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.25;
+    }
+    .page-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 70px;
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero-watermark {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(60px, 10vw, 120px);
+      font-weight: 300;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,45,79,0.07);
+      letter-spacing: 0.06em;
+      user-select: none;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .page-hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .page-hero-sub {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+    .page-hero-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--mid-gray);
+      margin-top: 40px;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ===== INTRO SECTION ===== */
+    .intro-section {
+      background: var(--navy);
+      padding: 70px 0;
+    }
+    .intro-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .intro-section .section-label { color: var(--gold-light); }
+    .intro-section .section-label::before { background: var(--gold-light); }
+    .intro-lead {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 2vw, 17px);
+      font-weight: 300;
+      line-height: 2.2;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      max-width: 760px;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .team-section {
+      padding: 90px 0;
+    }
+    .team-section.bg-white { background: var(--white); }
+    .team-section.bg-off { background: var(--off-white); }
+    .team-section.bg-navy { background: var(--navy); }
+    .team-section.bg-light { background: var(--light-gray); }
+    .team-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .team-section-header {
+      margin-bottom: 60px;
+    }
+    .team-section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+    }
+    .team-section.bg-navy .team-section-title { color: var(--white); }
+    .team-section.bg-navy .section-label { color: var(--gold-light); }
+    .team-section.bg-navy .section-label::before { background: var(--gold-light); }
+
+    /* ===== REPRESENTATIVE CARD ===== */
+    .rep-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 60px;
+      align-items: start;
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      padding: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rep-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--navy), var(--gold));
+    }
+    .rep-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--light-gray);
+      border: 1px solid var(--mid-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rep-photo-placeholder {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(26,45,79,0.15);
+      letter-spacing: 0.1em;
+    }
+    .rep-photo-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+    .rep-info {}
+    .rep-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .rep-name-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .rep-name-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-light);
+      letter-spacing: 0.2em;
+      margin-bottom: 28px;
+    }
+    .rep-bio {
+      font-size: 14px;
+      line-height: 2.2;
+      color: var(--text-mid);
+      letter-spacing: 0.05em;
+      margin-bottom: 36px;
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+    }
+
+    /* Career timeline */
+    .career-timeline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 36px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .career-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 100px;
+      position: relative;
+    }
+    .career-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -10px;
+      top: 18px;
+      color: var(--gold-light);
+      font-size: 14px;
+      z-index: 1;
+    }
+    .career-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+    .career-badge span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+    .career-co {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .career-role {
+      font-size: 10px;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-top: 3px;
+    }
+
+    /* Skills */
+    .rep-skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .skill-box {
+      background: var(--off-white);
+      border: 1px solid var(--mid-gray);
+      padding: 16px 18px;
+    }
+    .skill-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .skill-title::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .skill-items {
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.9;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== MEMBER CARDS ===== */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .member-card {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      padding: 40px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .member-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .member-card:hover::before { height: 100%; }
+    .member-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .member-avatar span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+    }
+    .member-info { flex: 1; }
+    .member-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .member-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .member-bio {
+      font-size: 13px;
+      line-height: 2.1;
+      color: var(--text-mid);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== ADVISOR CARDS ===== */
+    .advisors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .advisor-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 40px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+    .advisor-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(155,139,110,0.2);
+      border: 1px solid rgba(155,139,110,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .advisor-avatar span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: var(--gold-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .advisor-info { flex: 1; }
+    .advisor-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .advisor-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .advisor-bio {
+      font-size: 13px;
+      line-height: 2.1;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 0 40px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+    .footer-brand {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-nav a.active { color: rgba(255,255,255,0.85); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-address {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .rep-card { grid-template-columns: 1fr; gap: 36px; }
+      .rep-photo { aspect-ratio: 16/9; max-height: 280px; }
+      .members-grid { grid-template-columns: 1fr; }
+      .advisors-grid { grid-template-columns: 1fr; }
+      .rep-skills { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 24px; }
+      .nav-back-label { display: none; }
+      .page-hero-watermark { display: none; }
+      .page-hero-inner { padding: 60px 24px 50px; }
+      .intro-inner, .team-inner, .footer-inner { padding: 0 24px; }
+      .rep-card { padding: 32px 24px; }
+      .rep-skills { grid-template-columns: 1fr; }
+      .member-card, .advisor-card { flex-direction: column; gap: 20px; }
+      .footer-top { flex-direction: column; gap: 28px; }
+      .footer-nav { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+        青山乃木坂パートナーズ
+        <span>Aoyama Nogizaka Partners</span>
+      </a>
+      <div class="nav-right">
+        <a href="https://aoyama-nogizaka.com/" class="nav-back">
+          <span>← </span>
+          <span class="nav-back-label">トップへ戻る</span>
+        </a>
+        <a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-watermark">Team</div>
+      <div class="section-label reveal">Our Team</div>
+      <h1 class="page-hero-title reveal reveal-delay-1">チーム紹介</h1>
+      <p class="page-hero-sub reveal reveal-delay-2">青山乃木坂パートナーズ</p>
+      <div class="page-hero-divider"></div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="intro-inner">
+      <div class="section-label reveal">Philosophy</div>
+      <p class="intro-lead reveal reveal-delay-1">
+        私たちは、投資家の視点と経営者の感覚を兼ね備えたプロフェッショナルとして、<br><br>
+        企業が本来持つべき価値を最大限に引き出すための支援を行います。<br><br>
+        提言で終わらせず、実行まで共に走り抜くことを、揺るぎないコミットメントとしています。
+      </p>
+    </div>
+  </section>
+
+  <!-- REPRESENTATIVE -->
+  <section class="team-section bg-white">
+    <div class="team-inner">
+      <div class="team-section-header reveal">
+        <div class="section-label">Representative</div>
+        <h2 class="team-section-title">代表</h2>
+      </div>
+      <div class="rep-card reveal reveal-delay-1">
+        <div class="rep-photo" style="background:none;border:none;padding:0;">
+          <img src="profile_moriwaki.jpg" alt="森脇 潤" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;image-rendering:-webkit-optimize-contrast;">
+        </div>
+        <div class="rep-info">
+          <p class="rep-role">Representative / 代表</p>
+          <h3 class="rep-name-jp">森脇 潤</h3>
+          <p class="rep-name-en">Jun Moriwaki</p>
+          <p class="rep-bio">
+            早稲田大学卒業後、アクセンチュア戦略コンサルティング本部、アーサー・ディ・リトル（ADL）にて経営コンサルティングに従事。SIer・通信・自動車・エンタメ等の業界を中心に、成長戦略・新規事業立案からPEファンド向けBDD・PMIまで幅広くリード。<br><br>
+            その後アドバンテッジパートナーズ投資チームにて上場企業向けエンゲージメント投資に従事し、投資実行からバリューアップ・Exitまでを一気通貫で担当（担当6社）。2025年に青山乃木坂パートナーズを設立。
+          </p>
+
 
 
         </div>
