@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ニュース・論考 | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="青山乃木坂パートナーズによるコーポレートガバナンス・企業価値向上・アクティビスト対応に関する最新論考・プレスリリース・お知らせ。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:  #1a2d4f;
+      --gold:  #9b8b6e;
+      --cream: #f8f7f5;
+      --gray:  #e0dcd5;
+      --mid:   #6b7280;
+      --white: #ffffff;
+      --text:  #2c2c2c;
+      --serif: 'Noto Serif JP', serif;
+      --sans:  'Noto Sans JP', sans-serif;
+      --deco:  'Cormorant Garamond', serif;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--text); line-height: 1.8; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy); height: 64px;
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      text-decoration: none; display: flex; flex-direction: column; gap: 1px;
+    }
+    .nav-logo-jp { font-family: var(--serif); font-size: .75rem; color: var(--gray); letter-spacing: .1em; }
+    .nav-logo-en { font-family: var(--deco); font-size: 1rem; color: var(--white); letter-spacing: .08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--gray); text-decoration: none; font-size: .78rem;
+      letter-spacing: .06em; transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-cta {
+      background: var(--gold); color: var(--white); border: none; cursor: pointer;
+      padding: 8px 20px; font-size: .78rem; font-family: var(--sans);
+      letter-spacing: .06em; transition: opacity .2s; text-decoration: none;
+    }
+    .nav-cta:hover { opacity: .85; }
+    /* ── Hamburger ── */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all .3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 999;
+      flex-direction: column; padding: 36px 28px; gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: rgba(255,255,255,.8); font-size: 1rem;
+      letter-spacing: .06em; padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1); transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu a.m-cta { color: var(--gold); margin-top: 20px; border: 1px solid var(--gold); text-align: center; padding: 14px; }
+    @media (max-width: 860px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 48px 20px 40px; }
+      .featured-body { padding: 24px; }
+      .featured-img { min-height: 200px; padding: 24px; }
+      .articles-section { padding: 36px 0 60px; }
+      .newsletter { padding: 40px 20px; }
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      margin-top: 64px;
+      background: linear-gradient(160deg, var(--navy) 0%, #243b60 60%, #2a4570 100%);
+      padding: 60px 40px 52px; position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; right: -40px; top: -40px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,139,110,.1) 0%, transparent 70%);
+    }
+    .page-hero-inner { max-width: 1100px; margin: 0 auto; }
+    .page-hero-en { font-family: var(--deco); font-style: italic; color: var(--gold); font-size: .95rem; letter-spacing: .12em; margin-bottom: 10px; }
+    .page-hero h1 { font-family: var(--serif); font-weight: 300; color: var(--white); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 12px; }
+    .page-hero p { color: rgba(255,255,255,.65); font-size: .88rem; max-width: 560px; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* ── Filter Tabs ── */
+    .filter-bar { padding: 36px 0 0; display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 7px 20px; border: 1px solid var(--gray); background: transparent;
+      font-family: var(--sans); font-size: .78rem; color: var(--mid); cursor: pointer;
+      letter-spacing: .06em; transition: all .2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--navy); color: var(--white); border-color: var(--navy);
+    }
+
+    /* ── Featured Article ── */
+    .featured-wrap { padding: 36px 0 0; }
+    .featured-label { font-family: var(--deco); font-style: italic; color: var(--gold); font-size: .85rem; letter-spacing: .1em; margin-bottom: 12px; }
+    .featured-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--white); box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      text-decoration: none; transition: box-shadow .25s, transform .25s;
+      overflow: hidden;
+    }
+    .featured-card:hover { box-shadow: 0 8px 36px rgba(0,0,0,.13); transform: translateY(-2px); }
+    @media (max-width: 700px) { .featured-card { grid-template-columns: 1fr; } }
+    .featured-img {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4570 100%);
+      min-height: 280px; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 32px; position: relative; overflow: hidden;
+    }
+    .featured-img::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239b8b6e' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .feat-tag { font-size: .7rem; letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; }
+    .feat-title { font-family: var(--serif); font-weight: 300; color: var(--white); font-size: 1.2rem; line-height: 1.5; }
+    .featured-body { padding: 36px; display: flex; flex-direction: column; justify-content: space-between; }
+    .feat-meta { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .feat-meta .tag {
+      font-size: .7rem; padding: 3px 10px; letter-spacing: .07em;
+      border: 1px solid var(--gray); color: var(--mid);
+    }
+    .feat-date { font-size: .78rem; color: var(--mid); font-family: var(--deco); }
+    .feat-excerpt { font-size: .88rem; color: #555; line-height: 1.85; margin-bottom: 24px; flex: 1; }
+    .feat-read {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .78rem; letter-spacing: .1em; color: var(--navy);
+      text-decoration: none; font-weight: 500; transition: gap .2s;
+    }
+    .feat-read:hover { gap: 14px; color: var(--gold); }
+    .feat-read::after { content: '→'; }
+
+    /* ── Article Grid ── */
+    .articles-section { padding: 56px 0 80px; }
+    .articles-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+    .articles-header h2 { font-family: var(--serif); font-weight: 400; color: var(--navy); font-size: 1.1rem; }
+    .articles-header .count { font-size: .78rem; color: var(--mid); }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+    .article-card {
+      background: var(--white); text-decoration: none; display: flex; flex-direction: column;
+      border-top: 3px solid var(--gray); box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      overflow: hidden;
+    }
+    .article-card:hover { border-top-color: var(--gold); box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .article-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .ac-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .ac-tag {
+      font-size: .68rem; padding: 2px 8px; letter-spacing: .07em;
+      border: 1px solid var(--gray); color: var(--mid);
+    }
+    .ac-tag.type-insight { border-color: var(--navy); color: var(--navy); }
+    .ac-tag.type-press   { border-color: var(--gold); color: var(--gold); }
+    .ac-tag.type-news    { border-color: #2980b9; color: #2980b9; }
+    .ac-title { font-family: var(--serif); font-weight: 400; color: var(--navy); font-size: .95rem; line-height: 1.55; margin-bottom: 10px; }
+    .ac-excerpt { font-size: .8rem; color: #666; line-height: 1.8; flex: 1; margin-bottom: 16px; }
+    .ac-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--gray); }
+    .ac-date { font-size: .75rem; color: var(--mid); font-family: var(--deco); }
+    .ac-arrow { font-size: .8rem; color: var(--gold); }
+
+    /* ── Coming Soon Card ── */
+    .coming-soon {
+      background: rgba(26,45,79,.03); border: 1px dashed var(--gray);
+      padding: 36px 24px; text-align: center; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; min-height: 200px;
+    }
+    .coming-soon p { font-size: .82rem; color: var(--mid); margin-top: 8px; }
+
+    /* ── Newsletter Banner ── */
+    .newsletter {
+      background: var(--navy); padding: 56px 40px; margin: 0;
+    }
+    .newsletter-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+    .newsletter h3 { font-family: var(--serif); font-weight: 300; color: var(--white); font-size: 1.3rem; margin-bottom: 8px; }
+    .newsletter p  { font-size: .85rem; color: rgba(255,255,255,.6); }
+    .newsletter-form { display: flex; gap: 0; min-width: 320px; }
+    .newsletter-form input {
+      flex: 1; padding: 12px 16px; border: none; background: rgba(255,255,255,.1);
+      color: var(--white); font-family: var(--sans); font-size: .85rem; outline: none;
+      border-bottom: 1px solid rgba(255,255,255,.3); transition: border-color .2s;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.4); }
+    .newsletter-form input:focus { border-color: var(--gold); }
+    .newsletter-form button {
+      background: var(--gold); color: var(--white); border: none; cursor: pointer;
+      padding: 12px 24px; font-family: var(--sans); font-size: .78rem; letter-spacing: .08em;
+      white-space: nowrap; transition: opacity .2s;
+    }
+    .newsletter-form button:hover { opacity: .85; }
+    @media (max-width: 600px) { .newsletter-form { min-width: 100%; flex-direction: column; } }
+
+    /* ── Footer ── */
+    footer {
+      background: #111d30; color: rgba(255,255,255,.5);
+      padding: 48px 40px 28px; font-size: .78rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 24px; padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
+    .footer-tagline { font-size: .7rem; letter-spacing: .12em; color: var(--gold); }
+    .footer-nav { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .72rem; }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/" class="active">ニュース・論考</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
+  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+</div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-en">News &amp; Insights</div>
+    <h1>ニュース・論考</h1>
+    <p>コーポレートガバナンス・企業価値向上・アクティビスト対応に関する最新の論考・プレスリリース・お知らせをお届けします。</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Filter Tabs -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterArticles('all', this)">すべて</button>
+    <button class="filter-btn" onclick="filterArticles('insight', this)">論考・分析</button>
+    <button class="filter-btn" onclick="filterArticles('press', this)">プレスリリース</button>
+    <button class="filter-btn" onclick="filterArticles('news', this)">お知らせ</button>
+  </div>
+
+  <!-- Featured Article -->
+  <div class="featured-wrap" data-category="insight">
+    <div class="featured-label">Featured Insight</div>
+    <a href="/news/activist-report.html" class="featured-card">
+      <div class="featured-img">
+        <div class="feat-tag">Special Report — 2026.03</div>
+        <div class="feat-title">アクティビスト投資家の時代<br>上場企業が今すぐ知るべき「株主の論理」と対応戦略</div>
+      </div>
+      <div class="featured-body">
+        <div>
+          <div class="feat-meta">
+            <span class="tag">論考・分析</span>
+            <span class="tag">アクティビスト対応</span>
+            <span class="tag">コーポレートガバナンス</span>
+            <span class="feat-date">2026年3月</span>
+          </div>
+          <p class="feat-excerpt">
+            経団連とエリオットの対話、東証グロース市場の100億円基準見直し、アシロへのAVI拒否権取得——アクティビズムはプライム大型株だけの問題ではなくなった。データ分析・代表事例・4つのオリジナル分析フレームワークで、上場企業が今すぐ取るべき行動を提言する。
+          </p>
+        </div>
+        <span class="feat-read">論考を読む</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Articles Grid -->
+  <div class="articles-section">
+    <div class="articles-header">
+      <h2>すべての記事</h2>
+      <span class="count" id="article-count">1件</span>
+    </div>
+    <div class="articles-grid" id="articles-grid">
+
+      <!-- Article 01 -->
+      <a href="/news/activist-report.html" class="article-card" data-category="insight">
+        <div class="article-card-body">
+          <div class="ac-tags">
+            <span class="ac-tag type-insight">論考・分析</span>
+            <span class="ac-tag">アクティビスト対応</span>
+          </div>
+          <div class="ac-title">アクティビスト投資家の時代——上場企業が今すぐ知るべき「株主の論理」と対応戦略</div>
+          <div class="ac-excerpt">東証改革・グロース市場新基準・中小型株への波及を総括。4つのオリジナル分析（感応度スコアリング・ライフサイクル分析・業種別圧力マップ・対話マトリクス）を収録。</div>
+          <div class="ac-footer">
+            <span class="ac-date">March 2026</span>
+            <span class="ac-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Placeholder: coming soon -->
+      <div class="article-card coming-soon" data-category="placeholder">
+        <div style="font-size:1.5rem;color:var(--gray);">＋</div>
+        <p>次回論考を準備中です</p>
+      </div>
+      <div class="article-card coming-soon" data-category="placeholder">
+        <div style="font-size:1.5rem;color:var(--gray);">＋</div>
+        <p>プレスリリースを準備中です</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div>
+      <h3>論考・お知らせを受け取る</h3>
+      <p>新しい論考・プレスリリース発行時にメールでお知らせします。</p>
+    </div>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="メールアドレスを入力" required />
+      <button type="submit">登録する</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Aoyama Nogizaka Partners</div>
+        <div class="footer-tagline">青山乃木坂パートナーズ合同会社</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>東京・港区</span>
+      <span>© 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Mobile Nav ── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── Filter ── */
+function filterArticles(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('#articles-grid .article-card:not(.coming-soon)');
+  const featured = document.querySelector('.featured-wrap');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const match = category === 'all' || card.dataset.category === category;
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+
+  if (featured) {
+    const fMatch = category === 'all' || featured.dataset.category === category;
+    featured.style.display = fMatch ? '' : 'none';
+  }
+
+  document.getElementById('article-count').textContent = visible + '件';
+}
+
+/* ── Newsletter ── */
+function handleNewsletter(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ 登録完了';
+  btn.style.background = '#27ae60';
+  e.target.querySelector('input').disabled = true;
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
