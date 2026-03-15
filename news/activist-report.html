@@ -879,76 +879,9 @@
         </div>
       </div>
 
-      <div id="form-success">
-        <h4>✅ お問い合わせを受け付けました</h4>
-        <p>担当コンサルタントより改めてご連絡いたします。</p>
+      <div style="width:100%;overflow:hidden;">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkZ2kleW8PII1AEE3ntd96SmKFIh6B6ef9PF-wmiccQHeQ4g/viewform?embedded=true" width="100%" height="1247" frameborder="0" marginheight="0" marginwidth="0" style="min-height:1247px;border:none;">読み込んでいます…</iframe>
       </div>
-
-      <form id="lead-form" onsubmit="handleSubmit(event)">
-        <h3>お問い合わせフォーム</h3>
-        <p class="form-sub">アクティビスト対応・企業価値向上・PBRの向上余地診断・ディスカッションなど、お気軽にお問い合わせください。</p>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>お名前<span class="req">*</span></label>
-            <input type="text" placeholder="山田 太郎" required />
-          </div>
-          <div class="form-group">
-            <label>役職</label>
-            <input type="text" placeholder="代表取締役 / IR部長 等" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>会社名<span class="req">*</span></label>
-          <input type="text" placeholder="株式会社〇〇" required />
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>上場市場</label>
-            <select>
-              <option value="">選択してください</option>
-              <option>東証プライム</option>
-              <option>東証スタンダード</option>
-              <option>東証グロース</option>
-              <option>その他・非上場</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>時価総額規模</label>
-            <select>
-              <option value="">選択してください</option>
-              <option>〜100億円</option>
-              <option>100〜500億円</option>
-              <option>500〜2,000億円</option>
-              <option>2,000億円〜</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>メールアドレス<span class="req">*</span></label>
-          <input type="email" id="email-input" placeholder="taro.yamada@example.co.jp" required />
-        </div>
-
-        <div class="form-group">
-          <label>ご相談・お問い合わせ内容</label>
-          <textarea placeholder="例：アクティビスト対応の体制を整備したい / PBRの向上余地を診断してほしい / IR戦略の見直しを検討中 / 取締役会向けのディスカッションセッションを依頼したい 等"></textarea>
-        </div>
-
-        <div class="consent">
-          <input type="checkbox" id="consent" required />
-          <label for="consent" style="font-size:.78rem;color:var(--mid);">
-            <a href="https://aoyama-nogizaka.com/" style="color:var(--gold);">青山乃木坂パートナーズ</a> のプライバシーポリシーに同意の上、担当者からのご連絡を受け取ることに同意します。<span class="req">*</span>
-          </label>
-        </div>
-
-        <button type="submit" class="btn-submit">相談を申し込む</button>
-        <div style="text-align:center;margin-top:14px;font-size:.78rem;color:var(--mid);">
-          またはメールにてお問い合わせください：<a href="mailto:jun.moriwaki@aoyama-nogizaka.com" style="color:var(--gold);">jun.moriwaki@aoyama-nogizaka.com</a>
-        </div>
-      </form>
     </div>
   </div>
 </section>
@@ -988,20 +921,6 @@ window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   document.getElementById('progress').style.width = pct + '%';
 });
-
-/* ─── Form Submit ─── */
-function handleSubmit(e) {
-  e.preventDefault();
-  const email = document.getElementById('email-input').value;
-  // mailto fallback so the inquiry reaches the consultant
-  const form = e.target;
-  const name = form.querySelector('input[placeholder="山田 太郎"]').value;
-  const company = form.querySelector('input[placeholder="株式会社〇〇"]').value;
-  const body = encodeURIComponent('【お問い合わせ】\n氏名：' + name + '\n会社名：' + company + '\n返信先：' + email);
-  window.location.href = 'mailto:jun.moriwaki@aoyama-nogizaka.com?subject=' + encodeURIComponent('【アクティビスト対応ご相談】' + company) + '&body=' + body;
-  document.getElementById('lead-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
 
 /* ─── Color Helper ─── */
 const C = {

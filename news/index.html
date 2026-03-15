@@ -351,15 +351,14 @@
 
 <!-- Newsletter -->
 <section class="newsletter">
-  <div class="newsletter-inner">
+  <div class="newsletter-inner" style="flex-direction:column;align-items:center;text-align:center;gap:20px;">
     <div>
       <h3>論考・お知らせを受け取る</h3>
       <p>新しい論考・プレスリリース発行時にメールでお知らせします。</p>
     </div>
-    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-      <input type="email" placeholder="メールアドレスを入力" required />
-      <button type="submit">登録する</button>
-    </form>
+    <div style="width:100%;max-width:640px;overflow:hidden;background:#fff;border-radius:4px;">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdNi8x2svtoajJ-IiBsJDLsq3i70Tt6r28rq8Jmj1YneOsjFw/viewform?embedded=true" width="100%" height="377" frameborder="0" marginheight="0" marginwidth="0" style="border:none;display:block;">読み込んでいます…</iframe>
+    </div>
   </div>
 </section>
 
@@ -416,15 +415,7 @@ function filterArticles(category, btn) {
   document.getElementById('article-count').textContent = visible + '件';
 }
 
-/* ── Newsletter ── */
-function handleNewsletter(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button');
-  btn.textContent = '✓ 登録完了';
-  btn.style.background = '#27ae60';
-  e.target.querySelector('input').disabled = true;
-  btn.disabled = true;
-}
+
 </script>
 </body>
 </html>
