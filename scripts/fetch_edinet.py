@@ -15,6 +15,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 
+import csv
 import requests
 
 # ─── 設定 ───
@@ -30,6 +31,76 @@ ACTIVISTS_FILE = SCRIPT_DIR / "known_activists.json"
 # 大量保有報告書の docTypeCode (EDINET API v2)
 DOC_TYPE_LARGE_HOLDING = "350"       # 大量保有報告書・変更報告書
 DOC_TYPE_CORRECTION = "360"          # 訂正報告書（大量保有報告書・変更報告書）
+
+
+def load_edinet_code_map():
+    """EDINET コードリストをダウンロードし、edinetCode → 企業名のマッピングを構築"""
+    if not API_KEY:
+        return {}
+
+    url = f"{EDINET_API_BASE}/EdinetcodeDlInfo/codes?Subscription-Key={API_KEY}"
+
+    try:
+        resp = requests.get(url, timeout=60)
+        if resp.status_code != 200:
+            print(f"  [WARN] EDINET code list download failed: {resp.status_code}", file=sys.stderr)
+            return {}
+
+        content_type = resp.headers.get("Content-Type", "")
+        if "zip" not in content_type and "octet" not in content_type:
+            print(f"  [WARN] Unexpected content-type for code list: {content_type}", file=sys.stderr)
+            return {}
+
+        code_map = {}
+        with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
+            for name in zf.namelist():
+                if name.endswith(".csv"):
+                    raw = zf.read(name)
+                    # Try UTF-8 with BOM, then shift_jis
+                    for enc in ["utf-8-sig", "shift_jis", "cp932"]:
+                        try:
+                            text = raw.decode(enc)
+                            break
+                        except (UnicodeDecodeError, LookupError):
+                            continue
+                    else:
+                        continue
+
+                    reader = csv.reader(text.splitlines())
+                    header = None
+                    name_col = None
+                    code_col = None
+                    for row in reader:
+                        if header is None:
+                            header = row
+                            # Find columns dynamically
+                            for idx, col in enumerate(header):
+                                col_clean = col.strip().replace('\ufeff', '')
+                                if 'EDINET' in col_clean and 'コード' in col_clean:
+                                    code_col = idx
+                                elif '提出者名' in col_clean or '発行者名' in col_clean or '名称' in col_clean:
+                                    if name_col is None:
+                                        name_col = idx
+                            # Fallback: first col = code, 7th col = name
+                            if code_col is None:
+                                code_col = 0
+                            if name_col is None:
+                                name_col = 6
+                            continue
+                        if len(row) <= max(code_col, name_col):
+                            continue
+                        edinet_code = row[code_col].strip()
+                        company_name = row[name_col].strip()
+                        if edinet_code and company_name:
+                            code_map[edinet_code] = company_name
+                    break  # Only need the first CSV
+
+        print(f"EDINET コードリスト: {len(code_map)} 件")
+        return code_map
+
+    except Exception as e:
+        print(f"  [WARN] EDINET code list error: {e}", file=sys.stderr)
+        return {}
 
 
 def load_known_activists():
@@ -177,7 +248,7 @@ def classify_purpose(purpose_text):
     return "その他"
 
 
-def build_report_entry(doc, activists, xbrl_data=None):
+def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
     """EDINET ドキュメントから報告エントリを構築"""
     sec_code = extract_sec_code(doc.get("secCode", ""))
     filer_name = doc.get("filerName", "").strip()
@@ -197,18 +268,16 @@ def build_report_entry(doc, activists, xbrl_data=None):
     else:
         report_type = "その他"
 
-    # 対象企業名の取得（複数フィールドを試行）
-    target_name = (
-        doc.get("issuerName", "")
-        or doc.get("subjectName", "")
-        or ""
-    ).strip()
+    # 対象企業名の取得: issuerEdinetCode → EDINETコードリストから企業名を引く
+    target_name = ""
+    if edinet_code_map:
+        issuer_code = (doc.get("issuerEdinetCode") or "").strip()
+        subject_code = (doc.get("subjectEdinetCode") or "").strip()
+        target_name = edinet_code_map.get(issuer_code, "") or edinet_code_map.get(subject_code, "")
 
-    # docDescription から対象企業名を抽出（「○○株式会社　大量保有報告書」のパターン）
+    # フォールバック: docDescription から企業名を抽出
     if not target_name and doc_desc:
-        # "株式会社XXX" or "XXX株式会社" のパターンを除外して書類名の前にある企業名
-        import re as _re
-        m = _re.match(r'^(.+?)\s*(?:大量保有|変更報告|訂正報告)', doc_desc)
+        m = re.match(r'^(.+?)\s*(?:大量保有|変更報告|訂正報告)', doc_desc)
         if m:
             target_name = m.group(1).strip()
 
@@ -366,6 +435,9 @@ def main():
     activists = load_known_activists()
     print(f"既知アクティビスト: {len(activists)} 件")
 
+    # EDINET コードリスト（企業名マッピング）
+    edinet_code_map = load_edinet_code_map()
+
     # 既存データを読み込み
     existing_data = load_existing_data()
     existing_reports = existing_data.get("reports", [])
@@ -376,7 +448,6 @@ def main():
     dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(LOOKBACK_DAYS)]
 
     new_reports = []
-    debug_logged = False
 
     for i, date_str in enumerate(dates):
         print(f"\r  取得中: {date_str} ({i + 1}/{len(dates)})", end="", flush=True)
@@ -387,14 +458,6 @@ def main():
             continue
 
         holdings = filter_large_holdings(documents)
-
-        # デバッグ: 最初の大量保有報告書の全フィールドを表示
-        if not debug_logged and holdings:
-            debug_logged = True
-            sample = holdings[0]
-            print(f"\n  [DEBUG] 大量保有報告書サンプル keys: {list(sample.keys())}", flush=True)
-            for k in ["docID", "secCode", "issuerName", "subjectName", "issuerEdinetCode", "filerName", "docDescription"]:
-                print(f"    {k} = {sample.get(k, '(なし)')}", flush=True)
 
         for doc in holdings:
             doc_id = doc.get("docID", "")
@@ -412,7 +475,7 @@ def main():
                 time.sleep(1)  # レート制限対策
                 xbrl_data = download_xbrl_and_extract(doc_id)
 
-            entry = build_report_entry(doc, activists, xbrl_data)
+            entry = build_report_entry(doc, activists, xbrl_data, edinet_code_map)
             new_reports.append(entry)
 
         time.sleep(0.5)  # レート制限対策
