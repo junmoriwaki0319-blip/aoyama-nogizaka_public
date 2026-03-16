@@ -27,9 +27,9 @@ DATA_DIR = SCRIPT_DIR.parent / "data"
 OUTPUT_FILE = DATA_DIR / "reports.json"
 ACTIVISTS_FILE = SCRIPT_DIR / "known_activists.json"
 
-# 大量保有報告書の docTypeCode
-DOC_TYPE_LARGE_HOLDING = "060"       # 大量保有報告書
-DOC_TYPE_CHANGE_REPORT = "070"       # 変更報告書
+# 大量保有報告書の docTypeCode (EDINET API v2)
+DOC_TYPE_LARGE_HOLDING = "350"       # 大量保有報告書・変更報告書
+DOC_TYPE_CORRECTION = "360"          # 訂正報告書（大量保有報告書・変更報告書）
 
 
 def load_known_activists():
@@ -63,21 +63,15 @@ def fetch_document_list(date_str):
         resp = requests.get(url, timeout=30)
         resp.raise_for_status()
         data = resp.json()
-        results = data.get("results", [])
-        # デバッグ: 最初の日だけ取得件数を表示
-        if results:
-            holdings = [d for d in results if d.get("docTypeCode") in {"060", "070"}]
-            if holdings:
-                print(f"\n    → {date_str}: {len(results)} docs, {len(holdings)} 大量保有", flush=True)
-        return results
+        return data.get("results", [])
     except requests.RequestException as e:
         print(f"  [WARN] API error for {date_str}: {e}", file=sys.stderr)
         return []
 
 
 def filter_large_holdings(documents):
-    """大量保有報告書 / 変更報告書 のみ抽出"""
-    target_types = {DOC_TYPE_LARGE_HOLDING, DOC_TYPE_CHANGE_REPORT}
+    """大量保有報告書 / 変更報告書 / 訂正報告書 のみ抽出"""
+    target_types = {DOC_TYPE_LARGE_HOLDING, DOC_TYPE_CORRECTION}
     return [
         doc for doc in documents
         if doc.get("docTypeCode") in target_types
@@ -191,12 +185,15 @@ def build_report_entry(doc, activists, xbrl_data=None):
     # アクティビスト判定
     matched_activist = match_activist(filer_name, activists)
 
-    # 報告種別
+    # 報告種別（docDescriptionから判定）
+    doc_desc = doc.get("docDescription", "") or ""
     doc_type = doc.get("docTypeCode", "")
-    if doc_type == DOC_TYPE_LARGE_HOLDING:
-        report_type = "新規報告"
-    elif doc_type == DOC_TYPE_CHANGE_REPORT:
+    if doc_type == DOC_TYPE_CORRECTION:
+        report_type = "訂正報告"
+    elif "変更報告" in doc_desc:
         report_type = "変更報告"
+    elif "大量保有" in doc_desc:
+        report_type = "新規報告"
     else:
         report_type = "その他"
 
@@ -359,7 +356,6 @@ def main():
     dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(LOOKBACK_DAYS)]
 
     new_reports = []
-    first_response_logged = False
 
     for i, date_str in enumerate(dates):
         print(f"\r  取得中: {date_str} ({i + 1}/{len(dates)})", end="", flush=True)
@@ -368,23 +364,6 @@ def main():
         if not documents:
             time.sleep(0.5)
             continue
-
-        # デバッグ: 大量保有関連をdocDescriptionから探す（最初の10日間のみ）
-        if i < 10 and documents:
-            for d in documents:
-                desc = d.get("docDescription", "") or ""
-                dtype = d.get("docTypeCode", "")
-                if "大量保有" in desc or "変更報告" in desc or dtype in {"060", "070"}:
-                    print(f"\n  [FOUND] date={date_str} docTypeCode={dtype} desc={desc[:80]} filer={d.get('filerName','')}", flush=True)
-                    if not first_response_logged:
-                        first_response_logged = True
-        if not first_response_logged and i == 0 and documents:
-            first_response_logged = True
-            doc_types = {}
-            for d in documents:
-                dt = d.get("docTypeCode", "unknown")
-                doc_types[dt] = doc_types.get(dt, 0) + 1
-            print(f"\n  [DEBUG] {date_str}: {len(documents)} 件取得。docTypeCode分布: {doc_types}", flush=True)
 
         holdings = filter_large_holdings(documents)
 
