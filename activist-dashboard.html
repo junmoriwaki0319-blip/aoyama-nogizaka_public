@@ -10,7 +10,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アクティビストウォッチャー | 青山乃木坂パートナーズ</title>
+  <title>アクティビストダッシュボード | 青山乃木坂パートナーズ</title>
   <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価。">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -318,7 +318,44 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a { text-decoration: none; color: var(--text-dark); font-size: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--mid-gray); }
     .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
+
+    /* EXPORT BUTTONS */
+    .export-bar { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid var(--light-gray); background: var(--off-white); }
+    .export-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--mid-gray); border-radius: 4px; background: var(--white); font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+    .export-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .export-btn svg { width: 14px; height: 14px; }
+    .export-btn.locked { opacity: 0.5; cursor: not-allowed; }
+    .export-btn.locked:hover { border-color: var(--mid-gray); color: var(--text-light); }
+    .member-badge { font-size: 10px; background: var(--gold); color: var(--white); padding: 1px 6px; border-radius: 3px; margin-left: 4px; }
+
+    /* WATCHLIST */
+    .watchlist-panel { padding: 24px; }
+    .watchlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .watchlist-header h3 { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .watchlist-count { font-size: 12px; color: var(--text-light); }
+    .watchlist-items { display: flex; flex-direction: column; gap: 8px; }
+    .watchlist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--light-gray); border-radius: 6px; transition: all 0.2s; }
+    .watchlist-item:hover { border-color: var(--gold-light); background: rgba(155,139,110,0.03); }
+    .watchlist-item-info { flex: 1; }
+    .watchlist-item-name { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .watchlist-item-meta { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+    .watchlist-item-actions { display: flex; gap: 8px; }
+    .watchlist-btn-remove { background: none; border: 1px solid var(--mid-gray); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-light); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-btn-remove:hover { border-color: var(--red); color: var(--red); }
+    .watchlist-add-form { display: flex; gap: 8px; margin-bottom: 16px; }
+    .watchlist-add-form input { flex: 1; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; }
+    .watchlist-add-form input:focus { outline: none; border-color: var(--gold); }
+    .watchlist-add-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; white-space: nowrap; }
+    .watchlist-add-btn:hover { background: var(--navy-light); }
+    .watchlist-empty { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 13px; }
+    .watchlist-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .watchlist-preset-btn { padding: 4px 10px; background: var(--light-gray); border: none; border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-preset-btn:hover { background: var(--navy); color: var(--white); }
+    .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
   </style>
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 
@@ -330,7 +367,7 @@
       <li><a href="/">ホーム</a></li>
       <li><a href="/team.html">チーム</a></li>
       <li><a href="/news/">ニュース</a></li>
-      <li><a href="/activist-dashboard.html" class="active">アクティビストウォッチャー</a></li>
+      <li><a href="/activist-dashboard.html" class="active">アクティビストダッシュボード</a></li>
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
@@ -348,7 +385,7 @@
   <a href="/">ホーム</a>
   <a href="/team.html">チーム</a>
   <a href="/news/">ニュース</a>
-  <a href="/activist-dashboard.html">アクティビストウォッチャー</a>
+  <a href="/activist-dashboard.html">アクティビストダッシュボード</a>
   <div style="display:flex; gap:12px; margin-top:16px;">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
@@ -358,8 +395,8 @@
 <!-- PAGE HEADER -->
 <header class="page-header">
   <div class="page-header-inner">
-    <div class="page-header-label">Activist Watcher &mdash; Powered by EDINET API</div>
-    <h1>アクティビストウォッチャー</h1>
+    <div class="page-header-label">Activist Dashboard &mdash; Powered by EDINET API</div>
+    <h1>アクティビストダッシュボード</h1>
     <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価します。</p>
     <div class="data-source">データソース: <span>EDINET（金融庁）</span> ｜ 最終更新: <span id="lastUpdated">読み込み中...</span></div>
   </div>
@@ -425,6 +462,7 @@
       <button class="tab-btn active" onclick="switchTab('list', this)">報告一覧</button>
       <button class="tab-btn" onclick="switchTab('activists', this)">アクティビスト別</button>
       <button class="tab-btn" onclick="switchTab('risk', this)">標的リスク評価</button>
+      <button class="tab-btn" onclick="switchTab('watchlist', this)">ウォッチリスト</button>
       <button class="tab-btn" onclick="switchTab('chart', this)">トレンド分析</button>
       <button class="tab-btn" onclick="switchTab('timeline', this)">タイムライン</button>
     </div>
@@ -438,6 +476,16 @@
             <option value="date-desc">報告日（新しい順）</option>
             <option value="date-asc">報告日（古い順）</option>
           </select>
+        </div>
+        <div class="export-bar">
+          <button class="export-btn" id="btnCsvExport" onclick="exportCSV()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M12 17v-6"/><path d="M9.5 14.5L12 17l2.5-2.5"/></svg>
+            CSV ダウンロード<span class="member-badge">会員限定</span>
+          </button>
+          <button class="export-btn" id="btnPdfExport" onclick="exportPDF()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M9 15h6"/><path d="M9 11h6"/></svg>
+            PDF レポート出力<span class="member-badge">会員限定</span>
+          </button>
         </div>
         <div style="overflow-x:auto;">
           <table class="activist-table">
@@ -558,6 +606,51 @@
             <div style="margin-top:24px; padding:20px; background:var(--off-white); border-radius:8px;">
               <h4 style="font-size:13px; font-weight:500; color:var(--navy); margin-bottom:10px;">推奨アクション</h4>
               <ul id="riskRecommendations" style="font-size:13px; color:var(--text-mid); line-height:2; padding-left:20px;"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: ウォッチリスト -->
+    <div class="tab-content" id="tab-watchlist">
+      <div class="content-card">
+        <div class="card-header">
+          <h2>アクティビスト ウォッチリスト</h2>
+          <div style="display:flex; gap:8px;">
+            <button class="export-btn" onclick="exportWatchlistCSV()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M12 17v-6"/><path d="M9.5 14.5L12 17l2.5-2.5"/></svg>
+              リスト CSV出力
+            </button>
+          </div>
+        </div>
+        <div class="watchlist-panel">
+          <p style="font-size:13px; color:var(--text-mid); margin-bottom:16px; line-height:1.8;">
+            注目しているアクティビストをリストに追加して管理できます。リストに追加したアクティビストの新規報告を一覧で確認できます。
+          </p>
+
+          <div class="watchlist-add-form">
+            <input type="text" id="watchlistInput" placeholder="アクティビスト名を入力（例: エリオット）">
+            <button class="watchlist-add-btn" onclick="addToWatchlist()">追加</button>
+          </div>
+
+          <div class="watchlist-presets" id="watchlistPresets">
+            <!-- JSで生成 -->
+          </div>
+
+          <div class="watchlist-header">
+            <h3>ウォッチリスト</h3>
+            <span class="watchlist-count" id="watchlistCount">0 件</span>
+          </div>
+
+          <div class="watchlist-items" id="watchlistItems">
+            <div class="watchlist-empty">ウォッチリストは空です。上のボタンまたは入力欄からアクティビストを追加してください。</div>
+          </div>
+
+          <div style="margin-top:24px; padding:16px; background:var(--off-white); border-radius:6px;">
+            <h4 style="font-size:12px; font-weight:500; color:var(--navy); margin-bottom:8px;">ウォッチリスト内の最新報告</h4>
+            <div id="watchlistReports" style="font-size:13px; color:var(--text-mid);">
+              リストにアクティビストを追加すると、関連する最新報告がここに表示されます。
             </div>
           </div>
         </div>
@@ -1301,6 +1394,248 @@ function isRecentReport(dateStr, days) {
   const now = new Date();
   return (now - d) < days * 86400000;
 }
+
+// ===== CSV EXPORT (会員限定) =====
+function exportCSV() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+  const rows = [['日付', '報告者', '証券コード', '対象企業', '報告種別', '保有比率(%)', '保有目的', 'アクティビスト']];
+  filteredReports.forEach(r => {
+    rows.push([
+      r.date || '',
+      r.filer_name || '',
+      r.sec_code || '',
+      r.target_company || '',
+      r.report_type || '',
+      r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '',
+      r.purpose || '',
+      r.is_activist ? 'Yes' : 'No'
+    ]);
+  });
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(row => row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'activist_reports_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ===== PDF EXPORT (会員限定) =====
+function exportPDF() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+  // フォントサイズ設定（日本語はデフォルトフォントで部分対応）
+  doc.setFontSize(16);
+  doc.text('Activist Dashboard Report', 14, 15);
+  doc.setFontSize(9);
+  doc.text('Generated: ' + new Date().toLocaleString('ja-JP'), 14, 22);
+  doc.text('Total: ' + filteredReports.length + ' reports', 14, 27);
+
+  const headers = [['Date', 'Filer', 'Code', 'Target', 'Type', 'Ratio(%)', 'Purpose', 'Activist']];
+  const body = filteredReports.slice(0, 200).map(r => [
+    r.date || '',
+    (r.filer_name || '').slice(0, 20),
+    r.sec_code || '',
+    (r.target_company || '').slice(0, 25),
+    r.report_type || '',
+    r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '',
+    (r.purpose || '').slice(0, 15),
+    r.is_activist ? 'Yes' : 'No'
+  ]);
+
+  doc.autoTable({
+    head: headers,
+    body: body,
+    startY: 32,
+    styles: { fontSize: 7, cellPadding: 2 },
+    headStyles: { fillColor: [26, 45, 79], textColor: 255 },
+    alternateRowStyles: { fillColor: [248, 247, 245] },
+    margin: { left: 14, right: 14 }
+  });
+
+  doc.save('activist_report_' + new Date().toISOString().slice(0, 10) + '.pdf');
+}
+
+// ===== WATCHLIST =====
+let watchlist = JSON.parse(localStorage.getItem('activist_watchlist') || '[]');
+
+function saveWatchlist() {
+  localStorage.setItem('activist_watchlist', JSON.stringify(watchlist));
+}
+
+function addToWatchlist(name) {
+  if (!name) {
+    name = document.getElementById('watchlistInput').value.trim();
+  }
+  if (!name) return;
+
+  // 重複チェック
+  if (watchlist.some(w => w.name === name)) {
+    renderWatchlist();
+    document.getElementById('watchlistInput').value = '';
+    return;
+  }
+
+  // known_activistsから情報を取得
+  const activists = reportData.activists || {};
+  let info = null;
+  for (const [id, a] of Object.entries(activists)) {
+    if (a.name === name || (a.name && a.name.includes(name)) || name.includes(a.name || '')) {
+      info = { id, ...a };
+      break;
+    }
+  }
+
+  watchlist.push({
+    name: info ? info.name : name,
+    id: info ? info.id : '',
+    type: info ? (info.type || '') : '',
+    addedAt: new Date().toISOString()
+  });
+
+  saveWatchlist();
+  renderWatchlist();
+  renderWatchlistReports();
+  document.getElementById('watchlistInput').value = '';
+
+  // プリセットボタンの状態更新
+  renderWatchlistPresets();
+}
+
+function removeFromWatchlist(name) {
+  watchlist = watchlist.filter(w => w.name !== name);
+  saveWatchlist();
+  renderWatchlist();
+  renderWatchlistReports();
+  renderWatchlistPresets();
+}
+
+function renderWatchlist() {
+  const container = document.getElementById('watchlistItems');
+  const countEl = document.getElementById('watchlistCount');
+  countEl.textContent = watchlist.length + ' 件';
+
+  if (!watchlist.length) {
+    container.innerHTML = '<div class="watchlist-empty">ウォッチリストは空です。上のボタンまたは入力欄からアクティビストを追加してください。</div>';
+    return;
+  }
+
+  container.innerHTML = watchlist.map(w => {
+    const typeLabel = w.type === 'activist' ? 'アクティビスト' : w.type === 'fund' ? 'ファンド' : '';
+    return `<div class="watchlist-item">
+      <div class="watchlist-item-info">
+        <div class="watchlist-item-name">${escapeHtml(w.name)}</div>
+        <div class="watchlist-item-meta">${typeLabel ? typeLabel + ' · ' : ''}追加日: ${w.addedAt ? w.addedAt.slice(0, 10) : '—'}</div>
+      </div>
+      <div class="watchlist-item-actions">
+        <button class="watchlist-btn-remove" onclick="filterByActivist('${escapeHtml(w.name)}')">報告を表示</button>
+        <button class="watchlist-btn-remove" onclick="removeFromWatchlist('${escapeHtml(w.name)}')">削除</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderWatchlistPresets() {
+  const container = document.getElementById('watchlistPresets');
+  const activists = reportData.activists || {};
+  const names = Object.values(activists).map(a => a.name).filter(Boolean).slice(0, 15);
+
+  container.innerHTML = names.map(name => {
+    const isAdded = watchlist.some(w => w.name === name);
+    return `<button class="watchlist-preset-btn${isAdded ? ' added' : ''}" onclick="${isAdded ? "removeFromWatchlist('" + escapeHtml(name) + "')" : "addToWatchlist('" + escapeHtml(name) + "')"}">${isAdded ? '✓ ' : ''}${escapeHtml(name)}</button>`;
+  }).join('');
+}
+
+function renderWatchlistReports() {
+  const container = document.getElementById('watchlistReports');
+  if (!watchlist.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const watchNames = watchlist.map(w => w.name);
+  const matched = reportData.reports.filter(r => {
+    return watchNames.some(name => {
+      const filer = r.filer_name || '';
+      return filer.includes(name) || name.includes(filer);
+    });
+  }).slice(0, 20);
+
+  if (!matched.length) {
+    container.innerHTML = '<div style="padding:16px; color:var(--text-light); font-size:12px;">ウォッチリスト対象の報告はまだありません。</div>';
+    return;
+  }
+
+  let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <span style="font-size:12px; color:var(--text-light);">直近 ${matched.length} 件</span>
+    <button class="export-btn" onclick="exportWatchlistCSV()" style="font-size:11px; padding:4px 10px;">CSV出力</button>
+  </div>`;
+
+  html += '<table style="width:100%; border-collapse:collapse; font-size:12px;">';
+  html += '<tr style="background:var(--light-gray);"><th style="padding:6px 8px; text-align:left;">日付</th><th style="padding:6px 8px; text-align:left;">報告者</th><th style="padding:6px 8px; text-align:left;">対象</th><th style="padding:6px 8px; text-align:right;">保有比率</th></tr>';
+  matched.forEach(r => {
+    html += `<tr style="border-bottom:1px solid var(--light-gray);">
+      <td style="padding:6px 8px;">${r.date || '—'}</td>
+      <td style="padding:6px 8px;">${escapeHtml(r.filer_name || '')}</td>
+      <td style="padding:6px 8px;">${escapeHtml(r.target_company || '').slice(0, 30)}</td>
+      <td style="padding:6px 8px; text-align:right;">${r.holding_ratio != null ? r.holding_ratio.toFixed(1) + '%' : '—'}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  container.innerHTML = html;
+}
+
+function exportWatchlistCSV() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+  const watchNames = watchlist.map(w => w.name);
+  const matched = reportData.reports.filter(r => {
+    return watchNames.some(name => {
+      const filer = r.filer_name || '';
+      return filer.includes(name) || name.includes(filer);
+    });
+  });
+
+  const rows = [['日付', '報告者', '証券コード', '対象企業', '報告種別', '保有比率(%)', '保有目的']];
+  matched.forEach(r => {
+    rows.push([
+      r.date || '', r.filer_name || '', r.sec_code || '', r.target_company || '',
+      r.report_type || '', r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '', r.purpose || ''
+    ]);
+  });
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(row => row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'watchlist_reports_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ウォッチリストタブ切替時に初期化
+const origSwitchTab = switchTab;
+switchTab = function(tab, btn) {
+  origSwitchTab(tab, btn);
+  if (tab === 'watchlist') {
+    renderWatchlist();
+    renderWatchlistPresets();
+    renderWatchlistReports();
+  }
+};
 </script>
 
 </body>
