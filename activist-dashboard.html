@@ -898,12 +898,22 @@ function renderActivistCards() {
     count++;
     const isPremium = count > 3;
 
-    const holdingsHtml = (data.holdings || []).slice(0, 6).map(h =>
-      `<div class="ac-stock-item">
-        <span>${h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span>' : ''}${escapeHtml(h.target_company || h.filer_name || '—')}</span>
-        <span class="ac-stock-pct">${h.holding_ratio ? h.holding_ratio.toFixed(1) + '%' : '—'}</span>
-      </div>`
-    ).join('');
+    // 保有比率の高い上位3銘柄を表示（比率ありを優先）
+    const sortedHoldings = [...(data.holdings || [])].sort((a, b) => (b.holding_ratio || 0) - (a.holding_ratio || 0));
+    const topHoldings = sortedHoldings.slice(0, 3);
+    const holdingsHtml = topHoldings.map(h => {
+      const name = h.target_company && h.target_company !== '変更報告書' && h.target_company !== '大量保有報告書'
+        ? h.target_company : (h.filer_name || '—');
+      const codeLabel = h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span> ' : '';
+      const ratio = h.holding_ratio ? h.holding_ratio.toFixed(1) + '%' : '—';
+      const typeTag = h.report_type === '新規報告' ? '<span class="badge-new" style="margin-left:6px;">新規</span>' : '';
+      return `<div class="ac-stock-item" style="padding:6px 0; border-bottom:1px solid var(--light-gray);">
+        <span style="flex:1;">${codeLabel}${escapeHtml(name)}${typeTag}</span>
+        <span class="ac-stock-pct" style="min-width:50px; text-align:right;">${ratio}</span>
+      </div>`;
+    }).join('');
+    const moreCount = sortedHoldings.length - 3;
+    const moreHtml = moreCount > 0 ? `<div style="font-size:11px; color:var(--text-light); margin-top:6px;">他 ${moreCount} 銘柄</div>` : '';
 
     const cardHtml = `
       <div class="activist-card">
@@ -921,7 +931,7 @@ function renderActivistCards() {
         <div class="ac-grid">
           <div>
             <div class="ac-section-title">保有銘柄（大量保有報告ベース）</div>
-            <div class="ac-stock-list">${holdingsHtml || '<div style="font-size:13px; color:var(--text-light);">データなし</div>'}</div>
+            <div class="ac-stock-list">${holdingsHtml || '<div style="font-size:13px; color:var(--text-light);">データなし</div>'}${moreHtml}</div>
           </div>
           <div>
             <div class="ac-section-title">活動傾向</div>

@@ -197,13 +197,33 @@ def build_report_entry(doc, activists, xbrl_data=None):
     else:
         report_type = "その他"
 
+    # 対象企業名の取得（複数フィールドを試行）
+    target_name = (
+        doc.get("issuerName", "")
+        or doc.get("subjectName", "")
+        or ""
+    ).strip()
+
+    # docDescription から対象企業名を抽出（「○○株式会社　大量保有報告書」のパターン）
+    if not target_name and doc_desc:
+        # "株式会社XXX" or "XXX株式会社" のパターンを除外して書類名の前にある企業名
+        import re as _re
+        m = _re.match(r'^(.+?)\s*(?:大量保有|変更報告|訂正報告)', doc_desc)
+        if m:
+            target_name = m.group(1).strip()
+
+    # secCode が空の場合は issuerCode の末尾5桁を試す
+    if not sec_code:
+        raw = doc.get("secCode", "") or doc.get("issuerCode", "") or ""
+        sec_code = extract_sec_code(raw)
+
     entry = {
         "doc_id": doc.get("docID", ""),
         "date": doc.get("submitDateTime", "")[:10],
         "filer_name": filer_name,
         "issuer_name": doc.get("issuerEdinetCode", ""),
         "sec_code": sec_code,
-        "target_company": doc.get("docDescription", "").strip(),
+        "target_company": target_name or doc_desc,
         "report_type": report_type,
         "edinet_url": f"https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100{doc.get('docID', '')}",
     }
@@ -356,6 +376,7 @@ def main():
     dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(LOOKBACK_DAYS)]
 
     new_reports = []
+    debug_logged = False
 
     for i, date_str in enumerate(dates):
         print(f"\r  取得中: {date_str} ({i + 1}/{len(dates)})", end="", flush=True)
@@ -366,6 +387,14 @@ def main():
             continue
 
         holdings = filter_large_holdings(documents)
+
+        # デバッグ: 最初の大量保有報告書の全フィールドを表示
+        if not debug_logged and holdings:
+            debug_logged = True
+            sample = holdings[0]
+            print(f"\n  [DEBUG] 大量保有報告書サンプル keys: {list(sample.keys())}", flush=True)
+            for k in ["docID", "secCode", "issuerName", "subjectName", "issuerEdinetCode", "filerName", "docDescription"]:
+                print(f"    {k} = {sample.get(k, '(なし)')}", flush=True)
 
         for doc in holdings:
             doc_id = doc.get("docID", "")
