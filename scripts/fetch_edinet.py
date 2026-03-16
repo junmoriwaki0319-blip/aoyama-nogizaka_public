@@ -369,8 +369,16 @@ def main():
             time.sleep(0.5)
             continue
 
-        # 最初に取得できた日のドキュメント種別を確認
-        if not first_response_logged and documents:
+        # デバッグ: 大量保有関連をdocDescriptionから探す（最初の10日間のみ）
+        if i < 10 and documents:
+            for d in documents:
+                desc = d.get("docDescription", "") or ""
+                dtype = d.get("docTypeCode", "")
+                if "大量保有" in desc or "変更報告" in desc or dtype in {"060", "070"}:
+                    print(f"\n  [FOUND] date={date_str} docTypeCode={dtype} desc={desc[:80]} filer={d.get('filerName','')}", flush=True)
+                    if not first_response_logged:
+                        first_response_logged = True
+        if not first_response_logged and i == 0 and documents:
             first_response_logged = True
             doc_types = {}
             for d in documents:
