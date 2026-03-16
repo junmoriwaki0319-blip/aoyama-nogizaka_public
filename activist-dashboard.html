@@ -491,7 +491,6 @@
     <div class="tab-nav">
       <button class="tab-btn active" onclick="switchTab('list', this)">報告一覧</button>
       <button class="tab-btn" onclick="switchTab('activists', this)">アクティビスト別</button>
-      <button class="tab-btn" onclick="switchTab('risk', this)">標的リスク評価</button>
       <button class="tab-btn" onclick="switchTab('watchlist', this)">ウォッチリスト</button>
       <button class="tab-btn" onclick="switchTab('chart', this)">トレンド分析</button>
       <button class="tab-btn" onclick="switchTab('timeline', this)">タイムライン</button>
@@ -545,99 +544,6 @@
         <div class="card-header"><h2>アクティビスト別ポートフォリオ</h2></div>
         <div class="activist-cards" id="activistCards">
           <div class="loading-spinner">データを読み込み中...</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB: 標的リスク評価 -->
-    <div class="tab-content" id="tab-risk">
-      <div class="content-card">
-        <div class="card-header">
-          <h2>アクティビスト標的リスク評価ツール</h2>
-        </div>
-        <div class="risk-tool">
-          <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; line-height:1.8;">
-            貴社の財務指標・ガバナンス状況を入力すると、アクティビストに狙われやすいかをスコアリングします。<br>
-            スコアが高いほど、アクティビストの標的となるリスクが高いことを示します。
-          </p>
-          <div class="risk-form" id="riskForm">
-            <div class="risk-field">
-              <label>PBR（株価純資産倍率）</label>
-              <input type="number" id="risk_pbr" step="0.01" placeholder="例: 0.85">
-              <div class="field-hint">1倍未満は高リスク</div>
-            </div>
-            <div class="risk-field">
-              <label>ROE（自己資本利益率）%</label>
-              <input type="number" id="risk_roe" step="0.1" placeholder="例: 5.2">
-              <div class="field-hint">8%未満は高リスク</div>
-            </div>
-            <div class="risk-field">
-              <label>配当性向 %</label>
-              <input type="number" id="risk_payout" step="0.1" placeholder="例: 25">
-              <div class="field-hint">30%未満は高リスク</div>
-            </div>
-            <div class="risk-field">
-              <label>ネットキャッシュ / 時価総額 %</label>
-              <input type="number" id="risk_cash" step="0.1" placeholder="例: 35">
-              <div class="field-hint">30%超は高リスク（余剰現金）</div>
-            </div>
-            <div class="risk-field">
-              <label>自己資本比率 %</label>
-              <input type="number" id="risk_equity" step="0.1" placeholder="例: 65">
-              <div class="field-hint">70%超は資本過剰の可能性</div>
-            </div>
-            <div class="risk-field">
-              <label>外国人持株比率 %</label>
-              <input type="number" id="risk_foreign" step="0.1" placeholder="例: 20">
-              <div class="field-hint">高いほどアクティビストが入りやすい</div>
-            </div>
-            <div class="risk-field">
-              <label>政策保有株式 / 純資産 %</label>
-              <input type="number" id="risk_crosshold" step="0.1" placeholder="例: 15">
-              <div class="field-hint">高いほどガバナンス上の問題</div>
-            </div>
-            <div class="risk-field">
-              <label>社外取締役比率 %</label>
-              <input type="number" id="risk_outside" step="0.1" placeholder="例: 33">
-              <div class="field-hint">33%未満はガバナンスリスク</div>
-            </div>
-            <div class="risk-field">
-              <label>時価総額（億円）</label>
-              <input type="number" id="risk_marketcap" step="1" placeholder="例: 500">
-              <div class="field-hint">100〜5000億円がターゲットゾーン</div>
-            </div>
-            <div class="risk-field">
-              <label>買収防衛策</label>
-              <select id="risk_defense">
-                <option value="">選択してください</option>
-                <option value="none">なし</option>
-                <option value="active">導入中</option>
-                <option value="expired">期限切れ / 廃止済み</option>
-              </select>
-              <div class="field-hint">廃止済みは狙われやすい</div>
-            </div>
-            <div class="risk-btn-area">
-              <button class="risk-btn" onclick="calculateRisk()">リスクを評価する</button>
-              <button class="risk-btn-clear" onclick="clearRisk()">クリア</button>
-            </div>
-          </div>
-
-          <div class="risk-result" id="riskResult">
-            <div class="risk-score-card" id="riskScoreCard">
-              <div class="risk-score-circle" id="riskScoreCircle">
-                <div class="risk-score-value" id="riskScoreValue">0</div>
-                <div class="risk-score-label">/ 100</div>
-              </div>
-              <div class="risk-level" id="riskLevel"></div>
-              <div class="risk-level-desc" id="riskLevelDesc"></div>
-            </div>
-            <h3 style="font-size:14px; font-weight:500; color:var(--navy); margin-bottom:16px;">評価項目別スコア</h3>
-            <div class="risk-detail-grid" id="riskDetailGrid"></div>
-            <div style="margin-top:24px; padding:20px; background:var(--off-white); border-radius:8px;">
-              <h4 style="font-size:13px; font-weight:500; color:var(--navy); margin-bottom:10px;">推奨アクション</h4>
-              <ul id="riskRecommendations" style="font-size:13px; color:var(--text-mid); line-height:2; padding-left:20px;"></ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -902,8 +808,9 @@ function renderActivistCards() {
     const sortedHoldings = [...(data.holdings || [])].sort((a, b) => (b.holding_ratio || 0) - (a.holding_ratio || 0));
     const topHoldings = sortedHoldings.slice(0, 3);
     const holdingsHtml = topHoldings.map(h => {
-      const name = h.target_company && h.target_company !== '変更報告書' && h.target_company !== '大量保有報告書'
-        ? h.target_company : (h.filer_name || '—');
+      const genericNames = ['変更報告書', '大量保有報告書', '訂正報告書', '変更報告書（特例対象株券等）', '大量保有報告書（特例対象株券等）', '訂正報告書（', ''];
+      const name = h.target_company && !genericNames.some(g => h.target_company === g || h.target_company.startsWith('訂正報告書'))
+        ? h.target_company : (h.sec_code ? h.sec_code : '—');
       const codeLabel = h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span> ' : '';
       const ratio = h.holding_ratio ? h.holding_ratio.toFixed(1) + '%' : '—';
       const typeTag = h.report_type === '新規報告' ? '<span class="badge-new" style="margin-left:6px;">新規</span>' : '';

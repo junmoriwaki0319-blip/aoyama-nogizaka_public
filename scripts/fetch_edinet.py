@@ -193,6 +193,32 @@ def download_xbrl_and_extract(doc_id):
                     except Exception:
                         continue
 
+                    # 発行者名（対象企業名）の抽出
+                    issuer_patterns = [
+                        r'(?:発行者の名称|発行者名称?|株券等の発行者)[^\n<]{0,10}[：:．\s]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})',
+                        r'name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer)[^"]*"[^>]*>([^<]+)',
+                        r'<[^>]*>([^<]*株式会社[^<]{0,20})</[^>]*>',
+                    ]
+                    for pattern in issuer_patterns:
+                        m = re.search(pattern, text)
+                        if m:
+                            name = m.group(1).strip()
+                            # Filter out generic text
+                            if name and len(name) >= 2 and '報告書' not in name:
+                                result["target_company"] = name
+                                break
+
+                    # 証券コードの抽出
+                    code_patterns = [
+                        r'(?:証券コード|銘柄コード)[^\d]{0,10}(\d{4,5})',
+                        r'name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>(\d{4,5})',
+                    ]
+                    for pattern in code_patterns:
+                        m = re.search(pattern, text)
+                        if m:
+                            result["sec_code"] = m.group(1).strip()
+                            break
+
                     # 保有割合の抽出（複数パターン対応）
                     ratio_patterns = [
                         r'(?:保有割合|所有割合)[^\d]{0,30}?([\d]+[\.．][\d]+)\s*[%％]',
@@ -268,23 +294,22 @@ def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
     else:
         report_type = "その他"
 
-    # 対象企業名の取得: issuerEdinetCode → EDINETコードリストから企業名を引く
+    # 対象企業名の取得（優先順位: XBRL → EDINETコードリスト → docDescription）
     target_name = ""
-    if edinet_code_map:
+
+    # 1. XBRLから抽出した企業名
+    if xbrl_data and xbrl_data.get("target_company"):
+        target_name = xbrl_data["target_company"]
+
+    # 2. EDINETコードリストから企業名
+    if not target_name and edinet_code_map:
         issuer_code = (doc.get("issuerEdinetCode") or "").strip()
         subject_code = (doc.get("subjectEdinetCode") or "").strip()
         target_name = edinet_code_map.get(issuer_code, "") or edinet_code_map.get(subject_code, "")
 
-    # フォールバック: docDescription から企業名を抽出
-    if not target_name and doc_desc:
-        m = re.match(r'^(.+?)\s*(?:大量保有|変更報告|訂正報告)', doc_desc)
-        if m:
-            target_name = m.group(1).strip()
-
-    # secCode が空の場合は issuerCode の末尾5桁を試す
-    if not sec_code:
-        raw = doc.get("secCode", "") or doc.get("issuerCode", "") or ""
-        sec_code = extract_sec_code(raw)
+    # 3. XBRLからの証券コードで補完
+    if xbrl_data and xbrl_data.get("sec_code") and not sec_code:
+        sec_code = extract_sec_code(xbrl_data["sec_code"])
 
     entry = {
         "doc_id": doc.get("docID", ""),
@@ -292,7 +317,7 @@ def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
         "filer_name": filer_name,
         "issuer_name": doc.get("issuerEdinetCode", ""),
         "sec_code": sec_code,
-        "target_company": target_name or doc_desc,
+        "target_company": target_name if target_name else "",
         "report_type": report_type,
         "edinet_url": f"https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100{doc.get('docID', '')}",
     }
