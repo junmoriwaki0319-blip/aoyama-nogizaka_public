@@ -39,6 +39,12 @@
     .nav-links a { color: var(--mid-gray); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
     .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -12px; background: var(--navy); border-radius: 6px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 100; list-style: none; margin-top: 8px; }
+    .nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 0.76rem; white-space: nowrap; color: var(--mid-gray); }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.05); }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-cta { background: var(--gold); color: var(--white) !important; border: none; cursor: pointer; padding: 8px 20px; font-size: 0.78rem; font-family: var(--sans); letter-spacing: 0.06em; transition: opacity 0.2s; text-decoration: none; }
     .nav-cta:hover { opacity: 0.85; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
@@ -397,7 +403,7 @@
         <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
         <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
         <li><a href="/news/">ニュース・論考</a></li>
-        <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
         <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
       </ul>

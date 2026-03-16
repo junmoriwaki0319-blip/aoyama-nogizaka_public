@@ -339,6 +339,14 @@
     .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.1rem; margin-bottom: 8px; }
     .footer-copy { margin-top: 32px; text-align: center; font-size: .72rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; }
 
+    /* ─── Nav Dropdown ─── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -12px; background: var(--navy); border-radius: 6px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 100; list-style: none; margin-top: 8px; }
+    .nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 0.76rem; white-space: nowrap; color: var(--mid-gray,rgba(255,255,255,.6)); }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.05); }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+
     /* ─── Hamburger ─── */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all .3s; }
@@ -354,6 +362,8 @@
       border-bottom: 1px solid rgba(255,255,255,.1); transition: color .2s;
     }
     .mobile-menu a.m-cta { color: var(--gold); margin-top: 16px; border: 1px solid var(--gold); text-align: center; padding: 14px; }
+    .mobile-menu .m-section-label { color: var(--gold); font-size: .75rem; letter-spacing: .12em; padding: 18px 0 4px; border-bottom: none; cursor: default; }
+    .mobile-menu .m-sub-link { padding-left: 16px; font-size: .92rem; }
 
     /* ─── Responsive ─── */
     @media (max-width: 860px) {
@@ -425,7 +435,13 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" style="color:var(--gold);">ニュース・論考</a></li>
-      <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        </ul>
+      </li>
       <li><button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">ご相談・お問合せ</button></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -439,7 +455,9 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
-  <a href="/activist-dashboard.html" onclick="toggleMenu()">ダッシュボード</a>
+  <span class="m-section-label">データ</span>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" class="m-sub-link">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" class="m-sub-link">アクティビスト対象評価</a>
   <a href="#contact" onclick="toggleMenu()" class="m-cta">ご相談・お問合せ</a>
 </div>
 
@@ -910,7 +928,8 @@
         <li><a href="https://aoyama-nogizaka.com/#about" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">会社概要</a></li>
         <li><a href="https://aoyama-nogizaka.com/team" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">チーム</a></li>
         <li><a href="/news/" style="color:var(--gold);text-decoration:none;font-size:.78rem;">ニュース・論考</a></li>
-        <li><a href="/activist-dashboard.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">ダッシュボード</a></li>
+        <li><a href="/activist-dashboard.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">アクティビスト対象評価</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">お問い合わせ</a></li>
       </ul>
     </div>

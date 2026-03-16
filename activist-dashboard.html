@@ -94,6 +94,12 @@
     .nav-links a { text-decoration: none; color: var(--mid-gray); font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
     .nav-links a.active { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -12px; background: var(--navy); border-radius: 6px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 100; list-style: none; margin-top: 8px; }
+    .nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 0.76rem; white-space: nowrap; color: var(--mid-gray); }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.05); }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
     .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
     .btn-login:hover { border-color: var(--gold); color: var(--gold); }
@@ -389,8 +395,13 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/">ニュース・論考</a></li>
-      <li><a href="/activist-dashboard.html" class="active">ダッシュボード</a></li>
-      <li><a href="/risk-assessment.html">標的リスク評価</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="/activist-dashboard.html" class="active">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        </ul>
+      </li>
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
@@ -411,8 +422,9 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMobileMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMobileMenu()">チーム</a>
   <a href="/news/" onclick="toggleMobileMenu()">ニュース・論考</a>
-  <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active">ダッシュボード</a>
-  <a href="/risk-assessment.html" onclick="toggleMobileMenu()">標的リスク評価</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
+  <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMobileMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
   <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
@@ -693,8 +705,8 @@
       <a href="https://aoyama-nogizaka.com/#about">会社概要</a>
       <a href="https://aoyama-nogizaka.com/team">チーム</a>
       <a href="/news/">ニュース・論考</a>
-      <a href="/activist-dashboard.html">ダッシュボード</a>
-      <a href="/risk-assessment.html">標的リスク評価</a>
+      <a href="/activist-dashboard.html">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html">アクティビスト対象評価</a>
       <a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a>
       <a href="/privacy.html">個人情報保護方針</a>
     </div>

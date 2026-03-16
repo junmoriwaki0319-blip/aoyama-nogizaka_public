@@ -54,6 +54,12 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
     .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -12px; background: var(--navy); border-radius: 6px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 100; list-style: none; margin-top: 8px; }
+    .nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 0.76rem; white-space: nowrap; color: var(--mid-gray); }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.05); }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-cta {
       background: var(--gold); color: var(--white); border: none; cursor: pointer;
       padding: 8px 20px; font-size: .78rem; font-family: var(--sans);
@@ -259,7 +265,13 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" class="active">ニュース・論考</a></li>
-      <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        </ul>
+      </li>
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -273,7 +285,9 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
-  <a href="/activist-dashboard.html" onclick="toggleMenu()">ダッシュボード</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
@@ -370,8 +384,8 @@
             <span class="ac-tag type-dashboard">データ・ダッシュボード</span>
             <span class="ac-tag">IR向けツール</span>
           </div>
-          <div class="ac-title">アクティビスト標的リスク評価——銘柄コード入力で自動診断</div>
-          <div class="ac-excerpt">上場企業のアクティビスト標的リスクをPBR・ROE・配当性向・ネットキャッシュ比率など10項目で定量評価。証券コードを入力するだけで主要指標を自動取得し、即座にリスクスコアと改善アクションを提示。</div>
+          <div class="ac-title">アクティビスト対象評価——銘柄コード入力で自動診断</div>
+          <div class="ac-excerpt">上場企業のアクティビスト対象リスクをPBR・ROE・配当性向・ネットキャッシュ比率など10項目で定量評価。証券コードを入力するだけで主要指標を自動取得し、即座にリスクスコアと改善アクションを提示。</div>
           <div class="ac-footer">
             <span class="ac-date">March 2026</span>
             <span class="ac-arrow">→</span>
@@ -421,7 +435,8 @@
         <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
         <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
         <li><a href="/news/">ニュース・論考</a></li>
-        <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
       </ul>
     </div>
