@@ -1,0 +1,15 @@
+{
+  "regions": ["hnd1"],
+  "rewrites": [
+    { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
+      ]
+    }
+  ]
+}
