@@ -1,0 +1,169 @@
+{
+  "activists": [
+    {
+      "id": "strategic_capital",
+      "name": "ストラテジックキャピタル",
+      "aliases": ["Strategic Capital", "ストラテジック・キャピタル"],
+      "type": "activist",
+      "representative": "丸木 強",
+      "founded": "2012年",
+      "headquarters": "東京",
+      "description": "株主提案を積極的に行い、取締役選任・資本政策の改善を要求。PBR1倍割れの中小型株を主なターゲットとする。",
+      "focus_sectors": ["製造業", "建設", "不動産"]
+    },
+    {
+      "id": "city_index_elevens",
+      "name": "シティインデックスイレブンス",
+      "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "南青山不動産", "オフィスサポート", "レノ", "Reno"],
+      "type": "activist",
+      "representative": "村上世彰氏関連",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "旧村上ファンド系。複数のSPCを通じて投資。不動産・エネルギー・建設セクターに注力し、自社株買い・配当増額・事業売却を要求。",
+      "focus_sectors": ["不動産", "エネルギー", "建設"]
+    },
+    {
+      "id": "elliott",
+      "name": "エリオット・マネジメント",
+      "aliases": ["Elliott Management", "Elliott Investment Management", "Elliott Advisors", "エリオット・インベストメント・マネジメント", "Elliott Associates"],
+      "type": "activist",
+      "representative": "Paul Singer",
+      "founded": "1977年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "世界最大級のアクティビスト。日本市場では大型株にも投資し、ガバナンス改善・資本効率向上・事業再編を要求。",
+      "focus_sectors": ["エネルギー", "IT・通信", "素材"]
+    },
+    {
+      "id": "oasis",
+      "name": "オアシス・マネジメント",
+      "aliases": ["Oasis Management", "オアシス マネジメント"],
+      "type": "activist",
+      "representative": "Seth Fischer",
+      "founded": "2002年",
+      "headquarters": "香港",
+      "description": "アジア太平洋地域のアクティビスト。企業統治改善と株主還元拡大を求める。TOB関連でも積極的に発言。",
+      "focus_sectors": ["IT・通信", "不動産", "金融"]
+    },
+    {
+      "id": "dalton",
+      "name": "ダルトン・インベストメンツ",
+      "aliases": ["Dalton Investments", "ダルトン インベストメンツ"],
+      "type": "fund",
+      "representative": "James B. Rosenwald III",
+      "founded": "1999年",
+      "headquarters": "米国・ロサンゼルス",
+      "description": "日本のバリュー株に注力する長期投資ファンド。株主提案を行うこともあり、資本効率改善を求める。",
+      "focus_sectors": ["製造業", "素材", "消費財"]
+    },
+    {
+      "id": "valueact",
+      "name": "バリューアクト・キャピタル",
+      "aliases": ["ValueAct Capital", "バリューアクト"],
+      "type": "activist",
+      "representative": "Mason Morfit",
+      "founded": "2000年",
+      "headquarters": "米国・サンフランシスコ",
+      "description": "協調的アクティビズムを掲げ、取締役派遣を通じた企業変革を推進。日本市場にも注力。",
+      "focus_sectors": ["IT・通信", "製造業", "ヘルスケア"]
+    },
+    {
+      "id": "rmb_capital",
+      "name": "RMBキャピタル",
+      "aliases": ["RMB Capital", "アールエムビーキャピタル"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "2005年",
+      "headquarters": "米国・シカゴ",
+      "description": "日本の中小型株に投資し、株主提案を通じたガバナンス改善・株主還元強化を要求。",
+      "focus_sectors": ["金融", "製造業", "サービス"]
+    },
+    {
+      "id": "3d_investment",
+      "name": "3Dインベストメント・パートナーズ",
+      "aliases": ["3D Investment Partners", "スリーディー・インベストメント"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "シンガポール",
+      "description": "東芝への投資で知られる。日本の大型株にも積極的に関与。",
+      "focus_sectors": ["電機", "製造業"]
+    },
+    {
+      "id": "effissimo",
+      "name": "エフィッシモ・キャピタル・マネジメント",
+      "aliases": ["Effissimo Capital Management", "エフィッシモ"],
+      "type": "fund",
+      "representative": "高坂 卓志",
+      "founded": "2006年",
+      "headquarters": "シンガポール",
+      "description": "旧村上ファンド出身者が設立。長期保有型の大量投資を行い、日本企業のガバナンス改善を推進。",
+      "focus_sectors": ["電機", "製造業", "IT・通信"]
+    },
+    {
+      "id": "asia_development",
+      "name": "アジア開発キャピタル",
+      "aliases": ["Asia Development Capital"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "国内アクティビスト。中小型株への投資と株主提案を行う。",
+      "focus_sectors": ["小売", "サービス"]
+    },
+    {
+      "id": "nippon_active_value",
+      "name": "ニッポン・アクティブ・バリュー・ファンド",
+      "aliases": ["Nippon Active Value Fund", "NAVF"],
+      "type": "fund",
+      "representative": "—",
+      "founded": "2020年",
+      "headquarters": "英国",
+      "description": "日本の割安な中小型株に集中投資し、株主提案を通じた企業価値向上を目指す英国上場ファンド。",
+      "focus_sectors": ["製造業", "小売", "金融"]
+    },
+    {
+      "id": "silchester",
+      "name": "シルチェスター・インターナショナル・インベスターズ",
+      "aliases": ["Silchester International Investors"],
+      "type": "fund",
+      "representative": "—",
+      "founded": "1994年",
+      "headquarters": "英国",
+      "description": "長期バリュー投資家。日本株を大量保有し、株主還元の強化を静かに求める。",
+      "focus_sectors": ["金融", "製造業", "消費財"]
+    },
+    {
+      "id": "sparx",
+      "name": "スパークス・グループ",
+      "aliases": ["SPARX Group", "スパークス・アセット・マネジメント"],
+      "type": "fund",
+      "representative": "阿部 修平",
+      "founded": "1989年",
+      "headquarters": "東京",
+      "description": "日本最大級の独立系運用会社。エンゲージメント投資を通じた企業価値向上を推進。",
+      "focus_sectors": ["製造業", "IT・通信", "金融"]
+    },
+    {
+      "id": "taiyo_pacific",
+      "name": "タイヨウ・パシフィック・パートナーズ",
+      "aliases": ["Taiyo Pacific Partners", "タイヨウ・ファンド"],
+      "type": "fund",
+      "representative": "Brian K. Heywood",
+      "founded": "2003年",
+      "headquarters": "米国・シアトル",
+      "description": "日本企業に友好的にエンゲージメントする長期投資家。取締役派遣を通じた経営改善を支援。",
+      "focus_sectors": ["製造業", "IT・通信", "サービス"]
+    },
+    {
+      "id": "san_investment",
+      "name": "サン・インベストメント",
+      "aliases": ["Sun Investment"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "国内アクティビスト。中小型株への投資を中心に活動。",
+      "focus_sectors": ["小売", "サービス", "不動産"]
+    }
+  ]
+}

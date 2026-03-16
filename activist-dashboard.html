@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5D57P05PM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクティビストウォッチャー | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価。">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
+      authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
+      projectId: "aoyama-nogizaka-activist",
+      storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
+      messagingSenderId: "384668278205",
+      appId: "1:384668278205:web:78b25a473c6305f264c6d4",
+      measurementId: "G-Y1JYXRYHV9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+
+    // グローバルに公開
+    window.firebaseAuth = auth;
+    window.firebaseDb = db;
+
+    // 認証状態の監視
+    onAuthStateChanged(auth, (user) => {
+      window.currentUser = user;
+      updateAuthUI(user);
+    });
+
+    // ログイン
+    window.firebaseLogin = async (email, password) => {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      return cred.user;
+    };
+
+    // 新規登録
+    window.firebaseRegister = async (email, password, name, company) => {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      // Firestore にユーザー情報を保存
+      await setDoc(doc(db, "users", cred.user.uid), {
+        name: name,
+        company: company || "",
+        email: email,
+        plan: "free",
+        createdAt: serverTimestamp()
+      });
+      return cred.user;
+    };
+
+    // ログアウト
+    window.firebaseLogout = () => signOut(auth);
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2d4f; --navy-light: #243b63; --gold: #9b8b6e; --gold-light: #c8b99a;
+      --white: #ffffff; --off-white: #f8f7f5; --light-gray: #f0eee9; --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a; --text-mid: #444444; --text-light: #888888;
+      --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--mid-gray); }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 400; color: var(--navy); text-decoration: none; letter-spacing: 0.06em; }
+    .nav-logo span { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; display: block; margin-top: 2px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 13px; font-weight: 400; letter-spacing: 0.08em; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--navy); transform: scaleX(0); transition: transform 0.25s ease; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links .active { color: var(--navy); font-weight: 500; }
+    .nav-links .active::after { transform: scaleX(1); background: var(--gold); }
+    .nav-auth-btns { display: flex; gap: 12px; align-items: center; }
+    .btn-login { background: none; border: 1px solid var(--navy); color: var(--navy); padding: 8px 20px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; }
+    .btn-login:hover { background: var(--navy); color: var(--white); }
+    .btn-register { background: var(--navy); border: 1px solid var(--navy); color: var(--white); padding: 8px 20px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; }
+    .btn-register:hover { background: var(--navy-light); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); transition: all 0.3s; }
+
+    /* PAGE HEADER */
+    .page-header { margin-top: 80px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 60px 40px 50px; position: relative; overflow: hidden; }
+    .page-header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%); }
+    .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .page-header-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Noto Serif JP', serif; font-weight: 300; color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.5; margin-bottom: 8px; }
+    .page-header p { color: rgba(255,255,255,0.6); font-size: 14px; letter-spacing: 0.04em; }
+    .page-header .data-source { margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.35); }
+    .page-header .data-source span { color: var(--gold-light); }
+
+    /* STATS BAR */
+    .stats-bar { max-width: 1200px; margin: -30px auto 0; padding: 0 40px; position: relative; z-index: 2; }
+    .stats-bar-inner { background: var(--white); border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); display: grid; grid-template-columns: repeat(4, 1fr); padding: 28px 0; }
+    .stat-item { text-align: center; border-right: 1px solid var(--light-gray); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--navy); line-height: 1.2; }
+    .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-top: 4px; }
+
+    /* MAIN LAYOUT */
+    .dashboard-layout { max-width: 1200px; margin: 40px auto; padding: 0 40px; display: grid; grid-template-columns: 280px 1fr; gap: 32px; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); padding: 24px; }
+    .sidebar-card h3 { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--navy); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--light-gray); }
+    .filter-group { margin-bottom: 16px; }
+    .filter-group:last-child { margin-bottom: 0; }
+    .filter-label { font-size: 12px; color: var(--text-light); margin-bottom: 6px; display: block; }
+    .filter-select, .filter-input { width: 100%; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--white); transition: border-color 0.2s; }
+    .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--gold); }
+    .filter-checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .filter-checkbox { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-mid); cursor: pointer; }
+    .filter-checkbox input[type="checkbox"] { accent-color: var(--navy); width: 16px; height: 16px; }
+    .btn-filter { width: 100%; padding: 10px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    .btn-filter:hover { background: var(--navy-light); }
+    .btn-reset { width: 100%; padding: 8px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 6px; }
+    .btn-reset:hover { border-color: var(--text-light); color: var(--text-mid); }
+    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .category-tag { padding: 4px 10px; background: var(--light-gray); border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; transition: all 0.2s; border: none; }
+    .category-tag:hover, .category-tag.active { background: var(--navy); color: var(--white); }
+
+    /* MAIN CONTENT */
+    .main-content { display: flex; flex-direction: column; gap: 24px; }
+    .tab-nav { display: flex; gap: 0; border-bottom: 2px solid var(--light-gray); flex-wrap: wrap; }
+    .tab-btn { padding: 12px 20px; background: none; border: none; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-light); cursor: pointer; letter-spacing: 0.06em; position: relative; transition: color 0.2s; white-space: nowrap; }
+    .tab-btn:hover { color: var(--text-mid); }
+    .tab-btn.active { color: var(--navy); font-weight: 500; }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold); }
+    .content-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow: hidden; }
+    .card-header { padding: 20px 24px; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .card-header h2 { font-size: 15px; font-weight: 500; color: var(--navy); letter-spacing: 0.04em; }
+    .sort-select { padding: 6px 10px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); background: var(--white); }
+
+    /* TABLE */
+    .activist-table { width: 100%; border-collapse: collapse; }
+    .activist-table th { padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; background: var(--off-white); border-bottom: 1px solid var(--light-gray); white-space: nowrap; }
+    .activist-table td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--light-gray); vertical-align: middle; }
+    .activist-table tbody tr { transition: background 0.15s; cursor: pointer; }
+    .activist-table tbody tr:hover { background: rgba(155,139,110,0.04); }
+    .activist-name { font-weight: 500; color: var(--navy); }
+    .sec-code { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--gold); font-weight: 500; margin-right: 6px; }
+    .activist-type { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+    .type-activist { background: #fef3c7; color: #92400e; }
+    .type-fund { background: #dbeafe; color: #1e40af; }
+    .type-new { background: #fee2e2; color: #991b1b; }
+    .type-change { background: #e0e7ff; color: #3730a3; }
+    .change-positive { color: var(--green); font-weight: 500; }
+    .change-negative { color: var(--red); font-weight: 500; }
+    .holding-bar { width: 80px; height: 6px; background: var(--light-gray); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+    .holding-bar-fill { height: 100%; border-radius: 3px; background: var(--navy); }
+    .date-cell { font-size: 12px; color: var(--text-light); white-space: nowrap; }
+    .badge-new { display: inline-block; padding: 1px 6px; background: var(--red); color: var(--white); font-size: 10px; border-radius: 3px; margin-left: 6px; font-weight: 500; }
+    .edinet-link { color: var(--blue); text-decoration: none; font-size: 12px; }
+    .edinet-link:hover { text-decoration: underline; }
+    .no-data { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 14px; }
+
+    /* ACTIVIST CARDS */
+    .activist-cards { display: flex; flex-direction: column; gap: 16px; padding: 24px; }
+    .activist-card { border: 1px solid var(--light-gray); border-radius: 8px; padding: 20px 24px; transition: box-shadow 0.2s; }
+    .activist-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .ac-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--light-gray); margin-bottom: 16px; }
+    .ac-name { font-size: 16px; font-weight: 500; color: var(--navy); }
+    .ac-meta { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+    .ac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ac-section-title { font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+    .ac-stock-list { display: flex; flex-direction: column; gap: 6px; }
+    .ac-stock-item { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+    .ac-stock-pct { font-weight: 500; color: var(--navy); }
+
+    /* RISK ASSESSMENT TOOL */
+    .risk-tool { padding: 24px; }
+    .risk-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+    .risk-field label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 4px; letter-spacing: 0.04em; }
+    .risk-field input, .risk-field select { width: 100%; padding: 10px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; }
+    .risk-field input:focus, .risk-field select:focus { outline: none; border-color: var(--gold); }
+    .risk-field .field-hint { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+    .risk-btn-area { grid-column: 1 / -1; display: flex; gap: 12px; margin-top: 8px; }
+    .risk-btn { padding: 12px 32px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; letter-spacing: 0.06em; }
+    .risk-btn:hover { background: var(--navy-light); }
+    .risk-btn-clear { padding: 12px 24px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
+
+    /* RISK RESULT */
+    .risk-result { display: none; margin-top: 24px; }
+    .risk-result.show { display: block; }
+    .risk-score-card { background: var(--off-white); border-radius: 12px; padding: 32px; text-align: center; margin-bottom: 24px; }
+    .risk-score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative; }
+    .risk-score-value { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 500; line-height: 1; }
+    .risk-score-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+    .risk-level { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+    .risk-level-desc { font-size: 14px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin: 0 auto; }
+    .risk-low { color: var(--green); }
+    .risk-medium { color: var(--orange); }
+    .risk-high { color: var(--red); }
+    .risk-bg-low { background: linear-gradient(135deg, #d1fae5, #ecfdf5); border: 2px solid #a7f3d0; }
+    .risk-bg-medium { background: linear-gradient(135deg, #fef3c7, #fffbeb); border: 2px solid #fde68a; }
+    .risk-bg-high { background: linear-gradient(135deg, #fee2e2, #fef2f2); border: 2px solid #fecaca; }
+    .risk-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .risk-detail-item { background: var(--white); border: 1px solid var(--light-gray); border-radius: 8px; padding: 16px; }
+    .risk-detail-item h4 { font-size: 12px; color: var(--text-light); margin-bottom: 6px; }
+    .risk-detail-item .score { font-size: 20px; font-weight: 500; color: var(--navy); }
+    .risk-detail-item .max-score { font-size: 12px; color: var(--text-light); }
+    .risk-detail-item .bar { width: 100%; height: 4px; background: var(--light-gray); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+    .risk-detail-item .bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s; }
+
+    /* TIMELINE */
+    .report-timeline { padding: 24px; }
+    .timeline-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--light-gray); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { min-width: 80px; font-size: 12px; color: var(--text-light); padding-top: 2px; }
+    .timeline-content { flex: 1; }
+    .timeline-title { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .timeline-detail { font-size: 13px; color: var(--text-mid); }
+    .timeline-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .timeline-tag { padding: 2px 8px; background: var(--light-gray); border-radius: 3px; font-size: 11px; color: var(--text-mid); }
+
+    /* LOGIN WALL */
+    .login-wall { position: relative; margin-top: -60px; padding-top: 100px; padding-bottom: 60px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--off-white) 30%, var(--off-white) 100%); }
+    .login-wall-inner { max-width: 480px; margin: 0 auto; background: var(--white); border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: 48px 40px; }
+    .login-wall-icon { width: 60px; height: 60px; background: var(--light-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; }
+    .login-wall h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; line-height: 1.8; }
+    .btn-cta-register { display: inline-block; background: var(--navy); color: var(--white); padding: 14px 40px; border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s; margin-bottom: 12px; }
+    .btn-cta-register:hover { background: var(--navy-light); }
+    .btn-cta-login { display: block; color: var(--gold); font-size: 13px; text-decoration: none; cursor: pointer; }
+    .plan-features { text-align: left; margin: 24px 0; padding: 20px; background: var(--off-white); border-radius: 6px; }
+    .plan-features h4 { font-size: 12px; font-weight: 500; color: var(--navy); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .plan-features li { font-size: 13px; color: var(--text-mid); padding: 4px 0; list-style: none; position: relative; padding-left: 20px; }
+    .plan-features li::before { content: '\2713'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+    /* PREMIUM BLUR */
+    .premium-content { position: relative; }
+    .premium-blur { filter: blur(4px); pointer-events: none; user-select: none; }
+    .premium-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 10; }
+    .premium-badge { background: var(--white); border: 1px solid var(--mid-gray); border-radius: 8px; padding: 20px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .premium-badge p { font-size: 13px; color: var(--text-mid); margin-bottom: 10px; }
+    .premium-badge button { background: var(--gold); color: var(--white); border: none; padding: 8px 20px; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: var(--white); border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-light); }
+    .modal h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 6px; letter-spacing: 0.06em; }
+    .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; transition: border-color 0.2s; }
+    .form-group input:focus { outline: none; border-color: var(--navy); }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .modal-footer { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-light); }
+    .modal-footer a { color: var(--gold); text-decoration: none; cursor: pointer; }
+
+    /* CHART */
+    .chart-container { padding: 24px; }
+    .chart-wrapper { position: relative; height: 300px; }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 48px 40px 32px; margin-top: 60px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-brand { font-family: 'Noto Serif JP', serif; font-size: 14px; color: var(--mid-gray); letter-spacing: 0.06em; }
+    .footer-brand span { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.2em; color: var(--gold-light); display: block; margin-top: 4px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--mid-gray); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .footer-copy p { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .dashboard-layout { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-auth-btns { display: none; }
+      .risk-form { grid-template-columns: 1fr; }
+      .ac-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-inner { padding: 0 20px; }
+      .page-header { padding: 48px 20px 40px; }
+      .stats-bar { padding: 0 20px; }
+      .dashboard-layout { padding: 0 16px; }
+      .footer-inner { flex-direction: column; gap: 20px; }
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; flex-direction: column; padding: 40px; gap: 28px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; color: var(--text-dark); font-size: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--mid-gray); }
+    .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">青山乃木坂パートナーズ<span>Aoyama Nogizaka Partners</span></a>
+    <ul class="nav-links">
+      <li><a href="/">ホーム</a></li>
+      <li><a href="/team.html">チーム</a></li>
+      <li><a href="/news/">ニュース</a></li>
+      <li><a href="/activist-dashboard.html" class="active">アクティビストウォッチャー</a></li>
+    </ul>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" onclick="openModal('login')">ログイン</button>
+      <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+    </div>
+    <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
+      <span style="font-size:12px; color:var(--text-mid); letter-spacing:0.04em;" id="navUserName"></span>
+      <button class="btn-login" onclick="handleLogout()">ログアウト</button>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">ホーム</a>
+  <a href="/team.html">チーム</a>
+  <a href="/news/">ニュース</a>
+  <a href="/activist-dashboard.html">アクティビストウォッチャー</a>
+  <div style="display:flex; gap:12px; margin-top:16px;">
+    <button class="btn-login" onclick="openModal('login')">ログイン</button>
+    <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-label">Activist Watcher &mdash; Powered by EDINET API</div>
+    <h1>アクティビストウォッチャー</h1>
+    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価します。</p>
+    <div class="data-source">データソース: <span>EDINET（金融庁）</span> ｜ 最終更新: <span id="lastUpdated">読み込み中...</span></div>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><div class="stat-number" id="statTotal">-</div><div class="stat-label">総報告件数（直近90日）</div></div>
+    <div class="stat-item"><div class="stat-number" id="statActivist">-</div><div class="stat-label">アクティビスト関連</div></div>
+    <div class="stat-item"><div class="stat-number" id="statThisMonth">-</div><div class="stat-label">今月の報告</div></div>
+    <div class="stat-item"><div class="stat-number" id="statTracked">-</div><div class="stat-label">追跡中の投資家</div></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>検索・フィルター</h3>
+      <div class="filter-group">
+        <label class="filter-label">銘柄コード / 投資家名</label>
+        <input type="text" class="filter-input" id="searchKeyword" placeholder="例: 9531, エリオット">
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">報告タイプ</label>
+        <div class="filter-checkbox-group">
+          <label class="filter-checkbox"><input type="checkbox" name="reportType" value="new" checked> 新規報告</label>
+          <label class="filter-checkbox"><input type="checkbox" name="reportType" value="change" checked> 変更報告</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">アクティビスト関連のみ</label>
+        <div class="filter-checkbox-group">
+          <label class="filter-checkbox"><input type="checkbox" id="activistOnly"> アクティビスト関連に絞る</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">報告期間</label>
+        <select class="filter-select" id="periodFilter">
+          <option value="7">直近1週間</option>
+          <option value="30" selected>直近1ヶ月</option>
+          <option value="90">直近3ヶ月</option>
+        </select>
+      </div>
+      <button class="btn-filter" onclick="applyFilters()">フィルター適用</button>
+      <button class="btn-reset" onclick="resetFilters()">リセット</button>
+    </div>
+
+    <div class="sidebar-card" id="activistRanking">
+      <h3>アクティビスト活動ランキング</h3>
+      <div class="ac-stock-list" id="activistRankingList">
+        <div class="loading-spinner">読み込み中...</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('list', this)">報告一覧</button>
+      <button class="tab-btn" onclick="switchTab('activists', this)">アクティビスト別</button>
+      <button class="tab-btn" onclick="switchTab('risk', this)">標的リスク評価</button>
+      <button class="tab-btn" onclick="switchTab('chart', this)">トレンド分析</button>
+      <button class="tab-btn" onclick="switchTab('timeline', this)">タイムライン</button>
+    </div>
+
+    <!-- TAB: 報告一覧 -->
+    <div class="tab-content active" id="tab-list">
+      <div class="content-card">
+        <div class="card-header">
+          <h2>大量保有報告書 一覧 <small style="font-size:11px; color:var(--text-light); font-weight:400;">（EDINET自動取得 / 毎日3回更新）</small></h2>
+          <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+            <option value="date-desc">報告日（新しい順）</option>
+            <option value="date-asc">報告日（古い順）</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="activist-table">
+            <thead>
+              <tr>
+                <th>報告日</th>
+                <th>報告者</th>
+                <th>種別</th>
+                <th>証券コード</th>
+                <th>報告内容</th>
+                <th>保有比率</th>
+                <th>目的</th>
+                <th>EDINET</th>
+              </tr>
+            </thead>
+            <tbody id="reportTableBody">
+              <tr><td colspan="8" class="no-data">データを読み込み中...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: アクティビスト別 -->
+    <div class="tab-content" id="tab-activists">
+      <div class="content-card">
+        <div class="card-header"><h2>アクティビスト別ポートフォリオ</h2></div>
+        <div class="activist-cards" id="activistCards">
+          <div class="loading-spinner">データを読み込み中...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: 標的リスク評価 -->
+    <div class="tab-content" id="tab-risk">
+      <div class="content-card">
+        <div class="card-header">
+          <h2>アクティビスト標的リスク評価ツール</h2>
+        </div>
+        <div class="risk-tool">
+          <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; line-height:1.8;">
+            貴社の財務指標・ガバナンス状況を入力すると、アクティビストに狙われやすいかをスコアリングします。<br>
+            スコアが高いほど、アクティビストの標的となるリスクが高いことを示します。
+          </p>
+          <div class="risk-form" id="riskForm">
+            <div class="risk-field">
+              <label>PBR（株価純資産倍率）</label>
+              <input type="number" id="risk_pbr" step="0.01" placeholder="例: 0.85">
+              <div class="field-hint">1倍未満は高リスク</div>
+            </div>
+            <div class="risk-field">
+              <label>ROE（自己資本利益率）%</label>
+              <input type="number" id="risk_roe" step="0.1" placeholder="例: 5.2">
+              <div class="field-hint">8%未満は高リスク</div>
+            </div>
+            <div class="risk-field">
+              <label>配当性向 %</label>
+              <input type="number" id="risk_payout" step="0.1" placeholder="例: 25">
+              <div class="field-hint">30%未満は高リスク</div>
+            </div>
+            <div class="risk-field">
+              <label>ネットキャッシュ / 時価総額 %</label>
+              <input type="number" id="risk_cash" step="0.1" placeholder="例: 35">
+              <div class="field-hint">30%超は高リスク（余剰現金）</div>
+            </div>
+            <div class="risk-field">
+              <label>自己資本比率 %</label>
+              <input type="number" id="risk_equity" step="0.1" placeholder="例: 65">
+              <div class="field-hint">70%超は資本過剰の可能性</div>
+            </div>
+            <div class="risk-field">
+              <label>外国人持株比率 %</label>
+              <input type="number" id="risk_foreign" step="0.1" placeholder="例: 20">
+              <div class="field-hint">高いほどアクティビストが入りやすい</div>
+            </div>
+            <div class="risk-field">
+              <label>政策保有株式 / 純資産 %</label>
+              <input type="number" id="risk_crosshold" step="0.1" placeholder="例: 15">
+              <div class="field-hint">高いほどガバナンス上の問題</div>
+            </div>
+            <div class="risk-field">
+              <label>社外取締役比率 %</label>
+              <input type="number" id="risk_outside" step="0.1" placeholder="例: 33">
+              <div class="field-hint">33%未満はガバナンスリスク</div>
+            </div>
+            <div class="risk-field">
+              <label>時価総額（億円）</label>
+              <input type="number" id="risk_marketcap" step="1" placeholder="例: 500">
+              <div class="field-hint">100〜5000億円がターゲットゾーン</div>
+            </div>
+            <div class="risk-field">
+              <label>買収防衛策</label>
+              <select id="risk_defense">
+                <option value="">選択してください</option>
+                <option value="none">なし</option>
+                <option value="active">導入中</option>
+                <option value="expired">期限切れ / 廃止済み</option>
+              </select>
+              <div class="field-hint">廃止済みは狙われやすい</div>
+            </div>
+            <div class="risk-btn-area">
+              <button class="risk-btn" onclick="calculateRisk()">リスクを評価する</button>
+              <button class="risk-btn-clear" onclick="clearRisk()">クリア</button>
+            </div>
+          </div>
+
+          <div class="risk-result" id="riskResult">
+            <div class="risk-score-card" id="riskScoreCard">
+              <div class="risk-score-circle" id="riskScoreCircle">
+                <div class="risk-score-value" id="riskScoreValue">0</div>
+                <div class="risk-score-label">/ 100</div>
+              </div>
+              <div class="risk-level" id="riskLevel"></div>
+              <div class="risk-level-desc" id="riskLevelDesc"></div>
+            </div>
+            <h3 style="font-size:14px; font-weight:500; color:var(--navy); margin-bottom:16px;">評価項目別スコア</h3>
+            <div class="risk-detail-grid" id="riskDetailGrid"></div>
+            <div style="margin-top:24px; padding:20px; background:var(--off-white); border-radius:8px;">
+              <h4 style="font-size:13px; font-weight:500; color:var(--navy); margin-bottom:10px;">推奨アクション</h4>
+              <ul id="riskRecommendations" style="font-size:13px; color:var(--text-mid); line-height:2; padding-left:20px;"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: チャート -->
+    <div class="tab-content" id="tab-chart">
+      <div class="content-card">
+        <div class="card-header"><h2>月別報告件数トレンド</h2></div>
+        <div class="chart-container"><div class="chart-wrapper"><canvas id="trendChart"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- TAB: タイムライン -->
+    <div class="tab-content" id="tab-timeline">
+      <div class="content-card">
+        <div class="card-header"><h2>タイムライン（アクティビスト関連）</h2></div>
+        <div class="report-timeline" id="timelineContainer">
+          <div class="loading-spinner">データを読み込み中...</div>
+        </div>
+
+        <div class="login-wall" id="loginWall" style="display:none;">
+          <div class="login-wall-inner">
+            <div class="login-wall-icon">&#128274;</div>
+            <h2>ここから先は会員限定コンテンツです</h2>
+            <p>過去のタイムライン・詳細分析・アラート通知など<br>すべての機能をご利用いただけます</p>
+            <div class="plan-features">
+              <h4>会員特典</h4>
+              <ul>
+                <li>全アクティビストの詳細プロフィール</li>
+                <li>過去データの全件検索・CSV出力</li>
+                <li>銘柄別・投資家別の詳細分析</li>
+                <li>新規報告のリアルタイムアラート</li>
+                <li>標的リスク評価の保存・比較</li>
+              </ul>
+            </div>
+            <button class="btn-cta-register" onclick="openModal('register')">無料会員登録</button>
+            <a class="btn-cta-login" onclick="openModal('login')">すでに会員の方はログイン</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">&times;</button>
+    <h2>ログイン</h2>
+    <div id="loginError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required placeholder="example@company.co.jp"></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required placeholder="パスワード"></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer"><p>アカウントをお持ちでない方は <a onclick="switchModal('register')">新規登録</a></p></div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')">&times;</button>
+    <h2>無料会員登録</h2>
+    <div id="registerError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <div id="registerSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleRegister(event)">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required placeholder="山田 太郎"></div>
+      <div class="form-group"><label>会社名</label><input type="text" id="regCompany" placeholder="株式会社○○（任意）"></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required placeholder="example@company.co.jp"></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="regPassword" required placeholder="8文字以上" minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <p style="text-align:center; font-size:12px; color:var(--text-light); margin-top:16px;">
+      登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます
+    </p>
+    <div class="modal-footer"><p>すでにアカウントをお持ちの方は <a onclick="switchModal('login')">ログイン</a></p></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">青山乃木坂パートナーズ<span>Aoyama Nogizaka Partners</span></div>
+    <div class="footer-links">
+      <a href="/">ホーム</a><a href="/team.html">チーム</a><a href="/news/">ニュース</a><a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy"><p>&copy; 2025 Aoyama Nogizaka Partners. All Rights Reserved.</p></div>
+</footer>
+
+<script>
+// ===== GLOBAL DATA =====
+let reportData = { reports: [], activists: {} };
+let filteredReports = [];
+const DATA_URL = '/data/reports.json';
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadData();
+  renderAll();
+});
+
+async function loadData() {
+  try {
+    const resp = await fetch(DATA_URL);
+    if (resp.ok) {
+      reportData = await resp.json();
+    }
+  } catch (e) {
+    console.log('Data not yet available, using empty dataset');
+  }
+  // reports が空なら空配列を保証
+  if (!reportData.reports) reportData.reports = [];
+  if (!reportData.activists) reportData.activists = {};
+  filteredReports = [...reportData.reports];
+}
+
+function renderAll() {
+  updateStats();
+  renderReportTable();
+  renderActivistCards();
+  renderActivistRanking();
+  renderTimeline();
+  updateLastUpdated();
+}
+
+// ===== STATS =====
+function updateStats() {
+  const now = new Date();
+  const thisMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+  const monthReports = reportData.reports.filter(r => r.date && r.date.startsWith(thisMonth));
+  const activistIds = new Set();
+  reportData.reports.forEach(r => { if (r.activist_id) activistIds.add(r.activist_id); });
+
+  document.getElementById('statTotal').textContent = reportData.total_reports || reportData.reports.length;
+  document.getElementById('statActivist').textContent = reportData.activist_reports || reportData.reports.filter(r => r.is_activist).length;
+  document.getElementById('statThisMonth').textContent = monthReports.length;
+  document.getElementById('statTracked').textContent = Object.keys(reportData.activists).length || activistIds.size;
+}
+
+function updateLastUpdated() {
+  const el = document.getElementById('lastUpdated');
+  if (reportData.last_updated) {
+    const d = new Date(reportData.last_updated);
+    el.textContent = d.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+  } else {
+    el.textContent = 'データ未取得（EDINET APIキー設定後に自動更新）';
+  }
+}
+
+// ===== REPORT TABLE =====
+function renderReportTable() {
+  const tbody = document.getElementById('reportTableBody');
+  const reports = filteredReports;
+
+  if (!reports.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="no-data">条件に合う報告がありません。EDINET APIキー設定後にデータが表示されます。</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = reports.slice(0, 50).map(r => {
+    const isNew = isRecentReport(r.date, 3);
+    const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
+    const ratio = r.holding_ratio ? r.holding_ratio.toFixed(1) + '%' : '—';
+    const barWidth = r.holding_ratio ? Math.min(r.holding_ratio * 2, 100) : 0;
+    const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100${r.doc_id}` : '#';
+
+    return `<tr onclick="searchByCode('${r.sec_code || ''}')">
+      <td class="date-cell">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
+      <td><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : ''}</td>
+      <td><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
+      <td>${r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—'}</td>
+      <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(r.target_company || '—')}</td>
+      <td>${ratio}${barWidth ? '<div class="holding-bar"><div class="holding-bar-fill" style="width:' + barWidth + '%"></div></div>' : ''}</td>
+      <td style="font-size:12px;">${escapeHtml(r.purpose || '—')}</td>
+      <td><a href="${edinetUrl}" target="_blank" rel="noopener" class="edinet-link" onclick="event.stopPropagation();">原文</a></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== ACTIVIST CARDS =====
+function renderActivistCards() {
+  const container = document.getElementById('activistCards');
+  const activists = reportData.activists;
+
+  if (!Object.keys(activists).length) {
+    container.innerHTML = '<div class="no-data">EDINET APIキー設定後にアクティビスト情報が表示されます。</div>';
+    return;
+  }
+
+  let html = '';
+  let count = 0;
+  for (const [id, data] of Object.entries(activists)) {
+    count++;
+    const isPremium = count > 3;
+
+    const holdingsHtml = (data.holdings || []).slice(0, 6).map(h =>
+      `<div class="ac-stock-item">
+        <span>${h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span>' : ''}${escapeHtml(h.target_company || h.filer_name || '—')}</span>
+        <span class="ac-stock-pct">${h.holding_ratio ? h.holding_ratio.toFixed(1) + '%' : '—'}</span>
+      </div>`
+    ).join('');
+
+    const cardHtml = `
+      <div class="activist-card">
+        <div class="ac-header">
+          <div>
+            <div class="ac-name">${escapeHtml(data.name)}</div>
+            <div class="ac-meta">
+              ${data.representative ? '代表: ' + escapeHtml(data.representative) + ' ｜ ' : ''}
+              ${data.headquarters ? '本拠: ' + escapeHtml(data.headquarters) + ' ｜ ' : ''}
+              報告件数: ${data.report_count || 0}件
+            </div>
+          </div>
+          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : 'ファンド'}</span>
+        </div>
+        <div class="ac-grid">
+          <div>
+            <div class="ac-section-title">保有銘柄（大量保有報告ベース）</div>
+            <div class="ac-stock-list">${holdingsHtml || '<div style="font-size:13px; color:var(--text-light);">データなし</div>'}</div>
+          </div>
+          <div>
+            <div class="ac-section-title">活動傾向</div>
+            <div style="font-size:13px; color:var(--text-mid); line-height:1.8;">${escapeHtml(data.description || '—')}</div>
+            ${data.focus_sectors && data.focus_sectors.length ?
+              '<div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">' +
+              data.focus_sectors.map(s => '<span class="timeline-tag">' + escapeHtml(s) + '</span>').join('') +
+              '</div>' : ''}
+          </div>
+        </div>
+      </div>`;
+
+    if (isPremium && count === 4) {
+      html += `<div class="premium-content">
+        <div class="premium-blur">${cardHtml}</div>
+        <div class="premium-overlay"><div class="premium-badge"><p>この先は会員限定コンテンツです</p><button onclick="openModal('register')">無料会員登録して続きを見る</button></div></div>
+      </div>`;
+      break;
+    } else {
+      html += cardHtml;
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+// ===== ACTIVIST RANKING =====
+function renderActivistRanking() {
+  const container = document.getElementById('activistRankingList');
+  const activists = reportData.activists;
+
+  if (!Object.keys(activists).length) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--text-light);">データ取得後に表示</div>';
+    return;
+  }
+
+  const sorted = Object.values(activists).sort((a, b) => (b.report_count || 0) - (a.report_count || 0)).slice(0, 8);
+
+  container.innerHTML = sorted.map(a =>
+    `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.name)}')">
+      <span>${escapeHtml(a.name)}</span>
+      <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'};">${a.report_count || 0}件</span>
+    </div>`
+  ).join('');
+}
+
+// ===== TIMELINE =====
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  const activistReports = reportData.reports.filter(r => r.is_activist).slice(0, 10);
+
+  if (!activistReports.length) {
+    container.innerHTML = '<div class="no-data">アクティビスト関連の報告がまだありません。</div>';
+    return;
+  }
+
+  container.innerHTML = activistReports.map(r =>
+    `<div class="timeline-item">
+      <div class="timeline-date">${r.date || '—'}</div>
+      <div class="timeline-content">
+        <div class="timeline-title">${escapeHtml(r.filer_name || '')} ${r.sec_code ? '(' + r.sec_code + ')' : ''}</div>
+        <div class="timeline-detail">${escapeHtml(r.target_company || '')}${r.holding_ratio ? ' — 保有比率: ' + r.holding_ratio.toFixed(1) + '%' : ''}${r.purpose ? ' — 目的: ' + escapeHtml(r.purpose) : ''}</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">${r.report_type || '報告'}</span>
+          ${r.is_activist ? '<span class="timeline-tag">アクティビスト</span>' : ''}
+        </div>
+      </div>
+    </div>`
+  ).join('');
+
+  // Show login wall after timeline
+  document.getElementById('loginWall').style.display = 'block';
+}
+
+// ===== FILTERS =====
+function applyFilters() {
+  const keyword = document.getElementById('searchKeyword').value.trim().toLowerCase();
+  const activistOnly = document.getElementById('activistOnly').checked;
+  const period = parseInt(document.getElementById('periodFilter').value);
+  const sortBy = document.getElementById('sortSelect').value;
+
+  const reportTypes = [];
+  document.querySelectorAll('input[name="reportType"]:checked').forEach(cb => reportTypes.push(cb.value));
+
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - period);
+  const cutoffStr = cutoffDate.toISOString().slice(0, 10);
+
+  filteredReports = reportData.reports.filter(r => {
+    if (keyword) {
+      const text = [r.filer_name, r.sec_code, r.target_company, r.purpose].join(' ').toLowerCase();
+      if (!text.includes(keyword)) return false;
+    }
+    if (activistOnly && !r.is_activist) return false;
+    if (r.date && r.date < cutoffStr) return false;
+
+    if (reportTypes.length) {
+      const typeMap = { 'new': '新規報告', 'change': '変更報告' };
+      const allowed = reportTypes.map(t => typeMap[t]);
+      if (!allowed.includes(r.report_type)) return false;
+    }
+
+    return true;
+  });
+
+  if (sortBy === 'date-asc') {
+    filteredReports.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  } else {
+    filteredReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
+
+  renderReportTable();
+}
+
+function resetFilters() {
+  document.getElementById('searchKeyword').value = '';
+  document.getElementById('activistOnly').checked = false;
+  document.getElementById('periodFilter').value = '30';
+  document.querySelectorAll('input[name="reportType"]').forEach(cb => cb.checked = true);
+  filteredReports = [...reportData.reports];
+  renderReportTable();
+}
+
+function searchByCode(code) {
+  if (!code) return;
+  document.getElementById('searchKeyword').value = code;
+  applyFilters();
+  switchTab('list', document.querySelector('.tab-btn'));
+}
+
+function filterByActivist(name) {
+  document.getElementById('searchKeyword').value = name;
+  applyFilters();
+  switchTab('list', document.querySelector('.tab-btn'));
+}
+
+// ===== RISK ASSESSMENT =====
+function calculateRisk() {
+  const pbr = parseFloat(document.getElementById('risk_pbr').value) || null;
+  const roe = parseFloat(document.getElementById('risk_roe').value) || null;
+  const payout = parseFloat(document.getElementById('risk_payout').value) || null;
+  const cash = parseFloat(document.getElementById('risk_cash').value) || null;
+  const equity = parseFloat(document.getElementById('risk_equity').value) || null;
+  const foreign = parseFloat(document.getElementById('risk_foreign').value) || null;
+  const crosshold = parseFloat(document.getElementById('risk_crosshold').value) || null;
+  const outside = parseFloat(document.getElementById('risk_outside').value) || null;
+  const marketcap = parseFloat(document.getElementById('risk_marketcap').value) || null;
+  const defense = document.getElementById('risk_defense').value;
+
+  const factors = [];
+  let total = 0;
+  let maxTotal = 0;
+
+  // 1. PBR (max 15)
+  if (pbr !== null) {
+    let score = 0;
+    if (pbr < 0.5) score = 15;
+    else if (pbr < 0.8) score = 12;
+    else if (pbr < 1.0) score = 10;
+    else if (pbr < 1.3) score = 5;
+    else score = 2;
+    factors.push({ name: 'PBR', score, max: 15, value: pbr.toFixed(2), desc: pbr < 1.0 ? '1倍割れ: アクティビストの主要ターゲット' : 'PBR1倍以上: 相対的に低リスク' });
+    total += score; maxTotal += 15;
+  }
+
+  // 2. ROE (max 12)
+  if (roe !== null) {
+    let score = 0;
+    if (roe < 3) score = 12;
+    else if (roe < 5) score = 10;
+    else if (roe < 8) score = 7;
+    else if (roe < 10) score = 3;
+    else score = 1;
+    factors.push({ name: 'ROE', score, max: 12, value: roe.toFixed(1) + '%', desc: roe < 8 ? '資本効率に改善余地あり' : '資本効率は概ね良好' });
+    total += score; maxTotal += 12;
+  }
+
+  // 3. 配当性向 (max 10)
+  if (payout !== null) {
+    let score = 0;
+    if (payout < 15) score = 10;
+    else if (payout < 25) score = 8;
+    else if (payout < 30) score = 5;
+    else if (payout < 40) score = 2;
+    else score = 1;
+    factors.push({ name: '配当性向', score, max: 10, value: payout.toFixed(1) + '%', desc: payout < 30 ? '株主還元に課題' : '株主還元は概ね適切' });
+    total += score; maxTotal += 10;
+  }
+
+  // 4. ネットキャッシュ比率 (max 15)
+  if (cash !== null) {
+    let score = 0;
+    if (cash > 50) score = 15;
+    else if (cash > 30) score = 12;
+    else if (cash > 20) score = 8;
+    else if (cash > 10) score = 4;
+    else score = 1;
+    factors.push({ name: 'ネットキャッシュ比率', score, max: 15, value: cash.toFixed(1) + '%', desc: cash > 30 ? '過剰現金: 自社株買い・特別配当の要求対象' : 'キャッシュ水準は適正範囲' });
+    total += score; maxTotal += 15;
+  }
+
+  // 5. 自己資本比率 (max 8)
+  if (equity !== null) {
+    let score = 0;
+    if (equity > 80) score = 8;
+    else if (equity > 70) score = 6;
+    else if (equity > 60) score = 3;
+    else score = 1;
+    factors.push({ name: '自己資本比率', score, max: 8, value: equity.toFixed(1) + '%', desc: equity > 70 ? '資本過剰の可能性' : '資本構成は適正' });
+    total += score; maxTotal += 8;
+  }
+
+  // 6. 外国人持株比率 (max 10)
+  if (foreign !== null) {
+    let score = 0;
+    if (foreign > 40) score = 10;
+    else if (foreign > 25) score = 7;
+    else if (foreign > 15) score = 5;
+    else if (foreign > 5) score = 3;
+    else score = 1;
+    factors.push({ name: '外国人持株比率', score, max: 10, value: foreign.toFixed(1) + '%', desc: foreign > 25 ? '海外アクティビストが参入しやすい環境' : '海外投資家の比率は低め' });
+    total += score; maxTotal += 10;
+  }
+
+  // 7. 政策保有株式 (max 10)
+  if (crosshold !== null) {
+    let score = 0;
+    if (crosshold > 20) score = 10;
+    else if (crosshold > 10) score = 7;
+    else if (crosshold > 5) score = 4;
+    else score = 1;
+    factors.push({ name: '政策保有株式比率', score, max: 10, value: crosshold.toFixed(1) + '%', desc: crosshold > 10 ? 'ガバナンス上の懸念材料' : '政策保有は限定的' });
+    total += score; maxTotal += 10;
+  }
+
+  // 8. 社外取締役比率 (max 8)
+  if (outside !== null) {
+    let score = 0;
+    if (outside < 20) score = 8;
+    else if (outside < 33) score = 6;
+    else if (outside < 50) score = 3;
+    else score = 1;
+    factors.push({ name: '社外取締役比率', score, max: 8, value: outside.toFixed(1) + '%', desc: outside < 33 ? '取締役会の独立性に課題' : '取締役会の独立性は確保' });
+    total += score; maxTotal += 8;
+  }
+
+  // 9. 時価総額 (max 8)
+  if (marketcap !== null) {
+    let score = 0;
+    if (marketcap >= 100 && marketcap <= 500) score = 8;
+    else if (marketcap > 500 && marketcap <= 2000) score = 6;
+    else if (marketcap > 2000 && marketcap <= 5000) score = 4;
+    else if (marketcap < 100) score = 3;
+    else score = 2;
+    factors.push({ name: '時価総額', score, max: 8, value: marketcap + '億円', desc: marketcap >= 100 && marketcap <= 2000 ? 'アクティビストのターゲットゾーン' : 'ターゲットゾーン外' });
+    total += score; maxTotal += 8;
+  }
+
+  // 10. 買収防衛策 (max 4)
+  if (defense) {
+    let score = 0;
+    if (defense === 'none') score = 3;
+    else if (defense === 'expired') score = 4;
+    else score = 1;
+    const labels = { none: 'なし', active: '導入中', expired: '廃止済み' };
+    factors.push({ name: '買収防衛策', score, max: 4, value: labels[defense], desc: defense === 'active' ? '防衛策あり（ただし廃止圧力の可能性）' : '防衛策なし/廃止: エントリーしやすい' });
+    total += score; maxTotal += 4;
+  }
+
+  if (!factors.length) {
+    alert('少なくとも1つの項目を入力してください。');
+    return;
+  }
+
+  // 100点満点にスケーリング
+  const normalizedScore = Math.round((total / maxTotal) * 100);
+
+  // 表示
+  const resultDiv = document.getElementById('riskResult');
+  resultDiv.classList.add('show');
+
+  const circle = document.getElementById('riskScoreCircle');
+  const scoreEl = document.getElementById('riskScoreValue');
+  const levelEl = document.getElementById('riskLevel');
+  const descEl = document.getElementById('riskLevelDesc');
+
+  scoreEl.textContent = normalizedScore;
+
+  let level, levelClass, bgClass, desc;
+  if (normalizedScore >= 70) {
+    level = '高リスク'; levelClass = 'risk-high'; bgClass = 'risk-bg-high';
+    desc = 'アクティビストの標的となる可能性が高い状態です。資本効率・株主還元・ガバナンスの早急な改善が推奨されます。';
+  } else if (normalizedScore >= 40) {
+    level = '中リスク'; levelClass = 'risk-medium'; bgClass = 'risk-bg-medium';
+    desc = 'アクティビストが関心を持つ可能性があります。予防的な対策を検討することを推奨します。';
+  } else {
+    level = '低リスク'; levelClass = 'risk-low'; bgClass = 'risk-bg-low';
+    desc = '現時点でアクティビストの標的となるリスクは比較的低いと考えられます。';
+  }
+
+  circle.className = 'risk-score-circle ' + bgClass;
+  scoreEl.style.color = levelClass === 'risk-high' ? 'var(--red)' : levelClass === 'risk-medium' ? 'var(--orange)' : 'var(--green)';
+  levelEl.textContent = level;
+  levelEl.className = 'risk-level ' + levelClass;
+  descEl.textContent = desc;
+
+  // 詳細グリッド
+  const grid = document.getElementById('riskDetailGrid');
+  grid.innerHTML = factors.map(f => {
+    const pct = (f.score / f.max * 100).toFixed(0);
+    const barColor = pct >= 70 ? 'var(--red)' : pct >= 40 ? 'var(--orange)' : 'var(--green)';
+    return `<div class="risk-detail-item">
+      <h4>${f.name}</h4>
+      <div><span class="score">${f.score}</span><span class="max-score"> / ${f.max}</span></div>
+      <div style="font-size:12px; color:var(--text-mid); margin-top:4px;">入力値: ${f.value}</div>
+      <div class="bar"><div class="bar-fill" style="width:${pct}%; background:${barColor};"></div></div>
+      <div style="font-size:11px; color:var(--text-light); margin-top:6px;">${f.desc}</div>
+    </div>`;
+  }).join('');
+
+  // 推奨アクション
+  const recs = document.getElementById('riskRecommendations');
+  const recommendations = [];
+  factors.forEach(f => {
+    const pct = f.score / f.max * 100;
+    if (pct >= 60) {
+      if (f.name === 'PBR') recommendations.push('PBR改善: 成長戦略の明確化、IR強化による市場評価の向上を検討');
+      if (f.name === 'ROE') recommendations.push('ROE改善: 低収益事業の見直し、資本効率を意識した経営目標の設定');
+      if (f.name === '配当性向') recommendations.push('株主還元: 配当性向の引上げ、自社株買いの実施検討');
+      if (f.name === 'ネットキャッシュ比率') recommendations.push('現金活用: 成長投資の実行、株主還元の強化（特別配当・自社株買い）');
+      if (f.name === '政策保有株式比率') recommendations.push('政策保有の縮減: CG コード対応として計画的な売却を推進');
+      if (f.name === '社外取締役比率') recommendations.push('取締役会改革: 社外取締役比率の引上げ（過半数目標）');
+      if (f.name === '買収防衛策') recommendations.push('対話体制の整備: アクティビスト接触時の対応マニュアル策定');
+    }
+  });
+  if (normalizedScore >= 50) {
+    recommendations.push('専門アドバイザーへの相談: 資本政策・IR戦略の包括的な見直し');
+  }
+  recs.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
+
+  // スクロール
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearRisk() {
+  document.querySelectorAll('#riskForm input, #riskForm select').forEach(el => el.value = '');
+  document.getElementById('riskResult').classList.remove('show');
+}
+
+// ===== CHARTS =====
+let chartsInitialized = false;
+function initCharts() {
+  if (chartsInitialized) return;
+  chartsInitialized = true;
+
+  // 月別集計
+  const monthCounts = {};
+  reportData.reports.forEach(r => {
+    if (!r.date) return;
+    const ym = r.date.slice(0, 7);
+    if (!monthCounts[ym]) monthCounts[ym] = { total: 0, activist: 0 };
+    monthCounts[ym].total++;
+    if (r.is_activist) monthCounts[ym].activist++;
+  });
+
+  const months = Object.keys(monthCounts).sort().slice(-6);
+  const totalData = months.map(m => monthCounts[m].total);
+  const activistData = months.map(m => monthCounts[m].activist);
+
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        { label: '全報告', data: totalData, borderColor: '#1a2d4f', backgroundColor: 'rgba(26,45,79,0.08)', fill: true, tension: 0.4 },
+        { label: 'アクティビスト関連', data: activistData, borderColor: '#9b8b6e', backgroundColor: 'rgba(155,139,110,0.08)', fill: true, tension: 0.4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { font: { family: "'Noto Sans JP', sans-serif", size: 12 } } } },
+      scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } }, x: { grid: { display: false } } }
+    }
+  });
+}
+
+// ===== TAB SWITCH =====
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (tab === 'chart') setTimeout(initCharts, 100);
+}
+
+// ===== MODAL =====
+function openModal(type) { document.getElementById(type + 'Modal').classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeModal(type) { document.getElementById(type + 'Modal').classList.remove('show'); document.body.style.overflow = ''; }
+function switchModal(type) { closeModal(type === 'login' ? 'register' : 'login'); openModal(type); }
+document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('show'); document.body.style.overflow = ''; } }));
+
+// ===== FIREBASE AUTH HANDLERS =====
+async function handleLogin(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  errEl.style.display = 'none';
+  btn.textContent = 'ログイン中...';
+  btn.disabled = true;
+
+  try {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    await window.firebaseLogin(email, password);
+    closeModal('login');
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+  } catch (err) {
+    const messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/wrong-password': 'パスワードが正しくありません。',
+      'auth/invalid-credential': 'メールアドレスまたはパスワードが正しくありません。',
+      'auth/too-many-requests': 'ログイン試行回数が多すぎます。しばらくしてからお試しください。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+    };
+    const code = err.code || '';
+    errEl.textContent = messages[code] || 'ログインに失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = 'ログイン';
+    btn.disabled = false;
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('registerError');
+  const successEl = document.getElementById('registerSuccess');
+  const btn = document.getElementById('registerBtn');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+  btn.textContent = '登録中...';
+  btn.disabled = true;
+
+  try {
+    const name = document.getElementById('regName').value;
+    const company = document.getElementById('regCompany').value;
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+    await window.firebaseRegister(email, password, name, company);
+    successEl.textContent = '登録が完了しました。ようこそ！';
+    successEl.style.display = 'block';
+    setTimeout(() => {
+      closeModal('register');
+      successEl.style.display = 'none';
+    }, 1500);
+  } catch (err) {
+    const messages = {
+      'auth/email-already-in-use': 'このメールアドレスは既に登録されています。ログインしてください。',
+      'auth/weak-password': 'パスワードは8文字以上で設定してください。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+    };
+    const code = err.code || '';
+    errEl.textContent = messages[code] || '登録に失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = '無料で登録する';
+    btn.disabled = false;
+  }
+}
+
+async function handleLogout() {
+  try {
+    await window.firebaseLogout();
+  } catch (err) {
+    console.error('Logout error:', err);
+  }
+}
+
+function updateAuthUI(user) {
+  const authBtns = document.getElementById('navAuthBtns');
+  const userInfo = document.getElementById('navUserInfo');
+  const userName = document.getElementById('navUserName');
+  const premiumEls = document.querySelectorAll('.premium-overlay');
+  const premiumBlurs = document.querySelectorAll('.premium-blur');
+  const loginWall = document.getElementById('loginWall');
+
+  if (user) {
+    // ログイン済み
+    authBtns.style.display = 'none';
+    userInfo.style.display = 'flex';
+    userName.textContent = (user.displayName || user.email) + ' 様';
+    // プレミアムコンテンツのロック解除
+    premiumEls.forEach(el => el.style.display = 'none');
+    premiumBlurs.forEach(el => el.classList.remove('premium-blur'));
+    if (loginWall) loginWall.style.display = 'none';
+  } else {
+    // 未ログイン
+    authBtns.style.display = 'flex';
+    userInfo.style.display = 'none';
+    userName.textContent = '';
+    premiumEls.forEach(el => el.style.display = 'flex');
+    premiumBlurs.forEach(el => el.classList.add('premium-blur'));
+    if (loginWall) loginWall.style.display = 'block';
+  }
+}
+
+// ===== NAV =====
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10); });
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+// ===== UTILS =====
+function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function isRecentReport(dateStr, days) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  const now = new Date();
+  return (now - d) < days * 86400000;
+}
+</script>
+
+</body>
+</html>
