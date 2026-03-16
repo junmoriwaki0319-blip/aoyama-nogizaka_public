@@ -182,6 +182,7 @@
     .ac-tag.type-insight { border-color: var(--navy); color: var(--navy); }
     .ac-tag.type-press   { border-color: var(--gold); color: var(--gold); }
     .ac-tag.type-news    { border-color: #2980b9; color: #2980b9; }
+    .ac-tag.type-dashboard { border-color: #27ae60; color: #27ae60; }
     .ac-title { font-family: var(--serif); font-weight: 400; color: var(--navy); font-size: .95rem; line-height: 1.55; margin-bottom: 10px; }
     .ac-excerpt { font-size: .8rem; color: #666; line-height: 1.8; flex: 1; margin-bottom: 16px; }
     .ac-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--gray); }
@@ -258,6 +259,7 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" class="active">ニュース・論考</a></li>
+      <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -271,6 +273,7 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()">ダッシュボード</a>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
@@ -291,6 +294,7 @@
     <button class="filter-btn" onclick="filterArticles('insight', this)">論考・分析</button>
     <button class="filter-btn" onclick="filterArticles('press', this)">プレスリリース</button>
     <button class="filter-btn" onclick="filterArticles('news', this)">お知らせ</button>
+    <button class="filter-btn" onclick="filterArticles('dashboard', this)">データ・ダッシュボード</button>
   </div>
 
   <!-- Featured Article -->
@@ -322,7 +326,7 @@
   <div class="articles-section">
     <div class="articles-header">
       <h2>すべての記事</h2>
-      <span class="count" id="article-count">1件</span>
+      <span class="count" id="article-count">2件</span>
     </div>
     <div class="articles-grid" id="articles-grid">
 
@@ -335,6 +339,23 @@
           </div>
           <div class="ac-title">アクティビスト投資家の時代——上場企業が今すぐ知るべき「株主の論理」と対応戦略</div>
           <div class="ac-excerpt">東証改革・グロース市場新基準・中小型株への波及を総括。4つのオリジナル分析（感応度スコアリング・ライフサイクル分析・業種別圧力マップ・対話マトリクス）を収録。</div>
+          <div class="ac-footer">
+            <span class="ac-date">March 2026</span>
+            <span class="ac-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 02: Activist Dashboard -->
+      <a href="/activist-dashboard.html" class="article-card" data-category="dashboard">
+        <div class="article-card-body">
+          <div class="ac-tags">
+            <span class="ac-tag type-dashboard">データ・ダッシュボード</span>
+            <span class="ac-tag">EDINET</span>
+            <span class="ac-tag">大量保有報告</span>
+          </div>
+          <div class="ac-title">アクティビストダッシュボード——EDINET大量保有報告書リアルタイム追跡</div>
+          <div class="ac-excerpt">EDINET APIから大量保有報告書を毎日自動取得。アクティビスト投資家の動向をフィルター・可視化し、標的リスクを10項目で評価。会員登録でPDF/CSVエクスポート・ウォッチリスト機能が利用可能。</div>
           <div class="ac-footer">
             <span class="ac-date">March 2026</span>
             <span class="ac-arrow">→</span>
@@ -384,6 +405,7 @@
         <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
         <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
         <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
       </ul>
     </div>
