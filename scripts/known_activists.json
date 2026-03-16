@@ -1,4 +1,5 @@
 {
+  "_definition": "当ダッシュボードにおけるアクティビストの定義: 大量保有報告書の保有目的に「重要提案行為を行うことを保有の目的とする」等の記載を過去に一度でも行っている投資家をアクティビストと定義（参考: https://activist-blog.com/definition/ ）。なお、光通信等のアクティビストに該当しない主要投資家もtype=notable_holderとして追跡対象に含む。",
   "activists": [
     {
       "id": "strategic_capital",
@@ -14,7 +15,7 @@
     {
       "id": "city_index_elevens",
       "name": "シティインデックスイレブンス",
-      "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "南青山不動産", "オフィスサポート", "レノ", "Reno"],
+      "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "南青山不動産", "オフィスサポート", "レノ", "Reno", "C&Iホールディングス", "ワイルドベアキャピタル", "コスモスインベストメント", "エスグラントコーポレーション", "株式会社ミライ"],
       "type": "activist",
       "representative": "村上世彰氏関連",
       "founded": "—",
@@ -48,7 +49,7 @@
       "id": "dalton",
       "name": "ダルトン・インベストメンツ",
       "aliases": ["Dalton Investments", "ダルトン インベストメンツ"],
-      "type": "fund",
+      "type": "activist",
       "representative": "James B. Rosenwald III",
       "founded": "1999年",
       "headquarters": "米国・ロサンゼルス",
@@ -92,7 +93,7 @@
       "id": "effissimo",
       "name": "エフィッシモ・キャピタル・マネジメント",
       "aliases": ["Effissimo Capital Management", "エフィッシモ"],
-      "type": "fund",
+      "type": "activist",
       "representative": "高坂 卓志",
       "founded": "2006年",
       "headquarters": "シンガポール",
@@ -114,7 +115,7 @@
       "id": "nippon_active_value",
       "name": "ニッポン・アクティブ・バリュー・ファンド",
       "aliases": ["Nippon Active Value Fund", "NAVF"],
-      "type": "fund",
+      "type": "activist",
       "representative": "—",
       "founded": "2020年",
       "headquarters": "英国",
@@ -125,7 +126,7 @@
       "id": "silchester",
       "name": "シルチェスター・インターナショナル・インベスターズ",
       "aliases": ["Silchester International Investors"],
-      "type": "fund",
+      "type": "activist",
       "representative": "—",
       "founded": "1994年",
       "headquarters": "英国",
@@ -136,7 +137,7 @@
       "id": "sparx",
       "name": "スパークス・グループ",
       "aliases": ["SPARX Group", "スパークス・アセット・マネジメント"],
-      "type": "fund",
+      "type": "activist",
       "representative": "阿部 修平",
       "founded": "1989年",
       "headquarters": "東京",
@@ -147,7 +148,7 @@
       "id": "taiyo_pacific",
       "name": "タイヨウ・パシフィック・パートナーズ",
       "aliases": ["Taiyo Pacific Partners", "タイヨウ・ファンド"],
-      "type": "fund",
+      "type": "activist",
       "representative": "Brian K. Heywood",
       "founded": "2003年",
       "headquarters": "米国・シアトル",
@@ -164,6 +165,149 @@
       "headquarters": "東京",
       "description": "国内アクティビスト。中小型株への投資を中心に活動。",
       "focus_sectors": ["小売", "サービス", "不動産"]
+    },
+    {
+      "id": "hikari_tsushin",
+      "name": "光通信",
+      "aliases": ["Hikari Tsushin", "株式会社光通信", "光通信株式会社", "重田光時", "重田康光"],
+      "type": "notable_holder",
+      "representative": "重田 康光",
+      "founded": "1988年",
+      "headquarters": "東京",
+      "description": "通信事業を基盤に、上場企業株を大量取得するスタイルで知られる。配当・優待銘柄を中心に幅広く保有し、近年は保有額が急拡大。",
+      "focus_sectors": ["IT・通信", "小売", "サービス", "金融"]
+    },
+    {
+      "id": "ichigo_asset",
+      "name": "いちごアセットマネジメント",
+      "aliases": ["Ichigo Asset Management", "いちごトラスト", "Ichigo Trust"],
+      "type": "activist",
+      "representative": "スコット キャロン",
+      "founded": "2006年",
+      "headquarters": "東京",
+      "description": "「心働き」を掲げるエンゲージメント投資家。持続的な企業価値向上を目指し、建設的対話を重視。運用資産は約7,700億円規模。",
+      "focus_sectors": ["不動産", "金融", "製造業"]
+    },
+    {
+      "id": "polaris",
+      "name": "ポーラリス・キャピタル・グループ",
+      "aliases": ["Polaris Capital Group", "ポーラリスキャピタル"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "2004年",
+      "headquarters": "東京",
+      "description": "バイアウト型のPEファンド。企業価値向上を目指した経営関与を行う。",
+      "focus_sectors": ["製造業", "サービス", "小売"]
+    },
+    {
+      "id": "misaki",
+      "name": "みさき投資",
+      "aliases": ["Misaki Capital", "みさきキャピタル"],
+      "type": "activist",
+      "representative": "中神 康議",
+      "founded": "2013年",
+      "headquarters": "東京",
+      "description": "「働く株主」を標榜するエンゲージメントファンド。経営陣との対話を通じた長期的な企業価値向上を志向。",
+      "focus_sectors": ["製造業", "IT・通信", "サービス"]
+    },
+    {
+      "id": "jac",
+      "name": "ジャパン・アクティベーション・キャピタル",
+      "aliases": ["Japan Activation Capital", "JAC"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "日本企業のアクティベーション（活性化）を目的とするファンド。取締役派遣を通じたハンズオン関与。",
+      "focus_sectors": ["製造業", "小売"]
+    },
+    {
+      "id": "blue_orca",
+      "name": "ブルー・オルカ・キャピタル",
+      "aliases": ["Blue Orca Capital"],
+      "type": "activist",
+      "representative": "Soren Aandahl",
+      "founded": "2018年",
+      "headquarters": "米国",
+      "description": "空売り型のアクティビスト。会計不正や過大評価を指摘するレポートを公開し、企業のガバナンス問題を提起。",
+      "focus_sectors": ["IT・通信", "金融", "消費財"]
+    },
+    {
+      "id": "third_point",
+      "name": "サードポイント",
+      "aliases": ["Third Point", "Third Point LLC"],
+      "type": "activist",
+      "representative": "Daniel Loeb",
+      "founded": "1995年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "グローバルアクティビスト。ソニーやセブン＆アイへの投資で日本市場でも存在感。事業分離・資本効率改善を要求。",
+      "focus_sectors": ["IT・通信", "消費財", "金融"]
+    },
+    {
+      "id": "avi",
+      "name": "アセットバリューインベスターズ",
+      "aliases": ["Asset Value Investors", "AVI", "エーブイアイ"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1985年",
+      "headquarters": "英国・ロンドン",
+      "description": "日本の割安株に投資し、株主還元の強化やガバナンス改善を要求する英国の運用会社。",
+      "focus_sectors": ["金融", "製造業", "不動産"]
+    },
+    {
+      "id": "yoshiko_murakami",
+      "name": "村上世彰",
+      "aliases": ["村上ファンド", "M&Aコンサルティング", "MAC", "MACアセットマネジメント"],
+      "type": "activist",
+      "representative": "村上 世彰",
+      "founded": "1999年",
+      "headquarters": "シンガポール",
+      "description": "日本のアクティビスト投資の先駆者。シティインデックスイレブンス、レノ等の関連会社を通じて活動を継続。",
+      "focus_sectors": ["不動産", "金融", "建設"]
+    },
+    {
+      "id": "fir_tree",
+      "name": "ファー・ツリー・パートナーズ",
+      "aliases": ["Fir Tree Partners"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1994年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "オルタナティブ投資ファンド。日本企業へのアクティビスト投資も実施。",
+      "focus_sectors": ["金融", "不動産"]
+    },
+    {
+      "id": "simplex",
+      "name": "シンプレクス・アセット・マネジメント",
+      "aliases": ["Simplex Asset Management", "シンプレクス"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "定量運用を主体とする国内大手資産運用会社。大量保有報告の提出頻度が高い。",
+      "focus_sectors": ["金融", "IT・通信"]
+    },
+    {
+      "id": "nomura_am",
+      "name": "野村アセットマネジメント",
+      "aliases": ["Nomura Asset Management", "野村アセット"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1959年",
+      "headquarters": "東京",
+      "description": "日本最大手の資産運用会社。インデックス・アクティブ運用で幅広い上場株を大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "sumitomo_mitsui_trust",
+      "name": "三井住友トラスト・アセットマネジメント",
+      "aliases": ["Sumitomo Mitsui Trust Asset Management", "三井住友トラスト"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "信託銀行系の大手運用会社。機関投資家として多数の上場株を大量保有。",
+      "focus_sectors": []
     }
   ]
 }

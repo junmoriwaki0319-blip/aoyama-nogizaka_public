@@ -341,13 +341,20 @@ def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
         if "purpose_detail" in xbrl_data:
             entry["purpose_detail"] = xbrl_data["purpose_detail"]
 
-    # アクティビスト情報を追加
+    # アクティビスト / 注目投資家情報を追加
     if matched_activist:
-        entry["is_activist"] = True
+        investor_type = matched_activist.get("type", "activist")
+        if investor_type == "notable_holder":
+            entry["is_activist"] = False
+            entry["is_notable"] = True
+        else:
+            entry["is_activist"] = True
+            entry["is_notable"] = False
         entry["activist_id"] = matched_activist["id"]
-        entry["activist_type"] = matched_activist["type"]
+        entry["activist_type"] = investor_type
     else:
         entry["is_activist"] = False
+        entry["is_notable"] = False
 
     return entry
 
@@ -381,11 +388,11 @@ def merge_reports(existing_reports, new_reports):
 
 
 def build_activist_summary(reports, activists):
-    """アクティビスト別の保有銘柄サマリーを構築"""
+    """アクティビスト・注目投資家別の保有銘柄サマリーを構築"""
     activist_holdings = {}
 
     for report in reports:
-        if not report.get("is_activist"):
+        if not report.get("is_activist") and not report.get("is_notable"):
             continue
 
         activist_id = report.get("activist_id", "")
@@ -501,7 +508,7 @@ def main():
             if any(r.get("doc_id") == doc_id for r in existing_reports):
                 continue
 
-            # アクティビスト判定で優先的にXBRLダウンロード
+            # アクティビスト・注目投資家判定で優先的にXBRLダウンロード
             filer_name = doc.get("filerName", "")
             matched = match_activist(filer_name, activists)
 

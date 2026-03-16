@@ -10,8 +10,8 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アクティビストダッシュボード | 青山乃木坂パートナーズ</title>
-  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価。">
+  <title>大量保有報告ダッシュボード | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、標的リスクを評価。">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,6 +166,7 @@
     .activist-type { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
     .type-activist { background: #fef3c7; color: #92400e; }
     .type-fund { background: #dbeafe; color: #1e40af; }
+    .type-notable { background: #dcfce7; color: #166534; }
     .type-new { background: #fee2e2; color: #991b1b; }
     .type-change { background: #e0e7ff; color: #3730a3; }
     .change-positive { color: var(--green); font-weight: 500; }
@@ -425,9 +426,9 @@
 <!-- PAGE HEADER -->
 <header class="page-header">
   <div class="page-header-inner">
-    <div class="page-header-label">Activist Dashboard &mdash; Powered by EDINET API</div>
-    <h1>アクティビストダッシュボード</h1>
-    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家の動向を可視化し、標的リスクを評価します。</p>
+    <div class="page-header-label">Large Shareholding Dashboard &mdash; Powered by EDINET API</div>
+    <h1>大量保有報告ダッシュボード</h1>
+    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家や主要投資家の動向を可視化し、標的リスクを評価します。</p>
     <div class="data-source">データソース: <span>EDINET（金融庁）</span> ｜ 最終更新: <span id="lastUpdated">読み込み中...</span></div>
   </div>
 </header>
@@ -436,10 +437,20 @@
 <div class="stats-bar">
   <div class="stats-bar-inner">
     <div class="stat-item"><div class="stat-number" id="statTotal">-</div><div class="stat-label">総報告件数（直近90日）</div></div>
-    <div class="stat-item"><div class="stat-number" id="statActivist">-</div><div class="stat-label">アクティビスト関連</div></div>
+    <div class="stat-item"><div class="stat-number" id="statActivist">-</div><div class="stat-label">注目投資家関連</div></div>
     <div class="stat-item"><div class="stat-number" id="statThisMonth">-</div><div class="stat-label">今月の報告</div></div>
     <div class="stat-item"><div class="stat-number" id="statTracked">-</div><div class="stat-label">追跡中の投資家</div></div>
   </div>
+</div>
+
+<!-- ACTIVIST DEFINITION NOTE -->
+<div style="max-width:1200px; margin:0 auto 0; padding:0 24px;">
+  <details style="background:#f8f9fa; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; font-size:13px; color:#4a5568; line-height:1.7;">
+    <summary style="cursor:pointer; font-weight:500; color:#2d3748;">アクティビストの定義について</summary>
+    <p style="margin:10px 0 4px;">当ダッシュボードでは、大量保有報告書の保有目的に<strong>「重要提案行為を行うことを保有の目的とする」</strong>等の記載を<strong>過去に一度でも一銘柄でも</strong>行っている投資家を「アクティビスト」と定義しています。当初は「純投資」と記載していても、その後保有目的を変更して重要提案の記載に変更した投資家も含みます。</p>
+    <p style="margin:4px 0;">光通信等のアクティビストに該当しない主要投資家についても「注目投資家」として追跡対象に含めています。</p>
+    <p style="margin:4px 0 0; font-size:12px; color:#718096;">参考: <a href="https://activist-blog.com/definition/" target="_blank" rel="noopener" style="color:#2b6cb0;">アクティビストの定義｜アクティビストのことがわかるブログ</a></p>
+  </details>
 </div>
 
 <!-- DASHBOARD -->
@@ -461,9 +472,9 @@
         </div>
       </div>
       <div class="filter-group">
-        <label class="filter-label">アクティビスト関連のみ</label>
+        <label class="filter-label">注目投資家フィルター</label>
         <div class="filter-checkbox-group">
-          <label class="filter-checkbox"><input type="checkbox" id="activistOnly"> アクティビスト関連に絞る</label>
+          <label class="filter-checkbox"><input type="checkbox" id="activistOnly"> 注目投資家に絞る（アクティビスト＋注目）</label>
         </div>
       </div>
       <div class="filter-group">
@@ -479,7 +490,7 @@
     </div>
 
     <div class="sidebar-card" id="activistRanking">
-      <h3>アクティビスト活動ランキング</h3>
+      <h3>注目投資家 活動ランキング</h3>
       <div class="ac-stock-list" id="activistRankingList">
         <div class="loading-spinner">読み込み中...</div>
       </div>
@@ -490,7 +501,7 @@
   <main class="main-content">
     <div class="tab-nav">
       <button class="tab-btn active" onclick="switchTab('list', this)">報告一覧</button>
-      <button class="tab-btn" onclick="switchTab('activists', this)">アクティビスト別</button>
+      <button class="tab-btn" onclick="switchTab('activists', this)">投資家別</button>
       <button class="tab-btn" onclick="switchTab('watchlist', this)">ウォッチリスト</button>
       <button class="tab-btn" onclick="switchTab('chart', this)">トレンド分析</button>
       <button class="tab-btn" onclick="switchTab('timeline', this)">タイムライン</button>
@@ -541,7 +552,7 @@
     <!-- TAB: アクティビスト別 -->
     <div class="tab-content" id="tab-activists">
       <div class="content-card">
-        <div class="card-header"><h2>アクティビスト別ポートフォリオ</h2></div>
+        <div class="card-header"><h2>投資家別ポートフォリオ</h2></div>
         <div class="activist-cards" id="activistCards">
           <div class="loading-spinner">データを読み込み中...</div>
         </div>
@@ -742,7 +753,7 @@ function updateStats() {
   reportData.reports.forEach(r => { if (r.activist_id) activistIds.add(r.activist_id); });
 
   document.getElementById('statTotal').textContent = reportData.total_reports || reportData.reports.length;
-  document.getElementById('statActivist').textContent = reportData.activist_reports || reportData.reports.filter(r => r.is_activist).length;
+  document.getElementById('statActivist').textContent = (reportData.activist_reports || 0) + reportData.reports.filter(r => r.is_notable).length;
   document.getElementById('statThisMonth').textContent = monthReports.length;
   document.getElementById('statTracked').textContent = Object.keys(reportData.activists).length || activistIds.size;
 }
@@ -776,7 +787,7 @@ function renderReportTable() {
 
     return `<tr onclick="searchByCode('${r.sec_code || ''}')">
       <td class="date-cell">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
-      <td><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : ''}</td>
+      <td><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
       <td><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
       <td>${r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—'}</td>
       <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(r.target_company || '—')}</td>
@@ -832,7 +843,7 @@ function renderActivistCards() {
               報告件数: ${data.report_count || 0}件
             </div>
           </div>
-          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : 'ファンド'}</span>
+          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : data.type === 'notable_holder' ? 'type-notable' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : data.type === 'notable_holder' ? '注目投資家' : 'ファンド'}</span>
         </div>
         <div class="ac-grid">
           <div>
@@ -876,21 +887,24 @@ function renderActivistRanking() {
 
   const sorted = Object.values(activists).sort((a, b) => (b.report_count || 0) - (a.report_count || 0)).slice(0, 8);
 
-  container.innerHTML = sorted.map(a =>
-    `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.name)}')">
-      <span>${escapeHtml(a.name)}</span>
+  container.innerHTML = sorted.map(a => {
+    const typeTag = a.type === 'activist' ? '<span class="activist-type type-activist" style="font-size:9px;padding:1px 4px;margin-left:4px;">ACT</span>'
+      : a.type === 'notable_holder' ? '<span class="activist-type type-notable" style="font-size:9px;padding:1px 4px;margin-left:4px;">注目</span>'
+      : '';
+    return `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.name)}')">
+      <span style="flex:1;">${escapeHtml(a.name)}${typeTag}</span>
       <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'};">${a.report_count || 0}件</span>
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 }
 
 // ===== TIMELINE =====
 function renderTimeline() {
   const container = document.getElementById('timelineContainer');
-  const activistReports = reportData.reports.filter(r => r.is_activist).slice(0, 10);
+  const activistReports = reportData.reports.filter(r => r.is_activist || r.is_notable).slice(0, 10);
 
   if (!activistReports.length) {
-    container.innerHTML = '<div class="no-data">アクティビスト関連の報告がまだありません。</div>';
+    container.innerHTML = '<div class="no-data">注目投資家の報告がまだありません。</div>';
     return;
   }
 
@@ -931,7 +945,7 @@ function applyFilters() {
       const text = [r.filer_name, r.sec_code, r.target_company, r.purpose].join(' ').toLowerCase();
       if (!text.includes(keyword)) return false;
     }
-    if (activistOnly && !r.is_activist) return false;
+    if (activistOnly && !r.is_activist && !r.is_notable) return false;
     if (r.date && r.date < cutoffStr) return false;
 
     if (reportTypes.length) {
@@ -1403,7 +1417,7 @@ function exportPDF() {
 
   // フォントサイズ設定（日本語はデフォルトフォントで部分対応）
   doc.setFontSize(16);
-  doc.text('Activist Dashboard Report', 14, 15);
+  doc.text('Large Shareholding Dashboard Report', 14, 15);
   doc.setFontSize(9);
   doc.text('Generated: ' + new Date().toLocaleString('ja-JP'), 14, 22);
   doc.text('Total: ' + filteredReports.length + ' reports', 14, 27);
