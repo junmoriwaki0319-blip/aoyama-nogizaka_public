@@ -195,16 +195,23 @@ def download_xbrl_and_extract(doc_id):
 
                     # 発行者名（対象企業名）の抽出
                     issuer_patterns = [
-                        r'(?:発行者の名称|発行者名称?|株券等の発行者)[^\n<]{0,10}[：:．\s]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})',
-                        r'name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer)[^"]*"[^>]*>([^<]+)',
-                        r'<[^>]*>([^<]*株式会社[^<]{0,20})</[^>]*>',
+                        # XBRL element for issuer name
+                        r'name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer|IssuerNameJp)[^"]*"[^>]*>([^<]+)',
+                        # 「発行者の名称」セクション
+                        r'発行者の名称[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})',
+                        r'発行者の名称.*?<[^>]*>\s*([^\n<]{2,40}?)\s*<',
+                        # 「株券等の発行者」セクション
+                        r'株券等の発行者[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})',
                     ]
                     for pattern in issuer_patterns:
                         m = re.search(pattern, text)
                         if m:
                             name = m.group(1).strip()
-                            # Filter out generic text
-                            if name and len(name) >= 2 and '報告書' not in name:
+                            # Filter out generic text and filer's own name
+                            if (name and len(name) >= 2
+                                    and '報告書' not in name
+                                    and '提出者' not in name
+                                    and '代表取締役' not in name):
                                 result["target_company"] = name
                                 break
 
@@ -294,12 +301,15 @@ def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
     else:
         report_type = "その他"
 
-    # 対象企業名の取得（優先順位: XBRL → EDINETコードリスト → docDescription）
+    # 対象企業名の取得（優先順位: XBRL → EDINETコードリスト）
     target_name = ""
 
-    # 1. XBRLから抽出した企業名
+    # 1. XBRLから抽出した企業名（提出者名と同じ場合は除外）
     if xbrl_data and xbrl_data.get("target_company"):
-        target_name = xbrl_data["target_company"]
+        xbrl_name = xbrl_data["target_company"]
+        # filer_name と一致 or 部分一致する場合はスキップ
+        if xbrl_name not in filer_name and filer_name not in xbrl_name:
+            target_name = xbrl_name
 
     # 2. EDINETコードリストから企業名
     if not target_name and edinet_code_map:
