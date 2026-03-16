@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5D57P05PM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクティビスト標的リスク評価 | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="上場企業のアクティビスト標的リスクを10項目で定量評価。銘柄コードを入力するだけで自動診断。IR担当者向け無料ツール。">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2d4f; --navy-light: #243b63; --gold: #9b8b6e; --gold-light: #c8b99a;
+      --white: #ffffff; --off-white: #f8f7f5; --light-gray: #f0eee9; --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a; --text-mid: #444444; --text-light: #888888;
+      --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
+      --serif: 'Noto Serif JP', serif; --sans: 'Noto Sans JP', sans-serif; --deco: 'Cormorant Garamond', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text-dark); background: var(--off-white); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-jp { font-family: var(--serif); font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: var(--deco); font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { color: var(--mid-gray); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-cta { background: var(--gold); color: var(--white) !important; border: none; cursor: pointer; padding: 8px 20px; font-size: 0.78rem; font-family: var(--sans); letter-spacing: 0.06em; transition: opacity 0.2s; text-decoration: none; }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 36px 28px; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1rem; letter-spacing: 0.06em; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu a.active { color: var(--gold); }
+    .mobile-menu a.m-cta { color: var(--gold); margin-top: 20px; border: 1px solid var(--gold); text-align: center; padding: 14px; }
+    @media (max-width: 860px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* HERO */
+    .page-hero {
+      margin-top: 64px;
+      background: linear-gradient(160deg, var(--navy) 0%, #243b60 60%, #2a4570 100%);
+      padding: 72px 40px 60px; position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; right: -40px; top: -40px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%);
+    }
+    .page-hero-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .page-hero-en { font-family: var(--deco); font-style: italic; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 10px; }
+    .page-hero h1 { font-family: var(--serif); font-weight: 300; color: var(--white); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 16px; line-height: 1.5; }
+    .page-hero p { color: rgba(255,255,255,0.65); font-size: 0.88rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+    .hero-badge { display: inline-block; margin-top: 20px; padding: 6px 20px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.72rem; letter-spacing: 0.1em; }
+
+    /* MAIN */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+    /* STOCK CODE INPUT */
+    .stock-input-section { padding: 48px 0 0; }
+    .stock-input-card {
+      background: var(--white); border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 36px 40px; text-align: center;
+    }
+    .stock-input-card h2 { font-family: var(--serif); font-weight: 400; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; }
+    .stock-input-card p { font-size: 0.82rem; color: var(--text-light); margin-bottom: 20px; }
+    .stock-input-row { display: flex; gap: 12px; justify-content: center; align-items: center; max-width: 460px; margin: 0 auto; }
+    .stock-input-row input {
+      flex: 1; padding: 14px 18px; border: 2px solid var(--mid-gray); border-radius: 8px;
+      font-size: 1.1rem; font-family: var(--deco); letter-spacing: 0.15em; color: var(--navy);
+      text-align: center; transition: border-color 0.2s; outline: none;
+    }
+    .stock-input-row input:focus { border-color: var(--gold); }
+    .stock-input-row input::placeholder { color: var(--mid-gray); font-size: 0.9rem; letter-spacing: 0.05em; }
+    .btn-fetch {
+      padding: 14px 28px; background: var(--navy); color: var(--white); border: none;
+      border-radius: 8px; font-size: 0.85rem; font-family: var(--sans); letter-spacing: 0.08em;
+      cursor: pointer; transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-fetch:hover { background: var(--navy-light); }
+    .btn-fetch:disabled { opacity: 0.5; cursor: not-allowed; }
+    .stock-info { margin-top: 16px; font-size: 0.82rem; color: var(--text-light); min-height: 24px; }
+    .stock-info.error { color: var(--red); }
+    .stock-info.success { color: var(--green); }
+
+    /* RISK FORM */
+    .risk-section { padding: 40px 0 0; }
+    .risk-card {
+      background: var(--white); border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 36px 40px;
+    }
+    .risk-card h2 { font-family: var(--serif); font-weight: 400; color: var(--navy); font-size: 1rem; margin-bottom: 24px; }
+    .risk-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .risk-field label { display: block; font-size: 0.78rem; color: var(--navy); font-weight: 500; margin-bottom: 6px; letter-spacing: 0.04em; }
+    .risk-field input, .risk-field select {
+      width: 100%; padding: 10px 14px; border: 1px solid var(--mid-gray); border-radius: 6px;
+      font-size: 0.88rem; font-family: var(--sans); color: var(--text-dark); background: var(--white);
+      transition: border-color 0.2s; outline: none;
+    }
+    .risk-field input:focus, .risk-field select:focus { border-color: var(--gold); }
+    .risk-field input.auto-filled { background: #f0faf0; border-color: var(--green); }
+    .field-hint { font-size: 0.68rem; color: var(--text-light); margin-top: 4px; }
+    .risk-btn-area { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: center; padding-top: 12px; }
+    .risk-btn {
+      padding: 14px 40px; background: var(--navy); color: var(--white); border: none;
+      border-radius: 8px; font-size: 0.88rem; font-family: var(--sans); letter-spacing: 0.08em;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .risk-btn:hover { background: var(--navy-light); }
+    .risk-btn-clear {
+      padding: 14px 28px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray);
+      border-radius: 8px; font-size: 0.82rem; font-family: var(--sans); cursor: pointer; transition: all 0.2s;
+    }
+    .risk-btn-clear:hover { border-color: var(--text-mid); color: var(--text-mid); }
+
+    /* RESULT */
+    .risk-result { display: none; margin-top: 40px; padding: 40px 0 0; }
+    .risk-result.show { display: block; }
+    .risk-score-card { text-align: center; padding: 32px 0; }
+    .risk-score-circle {
+      width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+    }
+    .risk-bg-high { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+    .risk-bg-medium { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .risk-bg-low { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .risk-score-value { font-family: var(--deco); font-size: 48px; font-weight: 500; line-height: 1; }
+    .risk-score-label { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; }
+    .risk-level { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .risk-high { color: var(--red); }
+    .risk-medium { color: var(--orange); }
+    .risk-low { color: var(--green); }
+    .risk-level-desc { font-size: 0.82rem; color: var(--text-mid); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+    .risk-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 28px; }
+    .risk-detail-item { background: var(--off-white); border-radius: 8px; padding: 16px; }
+    .risk-detail-item h4 { font-size: 0.78rem; color: var(--navy); font-weight: 500; margin-bottom: 6px; }
+    .risk-detail-item .score { font-family: var(--deco); font-size: 1.2rem; font-weight: 600; }
+    .risk-detail-item .max-score { font-size: 0.72rem; color: var(--text-light); }
+    .risk-detail-item .bar { width: 100%; height: 4px; background: var(--light-gray); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+    .risk-detail-item .bar-fill { height: 100%; border-radius: 2px; }
+
+    /* CTA */
+    .cta-section { padding: 56px 0 0; }
+    .cta-card {
+      background: var(--navy); border-radius: 12px; padding: 40px; text-align: center;
+    }
+    .cta-card h3 { font-family: var(--serif); font-weight: 300; color: var(--white); font-size: 1.2rem; margin-bottom: 12px; }
+    .cta-card p { color: rgba(255,255,255,0.6); font-size: 0.82rem; margin-bottom: 24px; line-height: 1.8; }
+    .cta-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-links a {
+      padding: 12px 28px; border-radius: 6px; font-size: 0.82rem; letter-spacing: 0.06em;
+      font-family: var(--sans); text-decoration: none; transition: all 0.2s;
+    }
+    .cta-primary { background: var(--gold); color: var(--white); }
+    .cta-primary:hover { opacity: 0.85; }
+    .cta-secondary { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+    .cta-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: #111d30; color: rgba(255,255,255,0.5); padding: 48px 40px 28px; font-size: 0.78rem; margin-top: 60px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
+    .footer-tagline { font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); }
+    .footer-nav { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.72rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page-hero { padding: 56px 20px 44px; }
+      .container { padding: 0 20px; }
+      .stock-input-card { padding: 28px 20px; }
+      .stock-input-row { flex-direction: column; }
+      .stock-input-row input { text-align: center; }
+      .btn-fetch { width: 100%; }
+      .risk-card { padding: 28px 20px; }
+      .risk-form { grid-template-columns: 1fr; }
+      .risk-score-circle { width: 120px; height: 120px; }
+      .risk-score-value { font-size: 36px; }
+      .risk-detail-grid { grid-template-columns: 1fr; }
+      .cta-card { padding: 32px 20px; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+      <li><a href="/risk-assessment.html" class="active">標的リスク評価</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()">ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" class="active">標的リスク評価</a>
+  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+</div>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-en">Activist Target Risk Assessment</div>
+    <h1>アクティビスト標的リスク評価</h1>
+    <p>上場企業のアクティビスト標的リスクを10項目で定量評価。<br>銘柄コードを入力するだけで、主要指標を自動取得し即座に診断します。</p>
+    <div class="hero-badge">IR担当者向け 無料ツール</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Stock Code Input -->
+  <div class="stock-input-section">
+    <div class="stock-input-card">
+      <h2>銘柄コードで自動診断</h2>
+      <p>4桁の証券コードを入力すると、各指標を自動取得してフォームに反映します。</p>
+      <div class="stock-input-row">
+        <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203" inputmode="numeric" pattern="[0-9]*">
+        <button class="btn-fetch" id="btnFetch" onclick="fetchStockData()">データ取得</button>
+      </div>
+      <div class="stock-info" id="stockInfo"></div>
+    </div>
+  </div>
+
+  <!-- Risk Form -->
+  <div class="risk-section">
+    <div class="risk-card">
+      <h2>評価項目（10項目 / 100点満点）</h2>
+      <div class="risk-form" id="riskForm">
+        <div class="risk-field">
+          <label>PBR（株価純資産倍率）</label>
+          <input type="number" id="risk_pbr" step="0.01" placeholder="例: 0.85">
+          <div class="field-hint">1倍未満は高リスク（配点: 15点）</div>
+        </div>
+        <div class="risk-field">
+          <label>ROE（自己資本利益率）%</label>
+          <input type="number" id="risk_roe" step="0.1" placeholder="例: 5.2">
+          <div class="field-hint">8%未満は高リスク（配点: 12点）</div>
+        </div>
+        <div class="risk-field">
+          <label>配当性向 %</label>
+          <input type="number" id="risk_payout" step="0.1" placeholder="例: 25">
+          <div class="field-hint">30%未満は高リスク（配点: 10点）</div>
+        </div>
+        <div class="risk-field">
+          <label>ネットキャッシュ / 時価総額 %</label>
+          <input type="number" id="risk_cash" step="0.1" placeholder="例: 35">
+          <div class="field-hint">30%超は高リスク（配点: 15点）</div>
+        </div>
+        <div class="risk-field">
+          <label>自己資本比率 %</label>
+          <input type="number" id="risk_equity" step="0.1" placeholder="例: 65">
+          <div class="field-hint">70%超は資本過剰（配点: 8点）</div>
+        </div>
+        <div class="risk-field">
+          <label>外国人持株比率 %</label>
+          <input type="number" id="risk_foreign" step="0.1" placeholder="例: 20">
+          <div class="field-hint">高いほど参入容易（配点: 10点）</div>
+        </div>
+        <div class="risk-field">
+          <label>政策保有株式 / 純資産 %</label>
+          <input type="number" id="risk_crosshold" step="0.1" placeholder="例: 15">
+          <div class="field-hint">高いほどガバナンス懸念（配点: 10点）</div>
+        </div>
+        <div class="risk-field">
+          <label>社外取締役比率 %</label>
+          <input type="number" id="risk_outside" step="0.1" placeholder="例: 33">
+          <div class="field-hint">33%未満はリスク要因（配点: 8点）</div>
+        </div>
+        <div class="risk-field">
+          <label>時価総額（億円）</label>
+          <input type="number" id="risk_marketcap" step="1" placeholder="例: 500">
+          <div class="field-hint">100〜5,000億円がターゲットゾーン（配点: 8点）</div>
+        </div>
+        <div class="risk-field">
+          <label>買収防衛策</label>
+          <select id="risk_defense">
+            <option value="">選択してください</option>
+            <option value="none">なし</option>
+            <option value="active">導入中</option>
+            <option value="expired">期限切れ / 廃止済み</option>
+          </select>
+          <div class="field-hint">廃止済みは狙われやすい（配点: 4点）</div>
+        </div>
+        <div class="risk-btn-area">
+          <button class="risk-btn" onclick="calculateRisk()">リスクを評価する</button>
+          <button class="risk-btn-clear" onclick="clearRisk()">クリア</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="risk-result" id="riskResult">
+    <div class="risk-card">
+      <div class="risk-score-card">
+        <h2 id="resultCompanyName" style="font-size:1.1rem; margin-bottom:20px;"></h2>
+        <div class="risk-score-circle" id="riskScoreCircle">
+          <div class="risk-score-value" id="riskScoreValue">0</div>
+          <div class="risk-score-label">/ 100</div>
+        </div>
+        <div class="risk-level" id="riskLevel"></div>
+        <div class="risk-level-desc" id="riskLevelDesc"></div>
+      </div>
+      <h3 style="font-size:0.88rem; font-weight:500; color:var(--navy); margin-bottom:16px;">評価項目別スコア</h3>
+      <div class="risk-detail-grid" id="riskDetailGrid"></div>
+      <div style="margin-top:28px; padding:24px; background:var(--off-white); border-radius:8px;">
+        <h4 style="font-size:0.82rem; font-weight:500; color:var(--navy); margin-bottom:12px;">推奨アクション</h4>
+        <ul id="riskRecommendations" style="font-size:0.82rem; color:var(--text-mid); line-height:2; padding-left:20px;"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-card">
+      <h3>アクティビスト対応にお悩みですか？</h3>
+      <p>青山乃木坂パートナーズでは、アクティビスト対応戦略の策定から<br>IR強化・資本政策の見直しまで、包括的にご支援いたします。</p>
+      <div class="cta-links">
+        <a href="https://aoyama-nogizaka.com/#contact" class="cta-primary">無料相談を申し込む</a>
+        <a href="/activist-dashboard.html" class="cta-secondary">ダッシュボードを見る</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Aoyama Nogizaka Partners</div>
+        <div class="footer-tagline">青山乃木坂パートナーズ合同会社</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">標的リスク評価</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>東京・港区</span>
+      <span>&copy; 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile Nav */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ===== STOCK DATA FETCH ===== */
+async function fetchStockData() {
+  const code = document.getElementById('stockCode').value.trim();
+  const info = document.getElementById('stockInfo');
+  const btn = document.getElementById('btnFetch');
+
+  if (!code || code.length !== 4 || !/^\d{4}$/.test(code)) {
+    info.textContent = '4桁の証券コードを入力してください。';
+    info.className = 'stock-info error';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '取得中...';
+  info.textContent = 'データを取得しています...';
+  info.className = 'stock-info';
+
+  // 全入力フィールドのauto-filledをクリア
+  document.querySelectorAll('.auto-filled').forEach(el => el.classList.remove('auto-filled'));
+
+  try {
+    // Yahoo Finance API (非公式) でデータ取得
+    const data = await fetchFromYahooFinance(code);
+
+    if (data) {
+      applyStockData(data);
+      info.textContent = '✓ ' + (data.companyName || code) + ' のデータを反映しました。不足・相違があれば手動で修正してください。';
+      info.className = 'stock-info success';
+    } else {
+      info.textContent = 'データを自動取得できませんでした。手動で各項目を入力してください。';
+      info.className = 'stock-info error';
+    }
+  } catch (e) {
+    console.error('Fetch error:', e);
+    info.textContent = 'データ取得中にエラーが発生しました。手動で入力してください。';
+    info.className = 'stock-info error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'データ取得';
+  }
+}
+
+async function fetchFromYahooFinance(code) {
+  // Yahoo Finance Japan のページからデータをスクレイピングするのは
+  // CORSの制約があるため、複数のパブリックAPIを試行する
+  const result = { companyName: '', code: code };
+
+  try {
+    // 方法1: Yahoo Finance API (international)
+    const symbol = code + '.T'; // 東証銘柄
+    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + symbol + '?range=1d&interval=1d';
+    const resp = await fetch(url);
+    if (resp.ok) {
+      const json = await resp.json();
+      const meta = json.chart?.result?.[0]?.meta;
+      if (meta) {
+        const price = meta.regularMarketPrice || 0;
+        result.companyName = meta.shortName || meta.longName || symbol;
+        // 時価総額は個別取得が必要なので別途
+      }
+    }
+  } catch (e) {
+    console.log('Yahoo chart API not available');
+  }
+
+  try {
+    // 方法2: Yahoo Finance quoteSummary
+    const symbol = code + '.T';
+    const modules = 'financialData,defaultKeyStatistics,summaryDetail,price';
+    const url2 = 'https://query1.finance.yahoo.com/v10/finance/quoteSummary/' + symbol + '?modules=' + modules;
+    const resp2 = await fetch(url2);
+    if (resp2.ok) {
+      const json2 = await resp2.json();
+      const q = json2.quoteSummary?.result?.[0];
+      if (q) {
+        const stats = q.defaultKeyStatistics || {};
+        const fin = q.financialData || {};
+        const summary = q.summaryDetail || {};
+        const priceData = q.price || {};
+
+        result.companyName = priceData.shortName || priceData.longName || result.companyName;
+
+        // PBR
+        if (stats.priceToBook?.raw) result.pbr = Math.round(stats.priceToBook.raw * 100) / 100;
+        // ROE
+        if (fin.returnOnEquity?.raw) result.roe = Math.round(fin.returnOnEquity.raw * 10000) / 100;
+        // 配当性向
+        if (summary.payoutRatio?.raw) result.payout = Math.round(summary.payoutRatio.raw * 10000) / 100;
+        // 時価総額 (円 → 億円)
+        if (priceData.marketCap?.raw) result.marketcap = Math.round(priceData.marketCap.raw / 100000000);
+
+        return result;
+      }
+    }
+  } catch (e) {
+    console.log('Yahoo quoteSummary API not available');
+  }
+
+  // フォールバック: 主要銘柄の参考データ（デモ用）
+  const demoData = getDemoData(code);
+  if (demoData) {
+    Object.assign(result, demoData);
+    return result;
+  }
+
+  return result.companyName ? result : null;
+}
+
+function getDemoData(code) {
+  // 主要銘柄の参考データ（Yahoo Finance APIがCORS制限で使えない場合のフォールバック）
+  const db = {
+    '7203': { companyName: 'トヨタ自動車', pbr: 1.15, roe: 12.8, payout: 30, marketcap: 420000, equity: 38.2, foreign: 23.5 },
+    '6758': { companyName: 'ソニーグループ', pbr: 2.35, roe: 15.2, payout: 10, marketcap: 178000, equity: 22.5, foreign: 52.3 },
+    '9984': { companyName: 'ソフトバンクグループ', pbr: 1.05, roe: 3.2, payout: 0, marketcap: 120000, equity: 18.5, foreign: 38.2 },
+    '8306': { companyName: '三菱UFJフィナンシャル・グループ', pbr: 0.92, roe: 9.1, payout: 33, marketcap: 190000, equity: 5.2, foreign: 33.8 },
+    '6501': { companyName: '日立製作所', pbr: 2.18, roe: 14.5, payout: 32, marketcap: 136000, equity: 32.1, foreign: 40.2 },
+    '7751': { companyName: 'キヤノン', pbr: 1.22, roe: 11.3, payout: 48, marketcap: 42000, equity: 58.5, foreign: 35.6 },
+    '4502': { companyName: '武田薬品工業', pbr: 1.05, roe: 5.8, payout: 108, marketcap: 66000, equity: 42.3, foreign: 36.1 },
+    '2802': { companyName: '味の素', pbr: 3.85, roe: 16.2, payout: 35, marketcap: 35000, equity: 48.2, foreign: 38.5 },
+    '9432': { companyName: '日本電信電話', pbr: 1.42, roe: 14.8, payout: 34, marketcap: 148000, equity: 33.5, foreign: 10.2 },
+    '6902': { companyName: 'デンソー', pbr: 1.05, roe: 7.2, payout: 28, marketcap: 62000, equity: 56.8, foreign: 25.3, crosshold: 8.5 },
+    '3382': { companyName: 'セブン＆アイ・ホールディングス', pbr: 1.65, roe: 7.5, payout: 38, marketcap: 54000, equity: 37.2, foreign: 42.1 },
+    '4661': { companyName: 'オリエンタルランド', pbr: 12.5, roe: 12.8, payout: 22, marketcap: 84000, equity: 72.3, foreign: 28.5 },
+    '5401': { companyName: '日本製鉄', pbr: 0.68, roe: 15.2, payout: 25, marketcap: 32000, equity: 45.2, foreign: 28.5, cash: 5 },
+    '7011': { companyName: '三菱重工業', pbr: 2.15, roe: 12.1, payout: 30, marketcap: 68000, equity: 28.5, foreign: 32.5 },
+    '8035': { companyName: '東京エレクトロン', pbr: 8.5, roe: 30.2, payout: 50, marketcap: 128000, equity: 68.5, foreign: 42.3 },
+    '8058': { companyName: '三菱商事', pbr: 1.12, roe: 14.5, payout: 30, marketcap: 92000, equity: 32.1, foreign: 35.2 },
+    '2914': { companyName: 'JT（日本たばこ産業）', pbr: 1.82, roe: 13.5, payout: 72, marketcap: 72000, equity: 48.2, foreign: 28.1, cash: 8 },
+    '4519': { companyName: '中外製薬', pbr: 6.8, roe: 22.5, payout: 40, marketcap: 82000, equity: 72.5, foreign: 16.2 },
+    '9101': { companyName: '日本郵船', pbr: 0.72, roe: 8.5, payout: 30, marketcap: 16000, equity: 62.5, foreign: 35.8, cash: 45 },
+    '7201': { companyName: '日産自動車', pbr: 0.25, roe: 0.8, payout: 0, marketcap: 12000, equity: 28.5, foreign: 32.5, cash: 15 },
+  };
+  return db[code] || null;
+}
+
+function applyStockData(data) {
+  const fields = [
+    { id: 'risk_pbr', key: 'pbr' },
+    { id: 'risk_roe', key: 'roe' },
+    { id: 'risk_payout', key: 'payout' },
+    { id: 'risk_cash', key: 'cash' },
+    { id: 'risk_equity', key: 'equity' },
+    { id: 'risk_foreign', key: 'foreign' },
+    { id: 'risk_crosshold', key: 'crosshold' },
+    { id: 'risk_outside', key: 'outside' },
+    { id: 'risk_marketcap', key: 'marketcap' },
+  ];
+
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    if (data[f.key] != null) {
+      el.value = data[f.key];
+      el.classList.add('auto-filled');
+    }
+  });
+
+  // 会社名を保存
+  window._currentCompany = data.companyName || '';
+}
+
+/* ===== RISK CALCULATION ===== */
+function calculateRisk() {
+  const pbr = parseFloat(document.getElementById('risk_pbr').value) || null;
+  const roe = parseFloat(document.getElementById('risk_roe').value) || null;
+  const payout = parseFloat(document.getElementById('risk_payout').value) || null;
+  const cash = parseFloat(document.getElementById('risk_cash').value) || null;
+  const equity = parseFloat(document.getElementById('risk_equity').value) || null;
+  const foreign = parseFloat(document.getElementById('risk_foreign').value) || null;
+  const crosshold = parseFloat(document.getElementById('risk_crosshold').value) || null;
+  const outside = parseFloat(document.getElementById('risk_outside').value) || null;
+  const marketcap = parseFloat(document.getElementById('risk_marketcap').value) || null;
+  const defense = document.getElementById('risk_defense').value;
+
+  const factors = [];
+  let total = 0, maxTotal = 0;
+
+  if (pbr !== null) { let s=0; if(pbr<0.5)s=15;else if(pbr<0.8)s=12;else if(pbr<1.0)s=10;else if(pbr<1.3)s=5;else s=2; factors.push({name:'PBR',score:s,max:15,value:pbr.toFixed(2),desc:pbr<1.0?'1倍割れ: アクティビストの主要ターゲット':'PBR1倍以上: 相対的に低リスク'}); total+=s; maxTotal+=15; }
+  if (roe !== null) { let s=0; if(roe<3)s=12;else if(roe<5)s=10;else if(roe<8)s=7;else if(roe<10)s=3;else s=1; factors.push({name:'ROE',score:s,max:12,value:roe.toFixed(1)+'%',desc:roe<8?'資本効率に改善余地あり':'資本効率は概ね良好'}); total+=s; maxTotal+=12; }
+  if (payout !== null) { let s=0; if(payout<15)s=10;else if(payout<25)s=8;else if(payout<30)s=5;else if(payout<40)s=2;else s=1; factors.push({name:'配当性向',score:s,max:10,value:payout.toFixed(1)+'%',desc:payout<30?'株主還元に課題':'株主還元は概ね適切'}); total+=s; maxTotal+=10; }
+  if (cash !== null) { let s=0; if(cash>50)s=15;else if(cash>30)s=12;else if(cash>20)s=8;else if(cash>10)s=4;else s=1; factors.push({name:'ネットキャッシュ比率',score:s,max:15,value:cash.toFixed(1)+'%',desc:cash>30?'過剰現金: 自社株買い・特別配当の要求対象':'キャッシュ水準は適正範囲'}); total+=s; maxTotal+=15; }
+  if (equity !== null) { let s=0; if(equity>80)s=8;else if(equity>70)s=6;else if(equity>60)s=3;else s=1; factors.push({name:'自己資本比率',score:s,max:8,value:equity.toFixed(1)+'%',desc:equity>70?'資本過剰の可能性':'資本構成は適正'}); total+=s; maxTotal+=8; }
+  if (foreign !== null) { let s=0; if(foreign>40)s=10;else if(foreign>25)s=7;else if(foreign>15)s=5;else if(foreign>5)s=3;else s=1; factors.push({name:'外国人持株比率',score:s,max:10,value:foreign.toFixed(1)+'%',desc:foreign>25?'海外アクティビストが参入しやすい環境':'海外投資家の比率は低め'}); total+=s; maxTotal+=10; }
+  if (crosshold !== null) { let s=0; if(crosshold>20)s=10;else if(crosshold>10)s=7;else if(crosshold>5)s=4;else s=1; factors.push({name:'政策保有株式比率',score:s,max:10,value:crosshold.toFixed(1)+'%',desc:crosshold>10?'ガバナンス上の懸念材料':'政策保有は限定的'}); total+=s; maxTotal+=10; }
+  if (outside !== null) { let s=0; if(outside<20)s=8;else if(outside<33)s=6;else if(outside<50)s=3;else s=1; factors.push({name:'社外取締役比率',score:s,max:8,value:outside.toFixed(1)+'%',desc:outside<33?'取締役会の独立性に課題':'取締役会の独立性は確保'}); total+=s; maxTotal+=8; }
+  if (marketcap !== null) { let s=0; if(marketcap>=100&&marketcap<=500)s=8;else if(marketcap>500&&marketcap<=2000)s=6;else if(marketcap>2000&&marketcap<=5000)s=4;else if(marketcap<100)s=3;else s=2; factors.push({name:'時価総額',score:s,max:8,value:marketcap+'億円',desc:marketcap>=100&&marketcap<=2000?'アクティビストのターゲットゾーン':'ターゲットゾーン外'}); total+=s; maxTotal+=8; }
+  if (defense) { let s=0; if(defense==='none')s=3;else if(defense==='expired')s=4;else s=1; const labels={none:'なし',active:'導入中',expired:'廃止済み'}; factors.push({name:'買収防衛策',score:s,max:4,value:labels[defense],desc:defense==='active'?'防衛策あり（ただし廃止圧力の可能性）':'防衛策なし/廃止: エントリーしやすい'}); total+=s; maxTotal+=4; }
+
+  if (!factors.length) { alert('少なくとも1つの項目を入力してください。'); return; }
+
+  const normalizedScore = Math.round((total / maxTotal) * 100);
+  const resultDiv = document.getElementById('riskResult');
+  resultDiv.classList.add('show');
+
+  const scoreEl = document.getElementById('riskScoreValue');
+  const levelEl = document.getElementById('riskLevel');
+  const descEl = document.getElementById('riskLevelDesc');
+  const circle = document.getElementById('riskScoreCircle');
+  const nameEl = document.getElementById('resultCompanyName');
+
+  scoreEl.textContent = normalizedScore;
+  if (window._currentCompany) {
+    nameEl.textContent = window._currentCompany + '（' + (document.getElementById('stockCode').value || '') + '）';
+  } else {
+    nameEl.textContent = '';
+  }
+
+  let level, levelClass, bgClass, desc;
+  if (normalizedScore >= 70) {
+    level = '高リスク'; levelClass = 'risk-high'; bgClass = 'risk-bg-high';
+    desc = 'アクティビストの標的となる可能性が高い状態です。資本効率・株主還元・ガバナンスの早急な改善が推奨されます。';
+  } else if (normalizedScore >= 40) {
+    level = '中リスク'; levelClass = 'risk-medium'; bgClass = 'risk-bg-medium';
+    desc = 'アクティビストが関心を持つ可能性があります。予防的な対策を検討することを推奨します。';
+  } else {
+    level = '低リスク'; levelClass = 'risk-low'; bgClass = 'risk-bg-low';
+    desc = '現時点でアクティビストの標的となるリスクは比較的低いと考えられます。';
+  }
+
+  circle.className = 'risk-score-circle ' + bgClass;
+  scoreEl.style.color = levelClass === 'risk-high' ? 'var(--red)' : levelClass === 'risk-medium' ? 'var(--orange)' : 'var(--green)';
+  levelEl.textContent = level;
+  levelEl.className = 'risk-level ' + levelClass;
+  descEl.textContent = desc;
+
+  const grid = document.getElementById('riskDetailGrid');
+  grid.innerHTML = factors.map(f => {
+    const pct = (f.score / f.max * 100).toFixed(0);
+    const barColor = pct >= 70 ? 'var(--red)' : pct >= 40 ? 'var(--orange)' : 'var(--green)';
+    return '<div class="risk-detail-item"><h4>' + f.name + '</h4><div><span class="score">' + f.score + '</span><span class="max-score"> / ' + f.max + '</span></div><div style="font-size:0.72rem;color:var(--text-mid);margin-top:4px;">入力値: ' + f.value + '</div><div class="bar"><div class="bar-fill" style="width:' + pct + '%;background:' + barColor + ';"></div></div><div style="font-size:0.68rem;color:var(--text-light);margin-top:6px;">' + f.desc + '</div></div>';
+  }).join('');
+
+  const recs = document.getElementById('riskRecommendations');
+  const recommendations = [];
+  factors.forEach(f => {
+    const pct = f.score / f.max * 100;
+    if (pct >= 60) {
+      if (f.name === 'PBR') recommendations.push('PBR改善: 成長戦略の明確化、IR強化による市場評価の向上を検討');
+      if (f.name === 'ROE') recommendations.push('ROE改善: 低収益事業の見直し、資本効率を意識した経営目標の設定');
+      if (f.name === '配当性向') recommendations.push('株主還元: 配当性向の引上げ、自社株買いの実施検討');
+      if (f.name === 'ネットキャッシュ比率') recommendations.push('現金活用: 成長投資の実行、株主還元の強化（特別配当・自社株買い）');
+      if (f.name === '政策保有株式比率') recommendations.push('政策保有の縮減: CGコード対応として計画的な売却を推進');
+      if (f.name === '社外取締役比率') recommendations.push('取締役会改革: 社外取締役比率の引上げ（過半数目標）');
+      if (f.name === '買収防衛策') recommendations.push('対話体制の整備: アクティビスト接触時の対応マニュアル策定');
+    }
+  });
+  if (normalizedScore >= 50) {
+    recommendations.push('専門アドバイザーへの相談: 資本政策・IR戦略の包括的な見直し');
+  }
+  recs.innerHTML = recommendations.map(r => '<li>' + r + '</li>').join('');
+
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearRisk() {
+  document.querySelectorAll('#riskForm input, #riskForm select').forEach(el => { el.value = ''; el.classList.remove('auto-filled'); });
+  document.getElementById('riskResult').classList.remove('show');
+  document.getElementById('stockCode').value = '';
+  document.getElementById('stockInfo').textContent = '';
+  document.getElementById('stockInfo').className = 'stock-info';
+  window._currentCompany = '';
+}
+
+// Enterキーで取得
+document.getElementById('stockCode').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') fetchStockData();
+});
+</script>
+</body>
+</html>

@@ -85,28 +85,25 @@
     body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--mid-gray); }
-    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 400; color: var(--navy); text-decoration: none; letter-spacing: 0.06em; }
-    .nav-logo span { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; display: block; margin-top: 2px; }
-    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 13px; font-weight: 400; letter-spacing: 0.08em; transition: color 0.2s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--navy); transform: scaleX(0); transition: transform 0.25s ease; }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-links .active { color: var(--navy); font-weight: 500; }
-    .nav-links .active::after { transform: scaleX(1); background: var(--gold); }
-    .nav-auth-btns { display: flex; gap: 12px; align-items: center; }
-    .btn-login { background: none; border: 1px solid var(--navy); color: var(--navy); padding: 8px 20px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; }
-    .btn-login:hover { background: var(--navy); color: var(--white); }
-    .btn-register { background: var(--navy); border: 1px solid var(--navy); color: var(--white); padding: 8px 20px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; }
-    .btn-register:hover { background: var(--navy-light); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-jp { font-family: 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--mid-gray); font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
+    .btn-login:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-register { background: var(--gold); border: none; color: var(--white); padding: 7px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s; }
+    .btn-register:hover { opacity: 0.85; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); transition: all 0.3s; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
 
     /* PAGE HEADER */
-    .page-header { margin-top: 80px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 60px 40px 50px; position: relative; overflow: hidden; }
+    .page-header { margin-top: 64px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 60px 40px 50px; position: relative; overflow: hidden; }
     .page-header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%); }
     .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .page-header-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
@@ -330,9 +327,12 @@
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; flex-direction: column; padding: 40px; gap: 28px; }
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 36px 28px; gap: 0; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { text-decoration: none; color: var(--text-dark); font-size: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--mid-gray); }
+    .mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1rem; letter-spacing: 0.06em; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu a.active { color: var(--gold); }
+    .mobile-menu .m-auth { display: flex; gap: 12px; margin-top: 24px; }
     .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
 
     /* EXPORT BUTTONS */
@@ -378,33 +378,47 @@
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">青山乃木坂パートナーズ<span>Aoyama Nogizaka Partners</span></a>
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="/">ホーム</a></li>
-      <li><a href="/team.html">チーム</a></li>
-      <li><a href="/news/">ニュース</a></li>
-      <li><a href="/activist-dashboard.html" class="active">アクティビストダッシュボード</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <li><a href="/activist-dashboard.html" class="active">ダッシュボード</a></li>
+      <li><a href="/risk-assessment.html">標的リスク評価</a></li>
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
       <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
     </div>
     <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
-      <span style="font-size:12px; color:var(--text-mid); letter-spacing:0.04em;" id="navUserName"></span>
+      <span style="font-size:0.72rem; color:rgba(255,255,255,0.7); letter-spacing:0.04em;" id="navUserName"></span>
       <button class="btn-login" onclick="handleLogout()">ログアウト</button>
     </div>
-    <button class="nav-hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
-  <a href="/">ホーム</a>
-  <a href="/team.html">チーム</a>
-  <a href="/news/">ニュース</a>
-  <a href="/activist-dashboard.html">アクティビストダッシュボード</a>
-  <div style="display:flex; gap:12px; margin-top:16px;">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMobileMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMobileMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMobileMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMobileMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMobileMenu()">ニュース・論考</a>
+  <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active">ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMobileMenu()">標的リスク評価</a>
+  <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+  </div>
+  <div class="m-auth" id="mobileUserInfo" style="display:none;">
+    <span style="font-size:0.85rem; color:rgba(255,255,255,0.7);" id="mobileUserName"></span>
+    <button class="btn-login" onclick="handleLogout()">ログアウト</button>
   </div>
 </div>
 
@@ -753,12 +767,28 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">青山乃木坂パートナーズ<span>Aoyama Nogizaka Partners</span></div>
+    <div>
+      <div class="footer-brand">Aoyama Nogizaka Partners</div>
+      <div class="footer-brand"><span>青山乃木坂パートナーズ合同会社</span></div>
+    </div>
     <div class="footer-links">
-      <a href="/">ホーム</a><a href="/team.html">チーム</a><a href="/news/">ニュース</a><a href="/privacy.html">プライバシーポリシー</a>
+      <a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a>
+      <a href="https://aoyama-nogizaka.com/#services">提供サービス</a>
+      <a href="https://aoyama-nogizaka.com/#about">会社概要</a>
+      <a href="https://aoyama-nogizaka.com/team">チーム</a>
+      <a href="/news/">ニュース・論考</a>
+      <a href="/activist-dashboard.html">ダッシュボード</a>
+      <a href="/risk-assessment.html">標的リスク評価</a>
+      <a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a>
+      <a href="/privacy.html">個人情報保護方針</a>
     </div>
   </div>
-  <div class="footer-copy"><p>&copy; 2025 Aoyama Nogizaka Partners. All Rights Reserved.</p></div>
+  <div class="footer-copy">
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; max-width:1200px; margin:0 auto; padding:0 40px;">
+      <span>東京・港区</span>
+      <span>&copy; 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -1374,24 +1404,29 @@ function updateAuthUI(user) {
   const authBtns = document.getElementById('navAuthBtns');
   const userInfo = document.getElementById('navUserInfo');
   const userName = document.getElementById('navUserName');
+  const mobileAuthBtns = document.getElementById('mobileAuthBtns');
+  const mobileUserInfo = document.getElementById('mobileUserInfo');
+  const mobileUserName = document.getElementById('mobileUserName');
   const premiumEls = document.querySelectorAll('.premium-overlay');
   const premiumBlurs = document.querySelectorAll('.premium-blur');
   const loginWall = document.getElementById('loginWall');
 
   if (user) {
-    // ログイン済み
+    const displayName = (user.displayName || user.email) + ' 様';
     authBtns.style.display = 'none';
     userInfo.style.display = 'flex';
-    userName.textContent = (user.displayName || user.email) + ' 様';
-    // プレミアムコンテンツのロック解除
+    userName.textContent = displayName;
+    if (mobileAuthBtns) mobileAuthBtns.style.display = 'none';
+    if (mobileUserInfo) { mobileUserInfo.style.display = 'flex'; mobileUserName.textContent = displayName; }
     premiumEls.forEach(el => el.style.display = 'none');
     premiumBlurs.forEach(el => el.classList.remove('premium-blur'));
     if (loginWall) loginWall.style.display = 'none';
   } else {
-    // 未ログイン
     authBtns.style.display = 'flex';
     userInfo.style.display = 'none';
     userName.textContent = '';
+    if (mobileAuthBtns) mobileAuthBtns.style.display = 'flex';
+    if (mobileUserInfo) { mobileUserInfo.style.display = 'none'; mobileUserName.textContent = ''; }
     premiumEls.forEach(el => el.style.display = 'flex');
     premiumBlurs.forEach(el => el.classList.add('premium-blur'));
     if (loginWall) loginWall.style.display = 'block';
@@ -1399,7 +1434,6 @@ function updateAuthUI(user) {
 }
 
 // ===== NAV =====
-window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10); });
 function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
 // ===== UTILS =====

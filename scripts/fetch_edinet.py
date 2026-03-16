@@ -54,9 +54,8 @@ def fetch_document_list(date_str):
     params = {
         "date": date_str,
         "type": 2,  # メタデータ + 提出書類一覧
+        "Subscription-Key": API_KEY,
     }
-    if API_KEY:
-        params["Subscription-Key"] = API_KEY
 
     url = f"{EDINET_API_BASE}/documents.json?{urlencode(params)}"
 
@@ -64,7 +63,13 @@ def fetch_document_list(date_str):
         resp = requests.get(url, timeout=30)
         resp.raise_for_status()
         data = resp.json()
-        return data.get("results", [])
+        results = data.get("results", [])
+        # デバッグ: 最初の日だけ取得件数を表示
+        if results:
+            holdings = [d for d in results if d.get("docTypeCode") in {"060", "070"}]
+            if holdings:
+                print(f"\n    → {date_str}: {len(results)} docs, {len(holdings)} 大量保有", flush=True)
+        return results
     except requests.RequestException as e:
         print(f"  [WARN] API error for {date_str}: {e}", file=sys.stderr)
         return []
@@ -354,6 +359,7 @@ def main():
     dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(LOOKBACK_DAYS)]
 
     new_reports = []
+    first_response_logged = False
 
     for i, date_str in enumerate(dates):
         print(f"\r  取得中: {date_str} ({i + 1}/{len(dates)})", end="", flush=True)
@@ -362,6 +368,15 @@ def main():
         if not documents:
             time.sleep(0.5)
             continue
+
+        # 最初に取得できた日のドキュメント種別を確認
+        if not first_response_logged and documents:
+            first_response_logged = True
+            doc_types = {}
+            for d in documents:
+                dt = d.get("docTypeCode", "unknown")
+                doc_types[dt] = doc_types.get(dt, 0) + 1
+            print(f"\n  [DEBUG] {date_str}: {len(documents)} 件取得。docTypeCode分布: {doc_types}", flush=True)
 
         holdings = filter_large_holdings(documents)
 
