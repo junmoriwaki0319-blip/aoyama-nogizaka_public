@@ -470,8 +470,8 @@
         <label class="filter-label">報告期間</label>
         <select class="filter-select" id="periodFilter">
           <option value="7">直近1週間</option>
-          <option value="30" selected>直近1ヶ月</option>
-          <option value="90">直近3ヶ月</option>
+          <option value="30">直近1ヶ月</option>
+          <option value="90" selected>直近3ヶ月</option>
         </select>
       </div>
       <button class="btn-filter" onclick="applyFilters()">フィルター適用</button>
@@ -805,7 +805,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadData() {
   try {
-    const resp = await fetch(DATA_URL);
+    const cacheBuster = '?t=' + Date.now();
+    const resp = await fetch(DATA_URL + cacheBuster, { cache: 'no-store' });
     if (resp.ok) {
       reportData = await resp.json();
     }
@@ -1038,7 +1039,7 @@ function applyFilters() {
 function resetFilters() {
   document.getElementById('searchKeyword').value = '';
   document.getElementById('activistOnly').checked = false;
-  document.getElementById('periodFilter').value = '30';
+  document.getElementById('periodFilter').value = '90';
   document.querySelectorAll('input[name="reportType"]').forEach(cb => cb.checked = true);
   filteredReports = [...reportData.reports];
   renderReportTable();
