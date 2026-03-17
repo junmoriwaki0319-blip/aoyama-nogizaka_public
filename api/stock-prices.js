@@ -4,7 +4,7 @@ const https = require('https');
  * 政策保有株式の現在株価を一括取得するAPI
  * POST /api/stock-prices
  * Body: { holdings: [{ name: "ＫＤＤＩ㈱", shares: 203294600 }, ...] }
- * Returns: { results: [{ name, ticker, lastClose, avg3m, avg6m, avg12m }, ...] }
+ * Returns: { results: [{ name, ticker, lastClose, avg3m, avg6m, avg12m, currency }, ...] }
  */
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,19 +24,17 @@ module.exports = async (req, res) => {
     return res.status(400).json({ success: false, error: 'holdings array required' });
   }
 
-  // Step 1: Yahoo Finance検索で全銘柄のティッカーを並列取得
+  const items = holdings.slice(0, 25);
+
+  // Step 1: 全銘柄のティッカーを並列検索
   const searchResults = await Promise.allSettled(
-    holdings.slice(0, 25).map(h => searchTicker(cleanName(h.name)))
+    items.map(h => searchTicker(h.name))
   );
 
-  const tickerMap = []; // { name, shares, ticker }
+  const tickerMap = [];
   for (let i = 0; i < searchResults.length; i++) {
     const ticker = searchResults[i].status === 'fulfilled' ? searchResults[i].value : null;
-    tickerMap.push({
-      name: holdings[i].name,
-      shares: holdings[i].shares,
-      ticker,
-    });
+    tickerMap.push({ name: items[i].name, shares: items[i].shares, ticker });
   }
 
   // Step 2: ティッカーが見つかった銘柄の株価チャートを並列取得
@@ -45,7 +43,6 @@ module.exports = async (req, res) => {
     tickersFound.map(t => fetchChart(t.ticker))
   );
 
-  // 結果を組み立て
   const priceMap = {};
   for (let i = 0; i < tickersFound.length; i++) {
     if (chartResults[i].status === 'fulfilled' && chartResults[i].value) {
@@ -70,38 +67,85 @@ module.exports = async (req, res) => {
   res.json({ success: true, results });
 };
 
-/**
- * 会社名をYahoo Finance検索用にクリーニング
- */
+// ═══════════════════════════════════════════════════════════════
+// 会社名クリーニング
+// ═══════════════════════════════════════════════════════════════
+
 function cleanName(name) {
   return name
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/＆/g, '&').replace(/・/g, ' ')
     .replace(/[㈱㈲]/g, '')
-    .replace(/[株式会社|有限会社]/g, '')
+    .replace(/株式会社/g, '').replace(/有限会社/g, '')
+    .replace(/[（）()「」\[\]]/g, '')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z]{2,})([A-Z][a-z])/g, '$1 $2')
+    .replace(/(LTD|CO|INC|PLC|Tbk)\./gi, '$1')
     .replace(/[\s\u3000]+/g, ' ')
-    .replace(/[（）()「」]/g, '')
     .trim();
 }
 
-/**
- * Yahoo Finance検索APIでティッカーシンボルを取得
- */
-function searchTicker(query) {
-  const url = `https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=5&newsCount=0&lang=ja-JP&region=JP`;
-  return fetchJSON(url).then(data => {
-    if (!data.quotes || data.quotes.length === 0) return null;
-    // 東証（.T）を優先
-    const tse = data.quotes.find(q => q.symbol && q.symbol.endsWith('.T') && q.quoteType === 'EQUITY');
-    if (tse) return tse.symbol;
-    // その他の取引所の株式
-    const equity = data.quotes.find(q => q.quoteType === 'EQUITY');
-    if (equity) return equity.symbol;
-    return data.quotes[0]?.symbol || null;
-  });
+/** 日本語文字を含むか判定 */
+function hasJapanese(str) {
+  return /[ぁ-んァ-ヶー一-龠]/.test(str);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ティッカー検索（日本株 → Yahoo Finance Japan、海外株 → グローバルAPI）
+// ═══════════════════════════════════════════════════════════════
+
+async function searchTicker(rawName) {
+  const name = cleanName(rawName);
+
+  // 日本語名 → Yahoo Finance Japan検索ページをスクレイプ
+  if (hasJapanese(name)) {
+    const ticker = await searchYahooJP(name);
+    if (ticker) return ticker;
+  }
+
+  // 英語名 → まずYahoo Finance Japanで試す（日本に上場している海外企業の場合）
+  const jpTicker = await searchYahooJP(name);
+  if (jpTicker) return jpTicker;
+
+  // グローバルYahoo Finance検索（海外株）
+  return searchYahooGlobal(name);
 }
 
 /**
- * Yahoo FinanceチャートAPIから株価データを取得（1年分）
+ * Yahoo Finance Japan検索ページから証券コードを取得
  */
+async function searchYahooJP(query) {
+  try {
+    const html = await fetchText(
+      `https://finance.yahoo.co.jp/search/?query=${encodeURIComponent(query)}`
+    );
+    // JSONデータ内の証券コードを抽出
+    const match = html.match(/"code":"(\d{4}[A-Z0-9]?)"/);
+    return match ? match[1] + '.T' : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * グローバルYahoo Finance検索API（海外株用）
+ */
+async function searchYahooGlobal(query) {
+  try {
+    const url = `https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=5&newsCount=0`;
+    const data = await fetchJSON(url);
+    if (!data.quotes || data.quotes.length === 0) return null;
+    const equity = data.quotes.find(q => q.quoteType === 'EQUITY');
+    return equity?.symbol || null;
+  } catch {
+    return null;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 株価チャート取得
+// ═══════════════════════════════════════════════════════════════
+
 function fetchChart(ticker) {
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1y&interval=1d`;
   return fetchJSON(url).then(data => {
@@ -114,9 +158,9 @@ function fetchChart(ticker) {
     if (valid.length === 0) return null;
 
     const lastClose = valid[valid.length - 1];
-    const TD_PER_MONTH = 21; // 営業日/月の近似値
-    const avg3m = avg(valid.slice(-TD_PER_MONTH * 3));
-    const avg6m = avg(valid.slice(-TD_PER_MONTH * 6));
+    const TD = 21; // 営業日/月の近似値
+    const avg3m = avg(valid.slice(-TD * 3));
+    const avg6m = avg(valid.slice(-TD * 6));
     const avg12m = avg(valid);
 
     return {
@@ -128,6 +172,10 @@ function fetchChart(ticker) {
     };
   });
 }
+
+// ═══════════════════════════════════════════════════════════════
+// ユーティリティ
+// ═══════════════════════════════════════════════════════════════
 
 function avg(arr) {
   if (!arr.length) return null;
@@ -144,8 +192,8 @@ function fetchJSON(url) {
     const req = https.get({
       hostname: urlObj.hostname,
       path: urlObj.pathname + urlObj.search,
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 8000,
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
+      timeout: 10000,
     }, resp => {
       let data = '';
       resp.on('data', chunk => data += chunk);
@@ -153,6 +201,24 @@ function fetchJSON(url) {
         try { resolve(JSON.parse(data)); }
         catch { resolve({}); }
       });
+    });
+    req.on('error', reject);
+    req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
+  });
+}
+
+function fetchText(url) {
+  return new Promise((resolve, reject) => {
+    const urlObj = new URL(url);
+    const req = https.get({
+      hostname: urlObj.hostname,
+      path: urlObj.pathname + urlObj.search,
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
+      timeout: 10000,
+    }, resp => {
+      let data = '';
+      resp.on('data', chunk => data += chunk);
+      resp.on('end', () => resolve(data));
     });
     req.on('error', reject);
     req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
