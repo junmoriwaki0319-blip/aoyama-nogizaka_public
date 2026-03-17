@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
     const nameMatch = html.match(/<title>([^<]*)</);
     let companyName = '';
     if (nameMatch) {
-      companyName = nameMatch[1].replace(/【\d+】.*$/, '').replace(/\s*\|.*$/, '').trim();
+      companyName = nameMatch[1].replace(/【[0-9A-Za-z]+】.*$/, '').replace(/\s*[：:]\s*株価.*$/, '').replace(/\s*\|.*$/, '').trim();
     }
 
     // 発行済株式数
