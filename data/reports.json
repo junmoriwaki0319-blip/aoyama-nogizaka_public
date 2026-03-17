@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-17T17:45:04+09:00",
+  "last_updated": "2026-03-17T17:58:06+09:00",
   "total_reports": 3949,
   "activist_reports": 117,
   "reports": [
@@ -11055,11 +11055,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E14404",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "三井不動産アコモデーションファンド投資法人",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN3X",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 1.75,
+      "purpose": "純投資",
+      "purpose_detail": "政策投資・純投資"
     },
     {
       "doc_id": "S100XN3Y",
@@ -11067,11 +11070,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E23492",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "株式会社三菱総合研究所",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN3Y",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 3.15,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100XNLQ",
@@ -11091,11 +11097,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E00944",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "久光製薬株式会社",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XND4",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XN41",
@@ -11103,11 +11112,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E00891",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "大日本塗料株式会社",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN41",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 2.93,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100XNAL",
@@ -11127,11 +11139,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E01643",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "株式会社日阪製作所",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN46",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 2.4,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100XN48",
@@ -11139,11 +11154,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E01808",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "株式会社ヨコオ",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN48",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 1.87,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100XNN3",
@@ -11163,11 +11181,14 @@
       "filer_name": "株式会社三菱ＵＦＪフィナンシャル・グループ",
       "issuer_name": "E02579",
       "sec_code": "8306",
-      "target_company": "",
+      "target_company": "ナラサキ産業株式会社",
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XN49",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 3.69,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100XO47",
@@ -48836,19 +48857,14 @@
     }
   ],
   "activists": {
-    "hikari_tsushin": {
-      "id": "hikari_tsushin",
-      "name": "光通信",
+    "hikari_group": {
+      "id": "hikari_group",
+      "name": "光通信グループ",
       "type": "notable_holder",
       "representative": "重田 康光",
-      "headquarters": "東京",
-      "description": "通信事業を基盤に、上場企業株を大量取得するスタイルで知られる。配当・優待銘柄を中心に幅広く保有し、近年は保有額が急拡大。",
-      "focus_sectors": [
-        "IT・通信",
-        "小売",
-        "サービス",
-        "金融"
-      ],
+      "headquarters": "",
+      "description": "光通信株式会社と子会社（UH Partners ２、UH Partners ３、エスアイエル等）を通じて上場株を大量保有。",
+      "focus_sectors": [],
       "holdings": [
         {
           "sec_code": "6466",
@@ -49446,7 +49462,10 @@
         }
       ],
       "report_count": 106,
-      "latest_date": "2026-03-17"
+      "latest_date": "2026-03-17",
+      "member_ids": [
+        "hikari_tsushin"
+      ]
     },
     "sumitomo_mitsui_trust": {
       "id": "sumitomo_mitsui_trust",
@@ -50355,18 +50374,14 @@
       "report_count": 36,
       "latest_date": "2026-03-17"
     },
-    "city_index_elevens": {
-      "id": "city_index_elevens",
-      "name": "シティインデックスイレブンス",
+    "murakami_group": {
+      "id": "murakami_group",
+      "name": "旧村上ファンド系（村上世彰グループ）",
       "type": "activist",
-      "representative": "村上世彰氏関連",
-      "headquarters": "東京",
-      "description": "旧村上ファンド系。複数のSPCを通じて投資。不動産・エネルギー・建設セクターに注力し、自社株買い・配当増額・事業売却を要求。",
-      "focus_sectors": [
-        "不動産",
-        "エネルギー",
-        "建設"
-      ],
+      "representative": "村上 世彰",
+      "headquarters": "",
+      "description": "村上世彰氏を中心とするアクティビスト投資グループ。シティインデックスイレブンス、レノ、ATRA、フォルティス、野村絢氏等の複数法人・個人を通じて共同保有を行う。",
+      "focus_sectors": [],
       "holdings": [
         {
           "sec_code": "1822",
@@ -50496,7 +50511,14 @@
         }
       ],
       "report_count": 31,
-      "latest_date": "2026-03-10"
+      "latest_date": "2026-03-10",
+      "member_ids": [
+        "city_index_elevens",
+        "yoshiko_murakami",
+        "atra",
+        "fortis",
+        "nomura_ayaka"
+      ]
     },
     "effissimo": {
       "id": "effissimo",
