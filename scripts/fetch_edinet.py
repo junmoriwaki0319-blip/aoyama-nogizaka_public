@@ -511,12 +511,14 @@ def main():
             if any(r.get("doc_id") == doc_id for r in existing_reports):
                 continue
 
-            # アクティビスト・注目投資家判定で優先的にXBRLダウンロード
+            # アクティビスト・注目投資家判定
             filer_name = doc.get("filerName", "")
             matched = match_activist(filer_name, activists)
 
+            # 証券コードがある報告、またはアクティビスト関連はXBRLダウンロード
             xbrl_data = {}
-            if matched and API_KEY:
+            has_sec_code = bool(doc.get("secCode", "").strip())
+            if API_KEY and (matched or has_sec_code):
                 time.sleep(1)  # レート制限対策
                 xbrl_data = download_xbrl_and_extract(doc_id)
 
@@ -525,7 +527,35 @@ def main():
 
         time.sleep(0.5)  # レート制限対策
 
-    print(f"\n新規取得: {new_reports.__len__()} 件")
+    print(f"\n新規取得: {len(new_reports)} 件")
+
+    # 既存データで対象企業・保有比率が欠損しているレコードを補完
+    if API_KEY:
+        incomplete = [
+            r for r in existing_reports
+            if r.get("sec_code") and (not r.get("target_company") or r.get("holding_ratio") is None)
+        ]
+        if incomplete:
+            print(f"既存データ補完: {len(incomplete)} 件のXBRL再取得")
+            for idx, r in enumerate(incomplete[:100]):  # 最大100件まで
+                doc_id = r.get("doc_id", "")
+                if not doc_id:
+                    continue
+                print(f"\r  補完中: {idx + 1}/{min(len(incomplete), 100)}", end="", flush=True)
+                time.sleep(1)
+                xbrl_data = download_xbrl_and_extract(doc_id)
+                if xbrl_data:
+                    if xbrl_data.get("target_company") and not r.get("target_company"):
+                        r["target_company"] = xbrl_data["target_company"]
+                    if "holding_ratio" in xbrl_data and r.get("holding_ratio") is None:
+                        r["holding_ratio"] = xbrl_data["holding_ratio"]
+                    if "purpose" in xbrl_data and not r.get("purpose"):
+                        r["purpose"] = xbrl_data["purpose"]
+                    if "purpose_detail" in xbrl_data and not r.get("purpose_detail"):
+                        r["purpose_detail"] = xbrl_data["purpose_detail"]
+                    if xbrl_data.get("sec_code") and not r.get("sec_code"):
+                        r["sec_code"] = extract_sec_code(xbrl_data["sec_code"])
+            print()
 
     # 既存データの edinet_url 修復（S100 二重付与の修正）
     for r in existing_reports:
