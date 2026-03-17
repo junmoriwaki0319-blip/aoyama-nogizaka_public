@@ -245,6 +245,29 @@ def parse_xbrl(xml):
                 result[key] = round(val / 1_000_000)  # 円→百万円
                 break
 
+    # PL items (Duration)
+    for el in ["OperatingIncome", "OperatingProfit"]:
+        val = find_xbrl_value(xml, el, "Duration")
+        if val is not None:
+            result["operatingIncome"] = round(val / 1_000_000)
+            break
+
+    da_total = find_xbrl_value(xml, "DepreciationAndAmortization", "Duration")
+    if da_total is None:
+        da_total = find_xbrl_value(xml, "Depreciation", "Duration")
+    if da_total is not None:
+        result["depreciationAndAmortization"] = round(da_total / 1_000_000)
+    else:
+        da_sum = 0
+        found = False
+        for el in ["DepreciationCostOfSales", "DepreciationSGA"]:
+            v = find_xbrl_value(xml, el, "Duration")
+            if v is not None:
+                da_sum += v
+                found = True
+        if found:
+            result["depreciationAndAmortization"] = round(da_sum / 1_000_000)
+
     return result
 
 

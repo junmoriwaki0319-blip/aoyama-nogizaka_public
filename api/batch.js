@@ -70,6 +70,18 @@ async function fetchStock(code) {
       ? ec.investmentPropertyFairValue - ec.investmentPropertyBookValue : null,
     netAssets: ec.netAssets || ec.shareholdersEquity || null,
     cashAndDeposits: ec.cashAndDeposits || null,
+    shortTermSecurities: ec.shortTermSecurities || null,
+    shortTermBorrowings: ec.shortTermBorrowings || null,
+    currentPortionLongTermDebt: ec.currentPortionLongTermDebt || null,
+    longTermBorrowings: ec.longTermBorrowings || null,
+    bondsPayable: ec.bondsPayable || null,
+    currentPortionBonds: ec.currentPortionBonds || null,
+    investmentPropertyFairValue: ec.investmentPropertyFairValue || null,
+    investmentPropertyBookValue: ec.investmentPropertyBookValue || null,
+    securitiesMarketValue: ec.securitiesMarketValue || null,
+    securitiesBookValue: ec.securitiesBookValue || null,
+    operatingIncome: ec.operatingIncome || null,
+    depreciationAndAmortization: ec.depreciationAndAmortization || null,
     hasEdinetData: !!ec.land || !!ec.cashAndDeposits,
   };
 }

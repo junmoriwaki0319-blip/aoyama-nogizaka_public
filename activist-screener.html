@@ -537,6 +537,9 @@
             <option value="per">PER（低い順）</option>
             <option value="payout">配当性向（低い順）</option>
             <option value="mcap">時価総額（大きい順）</option>
+            <option value="ncRatio">NC/時価総額（高い順）</option>
+            <option value="adjNcRatio">実質NC/時価総額（高い順）</option>
+            <option value="evEbitda">EV/EBITDA（低い順）</option>
           </select>
         </div>
       </div>
@@ -564,6 +567,7 @@
           <button class="rank-view-tab" onclick="switchRankView('valuation')">バリュエーション</button>
           <button class="rank-view-tab" onclick="switchRankView('dividend')">配当・還元</button>
           <button class="rank-view-tab" onclick="switchRankView('financial')">財務健全性</button>
+          <button class="rank-view-tab" onclick="switchRankView('ncev')">NC・EV</button>
           <button class="rank-view-tab" onclick="switchRankView('assets')">含み益・資産</button>
         </div>
 
@@ -648,6 +652,27 @@
                 <th onclick="sortRanking('mcapCat')">区分</th>
               </tr></thead>
               <tbody id="rankTableBody-financial"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- NC・EVビュー -->
+        <div class="rank-view" id="rankView-ncev">
+          <p style="font-size:.7rem; color:var(--text-light); margin-bottom:10px;">EDINETキャッシュがある銘柄のみNC・EV指標が表示されます</p>
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('ncRatio')">NC/時価総額</th>
+                <th onclick="sortRanking('adjNcRatio')">実質NC/時価総額</th>
+                <th onclick="sortRanking('fullNcRatio')">含み資産NC/時価総額</th>
+                <th onclick="sortRanking('evEbitda')">EV/EBITDA</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-ncev"></tbody>
             </table>
           </div>
         </div>
