@@ -517,7 +517,7 @@ def main():
 
             # 証券コードがある報告、またはアクティビスト関連はXBRLダウンロード
             xbrl_data = {}
-            has_sec_code = bool(doc.get("secCode", "").strip())
+            has_sec_code = bool((doc.get("secCode") or "").strip())
             if API_KEY and (matched or has_sec_code):
                 time.sleep(1)  # レート制限対策
                 xbrl_data = download_xbrl_and_extract(doc_id)
