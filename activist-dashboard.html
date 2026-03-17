@@ -98,8 +98,17 @@
           plan: "free",
           createdAt: serverTimestamp()
         });
+        return { user, needsProfile: true };
       }
-      return user;
+      const data = snap.data();
+      const needsProfile = !data.affiliation || !data.jobTitle || !data.company;
+      return { user, needsProfile };
+    };
+
+    // プロフィール更新
+    window.firebaseUpdateProfile = async (uid, data) => {
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, data, { merge: true });
     };
 
     // ログアウト
@@ -762,9 +771,9 @@
         <input type="text" id="regAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="[0-9A-Za-z]{4}">
       </div>
       <div class="form-group">
-        <label>役職</label>
-        <select id="regJobTitle" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
-          <option value="">選択してください（任意）</option>
+        <label>役職 <span style="color:var(--red);">*</span></label>
+        <select id="regJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
           <option value="executive">経営者・役員</option>
           <option value="department_head">部長・本部長</option>
           <option value="manager">課長・マネージャー</option>
@@ -777,7 +786,7 @@
           <option value="other">その他</option>
         </select>
       </div>
-      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" placeholder="株式会社○○（任意）"></div>
+      <div class="form-group"><label>会社名・組織名 <span style="color:var(--red);">*</span></label><input type="text" id="regCompany" required placeholder="株式会社○○"></div>
       <div class="form-group"><label>メールアドレス <span style="color:var(--red);">*</span></label><input type="email" id="regEmail" required placeholder="example@company.co.jp"></div>
       <div class="form-group"><label>パスワード <span style="color:var(--red);">*</span></label><input type="password" id="regPassword" required placeholder="8文字以上" minlength="8"></div>
       <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
@@ -803,6 +812,53 @@
       <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
     </form>
     <div class="modal-footer"><p><a onclick="switchToLogin()" style="cursor:pointer;">ログインに戻る</a></p></div>
+  </div>
+</div>
+
+<!-- COMPLETE PROFILE MODAL (Google login) -->
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal" style="max-width:480px;">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleCompleteProfile(event)">
+      <div class="form-group">
+        <label>所属種別 <span style="color:var(--red);">*</span></label>
+        <select id="cpAffiliation" required onchange="document.getElementById('cpAffiliationCodeGroup').style.display = this.value === 'listed_company' ? '' : 'none'" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="cpAffiliationCodeGroup" style="display:none;">
+        <label>証券コード</label>
+        <input type="text" id="cpAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="[0-9A-Za-z]{4}">
+      </div>
+      <div class="form-group">
+        <label>役職 <span style="color:var(--red);">*</span></label>
+        <select id="cpJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名 <span style="color:var(--red);">*</span></label><input type="text" id="cpCompany" required placeholder="株式会社○○"></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
   </div>
 </div>
 
@@ -1425,8 +1481,12 @@ async function handleGoogleLogin(modalType) {
   const errEl = document.getElementById(modalType === 'login' ? 'loginError' : 'registerError');
   errEl.style.display = 'none';
   try {
-    await window.firebaseGoogleLogin();
+    const result = await window.firebaseGoogleLogin();
     closeModal(modalType);
+    if (result && result.needsProfile) {
+      openModal('completeProfile');
+      return;
+    }
   } catch (err) {
     if (err.code === 'auth/popup-closed-by-user') return;
     const messages = {
@@ -1435,6 +1495,31 @@ async function handleGoogleLogin(modalType) {
     };
     errEl.textContent = messages[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
     errEl.style.display = 'block';
+  }
+}
+
+async function handleCompleteProfile(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('completeProfileError');
+  const btn = document.getElementById('completeProfileBtn');
+  errEl.style.display = 'none';
+  btn.textContent = '保存中...';
+  btn.disabled = true;
+  try {
+    const user = window.currentUser;
+    if (!user) throw new Error('ログインされていません');
+    const affiliation = document.getElementById('cpAffiliation').value;
+    const affiliationCode = document.getElementById('cpAffiliationCode') ? document.getElementById('cpAffiliationCode').value : '';
+    const jobTitle = document.getElementById('cpJobTitle').value;
+    const company = document.getElementById('cpCompany').value;
+    await window.firebaseUpdateProfile(user.uid, { affiliation, affiliationCode, jobTitle, company });
+    closeModal('completeProfile');
+  } catch (err) {
+    errEl.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = '登録して利用開始';
+    btn.disabled = false;
   }
 }
 
@@ -1605,7 +1690,7 @@ async function handleLogout() {
   }
 }
 
-function updateAuthUI(user) {
+async function updateAuthUI(user) {
   const authBtns = document.getElementById('navAuthBtns');
   const userInfo = document.getElementById('navUserInfo');
   const userName = document.getElementById('navUserName');
@@ -1617,6 +1702,13 @@ function updateAuthUI(user) {
   const loginWall = document.getElementById('loginWall');
 
   if (user) {
+    // プロフィール未完了チェック
+    try {
+      const profile = await window.firebaseGetProfile(user.uid);
+      if (profile && (!profile.affiliation || !profile.jobTitle || !profile.company)) {
+        openModal('completeProfile');
+      }
+    } catch (e) { /* ignore */ }
     const displayName = (user.displayName || user.email) + ' 様';
     authBtns.style.display = 'none';
     userInfo.style.display = 'flex';
