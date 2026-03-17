@@ -317,7 +317,10 @@
           <div class="metric-row"><span class="metric-label">時価総額区分</span><span id="m_mcap_cat">-</span></div>
           <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
           <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
-          <div class="metric-row"><span class="metric-label">不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">投資不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">土地（簿価）<span class="info-tip" data-tip="BSの有形固定資産に含まれる土地の帳簿価額">?</span></span><span class="metric-value" id="m_land_bv">-</span></div>
+          <div class="metric-row"><span class="metric-label">推定土地含み益 <span class="info-tip" data-tip="投資不動産の時価/簿価比率等から推定">?</span></span><span class="metric-value highlight" id="m_land_gain">-</span></div>
+          <div id="m_land_gain_method" style="font-size:.66rem;color:var(--text-light);padding:2px 0 4px;display:none;"></div>
           <div class="metric-row"><span class="metric-label">含み益合計</span><span class="metric-value highlight" id="m_total_gain">-</span></div>
           <div class="metric-row"><span class="metric-label">修正純資産</span><span class="metric-value" id="m_adj_nav">-</span></div>
           <div class="metric-row"><span class="metric-label">実質PBR</span><span class="metric-value highlight" id="m_adj_pbr">-</span></div>
@@ -343,7 +346,8 @@
         <div class="s-card-title">手動補正入力 <span class="info-tip" data-tip="APIで取得できない値を手動入力し再計算">?</span></div>
         <div class="form-grid">
           <div class="form-field"><label>有価証券含み益（百万円）</label><input type="number" id="manual_sec_gain" placeholder="自動取得 or 手動入力"></div>
-          <div class="form-field"><label>不動産含み益（百万円）</label><input type="number" id="manual_prop_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>投資不動産含み益（百万円）</label><input type="number" id="manual_prop_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>土地含み益（百万円）</label><input type="number" id="manual_land_gain" placeholder="EDINET推定 or 手動入力"></div>
           <div class="form-field"><label>政策保有株式/純資産（%）</label><input type="number" id="manual_cross" step="0.1" placeholder="例: 12.0"></div>
         </div>
         <div class="btn-row"><button class="btn-secondary" onclick="recalcIndividual()">再計算</button></div>

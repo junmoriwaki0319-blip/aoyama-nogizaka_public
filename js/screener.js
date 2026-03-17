@@ -237,9 +237,25 @@ function calculateAndDisplay() {
   }
   setMetric('m_prop_gain', propGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
 
-  // 含み益合計
-  const totalGain = (secGain || 0) + (propGain || 0);
-  if (secGain != null || propGain != null) {
+  // 土地含み益
+  setMetric('m_land_bv', e.land, '百万円', v => Math.round(v).toLocaleString());
+  let landGain = null;
+  if (e.estimatedLandGain != null) {
+    landGain = e.estimatedLandGain;
+    document.getElementById('manual_land_gain').value = Math.round(landGain);
+  }
+  setMetric('m_land_gain', landGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
+  const methodEl = document.getElementById('m_land_gain_method');
+  if (e.landGainMethod) {
+    methodEl.textContent = '推定方法: ' + e.landGainMethod;
+    methodEl.style.display = 'block';
+  } else {
+    methodEl.style.display = 'none';
+  }
+
+  // 含み益合計（有価証券 + 投資不動産 + 土地）
+  const totalGain = (secGain || 0) + (propGain || 0) + (landGain || 0);
+  if (secGain != null || propGain != null || landGain != null) {
     setMetric('m_total_gain', totalGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
   }
 
@@ -274,17 +290,13 @@ function recalcIndividual() {
   // 手動入力値で上書き
   const manSecGain = parseFloat(document.getElementById('manual_sec_gain').value);
   const manPropGain = parseFloat(document.getElementById('manual_prop_gain').value);
+  const manLandGain = parseFloat(document.getElementById('manual_land_gain').value);
   const manCross = parseFloat(document.getElementById('manual_cross').value);
 
-  if (!isNaN(manSecGain)) {
-    indData._manualSecGain = manSecGain;
-  }
-  if (!isNaN(manPropGain)) {
-    indData._manualPropGain = manPropGain;
-  }
-  if (!isNaN(manCross)) {
-    indData._manualCross = manCross;
-  }
+  if (!isNaN(manSecGain)) indData._manualSecGain = manSecGain;
+  if (!isNaN(manPropGain)) indData._manualPropGain = manPropGain;
+  if (!isNaN(manLandGain)) indData._manualLandGain = manLandGain;
+  if (!isNaN(manCross)) indData._manualCross = manCross;
 
   // 再計算
   const e = indData.edinet || {};
@@ -292,11 +304,14 @@ function recalcIndividual() {
     (e.securitiesMarketValue != null && e.securitiesBookValue != null ? e.securitiesMarketValue - e.securitiesBookValue : null);
   const propGain = indData._manualPropGain != null ? indData._manualPropGain :
     (e.investmentPropertyFairValue != null && e.investmentPropertyBookValue != null ? e.investmentPropertyFairValue - e.investmentPropertyBookValue : null);
+  const landGain = indData._manualLandGain != null ? indData._manualLandGain :
+    (e.estimatedLandGain != null ? e.estimatedLandGain : null);
 
   setMetric('m_sec_gain', secGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
   setMetric('m_prop_gain', propGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
+  setMetric('m_land_gain', landGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
 
-  const totalGain = (secGain || 0) + (propGain || 0);
+  const totalGain = (secGain || 0) + (propGain || 0) + (landGain || 0);
   setMetric('m_total_gain', totalGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
 
   const netAssetsVal = e.netAssets || e.shareholdersEquity;
@@ -422,9 +437,11 @@ function resetIndividual() {
   document.getElementById('indResult').classList.add('hidden');
   document.getElementById('manual_sec_gain').value = '';
   document.getElementById('manual_prop_gain').value = '';
+  document.getElementById('manual_land_gain').value = '';
   document.getElementById('manual_cross').value = '';
+  document.getElementById('m_land_gain_method').style.display = 'none';
   ['m_price','m_pbr','m_per','m_roe','m_eps','m_bps','m_divyield','m_payout',
-   'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_gain','m_total_gain',
+   'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_gain','m_land_bv','m_land_gain','m_total_gain',
    'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
     .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '-'; });
