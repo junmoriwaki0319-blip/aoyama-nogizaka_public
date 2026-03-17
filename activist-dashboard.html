@@ -622,7 +622,7 @@
                 <th class="col-filer">報告者</th>
                 <th class="col-type">種別</th>
                 <th class="col-code">証券コード</th>
-                <th class="col-target">報告内容</th>
+                <th class="col-target">対象企業</th>
                 <th class="col-ratio">保有比率</th>
                 <th class="col-purpose">目的</th>
                 <th class="col-edinet">EDINET</th>
@@ -1016,8 +1016,9 @@ function renderReportTable() {
   tbody.innerHTML = reports.slice(0, 50).map(r => {
     const isNew = isRecentReport(r.date, 3);
     const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
-    const ratio = r.holding_ratio ? r.holding_ratio.toFixed(1) + '%' : '—';
-    const barWidth = r.holding_ratio ? Math.min(r.holding_ratio * 2, 100) : 0;
+    const ratioNum = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+    const ratio = !isNaN(ratioNum) ? ratioNum.toFixed(1) + '%' : '—';
+    const barWidth = !isNaN(ratioNum) ? Math.min(ratioNum * 2, 100) : 0;
     const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#';
 
     return `<tr onclick="searchByCode('${r.sec_code || ''}')">
@@ -1057,7 +1058,8 @@ function renderActivistCards() {
       const name = h.target_company && !genericNames.some(g => h.target_company === g || h.target_company.startsWith('訂正報告書'))
         ? h.target_company : (h.sec_code ? h.sec_code : '—');
       const codeLabel = h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span> ' : '';
-      const ratio = h.holding_ratio ? h.holding_ratio.toFixed(1) + '%' : '—';
+      const hRatio = h.holding_ratio != null ? parseFloat(h.holding_ratio) : NaN;
+      const ratio = !isNaN(hRatio) ? hRatio.toFixed(1) + '%' : '—';
       const typeTag = h.report_type === '新規報告' ? '<span class="badge-new" style="margin-left:6px;">新規</span>' : '';
       return `<div class="ac-stock-item" style="padding:6px 0; border-bottom:1px solid var(--light-gray);">
         <span style="flex:1;">${codeLabel}${escapeHtml(name)}${typeTag}</span>
@@ -1148,7 +1150,7 @@ function renderTimeline() {
       <div class="timeline-date">${r.date || '—'}</div>
       <div class="timeline-content">
         <div class="timeline-title">${escapeHtml(r.filer_name || '')} ${r.sec_code ? '(' + r.sec_code + ')' : ''}</div>
-        <div class="timeline-detail">${escapeHtml(r.target_company || '')}${r.holding_ratio ? ' — 保有比率: ' + r.holding_ratio.toFixed(1) + '%' : ''}${r.purpose ? ' — 目的: ' + escapeHtml(r.purpose) : ''}</div>
+        <div class="timeline-detail">${escapeHtml(r.target_company || '')}${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? ' — 保有比率: ' + parseFloat(r.holding_ratio).toFixed(1) + '%' : ''}${r.purpose ? ' — 目的: ' + escapeHtml(r.purpose) : ''}</div>
         <div class="timeline-tags">
           <span class="timeline-tag">${r.report_type || '報告'}</span>
           ${r.is_activist ? '<span class="timeline-tag">アクティビスト</span>' : ''}
@@ -1770,7 +1772,7 @@ function exportCSV() {
       r.sec_code || '',
       r.target_company || '',
       r.report_type || '',
-      r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '',
+      r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '',
       r.purpose || '',
       r.is_activist ? 'Yes' : 'No'
     ]);
@@ -1809,7 +1811,7 @@ function exportPDF() {
     r.sec_code || '',
     (r.target_company || '').slice(0, 25),
     r.report_type || '',
-    r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '',
+    r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '',
     (r.purpose || '').slice(0, 15),
     r.is_activist ? 'Yes' : 'No'
   ]);
@@ -1949,7 +1951,7 @@ function renderWatchlistReports() {
       <td style="padding:6px 8px;">${r.date || '—'}</td>
       <td style="padding:6px 8px;">${escapeHtml(r.filer_name || '')}</td>
       <td style="padding:6px 8px;">${escapeHtml(r.target_company || '').slice(0, 30)}</td>
-      <td style="padding:6px 8px; text-align:right;">${r.holding_ratio != null ? r.holding_ratio.toFixed(1) + '%' : '—'}</td>
+      <td style="padding:6px 8px; text-align:right;">${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(1) + '%' : '—'}</td>
     </tr>`;
   });
   html += '</table>';
@@ -1973,7 +1975,7 @@ function exportWatchlistCSV() {
   matched.forEach(r => {
     rows.push([
       r.date || '', r.filer_name || '', r.sec_code || '', r.target_company || '',
-      r.report_type || '', r.holding_ratio != null ? r.holding_ratio.toFixed(2) : '', r.purpose || ''
+      r.report_type || '', r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '', r.purpose || ''
     ]);
   });
   const bom = '\uFEFF';

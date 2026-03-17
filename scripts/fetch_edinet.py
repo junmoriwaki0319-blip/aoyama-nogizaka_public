@@ -216,10 +216,10 @@ def download_xbrl_and_extract(doc_id):
                                 result["target_company"] = name
                                 break
 
-                    # 証券コードの抽出
+                    # 証券コードの抽出（英字入りコード 220A 等にも対応）
                     code_patterns = [
-                        r'(?:証券コード|銘柄コード)[^\d]{0,10}(\d{4,5})',
-                        r'name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>(\d{4,5})',
+                        r'(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})',
+                        r'name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})',
                     ]
                     for pattern in code_patterns:
                         m = re.search(pattern, text)

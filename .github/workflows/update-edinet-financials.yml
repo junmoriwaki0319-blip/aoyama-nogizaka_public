@@ -2,8 +2,8 @@ name: Update EDINET Financials Cache
 
 on:
   schedule:
-    # 毎週月曜 JST 6:00 = UTC 21:00 (日曜)
-    - cron: '0 21 * * 0'
+    # 毎日 JST 18:00 = UTC 9:00
+    - cron: '0 9 * * *'
   workflow_dispatch:  # 手動実行可能
 
 permissions:
