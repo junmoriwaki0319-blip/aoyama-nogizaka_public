@@ -22,7 +22,8 @@ import requests
 EDINET_API_BASE = "https://api.edinet-fsa.go.jp/api/v2"
 API_KEY = os.environ.get("EDINET_API_KEY", "")
 JST = timezone(timedelta(hours=9))
-LOOKBACK_DAYS = 90  # 過去何日分を取得するか
+LOOKBACK_DAYS = 540  # 初回取得: 過去何日分を取得するか（約18ヶ月）
+INCREMENTAL_DAYS = 7  # 増分取得: 既存データがある場合は直近何日分のみ取得
 SCRIPT_DIR = Path(__file__).resolve().parent
 DATA_DIR = SCRIPT_DIR.parent / "data"
 OUTPUT_FILE = DATA_DIR / "reports.json"
@@ -485,9 +486,11 @@ def main():
     existing_reports = existing_data.get("reports", [])
     print(f"既存データ: {len(existing_reports)} 件")
 
-    # 対象日付を算出
+    # 対象日付を算出（既存データがあれば増分取得、なければフル取得）
     today = datetime.now(JST).date()
-    dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(LOOKBACK_DAYS)]
+    scan_days = INCREMENTAL_DAYS if existing_reports else LOOKBACK_DAYS
+    print(f"取得モード: {'増分' if existing_reports else '初回フル'}（{scan_days}日分）")
+    dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(scan_days)]
 
     new_reports = []
 

@@ -497,9 +497,12 @@
       </div>
       <div class="filter-group">
         <label class="filter-label">注目投資家フィルター</label>
-        <div class="filter-checkbox-group">
-          <label class="filter-checkbox"><input type="checkbox" id="activistOnly"> 注目投資家に絞る（アクティビスト＋注目）</label>
-        </div>
+        <select class="filter-select" id="investorFilter">
+          <option value="all">すべて表示</option>
+          <option value="activist">アクティビストのみ</option>
+          <option value="notable">注目投資家のみ（アクティビスト除く）</option>
+          <option value="both">アクティビスト＋注目投資家</option>
+        </select>
       </div>
       <div class="filter-group">
         <label class="filter-label">報告期間</label>
@@ -507,6 +510,11 @@
           <option value="7">直近1週間</option>
           <option value="30">直近1ヶ月</option>
           <option value="90" selected>直近3ヶ月</option>
+          <option value="180">直近6ヶ月</option>
+          <option value="270">直近9ヶ月</option>
+          <option value="365">直近12ヶ月</option>
+          <option value="455">直近15ヶ月</option>
+          <option value="540">直近18ヶ月</option>
         </select>
       </div>
       <button class="btn-filter" onclick="applyFilters()">フィルター適用</button>
@@ -1030,7 +1038,7 @@ function renderTimeline() {
 // ===== FILTERS =====
 function applyFilters() {
   const keyword = document.getElementById('searchKeyword').value.trim().toLowerCase();
-  const activistOnly = document.getElementById('activistOnly').checked;
+  const investorFilter = document.getElementById('investorFilter').value;
   const period = parseInt(document.getElementById('periodFilter').value);
   const sortBy = document.getElementById('sortSelect').value;
 
@@ -1046,7 +1054,9 @@ function applyFilters() {
       const text = [r.filer_name, r.sec_code, r.target_company, r.purpose].join(' ').toLowerCase();
       if (!text.includes(keyword)) return false;
     }
-    if (activistOnly && !r.is_activist && !r.is_notable) return false;
+    if (investorFilter === 'activist' && !r.is_activist) return false;
+    if (investorFilter === 'notable' && !r.is_notable) return false;
+    if (investorFilter === 'both' && !r.is_activist && !r.is_notable) return false;
     if (r.date && r.date < cutoffStr) return false;
 
     if (reportTypes.length) {
@@ -1069,7 +1079,7 @@ function applyFilters() {
 
 function resetFilters() {
   document.getElementById('searchKeyword').value = '';
-  document.getElementById('activistOnly').checked = false;
+  document.getElementById('investorFilter').value = 'all';
   document.getElementById('periodFilter').value = '90';
   document.querySelectorAll('input[name="reportType"]').forEach(cb => cb.checked = true);
   filteredReports = [...reportData.reports];
