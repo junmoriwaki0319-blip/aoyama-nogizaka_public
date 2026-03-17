@@ -830,7 +830,6 @@ async function startRankingScan() {
       rankResults = data.data
         .filter(d => d.companyName && !d.error)
         .map(d => {
-          const score = calcQuickScore(d);
           // NC・EV指標を計算
           const debt = (d.shortTermBorrowings || 0) + (d.currentPortionLongTermDebt || 0) +
                        (d.longTermBorrowings || 0) + (d.bondsPayable || 0) + (d.currentPortionBonds || 0);
@@ -854,7 +853,9 @@ async function startRankingScan() {
             const ebitda = d.operatingIncome + d.depreciationAndAmortization;
             if (ebitda > 0) evEbitda = ev / ebitda;
           }
-          return { ...d, score, ncRatio, adjNcRatio, fullNcRatio, evEbitda };
+          // risk-assessment と同じ配点で再計算
+          const fullScore = calcQuickScore(d, ncRatio, adjNcRatio, evEbitda);
+          return { ...d, score: fullScore, ncRatio, adjNcRatio, fullNcRatio, evEbitda };
         });
 
       document.getElementById('rankProgressBar').style.width = '100%';
@@ -876,49 +877,34 @@ function cancelScan() {
   scanCancelled = true;
 }
 
-// 簡易スコア（Yahoo Financeデータのみ）
-function calcQuickScore(d) {
-  let score = 0;
+// アクティビストスコア（risk-assessment.html と同一配点）
+// 12項目 / 合計100点満点（正規化）
+function calcQuickScore(d, ncRatio, adjNcRatio, evEbitda) {
+  let total = 0, maxTotal = 0;
 
-  // PBR (max 20)
-  if (d.pbr != null) {
-    score += d.pbr < 0.5 ? 20 : d.pbr < 0.7 ? 16 : d.pbr < 0.8 ? 13 : d.pbr < 1.0 ? 10 : d.pbr < 1.3 ? 5 : 2;
-  }
+  // PBR (max 15)
+  if (d.pbr != null) { total += d.pbr < 0.5 ? 15 : d.pbr < 0.7 ? 12 : d.pbr < 0.8 ? 10 : d.pbr < 1.0 ? 8 : d.pbr < 1.3 ? 5 : 2; maxTotal += 15; }
+  // ROE (max 10)
+  if (d.roe != null) { total += d.roe < 3 ? 10 : d.roe < 5 ? 8 : d.roe < 8 ? 6 : d.roe < 10 ? 3 : 1; maxTotal += 10; }
+  // 配当性向 (max 8)
+  if (d.payoutRatio != null) { total += d.payoutRatio < 20 ? 8 : d.payoutRatio < 30 ? 6 : d.payoutRatio < 40 ? 4 : d.payoutRatio < 50 ? 2 : 1; maxTotal += 8; }
+  // NC/時価総額 (max 12)
+  if (ncRatio != null) { total += ncRatio > 50 ? 12 : ncRatio > 30 ? 10 : ncRatio > 20 ? 7 : ncRatio > 10 ? 4 : 2; maxTotal += 12; }
+  // 実質NC/時価総額 (max 10)
+  if (adjNcRatio != null) { total += adjNcRatio > 80 ? 10 : adjNcRatio > 50 ? 8 : adjNcRatio > 30 ? 6 : adjNcRatio > 15 ? 3 : 1; maxTotal += 10; }
+  // EV/EBITDA (max 8)
+  if (evEbitda != null) { total += evEbitda < 3 ? 8 : evEbitda < 5 ? 7 : evEbitda < 7 ? 5 : evEbitda < 10 ? 3 : 1; maxTotal += 8; }
+  // 自己資本比率 (max 7)
+  if (d.equityRatio != null) { total += d.equityRatio > 80 ? 7 : d.equityRatio > 70 ? 5 : d.equityRatio > 60 ? 3 : d.equityRatio > 50 ? 2 : 1; maxTotal += 7; }
+  // 時価総額 (max 8)
+  if (d.marketCapOku != null) { total += d.marketCapOku < 100 ? 3 : d.marketCapOku < 500 ? 8 : d.marketCapOku < 1000 ? 7 : d.marketCapOku < 3000 ? 5 : d.marketCapOku < 5000 ? 4 : 2; maxTotal += 8; }
 
-  // ROE (max 15)
-  if (d.roe != null) {
-    score += d.roe < 3 ? 15 : d.roe < 5 ? 12 : d.roe < 8 ? 8 : d.roe < 10 ? 4 : 1;
-  }
+  // EDINET項目（バッチキャッシュにない場合はスキップ）
+  // 外国人持株比率は batch.js 未対応のため除外
+  // 政策保有・社外取締役・買収防衛策もバッチ未対応のため除外
 
-  // 配当性向 (max 12)
-  if (d.payoutRatio != null) {
-    score += d.payoutRatio < 20 ? 12 : d.payoutRatio < 30 ? 9 : d.payoutRatio < 40 ? 6 : d.payoutRatio < 50 ? 3 : 1;
-  }
-
-  // 自己資本比率 (max 12)
-  if (d.equityRatio != null) {
-    score += d.equityRatio > 80 ? 12 : d.equityRatio > 70 ? 9 : d.equityRatio > 60 ? 6 : d.equityRatio > 50 ? 3 : 1;
-  }
-
-  // 配当利回り → 低すぎるとスコアUP (max 10)
-  if (d.dividendYield != null) {
-    score += d.dividendYield < 1.5 ? 10 : d.dividendYield < 2.5 ? 7 : d.dividendYield < 3.5 ? 4 : 2;
-  }
-
-  // 時価総額 (max 10) - sweet spot: 100-5000億
-  if (d.marketCapOku != null) {
-    score += d.marketCapOku < 100 ? 4 : d.marketCapOku < 500 ? 10 : d.marketCapOku < 1000 ? 9 :
-             d.marketCapOku < 3000 ? 7 : d.marketCapOku < 5000 ? 5 : 3;
-  }
-
-  // PBR < 1.0のボーナス (max 10)
-  if (d.pbr != null && d.pbr < 1.0) {
-    // BPS対比の割安度
-    const discount = (1 - d.pbr) * 10;
-    score += Math.min(10, Math.round(discount));
-  }
-
-  return Math.min(100, score);
+  if (maxTotal === 0) return 0;
+  return Math.round((total / maxTotal) * 100);
 }
 
 // ビュー切り替え
