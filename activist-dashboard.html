@@ -68,6 +68,7 @@
         createdAt: serverTimestamp()
       });
       await sendEmailVerification(cred.user);
+      window.sendWelcomeEmail(email, name);
       return cred.user;
     };
 
@@ -98,11 +99,24 @@
           plan: "free",
           createdAt: serverTimestamp()
         });
+        window.sendWelcomeEmail(user.email, user.displayName || '');
         return { user, needsProfile: true };
       }
       const data = snap.data();
       const needsProfile = !data.affiliation || !data.jobTitle || !data.company;
       return { user, needsProfile };
+    };
+
+    // ウェルカムメール送信
+    window.sendWelcomeEmail = async (email, name) => {
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name })
+        });
+      } catch (e) { console.warn('Welcome email failed:', e); }
     };
 
     // プロフィール更新
