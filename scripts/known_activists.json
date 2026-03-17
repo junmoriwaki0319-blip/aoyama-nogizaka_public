@@ -1,5 +1,28 @@
 {
   "_definition": "当ダッシュボードにおけるアクティビストの定義: 大量保有報告書の保有目的に「重要提案行為を行うことを保有の目的とする」等の記載を過去に一度でも行っている投資家をアクティビストと定義（参考: https://activist-blog.com/definition/ ）。なお、光通信等のアクティビストに該当しない主要投資家もtype=notable_holderとして追跡対象に含む。",
+  "groups": {
+    "murakami_group": {
+      "name": "旧村上ファンド系（村上世彰グループ）",
+      "description": "村上世彰氏を中心とするアクティビスト投資グループ。シティインデックスイレブンス、レノ、ATRA、フォルティス、野村絢氏等の複数法人・個人を通じて共同保有を行う。",
+      "type": "activist",
+      "representative": "村上 世彰",
+      "primary_id": "city_index_elevens"
+    },
+    "doe5_group": {
+      "name": "DOE5パーセント / 植島幹九郎グループ",
+      "description": "植島幹九郎氏がDOE5パーセント（旧D&Iインベストメント）会長として、個人名義・法人名義の双方で大量保有報告を提出。",
+      "type": "activist",
+      "representative": "植島 幹九郎",
+      "primary_id": "doe5percent"
+    },
+    "hikari_group": {
+      "name": "光通信グループ",
+      "description": "光通信株式会社と子会社（UH Partners ２、UH Partners ３、エスアイエル等）を通じて上場株を大量保有。",
+      "type": "notable_holder",
+      "representative": "重田 康光",
+      "primary_id": "hikari_tsushin"
+    }
+  },
   "activists": [
     {
       "id": "strategic_capital",
@@ -17,6 +40,7 @@
       "name": "シティインデックスイレブンス",
       "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "南青山不動産", "オフィスサポート", "レノ", "Reno", "C&Iホールディングス", "ワイルドベアキャピタル", "コスモスインベストメント", "エスグラントコーポレーション", "株式会社ミライ"],
       "type": "activist",
+      "group_id": "murakami_group",
       "representative": "村上世彰氏関連",
       "founded": "—",
       "headquarters": "東京",
@@ -169,12 +193,13 @@
     {
       "id": "hikari_tsushin",
       "name": "光通信",
-      "aliases": ["Hikari Tsushin", "株式会社光通信", "光通信株式会社", "重田光時", "重田康光"],
+      "aliases": ["Hikari Tsushin", "株式会社光通信", "光通信株式会社", "重田光時", "重田康光", "UH Partners ２", "UH Partners ３", "株式会社UH Partners ２", "株式会社UH Partners ３", "UHパートナーズ", "株式会社エスアイエル", "エスアイエル"],
       "type": "notable_holder",
+      "group_id": "hikari_group",
       "representative": "重田 康光",
       "founded": "1988年",
       "headquarters": "東京",
-      "description": "通信事業を基盤に、上場企業株を大量取得するスタイルで知られる。配当・優待銘柄を中心に幅広く保有し、近年は保有額が急拡大。",
+      "description": "通信事業を基盤に、上場企業株を大量取得するスタイルで知られる。子会社（UH Partners ２、UH Partners ３、エスアイエル等）を通じて配当・優待銘柄を中心に幅広く保有し、近年は保有額が急拡大。",
       "focus_sectors": ["IT・通信", "小売", "サービス", "金融"]
     },
     {
@@ -259,6 +284,7 @@
       "name": "村上世彰",
       "aliases": ["村上ファンド", "M&Aコンサルティング", "MAC", "MACアセットマネジメント"],
       "type": "activist",
+      "group_id": "murakami_group",
       "representative": "村上 世彰",
       "founded": "1999年",
       "headquarters": "シンガポール",
@@ -281,6 +307,7 @@
       "name": "DOE5パーセント",
       "aliases": ["D&Iインベストメント", "株式会社DOE5パーセント", "株式会社D&Iインベストメント", "DOE5%"],
       "type": "activist",
+      "group_id": "doe5_group",
       "representative": "植島 幹九郎（会長）/ 不破 鉄二（社長）",
       "founded": "2021年（2025年1月改称）",
       "headquarters": "東京・渋谷",
@@ -292,6 +319,7 @@
       "name": "植島幹九郎",
       "aliases": ["植島 幹九郎"],
       "type": "activist",
+      "group_id": "doe5_group",
       "representative": "植島 幹九郎",
       "founded": "—",
       "headquarters": "東京",
@@ -303,6 +331,7 @@
       "name": "ATRA",
       "aliases": ["株式会社ATRA", "アトラ"],
       "type": "activist",
+      "group_id": "murakami_group",
       "representative": "村上世彰氏関連",
       "founded": "—",
       "headquarters": "東京",
@@ -314,6 +343,7 @@
       "name": "フォルティス",
       "aliases": ["株式会社フォルティス"],
       "type": "activist",
+      "group_id": "murakami_group",
       "representative": "村上世彰氏関連",
       "founded": "—",
       "headquarters": "東京",
@@ -325,6 +355,7 @@
       "name": "野村絢",
       "aliases": ["野村 絢"],
       "type": "activist",
+      "group_id": "murakami_group",
       "representative": "野村 絢",
       "founded": "—",
       "headquarters": "シンガポール",

@@ -388,8 +388,31 @@ def merge_reports(existing_reports, new_reports):
     return merged
 
 
+def load_groups():
+    """グループ定義を読み込む"""
+    try:
+        with open(ACTIVISTS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("groups", {})
+    except Exception:
+        return {}
+
+
+def build_activist_id_to_group(activists, groups):
+    """activist_id → group_id のマッピングを構築"""
+    mapping = {}
+    for a in activists:
+        gid = a.get("group_id")
+        if gid and gid in groups:
+            mapping[a["id"]] = gid
+    return mapping
+
+
 def build_activist_summary(reports, activists):
-    """アクティビスト・注目投資家別の保有銘柄サマリーを構築"""
+    """アクティビスト・注目投資家別の保有銘柄サマリーを構築（グループ名寄せ対応）"""
+    groups = load_groups()
+    id_to_group = build_activist_id_to_group(activists, groups)
+
     activist_holdings = {}
 
     for report in reports:
@@ -400,25 +423,45 @@ def build_activist_summary(reports, activists):
         if not activist_id:
             continue
 
-        if activist_id not in activist_holdings:
-            # 元データから基本情報を取得
-            base_info = next(
-                (a for a in activists if a["id"] == activist_id), {}
-            )
-            activist_holdings[activist_id] = {
-                "id": activist_id,
-                "name": base_info.get("name", report.get("filer_name", "")),
-                "type": base_info.get("type", "fund"),
-                "representative": base_info.get("representative", ""),
-                "headquarters": base_info.get("headquarters", ""),
-                "description": base_info.get("description", ""),
-                "focus_sectors": base_info.get("focus_sectors", []),
-                "holdings": [],
-                "report_count": 0,
-                "latest_date": "",
-            }
+        # グループがあればグループIDに名寄せ
+        effective_id = id_to_group.get(activist_id, activist_id)
 
-        entry = activist_holdings[activist_id]
+        if effective_id not in activist_holdings:
+            if effective_id in groups:
+                # グループ情報を使用
+                g = groups[effective_id]
+                activist_holdings[effective_id] = {
+                    "id": effective_id,
+                    "name": g.get("name", ""),
+                    "type": g.get("type", "activist"),
+                    "representative": g.get("representative", ""),
+                    "headquarters": "",
+                    "description": g.get("description", ""),
+                    "focus_sectors": [],
+                    "holdings": [],
+                    "report_count": 0,
+                    "latest_date": "",
+                    "member_ids": [a["id"] for a in activists if a.get("group_id") == effective_id],
+                }
+            else:
+                # 個別投資家
+                base_info = next(
+                    (a for a in activists if a["id"] == activist_id), {}
+                )
+                activist_holdings[effective_id] = {
+                    "id": effective_id,
+                    "name": base_info.get("name", report.get("filer_name", "")),
+                    "type": base_info.get("type", "fund"),
+                    "representative": base_info.get("representative", ""),
+                    "headquarters": base_info.get("headquarters", ""),
+                    "description": base_info.get("description", ""),
+                    "focus_sectors": base_info.get("focus_sectors", []),
+                    "holdings": [],
+                    "report_count": 0,
+                    "latest_date": "",
+                }
+
+        entry = activist_holdings[effective_id]
         entry["report_count"] += 1
 
         if report["date"] > entry.get("latest_date", ""):

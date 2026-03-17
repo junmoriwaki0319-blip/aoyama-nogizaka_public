@@ -974,13 +974,44 @@ async function loadData() {
   if (!reportData.reports) reportData.reports = [];
   if (!reportData.activists) reportData.activists = {};
 
-  // known_activists.json を読み込み、報告データがない投資家も一覧に追加
+  // known_activists.json を読み込み、グループ名寄せ＋報告0件の投資家も一覧に追加
   try {
     const kaResp = await fetch('/scripts/known_activists.json' + '?t=' + Date.now(), { cache: 'no-store' });
     if (kaResp.ok) {
       const kaData = await kaResp.json();
-      (kaData.activists || []).forEach(ka => {
-        if (!reportData.activists[ka.id]) {
+      const groups = kaData.groups || {};
+      const activistList = kaData.activists || [];
+
+      // グループに属する個別IDをグループIDに名寄せ（Python側で既にマージ済みだが、0件エントリ用）
+      const idToGroup = {};
+      activistList.forEach(ka => {
+        if (ka.group_id && groups[ka.group_id]) {
+          idToGroup[ka.id] = ka.group_id;
+        }
+      });
+
+      // グループエントリを追加（0件でも表示）
+      Object.entries(groups).forEach(([gid, g]) => {
+        if (!reportData.activists[gid]) {
+          reportData.activists[gid] = {
+            id: gid,
+            name: g.name || gid,
+            type: g.type || 'activist',
+            representative: g.representative || '',
+            headquarters: '',
+            description: g.description || '',
+            focus_sectors: [],
+            holdings: [],
+            report_count: 0,
+            latest_date: '',
+            member_ids: activistList.filter(a => a.group_id === gid).map(a => a.id)
+          };
+        }
+      });
+
+      // グループに属さない個別投資家を追加
+      activistList.forEach(ka => {
+        if (!idToGroup[ka.id] && !reportData.activists[ka.id]) {
           reportData.activists[ka.id] = {
             id: ka.id,
             name: ka.name,
@@ -993,6 +1024,13 @@ async function loadData() {
             report_count: 0,
             latest_date: ''
           };
+        }
+      });
+
+      // グループに属する個別エントリを除外（二重カウント防止）
+      Object.keys(idToGroup).forEach(id => {
+        if (reportData.activists[id]) {
+          delete reportData.activists[id];
         }
       });
     }
@@ -1197,9 +1235,11 @@ function filterRanking() {
       : '';
     const rank = idx + 1;
     const rankStyle = rank <= 3 ? 'font-weight:bold;color:var(--gold);' : 'color:var(--text-light);';
-    return `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.name)}')">
+    const isGroup = a.member_ids && a.member_ids.length;
+    const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:9px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
+    return `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.id)}')">
       <span style="min-width:22px;${rankStyle}">${rank}</span>
-      <span style="flex:1;">${escapeHtml(a.name)}${typeTag}</span>
+      <span style="flex:1;">${escapeHtml(a.name)}${groupIcon}${typeTag}</span>
       <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'};">${a.report_count || 0}件</span>
     </div>`;
   }).join('');
@@ -1295,9 +1335,30 @@ function searchByCode(code) {
   switchTab('list', document.querySelector('.tab-btn'));
 }
 
-function filterByActivist(name) {
-  document.getElementById('searchKeyword').value = name;
-  applyFilters();
+function filterByActivist(activistId) {
+  const activist = reportData.activists[activistId];
+  if (!activist) return;
+
+  // グループの場合はメンバーの報告を全て表示
+  if (activist.member_ids && activist.member_ids.length) {
+    const memberIds = new Set(activist.member_ids);
+    const keyword = document.getElementById('searchKeyword');
+    keyword.value = '';
+    // メンバーIDでフィルター
+    const period = parseInt(document.getElementById('periodFilter').value);
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - period);
+    const cutoffStr = cutoffDate.toISOString().slice(0, 10);
+    filteredReports = reportData.reports.filter(r => {
+      if (!memberIds.has(r.activist_id)) return false;
+      if (r.date && r.date < cutoffStr) return false;
+      return true;
+    });
+    renderReportTable();
+  } else {
+    document.getElementById('searchKeyword').value = activist.name;
+    applyFilters();
+  }
   switchTab('list', document.querySelector('.tab-btn'));
 }
 
