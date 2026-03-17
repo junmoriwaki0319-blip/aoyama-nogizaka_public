@@ -1227,7 +1227,7 @@ function renderActivistCards() {
       <div class="activist-card">
         <div class="ac-header">
           <div>
-            <div class="ac-name">${escapeHtml(data.name)}</div>
+            <div class="ac-name" style="cursor:pointer;text-decoration:underline;text-decoration-color:var(--mid-gray);text-underline-offset:2px;" onclick="openInvestorDetail('${escapeHtml(id)}')">${escapeHtml(data.name)}</div>
             <div class="ac-meta">
               ${data.representative ? '代表: ' + escapeHtml(data.representative) + ' ｜ ' : ''}
               ${data.headquarters ? '本拠: ' + escapeHtml(data.headquarters) + ' ｜ ' : ''}
