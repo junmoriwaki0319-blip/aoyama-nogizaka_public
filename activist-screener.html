@@ -282,6 +282,15 @@
         <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
           <a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録してAPIキーを取得できます
         </p>
+        <div class="form-grid" style="margin-top:8px;">
+          <div class="form-field">
+            <label>Google Maps APIキー（任意・地図表示用）</label>
+            <input type="text" id="googleMapsApiKey" placeholder="AIza...（月$200無料枠あり）">
+          </div>
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
+          <a href="https://console.cloud.google.com/" target="_blank" style="color:var(--gold);">Google Cloud Console</a>でMaps JavaScript API &amp; Geocoding APIを有効化（月$200分無料）
+        </p>
       </details>
       <div class="btn-row">
         <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
@@ -351,6 +360,70 @@
           <div class="form-field"><label>政策保有株式/純資産（%）</label><input type="number" id="manual_cross" step="0.1" placeholder="例: 12.0"></div>
         </div>
         <div class="btn-row"><button class="btn-secondary" onclick="recalcIndividual()">再計算</button></div>
+      </div>
+
+      <!-- 土地明細分析セクション -->
+      <div class="s-card" id="landAnalysisSection" style="display:none;">
+        <div class="s-card-title">土地明細分析 <span class="info-tip" data-tip="有価証券報告書の「主要な設備の状況」から土地の所在地・面積を抽出し、国土交通省の不動産取引価格情報で時価を推定します">?</span></div>
+        <div class="btn-row" style="margin-bottom:12px;">
+          <button class="btn-primary" id="btnLandAnalysis" onclick="fetchLandParcels()" style="background:var(--gold);">
+            <span style="margin-right:6px;">&#x1f4cd;</span>土地明細分析を実行
+          </button>
+        </div>
+        <div class="loading" id="landLoading"><div class="spinner"></div><span id="landLoadingText">土地明細を解析中...</span></div>
+
+        <!-- 土地明細結果 -->
+        <div id="landResult" class="hidden">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">検出拠点数</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_parcel_count">-</div>
+            </div>
+            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">明細簿価合計</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_total_bv">-</div>
+            </div>
+            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">推定時価合計</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="land_total_fv">-</div>
+            </div>
+            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">推定含み益</div>
+              <div style="font-size:1.3rem;font-weight:700;" id="land_total_gain" style="color:var(--green);">-</div>
+            </div>
+          </div>
+          <div id="land_gain_method_detail" style="font-size:.7rem;color:var(--text-light);margin-bottom:12px;"></div>
+
+          <!-- Google Maps 表示エリア -->
+          <div id="landMapContainer" style="display:none;margin-bottom:16px;">
+            <div id="landMap" style="width:100%;height:400px;border-radius:8px;border:1px solid var(--border);"></div>
+          </div>
+
+          <!-- 土地明細テーブル -->
+          <div style="overflow-x:auto;">
+            <table style="font-size:.78rem;">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>事業所名</th>
+                  <th>所在地</th>
+                  <th style="text-align:right;">面積（㎡）</th>
+                  <th style="text-align:right;">簿価（百万円）</th>
+                  <th style="text-align:right;">推定単価（円/㎡）</th>
+                  <th style="text-align:right;">推定時価（百万円）</th>
+                  <th style="text-align:right;">含み益（百万円）</th>
+                </tr>
+              </thead>
+              <tbody id="landParcelsBody"></tbody>
+            </table>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
+            <button class="btn-secondary" id="btnShowMap" onclick="toggleLandMap()" style="font-size:.76rem;display:none;">
+              <span style="margin-right:4px;">&#x1f5fa;</span>地図表示
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="s-card">
@@ -639,6 +712,30 @@
   </div>
 </footer>
 
+<!-- Google Maps API (無料枠: 月$200クレジット) -->
+<script>
+  // Google Maps APIは遅延ロード（土地明細分析時のみ）
+  var _gmapsLoaded = false;
+  function loadGoogleMaps(callback) {
+    if (_gmapsLoaded) { callback(); return; }
+    // 注: 本番環境ではGoogle Cloud ConsoleでAPIキーを取得し制限を設定してください
+    // Maps JavaScript API + Geocoding API を有効化
+    var gmapsKey = localStorage.getItem('googleMapsApiKey') || '';
+    if (!gmapsKey) {
+      // APIキーなしでもGeocoding APIなしで動作可能（地図表示のみ制限）
+      console.warn('Google Maps APIキーが設定されていません。地図機能が制限されます。');
+      callback();
+      return;
+    }
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + gmapsKey + '&callback=_gmapsReady&libraries=marker';
+    s.async = true;
+    s.defer = true;
+    window._gmapsReady = function() { _gmapsLoaded = true; callback(); };
+    window._gmapsCallback = callback;
+    document.head.appendChild(s);
+  }
+</script>
 <script src="/js/screener.js"></script>
 </body>
 </html>

@@ -189,6 +189,11 @@ function parseNotes(html, data) {
   if (data.securitiesBookValue == null) {
     parseSecuritiesNote(html, data);
   }
+
+  // 主要な設備の状況から土地明細を探す（含み益推定の補助データ）
+  if (!data._landParcelsFound) {
+    parseLandFromFacilities(html, data);
+  }
 }
 
 function parseInvestmentPropertyNote(html, data) {
@@ -257,6 +262,57 @@ function parseSecuritiesNote(html, data) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 主要な設備の状況から土地データ抽出
+// ═══════════════════════════════════════════════════════════════
+
+function parseLandFromFacilities(html, data) {
+  // 「主要な設備の状況」セクションを探す
+  const facilityIdx = html.indexOf('主要な設備の状況');
+  if (facilityIdx === -1) return;
+
+  const searchRange = html.substring(facilityIdx, Math.min(html.length, facilityIdx + 50000));
+
+  // テーブルから土地面積と所在地を抽出
+  const tableRegex = /<table[\s\S]*?<\/table>/gi;
+  let tableMatch;
+  const parcels = [];
+
+  while ((tableMatch = tableRegex.exec(searchRange)) !== null) {
+    const table = tableMatch[0];
+    if (!table.includes('土地') || (!table.includes('所在地') && !table.includes('住所'))) continue;
+
+    // 都道府県を含む住所を抽出
+    const addrRegex = /((?:北海道|東京都|大阪府|京都府|.{2,3}県)[^\s<,、]{2,40})/g;
+    let am;
+    while ((am = addrRegex.exec(table)) !== null) {
+      const addr = am[1];
+      const prefMatch = addr.match(/(北海道|東京都|大阪府|京都府|.{2,3}県)/);
+      parcels.push({
+        address: addr,
+        prefecture: prefMatch ? prefMatch[1] : null,
+      });
+    }
+
+    if (parcels.length > 0) break;
+  }
+
+  if (parcels.length > 0) {
+    data._landParcels = parcels;
+    data._landParcelsFound = true;
+    data.landParcelCount = parcels.length;
+    // 都道府県の分布を記録
+    const prefCounts = {};
+    for (const p of parcels) {
+      if (p.prefecture) prefCounts[p.prefecture] = (prefCounts[p.prefecture] || 0) + 1;
+    }
+    data.landPrefectures = Object.entries(prefCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([pref, count]) => `${pref}(${count}件)`)
+      .join(', ');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 土地含み益推定
 // ═══════════════════════════════════════════════════════════════
 
@@ -287,8 +343,12 @@ function estimateLandGain(data) {
     return;
   }
 
-  // 方法3: 推定不可 → 土地簿価のみ表示
-  data.landGainMethod = '推定データ不足（投資不動産注記・再評価差額金なし）。手動入力をご利用ください。';
+  // 方法3: 推定データ不足 → 土地明細分析を案内
+  if (data._landParcelsFound && data.landParcelCount > 0) {
+    data.landGainMethod = `推定には詳細分析が必要です（${data.landParcelCount}拠点検出: ${data.landPrefectures || ''}）。「土地明細分析」ボタンで地価公示データによる推定が可能です。`;
+  } else {
+    data.landGainMethod = '推定データ不足（投資不動産注記・再評価差額金なし）。「土地明細分析」ボタンまたは手動入力をご利用ください。';
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════

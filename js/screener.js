@@ -253,6 +253,14 @@ function calculateAndDisplay() {
     methodEl.style.display = 'none';
   }
 
+  // 土地明細分析セクションを表示（EDINET APIキーとコードがある場合）
+  const landSection = document.getElementById('landAnalysisSection');
+  if (landSection) {
+    const apiKey = document.getElementById('edinetApiKey').value.trim();
+    const edinetCode = document.getElementById('indEdinet').value.trim();
+    landSection.style.display = (apiKey && edinetCode) ? '' : 'none';
+  }
+
   // 含み益合計（有価証券 + 投資不動産 + 土地）
   const totalGain = (secGain || 0) + (propGain || 0) + (landGain || 0);
   if (secGain != null || propGain != null || landGain != null) {
@@ -445,6 +453,235 @@ function resetIndividual() {
    'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
     .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '-'; });
+  // 土地明細セクションをリセット
+  const landSection = document.getElementById('landAnalysisSection');
+  if (landSection) landSection.style.display = 'none';
+  const landResult = document.getElementById('landResult');
+  if (landResult) landResult.classList.add('hidden');
+  const landMapContainer = document.getElementById('landMapContainer');
+  if (landMapContainer) landMapContainer.style.display = 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 土地明細分析
+// ═══════════════════════════════════════════════════════════════
+let landParcelsData = null;
+let landMap = null;
+let landMarkers = [];
+
+async function fetchLandParcels() {
+  const apiKey = document.getElementById('edinetApiKey').value.trim();
+  const edinetCode = document.getElementById('indEdinet').value.trim();
+  if (!apiKey) { alert('EDINET APIキーを設定してください'); return; }
+  if (!edinetCode) { alert('EDINETコードを入力してください'); return; }
+
+  const btn = document.getElementById('btnLandAnalysis');
+  const loading = document.getElementById('landLoading');
+  const loadingText = document.getElementById('landLoadingText');
+  btn.disabled = true;
+  loading.classList.add('active');
+
+  try {
+    // まずEDINET書類検索でdocIDを取得
+    loadingText.textContent = 'EDINET書類検索中...';
+    const sRes = await fetch(API_BASE + '/api/edinet/search/' + edinetCode + '?apiKey=' + encodeURIComponent(apiKey));
+    const sData = await sRes.json();
+    if (!sData.success || !sData.documents || sData.documents.length === 0) {
+      alert('有価証券報告書が見つかりません');
+      return;
+    }
+    const docID = sData.documents[0].docID;
+
+    // 土地明細分析API呼び出し
+    loadingText.textContent = '土地明細を解析中（固定資産明細表 + 地価公示データ照合）...';
+    const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + '?apiKey=' + encodeURIComponent(apiKey));
+    const lData = await lRes.json();
+
+    if (!lData.success) {
+      alert('土地明細の解析に失敗: ' + (lData.error || ''));
+      return;
+    }
+
+    landParcelsData = lData.data;
+    displayLandParcels(lData.data);
+
+  } catch (err) {
+    alert('エラー: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    loading.classList.remove('active');
+  }
+}
+
+function displayLandParcels(data) {
+  const result = document.getElementById('landResult');
+  result.classList.remove('hidden');
+
+  // サマリー
+  document.getElementById('land_parcel_count').textContent = data.parcelCount + '件';
+  document.getElementById('land_total_bv').textContent =
+    data.totalBookValue > 0 ? Math.round(data.totalBookValue).toLocaleString() + ' 百万円' : '-';
+  document.getElementById('land_total_fv').textContent =
+    data.totalEstimatedValue > 0 ? Math.round(data.totalEstimatedValue).toLocaleString() + ' 百万円' : '-';
+
+  const gainEl = document.getElementById('land_total_gain');
+  if (data.totalEstimatedGain != null) {
+    gainEl.textContent = Math.round(data.totalEstimatedGain).toLocaleString() + ' 百万円';
+    gainEl.style.color = data.totalEstimatedGain > 0 ? 'var(--green)' : 'var(--danger)';
+  } else {
+    gainEl.textContent = '-';
+  }
+
+  const methodEl = document.getElementById('land_gain_method_detail');
+  if (data.gainMethod) {
+    methodEl.textContent = '推定方法: ' + data.gainMethod;
+  }
+
+  // 明細テーブル
+  const tbody = document.getElementById('landParcelsBody');
+  tbody.innerHTML = '';
+
+  if (data.parcels && data.parcels.length > 0) {
+    data.parcels.forEach((p, i) => {
+      const gain = (p.estimatedValue && p.bookValue) ? p.estimatedValue - p.bookValue : null;
+      const gainColor = gain != null ? (gain > 0 ? 'color:var(--green);font-weight:600;' : 'color:var(--danger);') : '';
+      tbody.innerHTML += `<tr>
+        <td>${i + 1}</td>
+        <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.name || '-'}</td>
+        <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${p.address || ''}">${p.address || '-'}</td>
+        <td style="text-align:right;">${p.area ? p.area.toLocaleString() : '-'}</td>
+        <td style="text-align:right;">${p.bookValue ? Math.round(p.bookValue).toLocaleString() : '-'}</td>
+        <td style="text-align:right;">${p.estimatedPricePerSqm ? Math.round(p.estimatedPricePerSqm).toLocaleString() : '-'}</td>
+        <td style="text-align:right;">${p.estimatedValue ? Math.round(p.estimatedValue).toLocaleString() : '-'}</td>
+        <td style="text-align:right;${gainColor}">${gain != null ? Math.round(gain).toLocaleString() : '-'}</td>
+      </tr>`;
+    });
+
+    // Google Maps APIキーがあれば地図ボタンを表示
+    const gmapsKey = localStorage.getItem('googleMapsApiKey');
+    const btnMap = document.getElementById('btnShowMap');
+    if (gmapsKey && btnMap) {
+      btnMap.style.display = '';
+    }
+  } else {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-light);">土地明細が見つかりませんでした</td></tr>';
+  }
+}
+
+function applyLandGainEstimate() {
+  if (!landParcelsData || landParcelsData.totalEstimatedGain == null) {
+    alert('推定値がありません');
+    return;
+  }
+  document.getElementById('manual_land_gain').value = Math.round(landParcelsData.totalEstimatedGain);
+  recalcIndividual();
+  alert('土地含み益推定値 ' + Math.round(landParcelsData.totalEstimatedGain).toLocaleString() + ' 百万円を反映しました');
+}
+
+// ── Google Maps 地図表示 ──
+
+function toggleLandMap() {
+  const container = document.getElementById('landMapContainer');
+  if (container.style.display === 'none') {
+    container.style.display = 'block';
+    loadGoogleMaps(function() {
+      initLandMap();
+    });
+  } else {
+    container.style.display = 'none';
+  }
+}
+
+function initLandMap() {
+  if (!window.google || !window.google.maps) {
+    document.getElementById('landMap').innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-light);font-size:.82rem;">Google Maps APIキーが無効です。設定を確認してください。</div>';
+    return;
+  }
+
+  if (!landParcelsData || !landParcelsData.parcels) return;
+
+  const parcels = landParcelsData.parcels.filter(p => p.address);
+  if (parcels.length === 0) return;
+
+  // 地図初期化（日本中心）
+  landMap = new google.maps.Map(document.getElementById('landMap'), {
+    center: { lat: 36.5, lng: 138.0 },
+    zoom: 5,
+    mapTypeId: 'roadmap',
+    styles: [
+      { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+      { featureType: 'transit', stylers: [{ visibility: 'simplified' }] },
+    ],
+  });
+
+  // ジオコーディングで各拠点をマーカー表示
+  const geocoder = new google.maps.Geocoder();
+  const bounds = new google.maps.LatLngBounds();
+  let geocodedCount = 0;
+
+  // 清除既存マーカー
+  landMarkers.forEach(m => m.setMap(null));
+  landMarkers = [];
+
+  parcels.forEach((parcel, i) => {
+    // ジオコーディングは遅延実行（API制限対策）
+    setTimeout(() => {
+      geocoder.geocode({ address: parcel.address + ' 日本' }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const pos = results[0].geometry.location;
+          bounds.extend(pos);
+
+          const gain = (parcel.estimatedValue && parcel.bookValue)
+            ? parcel.estimatedValue - parcel.bookValue : null;
+          const gainText = gain != null
+            ? (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() + '百万円'
+            : '推定なし';
+          const color = gain != null ? (gain > 0 ? '#27ae60' : '#c0392b') : '#9b8b6e';
+
+          const marker = new google.maps.Marker({
+            position: pos,
+            map: landMap,
+            title: parcel.name || parcel.address,
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: color,
+              fillOpacity: 0.85,
+              strokeColor: '#fff',
+              strokeWeight: 2,
+              scale: Math.max(8, Math.min(20, (parcel.bookValue || 100) / 500 + 8)),
+            },
+          });
+
+          const infoContent = `
+            <div style="font-size:13px;max-width:280px;">
+              <strong>${parcel.name || '拠点'}</strong><br>
+              <span style="color:#666;">${parcel.address}</span><br>
+              ${parcel.area ? '<b>面積:</b> ' + parcel.area.toLocaleString() + '㎡<br>' : ''}
+              ${parcel.bookValue ? '<b>簿価:</b> ' + Math.round(parcel.bookValue).toLocaleString() + '百万円<br>' : ''}
+              ${parcel.estimatedPricePerSqm ? '<b>推定単価:</b> ' + Math.round(parcel.estimatedPricePerSqm).toLocaleString() + '円/㎡<br>' : ''}
+              ${parcel.estimatedValue ? '<b>推定時価:</b> ' + Math.round(parcel.estimatedValue).toLocaleString() + '百万円<br>' : ''}
+              <span style="color:${color};font-weight:700;">含み益: ${gainText}</span>
+            </div>`;
+          const infoWindow = new google.maps.InfoWindow({ content: infoContent });
+          marker.addListener('click', () => infoWindow.open(landMap, marker));
+
+          landMarkers.push(marker);
+          geocodedCount++;
+
+          // 全てジオコーディングが終わったらboundsにフィット
+          if (geocodedCount === parcels.length || geocodedCount >= 20) {
+            if (geocodedCount > 1) {
+              landMap.fitBounds(bounds, { padding: 50 });
+            } else {
+              landMap.setCenter(pos);
+              landMap.setZoom(12);
+            }
+          }
+        }
+      });
+    }, i * 300); // 300msずつ遅延（ジオコーディングAPI制限対策）
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -802,7 +1039,19 @@ document.getElementById('rankSortBy').addEventListener('change', filterAndDispla
 window.addEventListener('load', () => {
   const savedKey = localStorage.getItem('edinetApiKey');
   if (savedKey) document.getElementById('edinetApiKey').value = savedKey;
+  const savedGmapsKey = localStorage.getItem('googleMapsApiKey');
+  const gmapsInput = document.getElementById('googleMapsApiKey');
+  if (savedGmapsKey && gmapsInput) gmapsInput.value = savedGmapsKey;
 });
 document.getElementById('edinetApiKey').addEventListener('change', (e) => {
   localStorage.setItem('edinetApiKey', e.target.value);
 });
+// Google Maps APIキー保存
+(function() {
+  const gmapsInput = document.getElementById('googleMapsApiKey');
+  if (gmapsInput) {
+    gmapsInput.addEventListener('change', (e) => {
+      localStorage.setItem('googleMapsApiKey', e.target.value);
+    });
+  }
+})();
