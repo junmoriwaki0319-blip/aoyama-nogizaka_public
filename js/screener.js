@@ -138,16 +138,17 @@ async function fetchIndividual() {
       }
     }
 
-    // EDINET取得（任意）
+    // EDINET取得（APIキーは任意、サーバー側でデフォルトキーを使用）
     const apiKey = document.getElementById('edinetApiKey').value.trim();
     const edinetCode = document.getElementById('indEdinet').value.trim();
-    if (apiKey && edinetCode) {
+    if (edinetCode) {
       loadingText.textContent = 'EDINET書類検索中...';
-      const sRes = await fetch(API_BASE+'/api/edinet/search/' + edinetCode + '?apiKey=' + encodeURIComponent(apiKey));
+      const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
+      const sRes = await fetch(API_BASE+'/api/edinet/search/' + edinetCode + apiParam);
       const sData = await sRes.json();
       if (sData.success && sData.documents.length > 0) {
         loadingText.textContent = 'XBRL財務データ解析中...';
-        const xRes = await fetch(API_BASE+'/api/edinet/xbrl/' + sData.documents[0].docID + '?apiKey=' + encodeURIComponent(apiKey));
+        const xRes = await fetch(API_BASE+'/api/edinet/xbrl/' + sData.documents[0].docID + apiParam);
         const xData = await xRes.json();
         if (xData.success && xData.data) {
           indData.edinet = xData.data;
@@ -253,12 +254,11 @@ function calculateAndDisplay() {
     methodEl.style.display = 'none';
   }
 
-  // 土地明細分析セクションを表示（EDINET APIキーとコードがある場合）
+  // 土地明細分析セクションを表示（EDINETコードがある場合）
   const landSection = document.getElementById('landAnalysisSection');
   if (landSection) {
-    const apiKey = document.getElementById('edinetApiKey').value.trim();
     const edinetCode = document.getElementById('indEdinet').value.trim();
-    landSection.style.display = (apiKey && edinetCode) ? '' : 'none';
+    landSection.style.display = edinetCode ? '' : 'none';
   }
 
   // 含み益合計（有価証券 + 投資不動産 + 土地）
@@ -468,7 +468,6 @@ let landParcelsData = null;
 async function fetchLandParcels() {
   const apiKey = document.getElementById('edinetApiKey').value.trim();
   const edinetCode = document.getElementById('indEdinet').value.trim();
-  if (!apiKey) { alert('EDINET APIキーを設定してください'); return; }
   if (!edinetCode) { alert('EDINETコードを入力してください'); return; }
 
   const btn = document.getElementById('btnLandAnalysis');
@@ -479,8 +478,9 @@ async function fetchLandParcels() {
 
   try {
     // まずEDINET書類検索でdocIDを取得
+    const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
     loadingText.textContent = 'EDINET書類検索中...';
-    const sRes = await fetch(API_BASE + '/api/edinet/search/' + edinetCode + '?apiKey=' + encodeURIComponent(apiKey));
+    const sRes = await fetch(API_BASE + '/api/edinet/search/' + edinetCode + apiParam);
     const sData = await sRes.json();
     if (!sData.success || !sData.documents || sData.documents.length === 0) {
       alert('有価証券報告書が見つかりません');
@@ -490,7 +490,7 @@ async function fetchLandParcels() {
 
     // 土地明細分析API呼び出し
     loadingText.textContent = '土地明細を解析中（固定資産明細表 + 地価公示データ照合）...';
-    const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + '?apiKey=' + encodeURIComponent(apiKey));
+    const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + apiParam);
     const lData = await lRes.json();
 
     if (!lData.success) {

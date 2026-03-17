@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const edinetCode = req.query.code;
-  const apiKey = req.query.apiKey;
+  const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
   if (!edinetCode || !/^E\d{5}$/.test(edinetCode)) {
     return res.status(400).json({ success: false, error: 'EDINETコード (E+5桁) を指定してください' });

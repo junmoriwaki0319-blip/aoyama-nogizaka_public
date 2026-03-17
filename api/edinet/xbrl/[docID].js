@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const docID = req.query.docID;
-  const apiKey = req.query.apiKey;
+  const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
   if (!docID) {
     return res.status(400).json({ success: false, error: 'docIDが必要です' });

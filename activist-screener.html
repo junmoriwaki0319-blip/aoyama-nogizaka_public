@@ -193,7 +193,7 @@
     .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
     .footer-address{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
     .footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
-    @media(max-width:768px){.page-hero{padding:56px 20px 44px}.container{padding:0 20px}.tab-panel{padding:24px 16px}.metrics-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.tab-bar{flex-direction:column;gap:0}.tab-btn{border-radius:0;border-bottom:2px solid var(--mid-gray)}.tab-btn:first-child{border-radius:10px 10px 0 0}.tab-btn.active{border-bottom-color:var(--gold)}.footer-top{flex-direction:column}.auth-form{flex-direction:column}}
+    @media(max-width:768px){.page-hero{padding:56px 20px 44px}.container{padding:0 20px}.tab-panel{padding:24px 16px}.metrics-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.tab-bar{flex-direction:column;gap:0}.tab-btn{border-radius:0;border-bottom:2px solid var(--mid-gray)}.tab-btn:first-child{border-radius:10px 10px 0 0}.tab-btn.active{border-bottom-color:var(--gold)}.footer-top{flex-direction:column}.footer-inner{padding:0 20px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}.auth-form{flex-direction:column}}
   </style>
 </head>
 <body>
@@ -275,14 +275,13 @@
         <summary style="font-size:0.76rem; color:var(--text-light); cursor:pointer;">EDINET API設定（含み益・ネットキャッシュ自動計算に利用）</summary>
         <div class="form-grid" style="margin-top:8px;">
           <div class="form-field">
-            <label>EDINET APIキー</label>
-            <input type="text" id="edinetApiKey" placeholder="Subscription-Key">
+            <label>EDINET APIキー（任意・未入力でもデフォルトキーで動作）</label>
+            <input type="text" id="edinetApiKey" placeholder="未入力でもOK（独自キーがあれば入力）">
           </div>
         </div>
         <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
-          <a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録してAPIキーを取得できます
+          デフォルトのAPIキーが設定済みです。独自キーを使いたい場合は<a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録できます
         </p>
-        <!-- Google Maps連携は将来の有料化時に追加予定 -->
       </details>
       <div class="btn-row">
         <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
@@ -367,19 +366,19 @@
         <!-- 土地明細結果 -->
         <div id="landResult" class="hidden">
           <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
-            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
               <div style="font-size:.72rem;color:var(--text-light);">検出拠点数</div>
               <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_parcel_count">-</div>
             </div>
-            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
               <div style="font-size:.72rem;color:var(--text-light);">明細簿価合計</div>
               <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_total_bv">-</div>
             </div>
-            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
               <div style="font-size:.72rem;color:var(--text-light);">推定時価合計</div>
               <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="land_total_fv">-</div>
             </div>
-            <div style="flex:1;min-width:150px;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
               <div style="font-size:.72rem;color:var(--text-light);">推定含み益</div>
               <div style="font-size:1.3rem;font-weight:700;" id="land_total_gain" style="color:var(--green);">-</div>
             </div>
@@ -615,8 +614,8 @@
           <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">ログインまたは新規登録してCSVエクスポート機能をご利用ください。</p>
           <div id="authLoginForm">
             <div class="auth-form">
-              <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:180px;">
-              <input type="password" id="authPass" placeholder="パスワード" style="min-width:120px;">
+              <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">
+              <input type="password" id="authPass" placeholder="パスワード" style="min-width:0;">
               <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
             </div>
             <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
