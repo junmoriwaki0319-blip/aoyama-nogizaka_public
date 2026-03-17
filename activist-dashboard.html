@@ -441,9 +441,7 @@
     .watchlist-preset-btn:hover { background: var(--navy); color: var(--white); }
     .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
   </style>
-  <!-- jsPDF for PDF export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+  <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
 </head>
 <body>
 
@@ -1929,39 +1927,63 @@ function exportPDF() {
     openModal('login');
     return;
   }
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
 
-  // フォントサイズ設定（日本語はデフォルトフォントで部分対応）
-  doc.setFontSize(16);
-  doc.text('Large Shareholding Dashboard Report', 14, 15);
-  doc.setFontSize(9);
-  doc.text('Generated: ' + new Date().toLocaleString('ja-JP'), 14, 22);
-  doc.text('Total: ' + filteredReports.length + ' reports', 14, 27);
+  // ブラウザ印刷（PDF保存）で日本語を完全サポート
+  const data = filteredReports.slice(0, 300);
+  const dateStr = new Date().toLocaleString('ja-JP');
 
-  const headers = [['Date', 'Filer', 'Code', 'Target', 'Type', 'Ratio(%)', 'Purpose', 'Activist']];
-  const body = filteredReports.slice(0, 200).map(r => [
-    r.date || '',
-    (r.filer_name || '').slice(0, 20),
-    r.sec_code || '',
-    (r.target_company || '').slice(0, 25),
-    r.report_type || '',
-    r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '',
-    (r.purpose || '').slice(0, 15),
-    r.is_activist ? 'Yes' : 'No'
-  ]);
+  let html = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<title>大量保有報告書レポート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; font-size:10px; color:#1a2d4f; padding:15mm; }
+  h1 { font-size:16px; margin-bottom:4px; }
+  .meta { font-size:9px; color:#666; margin-bottom:10px; }
+  table { width:100%; border-collapse:collapse; font-size:9px; }
+  th { background:#1a2d4f; color:#fff; padding:4px 6px; text-align:left; font-weight:700; white-space:nowrap; }
+  td { padding:3px 6px; border-bottom:1px solid #e0ddd8; }
+  tr:nth-child(even) { background:#f8f7f5; }
+  .ratio-cell { text-align:right; }
+  .act-badge { display:inline-block; background:#c7a04b; color:#fff; font-size:7px; padding:1px 4px; border-radius:3px; }
+  .notable-badge { display:inline-block; background:#6b8e6b; color:#fff; font-size:7px; padding:1px 4px; border-radius:3px; }
+  @media print {
+    body { padding:10mm; }
+    @page { size:A4 landscape; margin:10mm; }
+  }
+</style></head><body>
+<h1>大量保有報告書 レポート</h1>
+<div class="meta">出力日時: ${escapeHtml(dateStr)} ｜ 件数: ${data.length} 件 ｜ データソース: EDINET（金融庁）</div>
+<table>
+<thead><tr>
+  <th>報告日</th><th>報告者</th><th>種別</th><th>証券コード</th><th>対象企業</th>
+  <th>保有比率</th><th>目的</th><th>区分</th>
+</tr></thead><tbody>`;
 
-  doc.autoTable({
-    head: headers,
-    body: body,
-    startY: 32,
-    styles: { fontSize: 7, cellPadding: 2 },
-    headStyles: { fillColor: [26, 45, 79], textColor: 255 },
-    alternateRowStyles: { fillColor: [248, 247, 245] },
-    margin: { left: 14, right: 14 }
+  data.forEach(r => {
+    const ratioNum = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+    const ratio = !isNaN(ratioNum) ? ratioNum.toFixed(2) + '%' : '—';
+    const badge = r.is_activist ? '<span class="act-badge">ACT</span>'
+      : r.is_notable ? '<span class="notable-badge">注目</span>' : '—';
+    html += `<tr>
+      <td>${escapeHtml(r.date || '')}</td>
+      <td>${escapeHtml(r.filer_name || '')}</td>
+      <td>${escapeHtml(r.report_type || '')}</td>
+      <td>${escapeHtml(r.sec_code || '')}</td>
+      <td>${escapeHtml(r.target_company || '')}</td>
+      <td class="ratio-cell">${ratio}</td>
+      <td>${escapeHtml(r.purpose || '')}</td>
+      <td>${badge}</td>
+    </tr>`;
   });
 
-  doc.save('activist_report_' + new Date().toISOString().slice(0, 10) + '.pdf');
+  html += '</tbody></table></body></html>';
+
+  const printWin = window.open('', '_blank');
+  printWin.document.write(html);
+  printWin.document.close();
+  // フォント読み込み待ちの後に印刷ダイアログを表示
+  printWin.onload = () => setTimeout(() => printWin.print(), 500);
 }
 
 // ===== WATCHLIST =====
