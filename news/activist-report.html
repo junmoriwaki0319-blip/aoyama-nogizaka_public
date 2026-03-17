@@ -422,20 +422,17 @@
 
 <!-- Navigation -->
 <nav>
-  <div style="max-width:1100px;margin:0 auto;width:100%;padding:0 40px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="https://aoyama-nogizaka.com/" class="nav-brand">
-      <div>
-        <div class="nav-brand-jp">青山乃木坂パートナーズ</div>
-        <div class="nav-brand-en">Aoyama Nogizaka Partners</div>
-      </div>
+  <div class="nav-inner" style="max-width:1100px;margin:0 auto;width:100%;padding:0 40px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo" style="display:flex;flex-direction:column;gap:1px;text-decoration:none;">
+      <span class="nav-logo-jp" style="font-family:var(--serif);font-size:.75rem;color:var(--gray);letter-spacing:.1em;">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en" style="font-family:var(--deco);font-size:1rem;color:var(--white);letter-spacing:.08em;">Aoyama Nogizaka Partners</span>
     </a>
     <ul class="nav-links">
       <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
       <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-      <li><a href="/news/" style="color:var(--gold);">ニュース・論考</a></li>
-      <!-- ツールタブ非公開（テスト中）
+      <li><a href="/news/" class="active">ニュース・論考</a></li>
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
@@ -444,8 +441,7 @@
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
         </ul>
       </li>
-      -->
-      <li><button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">ご相談・お問合せ</button></li>
+      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -458,13 +454,11 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
-  <!-- ツールタブ非公開（テスト中）
-  <span class="m-section-label">データ</span>
-  <a href="/activist-dashboard.html" onclick="toggleMenu()" class="m-sub-link">大量保有報告ダッシュボード</a>
-  <a href="/risk-assessment.html" onclick="toggleMenu()" class="m-sub-link">アクティビスト対象評価</a>
-  <a href="/activist-screener.html" onclick="toggleMenu()" class="m-sub-link">スクリーニング・ランキング</a>
-  -->
-  <a href="#contact" onclick="toggleMenu()" class="m-cta">ご相談・お問合せ</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
+  <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
 <!-- Hero -->
@@ -925,23 +919,25 @@
   <div class="footer-inner" style="max-width:1100px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
-        <div class="footer-brand">Aoyama Nogizaka Partners</div>
-        <div style="font-size:.7rem;letter-spacing:.12em;color:var(--gold);margin-top:3px;">青山乃木坂パートナーズ合同会社</div>
+        <div style="font-family:var(--serif);font-size:16px;font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:10px;">青山乃木坂パートナーズ</div>
+        <div style="font-family:var(--deco);font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;">Aoyama Nogizaka Partners</div>
       </div>
       <ul style="list-style:none;display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
         <li><a href="https://aoyama-nogizaka.com/#philosophy" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">企業理念</a></li>
         <li><a href="https://aoyama-nogizaka.com/#services" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">提供サービス</a></li>
         <li><a href="https://aoyama-nogizaka.com/#about" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">会社概要</a></li>
         <li><a href="https://aoyama-nogizaka.com/team" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">チーム</a></li>
-        <li><a href="/news/" style="color:var(--gold);text-decoration:none;font-size:.78rem;">ニュース・論考</a></li>
+        <li><a href="/news/" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">ニュース・論考</a></li>
         <li><a href="/activist-dashboard.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">大量保有報告ダッシュボード</a></li>
         <li><a href="/risk-assessment.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">スクリーニング</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;">個人情報保護方針</a></li>
       </ul>
     </div>
     <div style="padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.72rem;">
-      <span>東京・港区</span>
-      <span>© 2026 青山乃木坂パートナーズ合同会社. All rights reserved. 本論考の無断転載・複製を禁じます。</span>
+      <span style="color:rgba(255,255,255,.4);">〒106-0032 東京都港区六本木7-2-28-602</span>
+      <span>© 2026 Aoyama Nogizaka Partners All rights reserved.</span>
     </div>
   </div>
 </footer>

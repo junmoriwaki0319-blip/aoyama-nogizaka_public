@@ -231,7 +231,7 @@
 
     /* ── Footer ── */
     footer {
-      background: #111d30; color: rgba(255,255,255,.5);
+      background: var(--navy); color: rgba(255,255,255,.5);
       padding: 48px 40px 28px; font-size: .78rem;
     }
     .footer-inner {
@@ -265,7 +265,6 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" class="active">ニュース・論考</a></li>
-      <!-- ツールタブ非公開（テスト中）
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
@@ -274,7 +273,6 @@
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
         </ul>
       </li>
-      -->
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -288,12 +286,10 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
-  <!-- ツールタブ非公開（テスト中）
   <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  -->
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
@@ -346,7 +342,7 @@
   <div class="articles-section">
     <div class="articles-header">
       <h2>すべての記事</h2>
-      <span class="count" id="article-count">3件</span>
+      <span class="count" id="article-count">4件</span>
     </div>
     <div class="articles-grid" id="articles-grid">
 
@@ -399,6 +395,23 @@
         </div>
       </a>
 
+      <!-- Article 04: Activist Screener -->
+      <a href="/activist-screener.html" class="article-card" data-category="dashboard">
+        <div class="article-card-body">
+          <div class="ac-tags">
+            <span class="ac-tag type-dashboard">データ・ダッシュボード</span>
+            <span class="ac-tag">スクリーニング</span>
+            <span class="ac-tag">ランキング</span>
+          </div>
+          <div class="ac-title">アクティビスト・スクリーニング——含み益分析＆複数銘柄一括ランキング</div>
+          <div class="ac-excerpt">含み益・実質PBR分析から複数銘柄の一括スキャンまで。アクティビストが標的としそうな企業を定量的にスクリーニングし、リスクスコアでランキング表示。</div>
+          <div class="ac-footer">
+            <span class="ac-date">March 2026</span>
+            <span class="ac-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
       <!-- Placeholder: coming soon -->
       <div class="article-card coming-soon" data-category="placeholder">
         <div style="font-size:1.5rem;color:var(--gray);">＋</div>
@@ -432,8 +445,8 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-brand">Aoyama Nogizaka Partners</div>
-        <div class="footer-tagline">青山乃木坂パートナーズ合同会社</div>
+        <div class="footer-brand" style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
       </div>
       <ul class="footer-nav">
         <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
@@ -443,12 +456,14 @@
         <li><a href="/news/">ニュース・論考</a></li>
         <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
         <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
-      <span>東京・港区</span>
-      <span>© 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
+      <span>© 2026 Aoyama Nogizaka Partners All rights reserved.</span>
     </div>
   </div>
 </footer>

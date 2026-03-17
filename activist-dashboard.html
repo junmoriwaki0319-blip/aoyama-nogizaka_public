@@ -422,21 +422,21 @@
       <a onclick="openMyPage()" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
       <button class="btn-login" onclick="handleLogout()">ログアウト</button>
     </div>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMobileMenu()">企業理念</a>
-  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMobileMenu()">提供サービス</a>
-  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMobileMenu()">会社概要</a>
-  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMobileMenu()">チーム</a>
-  <a href="/news/" onclick="toggleMobileMenu()">ニュース・論考</a>
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
   <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
-  <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
-  <a href="/risk-assessment.html" onclick="toggleMobileMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
-  <a href="/activist-screener.html" onclick="toggleMobileMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
+  <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
   <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
@@ -781,28 +781,29 @@
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">Aoyama Nogizaka Partners</div>
-      <div class="footer-brand"><span>青山乃木坂パートナーズ合同会社</span></div>
+<footer style="background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:32px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px;">青山乃木坂パートナーズ</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.3em;color:var(--gold-light);text-transform:uppercase;">Aoyama Nogizaka Partners</div>
+      </div>
+      <ul style="display:flex;gap:20px;list-style:none;flex-wrap:wrap;align-items:center;">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">チーム</a></li>
+        <li><a href="/news/" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">スクリーニング</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">個人情報保護方針</a></li>
+      </ul>
     </div>
-    <div class="footer-links">
-      <a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a>
-      <a href="https://aoyama-nogizaka.com/#services">提供サービス</a>
-      <a href="https://aoyama-nogizaka.com/#about">会社概要</a>
-      <a href="https://aoyama-nogizaka.com/team">チーム</a>
-      <a href="/news/">ニュース・論考</a>
-      <a href="/activist-dashboard.html">大量保有報告ダッシュボード</a>
-      <a href="/risk-assessment.html">アクティビスト対象評価</a>
-      <a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a>
-      <a href="/privacy.html">個人情報保護方針</a>
-    </div>
-  </div>
-  <div class="footer-copy">
-    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; max-width:1200px; margin:0 auto; padding:0 40px;">
-      <span>東京・港区</span>
-      <span>&copy; 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
+      <p style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -1555,7 +1556,7 @@ function updateAuthUI(user) {
 }
 
 // ===== NAV =====
-function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
 // ===== UTILS =====
 function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
