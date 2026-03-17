@@ -606,6 +606,8 @@
           <select class="sort-select" id="sortSelect" onchange="applyFilters()">
             <option value="date-desc">報告日（新しい順）</option>
             <option value="date-asc">報告日（古い順）</option>
+            <option value="ratio-desc">保有比率（高い順）</option>
+            <option value="ratio-asc">保有比率（低い順）</option>
           </select>
         </div>
         <div class="export-bar">
@@ -1308,10 +1310,22 @@ function applyFilters() {
     return true;
   });
 
-  if (sortBy === 'date-asc') {
-    filteredReports.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
-  } else {
-    filteredReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  switch (sortBy) {
+    case 'date-asc':
+      filteredReports.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      break;
+    case 'ratio-desc':
+      filteredReports.sort((a, b) => (parseFloat(b.holding_ratio) || 0) - (parseFloat(a.holding_ratio) || 0));
+      break;
+    case 'ratio-asc':
+      filteredReports.sort((a, b) => {
+        const ra = a.holding_ratio != null ? parseFloat(a.holding_ratio) : Infinity;
+        const rb = b.holding_ratio != null ? parseFloat(b.holding_ratio) : Infinity;
+        return ra - rb;
+      });
+      break;
+    default: // date-desc
+      filteredReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   }
 
   renderReportTable();
