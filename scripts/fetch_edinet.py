@@ -530,9 +530,15 @@ def main():
     print(f"既存データ: {len(existing_reports)} 件")
 
     # 対象日付を算出（既存データがあれば増分取得、なければフル取得）
+    # BACKFILL=1 環境変数でフルスキャン強制（過去データ埋め戻し用）
+    backfill = os.environ.get("BACKFILL", "").strip() == "1"
     today = datetime.now(JST).date()
-    scan_days = INCREMENTAL_DAYS if existing_reports else LOOKBACK_DAYS
-    print(f"取得モード: {'増分' if existing_reports else '初回フル'}（{scan_days}日分）")
+    if backfill:
+        scan_days = LOOKBACK_DAYS
+        print(f"取得モード: バックフィル強制（{scan_days}日分）")
+    else:
+        scan_days = INCREMENTAL_DAYS if existing_reports else LOOKBACK_DAYS
+        print(f"取得モード: {'増分' if existing_reports else '初回フル'}（{scan_days}日分）")
     dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(scan_days)]
 
     new_reports = []

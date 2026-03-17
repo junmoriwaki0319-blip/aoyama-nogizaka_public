@@ -8,7 +8,13 @@ on:
     - cron: '0 7 * * *'
     # JST 19:00 = UTC 10:00
     - cron: '0 10 * * *'
-  workflow_dispatch:  # 手動実行も可能
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: 'バックフィル実行（過去540日分を取得）'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -16,6 +22,7 @@ permissions:
 jobs:
   fetch-edinet:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,6 +38,7 @@ jobs:
       - name: Fetch EDINET data
         env:
           EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+          BACKFILL: ${{ github.event.inputs.backfill == 'true' && '1' || '' }}
         run: python scripts/fetch_edinet.py
 
       - name: Commit and push
