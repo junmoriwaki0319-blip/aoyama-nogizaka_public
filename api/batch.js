@@ -1,4 +1,19 @@
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
+
+// EDINETキャッシュ読み込み（起動時に1回）
+let edinetCache = {};
+try {
+  const cachePath = path.join(__dirname, '..', 'data', 'edinet-financials.json');
+  if (fs.existsSync(cachePath)) {
+    const raw = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+    edinetCache = raw.companies || {};
+    console.log(`EDINET cache loaded: ${Object.keys(edinetCache).length} companies`);
+  }
+} catch (e) {
+  console.warn('EDINET cache load failed:', e.message);
+}
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,6 +48,8 @@ async function fetchStock(code) {
   const [kb, yf] = await Promise.allSettled([fetchKabutan(code), fetchYFChart(code)]);
   const k = kb.status === 'fulfilled' ? kb.value : {};
   const y = yf.status === 'fulfilled' ? yf.value : {};
+  const ec = edinetCache[code] || {};
+
   return {
     code,
     companyName: k.companyName || y.companyName || '',
@@ -43,6 +60,17 @@ async function fetchStock(code) {
     equityRatio: k.equityRatio || null,
     marketCapOku: k.marketCapOku || null, sharesIssued: k.sharesIssued || null,
     market: k.market || null, sector: k.sector || null,
+    // EDINETキャッシュからの含み益・土地データ
+    land: ec.land || null,
+    estimatedLandGain: ec.estimatedLandGain || null,
+    landGainMethod: ec.landGainMethod || null,
+    securitiesGain: (ec.securitiesMarketValue && ec.securitiesBookValue)
+      ? ec.securitiesMarketValue - ec.securitiesBookValue : null,
+    investmentPropertyGain: (ec.investmentPropertyFairValue && ec.investmentPropertyBookValue)
+      ? ec.investmentPropertyFairValue - ec.investmentPropertyBookValue : null,
+    netAssets: ec.netAssets || ec.shareholdersEquity || null,
+    cashAndDeposits: ec.cashAndDeposits || null,
+    hasEdinetData: !!ec.land || !!ec.cashAndDeposits,
   };
 }
 

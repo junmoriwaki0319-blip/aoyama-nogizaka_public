@@ -434,11 +434,12 @@
         </div>
 
         <!-- バフェットコード風カテゴリタブ -->
-        <div class="rank-view-tabs" style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid var(--mid-gray);">
+        <div class="rank-view-tabs" style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid var(--mid-gray); overflow-x:auto;">
           <button class="rank-view-tab active" onclick="switchRankView('overview')">概要</button>
           <button class="rank-view-tab" onclick="switchRankView('valuation')">バリュエーション</button>
           <button class="rank-view-tab" onclick="switchRankView('dividend')">配当・還元</button>
           <button class="rank-view-tab" onclick="switchRankView('financial')">財務健全性</button>
+          <button class="rank-view-tab" onclick="switchRankView('assets')">含み益・資産</button>
         </div>
 
         <!-- 概要ビュー -->
@@ -522,6 +523,29 @@
                 <th onclick="sortRanking('mcapCat')">区分</th>
               </tr></thead>
               <tbody id="rankTableBody-financial"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 含み益・資産ビュー -->
+        <div class="rank-view" id="rankView-assets">
+          <p style="font-size:.7rem; color:var(--text-light); margin-bottom:10px;">EDINETキャッシュがある銘柄のみ含み益データが表示されます（週次更新）</p>
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('land')">土地簿価</th>
+                <th onclick="sortRanking('landGain')">推定土地含み益</th>
+                <th onclick="sortRanking('secGain')">有価証券含み益</th>
+                <th onclick="sortRanking('ipGain')">投資不動産含み益</th>
+                <th onclick="sortRanking('totalGain')">含み益合計</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-assets"></tbody>
             </table>
           </div>
         </div>

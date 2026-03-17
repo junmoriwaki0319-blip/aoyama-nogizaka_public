@@ -77,9 +77,9 @@ async function handleResendVerify(){var m=document.getElementById("myPageMsg");t
 function exportCSV(){
   if(!window.currentUser){alert("CSV出力は会員限定機能です。ログインしてください。");return}
   if(rankResults.length===0){alert("データがありません");return}
-  var hd=["順位","コード","銘柄名","スコア","PBR","PER","ROE(%)","配当利回り(%)","配当性向(%)","自己資本比率(%)","時価総額(億円)","市場","セクター"];
+  var hd=["順位","コード","銘柄名","スコア","PBR","PER","ROE(%)","配当利回り(%)","配当性向(%)","自己資本比率(%)","時価総額(億円)","市場","セクター","土地簿価(百万円)","推定土地含み益(百万円)","有価証券含み益(百万円)","投資不動産含み益(百万円)","含み益合計(百万円)"];
   var sr=rankResults.slice().sort(function(a,b){return(b.score||0)-(a.score||0)});
-  var rows=sr.map(function(d,i){return[i+1,d.code,d.companyName||"",d.score||"",d.pbr!=null?d.pbr.toFixed(2):"",d.per!=null?d.per.toFixed(1):"",d.roe!=null?d.roe.toFixed(1):"",d.dividendYield!=null?d.dividendYield.toFixed(2):"",d.payoutRatio!=null?d.payoutRatio.toFixed(1):"",d.equityRatio!=null?d.equityRatio.toFixed(1):"",d.marketCapOku!=null?d.marketCapOku:"",d.market||"",d.sector||""]});
+  var rows=sr.map(function(d,i){var tg=(d.estimatedLandGain||0)+(d.securitiesGain||0)+(d.investmentPropertyGain||0);return[i+1,d.code,d.companyName||"",d.score||"",d.pbr!=null?d.pbr.toFixed(2):"",d.per!=null?d.per.toFixed(1):"",d.roe!=null?d.roe.toFixed(1):"",d.dividendYield!=null?d.dividendYield.toFixed(2):"",d.payoutRatio!=null?d.payoutRatio.toFixed(1):"",d.equityRatio!=null?d.equityRatio.toFixed(1):"",d.marketCapOku!=null?d.marketCapOku:"",d.market||"",d.sector||"",d.land!=null?d.land:"",d.estimatedLandGain!=null?d.estimatedLandGain:"",d.securitiesGain!=null?d.securitiesGain:"",d.investmentPropertyGain!=null?d.investmentPropertyGain:"",d.hasEdinetData?tg:""]});
   var bom="﻿";
   var csv=bom+[hd].concat(rows).map(function(r){return r.map(function(v){return String.fromCharCode(34)+String(v).replace(/"/g,String.fromCharCode(34,34))+String.fromCharCode(34)}).join(",")}).join("\n");
   var blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
@@ -722,6 +722,33 @@ function filterAndDisplayRanking() {
     </tr>`;
   });
 
+  // ── 含み益・資産ビュー ──
+  const tbodyAssets = document.getElementById('rankTableBody-assets');
+  tbodyAssets.innerHTML = '';
+  filtered.forEach((d, i) => {
+    const rank = i + 1;
+    const rankCls = rank <= 3 ? `rank-${rank}` : 'rank-other';
+    const pbrCls = d.pbr != null && d.pbr < 1.0 ? 'style="color:var(--danger);font-weight:700;"' : '';
+    const totalGain = (d.estimatedLandGain || 0) + (d.securitiesGain || 0) + (d.investmentPropertyGain || 0);
+    const hasData = d.hasEdinetData;
+    const fmtM = v => v != null ? Math.round(v).toLocaleString() : '-';
+    const gainColor = v => v != null && v > 0 ? 'style="color:var(--green);font-weight:600;"' : v != null && v < 0 ? 'style="color:var(--danger);"' : '';
+
+    tbodyAssets.innerHTML += `<tr style="${!hasData ? 'opacity:0.5;' : ''}">
+      <td><span class="rank-badge ${rankCls}">${rank}</span></td>
+      <td>${d.code}</td>
+      <td class="name-cell" style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td style="font-weight:700;color:${d.score >= 60 ? 'var(--danger)' : d.score >= 40 ? 'var(--orange)' : 'var(--green)'};">${d.score || '-'}</td>
+      <td ${pbrCls}>${d.pbr != null ? d.pbr.toFixed(2) : '-'}</td>
+      <td>${d.land != null ? fmtM(d.land) : '-'}</td>
+      <td ${gainColor(d.estimatedLandGain)}>${d.estimatedLandGain != null ? fmtM(d.estimatedLandGain) : '-'}</td>
+      <td ${gainColor(d.securitiesGain)}>${d.securitiesGain != null ? fmtM(d.securitiesGain) : '-'}</td>
+      <td ${gainColor(d.investmentPropertyGain)}>${d.investmentPropertyGain != null ? fmtM(d.investmentPropertyGain) : '-'}</td>
+      <td ${gainColor(totalGain > 0 ? totalGain : null)}>${hasData ? fmtM(totalGain) : '-'}</td>
+      <td>${d.marketCapOku != null ? d.marketCapOku.toLocaleString() + '億' : '-'}</td>
+    </tr>`;
+  });
+
   document.getElementById('rankResultCount').textContent = filtered.length + '件';
   document.getElementById('rankResult').classList.remove('hidden');
 }
@@ -752,6 +779,12 @@ function sortRanking(col) {
       case 'equity': va = a.equityRatio || 0; vb = b.equityRatio || 0; break;
       case 'mcap': va = a.marketCapOku || 0; vb = b.marketCapOku || 0; break;
       case 'mcapCat': va = a.marketCapOku || 0; vb = b.marketCapOku || 0; break;
+      case 'land': va = a.land || 0; vb = b.land || 0; break;
+      case 'landGain': va = a.estimatedLandGain || 0; vb = b.estimatedLandGain || 0; break;
+      case 'secGain': va = a.securitiesGain || 0; vb = b.securitiesGain || 0; break;
+      case 'ipGain': va = a.investmentPropertyGain || 0; vb = b.investmentPropertyGain || 0; break;
+      case 'totalGain': va = (a.estimatedLandGain||0)+(a.securitiesGain||0)+(a.investmentPropertyGain||0); vb = (b.estimatedLandGain||0)+(b.securitiesGain||0)+(b.investmentPropertyGain||0); break;
+      case 'sector': va = a.sector || ''; vb = b.sector || ''; break;
       default: va = a.score || 0; vb = b.score || 0;
     }
     if (typeof va === 'string') return currentSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
