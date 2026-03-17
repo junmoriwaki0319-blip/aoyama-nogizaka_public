@@ -3,12 +3,16 @@
   "functions": {
     "api/edinet/**/*.js": {
       "maxDuration": 60
+    },
+    "api/stock-prices.js": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
     { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" },
     { "source": "/api/stock/:code", "destination": "/api/stock/:code" },
     { "source": "/api/batch", "destination": "/api/batch" },
+    { "source": "/api/stock-prices", "destination": "/api/stock-prices" },
     { "source": "/api/edinet/search/:code", "destination": "/api/edinet/search/:code" },
     { "source": "/api/edinet/xbrl/:docID", "destination": "/api/edinet/xbrl/:docID" },
     { "source": "/api/edinet/land-parcels/:docID", "destination": "/api/edinet/land-parcels/:docID" }

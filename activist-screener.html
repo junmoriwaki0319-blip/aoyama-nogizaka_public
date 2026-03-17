@@ -411,34 +411,65 @@
       </div>
 
       <!-- 政策保有株式セクション -->
+      <!-- 政策保有株式セクション -->
       <div class="s-card" id="policyHoldingsSection" style="display:none;">
-        <div class="s-card-title">政策保有株式分析 <span class="info-tip" data-tip="有価証券報告書の「特定投資株式」から政策保有株式の貸借対照表計上額（時価）を抽出します">?</span></div>
-        <div id="policyHoldingsResult">
-          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
-            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
-              <div style="font-size:.72rem;color:var(--text-light);">保有銘柄数</div>
-              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_count">-</div>
-            </div>
-            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
-              <div style="font-size:.72rem;color:var(--text-light);">時価合計（百万円）</div>
-              <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="ph_total">-</div>
-            </div>
+        <div class="s-card-title">政策保有株式分析 <span class="info-tip" data-tip="有価証券報告書の「特定投資株式」から保有銘柄・株式数・BS計上額を抽出し、Yahoo Financeの株価で現在時価と含み益を推計します">?</span></div>
+
+        <!-- サマリーカード -->
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">保有銘柄数</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_count">-</div>
           </div>
-          <div style="overflow-x:auto;">
-            <table style="font-size:.78rem;">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>銘柄</th>
-                  <th style="text-align:right;">貸借対照表計上額（百万円）</th>
-                </tr>
-              </thead>
-              <tbody id="policyHoldingsBody"></tbody>
-            </table>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">報告書時価合計</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_report_total">-</div>
           </div>
-          <div style="margin-top:12px;">
-            <button class="btn-secondary" onclick="applyPolicyHoldingsGain()" style="font-size:.76rem;">この時価を有価証券含み益に反映</button>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">現在推定時価合計</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="ph_current_total">-</div>
           </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">推定含み益</div>
+            <div style="font-size:1.3rem;font-weight:700;" id="ph_gain">-</div>
+          </div>
+        </div>
+
+        <!-- 株価取得コントロール -->
+        <div class="btn-row" style="margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <label style="font-size:.76rem;color:var(--text-light);">株価基準:</label>
+          <select id="phPriceBasis" onchange="if(phPriceData){var e=indData.edinet||{};renderPolicyHoldingsTable(e.policyHoldingsTop,phPriceData);updatePolicyHoldingsSummary(e.policyHoldingsTop,phPriceData);}" style="font-size:.76rem;padding:4px 8px;border:1px solid #ccc;border-radius:4px;">
+            <option value="lastClose">前日終値</option>
+            <option value="avg3m">3ヶ月平均</option>
+            <option value="avg6m">6ヶ月平均</option>
+            <option value="avg12m">12ヶ月平均</option>
+          </select>
+          <button class="btn-primary" id="btnFetchStockPrices" onclick="fetchPolicyHoldingsPrices()" style="background:var(--gold);font-size:.78rem;">
+            株価取得・含み益計算
+          </button>
+        </div>
+        <div class="loading" id="phLoading" style="display:none;"><div class="spinner"></div><span id="phLoadingText">株価を取得中...</span></div>
+
+        <!-- 明細テーブル -->
+        <div style="overflow-x:auto;">
+          <table style="font-size:.75rem;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>銘柄</th>
+                <th>ティッカー</th>
+                <th style="text-align:right;">株式数</th>
+                <th style="text-align:right;">BS計上額（百万円）</th>
+                <th style="text-align:right;">現在株価</th>
+                <th style="text-align:right;">現在時価（百万円）</th>
+                <th style="text-align:right;">含み益（百万円）</th>
+              </tr>
+            </thead>
+            <tbody id="policyHoldingsBody"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="applyPolicyHoldingsGain()" style="font-size:.76rem;">この推定値を有価証券含み益に反映</button>
         </div>
       </div>
 

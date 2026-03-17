@@ -241,14 +241,10 @@ function calculateAndDisplay() {
   if (phSection && e.policyHoldingsMarketValue != null && e.policyHoldingsTop) {
     phSection.style.display = '';
     document.getElementById('ph_count').textContent = e.policyHoldingsCount;
-    document.getElementById('ph_total').textContent = Math.round(e.policyHoldingsMarketValue).toLocaleString();
-    var phBody = document.getElementById('policyHoldingsBody');
-    phBody.innerHTML = '';
-    e.policyHoldingsTop.forEach(function(h, i) {
-      var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + h.name + '</td><td style="text-align:right;">' + Math.round(h.marketValue).toLocaleString() + '</td>';
-      phBody.appendChild(tr);
-    });
+    document.getElementById('ph_report_total').textContent = Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円';
+    document.getElementById('ph_current_total').textContent = '-';
+    document.getElementById('ph_gain').textContent = '-';
+    renderPolicyHoldingsTable(e.policyHoldingsTop, null);
   } else if (phSection) {
     phSection.style.display = 'none';
   }
@@ -593,24 +589,128 @@ function applyLandGainEstimate() {
   alert('土地含み益推定値 ' + Math.round(landParcelsData.totalEstimatedGain).toLocaleString() + ' 百万円を反映しました');
 }
 
-function applyPolicyHoldingsGain() {
+// ═══════════════════════════════════════════════════════════════
+// 政策保有株式 - 株価取得・含み益計算
+// ═══════════════════════════════════════════════════════════════
+var phPriceData = null; // 株価取得結果を保持
+
+function renderPolicyHoldingsTable(holdings, prices) {
+  var body = document.getElementById('policyHoldingsBody');
+  body.innerHTML = '';
+  var basis = document.getElementById('phPriceBasis') ? document.getElementById('phPriceBasis').value : 'lastClose';
+
+  holdings.forEach(function(h, i) {
+    var tr = document.createElement('tr');
+    var priceInfo = prices ? prices.find(function(p) { return p.name === h.name; }) : null;
+    var price = priceInfo ? priceInfo[basis] : null;
+    var currentVal = (price && h.shares) ? h.shares * price / 1000000 : null;
+    var gain = currentVal != null ? currentVal - h.marketValue : null;
+
+    tr.innerHTML = '<td>' + (i+1) + '</td>'
+      + '<td>' + h.name + '</td>'
+      + '<td>' + (priceInfo && priceInfo.ticker ? priceInfo.ticker : '-') + '</td>'
+      + '<td style="text-align:right;">' + (h.shares ? Math.round(h.shares).toLocaleString() : '-') + '</td>'
+      + '<td style="text-align:right;">' + Math.round(h.marketValue).toLocaleString() + '</td>'
+      + '<td style="text-align:right;">' + (price ? price.toLocaleString(undefined, {maximumFractionDigits:1}) : '-') + '</td>'
+      + '<td style="text-align:right;">' + (currentVal != null ? Math.round(currentVal).toLocaleString() : '-') + '</td>'
+      + '<td style="text-align:right;color:' + (gain > 0 ? 'var(--green)' : gain < 0 ? '#c0392b' : '') + ';">'
+        + (gain != null ? (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() : '-') + '</td>';
+    body.appendChild(tr);
+  });
+}
+
+function updatePolicyHoldingsSummary(holdings, prices) {
+  var basis = document.getElementById('phPriceBasis').value;
+  var totalCurrent = 0;
+  var totalReport = 0;
+  var counted = 0;
+
+  holdings.forEach(function(h) {
+    totalReport += h.marketValue;
+    var priceInfo = prices ? prices.find(function(p) { return p.name === h.name; }) : null;
+    var price = priceInfo ? priceInfo[basis] : null;
+    if (price && h.shares) {
+      totalCurrent += h.shares * price / 1000000;
+      counted++;
+    }
+  });
+
+  document.getElementById('ph_current_total').textContent = counted > 0 ? Math.round(totalCurrent).toLocaleString() + ' 百万円' : '-';
+  var gainEl = document.getElementById('ph_gain');
+  if (counted > 0) {
+    var gain = totalCurrent - totalReport;
+    gainEl.textContent = (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() + ' 百万円';
+    gainEl.style.color = gain > 0 ? 'var(--green)' : '#c0392b';
+  } else {
+    gainEl.textContent = '-';
+    gainEl.style.color = '';
+  }
+}
+
+async function fetchPolicyHoldingsPrices() {
   var e = indData.edinet || {};
-  if (e.policyHoldingsMarketValue == null) {
+  if (!e.policyHoldingsTop || e.policyHoldingsTop.length === 0) {
     alert('政策保有株式データがありません');
     return;
   }
-  // 政策保有株式の時価合計を有価証券含み益として反映
-  // 投資有価証券（BS計上額）との差分を含み益とする
-  var investSec = e.investmentSecurities || 0;
-  var gain = e.policyHoldingsMarketValue;
-  if (investSec > 0 && investSec < gain * 3) {
-    // 投資有価証券BS額がある場合、含み益 = 政策保有時価 - 投資有価証券簿価として概算
-    // ただし投資有価証券には政策保有以外も含まれるため保守的に見る
-    gain = e.policyHoldingsMarketValue; // 時価そのものをセット（簿価は別途あれば差引）
+
+  var loading = document.getElementById('phLoading');
+  var btn = document.getElementById('btnFetchStockPrices');
+  loading.style.display = '';
+  btn.disabled = true;
+
+  try {
+    var resp = await fetch(API_BASE + '/api/stock-prices', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ holdings: e.policyHoldingsTop })
+    });
+    var data = await resp.json();
+    if (!data.success) throw new Error(data.error || 'API error');
+
+    phPriceData = data.results;
+    renderPolicyHoldingsTable(e.policyHoldingsTop, phPriceData);
+    updatePolicyHoldingsSummary(e.policyHoldingsTop, phPriceData);
+  } catch (err) {
+    alert('株価取得エラー: ' + err.message);
+  } finally {
+    loading.style.display = 'none';
+    btn.disabled = false;
   }
-  document.getElementById('manual_sec_gain').value = Math.round(gain);
-  recalcIndividual();
-  alert('政策保有株式時価 ' + Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円を有価証券含み益に反映しました');
+}
+
+function applyPolicyHoldingsGain() {
+  var e = indData.edinet || {};
+  if (!e.policyHoldingsTop) {
+    alert('政策保有株式データがありません');
+    return;
+  }
+
+  // 株価取得済みの場合は現在時価ベースで含み益を計算
+  if (phPriceData) {
+    var basis = document.getElementById('phPriceBasis').value;
+    var totalCurrent = 0;
+    var totalReport = 0;
+    e.policyHoldingsTop.forEach(function(h) {
+      totalReport += h.marketValue;
+      var priceInfo = phPriceData.find(function(p) { return p.name === h.name; });
+      var price = priceInfo ? priceInfo[basis] : null;
+      if (price && h.shares) {
+        totalCurrent += h.shares * price / 1000000;
+      } else {
+        totalCurrent += h.marketValue; // 株価不明分は報告書額を使用
+      }
+    });
+    var gain = totalCurrent - totalReport;
+    document.getElementById('manual_sec_gain').value = Math.round(gain);
+    recalcIndividual();
+    alert('推定含み益 ' + (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() + ' 百万円を反映しました（' + basis + '基準）');
+  } else {
+    // 株価未取得の場合は報告書の時価合計をそのまま反映
+    document.getElementById('manual_sec_gain').value = Math.round(e.policyHoldingsMarketValue);
+    recalcIndividual();
+    alert('報告書時価合計 ' + Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円を反映しました');
+  }
 }
 
 // Google Maps連携は将来の有料化時に追加予定

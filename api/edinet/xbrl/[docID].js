@@ -350,10 +350,12 @@ function parsePolicyHoldings(html, data) {
       const name = nameCells[0].replace(/[\s\u3000]/g, '');
       if (!name || /^[\d,.\-]+$/.test(name)) break; // 数値のみなら銘柄名ではない
 
+      // 株式数（当事業年度）は nameCells[1]
+      const shares = parseFloat((nameCells[1] || '').replace(/[△▲\-−]/g, '-'));
       // BS計上額（当事業年度）は valueCells[0]
       const bsValue = parseFloat((valueCells[0] || '').replace(/[△▲\-−]/g, '-'));
       if (!isNaN(bsValue) && bsValue > 0) {
-        holdings.push({ name, marketValue: bsValue });
+        holdings.push({ name, shares: isNaN(shares) ? null : shares, marketValue: bsValue });
         totalMarketValue += bsValue;
       }
     }
@@ -381,10 +383,7 @@ function parsePolicyHoldings(html, data) {
           }
           // 当事業年度のBS計上額（通常は株式数の次）
           if (nums.length >= 2) {
-            // nums[0]=株式数(当期), nums[1]=BS計上額(当期) or nums[1]=株式数(前期)...
-            // ヘッダーで位置特定が難しいので、最小値をBS計上額と仮定
-            // ただし株式数 >> BS計上額が通常なので、2番目の数値を使う
-            holdings.push({ name, marketValue: nums[1] });
+            holdings.push({ name, shares: nums[0], marketValue: nums[1] });
             totalMarketValue += nums[1];
           }
           break;
@@ -397,11 +396,11 @@ function parsePolicyHoldings(html, data) {
     data._policyHoldingsParsed = true;
     data.policyHoldingsCount = holdings.length;
     data.policyHoldingsMarketValue = totalMarketValue;
-    // 上位10銘柄を記録
+    // 上位20銘柄を記録（株式数含む）
     data.policyHoldingsTop = holdings
       .sort((a, b) => b.marketValue - a.marketValue)
-      .slice(0, 10)
-      .map(h => ({ name: h.name, marketValue: h.marketValue }));
+      .slice(0, 20)
+      .map(h => ({ name: h.name, shares: h.shares, marketValue: h.marketValue }));
 
     // securitiesMarketValue が未設定の場合、政策保有株式の合計を設定
     if (data.securitiesMarketValue == null) {
