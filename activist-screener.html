@@ -282,15 +282,7 @@
         <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
           <a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録してAPIキーを取得できます
         </p>
-        <div class="form-grid" style="margin-top:8px;">
-          <div class="form-field">
-            <label>Google Maps APIキー（任意・地図表示用）</label>
-            <input type="text" id="googleMapsApiKey" placeholder="AIza...（月$200無料枠あり）">
-          </div>
-        </div>
-        <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
-          <a href="https://console.cloud.google.com/" target="_blank" style="color:var(--gold);">Google Cloud Console</a>でMaps JavaScript API &amp; Geocoding APIを有効化（月$200分無料）
-        </p>
+        <!-- Google Maps連携は将来の有料化時に追加予定 -->
       </details>
       <div class="btn-row">
         <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
@@ -394,11 +386,6 @@
           </div>
           <div id="land_gain_method_detail" style="font-size:.7rem;color:var(--text-light);margin-bottom:12px;"></div>
 
-          <!-- Google Maps 表示エリア -->
-          <div id="landMapContainer" style="display:none;margin-bottom:16px;">
-            <div id="landMap" style="width:100%;height:400px;border-radius:8px;border:1px solid var(--border);"></div>
-          </div>
-
           <!-- 土地明細テーブル -->
           <div style="overflow-x:auto;">
             <table style="font-size:.78rem;">
@@ -419,9 +406,7 @@
           </div>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
             <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
-            <button class="btn-secondary" id="btnShowMap" onclick="toggleLandMap()" style="font-size:.76rem;display:none;">
-              <span style="margin-right:4px;">&#x1f5fa;</span>地図表示
-            </button>
+            <!-- 地図表示ボタンは将来の有料化時に追加予定 -->
           </div>
         </div>
       </div>
@@ -712,30 +697,7 @@
   </div>
 </footer>
 
-<!-- Google Maps API (無料枠: 月$200クレジット) -->
-<script>
-  // Google Maps APIは遅延ロード（土地明細分析時のみ）
-  var _gmapsLoaded = false;
-  function loadGoogleMaps(callback) {
-    if (_gmapsLoaded) { callback(); return; }
-    // 注: 本番環境ではGoogle Cloud ConsoleでAPIキーを取得し制限を設定してください
-    // Maps JavaScript API + Geocoding API を有効化
-    var gmapsKey = localStorage.getItem('googleMapsApiKey') || '';
-    if (!gmapsKey) {
-      // APIキーなしでもGeocoding APIなしで動作可能（地図表示のみ制限）
-      console.warn('Google Maps APIキーが設定されていません。地図機能が制限されます。');
-      callback();
-      return;
-    }
-    var s = document.createElement('script');
-    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + gmapsKey + '&callback=_gmapsReady&libraries=marker';
-    s.async = true;
-    s.defer = true;
-    window._gmapsReady = function() { _gmapsLoaded = true; callback(); };
-    window._gmapsCallback = callback;
-    document.head.appendChild(s);
-  }
-</script>
+<!-- Google Maps連携は将来の有料化時に追加予定 -->
 <script src="/js/screener.js"></script>
 </body>
 </html>
