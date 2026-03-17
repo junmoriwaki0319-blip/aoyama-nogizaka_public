@@ -225,6 +225,18 @@ function calculateAndDisplay() {
     setMetric('m_nc_ratio', ncRatio, '%', v => v.toFixed(1), v => v > 30 ? 'negative' : v > 10 ? 'warning' : 'positive');
   }
 
+  // 実質NC（NC＋有価証券時価）
+  const secMV = e.policyHoldingsMarketValue || e.securitiesMarketValue || 0;
+  if (e.cashAndDeposits != null && secMV > 0) {
+    const adjNetCash = netCash + secMV;
+    setMetric('m_adj_netcash', adjNetCash, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
+    if (d.marketCapOku) {
+      const adjNcRatio = adjNetCash / (d.marketCapOku * 100) * 100;
+      indData._adjNcRatio = adjNcRatio;
+      setMetric('m_adj_nc_ratio', adjNcRatio, '%', v => v.toFixed(1), v => v > 30 ? 'negative' : v > 10 ? 'warning' : 'positive');
+    }
+  }
+
   // 自己資本比率
   setMetric('m_equity_ratio', d.equityRatio, '%');
 
@@ -372,6 +384,9 @@ const SCORE_CRITERIA = [
   { key: 'ncRatio', name: 'ネットキャッシュ/時価総額', max: 12, unit: '%',
     val: () => indData._ncRatio,
     fn: v => v > 50 ? 12 : v > 30 ? 10 : v > 20 ? 7 : v > 10 ? 4 : 1 },
+  { key: 'adjNcRatio', name: '実質NC/時価総額', max: 10, unit: '%',
+    val: () => indData._adjNcRatio,
+    fn: v => v > 80 ? 10 : v > 50 ? 8 : v > 30 ? 6 : v > 15 ? 3 : 1 },
   { key: 'equity', name: '自己資本比率', max: 8, unit: '%',
     val: () => indData.equityRatio,
     fn: v => v > 80 ? 8 : v > 70 ? 6 : v > 60 ? 4 : v > 50 ? 2 : 1 },
@@ -469,7 +484,7 @@ function resetIndividual() {
   document.getElementById('m_land_gain_method').style.display = 'none';
   ['m_price','m_pbr','m_per','m_roe','m_eps','m_bps','m_divyield','m_payout',
    'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_gain','m_land_bv','m_land_gain','m_total_gain',
-   'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio',
+   'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio','m_adj_netcash','m_adj_nc_ratio',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
     .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '-'; });
   // 土地明細セクションをリセット
