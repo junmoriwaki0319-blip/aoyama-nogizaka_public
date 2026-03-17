@@ -187,7 +187,7 @@
     .cta-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
     /* FOOTER */
-    footer { background: #111d30; color: rgba(255,255,255,0.5); padding: 48px 40px 28px; font-size: 0.78rem; margin-top: 60px; }
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 48px 40px 28px; font-size: 0.78rem; margin-top: 60px; }
     .footer-inner { max-width: 1100px; margin: 0 auto; }
     .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
@@ -396,8 +396,8 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-brand">Aoyama Nogizaka Partners</div>
-        <div class="footer-tagline">青山乃木坂パートナーズ合同会社</div>
+        <div class="footer-brand" style="font-family:var(--serif);font-size:16px;font-weight:300;">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
       </div>
       <ul class="footer-nav">
         <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
@@ -407,12 +407,14 @@
         <li><a href="/news/">ニュース・論考</a></li>
         <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
         <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
-      <span>東京・港区</span>
-      <span>&copy; 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
+      <span>&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</span>
     </div>
   </div>
 </footer>
@@ -444,7 +446,7 @@ let _stockData = { price: null, sharesIssued: null, companyName: '' };
 
 /* ===== STOCK DATA FETCH ===== */
 async function fetchStockData() {
-  const code = document.getElementById('stockCode').value.trim();
+  const code = document.getElementById('stockCode').value.trim().toUpperCase();
   const info = document.getElementById('stockInfo');
   const btn = document.getElementById('btnFetch');
 
@@ -469,9 +471,14 @@ async function fetchStockData() {
         const apiUrl = API_BASE + '/api/yahoo/' + code;
         const resp = await fetch(apiUrl, { signal: AbortSignal.timeout(10000) });
         if (resp.ok) {
-          const json = await resp.json();
-          if (json.success && json.data) {
-            data = mapApiData(json.data);
+          const text = await resp.text();
+          try {
+            const json = JSON.parse(text);
+            if (json.success && json.data) {
+              data = mapApiData(json.data);
+            }
+          } catch (parseErr) {
+            console.log('API response was not JSON');
           }
         }
       } catch (e) {

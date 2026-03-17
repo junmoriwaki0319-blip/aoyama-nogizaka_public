@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
   if (req.method !== 'POST') { return res.status(405).json({ error: 'POST only' }); }
 
-  const codes = req.body?.codes;
+  const codes = req.body?.codes?.map(c => typeof c === 'string' ? c.toUpperCase() : c);
   if (!Array.isArray(codes) || codes.length === 0) {
     return res.json({ success: false, error: '銘柄コードの配列が必要です' });
   }

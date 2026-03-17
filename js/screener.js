@@ -105,7 +105,7 @@ function switchTab(tabId) {
 let indData = {}; // 取得データ保持
 
 async function fetchIndividual() {
-  const code = document.getElementById('indCode').value.trim();
+  const code = document.getElementById('indCode').value.trim().toUpperCase();
   if (!/^[0-9A-Za-z]{4}$/.test(code)) { alert('4桁の証券コードを入力してください（例: 7203, 166A）'); return; }
 
   const btn = document.getElementById('btnIndFetch');
@@ -120,11 +120,22 @@ async function fetchIndividual() {
     // Yahoo Finance取得
     loadingText.textContent = 'kabutan + Yahoo Finance からデータ取得中...';
     const yRes = await fetch(API_BASE+'/api/stock/' + code);
-    const y = await yRes.json();
-    if (y.success && y.data) {
-      Object.assign(indData, y.data);
+    if (!yRes.ok) {
+      console.warn('Stock API returned status:', yRes.status);
+      alert('データ取得に失敗しました（HTTPステータス: ' + yRes.status + '）');
     } else {
-      alert('Yahoo Finance: ' + (y.error || '取得失敗'));
+      const yText = await yRes.text();
+      try {
+        const y = JSON.parse(yText);
+        if (y.success && y.data) {
+          Object.assign(indData, y.data);
+        } else {
+          alert('データ取得: ' + (y.error || '取得失敗'));
+        }
+      } catch (parseErr) {
+        console.warn('API response was not JSON:', yText.substring(0, 200));
+        alert('APIからの応答を解析できませんでした。しばらく待ってから再度お試しください。');
+      }
     }
 
     // EDINET取得（任意）
@@ -443,7 +454,7 @@ async function startRankingScan() {
   const text = document.getElementById('rankCodes').value.trim();
   if (!text) { alert('銘柄コードを入力してください'); return; }
 
-  const codes = text.split(/[,\s\n]+/).map(c => c.trim()).filter(c => /^[0-9A-Za-z]{4}$/.test(c));
+  const codes = text.split(/[,\s\n]+/).map(c => c.trim().toUpperCase()).filter(c => /^[0-9A-Za-z]{4}$/.test(c));
   if (codes.length === 0) { alert('有効な4桁コードが見つかりません（例: 7203, 166A）'); return; }
   if (codes.length > 100) { alert('最大100銘柄まで'); return; }
 
