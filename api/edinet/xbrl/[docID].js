@@ -275,8 +275,8 @@ function parsePolicyHoldings(html, data) {
   const idx = html.indexOf('特定投資株式');
   if (idx === -1) return;
 
-  // 特定投資株式の後の最初のテーブルを取得
-  const afterSection = html.substring(idx, Math.min(html.length, idx + 80000));
+  // 特定投資株式の後の最初のテーブルを取得（大企業は120KB超のテーブルがある）
+  const afterSection = html.substring(idx, Math.min(html.length, idx + 300000));
   const tableMatch = afterSection.match(/<table[\s\S]*?<\/table>/i);
   if (!tableMatch) return;
 

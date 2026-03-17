@@ -317,7 +317,6 @@
           <div class="metric-row"><span class="metric-label">時価総額区分</span><span id="m_mcap_cat">-</span></div>
           <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
           <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
-          <div id="m_policy_holdings" style="font-size:.66rem;color:var(--text-light);padding:2px 0 4px;display:none;"></div>
           <div class="metric-row"><span class="metric-label">投資不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
           <div class="metric-row"><span class="metric-label">土地（簿価）<span class="info-tip" data-tip="BSの有形固定資産に含まれる土地の帳簿価額">?</span></span><span class="metric-value" id="m_land_bv">-</span></div>
           <div class="metric-row"><span class="metric-label">推定土地含み益 <span class="info-tip" data-tip="投資不動産の時価/簿価比率等から推定">?</span></span><span class="metric-value highlight" id="m_land_gain">-</span></div>
@@ -407,6 +406,38 @@
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
             <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
             <!-- 地図表示ボタンは将来の有料化時に追加予定 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 政策保有株式セクション -->
+      <div class="s-card" id="policyHoldingsSection" style="display:none;">
+        <div class="s-card-title">政策保有株式分析 <span class="info-tip" data-tip="有価証券報告書の「特定投資株式」から政策保有株式の貸借対照表計上額（時価）を抽出します">?</span></div>
+        <div id="policyHoldingsResult">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">保有銘柄数</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_count">-</div>
+            </div>
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">時価合計（百万円）</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="ph_total">-</div>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="font-size:.78rem;">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>銘柄</th>
+                  <th style="text-align:right;">貸借対照表計上額（百万円）</th>
+                </tr>
+              </thead>
+              <tbody id="policyHoldingsBody"></tbody>
+            </table>
+          </div>
+          <div style="margin-top:12px;">
+            <button class="btn-secondary" onclick="applyPolicyHoldingsGain()" style="font-size:.76rem;">この時価を有価証券含み益に反映</button>
           </div>
         </div>
       </div>

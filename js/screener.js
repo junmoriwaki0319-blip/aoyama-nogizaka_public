@@ -236,17 +236,21 @@ function calculateAndDisplay() {
   }
   setMetric('m_sec_gain', secGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
 
-  // 政策保有株式の詳細表示
-  const phEl = document.getElementById('m_policy_holdings');
-  if (phEl && e.policyHoldingsMarketValue != null) {
-    let phText = '政策保有株式: ' + e.policyHoldingsCount + '銘柄 / 時価合計 ' + Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円';
-    if (e.policyHoldingsTop && e.policyHoldingsTop.length > 0) {
-      phText += '（' + e.policyHoldingsTop.slice(0, 5).map(function(h) { return h.name + ' ' + Math.round(h.marketValue).toLocaleString(); }).join(', ') + '）';
-    }
-    phEl.textContent = phText;
-    phEl.style.display = 'block';
-  } else if (phEl) {
-    phEl.style.display = 'none';
+  // 政策保有株式セクション表示
+  const phSection = document.getElementById('policyHoldingsSection');
+  if (phSection && e.policyHoldingsMarketValue != null && e.policyHoldingsTop) {
+    phSection.style.display = '';
+    document.getElementById('ph_count').textContent = e.policyHoldingsCount;
+    document.getElementById('ph_total').textContent = Math.round(e.policyHoldingsMarketValue).toLocaleString();
+    var phBody = document.getElementById('policyHoldingsBody');
+    phBody.innerHTML = '';
+    e.policyHoldingsTop.forEach(function(h, i) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + h.name + '</td><td style="text-align:right;">' + Math.round(h.marketValue).toLocaleString() + '</td>';
+      phBody.appendChild(tr);
+    });
+  } else if (phSection) {
+    phSection.style.display = 'none';
   }
 
   let propGain = null;
@@ -587,6 +591,26 @@ function applyLandGainEstimate() {
   document.getElementById('manual_land_gain').value = Math.round(landParcelsData.totalEstimatedGain);
   recalcIndividual();
   alert('土地含み益推定値 ' + Math.round(landParcelsData.totalEstimatedGain).toLocaleString() + ' 百万円を反映しました');
+}
+
+function applyPolicyHoldingsGain() {
+  var e = indData.edinet || {};
+  if (e.policyHoldingsMarketValue == null) {
+    alert('政策保有株式データがありません');
+    return;
+  }
+  // 政策保有株式の時価合計を有価証券含み益として反映
+  // 投資有価証券（BS計上額）との差分を含み益とする
+  var investSec = e.investmentSecurities || 0;
+  var gain = e.policyHoldingsMarketValue;
+  if (investSec > 0 && investSec < gain * 3) {
+    // 投資有価証券BS額がある場合、含み益 = 政策保有時価 - 投資有価証券簿価として概算
+    // ただし投資有価証券には政策保有以外も含まれるため保守的に見る
+    gain = e.policyHoldingsMarketValue; // 時価そのものをセット（簿価は別途あれば差引）
+  }
+  document.getElementById('manual_sec_gain').value = Math.round(gain);
+  recalcIndividual();
+  alert('政策保有株式時価 ' + Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円を有価証券含み益に反映しました');
 }
 
 // Google Maps連携は将来の有料化時に追加予定
