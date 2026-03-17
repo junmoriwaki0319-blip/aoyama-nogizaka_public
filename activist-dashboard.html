@@ -380,10 +380,11 @@
       .stats-bar { padding: 0 20px; }
       .stats-bar-inner { grid-template-columns: 1fr 1fr; }
       .dashboard-layout { padding: 0 12px; gap: 16px; }
-      .footer-inner { flex-direction: column; gap: 20px; }
-      .tab-btn { padding: 10px 14px; font-size: 12px; }
+      .footer-inner { flex-direction: column; gap: 20px; padding: 0 20px; }
+      .tab-btn { padding: 12px 14px; font-size: 12px; min-height: 44px; }
       .export-bar { flex-direction: column; }
       .export-btn { width: 100%; justify-content: center; }
+      .form-group input { padding: 12px 14px; min-height: 44px; }
       .card-header { padding: 16px; }
       .card-header h2 { font-size: 13px; }
       .activist-table th, .activist-table td { padding: 10px 8px; font-size: 11px; }
@@ -406,6 +407,35 @@
     .mobile-menu a.active { color: var(--gold); }
     .mobile-menu .m-auth { display: flex; gap: 12px; margin-top: 24px; }
     .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
+
+    /* INVESTOR DETAIL MODAL */
+    .investor-detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2500; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 40px 16px; }
+    .investor-detail-overlay.show { display: flex; }
+    .investor-detail-modal { background: var(--white); border-radius: 12px; max-width: 900px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .idm-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 28px 32px 20px; border-bottom: 1px solid var(--light-gray); }
+    .idm-header h2 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 400; color: var(--navy); margin: 0 0 4px; }
+    .idm-header .idm-meta { font-size: 12px; color: var(--text-light); }
+    .idm-close { background: none; border: none; font-size: 22px; color: var(--text-light); cursor: pointer; padding: 4px 8px; }
+    .idm-close:hover { color: var(--navy); }
+    .idm-body { padding: 24px 32px 32px; }
+    .idm-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .idm-stat { background: var(--off-white); border-radius: 6px; padding: 14px 16px; text-align: center; }
+    .idm-stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.05em; }
+    .idm-stat-value { font-size: 20px; font-weight: 500; color: var(--navy); margin-top: 2px; }
+    .idm-section-title { font-size: 13px; font-weight: 500; color: var(--navy); letter-spacing: 0.05em; margin-bottom: 12px; border-bottom: 1px solid var(--light-gray); padding-bottom: 8px; }
+    .idm-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .idm-table th { background: var(--off-white); padding: 8px 10px; text-align: left; font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.04em; position: sticky; top: 0; }
+    .idm-table td { padding: 8px 10px; border-bottom: 1px solid var(--light-gray); }
+    .idm-table tr:hover { background: rgba(26,35,53,0.02); }
+    .idm-delta-up { color: #c0392b; font-weight: 500; }
+    .idm-delta-down { color: #2980b9; font-weight: 500; }
+    .idm-table-wrap { max-height: 500px; overflow-y: auto; border: 1px solid var(--light-gray); border-radius: 6px; }
+    @media (max-width: 600px) {
+      .investor-detail-overlay { padding: 20px 8px; }
+      .investor-detail-modal { border-radius: 8px; }
+      .idm-header, .idm-body { padding-left: 16px; padding-right: 16px; }
+      .idm-summary { grid-template-columns: 1fr 1fr; }
+    }
 
     /* EXPORT BUTTONS */
     .export-bar { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid var(--light-gray); background: var(--off-white); }
@@ -608,6 +638,8 @@
             <option value="date-asc">報告日（古い順）</option>
             <option value="ratio-desc">保有比率（高い順）</option>
             <option value="ratio-asc">保有比率（低い順）</option>
+            <option value="delta-desc">比率変動（増加順）</option>
+            <option value="delta-asc">比率変動（減少順）</option>
           </select>
         </div>
         <div class="export-bar">
@@ -948,6 +980,37 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
   </div>
 </footer>
 
+<!-- INVESTOR DETAIL MODAL -->
+<div class="investor-detail-overlay" id="investorDetailOverlay" onclick="if(event.target===this){closeInvestorDetail();}">
+  <div class="investor-detail-modal">
+    <div class="idm-header">
+      <div>
+        <h2 id="idmName">—</h2>
+        <div class="idm-meta" id="idmMeta"></div>
+      </div>
+      <button class="idm-close" onclick="closeInvestorDetail()">&times;</button>
+    </div>
+    <div class="idm-body">
+      <div class="idm-summary" id="idmSummary"></div>
+      <div style="margin-bottom:24px;">
+        <div class="idm-section-title">保有銘柄の時系列変動</div>
+        <div class="idm-table-wrap">
+          <table class="idm-table">
+            <thead><tr>
+              <th>報告日</th><th>種別</th><th>証券コード</th><th>対象企業</th><th style="text-align:right;">保有比率</th><th style="text-align:right;">変動</th><th>目的</th>
+            </tr></thead>
+            <tbody id="idmTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="idm-section-title">銘柄別 保有比率サマリー</div>
+        <div id="idmHoldingSummary"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // ===== GLOBAL DATA =====
 let reportData = { reports: [], activists: {} };
@@ -1038,6 +1101,20 @@ async function loadData() {
     console.log('known_activists.json not available');
   }
 
+  // 全レポートの比率変動（デルタ）を事前計算
+  const sortedForDelta = [...reportData.reports].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  const prevRatioMap = {};
+  sortedForDelta.forEach(r => {
+    const key = (r.filer_name || '') + '|' + (r.sec_code || '');
+    const cur = parseFloat(r.holding_ratio);
+    if (prevRatioMap[key] !== undefined && !isNaN(cur)) {
+      r._delta = cur - prevRatioMap[key];
+    } else {
+      r._delta = null;
+    }
+    if (!isNaN(cur)) prevRatioMap[key] = cur;
+  });
+
   filteredReports = [...reportData.reports];
 }
 
@@ -1090,6 +1167,12 @@ function renderReportTable() {
     const ratioNum = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
     const ratio = !isNaN(ratioNum) ? ratioNum.toFixed(1) + '%' : '—';
     const barWidth = !isNaN(ratioNum) ? Math.min(ratioNum * 2, 100) : 0;
+    const deltaHtml = r._delta != null ? (() => {
+      const d = r._delta;
+      const sign = d > 0 ? '+' : '';
+      const color = d > 0 ? '#c0392b' : d < 0 ? '#2980b9' : 'var(--text-light)';
+      return `<span style="font-size:10px;color:${color};margin-left:4px;">(${sign}${d.toFixed(1)})</span>`;
+    })() : '';
     const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#';
 
     return `<tr onclick="searchByCode('${r.sec_code || ''}')">
@@ -1098,7 +1181,7 @@ function renderReportTable() {
       <td class="col-type"><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
       <td class="col-code">${r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—'}</td>
       <td class="col-target" title="${escapeHtml(r.target_company || '')}">${escapeHtml(r.target_company || '—')}</td>
-      <td class="col-ratio">${ratio}${barWidth ? '<div class="holding-bar"><div class="holding-bar-fill" style="width:' + barWidth + '%"></div></div>' : ''}</td>
+      <td class="col-ratio">${ratio}${deltaHtml}${barWidth ? '<div class="holding-bar"><div class="holding-bar-fill" style="width:' + barWidth + '%"></div></div>' : ''}</td>
       <td class="col-purpose" style="font-size:12px;">${escapeHtml(r.purpose || '—')}</td>
       <td class="col-edinet"><a href="${edinetUrl}" target="_blank" rel="noopener" class="edinet-link" onclick="event.stopPropagation();">原文</a></td>
     </tr>`;
@@ -1237,10 +1320,11 @@ function filterRanking() {
     const rankStyle = rank <= 3 ? 'font-weight:bold;color:var(--gold);' : 'color:var(--text-light);';
     const isGroup = a.member_ids && a.member_ids.length;
     const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:9px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
-    return `<div class="ac-stock-item" style="cursor:pointer;" onclick="filterByActivist('${escapeHtml(a.id)}')">
+    return `<div class="ac-stock-item" style="cursor:pointer;display:flex;align-items:center;" onclick="openInvestorDetail('${escapeHtml(a.id)}')">
       <span style="min-width:22px;${rankStyle}">${rank}</span>
       <span style="flex:1;">${escapeHtml(a.name)}${groupIcon}${typeTag}</span>
-      <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'};">${a.report_count || 0}件</span>
+      <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'}; margin-right:6px;">${a.report_count || 0}件</span>
+      <span title="報告一覧を絞り込み" style="font-size:10px;color:var(--text-light);cursor:pointer;" onclick="event.stopPropagation();filterByActivist('${escapeHtml(a.id)}')">&#9654;</span>
     </div>`;
   }).join('');
 }
@@ -1322,6 +1406,20 @@ function applyFilters() {
         const ra = a.holding_ratio != null ? parseFloat(a.holding_ratio) : Infinity;
         const rb = b.holding_ratio != null ? parseFloat(b.holding_ratio) : Infinity;
         return ra - rb;
+      });
+      break;
+    case 'delta-desc':
+      filteredReports.sort((a, b) => {
+        const da = a._delta != null ? a._delta : -Infinity;
+        const db = b._delta != null ? b._delta : -Infinity;
+        return db - da;
+      });
+      break;
+    case 'delta-asc':
+      filteredReports.sort((a, b) => {
+        const da = a._delta != null ? a._delta : Infinity;
+        const db = b._delta != null ? b._delta : Infinity;
+        return da - db;
       });
       break;
     default: // date-desc
@@ -2170,6 +2268,143 @@ switchTab = function(tab, btn) {
     renderWatchlistReports();
   }
 };
+
+// ===== INVESTOR DETAIL MODAL =====
+function openInvestorDetail(activistId) {
+  const activist = reportData.activists[activistId];
+  if (!activist) return;
+
+  document.getElementById('idmName').textContent = activist.name;
+  const metaParts = [];
+  if (activist.representative) metaParts.push('代表: ' + activist.representative);
+  if (activist.headquarters) metaParts.push('本拠: ' + activist.headquarters);
+  const typeLabel = activist.type === 'activist' ? 'アクティビスト' : activist.type === 'notable_holder' ? '注目投資家' : 'ファンド';
+  metaParts.push(typeLabel);
+  if (activist.member_ids && activist.member_ids.length) metaParts.push('グループ（' + activist.member_ids.length + '主体）');
+  document.getElementById('idmMeta').textContent = metaParts.join(' ｜ ');
+
+  // この投資家の全報告を取得（グループ対応）
+  let investorReports;
+  if (activist.member_ids && activist.member_ids.length) {
+    const memberIds = new Set(activist.member_ids);
+    investorReports = reportData.reports.filter(r => memberIds.has(r.activist_id));
+  } else {
+    const name = activist.name;
+    investorReports = reportData.reports.filter(r => r.filer_name === name || r.activist_id === activistId);
+  }
+
+  investorReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  // サマリー統計
+  const uniqueSecCodes = new Set(investorReports.filter(r => r.sec_code).map(r => r.sec_code));
+  const ratios = investorReports.map(r => parseFloat(r.holding_ratio)).filter(v => !isNaN(v));
+  const maxRatio = ratios.length ? Math.max(...ratios) : null;
+  const latestDate = investorReports.length ? investorReports[0].date : '—';
+  const newCount = investorReports.filter(r => r.report_type === '新規報告').length;
+
+  document.getElementById('idmSummary').innerHTML = `
+    <div class="idm-stat"><div class="idm-stat-label">報告件数</div><div class="idm-stat-value">${investorReports.length}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">対象銘柄数</div><div class="idm-stat-value">${uniqueSecCodes.size}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">最高保有比率</div><div class="idm-stat-value">${maxRatio != null ? maxRatio.toFixed(1) + '%' : '—'}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">新規報告</div><div class="idm-stat-value">${newCount}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">最新報告日</div><div class="idm-stat-value" style="font-size:14px;">${latestDate}</div></div>
+  `;
+
+  // デルタ計算用に古い順でソート
+  const chronological = [...investorReports].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  const prevMap = {};
+  chronological.forEach(r => {
+    const key = (r.filer_name || '') + '|' + (r.sec_code || '');
+    const cur = parseFloat(r.holding_ratio);
+    if (prevMap[key] !== undefined && !isNaN(cur)) {
+      r._idm_delta = cur - prevMap[key];
+    } else {
+      r._idm_delta = null;
+    }
+    if (!isNaN(cur)) prevMap[key] = cur;
+  });
+
+  // 時系列テーブル（新→旧）
+  const tbody = document.getElementById('idmTableBody');
+  if (!investorReports.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--text-light);">報告データがありません</td></tr>';
+  } else {
+    tbody.innerHTML = investorReports.map(r => {
+      const ratioVal = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+      const ratioStr = !isNaN(ratioVal) ? ratioVal.toFixed(1) + '%' : '—';
+      let deltaStr = '—';
+      if (r._idm_delta != null) {
+        const d = r._idm_delta;
+        const sign = d > 0 ? '+' : '';
+        const cls = d > 0 ? 'idm-delta-up' : d < 0 ? 'idm-delta-down' : '';
+        deltaStr = '<span class="' + cls + '">' + sign + d.toFixed(1) + '%</span>';
+      }
+      const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
+      return '<tr>' +
+        '<td>' + (r.date || '—') + '</td>' +
+        '<td><span class="activist-type ' + typeClass + '" style="font-size:10px;padding:1px 6px;">' + (r.report_type || '—') + '</span></td>' +
+        '<td>' + (r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—') + '</td>' +
+        '<td title="' + escapeHtml(r.target_company || '') + '">' + escapeHtml((r.target_company || '—').slice(0, 25)) + '</td>' +
+        '<td style="text-align:right;">' + ratioStr + '</td>' +
+        '<td style="text-align:right;">' + deltaStr + '</td>' +
+        '<td style="font-size:11px;">' + escapeHtml((r.purpose || '—').slice(0, 20)) + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // 銘柄別サマリー
+  const holdingMap = {};
+  chronological.forEach(r => {
+    if (!r.sec_code) return;
+    if (!holdingMap[r.sec_code]) {
+      holdingMap[r.sec_code] = { sec_code: r.sec_code, target: r.target_company || '—', reports: [], latestRatio: null, firstRatio: null };
+    }
+    const h = holdingMap[r.sec_code];
+    h.reports.push(r);
+    const rv = parseFloat(r.holding_ratio);
+    if (!isNaN(rv)) {
+      if (h.firstRatio === null) h.firstRatio = rv;
+      h.latestRatio = rv;
+    }
+    if (r.target_company && r.target_company !== '—') h.target = r.target_company;
+  });
+
+  const holdingSummary = document.getElementById('idmHoldingSummary');
+  const holdings = Object.values(holdingMap).sort((a, b) => (b.latestRatio || 0) - (a.latestRatio || 0));
+
+  if (!holdings.length) {
+    holdingSummary.innerHTML = '<div style="font-size:12px;color:var(--text-light);padding:12px;">銘柄データがありません</div>';
+  } else {
+    holdingSummary.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">' +
+      holdings.map(h => {
+        const totalDelta = (h.latestRatio != null && h.firstRatio != null) ? h.latestRatio - h.firstRatio : null;
+        let deltaLabel = '';
+        if (totalDelta != null) {
+          const sign = totalDelta > 0 ? '+' : '';
+          const cls = totalDelta > 0 ? 'idm-delta-up' : totalDelta < 0 ? 'idm-delta-down' : '';
+          deltaLabel = '<span class="' + cls + '" style="font-size:11px;margin-left:6px;">(' + sign + totalDelta.toFixed(1) + '%)</span>';
+        }
+        return '<div style="background:var(--off-white);border-radius:6px;padding:12px 14px;">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+          '<span style="font-size:12px;font-weight:500;color:var(--navy);">' +
+          '<span class="sec-code">' + h.sec_code + '</span> ' + escapeHtml(h.target.slice(0, 20)) +
+          '</span></div>' +
+          '<div style="margin-top:6px;font-size:13px;">' +
+          '最新比率: <strong>' + (h.latestRatio != null ? h.latestRatio.toFixed(1) + '%' : '—') + '</strong>' + deltaLabel +
+          '</div>' +
+          '<div style="font-size:11px;color:var(--text-light);margin-top:2px;">報告 ' + h.reports.length + '件</div>' +
+          '</div>';
+      }).join('') + '</div>';
+  }
+
+  document.getElementById('investorDetailOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInvestorDetail() {
+  document.getElementById('investorDetailOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
 </script>
 
 </body>
