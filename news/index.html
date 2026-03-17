@@ -18,16 +18,23 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy:  #1a2d4f;
-      --gold:  #9b8b6e;
-      --cream: #f8f7f5;
-      --gray:  #e0dcd5;
-      --mid:   #6b7280;
+      --navy: #1a2d4f;
+      --navy-light: #243b63;
+      --gold: #9b8b6e;
+      --gold-light: #c8b99a;
       --white: #ffffff;
-      --text:  #2c2c2c;
+      --off-white: #f8f7f5;
+      --light-gray: #f0eee9;
+      --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a;
+      --text-mid: #444444;
+      --text-light: #888888;
+      --cream: #f8f7f5;
+      --mid: #6b7280;
+      --text: #2c2c2c;
       --serif: 'Noto Serif JP', serif;
-      --sans:  'Noto Sans JP', sans-serif;
-      --deco:  'Cormorant Garamond', serif;
+      --sans: 'Noto Sans JP', sans-serif;
+      --deco: 'Cormorant Garamond', serif;
     }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { font-family: var(--sans); background: var(--cream); color: var(--text); line-height: 1.8; }
@@ -86,6 +93,11 @@
       .nav-inner { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 960px) {
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-nav { flex-wrap: wrap; gap: 16px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
     @media (max-width: 768px) {
       .page-hero { padding: 48px 20px 40px; }
@@ -231,23 +243,70 @@
 
     /* ── Footer ── */
     footer {
-      background: var(--navy); color: rgba(255,255,255,.5);
-      padding: 48px 40px 28px; font-size: .78rem;
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 0 40px;
     }
     .footer-inner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
     }
     .footer-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 24px; padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
-    .footer-tagline { font-size: .7rem; letter-spacing: .12em; color: var(--gold); }
-    .footer-nav { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-nav a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
-    .footer-nav a:hover { color: var(--gold); }
-    .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .72rem; }
+    .footer-brand {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-address {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -445,7 +504,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-brand" style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;">青山乃木坂パートナーズ</div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
         <div class="footer-tagline">Aoyama Nogizaka Partners</div>
       </div>
       <ul class="footer-nav">
@@ -462,8 +521,10 @@
       </ul>
     </div>
     <div class="footer-bottom">
-      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
-      <span>© 2026 Aoyama Nogizaka Partners All rights reserved.</span>
+      <address style="font-style:normal;" class="footer-address">
+        〒106-0032 東京都港区六本木7-2-28-602
+      </address>
+      <p class="footer-copy">© 2026 Aoyama Nogizaka Partners All rights reserved.</p>
     </div>
   </div>
 </footer>
