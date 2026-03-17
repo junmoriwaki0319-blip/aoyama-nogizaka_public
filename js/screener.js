@@ -444,6 +444,20 @@ const PRESETS = {
   trading: ['8058', '8031', '8001', '8002', '8053', '8015', '8020'],
   it: ['9984', '9433', '9432', '9434', '4689', '4755', '3382', '6758', '6861', '6954'],
   conglomerate: ['6501', '6502', '6503', '7751', '6752', '6753', '6702', '6701', '8035', '7731'],
+  // 追加プリセット
+  realestate: ['8801', '8802', '8804', '8830', '3289', '3291', '3462', '8818', '8848', '3003'],
+  food: ['2502', '2503', '2587', '2801', '2802', '2871', '2897', '2914', '2269', '2809'],
+  pharma: ['4502', '4503', '4506', '4507', '4519', '4523', '4568', '4578', '4151', '4452'],
+  chemical: ['4063', '4188', '4183', '4005', '4004', '4021', '4042', '4208', '4631', '4901'],
+  steel: ['5401', '5411', '5406', '5423', '5444', '5471', '5480', '5481', '5486', '5801'],
+  construction: ['1801', '1802', '1803', '1812', '1820', '1821', '1878', '1925', '1928', '1963'],
+  retail: ['3382', '8267', '8252', '9983', '7532', '3086', '3099', '2651', '7453', '2670'],
+  transport: ['9020', '9021', '9022', '9001', '9005', '9007', '9064', '9101', '9104', '9107'],
+  utility: ['9501', '9502', '9503', '9504', '9505', '9506', '9507', '9508', '9509', '9531'],
+  machinery: ['6301', '6302', '6305', '6361', '6367', '6471', '6473', '7004', '7011', '7012'],
+  electronics: ['6501', '6502', '6503', '6701', '6702', '6752', '6758', '6861', '6954', '6971'],
+  nikkei225: ['7203', '6758', '9984', '8306', '4502', '6861', '6954', '9433', '8058', '6501',
+              '7267', '6367', '4063', '6902', '7741', '8316', '4503', '6762', '7751', '9432'],
 };
 
 function loadPreset(key) {
@@ -556,6 +570,14 @@ function calcQuickScore(d) {
   return Math.min(100, score);
 }
 
+// ビュー切り替え
+function switchRankView(view) {
+  document.querySelectorAll('.rank-view-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.rank-view').forEach(v => v.classList.remove('active'));
+  document.querySelector(`.rank-view-tab[onclick*="${view}"]`).classList.add('active');
+  document.getElementById('rankView-' + view).classList.add('active');
+}
+
 function filterAndDisplayRanking() {
   const filter = document.getElementById('rankMcapFilter').value;
   const sortBy = document.getElementById('rankSortBy').value;
@@ -585,32 +607,99 @@ function filterAndDisplayRanking() {
       case 'roe': return (a.roe || 999) - (b.roe || 999);
       case 'divyield': return (b.dividendYield || 0) - (a.dividendYield || 0);
       case 'equity': return (b.equityRatio || 0) - (a.equityRatio || 0);
+      case 'per': return (a.per || 999) - (b.per || 999);
+      case 'payout': return (a.payoutRatio || 999) - (b.payoutRatio || 999);
+      case 'mcap': return (b.marketCapOku || 0) - (a.marketCapOku || 0);
       default: return (b.score || 0) - (a.score || 0);
     }
   });
 
-  // 表示
+  // ── 概要ビュー ──
   const tbody = document.getElementById('rankTableBody');
   tbody.innerHTML = '';
-
   filtered.forEach((d, i) => {
     const rank = i + 1;
     const rankCls = rank <= 3 ? `rank-${rank}` : 'rank-other';
     const cat = d.marketCapOku != null ? getMarketCapCategory(d.marketCapOku) : null;
     const pbrCls = d.pbr != null && d.pbr < 1.0 ? 'style="color:var(--danger);font-weight:700;"' : '';
     const roeCls = d.roe != null && d.roe < 8 ? 'style="color:var(--orange);"' : '';
-
     tbody.innerHTML += `<tr>
       <td><span class="rank-badge ${rankCls}">${rank}</span></td>
       <td>${d.code}</td>
-      <td class="name-cell" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td class="name-cell" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td class="name-cell" style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem;color:var(--text-light);">${d.sector || '-'}</td>
       <td style="font-weight:700;color:${d.score >= 60 ? 'var(--danger)' : d.score >= 40 ? 'var(--orange)' : 'var(--green)'};">${d.score || '-'}</td>
       <td ${pbrCls}>${d.pbr != null ? d.pbr.toFixed(2) : '-'}</td>
       <td ${roeCls}>${d.roe != null ? d.roe.toFixed(1) + '%' : '-'}</td>
       <td>${d.per != null ? d.per.toFixed(1) : '-'}</td>
       <td>${d.dividendYield != null ? d.dividendYield.toFixed(2) + '%' : '-'}</td>
-      <td>${d.payoutRatio != null ? d.payoutRatio.toFixed(1) + '%' : '-'}</td>
       <td>${d.equityRatio != null ? d.equityRatio.toFixed(1) + '%' : '-'}</td>
+      <td>${d.marketCapOku != null ? d.marketCapOku.toLocaleString() + '億' : '-'}</td>
+      <td>${cat ? `<span class="mcap-cat ${cat.cls}">${cat.label}</span>` : '-'}</td>
+    </tr>`;
+  });
+
+  // ── バリュエーションビュー ──
+  const tbodyVal = document.getElementById('rankTableBody-valuation');
+  tbodyVal.innerHTML = '';
+  filtered.forEach((d, i) => {
+    const rank = i + 1;
+    const rankCls = rank <= 3 ? `rank-${rank}` : 'rank-other';
+    const pbrCls = d.pbr != null && d.pbr < 1.0 ? 'style="color:var(--danger);font-weight:700;"' : '';
+    const roeCls = d.roe != null && d.roe < 8 ? 'style="color:var(--orange);"' : '';
+    tbodyVal.innerHTML += `<tr>
+      <td><span class="rank-badge ${rankCls}">${rank}</span></td>
+      <td>${d.code}</td>
+      <td class="name-cell" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td style="font-weight:700;color:${d.score >= 60 ? 'var(--danger)' : d.score >= 40 ? 'var(--orange)' : 'var(--green)'};">${d.score || '-'}</td>
+      <td ${pbrCls}>${d.pbr != null ? d.pbr.toFixed(2) : '-'}</td>
+      <td>${d.per != null ? d.per.toFixed(1) : '-'}</td>
+      <td ${roeCls}>${d.roe != null ? d.roe.toFixed(1) + '%' : '-'}</td>
+      <td>${d.eps != null ? d.eps.toFixed(1) : '-'}</td>
+      <td>${d.bps != null ? d.bps.toLocaleString() : '-'}</td>
+      <td>${d.marketCapOku != null ? d.marketCapOku.toLocaleString() + '億' : '-'}</td>
+    </tr>`;
+  });
+
+  // ── 配当・還元ビュー ──
+  const tbodyDiv = document.getElementById('rankTableBody-dividend');
+  tbodyDiv.innerHTML = '';
+  filtered.forEach((d, i) => {
+    const rank = i + 1;
+    const rankCls = rank <= 3 ? `rank-${rank}` : 'rank-other';
+    const yieldCls = d.dividendYield != null && d.dividendYield >= 3 ? 'style="color:var(--green);font-weight:700;"' : '';
+    const payoutCls = d.payoutRatio != null && d.payoutRatio < 30 ? 'style="color:var(--orange);"' : '';
+    tbodyDiv.innerHTML += `<tr>
+      <td><span class="rank-badge ${rankCls}">${rank}</span></td>
+      <td>${d.code}</td>
+      <td class="name-cell" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td style="font-weight:700;color:${d.score >= 60 ? 'var(--danger)' : d.score >= 40 ? 'var(--orange)' : 'var(--green)'};">${d.score || '-'}</td>
+      <td ${yieldCls}>${d.dividendYield != null ? d.dividendYield.toFixed(2) + '%' : '-'}</td>
+      <td ${payoutCls}>${d.payoutRatio != null ? d.payoutRatio.toFixed(1) + '%' : '-'}</td>
+      <td>${d.dps != null ? d.dps.toFixed(1) + '円' : '-'}</td>
+      <td>${d.pbr != null ? d.pbr.toFixed(2) : '-'}</td>
+      <td>${d.marketCapOku != null ? d.marketCapOku.toLocaleString() + '億' : '-'}</td>
+    </tr>`;
+  });
+
+  // ── 財務健全性ビュー ──
+  const tbodyFin = document.getElementById('rankTableBody-financial');
+  tbodyFin.innerHTML = '';
+  filtered.forEach((d, i) => {
+    const rank = i + 1;
+    const rankCls = rank <= 3 ? `rank-${rank}` : 'rank-other';
+    const eqCls = d.equityRatio != null && d.equityRatio > 60 ? 'style="color:var(--green);font-weight:700;"' : '';
+    const roeCls = d.roe != null && d.roe < 8 ? 'style="color:var(--orange);"' : '';
+    const cat = d.marketCapOku != null ? getMarketCapCategory(d.marketCapOku) : null;
+    tbodyFin.innerHTML += `<tr>
+      <td><span class="rank-badge ${rankCls}">${rank}</span></td>
+      <td>${d.code}</td>
+      <td class="name-cell" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${d.companyName || '-'}</td>
+      <td style="font-weight:700;color:${d.score >= 60 ? 'var(--danger)' : d.score >= 40 ? 'var(--orange)' : 'var(--green)'};">${d.score || '-'}</td>
+      <td ${eqCls}>${d.equityRatio != null ? d.equityRatio.toFixed(1) + '%' : '-'}</td>
+      <td ${roeCls}>${d.roe != null ? d.roe.toFixed(1) + '%' : '-'}</td>
+      <td>${d.per != null ? d.per.toFixed(1) : '-'}</td>
+      <td>${d.payoutRatio != null ? d.payoutRatio.toFixed(1) + '%' : '-'}</td>
       <td>${d.marketCapOku != null ? d.marketCapOku.toLocaleString() + '億' : '-'}</td>
       <td>${cat ? `<span class="mcap-cat ${cat.cls}">${cat.label}</span>` : '-'}</td>
     </tr>`;

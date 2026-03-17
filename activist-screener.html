@@ -169,6 +169,10 @@
     .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
     .user-info{display:flex;align-items:center;gap:12px;font-size:.82rem}.user-info .name{font-weight:500;color:var(--navy)}
     .hidden{display:none!important}
+    .rank-view-tab{padding:10px 20px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;font-size:.78rem;font-family:var(--sans);color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.04em;font-weight:500}
+    .rank-view-tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+    .rank-view-tab:not(.active):hover{color:var(--text-mid)}
+    .rank-view{display:none}.rank-view.active{display:block}
     .info-tip{display:inline-block;width:15px;height:15px;line-height:15px;text-align:center;border-radius:50%;background:var(--mid-gray);color:var(--text-light);font-size:.62rem;font-weight:700;cursor:help;position:relative}
     .info-tip:hover::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);bottom:20px;background:var(--navy);color:#fff;padding:5px 10px;border-radius:5px;font-size:.68rem;white-space:nowrap;z-index:10;font-weight:400}
     .cta-section{padding:56px 0 0}
@@ -361,12 +365,24 @@
       <div class="s-card-title">銘柄コード入力（一括スキャン）</div>
       <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:10px;">カンマ区切りまたは改行区切りで複数の証券コードを入力（最大100銘柄）</p>
       <div class="chip-row">
+        <span class="chip" onclick="loadPreset('nikkei225')">日経225（主要20社）</span>
         <span class="chip" onclick="loadPreset('mega')">メガバンク・大手金融</span>
         <span class="chip" onclick="loadPreset('lowpbr')">低PBR注目銘柄</span>
         <span class="chip" onclick="loadPreset('auto')">自動車関連</span>
         <span class="chip" onclick="loadPreset('trading')">総合商社</span>
         <span class="chip" onclick="loadPreset('it')">IT・通信</span>
         <span class="chip" onclick="loadPreset('conglomerate')">コングロマリット</span>
+        <span class="chip" onclick="loadPreset('realestate')">不動産</span>
+        <span class="chip" onclick="loadPreset('food')">食品・飲料</span>
+        <span class="chip" onclick="loadPreset('pharma')">医薬品・ヘルスケア</span>
+        <span class="chip" onclick="loadPreset('chemical')">素材・化学</span>
+        <span class="chip" onclick="loadPreset('steel')">鉄鋼・非鉄</span>
+        <span class="chip" onclick="loadPreset('construction')">建設</span>
+        <span class="chip" onclick="loadPreset('retail')">小売・流通</span>
+        <span class="chip" onclick="loadPreset('transport')">鉄道・運輸・海運</span>
+        <span class="chip" onclick="loadPreset('utility')">電力・ガス</span>
+        <span class="chip" onclick="loadPreset('machinery')">機械</span>
+        <span class="chip" onclick="loadPreset('electronics')">電機・精密</span>
       </div>
       <div class="form-field"><textarea id="rankCodes" rows="4" placeholder="例: 7203, 6758, 9984, 8306, 4502&#10;または1行1コードで入力"></textarea></div>
       <div class="form-grid" style="margin-top:10px;">
@@ -389,6 +405,9 @@
             <option value="roe">ROE（低い順）</option>
             <option value="divyield">配当利回り（高い順）</option>
             <option value="equity">自己資本比率（高い順）</option>
+            <option value="per">PER（低い順）</option>
+            <option value="payout">配当性向（低い順）</option>
+            <option value="mcap">時価総額（大きい順）</option>
           </select>
         </div>
       </div>
@@ -409,24 +428,98 @@
           <span>スクリーニング結果 <span style="font-size:0.76rem; color:var(--text-light); font-weight:400; margin-left:8px;" id="rankResultCount">0件</span></span>
           <button class="btn-gold" id="btnCsvExport" onclick="exportCSV()" disabled>CSV出力</button>
         </div>
-        <div class="ranking-table">
-          <table>
-            <thead><tr>
-              <th onclick="sortRanking('rank')">順位</th>
-              <th onclick="sortRanking('code')">コード</th>
-              <th onclick="sortRanking('name')">銘柄名</th>
-              <th onclick="sortRanking('score')">スコア</th>
-              <th onclick="sortRanking('pbr')">PBR</th>
-              <th onclick="sortRanking('roe')">ROE</th>
-              <th onclick="sortRanking('per')">PER</th>
-              <th onclick="sortRanking('divyield')">配当利回り</th>
-              <th onclick="sortRanking('payout')">配当性向</th>
-              <th onclick="sortRanking('equity')">自己資本比率</th>
-              <th onclick="sortRanking('mcap')">時価総額</th>
-              <th onclick="sortRanking('mcapCat')">区分</th>
-            </tr></thead>
-            <tbody id="rankTableBody"></tbody>
-          </table>
+
+        <!-- バフェットコード風カテゴリタブ -->
+        <div class="rank-view-tabs" style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid var(--mid-gray);">
+          <button class="rank-view-tab active" onclick="switchRankView('overview')">概要</button>
+          <button class="rank-view-tab" onclick="switchRankView('valuation')">バリュエーション</button>
+          <button class="rank-view-tab" onclick="switchRankView('dividend')">配当・還元</button>
+          <button class="rank-view-tab" onclick="switchRankView('financial')">財務健全性</button>
+        </div>
+
+        <!-- 概要ビュー -->
+        <div class="rank-view active" id="rankView-overview">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('sector')">セクター</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('divyield')">配当利回り</th>
+                <th onclick="sortRanking('equity')">自己資本比率</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th onclick="sortRanking('mcapCat')">区分</th>
+              </tr></thead>
+              <tbody id="rankTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- バリュエーションビュー -->
+        <div class="rank-view" id="rankView-valuation">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('eps')">EPS</th>
+                <th onclick="sortRanking('bps')">BPS</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-valuation"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配当・還元ビュー -->
+        <div class="rank-view" id="rankView-dividend">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('divyield')">配当利回り</th>
+                <th onclick="sortRanking('payout')">配当性向</th>
+                <th onclick="sortRanking('dps')">1株配当</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-dividend"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 財務健全性ビュー -->
+        <div class="rank-view" id="rankView-financial">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('equity')">自己資本比率</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('payout')">配当性向</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th onclick="sortRanking('mcapCat')">区分</th>
+              </tr></thead>
+              <tbody id="rankTableBody-financial"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
