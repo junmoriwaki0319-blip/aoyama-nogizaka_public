@@ -302,17 +302,18 @@ function parsePolicyHoldings(html, data) {
     return cells;
   }
 
-  // ヘッダー行を解析して構造を把握
-  // 一般的パターン: [銘柄, 当事業年度, 前事業年度, 保有目的, ...]
-  // サブヘッダー: [株式数（株）, 貸借対照表計上額（百万円）] が交互に出現
-  // データ行: 奇数行=銘柄名+株式数, 偶数行=BS計上額
+  // ヘッダー行を解析して構造・単位を把握
+  // 単位: 百万円 or 千円（会社規模により異なる）
+  // テーブル全体のテキストから単位を検出
+  let unitDivisor = 1; // 百万円単位ならそのまま、千円単位なら÷1000
+  const tableText = table.replace(/<[^>]*>/g, '');
+  if (/計上額[^百千]*千円/.test(tableText) || /計上額[（(][^)）]*千円/.test(tableText)) {
+    unitDivisor = 1000; // 千円→百万円に変換
+  }
+  // 百万円が明記されている場合はそのまま（デフォルト）
 
   const holdings = [];
   let totalMarketValue = 0;
-
-  // 2パターンで解析を試みる
-  // パターンA: 交互行型（銘柄行→金額行の繰り返し）
-  // パターンB: 1行に銘柄・株式数・BS計上額が全て含まれる
 
   // まずヘッダーを飛ばしてデータ行を探す
   let dataStartIdx = 0;
@@ -352,10 +353,11 @@ function parsePolicyHoldings(html, data) {
 
       // 株式数（当事業年度）は nameCells[1]
       const shares = parseFloat((nameCells[1] || '').replace(/[△▲\-−]/g, '-'));
-      // BS計上額（当事業年度）は valueCells[0]
-      const bsValue = parseFloat((valueCells[0] || '').replace(/[△▲\-−]/g, '-'));
+      // BS計上額（当事業年度）は valueCells[0]、単位を百万円に統一
+      const bsRaw = parseFloat((valueCells[0] || '').replace(/[△▲\-−]/g, '-'));
+      const bsValue = !isNaN(bsRaw) ? bsRaw / unitDivisor : NaN;
       if (!isNaN(bsValue) && bsValue > 0) {
-        holdings.push({ name, shares: isNaN(shares) ? null : shares, marketValue: bsValue });
+        holdings.push({ name, shares: isNaN(shares) ? null : shares, marketValue: Math.round(bsValue * 100) / 100 });
         totalMarketValue += bsValue;
       }
     }
@@ -381,10 +383,11 @@ function parsePolicyHoldings(html, data) {
             const n = parseFloat(cells[k]);
             if (!isNaN(n) && n > 0) nums.push(n);
           }
-          // 当事業年度のBS計上額（通常は株式数の次）
+          // 当事業年度のBS計上額（通常は株式数の次）、単位を百万円に統一
           if (nums.length >= 2) {
-            holdings.push({ name, shares: nums[0], marketValue: nums[1] });
-            totalMarketValue += nums[1];
+            const mv = nums[1] / unitDivisor;
+            holdings.push({ name, shares: nums[0], marketValue: Math.round(mv * 100) / 100 });
+            totalMarketValue += mv;
           }
           break;
         }
@@ -395,7 +398,7 @@ function parsePolicyHoldings(html, data) {
   if (holdings.length > 0) {
     data._policyHoldingsParsed = true;
     data.policyHoldingsCount = holdings.length;
-    data.policyHoldingsMarketValue = totalMarketValue;
+    data.policyHoldingsMarketValue = Math.round(totalMarketValue * 100) / 100;
     // 上位20銘柄を記録（株式数含む）
     data.policyHoldingsTop = holdings
       .sort((a, b) => b.marketValue - a.marketValue)
