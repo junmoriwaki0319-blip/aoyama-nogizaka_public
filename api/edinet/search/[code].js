@@ -2,7 +2,7 @@ const https = require('https');
 
 /**
  * EDINET書類検索API
- * 指定されたEDINETコードの最新の有価証券報告書を検索する
+ * EDINETコード(E+5桁)または証券コード(4桁数字)で有価証券報告書を検索する
  * GET /api/edinet/search/:code?apiKey=xxx
  */
 module.exports = async (req, res) => {
@@ -10,15 +10,21 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
-  const edinetCode = req.query.code;
+  const code = req.query.code;
   const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
-  if (!edinetCode || !/^E\d{5}$/.test(edinetCode)) {
-    return res.status(400).json({ success: false, error: 'EDINETコード (E+5桁) を指定してください' });
+  const isEdinetCode = /^E\d{5}$/.test(code);
+  const isSecCode = /^\d{4}$/.test(code);
+
+  if (!code || (!isEdinetCode && !isSecCode)) {
+    return res.status(400).json({ success: false, error: 'EDINETコード(E+5桁)または証券コード(4桁数字)を指定してください' });
   }
   if (!apiKey) {
     return res.status(400).json({ success: false, error: 'EDINET APIキーが必要です' });
   }
+
+  // 証券コードの場合、EDINET APIのsecCodeは5桁（末尾0付き）
+  const secCode5 = isSecCode ? code + '0' : null;
 
   try {
     // 過去400日分の日付を生成（直近から遡る）
@@ -27,7 +33,6 @@ module.exports = async (req, res) => {
     for (let i = 0; i < 400; i++) {
       const d = new Date(today);
       d.setDate(d.getDate() - i);
-      // 土日をスキップ
       const dow = d.getDay();
       if (dow === 0 || dow === 6) continue;
       dates.push(formatDate(d));
@@ -46,7 +51,11 @@ module.exports = async (req, res) => {
 
       for (const docs of results) {
         for (const doc of docs) {
-          if (doc.edinetCode === edinetCode && doc.docTypeCode === '120') {
+          if (doc.docTypeCode !== '120') continue;
+          const match = isEdinetCode
+            ? doc.edinetCode === code
+            : doc.secCode === secCode5;
+          if (match) {
             found.push({
               docID: doc.docID,
               docDescription: doc.docDescription || '',
@@ -54,12 +63,13 @@ module.exports = async (req, res) => {
               periodEnd: doc.periodEnd,
               submitDateTime: doc.submitDateTime,
               filerName: doc.filerName,
+              edinetCode: doc.edinetCode,
+              secCode: doc.secCode,
             });
           }
         }
       }
 
-      // 有価証券報告書が見つかったら早期終了
       if (found.length > 0) break;
     }
 

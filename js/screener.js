@@ -138,15 +138,20 @@ async function fetchIndividual() {
       }
     }
 
-    // EDINET取得（APIキーは任意、サーバー側でデフォルトキーを使用）
+    // EDINET取得（EDINETコード未入力なら証券コードで検索）
     const apiKey = document.getElementById('edinetApiKey').value.trim();
     const edinetCode = document.getElementById('indEdinet').value.trim();
-    if (edinetCode) {
+    const searchCode = edinetCode || code; // EDINETコード優先、なければ証券コード
+    if (searchCode) {
       loadingText.textContent = 'EDINET書類検索中...';
       const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
-      const sRes = await fetch(API_BASE+'/api/edinet/search/' + edinetCode + apiParam);
+      const sRes = await fetch(API_BASE+'/api/edinet/search/' + searchCode + apiParam);
       const sData = await sRes.json();
       if (sData.success && sData.documents.length > 0) {
+        // 証券コードで検索した場合、EDINETコードを自動セット
+        if (!edinetCode && sData.documents[0].edinetCode) {
+          document.getElementById('indEdinet').value = sData.documents[0].edinetCode;
+        }
         loadingText.textContent = 'XBRL財務データ解析中...';
         const xRes = await fetch(API_BASE+'/api/edinet/xbrl/' + sData.documents[0].docID + apiParam);
         const xData = await xRes.json();
@@ -254,11 +259,12 @@ function calculateAndDisplay() {
     methodEl.style.display = 'none';
   }
 
-  // 土地明細分析セクションを表示（EDINETコードがある場合）
+  // 土地明細分析セクションを表示（EDINETコードまたは証券コードがある場合）
   const landSection = document.getElementById('landAnalysisSection');
   if (landSection) {
     const edinetCode = document.getElementById('indEdinet').value.trim();
-    landSection.style.display = edinetCode ? '' : 'none';
+    const stockCode = document.getElementById('indCode').value.trim();
+    landSection.style.display = (edinetCode || stockCode) ? '' : 'none';
   }
 
   // 含み益合計（有価証券 + 投資不動産 + 土地）
@@ -468,7 +474,9 @@ let landParcelsData = null;
 async function fetchLandParcels() {
   const apiKey = document.getElementById('edinetApiKey').value.trim();
   const edinetCode = document.getElementById('indEdinet').value.trim();
-  if (!edinetCode) { alert('EDINETコードを入力してください'); return; }
+  const stockCode = document.getElementById('indCode').value.trim();
+  const searchCode = edinetCode || stockCode;
+  if (!searchCode) { alert('EDINETコードまたは証券コードを入力してください'); return; }
 
   const btn = document.getElementById('btnLandAnalysis');
   const loading = document.getElementById('landLoading');
@@ -477,10 +485,10 @@ async function fetchLandParcels() {
   loading.classList.add('active');
 
   try {
-    // まずEDINET書類検索でdocIDを取得
+    // EDINET書類検索でdocIDを取得（EDINETコードまたは証券コード）
     const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
     loadingText.textContent = 'EDINET書類検索中...';
-    const sRes = await fetch(API_BASE + '/api/edinet/search/' + edinetCode + apiParam);
+    const sRes = await fetch(API_BASE + '/api/edinet/search/' + searchCode + apiParam);
     const sData = await sRes.json();
     if (!sData.success || !sData.documents || sData.documents.length === 0) {
       alert('有価証券報告書が見つかりません');
