@@ -357,8 +357,10 @@ def main():
     processed = 0
 
     for code, doc_info in doc_map.items():
-        # 既にキャッシュ済みで同じdocIDなら スキップ
-        if code in companies and companies[code].get("_docID") == doc_info["docID"]:
+        # 既にキャッシュ済みで同じdocIDかつPL項目もあればスキップ
+        cached = companies.get(code, {})
+        if (cached.get("_docID") == doc_info["docID"]
+                and "operatingIncome" in cached):
             print(f"  SKIP: {code} {doc_info['filerName']} (cached)")
             continue
 
