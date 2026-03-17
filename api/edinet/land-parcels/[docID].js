@@ -116,9 +116,13 @@ module.exports = async (req, res) => {
 // ═══════════════════════════════════════════════════════════════
 
 function parseLandParcels(html) {
-  const parcels = [];
+  // まず「主要な設備の状況」テーブルから抽出を試行（最も構造化されたデータ）
+  const facilityParcels = parseFacilityTable(html);
+  if (facilityParcels.length > 0) {
+    return facilityParcels;
+  }
 
-  // 「有形固定資産等明細表」「有形固定資産明細表」セクションを探す
+  // 「有形固定資産等明細表」から抽出を試行
   const patterns = [
     '有形固定資産等明細表',
     '有形固定資産明細表',
@@ -130,37 +134,13 @@ function parseLandParcels(html) {
     sectionStart = html.indexOf(pat);
     if (sectionStart !== -1) break;
   }
-  if (sectionStart === -1) return parcels;
+  if (sectionStart === -1) return [];
 
-  // セクション周辺のテーブルを取得（前後の範囲を広めに）
   const searchEnd = Math.min(html.length, sectionStart + 30000);
   const searchHtml = html.substring(sectionStart, searchEnd);
 
-  // 「土地」の行を探す
   const landIdx = searchHtml.indexOf('土地');
-  if (landIdx === -1) return parcels;
-
-  // 土地セクション周辺のテーブルデータを解析
-  // 注記にリンクがある場合（「※1」「注1」等）、注記から詳細を取得
-  const noteRefMatch = searchHtml.substring(landIdx, landIdx + 500).match(/[※注]\s*(\d+)/);
-
-  // 土地の主要物件注記を探す
-  // パターン1: 「土地の主要物件」「主な土地」等のセクション
-  const landDetailPatterns = [
-    '主要な土地',
-    '土地の主要物件',
-    '主な土地',
-    '主要物件',
-    '主要な設備',
-    '設備の状況',
-  ];
-
-  // 注記セクションまたは「主要な設備の状況」から土地データを抽出
-  // 「主要な設備の状況」テーブルは通常、事業所名・所在地・面積・帳簿価額を含む
-  const facilityParcels = parseFacilityTable(html);
-  if (facilityParcels.length > 0) {
-    return facilityParcels;
-  }
+  if (landIdx === -1) return [];
 
   // 固定資産明細表から直接抽出を試行
   const directParcels = parseDirectLandEntries(searchHtml, landIdx);
@@ -168,7 +148,7 @@ function parseLandParcels(html) {
     return directParcels;
   }
 
-  return parcels;
+  return [];
 }
 
 /**
