@@ -14,17 +14,18 @@ module.exports = async (req, res) => {
   const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
   const isEdinetCode = /^E\d{5}$/.test(code);
-  const isSecCode = /^\d{4}$/.test(code);
+  const isSecCode = /^[0-9A-Za-z]{4}$/.test(code) && !isEdinetCode;
 
   if (!code || (!isEdinetCode && !isSecCode)) {
-    return res.status(400).json({ success: false, error: 'EDINETコード(E+5桁)または証券コード(4桁数字)を指定してください' });
+    return res.status(400).json({ success: false, error: 'EDINETコード(E+5桁)または証券コード(4桁英数字)を指定してください' });
   }
   if (!apiKey) {
     return res.status(400).json({ success: false, error: 'EDINET APIキーが必要です' });
   }
 
   // 証券コードの場合、EDINET APIのsecCodeは5桁（末尾0付き）
-  const secCode5 = isSecCode ? code + '0' : null;
+  // 英字入りコード（166Aなど）の場合もそのまま末尾0を付与して検索
+  const secCode5 = isSecCode ? code.toUpperCase() + '0' : null;
 
   try {
     // 過去400日分の日付を生成（直近から遡る）
