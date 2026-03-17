@@ -20,8 +20,8 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
 
     const firebaseConfig = {
@@ -56,18 +56,28 @@
     };
 
     // 新規登録
-    window.firebaseRegister = async (email, password, name, company) => {
+    window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(cred.user, { displayName: name });
-      // Firestore にユーザー情報を保存
       await setDoc(doc(db, "users", cred.user.uid), {
-        name: name,
-        company: company || "",
-        email: email,
+        name, company: company || "", email,
+        affiliation: affiliation || "",
+        affiliationCode: affiliationCode || "",
+        jobTitle: jobTitle || "",
         plan: "free",
         createdAt: serverTimestamp()
       });
+      await sendEmailVerification(cred.user);
       return cred.user;
+    };
+
+    // パスワードリセット
+    window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
+
+    // ユーザープロフィール取得
+    window.firebaseGetProfile = async (uid) => {
+      const snap = await getDoc(doc(db, "users", uid));
+      return snap.exists() ? snap.data() : null;
     };
 
     // ログアウト
@@ -395,20 +405,23 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/">ニュース・論考</a></li>
+      <!-- ツールタブ非公開（テスト中）
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
           <li><a href="/activist-dashboard.html" class="active">大量保有報告ダッシュボード</a></li>
           <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+          <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
         </ul>
       </li>
+      -->
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
       <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
     </div>
     <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
-      <span style="font-size:0.72rem; color:rgba(255,255,255,0.7); letter-spacing:0.04em;" id="navUserName"></span>
+      <a onclick="openMyPage()" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
       <button class="btn-login" onclick="handleLogout()">ログアウト</button>
     </div>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
@@ -422,9 +435,12 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMobileMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMobileMenu()">チーム</a>
   <a href="/news/" onclick="toggleMobileMenu()">ニュース・論考</a>
+  <!-- ツールタブ非公開（テスト中）
   <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
   <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMobileMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
+  <a href="/activist-screener.html" onclick="toggleMobileMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  -->
   <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
@@ -667,6 +683,7 @@
       <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required placeholder="パスワード"></div>
       <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
     </form>
+    <div style="text-align:center; margin-top:12px;"><a onclick="openModal('resetPassword')" style="font-size:12px; color:var(--gold); cursor:pointer;">パスワードをお忘れの方</a></div>
     <div class="modal-footer"><p>アカウントをお持ちでない方は <a onclick="switchModal('register')">新規登録</a></p></div>
   </div>
 </div>
@@ -679,16 +696,91 @@
     <div id="registerError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
     <div id="registerSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
     <form onsubmit="handleRegister(event)">
-      <div class="form-group"><label>お名前</label><input type="text" id="regName" required placeholder="山田 太郎"></div>
-      <div class="form-group"><label>会社名</label><input type="text" id="regCompany" placeholder="株式会社○○（任意）"></div>
-      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required placeholder="example@company.co.jp"></div>
-      <div class="form-group"><label>パスワード</label><input type="password" id="regPassword" required placeholder="8文字以上" minlength="8"></div>
+      <div class="form-group"><label>お名前 <span style="color:var(--red);">*</span></label><input type="text" id="regName" required placeholder="山田 太郎"></div>
+      <div class="form-group">
+        <label>所属種別 <span style="color:var(--red);">*</span></label>
+        <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;">
+        <label>証券コード</label>
+        <input type="text" id="regAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="\d{4}">
+      </div>
+      <div class="form-group">
+        <label>役職</label>
+        <select id="regJobTitle" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください（任意）</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" placeholder="株式会社○○（任意）"></div>
+      <div class="form-group"><label>メールアドレス <span style="color:var(--red);">*</span></label><input type="email" id="regEmail" required placeholder="example@company.co.jp"></div>
+      <div class="form-group"><label>パスワード <span style="color:var(--red);">*</span></label><input type="password" id="regPassword" required placeholder="8文字以上" minlength="8"></div>
       <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
     </form>
-    <p style="text-align:center; font-size:12px; color:var(--text-light); margin-top:16px;">
-      登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます
+    <p style="text-align:center; font-size:11px; color:var(--text-light); margin-top:16px; line-height:1.7;">
+      登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>
+      ※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。
     </p>
     <div class="modal-footer"><p>すでにアカウントをお持ちの方は <a onclick="switchModal('login')">ログイン</a></p></div>
+  </div>
+</div>
+
+<!-- PASSWORD RESET MODAL -->
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('resetPassword')">&times;</button>
+    <h2>パスワードリセット</h2>
+    <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">登録済みのメールアドレスを入力してください。<br>パスワードリセット用のリンクをお送りします。</p>
+    <div id="resetError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <div id="resetSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleResetPassword(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required placeholder="example@company.co.jp"></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><p><a onclick="switchToLogin()" style="cursor:pointer;">ログインに戻る</a></p></div>
+  </div>
+</div>
+
+<!-- MY PAGE MODAL -->
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal" style="max-width:500px;">
+    <button class="modal-close" onclick="closeModal('myPage')">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageContent" style="font-size:14px; color:var(--text-mid);">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy); width:120px;">お名前</td><td style="padding:12px 0;" id="myName">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">メール</td><td style="padding:12px 0;" id="myEmail">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">メール認証</td><td style="padding:12px 0;" id="myEmailVerified">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">所属種別</td><td style="padding:12px 0;" id="myAffiliation">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">役職</td><td style="padding:12px 0;" id="myJobTitle">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">会社名</td><td style="padding:12px 0;" id="myCompany">-</td></tr>
+        <tr><td style="padding:12px 0; font-weight:500; color:var(--navy);">登録日</td><td style="padding:12px 0;" id="myCreatedAt">-</td></tr>
+      </table>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:24px; justify-content:center; flex-wrap:wrap;">
+      <button onclick="handleMyPageResetPassword()" class="btn-submit" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
+      <button onclick="handleResendVerification()" class="btn-submit" id="btnResendVerify" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">認証メールを再送</button>
+    </div>
+    <div id="myPageMsg" style="display:none; text-align:center; padding:10px 14px; border-radius:4px; font-size:13px; margin-top:16px;"></div>
   </div>
 </div>
 
@@ -1298,6 +1390,12 @@ async function handleLogin(e) {
   }
 }
 
+// 所属種別で証券コード欄の表示切替
+function toggleAffiliationCode() {
+  const v = document.getElementById('regAffiliation').value;
+  document.getElementById('affiliationCodeGroup').style.display = v === 'listed_company' ? '' : 'none';
+}
+
 async function handleRegister(e) {
   e.preventDefault();
   const errEl = document.getElementById('registerError');
@@ -1313,13 +1411,16 @@ async function handleRegister(e) {
     const company = document.getElementById('regCompany').value;
     const email = document.getElementById('regEmail').value;
     const password = document.getElementById('regPassword').value;
-    await window.firebaseRegister(email, password, name, company);
-    successEl.textContent = '登録が完了しました。ようこそ！';
+    const affiliation = document.getElementById('regAffiliation').value;
+    const affiliationCode = document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '';
+    const jobTitle = document.getElementById('regJobTitle').value;
+    await window.firebaseRegister(email, password, name, company, affiliation, affiliationCode, jobTitle);
+    successEl.textContent = '登録が完了しました。確認メールをお送りしましたのでご確認ください。';
     successEl.style.display = 'block';
     setTimeout(() => {
       closeModal('register');
       successEl.style.display = 'none';
-    }, 1500);
+    }, 2500);
   } catch (err) {
     const messages = {
       'auth/email-already-in-use': 'このメールアドレスは既に登録されています。ログインしてください。',
@@ -1332,6 +1433,87 @@ async function handleRegister(e) {
   } finally {
     btn.textContent = '無料で登録する';
     btn.disabled = false;
+  }
+}
+
+// パスワードリセット
+async function handleResetPassword(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('resetError');
+  const successEl = document.getElementById('resetSuccess');
+  const btn = document.getElementById('resetBtn');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+  btn.textContent = '送信中...';
+  btn.disabled = true;
+  try {
+    const email = document.getElementById('resetEmail').value;
+    await window.firebaseResetPassword(email);
+    successEl.textContent = 'リセット用メールを送信しました。メールをご確認ください。';
+    successEl.style.display = 'block';
+  } catch (err) {
+    const messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+      'auth/too-many-requests': '送信回数が多すぎます。しばらくしてからお試しください。',
+    };
+    errEl.textContent = messages[err.code || ''] || 'エラーが発生しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = 'リセットメールを送信';
+    btn.disabled = false;
+  }
+}
+
+function switchToLogin() { closeModal('resetPassword'); openModal('login'); }
+
+// マイページ
+const AFFILIATION_LABELS = { listed_company:'上場企業', institutional_investor:'機関投資家', individual_investor:'個人投資家', consulting:'コンサルティングファーム', legal:'法律事務所・弁護士', media:'メディア・報道機関', academic:'学術・研究機関', other:'その他' };
+const JOBTITLE_LABELS = { executive:'経営者・役員', department_head:'部長・本部長', manager:'課長・マネージャー', ir_officer:'IR担当', legal_compliance:'法務・コンプライアンス', finance:'経理・財務', analyst:'アナリスト・ファンドマネージャー', consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他' };
+
+async function openMyPage() {
+  openModal('myPage');
+  const user = window.currentUser;
+  if (!user) return;
+  document.getElementById('myName').textContent = user.displayName || '-';
+  document.getElementById('myEmail').textContent = user.email || '-';
+  const verified = user.emailVerified;
+  const verifiedEl = document.getElementById('myEmailVerified');
+  verifiedEl.innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
+  document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
+  try {
+    const profile = await window.firebaseGetProfile(user.uid);
+    if (profile) {
+      document.getElementById('myAffiliation').textContent = AFFILIATION_LABELS[profile.affiliation] || profile.affiliation || '-';
+      document.getElementById('myJobTitle').textContent = JOBTITLE_LABELS[profile.jobTitle] || profile.jobTitle || '-';
+      document.getElementById('myCompany').textContent = profile.company || '-';
+      document.getElementById('myCreatedAt').textContent = profile.createdAt ? new Date(profile.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '-';
+    }
+  } catch (e) { console.error('Profile fetch error:', e); }
+}
+
+async function handleMyPageResetPassword() {
+  const msg = document.getElementById('myPageMsg');
+  try {
+    await window.firebaseResetPassword(window.currentUser.email);
+    msg.textContent = 'パスワードリセット用メールを送信しました。';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+  } catch (e) {
+    msg.textContent = 'エラーが発生しました: ' + (e.message || '');
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+async function handleResendVerification() {
+  const msg = document.getElementById('myPageMsg');
+  try {
+    const { sendEmailVerification } = await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");
+    await sendEmailVerification(window.currentUser);
+    msg.textContent = '認証メールを再送しました。メールをご確認ください。';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+  } catch (e) {
+    msg.textContent = (e.code === 'auth/too-many-requests') ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
   }
 }
 

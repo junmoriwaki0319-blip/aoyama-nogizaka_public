@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5D57P05PM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクティビスト・スクリーニング | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
+      authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
+      projectId: "aoyama-nogizaka-activist",
+      storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
+      messagingSenderId: "384668278205",
+      appId: "1:384668278205:web:78b25a473c6305f264c6d4",
+      measurementId: "G-Y1JYXRYHV9"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+    window.firebaseAuth = auth;
+    window.firebaseDb = db;
+    onAuthStateChanged(auth, (user) => {
+      window.currentUser = user;
+      if (typeof updateAuthUI === 'function') updateAuthUI(user);
+    });
+    window.firebaseLogin = async (email, password) => {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      return cred.user;
+    };
+    window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      await setDoc(doc(db, "users", cred.user.uid), {
+        name, company: company || "", email,
+        affiliation: affiliation || "",
+        affiliationCode: affiliationCode || "",
+        jobTitle: jobTitle || "",
+        plan: "free", createdAt: serverTimestamp()
+      });
+      await sendEmailVerification(cred.user);
+      return cred.user;
+    };
+    window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
+    window.firebaseGetProfile = async (uid) => {
+      const snap = await getDoc(doc(db, "users", uid));
+      return snap.exists() ? snap.data() : null;
+    };
+    window.firebaseLogout = () => signOut(auth);
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#1a2d4f;--navy-light:#243b63;--gold:#9b8b6e;--gold-light:#c8b99a;--white:#fff;--off-white:#f8f7f5;--light-gray:#f0eee9;--mid-gray:#e0dcd5;--text-dark:#1a1a1a;--text-mid:#444;--text-light:#888;--red:#c0392b;--green:#27ae60;--blue:#2980b9;--orange:#e67e22;--danger:#c0392b;--muted:#888;--serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--deco:'Cormorant Garamond',serif}
+    html{scroll-behavior:smooth}body{font-family:var(--sans);color:var(--text-dark);background:var(--off-white)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy);height:64px;display:flex;align-items:center}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 40px;width:100%;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{text-decoration:none;display:flex;flex-direction:column;gap:1px}
+    .nav-logo-jp{font-family:var(--serif);font-size:.75rem;color:var(--mid-gray);letter-spacing:.1em}
+    .nav-logo-en{font-family:var(--deco);font-size:1rem;color:var(--white);letter-spacing:.08em}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links a{color:var(--mid-gray);text-decoration:none;font-size:.78rem;letter-spacing:.06em;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-links a.active{border-bottom:1px solid var(--gold);padding-bottom:2px}
+    .nav-dropdown{position:relative}.nav-dropdown-toggle{cursor:pointer}
+    .nav-dropdown-menu{display:none;position:absolute;top:100%;left:-12px;background:var(--navy);border-radius:6px;padding:8px 0;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:100;list-style:none;margin-top:8px}
+    .nav-dropdown-menu li a{display:block;padding:8px 20px;font-size:.76rem;white-space:nowrap;color:var(--mid-gray)}
+    .nav-dropdown-menu li a:hover,.nav-dropdown-menu li a.active{color:var(--gold);background:rgba(255,255,255,.05)}
+    .nav-dropdown:hover .nav-dropdown-menu{display:block}
+    .nav-cta{background:var(--gold);color:var(--white)!important;border:none;cursor:pointer;padding:8px 20px;font-size:.78rem;font-family:var(--sans);letter-spacing:.06em;transition:opacity .2s;text-decoration:none}
+    .nav-cta:hover{opacity:.85}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s}
+    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;padding:36px 28px;gap:0}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{text-decoration:none;color:rgba(255,255,255,.8);font-size:1rem;letter-spacing:.06em;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:color .2s}
+    .mobile-menu a:hover{color:var(--gold)}.mobile-menu a.active{color:var(--gold)}
+    .mobile-menu a.m-cta{color:var(--gold);margin-top:20px;border:1px solid var(--gold);text-align:center;padding:14px}
+    @media(max-width:860px){.nav-inner{padding:0 20px}.nav-links{display:none}.nav-hamburger{display:flex}}
+    .page-hero{margin-top:64px;background:linear-gradient(160deg,var(--navy) 0%,#243b60 60%,#2a4570 100%);padding:72px 40px 60px;position:relative;overflow:hidden}
+    .page-hero::after{content:'';position:absolute;right:-40px;top:-40px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(155,139,110,.1) 0%,transparent 70%)}
+    .page-hero-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1}
+    .page-hero-en{font-family:var(--deco);font-style:italic;color:var(--gold);font-size:.95rem;letter-spacing:.12em;margin-bottom:10px}
+    .page-hero h1{font-family:var(--serif);font-weight:300;color:var(--white);font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:16px;line-height:1.5}
+    .page-hero p{color:rgba(255,255,255,.65);font-size:.88rem;max-width:600px;margin:0 auto;line-height:1.8}
+    .hero-badge{display:inline-block;margin-top:20px;padding:6px 20px;border:1px solid var(--gold);color:var(--gold);font-size:.72rem;letter-spacing:.1em}
+    .container{max-width:1100px;margin:0 auto;padding:0 40px}
+    .tab-bar{display:flex;gap:0;margin-top:36px}
+    .tab-btn{flex:1;padding:16px 20px;background:var(--white);border:2px solid var(--mid-gray);border-bottom:none;border-radius:10px 10px 0 0;font-size:.88rem;font-family:var(--sans);color:var(--text-light);cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.04em}
+    .tab-btn.active{border-color:var(--gold);color:var(--navy);font-weight:500}
+    .tab-btn:not(.active):hover{color:var(--text-mid)}
+    .tab-panel{display:none;background:var(--white);border:2px solid var(--gold);border-radius:0 0 12px 12px;padding:36px}
+    .tab-panel.active{display:block}
+    .s-card{background:var(--off-white);border-radius:10px;padding:24px 28px;margin-bottom:20px}
+    .s-card-title{font-family:var(--serif);font-weight:400;font-size:.95rem;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--mid-gray)}
+    .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+    .form-field label{display:block;font-size:.76rem;color:var(--navy);font-weight:500;margin-bottom:5px}
+    .form-field input,.form-field select,.form-field textarea{width:100%;padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.88rem;font-family:var(--sans);color:var(--text-dark);background:var(--white);transition:border-color .2s;outline:none}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
+    .form-field textarea{resize:vertical}
+    .btn-primary{padding:12px 28px;background:var(--navy);color:var(--white);border:none;border-radius:8px;font-size:.85rem;font-family:var(--sans);letter-spacing:.06em;cursor:pointer;transition:background .2s}
+    .btn-primary:hover{background:var(--navy-light)}.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+    .btn-secondary{padding:12px 24px;background:none;color:var(--text-light);border:1px solid var(--mid-gray);border-radius:8px;font-size:.82rem;font-family:var(--sans);cursor:pointer;transition:all .2s}
+    .btn-secondary:hover{border-color:var(--text-mid);color:var(--text-mid)}
+    .btn-gold{padding:10px 22px;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.82rem;font-family:var(--sans);cursor:pointer;transition:opacity .2s}
+    .btn-gold:hover{opacity:.85}.btn-gold:disabled{opacity:.4;cursor:not-allowed}
+    .btn-row{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+    .loading{display:none;align-items:center;gap:8px;color:var(--gold);padding:12px 0;font-size:.82rem}
+    .loading.active{display:flex}
+    .spinner{width:16px;height:16px;border:2px solid var(--mid-gray);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .score-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);border-radius:10px;padding:28px;text-align:center;color:var(--white);margin-bottom:20px}
+    .score-hero .company{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+    .score-hero .market-info{font-size:.72rem;color:var(--gold-light);margin-bottom:12px}
+    .score-number{font-family:var(--deco);font-size:3.2rem;font-weight:500;line-height:1}
+    .score-number .max{font-size:1.1rem;color:rgba(255,255,255,.45)}
+    .score-badge{display:inline-block;padding:4px 16px;border-radius:16px;font-size:.78rem;font-weight:600;margin-top:10px;color:var(--white)}
+    .badge-high{background:var(--red)}.badge-mid{background:var(--orange)}.badge-low{background:var(--green)}
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px}
+    .metric-card{background:var(--white);border:1px solid var(--light-gray);border-radius:8px;padding:16px}
+    .metric-card-title{font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid var(--gold-light)}
+    .metric-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--light-gray)}
+    .metric-row:last-child{border-bottom:none}
+    .metric-label{font-size:.78rem;color:var(--text-light)}
+    .metric-value{font-size:.82rem;font-weight:600;font-family:var(--deco);letter-spacing:.03em}
+    .metric-value.highlight{color:var(--red);font-size:.88rem}
+    .metric-value.positive{color:var(--green)}.metric-value.negative{color:var(--red)}.metric-value.warning{color:var(--orange)}
+    table{width:100%;border-collapse:collapse;font-size:.78rem}
+    th{background:var(--light-gray);color:var(--text-light);font-weight:600;font-size:.72rem;letter-spacing:.04em}
+    th,td{padding:8px 10px;text-align:left}td{border-top:1px solid var(--light-gray)}
+    tbody tr:hover td{background:var(--off-white)}
+    .bar-container{width:70px;height:5px;background:var(--light-gray);border-radius:3px;display:inline-block;vertical-align:middle}
+    .bar-fill{height:100%;border-radius:3px}.bar-high{background:var(--red)}.bar-mid{background:var(--orange)}.bar-low{background:var(--green)}
+    .ranking-table{overflow-x:auto}.ranking-table table{min-width:900px}
+    .ranking-table th{cursor:pointer;user-select:none;white-space:nowrap}.ranking-table th:hover{background:var(--mid-gray)}
+    .ranking-table td{font-family:var(--deco);font-size:.78rem}.ranking-table td.name-cell{font-family:var(--sans)}
+    .rank-badge{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;font-size:.68rem;font-weight:700;color:#fff}
+    .rank-1{background:#c8a84e}.rank-2{background:#a0aec0}.rank-3{background:#b87333}.rank-other{background:var(--text-light)}
+    .chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .chip{padding:4px 14px;border-radius:14px;font-size:.72rem;font-weight:500;background:var(--light-gray);color:var(--gold);border:1px solid var(--gold-light);cursor:pointer;transition:all .2s}
+    .chip:hover{background:var(--gold);color:var(--white)}
+    .progress-bar{width:100%;height:5px;background:var(--light-gray);border-radius:3px;margin:8px 0}
+    .progress-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .3s}
+    .progress-text{font-size:.72rem;color:var(--text-light)}
+    .mcap-cat{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:500}
+    .mcap-nano{background:#fce4ec;color:#880e4f}.mcap-micro{background:#fff8e1;color:#f57f17}
+    .mcap-small{background:#e8f5e9;color:#2e7d32}.mcap-mid{background:#e3f2fd;color:#1565c0}.mcap-large{background:#f3e5f5;color:#6a1b9a}
+    .auth-section{margin-top:20px;padding:20px;background:var(--light-gray);border-radius:8px}
+    .auth-section h3{font-family:var(--serif);font-weight:400;font-size:.92rem;color:var(--navy);margin-bottom:12px}
+    .auth-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+    .auth-form input{padding:8px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.82rem}
+    .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
+    .user-info{display:flex;align-items:center;gap:12px;font-size:.82rem}.user-info .name{font-weight:500;color:var(--navy)}
+    .hidden{display:none!important}
+    .info-tip{display:inline-block;width:15px;height:15px;line-height:15px;text-align:center;border-radius:50%;background:var(--mid-gray);color:var(--text-light);font-size:.62rem;font-weight:700;cursor:help;position:relative}
+    .info-tip:hover::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);bottom:20px;background:var(--navy);color:#fff;padding:5px 10px;border-radius:5px;font-size:.68rem;white-space:nowrap;z-index:10;font-weight:400}
+    .cta-section{padding:56px 0 0}
+    .cta-card{background:var(--navy);border-radius:12px;padding:40px;text-align:center}
+    .cta-card h3{font-family:var(--serif);font-weight:300;color:var(--white);font-size:1.2rem;margin-bottom:12px}
+    .cta-card p{color:rgba(255,255,255,.6);font-size:.82rem;margin-bottom:24px;line-height:1.8}
+    .cta-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .cta-links a{padding:12px 28px;border-radius:6px;font-size:.82rem;letter-spacing:.06em;font-family:var(--sans);text-decoration:none;transition:all .2s}
+    .cta-primary{background:var(--gold);color:var(--white)}.cta-primary:hover{opacity:.85}
+    .cta-secondary{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8)}.cta-secondary:hover{border-color:var(--gold);color:var(--gold)}
+    footer{background:#111d30;color:rgba(255,255,255,.5);padding:48px 40px 28px;font-size:.78rem;margin-top:60px}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-brand{font-family:var(--deco);color:var(--white);font-size:1.15rem;margin-bottom:4px}
+    .footer-tagline{font-size:.7rem;letter-spacing:.12em;color:var(--gold)}
+    .footer-nav{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
+    .footer-nav a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}.footer-nav a:hover{color:var(--gold)}
+    .footer-bottom{padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.72rem}
+    @media(max-width:768px){.page-hero{padding:56px 20px 44px}.container{padding:0 20px}.tab-panel{padding:24px 16px}.metrics-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.tab-bar{flex-direction:column;gap:0}.tab-btn{border-radius:0;border-bottom:2px solid var(--mid-gray)}.tab-btn:first-child{border-radius:10px 10px 0 0}.tab-btn.active{border-bottom-color:var(--gold)}.footer-top{flex-direction:column}.auth-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <!-- ツールタブ非公開（テスト中）
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+          <li><a href="/activist-screener.html" class="active">スクリーニング・ランキング</a></li>
+        </ul>
+      </li>
+      -->
+      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
+  <!-- ツールタブ非公開（テスト中）
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
+  <a href="/activist-screener.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">スクリーニング・ランキング</a>
+  -->
+  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+</div>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-en">Activist Screening &amp; Ranking</div>
+    <h1>アクティビスト・スクリーニング</h1>
+    <p>含み益・実質PBR分析から複数銘柄の一括スキャンまで。<br>アクティビストが標的としそうな企業を定量的にスクリーニングします。</p>
+    <div class="hero-badge">含み益分析 &amp; バッチスキャン対応</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('individual')">個別銘柄分析</button>
+    <button class="tab-btn" onclick="switchTab('ranking')">ランキング・スクリーニング</button>
+  </div>
+
+  <!-- TAB 1: 個別銘柄分析 -->
+  <div class="tab-panel active" id="tab-individual">
+    <div class="s-card">
+      <div class="s-card-title">銘柄コード入力 &amp; データ取得</div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>証券コード（4桁）</label>
+          <input type="text" id="indCode" placeholder="例: 7203" maxlength="4" inputmode="numeric">
+        </div>
+        <div class="form-field">
+          <label>EDINETコード（任意）</label>
+          <input type="text" id="indEdinet" placeholder="例: E02144">
+        </div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary style="font-size:0.76rem; color:var(--text-light); cursor:pointer;">EDINET API設定（含み益・ネットキャッシュ自動計算に利用）</summary>
+        <div class="form-grid" style="margin-top:8px;">
+          <div class="form-field">
+            <label>EDINET APIキー</label>
+            <input type="text" id="edinetApiKey" placeholder="Subscription-Key">
+          </div>
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
+          <a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録してAPIキーを取得できます
+        </p>
+      </details>
+      <div class="btn-row">
+        <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
+        <button class="btn-secondary" onclick="resetIndividual()">リセット</button>
+      </div>
+      <div class="loading" id="indLoading"><div class="spinner"></div><span id="indLoadingText">データ取得中...</span></div>
+    </div>
+
+    <div id="indResult" class="hidden">
+      <div class="score-hero">
+        <div class="company" id="indCompanyName">-</div>
+        <div class="market-info" id="indMarketInfo">-</div>
+        <div style="font-size:0.72rem; margin-bottom:6px; color:rgba(255,255,255,0.55);">アクティビスト標的スコア</div>
+        <div class="score-number"><span id="indTotalScore">0</span><span class="max"> / 100</span></div>
+        <div class="score-badge" id="indScoreBadge">-</div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-card-title">基本指標</div>
+          <div class="metric-row"><span class="metric-label">株価</span><span class="metric-value" id="m_price">-</span></div>
+          <div class="metric-row"><span class="metric-label">PBR</span><span class="metric-value" id="m_pbr">-</span></div>
+          <div class="metric-row"><span class="metric-label">PER</span><span class="metric-value" id="m_per">-</span></div>
+          <div class="metric-row"><span class="metric-label">ROE</span><span class="metric-value" id="m_roe">-</span></div>
+          <div class="metric-row"><span class="metric-label">EPS</span><span class="metric-value" id="m_eps">-</span></div>
+          <div class="metric-row"><span class="metric-label">BPS</span><span class="metric-value" id="m_bps">-</span></div>
+          <div class="metric-row"><span class="metric-label">配当利回り</span><span class="metric-value" id="m_divyield">-</span></div>
+          <div class="metric-row"><span class="metric-label">配当性向</span><span class="metric-value" id="m_payout">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">バリュー指標（含み益・実質PBR）</div>
+          <div class="metric-row"><span class="metric-label">時価総額</span><span class="metric-value" id="m_mcap">-</span></div>
+          <div class="metric-row"><span class="metric-label">時価総額区分</span><span id="m_mcap_cat">-</span></div>
+          <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
+          <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">含み益合計</span><span class="metric-value highlight" id="m_total_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">修正純資産</span><span class="metric-value" id="m_adj_nav">-</span></div>
+          <div class="metric-row"><span class="metric-label">実質PBR</span><span class="metric-value highlight" id="m_adj_pbr">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">キャッシュ・財務指標</div>
+          <div class="metric-row"><span class="metric-label">現金及び預金</span><span class="metric-value" id="m_cash">-</span></div>
+          <div class="metric-row"><span class="metric-label">有利子負債</span><span class="metric-value" id="m_debt">-</span></div>
+          <div class="metric-row"><span class="metric-label">ネットキャッシュ</span><span class="metric-value" id="m_netcash">-</span></div>
+          <div class="metric-row"><span class="metric-label">NC/時価総額</span><span class="metric-value highlight" id="m_nc_ratio">-</span></div>
+          <div class="metric-row"><span class="metric-label">自己資本比率</span><span class="metric-value" id="m_equity_ratio">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">ガバナンス指標</div>
+          <div class="metric-row"><span class="metric-label">外国人持株比率</span><span class="metric-value" id="m_foreign">-</span></div>
+          <div class="metric-row"><span class="metric-label">社外取締役比率</span><span class="metric-value" id="m_outside_dir">-</span></div>
+          <div class="metric-row"><span class="metric-label">発行済株式数</span><span class="metric-value" id="m_shares">-</span></div>
+          <div class="metric-row"><span class="metric-label">自己株式数</span><span class="metric-value" id="m_treasury">-</span></div>
+        </div>
+      </div>
+
+      <div class="s-card">
+        <div class="s-card-title">手動補正入力 <span class="info-tip" data-tip="APIで取得できない値を手動入力し再計算">?</span></div>
+        <div class="form-grid">
+          <div class="form-field"><label>有価証券含み益（百万円）</label><input type="number" id="manual_sec_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>不動産含み益（百万円）</label><input type="number" id="manual_prop_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>政策保有株式/純資産（%）</label><input type="number" id="manual_cross" step="0.1" placeholder="例: 12.0"></div>
+        </div>
+        <div class="btn-row"><button class="btn-secondary" onclick="recalcIndividual()">再計算</button></div>
+      </div>
+
+      <div class="s-card">
+        <div class="s-card-title">スコア詳細</div>
+        <table>
+          <thead><tr><th>評価項目</th><th>値</th><th style="text-align:right;">スコア</th><th style="text-align:right;">配点</th><th style="width:90px;">リスク度</th></tr></thead>
+          <tbody id="indDetailBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: ランキング -->
+  <div class="tab-panel" id="tab-ranking">
+    <div class="s-card">
+      <div class="s-card-title">銘柄コード入力（一括スキャン）</div>
+      <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:10px;">カンマ区切りまたは改行区切りで複数の証券コードを入力（最大100銘柄）</p>
+      <div class="chip-row">
+        <span class="chip" onclick="loadPreset('mega')">メガバンク・大手金融</span>
+        <span class="chip" onclick="loadPreset('lowpbr')">低PBR注目銘柄</span>
+        <span class="chip" onclick="loadPreset('auto')">自動車関連</span>
+        <span class="chip" onclick="loadPreset('trading')">総合商社</span>
+        <span class="chip" onclick="loadPreset('it')">IT・通信</span>
+        <span class="chip" onclick="loadPreset('conglomerate')">コングロマリット</span>
+      </div>
+      <div class="form-field"><textarea id="rankCodes" rows="4" placeholder="例: 7203, 6758, 9984, 8306, 4502&#10;または1行1コードで入力"></textarea></div>
+      <div class="form-grid" style="margin-top:10px;">
+        <div class="form-field">
+          <label>時価総額フィルタ</label>
+          <select id="rankMcapFilter" onchange="filterAndDisplayRanking()">
+            <option value="all">全て</option>
+            <option value="nano">ナノキャップ（〜50億円）</option>
+            <option value="micro">マイクロキャップ（50〜300億円）</option>
+            <option value="small">スモールキャップ（300〜1000億円）</option>
+            <option value="mid">ミッドキャップ（1000〜5000億円）</option>
+            <option value="large">ラージキャップ（5000億円〜）</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>ソート基準</label>
+          <select id="rankSortBy" onchange="filterAndDisplayRanking()">
+            <option value="score">アクティビスト標的スコア</option>
+            <option value="pbr">PBR（低い順）</option>
+            <option value="roe">ROE（低い順）</option>
+            <option value="divyield">配当利回り（高い順）</option>
+            <option value="equity">自己資本比率（高い順）</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" id="btnRankScan" onclick="startRankingScan()">スキャン開始</button>
+        <button class="btn-secondary" id="btnRankCancel" onclick="cancelScan()" style="display:none;">キャンセル</button>
+      </div>
+      <div class="loading" id="rankLoading"><div class="spinner"></div><span id="rankLoadingText">スキャン中...</span></div>
+      <div id="rankProgress" class="hidden">
+        <div class="progress-bar"><div class="progress-fill" id="rankProgressBar"></div></div>
+        <div class="progress-text" id="rankProgressText">0 / 0</div>
+      </div>
+    </div>
+
+    <div id="rankResult" class="hidden">
+      <div class="s-card">
+        <div class="s-card-title" style="display:flex; align-items:center; justify-content:space-between;">
+          <span>スクリーニング結果 <span style="font-size:0.76rem; color:var(--text-light); font-weight:400; margin-left:8px;" id="rankResultCount">0件</span></span>
+          <button class="btn-gold" id="btnCsvExport" onclick="exportCSV()" disabled>CSV出力</button>
+        </div>
+        <div class="ranking-table">
+          <table>
+            <thead><tr>
+              <th onclick="sortRanking('rank')">順位</th>
+              <th onclick="sortRanking('code')">コード</th>
+              <th onclick="sortRanking('name')">銘柄名</th>
+              <th onclick="sortRanking('score')">スコア</th>
+              <th onclick="sortRanking('pbr')">PBR</th>
+              <th onclick="sortRanking('roe')">ROE</th>
+              <th onclick="sortRanking('per')">PER</th>
+              <th onclick="sortRanking('divyield')">配当利回り</th>
+              <th onclick="sortRanking('payout')">配当性向</th>
+              <th onclick="sortRanking('equity')">自己資本比率</th>
+              <th onclick="sortRanking('mcap')">時価総額</th>
+              <th onclick="sortRanking('mcapCat')">区分</th>
+            </tr></thead>
+            <tbody id="rankTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="auth-section" id="authSection">
+        <div id="authLoggedOut">
+          <h3>CSV出力は会員限定機能です</h3>
+          <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">ログインまたは新規登録してCSVエクスポート機能をご利用ください。</p>
+          <div id="authLoginForm">
+            <div class="auth-form">
+              <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:180px;">
+              <input type="password" id="authPass" placeholder="パスワード" style="min-width:120px;">
+              <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
+            <div class="auth-msg" id="authLoginMsg"></div>
+          </div>
+          <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" onclick="doResetPassword()" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
+          <div id="authRegisterForm" class="hidden">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <input type="text" id="regName" placeholder="お名前 *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+              <input type="text" id="regCompany" placeholder="会社名・組織名（任意）" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+              <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+              <input type="text" id="regAffiliationCode" placeholder="証券コード（例: 7203）" maxlength="4" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; display:none;">
+              <select id="regJobTitle" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option></select>
+              <input type="email" id="regEmail" placeholder="メールアドレス *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+              <input type="password" id="regPass" placeholder="パスワード（6文字以上）*" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+            </div>
+            <button class="btn-primary" onclick="doRegister()" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
+            <p style="font-size:0.68rem; color:var(--text-light); margin-top:10px; line-height:1.7; text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。</p>
+            <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログイン</a></p>
+            <div class="auth-msg" id="authRegMsg"></div>
+          </div>
+        </div>
+        <div id="authLoggedIn" class="hidden">
+          <div class="user-info">
+            <a class="name" id="authUserName" onclick="openMyPage()" style="cursor:pointer; text-decoration:underline;"></a>
+            <span style="color:var(--text-light);">でログイン中</span>
+            <button class="btn-secondary" onclick="doLogout()" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div style="max-width:800px; margin:40px auto 0; padding:24px 28px; background:var(--light-gray); border-radius:8px; border-left:3px solid var(--gold);">
+    <p style="font-size:0.7rem; font-weight:500; color:var(--navy); margin-bottom:8px; letter-spacing:0.06em;">ご利用にあたっての注意事項</p>
+    <p style="font-size:0.68rem; color:var(--text-mid); line-height:1.9; margin:0;">本ツールは、公開情報に基づく定量的な企業分析を目的として提供するものであり、特定の銘柄の売買や投資行動を推奨・勧誘するものではありません。表示されるスコア・指標・ランキング等は、アクティビスト投資家による株主提案等の対象となりうる可能性を統計的観点から分析したものであり、実際の投資判断に利用される場合は、ご自身の責任において行ってください。当社は、本ツールの利用により生じたいかなる損害についても一切の責任を負いません。データの正確性・完全性・最新性については保証いたしかねますので、必ず一次情報をご確認ください。本ツールは金融商品取引法に基づく投資助言・代理業に該当するサービスではありません。</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-card">
+      <h3>アクティビスト対応にお悩みですか？</h3>
+      <p>青山乃木坂パートナーズでは、アクティビスト対応戦略の策定から<br>IR強化・資本政策の見直しまで、包括的にご支援いたします。</p>
+      <div class="cta-links">
+        <a href="https://aoyama-nogizaka.com/#contact" class="cta-primary">無料相談を申し込む</a>
+        <a href="/activist-dashboard.html" class="cta-secondary">ダッシュボードを見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Aoyama Nogizaka Partners</div>
+        <div class="footer-tagline">青山乃木坂パートナーズ合同会社</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>東京・港区</span>
+      <span>&copy; 2026 青山乃木坂パートナーズ合同会社. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/screener.js"></script>
+</body>
+</html>

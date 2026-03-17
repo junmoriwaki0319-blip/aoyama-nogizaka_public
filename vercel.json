@@ -1,14 +1,17 @@
 {
   "regions": ["hnd1"],
   "rewrites": [
-    { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" }
+    { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" },
+    { "source": "/api/stock/:code", "destination": "/api/stock/:code" },
+    { "source": "/api/batch", "destination": "/api/batch" }
   ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
   ]
