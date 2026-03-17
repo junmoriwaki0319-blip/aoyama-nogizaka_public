@@ -973,6 +973,33 @@ async function loadData() {
   // reports が空なら空配列を保証
   if (!reportData.reports) reportData.reports = [];
   if (!reportData.activists) reportData.activists = {};
+
+  // known_activists.json を読み込み、報告データがない投資家も一覧に追加
+  try {
+    const kaResp = await fetch('/scripts/known_activists.json' + '?t=' + Date.now(), { cache: 'no-store' });
+    if (kaResp.ok) {
+      const kaData = await kaResp.json();
+      (kaData.activists || []).forEach(ka => {
+        if (!reportData.activists[ka.id]) {
+          reportData.activists[ka.id] = {
+            id: ka.id,
+            name: ka.name,
+            type: ka.type || 'activist',
+            representative: ka.representative || '',
+            headquarters: ka.headquarters || '',
+            description: ka.description || '',
+            focus_sectors: ka.focus_sectors || [],
+            holdings: [],
+            report_count: 0,
+            latest_date: ''
+          };
+        }
+      });
+    }
+  } catch (e) {
+    console.log('known_activists.json not available');
+  }
+
   filteredReports = [...reportData.reports];
 }
 
@@ -996,7 +1023,7 @@ function updateStats() {
   document.getElementById('statTotal').textContent = reportData.total_reports || reportData.reports.length;
   document.getElementById('statActivist').textContent = (reportData.activist_reports || 0) + reportData.reports.filter(r => r.is_notable).length;
   document.getElementById('statThisMonth').textContent = monthReports.length;
-  document.getElementById('statTracked').textContent = Object.keys(reportData.activists).length || activistIds.size;
+  document.getElementById('statTracked').textContent = Object.keys(reportData.activists).length;
 }
 
 function updateLastUpdated() {
