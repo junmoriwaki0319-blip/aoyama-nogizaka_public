@@ -187,15 +187,17 @@
     .cta-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
     /* FOOTER */
-    footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 48px 40px 28px; font-size: 0.78rem; margin-top: 60px; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; }
-    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .footer-brand { font-family: var(--deco); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
-    .footer-tagline { font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); }
-    .footer-nav { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-nav a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer-nav a:hover { color: var(--gold); }
-    .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.72rem; }
+    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 60px 0 40px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 300; color: var(--white); letter-spacing: 0.06em; margin-bottom: 10px; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); }
+    .footer-nav { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; align-items: center; }
+    .footer-nav a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 0.06em; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-address { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
@@ -276,7 +278,7 @@
       <h2>銘柄コードで自動診断</h2>
       <p>4桁の証券コード（英数字対応）を入力すると、Yahoo Finance Japanから各指標をリアルタイム取得します。</p>
       <div class="stock-input-row">
-        <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203, 166A">
+        <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203">
         <button class="btn-fetch" id="btnFetch" onclick="fetchStockData()">データ取得</button>
       </div>
       <div class="stock-info" id="stockInfo"></div>
@@ -396,7 +398,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-brand" style="font-family:var(--serif);font-size:16px;font-weight:300;">青山乃木坂パートナーズ</div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
         <div class="footer-tagline">Aoyama Nogizaka Partners</div>
       </div>
       <ul class="footer-nav">
@@ -413,8 +415,8 @@
       </ul>
     </div>
     <div class="footer-bottom">
-      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
-      <span>&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</span>
+      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
+      <p class="footer-copy">&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -451,7 +453,7 @@ async function fetchStockData() {
   const btn = document.getElementById('btnFetch');
 
   if (!code || code.length !== 4 || !/^[0-9A-Za-z]{4}$/.test(code)) {
-    info.textContent = '4桁の証券コードを入力してください（例: 7203, 166A）。';
+    info.textContent = '4桁の証券コードを入力してください（例: 7203）。';
     info.className = 'stock-info error';
     return;
   }

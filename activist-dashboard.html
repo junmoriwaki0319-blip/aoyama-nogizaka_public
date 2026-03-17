@@ -797,29 +797,43 @@
 </div>
 
 <!-- FOOTER -->
-<footer style="background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:32px;flex-wrap:wrap;">
+<style>
+footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 40px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.footer-brand{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.7rem;letter-spacing:0.12em;color:var(--gold)}
+.footer-nav{display:flex;gap:28px;list-style:none;flex-wrap:wrap;align-items:center}
+.footer-nav a{text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;transition:color .2s}
+.footer-nav a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-address{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
+@media(max-width:768px){.footer-top{flex-direction:column;gap:32px}.footer-nav{flex-wrap:wrap;gap:16px}.footer-bottom{flex-direction:column;gap:16px;text-align:center}}
+</style>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
       <div>
-        <div style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px;">青山乃木坂パートナーズ</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.3em;color:var(--gold-light);text-transform:uppercase;">Aoyama Nogizaka Partners</div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
       </div>
-      <ul style="display:flex;gap:20px;list-style:none;flex-wrap:wrap;align-items:center;">
-        <li><a href="https://aoyama-nogizaka.com/#philosophy" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">企業理念</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#services" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">提供サービス</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#about" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">会社概要</a></li>
-        <li><a href="https://aoyama-nogizaka.com/team" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">チーム</a></li>
-        <li><a href="/news/" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">ニュース・論考</a></li>
-        <li><a href="/activist-dashboard.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">大量保有報告ダッシュボード</a></li>
-        <li><a href="/risk-assessment.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">アクティビスト対象評価</a></li>
-        <li><a href="/activist-screener.html" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">スクリーニング</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#contact" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">お問い合わせ</a></li>
-        <li><a href="https://aoyama-nogizaka.com/privacy" style="text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;">個人情報保護方針</a></li>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">アクティビスト対象評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
       </ul>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-      <span style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">〒106-0032 東京都港区六本木7-2-28-602</span>
-      <p style="font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em;">&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</p>
+    <div class="footer-bottom">
+      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
+      <p class="footer-copy">&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</p>
     </div>
   </div>
 </footer>
