@@ -375,6 +375,15 @@
     </div>
   </div>
 
+  <!-- Reference Data -->
+  <div class="risk-section" id="refDataSection" style="display:none;">
+    <div class="risk-card">
+      <h2>参考データ（EDINET取得値）</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:16px;" id="refDataGrid"></div>
+      <div style="font-size:0.68rem; color:var(--text-light); margin-top:12px;">※ 百万円単位。有価証券報告書（XBRL）からの抽出値です。</div>
+    </div>
+  </div>
+
   <!-- Result -->
   <div class="risk-result" id="riskResult">
     <div class="risk-card">
@@ -514,6 +523,9 @@ async function fetchStockData() {
     } catch (e) {
       console.log('EDINET fetch error:', e.message);
     }
+
+    // Show reference data
+    showRefData(_edinetData);
 
     // Map and apply
     if (stockResult) {
@@ -721,6 +733,32 @@ function calculateRisk() {
   resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function showRefData(e) {
+  const sec = document.getElementById('refDataSection');
+  const grid = document.getElementById('refDataGrid');
+  if (!e || Object.keys(e).length === 0) { sec.style.display = 'none'; return; }
+  const fmt = v => v != null ? v.toLocaleString() : '—';
+  const items = [
+    { label: '有価証券時価', val: e.securitiesMarketValue },
+    { label: '有価証券簿価', val: e.securitiesBookValue },
+    { label: '有価証券含み損益', val: (e.securitiesMarketValue != null && e.securitiesBookValue != null) ? e.securitiesMarketValue - e.securitiesBookValue : null },
+    { label: '政策保有株式時価', val: e.policyHoldingsMarketValue },
+    { label: '現金・預金', val: e.cashAndDeposits },
+    { label: '投資不動産時価', val: e.investmentPropertyFairValue },
+    { label: '投資不動産簿価', val: e.investmentPropertyBookValue },
+    { label: '純資産', val: e.netAssets || e.shareholdersEquity },
+    { label: '営業利益', val: e.operatingIncome },
+    { label: '減価償却費', val: e.depreciationAndAmortization },
+  ];
+  const hasAny = items.some(i => i.val != null);
+  if (!hasAny) { sec.style.display = 'none'; return; }
+  grid.innerHTML = items.filter(i => i.val != null).map(i => {
+    const color = (i.label.includes('含み損益') && i.val < 0) ? 'var(--red)' : 'var(--text-dark)';
+    return '<div style="background:var(--off-white);border-radius:6px;padding:12px;"><div style="font-size:0.72rem;color:var(--text-light);margin-bottom:4px;">' + i.label + '</div><div style="font-size:0.95rem;font-weight:500;color:' + color + ';">' + fmt(i.val) + ' <span style="font-size:0.7rem;color:var(--text-light);">百万円</span></div></div>';
+  }).join('');
+  sec.style.display = '';
+}
+
 function clearRisk() {
   document.querySelectorAll('#riskForm input, #riskForm select').forEach(el => { el.value = ''; el.classList.remove('auto-filled'); });
   document.getElementById('riskResult').classList.remove('show');
@@ -731,6 +769,7 @@ function clearRisk() {
   document.getElementById('treasuryHint').textContent = '入力すると時価総額を自己株式控除で再計算';
   _stockData = { price: null, sharesIssued: null, companyName: '', marketCapOku: null };
   _edinetData = {};
+  document.getElementById('refDataSection').style.display = 'none';
 }
 
 // Enterキーで取得
