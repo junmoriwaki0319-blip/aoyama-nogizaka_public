@@ -948,7 +948,7 @@ function renderReportTable() {
     const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
     const ratio = r.holding_ratio ? r.holding_ratio.toFixed(1) + '%' : '—';
     const barWidth = r.holding_ratio ? Math.min(r.holding_ratio * 2, 100) : 0;
-    const edinetUrl = r.edinet_url || (r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#');
+    const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#';
 
     return `<tr onclick="searchByCode('${r.sec_code || ''}')">
       <td class="date-cell col-date">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
