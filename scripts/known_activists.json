@@ -277,6 +277,116 @@
       "focus_sectors": ["金融", "不動産"]
     },
     {
+      "id": "doe5percent",
+      "name": "DOE5パーセント",
+      "aliases": ["D&Iインベストメント", "株式会社DOE5パーセント", "株式会社D&Iインベストメント", "DOE5%"],
+      "type": "activist",
+      "representative": "植島 幹九郎（会長）/ 不破 鉄二（社長）",
+      "founded": "2021年（2025年1月改称）",
+      "headquarters": "東京・渋谷",
+      "description": "純資産配当率（DOE）5%以上を企業に求めるアクティビスト。自己資金のみで運用し、重要提案行為を目的とした大量保有報告を提出。リズム、保土谷化学、昭和パックス等に投資。",
+      "focus_sectors": ["製造業", "化学", "小売"]
+    },
+    {
+      "id": "ueshima_kankuro",
+      "name": "植島幹九郎",
+      "aliases": ["植島 幹九郎"],
+      "type": "activist",
+      "representative": "植島 幹九郎",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "元ゴールドマン・サックス、モルガン・スタンレー出身のアクティビスト投資家。DOE5パーセント会長。個人でも13銘柄以上を大量保有し、株主提案を積極的に実施。",
+      "focus_sectors": ["製造業", "小売", "サービス"]
+    },
+    {
+      "id": "atra",
+      "name": "ATRA",
+      "aliases": ["株式会社ATRA", "アトラ"],
+      "type": "activist",
+      "representative": "村上世彰氏関連",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "旧村上ファンド系SPC。シティインデックスイレブンス等と連携し共同保有を行う。",
+      "focus_sectors": ["不動産", "金融", "建設"]
+    },
+    {
+      "id": "fortis",
+      "name": "フォルティス",
+      "aliases": ["株式会社フォルティス"],
+      "type": "activist",
+      "representative": "村上世彰氏関連",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "旧村上ファンド系SPC。共同保有者として大量保有報告書に名を連ねる。",
+      "focus_sectors": ["不動産", "金融"]
+    },
+    {
+      "id": "nomura_ayaka",
+      "name": "野村絢",
+      "aliases": ["野村 絢"],
+      "type": "activist",
+      "representative": "野村 絢",
+      "founded": "—",
+      "headquarters": "シンガポール",
+      "description": "村上世彰氏の長女。旧村上ファンド系各社の代表を務め、フジ・メディアHD等への投資で注目される。",
+      "focus_sectors": ["メディア", "不動産", "金融"]
+    },
+    {
+      "id": "monex_activist",
+      "name": "マネックス・アクティビスト・ファンド",
+      "aliases": ["Monex Activist Fund", "マネックスアクティビスト"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "2021年",
+      "headquarters": "東京",
+      "description": "マネックスグループ傘下。個人投資家も購入可能なアクティビストファンドとして注目。建設的対話を通じた企業価値向上を目指す。",
+      "focus_sectors": ["製造業", "IT・通信", "金融"]
+    },
+    {
+      "id": "pershing_square",
+      "name": "パーシング・スクエア",
+      "aliases": ["Pershing Square Capital Management", "Pershing Square"],
+      "type": "activist",
+      "representative": "Bill Ackman",
+      "founded": "2004年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "世界有数のアクティビスト。日本市場への関心を高めており、大型株への投資が注目される。",
+      "focus_sectors": ["消費財", "金融", "不動産"]
+    },
+    {
+      "id": "stonepoint",
+      "name": "ストーンポイント・キャピタル",
+      "aliases": ["Stone Point Capital"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "2005年",
+      "headquarters": "米国",
+      "description": "金融セクター特化のPEファンド。日本の金融関連企業にも投資。",
+      "focus_sectors": ["金融", "保険"]
+    },
+    {
+      "id": "carl_icahn",
+      "name": "カール・アイカーン",
+      "aliases": ["Carl Icahn", "Icahn Enterprises", "アイカーン・エンタープライズ"],
+      "type": "activist",
+      "representative": "Carl Icahn",
+      "founded": "1987年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "世界的に著名なアクティビスト投資家。企業の経営改革・資産売却を積極的に要求。",
+      "focus_sectors": ["エネルギー", "製造業", "金融"]
+    },
+    {
+      "id": "brandes",
+      "name": "ブランデス・インベストメント・パートナーズ",
+      "aliases": ["Brandes Investment Partners", "ブランデス"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1974年",
+      "headquarters": "米国・サンディエゴ",
+      "description": "グレアム流バリュー投資を実践。日本のPBR1倍割れ銘柄に投資し、株主還元の強化を要求。",
+      "focus_sectors": ["金融", "製造業", "素材"]
+    },
+    {
       "id": "simplex",
       "name": "シンプレクス・アセット・マネジメント",
       "aliases": ["Simplex Asset Management", "シンプレクス"],
@@ -307,6 +417,39 @@
       "founded": "—",
       "headquarters": "東京",
       "description": "信託銀行系の大手運用会社。機関投資家として多数の上場株を大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "daiwa_am",
+      "name": "大和アセットマネジメント",
+      "aliases": ["Daiwa Asset Management", "大和アセット"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1959年",
+      "headquarters": "東京",
+      "description": "大和証券グループの資産運用会社。インデックス・アクティブ運用で幅広い上場株を大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "blackrock",
+      "name": "ブラックロック・ジャパン",
+      "aliases": ["BlackRock Japan", "ブラックロック", "BlackRock"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "世界最大の資産運用会社の日本拠点。パッシブ・アクティブ運用で日本株を広範に大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "vanguard",
+      "name": "バンガード・グループ",
+      "aliases": ["Vanguard Group", "バンガード"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1975年",
+      "headquarters": "米国・ペンシルベニア",
+      "description": "世界最大級のインデックス運用会社。日本株をパッシブ運用で広く大量保有。",
       "focus_sectors": []
     }
   ]
