@@ -84,10 +84,10 @@ module.exports = async (req, res) => {
         // 明細表に載っていない土地もあるので按分
         const ratio = totalEstimatedValue / totalBookValue;
         totalEstimatedGain = Math.round(landBookValue * ratio - landBookValue);
-        gainMethod = `固定資産明細表+地価公示（${estimatedCount}件推定, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
+        gainMethod = `都道府県別公示地価×0.5による概算（${estimatedCount}件, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
       } else {
         totalEstimatedGain = Math.round(parcelGain);
-        gainMethod = `固定資産明細表+地価公示（${estimatedCount}/${parcels.length}件推定）`;
+        gainMethod = `都道府県別公示地価×0.5による概算（${estimatedCount}/${parcels.length}件推定）`;
       }
     }
 
@@ -385,151 +385,34 @@ function deduplicateParcels(parcels) {
 // 国土交通省 地価公示データによる時価推定
 // ═══════════════════════════════════════════════════════════════
 
-// 都道府県コード
-const PREF_CODES = {
-  '北海道':'01','青森県':'02','岩手県':'03','宮城県':'04','秋田県':'05',
-  '山形県':'06','福島県':'07','茨城県':'08','栃木県':'09','群馬県':'10',
-  '埼玉県':'11','千葉県':'12','東京都':'13','神奈川県':'14','新潟県':'15',
-  '富山県':'16','石川県':'17','福井県':'18','山梨県':'19','長野県':'20',
-  '愛知県':'23','三重県':'24','滋賀県':'25','京都府':'26','大阪府':'27',
-  '兵庫県':'28','奈良県':'29','和歌山県':'30','鳥取県':'31','島根県':'32',
-  '岡山県':'33','広島県':'34','山口県':'35','徳島県':'36','香川県':'37',
-  '愛媛県':'38','高知県':'39','福岡県':'40','佐賀県':'41','長崎県':'42',
-  '熊本県':'43','大分県':'44','宮崎県':'45','鹿児島県':'46','沖縄県':'47',
-  '岐阜県':'21','静岡県':'22',
+// 都道府県別平均公示地価（円/㎡, 2025年基準地価ベース）
+const PREF_LAND_PRICES = {
+  '北海道':50774,'青森県':19915,'岩手県':30061,'宮城県':125030,'秋田県':16718,
+  '山形県':24876,'福島県':28324,'茨城県':41669,'栃木県':41272,'群馬県':42254,
+  '埼玉県':162186,'千葉県':133177,'東京都':1301762,'神奈川県':345138,'新潟県':36066,
+  '富山県':46816,'石川県':73132,'福井県':40650,'山梨県':26100,'長野県':33548,
+  '岐阜県':46058,'静岡県':84459,'愛知県':240567,'三重県':37752,'滋賀県':59729,
+  '京都府':316989,'大阪府':439556,'兵庫県':175693,'奈良県':75505,'和歌山県':44961,
+  '鳥取県':23745,'島根県':23525,'岡山県':50913,'広島県':115781,'山口県':29819,
+  '徳島県':35422,'香川県':40309,'愛媛県':47576,'高知県':41487,'福岡県':178296,
+  '佐賀県':30437,'長崎県':47062,'熊本県':62059,'大分県':35474,'宮崎県':30477,
+  '鹿児島県':42099,'沖縄県':114814,
 };
 
 async function estimateLandPrices(parcels) {
-  // 都道府県ごとにグループ化
-  const prefGroups = {};
-  for (const p of parcels) {
-    const pref = p.prefecture;
-    if (!pref) continue;
-    if (!prefGroups[pref]) prefGroups[pref] = [];
-    prefGroups[pref].push(p);
+  // 都道府県別平均公示地価（円/㎡, 2025年基準地価）を使って推定
+  for (const parcel of parcels) {
+    if (!parcel.prefecture || !parcel.area) continue;
+    const pricePerSqm = PREF_LAND_PRICES[parcel.prefecture];
+    if (!pricePerSqm) continue;
+
+    // 工業地は全用途平均の約50%とする（工場・倉庫用地の経験則）
+    const adjustedPrice = Math.round(pricePerSqm * 0.5);
+    parcel.estimatedPricePerSqm = adjustedPrice;
+    parcel.estimatedValue = Math.round(parcel.area * adjustedPrice / 1000000); // 百万円
   }
-
-  // 各都道府県の地価公示データを取得
-  const promises = Object.entries(prefGroups).map(async ([pref, prefParcels]) => {
-    const prefCode = PREF_CODES[pref];
-    if (!prefCode) return;
-
-    try {
-      // 国土交通省 不動産取引価格情報API
-      const currentYear = new Date().getFullYear();
-      const fromQ = `${currentYear - 2}1`; // 2年前の第1四半期から
-      const toQ = `${currentYear}4`;
-
-      const tradeData = await fetchLandPriceAPI(prefCode, fromQ, toQ);
-
-      if (tradeData && tradeData.length > 0) {
-        // 住所の市区町村でマッチング
-        for (const parcel of prefParcels) {
-          const matchedPrice = findBestPriceMatch(parcel, tradeData);
-          if (matchedPrice && parcel.area) {
-            parcel.estimatedPricePerSqm = matchedPrice;
-            parcel.estimatedValue = Math.round(parcel.area * matchedPrice / 1000000); // 百万円
-          } else if (matchedPrice && parcel.bookValue) {
-            // 面積不明の場合、簿価ベースで倍率推定
-            parcel.estimatedPricePerSqm = matchedPrice;
-          }
-        }
-      }
-    } catch (err) {
-      console.error(`地価取得エラー（${pref}）:`, err.message);
-    }
-  });
-
-  await Promise.all(promises);
 }
 
-function findBestPriceMatch(parcel, tradeData) {
-  const address = parcel.address;
-
-  // 市区町村を抽出
-  const cityMatch = address.match(/(?:北海道|東京都|大阪府|京都府|.{2,3}県)((?:[^市区町村]{1,5}[市区町村]){1,2})/);
-  const city = cityMatch ? cityMatch[1] : '';
-
-  // 町丁目を抽出
-  const townMatch = address.match(/[市区町村](.{1,10}?)\d/);
-  const town = townMatch ? townMatch[1] : '';
-
-  let bestMatch = null;
-  let bestScore = 0;
-
-  for (const trade of tradeData) {
-    if (trade.TradePrice == null || trade.Area == null) continue;
-    const pricePerSqm = parseInt(trade.TradePrice) / parseFloat(trade.Area);
-    if (isNaN(pricePerSqm) || pricePerSqm <= 0) continue;
-
-    // 用途が土地でないものをスキップ（建物付きは含む）
-    if (trade.Type && !trade.Type.includes('土地') && !trade.Type.includes('宅地')) continue;
-
-    let score = 0;
-    const tradeAddr = (trade.Municipality || '') + (trade.DistrictName || '');
-
-    // 市区町村マッチ
-    if (city && tradeAddr.includes(city)) score += 10;
-    // 町丁目マッチ
-    if (town && tradeAddr.includes(town)) score += 20;
-    // 用途マッチ（工業地域 vs 商業地域 etc）
-    if (trade.Use && (trade.Use.includes('工場') || trade.Use.includes('事務所'))) score += 2;
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = pricePerSqm;
-    }
-  }
-
-  // マッチスコアが低すぎる場合は都道府県平均を使用
-  if (bestScore < 10 && tradeData.length > 0) {
-    // 都道府県の中央値を計算
-    const prices = tradeData
-      .filter(t => t.TradePrice && t.Area && parseFloat(t.Area) > 0)
-      .filter(t => !t.Type || t.Type.includes('土地') || t.Type.includes('宅地'))
-      .map(t => parseInt(t.TradePrice) / parseFloat(t.Area))
-      .filter(p => !isNaN(p) && p > 0)
-      .sort((a, b) => a - b);
-
-    if (prices.length > 0) {
-      bestMatch = prices[Math.floor(prices.length / 2)]; // 中央値
-    }
-  }
-
-  return bestMatch ? Math.round(bestMatch) : null;
-}
-
-function fetchLandPriceAPI(prefCode, from, to) {
-  // 国土交通省 不動産取引価格情報検索API（無料・登録不要）
-  const url = `https://www.land.mlit.go.jp/webland/api/TradeListSearch?from=${from}&to=${to}&area=${prefCode}&city=`;
-
-  return new Promise((resolve, reject) => {
-    const urlObj = new URL(url);
-    https.get({
-      hostname: urlObj.hostname,
-      path: urlObj.pathname + urlObj.search,
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 15000,
-    }, (resp) => {
-      if (resp.statusCode !== 200) {
-        resp.resume();
-        return resolve([]);
-      }
-      const chunks = [];
-      resp.on('data', chunk => chunks.push(chunk));
-      resp.on('end', () => {
-        try {
-          const json = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-          // 土地関連の取引のみ（最大200件でサンプリング）
-          const data = (json.data || [])
-            .filter(d => d.Type && (d.Type.includes('土地') || d.Type.includes('宅地')))
-            .slice(0, 200);
-          resolve(data);
-        } catch { resolve([]); }
-      });
-    }).on('error', () => resolve([]));
-  });
-}
 
 // ═══════════════════════════════════════════════════════════════
 // XBRL ユーティリティ（[docID].jsと共通）
