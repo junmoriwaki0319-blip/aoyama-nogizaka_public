@@ -176,7 +176,7 @@ function parseLandParcels(html) {
  * このテーブルには事業所ごとの土地面積と帳簿価額が含まれる
  */
 function parseFacilityTable(html) {
-  const parcels = [];
+  const allParcels = [];
 
   // 「主要な設備の状況」セクションを探す
   const facilityPatterns = ['主要な設備の状況', '設備の状況'];
@@ -185,114 +185,156 @@ function parseFacilityTable(html) {
     fIdx = html.indexOf(p);
     if (fIdx !== -1) break;
   }
-  if (fIdx === -1) return parcels;
+  if (fIdx === -1) return allParcels;
 
   // セクション内のテーブルを全て取得
-  const searchRange = html.substring(fIdx, Math.min(html.length, fIdx + 50000));
+  const searchRange = html.substring(fIdx, Math.min(html.length, fIdx + 80000));
   const tableRegex = /<table[\s\S]*?<\/table>/gi;
   let tableMatch;
 
   while ((tableMatch = tableRegex.exec(searchRange)) !== null) {
     const table = tableMatch[0];
+    if (!table.includes('土地')) continue;
 
-    // テーブルに「土地」「面積」「所在地」が含まれるか確認
-    if (!table.includes('土地') && !table.includes('面積')) continue;
-    if (!table.includes('所在地') && !table.includes('住所')) continue;
-
-    // テーブルの行を解析
     const rows = table.match(/<tr[\s\S]*?<\/tr>/gi);
     if (!rows) continue;
 
-    // ヘッダー行から列インデックスを特定
+    // ヘッダー解析（2段ヘッダー対応）
+    // メインヘッダー例: [事業所名(所在地), セグメント, 設備内容, 帳簿価額(百万円), 従業員数]
+    // サブヘッダー例:   [土地(面積千㎡), 建物, 機械装置, 合計]
+    // → サブヘッダーは「帳簿価額」列の中に展開される
     let colMap = {};
     let headerFound = false;
+    let areaUnit = 1;
+    let landDataCol = null; // データ行での土地列インデックス
 
     for (let ri = 0; ri < rows.length; ri++) {
       const cells = extractCells(rows[ri]);
-      const cellTexts = cells.map(c => c.replace(/<[^>]*>/g, '').replace(/\s+/g, '').trim());
+      const cellTexts = cells.map(c => cleanCellText(c));
 
-      // ヘッダー行を検出
       if (!headerFound) {
+        // メインヘッダー行の解析
         for (let ci = 0; ci < cellTexts.length; ci++) {
           const t = cellTexts[ci];
-          if (t.includes('事業所名') || t.includes('名称')) colMap.name = ci;
-          if (t.includes('所在地') || t.includes('住所')) colMap.address = ci;
-          if (t.includes('土地') && (t.includes('面積') || t.includes('㎡'))) colMap.area = ci;
-          if (t.includes('土地') && (t.includes('帳簿') || t.includes('金額'))) colMap.landValue = ci;
-          // 「土地」列が面積と金額の2列に分かれている場合
-          if (t === '面積（㎡）' || t === '面積(㎡)' || t === '面積') colMap.area = ci;
-        }
-
-        if (colMap.address != null && (colMap.area != null || colMap.landValue != null)) {
-          headerFound = true;
-          continue;
-        }
-
-        // 2行ヘッダーの場合：「土地」の下に「面積」「帳簿価額」
-        if (cellTexts.some(t => t.includes('土地'))) {
-          const landColIdx = cellTexts.findIndex(t => t.includes('土地'));
-          // 次の行のサブヘッダーを確認
-          if (ri + 1 < rows.length) {
-            const subCells = extractCells(rows[ri + 1]);
-            const subTexts = subCells.map(c => c.replace(/<[^>]*>/g, '').replace(/\s+/g, '').trim());
-            for (let ci = 0; ci < subTexts.length; ci++) {
-              if (subTexts[ci].includes('面積')) colMap.area = landColIdx + ci;
-              if (subTexts[ci].includes('帳簿') || subTexts[ci].includes('金額')) colMap.landValue = landColIdx + ci;
-            }
+          if (t.includes('事業所名') || t.includes('事業所') ||
+              (t.includes('子会社') && t.includes('所在地'))) {
+            colMap.name = ci;
+            if (t.includes('所在地')) colMap.nameIncludesAddress = true;
           }
+          if ((t.includes('所在地') || t.includes('住所')) && !t.includes('事業所')) {
+            colMap.address = ci;
+          }
+          if (t.includes('帳簿価額')) {
+            colMap.bookValueCol = ci;
+          }
+        }
+
+        // サブヘッダー行：「土地(面積千㎡)」を含む
+        const landCellIdx = cellTexts.findIndex(t => t.includes('土地'));
+        if (landCellIdx !== -1) {
+          const landText = cellTexts[landCellIdx];
+          if (landText.includes('千㎡') || landText.includes('千m')) areaUnit = 1000;
+
+          // データ行での列位置を計算
+          // サブヘッダーは帳簿価額列の展開なので: landDataCol = bookValueCol + landCellIdx
+          if (colMap.bookValueCol != null) {
+            landDataCol = colMap.bookValueCol + landCellIdx;
+          } else {
+            // 帳簿価額列が見つからない場合、メインヘッダー列数とサブヘッダー列数の差分で推定
+            // データ行の列数 = メインヘッダー非展開列数 + サブヘッダー列数
+            landDataCol = landCellIdx + (colMap.name != null ? colMap.name + 1 : 0);
+            // フォールバック：名前列より後ろの最初の数値列を探す（後でデータ行で調整）
+          }
+        }
+
+        if (colMap.name != null && landDataCol != null) {
+          headerFound = true;
           continue;
         }
         continue;
       }
 
       // データ行を解析
+      // パターンA: 1〜2セル行（面積のみ）→ 前のparcelに面積を追加
+      if (cellTexts.length <= 2) {
+        const singleText = cellTexts.join('');
+        const areaMatch = singleText.match(/[\(（]\s*([0-9,]+(?:\.[0-9]+)?)\s*[\)）]/);
+        if (areaMatch && allParcels.length > 0) {
+          const lastParcel = allParcels[allParcels.length - 1];
+          if (lastParcel.area == null) {
+            lastParcel.area = parseFloat(areaMatch[1].replace(/,/g, '')) * areaUnit;
+          }
+        }
+        continue;
+      }
+
       if (cellTexts.length < 3) continue;
 
-      const address = colMap.address != null ? cellTexts[colMap.address] : '';
-      const name = colMap.name != null ? cellTexts[colMap.name] : '';
+      // 事業所名と所在地を取得
+      let name = '';
+      let address = '';
+      const rawName = colMap.name != null && colMap.name < cellTexts.length ? cellTexts[colMap.name] : '';
+
+      if (colMap.nameIncludesAddress) {
+        const addrInParen = rawName.match(/(.+?)(?:（|[\(])((?:北海道|東京都|大阪府|京都府|.{2,3}県)[^）\)]*?)(?:）|[\)])/);
+        if (addrInParen) {
+          name = addrInParen[1];
+          address = addrInParen[2];
+        } else {
+          name = rawName;
+          const prefM = rawName.match(/(北海道|東京都|大阪府|京都府|.{2,3}県)[^）\)（\(]*/);
+          if (prefM) address = prefM[0];
+        }
+      } else {
+        name = rawName;
+        address = colMap.address != null && colMap.address < cellTexts.length ? cellTexts[colMap.address] : '';
+      }
 
       if (!address && !name) continue;
-      // ヘッダー的な行をスキップ
-      if (address.includes('事業所') || address.includes('所在地')) continue;
+      if ((address + name).includes('事業所') || (address + name).includes('セグメント')) continue;
 
-      // 面積（㎡）
+      const prefMatch = (address || name).match(/(北海道|東京都|大阪府|京都府|.{2,3}県)/);
+      if (!prefMatch) continue; // 海外拠点スキップ
+
+      // 土地の帳簿価額と面積を取得
+      let bookValue = null;
       let area = null;
-      if (colMap.area != null && cellTexts[colMap.area]) {
-        const areaStr = cellTexts[colMap.area].replace(/,/g, '').replace(/[^0-9.]/g, '');
-        area = parseFloat(areaStr);
+
+      if (landDataCol != null && landDataCol < cellTexts.length) {
+        const landText = cellTexts[landDataCol];
+
+        // パターンB: 「109,381(386)(※118)」— 帳簿価額と面積が同一セル
+        const combinedMatch = landText.match(/^([0-9,]+)[\(（]\s*([0-9,]+(?:\.[0-9]+)?)\s*[\)）]/);
+        if (combinedMatch) {
+          bookValue = parseFloat(combinedMatch[1].replace(/,/g, ''));
+          area = parseFloat(combinedMatch[2].replace(/,/g, '')) * areaUnit;
+        } else {
+          // パターンA: 帳簿価額のみ（面積は次の1セル行）
+          const bvStr = landText.replace(/,/g, '').replace(/[^0-9.△\-]/g, '');
+          bookValue = parseFloat(bvStr.replace('△', '-'));
+        }
+        if (isNaN(bookValue)) bookValue = null;
         if (isNaN(area)) area = null;
       }
 
-      // 帳簿価額（百万円）
-      let bookValue = null;
-      if (colMap.landValue != null && cellTexts[colMap.landValue]) {
-        const bvStr = cellTexts[colMap.landValue].replace(/,/g, '').replace(/[^0-9.△\-]/g, '');
-        bookValue = parseFloat(bvStr.replace('△', '-'));
-        if (isNaN(bookValue)) bookValue = null;
-      }
-
-      if (address || name) {
-        const fullAddress = address || name;
-        // 都道府県を抽出
-        const prefMatch = fullAddress.match(/(北海道|東京都|大阪府|京都府|.{2,3}県)/);
-
-        parcels.push({
-          name: name || '',
-          address: fullAddress,
-          prefecture: prefMatch ? prefMatch[1] : null,
-          area: area,
-          bookValue: bookValue, // 百万円
-          estimatedValue: null,
-          estimatedPricePerSqm: null,
-          source: '主要な設備の状況',
-        });
-      }
+      allParcels.push({
+        name: name || '',
+        address: address || name,
+        prefecture: prefMatch[1],
+        area: area,
+        bookValue: bookValue,
+        estimatedValue: null,
+        estimatedPricePerSqm: null,
+        source: '主要な設備の状況',
+      });
     }
-
-    if (parcels.length > 0) break; // 最初のマッチするテーブルで十分
   }
 
-  return parcels;
+  return allParcels;
+}
+
+function cleanCellText(cellHtml) {
+  return cellHtml.replace(/<[^>]*>/g, '').replace(/&nbsp;/gi, ' ').replace(/&#160;/g, ' ').replace(/\s+/g, '').trim();
 }
 
 /**
