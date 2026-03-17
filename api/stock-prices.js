@@ -90,6 +90,19 @@ function hasJapanese(str) {
   return /[ぁ-んァ-ヶー一-龠]/.test(str);
 }
 
+/** 検索しにくい社名の別名マッピング */
+const NAME_ALIASES = {
+  '日本電信電話': 'NTT',
+  'ＮＴＴ': 'NTT',
+  '東日本電信電話': 'NTT東日本',
+  '西日本電信電話': 'NTT西日本',
+  '三菱UFJフィナンシャル グループ': '三菱UFJ',
+  '三井住友フィナンシャルグループ': '三井住友FG',
+  'みずほフィナンシャルグループ': 'みずほFG',
+  'SOMPOホールディングス': 'SOMPO',
+  '東京海上ホールディングス': '東京海上',
+};
+
 // ═══════════════════════════════════════════════════════════════
 // ティッカー検索（日本株 → Yahoo Finance Japan、海外株 → グローバルAPI）
 // ═══════════════════════════════════════════════════════════════
@@ -97,13 +110,21 @@ function hasJapanese(str) {
 async function searchTicker(rawName) {
   const name = cleanName(rawName);
 
+  // 別名があればそちらでも検索
+  const alias = NAME_ALIASES[name];
+
   // 日本語名 → Yahoo Finance Japan検索ページをスクレイプ
-  if (hasJapanese(name)) {
-    const ticker = await searchYahooJP(name);
+  if (hasJapanese(name) || alias) {
+    const ticker = await searchYahooJP(alias || name);
     if (ticker) return ticker;
+    // 別名で見つからなければ元の名前でも試す
+    if (alias) {
+      const ticker2 = await searchYahooJP(name);
+      if (ticker2) return ticker2;
+    }
   }
 
-  // 英語名 → まずYahoo Finance Japanで試す（日本に上場している海外企業の場合）
+  // 英語名 → まずYahoo Finance Japanで試す
   const jpTicker = await searchYahooJP(name);
   if (jpTicker) return jpTicker;
 
