@@ -237,6 +237,30 @@ function calculateAndDisplay() {
     }
   }
 
+  // 含み資産NC（実質NC＋投資不動産時価）
+  const ipFV = e.investmentPropertyFairValue || 0;
+  const adjNetCashVal = (e.cashAndDeposits != null ? netCash + secMV : null);
+  if (adjNetCashVal != null && ipFV > 0) {
+    const fullNetCash = adjNetCashVal + ipFV;
+    setMetric('m_full_netcash', fullNetCash, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
+    if (d.marketCapOku) {
+      const fullNcRatio = fullNetCash / (d.marketCapOku * 100) * 100;
+      indData._fullNcRatio = fullNcRatio;
+      setMetric('m_full_nc_ratio', fullNcRatio, '%', v => v.toFixed(1), v => v > 30 ? 'negative' : v > 10 ? 'warning' : 'positive');
+    }
+  }
+
+  // EV/EBITDA
+  if (d.marketCapOku && e.operatingIncome != null && e.depreciationAndAmortization != null) {
+    const ev = d.marketCapOku * 100 + debt - cash; // 百万円
+    const ebitda = e.operatingIncome + e.depreciationAndAmortization;
+    if (ebitda > 0) {
+      const evEbitda = ev / ebitda;
+      indData._evEbitda = evEbitda;
+      setMetric('m_ev_ebitda', evEbitda, '倍', v => v.toFixed(1), v => v < 5 ? 'positive' : v < 10 ? 'warning' : 'negative');
+    }
+  }
+
   // 自己資本比率
   setMetric('m_equity_ratio', d.equityRatio, '%');
 
@@ -387,6 +411,9 @@ const SCORE_CRITERIA = [
   { key: 'adjNcRatio', name: '実質NC/時価総額', max: 10, unit: '%',
     val: () => indData._adjNcRatio,
     fn: v => v > 80 ? 10 : v > 50 ? 8 : v > 30 ? 6 : v > 15 ? 3 : 1 },
+  { key: 'evEbitda', name: 'EV/EBITDA', max: 10, unit: '倍',
+    val: () => indData._evEbitda,
+    fn: v => v < 3 ? 10 : v < 5 ? 8 : v < 7 ? 6 : v < 10 ? 4 : v < 15 ? 2 : 1 },
   { key: 'equity', name: '自己資本比率', max: 8, unit: '%',
     val: () => indData.equityRatio,
     fn: v => v > 80 ? 8 : v > 70 ? 6 : v > 60 ? 4 : v > 50 ? 2 : 1 },
@@ -485,6 +512,7 @@ function resetIndividual() {
   ['m_price','m_pbr','m_per','m_roe','m_eps','m_bps','m_divyield','m_payout',
    'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_gain','m_land_bv','m_land_gain','m_total_gain',
    'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio','m_adj_netcash','m_adj_nc_ratio',
+   'm_full_netcash','m_full_nc_ratio','m_ev_ebitda',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
     .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '-'; });
   // 土地明細セクションをリセット

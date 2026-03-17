@@ -103,6 +103,26 @@ function parseXbrl(xml) {
     }
   }
 
+  // ── PL項目（Duration = 期間）──
+  for (const el of ['OperatingIncome', 'OperatingProfit']) {
+    const val = findXbrlValue(xml, el, 'Duration');
+    if (val !== null) { result.operatingIncome = val / 1000000; break; }
+  }
+
+  // 減価償却費：総額タグを優先、なければ売上原価+販管費の個別を合算
+  const daTotal = findXbrlValue(xml, 'DepreciationAndAmortization', 'Duration')
+    || findXbrlValue(xml, 'Depreciation', 'Duration');
+  if (daTotal !== null) {
+    result.depreciationAndAmortization = daTotal / 1000000;
+  } else {
+    let daSum = 0; let found = false;
+    for (const el of ['DepreciationCostOfSales', 'DepreciationSGA']) {
+      const v = findXbrlValue(xml, el, 'Duration');
+      if (v !== null) { daSum += v; found = true; }
+    }
+    if (found) result.depreciationAndAmortization = daSum / 1000000;
+  }
+
   // ── 株式数（単位は株、変換不要）──
   const sharesVal = findXbrlValue(xml, 'NumberOfSharesIssued', 'Instant')
     || findXbrlValue(xml, 'TotalNumberOfIssuedShares', 'Instant');
