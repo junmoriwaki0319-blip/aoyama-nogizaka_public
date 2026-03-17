@@ -190,6 +190,11 @@ function parseNotes(html, data) {
     parseSecuritiesNote(html, data);
   }
 
+  // 政策保有株式（特定投資株式）の解析
+  if (!data._policyHoldingsParsed) {
+    parsePolicyHoldings(html, data);
+  }
+
   // 主要な設備の状況から土地明細を探す（含み益推定の補助データ）
   if (!data._landParcelsFound) {
     parseLandFromFacilities(html, data);
@@ -257,6 +262,154 @@ function parseSecuritiesNote(html, data) {
     if (!isNaN(cost) && !isNaN(bv) && cost > 0 && bv > 0) {
       data.securitiesBookValue = cost;
       data.securitiesMarketValue = bv;
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 政策保有株式（特定投資株式）の解析
+// ═══════════════════════════════════════════════════════════════
+
+function parsePolicyHoldings(html, data) {
+  // 「特定投資株式」セクションを探す
+  const idx = html.indexOf('特定投資株式');
+  if (idx === -1) return;
+
+  // 特定投資株式の後の最初のテーブルを取得
+  const afterSection = html.substring(idx, Math.min(html.length, idx + 80000));
+  const tableMatch = afterSection.match(/<table[\s\S]*?<\/table>/i);
+  if (!tableMatch) return;
+
+  const table = tableMatch[0];
+
+  // 全行を取得
+  const rowRegex = /<tr[\s\S]*?<\/tr>/gi;
+  const rows = [];
+  let rm;
+  while ((rm = rowRegex.exec(table)) !== null) {
+    rows.push(rm[0]);
+  }
+  if (rows.length < 3) return;
+
+  // セルを取得するヘルパー
+  function getCells(rowHtml) {
+    const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
+    const cells = [];
+    let cm;
+    while ((cm = cellRegex.exec(rowHtml)) !== null) {
+      cells.push(cm[1].replace(/<[^>]*>/g, '').replace(/[\s\u00a0]+/g, '').replace(/,/g, ''));
+    }
+    return cells;
+  }
+
+  // ヘッダー行を解析して構造を把握
+  // 一般的パターン: [銘柄, 当事業年度, 前事業年度, 保有目的, ...]
+  // サブヘッダー: [株式数（株）, 貸借対照表計上額（百万円）] が交互に出現
+  // データ行: 奇数行=銘柄名+株式数, 偶数行=BS計上額
+
+  const holdings = [];
+  let totalMarketValue = 0;
+
+  // 2パターンで解析を試みる
+  // パターンA: 交互行型（銘柄行→金額行の繰り返し）
+  // パターンB: 1行に銘柄・株式数・BS計上額が全て含まれる
+
+  // まずヘッダーを飛ばしてデータ行を探す
+  let dataStartIdx = 0;
+  for (let i = 0; i < Math.min(rows.length, 5); i++) {
+    const cells = getCells(rows[i]);
+    const rowText = cells.join('');
+    if (rowText.includes('貸借対照表計上額') || rowText.includes('株式数') || rowText.includes('銘柄')) {
+      dataStartIdx = i + 1;
+    }
+  }
+
+  // パターン判定: 最初のデータ行に銘柄名らしきテキストがあるか
+  if (dataStartIdx >= rows.length) return;
+
+  const firstDataCells = getCells(rows[dataStartIdx]);
+
+  // パターンA: 交互行（銘柄名が含まれ、次の行にBS計上額）
+  // トヨタ等の大企業で典型的
+  let patternA = false;
+  if (dataStartIdx + 1 < rows.length) {
+    const nextCells = getCells(rows[dataStartIdx + 1]);
+    // 最初のデータ行に漢字/カナが多くて銘柄名っぽく、次の行が数値中心なら交互行パターン
+    const hasName = /[ぁ-んァ-ヶー一-龠Ａ-Ｚ㈱㈲]/.test(firstDataCells[0] || '');
+    const nextIsNumeric = nextCells.length > 0 && /^[\d△▲\-−]+$/.test(nextCells[0] || '');
+    if (hasName && nextIsNumeric) patternA = true;
+  }
+
+  if (patternA) {
+    // 交互行パターン: 奇数行=銘柄, 偶数行=金額
+    for (let i = dataStartIdx; i + 1 < rows.length; i += 2) {
+      const nameCells = getCells(rows[i]);
+      const valueCells = getCells(rows[i + 1]);
+      if (nameCells.length === 0) continue;
+
+      const name = nameCells[0].replace(/[\s\u3000]/g, '');
+      if (!name || /^[\d,.\-]+$/.test(name)) break; // 数値のみなら銘柄名ではない
+
+      // BS計上額（当事業年度）は valueCells[0]
+      const bsValue = parseFloat((valueCells[0] || '').replace(/[△▲\-−]/g, '-'));
+      if (!isNaN(bsValue) && bsValue > 0) {
+        holdings.push({ name, marketValue: bsValue });
+        totalMarketValue += bsValue;
+      }
+    }
+  } else {
+    // パターンB: 1行に全情報（銘柄・株式数・BS計上額が同じ行）
+    for (let i = dataStartIdx; i < rows.length; i++) {
+      const cells = getCells(rows[i]);
+      if (cells.length < 2) continue;
+
+      const name = cells[0].replace(/[\s\u3000]/g, '');
+      if (!name || /^[\d,.\-]+$/.test(name)) continue;
+      if (name.includes('合計') || name.includes('計')) continue;
+
+      // 数値セルからBS計上額を探す（百万円単位の数値）
+      for (let j = 1; j < cells.length; j++) {
+        const val = parseFloat(cells[j]);
+        if (!isNaN(val) && val > 0) {
+          // 株式数（大きな値）ではなくBS計上額（相対的に小さい値）を使う
+          // 株式数は通常万単位以上、BS計上額は百万円単位
+          // 2番目に見つかった正の数値をBS計上額とみなす（最初は株式数の可能性）
+          const nums = [];
+          for (let k = 1; k < cells.length; k++) {
+            const n = parseFloat(cells[k]);
+            if (!isNaN(n) && n > 0) nums.push(n);
+          }
+          // 当事業年度のBS計上額（通常は株式数の次）
+          if (nums.length >= 2) {
+            // nums[0]=株式数(当期), nums[1]=BS計上額(当期) or nums[1]=株式数(前期)...
+            // ヘッダーで位置特定が難しいので、最小値をBS計上額と仮定
+            // ただし株式数 >> BS計上額が通常なので、2番目の数値を使う
+            holdings.push({ name, marketValue: nums[1] });
+            totalMarketValue += nums[1];
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  if (holdings.length > 0) {
+    data._policyHoldingsParsed = true;
+    data.policyHoldingsCount = holdings.length;
+    data.policyHoldingsMarketValue = totalMarketValue;
+    // 上位10銘柄を記録
+    data.policyHoldingsTop = holdings
+      .sort((a, b) => b.marketValue - a.marketValue)
+      .slice(0, 10)
+      .map(h => ({ name: h.name, marketValue: h.marketValue }));
+
+    // securitiesMarketValue が未設定の場合、政策保有株式の合計を設定
+    if (data.securitiesMarketValue == null) {
+      data.securitiesMarketValue = totalMarketValue;
+      // securitiesBookValue は投資有価証券BS計上額を使う（近似）
+      if (data.securitiesBookValue == null && data.investmentSecurities != null) {
+        data.securitiesBookValue = data.investmentSecurities;
+      }
     }
   }
 }

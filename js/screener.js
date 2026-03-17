@@ -236,6 +236,19 @@ function calculateAndDisplay() {
   }
   setMetric('m_sec_gain', secGain, '百万円', v => Math.round(v).toLocaleString(), v => v > 0 ? 'positive' : 'negative');
 
+  // 政策保有株式の詳細表示
+  const phEl = document.getElementById('m_policy_holdings');
+  if (phEl && e.policyHoldingsMarketValue != null) {
+    let phText = '政策保有株式: ' + e.policyHoldingsCount + '銘柄 / 時価合計 ' + Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円';
+    if (e.policyHoldingsTop && e.policyHoldingsTop.length > 0) {
+      phText += '（' + e.policyHoldingsTop.slice(0, 5).map(function(h) { return h.name + ' ' + Math.round(h.marketValue).toLocaleString(); }).join(', ') + '）';
+    }
+    phEl.textContent = phText;
+    phEl.style.display = 'block';
+  } else if (phEl) {
+    phEl.style.display = 'none';
+  }
+
   let propGain = null;
   if (e.investmentPropertyBookValue != null && e.investmentPropertyFairValue != null) {
     propGain = e.investmentPropertyFairValue - e.investmentPropertyBookValue;
