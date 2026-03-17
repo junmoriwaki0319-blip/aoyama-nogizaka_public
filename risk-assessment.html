@@ -230,7 +230,6 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/">ニュース・論考</a></li>
-      <!-- ツールタブ非公開（テスト中）
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
@@ -239,7 +238,6 @@
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
         </ul>
       </li>
-      -->
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -253,12 +251,10 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
-  <!-- ツールタブ非公開（テスト中）
   <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">アクティビスト対象評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  -->
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
@@ -278,9 +274,9 @@
   <div class="stock-input-section">
     <div class="stock-input-card">
       <h2>銘柄コードで自動診断</h2>
-      <p>4桁の証券コードを入力すると、Yahoo Finance Japanから各指標をリアルタイム取得します。</p>
+      <p>4桁の証券コード（英数字対応）を入力すると、Yahoo Finance Japanから各指標をリアルタイム取得します。</p>
       <div class="stock-input-row">
-        <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203" inputmode="numeric" pattern="[0-9]*">
+        <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203, 166A">
         <button class="btn-fetch" id="btnFetch" onclick="fetchStockData()">データ取得</button>
       </div>
       <div class="stock-info" id="stockInfo"></div>
@@ -452,8 +448,8 @@ async function fetchStockData() {
   const info = document.getElementById('stockInfo');
   const btn = document.getElementById('btnFetch');
 
-  if (!code || code.length !== 4 || !/^\d{4}$/.test(code)) {
-    info.textContent = '4桁の証券コードを入力してください。';
+  if (!code || code.length !== 4 || !/^[0-9A-Za-z]{4}$/.test(code)) {
+    info.textContent = '4桁の証券コードを入力してください（例: 7203, 166A）。';
     info.className = 'stock-info error';
     return;
   }

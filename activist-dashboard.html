@@ -405,7 +405,6 @@
       <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/">ニュース・論考</a></li>
-      <!-- ツールタブ非公開（テスト中）
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
@@ -414,7 +413,6 @@
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
         </ul>
       </li>
-      -->
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
@@ -435,12 +433,10 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMobileMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMobileMenu()">チーム</a>
   <a href="/news/" onclick="toggleMobileMenu()">ニュース・論考</a>
-  <!-- ツールタブ非公開（テスト中）
   <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
   <a href="/activist-dashboard.html" onclick="toggleMobileMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMobileMenu()" style="padding-left:16px;">アクティビスト対象評価</a>
   <a href="/activist-screener.html" onclick="toggleMobileMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  -->
   <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" onclick="openModal('login')">ログイン</button>
     <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
@@ -713,7 +709,7 @@
       </div>
       <div class="form-group" id="affiliationCodeGroup" style="display:none;">
         <label>証券コード</label>
-        <input type="text" id="regAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="\d{4}">
+        <input type="text" id="regAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="[0-9A-Za-z]{4}">
       </div>
       <div class="form-group">
         <label>役職</label>

@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const code = req.query.code;
-  if (!code || !/^\d{4}$/.test(code)) {
+  if (!code || !/^[0-9A-Za-z]{4}$/.test(code)) {
     return res.status(400).json({ success: false, error: '4桁の証券コードを指定してください' });
   }
 
