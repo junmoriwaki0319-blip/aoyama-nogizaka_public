@@ -330,7 +330,7 @@ def build_report_entry(doc, activists, xbrl_data=None, edinet_code_map=None):
         "sec_code": sec_code,
         "target_company": target_name if target_name else "",
         "report_type": report_type,
-        "edinet_url": f"https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100{doc.get('docID', '')}",
+        "edinet_url": f"https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?{doc.get('docID', '')}",
     }
 
     # XBRL から抽出したデータを追加
@@ -526,6 +526,12 @@ def main():
         time.sleep(0.5)  # レート制限対策
 
     print(f"\n新規取得: {new_reports.__len__()} 件")
+
+    # 既存データの edinet_url 修復（S100 二重付与の修正）
+    for r in existing_reports:
+        url = r.get("edinet_url", "")
+        if "S100S100" in url:
+            r["edinet_url"] = url.replace("S100S100", "S100")
 
     # マージ
     all_reports = merge_reports(existing_reports, new_reports)
