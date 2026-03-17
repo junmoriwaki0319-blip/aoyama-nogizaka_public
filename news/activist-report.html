@@ -37,20 +37,20 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--navy); height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+      display: flex; align-items: center;
     }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-brand-jp { font-family: var(--serif); font-size: .75rem; color: var(--gray); letter-spacing: .1em; }
-    .nav-brand-en { font-family: var(--deco); font-size: 1.05rem; color: var(--white); letter-spacing: .08em; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-jp { font-family: var(--serif); font-size: .75rem; color: var(--gray); letter-spacing: .1em; }
+    .nav-logo-en { font-family: var(--deco); font-size: 1rem; color: var(--white); letter-spacing: .08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { color: var(--gray); text-decoration: none; font-size: .78rem; letter-spacing: .06em; transition: color .2s; }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
     .nav-cta {
-      background: var(--gold); color: var(--white); border: none; cursor: pointer;
+      background: var(--gold); color: var(--white) !important; border: none; cursor: pointer;
       padding: 8px 20px; font-size: .78rem; font-family: var(--sans); letter-spacing: .06em;
-      transition: opacity .2s;
+      transition: opacity .2s; text-decoration: none;
     }
     .nav-cta:hover { opacity: .85; }
 
@@ -367,6 +367,7 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 860px) {
+      .nav-inner { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
     }
@@ -386,7 +387,9 @@
       .form-row { grid-template-columns: 1fr; }
       .tse-row { gap: 16px; }
       .hero-meta { flex-direction: column; gap: 8px; }
-      nav > div { padding: 0 20px !important; }
+      footer { padding: 40px 20px 28px; }
+      .footer-inner > div { flex-direction: column; gap: 20px; }
+      .footer-inner > div ul { gap: 12px; }
     }
     @media (max-width: 480px) {
       .score-grid { grid-template-columns: 1fr; }
@@ -422,10 +425,10 @@
 
 <!-- Navigation -->
 <nav>
-  <div class="nav-inner" style="max-width:1100px;margin:0 auto;width:100%;padding:0 40px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="https://aoyama-nogizaka.com/" class="nav-logo" style="display:flex;flex-direction:column;gap:1px;text-decoration:none;">
-      <span class="nav-logo-jp" style="font-family:var(--serif);font-size:.75rem;color:var(--gray);letter-spacing:.1em;">青山乃木坂パートナーズ</span>
-      <span class="nav-logo-en" style="font-family:var(--deco);font-size:1rem;color:var(--white);letter-spacing:.08em;">Aoyama Nogizaka Partners</span>
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
     </a>
     <ul class="nav-links">
       <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
