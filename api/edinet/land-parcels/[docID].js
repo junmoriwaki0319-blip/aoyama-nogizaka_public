@@ -186,6 +186,7 @@ function parseFacilityTable(html) {
     let colMap = {};
     let headerFound = false;
     let areaUnit = 1;
+    let bvUnitDivisor = 1; // 帳簿価額の単位: 百万円=1, 千円=1000
     let landDataCol = null; // データ行での土地列インデックス
 
     for (let ri = 0; ri < rows.length; ri++) {
@@ -206,6 +207,9 @@ function parseFacilityTable(html) {
           }
           if (t.includes('帳簿価額')) {
             colMap.bookValueCol = ci;
+            // 帳簿価額の単位を検出（千円 or 百万円）
+            if (t.includes('千円')) bvUnitDivisor = 1000;
+            else if (t.includes('百万円')) bvUnitDivisor = 1;
           }
         }
 
@@ -295,6 +299,10 @@ function parseFacilityTable(html) {
         }
         if (isNaN(bookValue)) bookValue = null;
         if (isNaN(area)) area = null;
+        // 単位を百万円に統一
+        if (bookValue != null && bvUnitDivisor > 1) {
+          bookValue = bookValue / bvUnitDivisor;
+        }
       }
 
       allParcels.push({
