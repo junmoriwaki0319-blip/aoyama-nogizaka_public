@@ -656,6 +656,23 @@ def main():
         if patched:
             print(f"EDINETコードリスト補完: {patched} フィールド修正")
 
+    # 証券コードベースで企業名を相互補完（sec_code → target_company）
+    sec_to_name = {}
+    all_reps = existing_reports + new_reports
+    for r in all_reps:
+        sc = (r.get("sec_code") or "").strip()
+        tc = (r.get("target_company") or "").strip()
+        if sc and tc and sc not in sec_to_name:
+            sec_to_name[sc] = tc
+    patched_name = 0
+    for r in all_reps:
+        sc = (r.get("sec_code") or "").strip()
+        if sc and not (r.get("target_company") or "").strip() and sc in sec_to_name:
+            r["target_company"] = sec_to_name[sc]
+            patched_name += 1
+    if patched_name:
+        print(f"証券コード→企業名補完: {patched_name} 件修正")
+
     # 既存データで対象企業・保有比率が欠損しているレコードを補完
     if API_KEY:
         incomplete = [
