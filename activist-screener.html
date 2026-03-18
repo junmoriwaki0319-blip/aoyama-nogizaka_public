@@ -115,6 +115,12 @@
       await setDoc(ref, data, { merge: true });
     };
 
+    // パスワードをリンク（Google登録ユーザー向け）
+    window.firebaseLinkPassword = async (email, password) => {
+      const credential = EmailAuthProvider.credential(email, password);
+      await linkWithCredential(auth.currentUser, credential);
+    };
+
     window.firebaseLogout = () => signOut(auth);
   </script>
   <style>

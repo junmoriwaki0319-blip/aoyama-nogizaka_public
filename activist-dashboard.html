@@ -20,7 +20,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
 
@@ -123,6 +123,12 @@
     window.firebaseUpdateProfile = async (uid, data) => {
       const ref = doc(db, "users", uid);
       await setDoc(ref, data, { merge: true });
+    };
+
+    // パスワードをリンク（Google登録ユーザー向け）
+    window.firebaseLinkPassword = async (email, password) => {
+      const credential = EmailAuthProvider.credential(email, password);
+      await linkWithCredential(auth.currentUser, credential);
     };
 
     // ログアウト
@@ -933,8 +939,17 @@
       </table>
     </div>
     <div style="display:flex; gap:12px; margin-top:24px; justify-content:center; flex-wrap:wrap;">
-      <button onclick="handleMyPageResetPassword()" class="btn-submit" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
+      <button onclick="handleMyPageResetPassword()" class="btn-submit" id="btnChangePassword" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
+      <button onclick="showSetPasswordForm()" class="btn-submit" id="btnSetPassword" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">パスワードを設定</button>
       <button onclick="handleResendVerification()" class="btn-submit" id="btnResendVerify" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">認証メールを再送</button>
+    </div>
+    <div id="setPasswordForm" style="display:none; margin-top:16px; text-align:center;">
+      <p style="font-size:12px; color:var(--text-mid); margin-bottom:10px;">メールアドレスでもログインできるようパスワードを設定します。</p>
+      <div style="display:flex; flex-direction:column; gap:8px; max-width:300px; margin:0 auto;">
+        <input type="password" id="setPasswordInput" placeholder="新しいパスワード（8文字以上）" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
+        <input type="password" id="setPasswordConfirm" placeholder="パスワード確認" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
+        <button onclick="handleSetPassword()" class="btn-submit" style="padding:10px 24px; font-size:13px;">パスワードを設定する</button>
+      </div>
     </div>
     <div id="myPageMsg" style="display:none; text-align:center; padding:10px 14px; border-radius:4px; font-size:13px; margin-top:16px;"></div>
   </div>
@@ -1910,6 +1925,11 @@ async function openMyPage() {
   const verifiedEl = document.getElementById('myEmailVerified');
   verifiedEl.innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
   document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
+  const hasPassword = user.providerData && user.providerData.some(p => p.providerId === 'password');
+  document.getElementById('btnChangePassword').style.display = hasPassword ? '' : 'none';
+  document.getElementById('btnSetPassword').style.display = hasPassword ? 'none' : '';
+  document.getElementById('setPasswordForm').style.display = 'none';
+  document.getElementById('myPageMsg').style.display = 'none';
   try {
     const profile = await window.firebaseGetProfile(user.uid);
     if (profile) {
@@ -1924,20 +1944,54 @@ async function openMyPage() {
 async function handleMyPageResetPassword() {
   const msg = document.getElementById('myPageMsg');
   const user = window.currentUser;
-  if (user && user.providerData && user.providerData.length > 0) {
-    const hasPassword = user.providerData.some(p => p.providerId === 'password');
-    if (!hasPassword) {
-      msg.textContent = 'Googleアカウントでご登録のため、パスワードの変更はできません。Googleアカウントのセキュリティ設定をご確認ください。';
-      msg.style.display = 'block'; msg.style.background = '#fef3cd'; msg.style.color = '#856404';
-      return;
-    }
-  }
   try {
     await window.firebaseResetPassword(user.email);
     msg.textContent = 'パスワードリセット用メールを送信しました。';
     msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
   } catch (e) {
     msg.textContent = 'エラーが発生しました: ' + (e.message || '');
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+function showSetPasswordForm() {
+  document.getElementById('setPasswordForm').style.display = '';
+  document.getElementById('myPageMsg').style.display = 'none';
+  document.getElementById('setPasswordInput').value = '';
+  document.getElementById('setPasswordConfirm').value = '';
+  document.getElementById('setPasswordInput').focus();
+}
+
+async function handleSetPassword() {
+  const msg = document.getElementById('myPageMsg');
+  const pw = document.getElementById('setPasswordInput').value;
+  const pw2 = document.getElementById('setPasswordConfirm').value;
+  msg.style.display = 'none';
+  if (!pw || pw.length < 8) {
+    msg.textContent = 'パスワードは8文字以上で入力してください。';
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    return;
+  }
+  if (pw !== pw2) {
+    msg.textContent = 'パスワードが一致しません。';
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    return;
+  }
+  try {
+    const user = window.currentUser;
+    await window.firebaseLinkPassword(user.email, pw);
+    msg.textContent = 'パスワードを設定しました。メールアドレスでもログインできます。';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+    document.getElementById('setPasswordForm').style.display = 'none';
+    document.getElementById('btnSetPassword').style.display = 'none';
+    document.getElementById('btnChangePassword').style.display = '';
+  } catch (e) {
+    const messages = {
+      'auth/provider-already-linked': 'すでにパスワードが設定されています。「パスワードを変更」からリセットしてください。',
+      'auth/weak-password': 'パスワードが弱すぎます。8文字以上で設定してください。',
+      'auth/requires-recent-login': 'セキュリティのため再ログインが必要です。一度ログアウトしてGoogleで再ログインしてください。',
+    };
+    msg.textContent = messages[e.code] || 'エラーが発生しました: ' + (e.message || '');
     msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
   }
 }
