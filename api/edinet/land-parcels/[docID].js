@@ -425,16 +425,23 @@ const PREF_LAND_PRICES = {
 };
 
 // 用途推定ルール（事業所名・所在地からキーワードマッチ）
+// 工場キーワードを先に判定（「本社工場」のようなケースで工場を優先）
 const LAND_USE_RULES = [
-  { key: 'office',      label: 'オフィス',   rate: 0.9, keywords: ['本社','本店','事務所','オフィス','事業所','支店','支社','営業所'] },
-  { key: 'factory',     label: '工場・倉庫', rate: 0.5, keywords: ['工場','製造所','製作所','倉庫','物流','配送','センター','プラント'] },
+  { key: 'factory',     label: '工場・倉庫', rate: 0.5, keywords: ['工場','製造所','製作所','倉庫','物流','配送','プラント','製鉄所','製油所','精製所'] },
   { key: 'commercial',  label: '商業施設',   rate: 0.8, keywords: ['店舗','ショッピング','商業','モール','販売','百貨店'] },
   { key: 'residential', label: '住宅・寮',   rate: 1.0, keywords: ['社宅','寮','住宅','マンション','レジデンス'] },
   { key: 'idle',        label: '遊休地',     rate: 0.6, keywords: ['遊休','未利用','跡地'] },
+  { key: 'office',      label: 'オフィス',   rate: 0.9, keywords: ['本社','本店','事務所','オフィス','事業所','支店','支社','営業所'] },
 ];
 
-function guessLandUse(name, address) {
+function guessLandUse(name, address, area) {
   const text = ((name || '') + ' ' + (address || '')).toLowerCase();
+
+  // 面積が10万㎡超は工場・大規模施設とみなす（オフィスビルの敷地は通常1万㎡以下）
+  if (area && area > 100000) {
+    return { key: 'factory', label: '工場・倉庫', rate: 0.5, keywords: [] };
+  }
+
   for (const r of LAND_USE_RULES) {
     for (const kw of r.keywords) {
       if (text.includes(kw)) return r;
@@ -446,8 +453,8 @@ function guessLandUse(name, address) {
 async function estimateLandPrices(parcels) {
   // 都道府県別平均公示地価（円/㎡, 2025年基準地価）を使って推定
   for (const parcel of parcels) {
-    // 用途推定
-    const use = guessLandUse(parcel.name, parcel.address);
+    // 用途推定（面積も考慮）
+    const use = guessLandUse(parcel.name, parcel.address, parcel.area);
     parcel.useType = use.key;
     parcel.useLabel = use.label;
     parcel.adjustmentRate = use.rate;
