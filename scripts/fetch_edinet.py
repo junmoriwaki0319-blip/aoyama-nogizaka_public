@@ -42,7 +42,9 @@ def load_edinet_code_map():
     url = f"{EDINET_API_BASE}/EdinetcodeDlInfo/codes?Subscription-Key={API_KEY}"
 
     try:
-        resp = requests.get(url, timeout=120, allow_redirects=True)
+        session = requests.Session()
+        session.max_redirects = 5
+        resp = session.get(url, timeout=120)
         if resp.status_code != 200:
             print(f"  [WARN] EDINET code list download failed: {resp.status_code}", file=sys.stderr)
             return {}
@@ -110,6 +112,28 @@ def load_edinet_code_map():
     except Exception as e:
         print(f"  [WARN] EDINET code list error: {e}", file=sys.stderr)
         return {}
+
+
+def build_code_map_from_reports(reports):
+    """既存レポートデータからissuerEdinetCode→{name, sec_code}のマッピングを構築（フォールバック用）"""
+    code_map = {}
+    for r in reports:
+        issuer = (r.get("issuer_name") or "").strip()
+        if not issuer or not issuer.startswith("E"):
+            continue
+        target = (r.get("target_company") or "").strip()
+        sec = (r.get("sec_code") or "").strip()
+        if not target and not sec:
+            continue
+        if issuer not in code_map:
+            code_map[issuer] = {"name": target, "sec_code": sec}
+        else:
+            # 既存より良いデータがあれば更新
+            if target and not code_map[issuer]["name"]:
+                code_map[issuer]["name"] = target
+            if sec and not code_map[issuer]["sec_code"]:
+                code_map[issuer]["sec_code"] = sec
+    return code_map
 
 
 def load_known_activists():
@@ -560,6 +584,11 @@ def main():
     existing_data = load_existing_data()
     existing_reports = existing_data.get("reports", [])
     print(f"既存データ: {len(existing_reports)} 件")
+
+    # EDINETコードリスト取得失敗時、既存データからフォールバックマッピングを構築
+    if not edinet_code_map and existing_reports:
+        edinet_code_map = build_code_map_from_reports(existing_reports)
+        print(f"フォールバック: 既存データから {len(edinet_code_map)} 件のコードマップ構築")
 
     # 対象日付を算出（既存データがあれば増分取得、なければフル取得）
     # BACKFILL=1 環境変数でフルスキャン強制（過去データ埋め戻し用）
