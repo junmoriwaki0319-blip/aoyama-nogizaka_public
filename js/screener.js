@@ -8,7 +8,8 @@ if(h.includes("aoyama-nogizaka.com")||h.includes("github.io"))return "https://ao
 if(h==="localhost"||h==="127.0.0.1")return "";
 return "https://aoyama-nogizakapublic.vercel.app"})();
 
-/* Auth UI */
+/* Auth UI — 初期化時にFirebase authが既に解決済みなら即反映 */
+if (window.currentUser !== undefined) { document.addEventListener('DOMContentLoaded', function(){ if(typeof updateAuthUI==='function') updateAuthUI(window.currentUser); }); }
 function updateAuthUI(user){
   var lo=document.getElementById("authLoggedOut"),li=document.getElementById("authLoggedIn"),cb=document.getElementById("btnCsvExport");
   var gated=document.getElementById("screenerGated"),gatedR=document.getElementById("screenerGatedRank");
@@ -28,6 +29,7 @@ function updateAuthUI(user){
   }
 }
 function showRegister(){document.getElementById("authLoginForm").classList.add("hidden");var rf=document.getElementById("authResetForm");if(rf)rf.classList.add("hidden");document.getElementById("authRegisterForm").classList.remove("hidden")}
+function scrollToAuth(mode){if(mode==='register')showRegister();else showLogin();document.getElementById("authSection").scrollIntoView({behavior:"smooth",block:"center"})}
 function showLogin(){document.getElementById("authRegisterForm").classList.add("hidden");var rf=document.getElementById("authResetForm");if(rf)rf.classList.add("hidden");document.getElementById("authLoginForm").classList.remove("hidden")}
 async function doLogin(){var e=document.getElementById("authEmail").value.trim(),p=document.getElementById("authPass").value,m=document.getElementById("authLoginMsg");if(!e||!p){m.textContent="メールとパスワードを入力してください";m.className="auth-msg error";return}try{await window.firebaseLogin(e,p);m.textContent="ログインしました";m.className="auth-msg success"}catch(err){m.textContent="ログイン失敗: "+err.message;m.className="auth-msg error"}}
 async function doRegister(){var n=document.getElementById("regName").value.trim(),c=document.getElementById("regCompany").value.trim(),e=document.getElementById("regEmail").value.trim(),p=document.getElementById("regPass").value,aff=document.getElementById("regAffiliation")?document.getElementById("regAffiliation").value:"",affCode=document.getElementById("regAffiliationCode")?document.getElementById("regAffiliationCode").value:"",jt=document.getElementById("regJobTitle")?document.getElementById("regJobTitle").value:"",m=document.getElementById("authRegMsg");if(!n||!e||!p){m.textContent="必須項目を入力してください";m.className="auth-msg error";return}if(!aff){m.textContent="所属種別を選択してください";m.className="auth-msg error";return}if(p.length<6){m.textContent="パスワードは6文字以上";m.className="auth-msg error";return}try{await window.firebaseRegister(e,p,n,c,aff,affCode,jt);m.textContent="登録しました。確認メールをお送りしましたのでご確認ください。";m.className="auth-msg success"}catch(err){m.textContent="登録失敗: "+err.message;m.className="auth-msg error"}}

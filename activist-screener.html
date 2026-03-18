@@ -40,7 +40,14 @@
     window.firebaseDb = db;
     onAuthStateChanged(auth, (user) => {
       window.currentUser = user;
-      if (typeof updateAuthUI === 'function') updateAuthUI(user);
+      if (typeof updateAuthUI === 'function') {
+        updateAuthUI(user);
+      } else {
+        // screener.jsがまだ読み込まれていない場合、DOMContentLoadedで再実行
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof updateAuthUI === 'function') updateAuthUI(user);
+        });
+      }
     });
     window.firebaseLogin = async (email, password) => {
       const cred = await signInWithEmailAndPassword(auth, email, password);
@@ -234,14 +241,13 @@
           <li><a href="/activist-screener.html" class="active">スクリーニング・ランキング</a></li>
         </ul>
       </li>
-      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <div id="navAuthBtns" style="display:flex;gap:10px;align-items:center;">
-      <button onclick="showLogin()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;">ログイン</button>
-      <button onclick="showRegister()" style="background:var(--gold);border:none;color:#fff;padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;">無料登録</button>
+      <button onclick="scrollToAuth('login')" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">ログイン</button>
+      <button onclick="scrollToAuth('register')" style="background:var(--gold);border:none;color:#fff;padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">無料会員登録</button>
     </div>
     <div id="navUserInfo" style="display:none;align-items:center;gap:10px;">
-      <span id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);letter-spacing:.04em;"></span>
+      <a onclick="openMyPage()" id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;letter-spacing:.04em;text-decoration:underline;"></a>
       <button onclick="doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:4px;font-size:.68rem;cursor:pointer;">ログアウト</button>
     </div>
     <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -530,8 +536,8 @@
             <li>複数銘柄の一括ランキング・CSV出力</li>
           </ul>
         </div>
-        <button class="btn-cta-register" onclick="showRegister()">無料会員登録</button>
-        <a class="btn-cta-login" onclick="showLogin()">すでに会員の方はログイン</a>
+        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
+        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
       </div>
     </div>
 
@@ -767,8 +773,8 @@
             <li>結果のCSVダウンロード</li>
           </ul>
         </div>
-        <button class="btn-cta-register" onclick="showRegister()">無料会員登録</button>
-        <a class="btn-cta-login" onclick="showLogin()">すでに会員の方はログイン</a>
+        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
+        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
       </div>
     </div>
 
