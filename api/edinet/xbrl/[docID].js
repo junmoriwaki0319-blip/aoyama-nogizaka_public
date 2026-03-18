@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
 
     // 注記テキストブロックから投資不動産・有価証券データを抽出
     const noteEntries = entries.filter(e =>
-      /\.htm(l)?$/i.test(e.name) && /PublicDoc/i.test(e.name)
+      /\.(htm(l)?|xhtml)$/i.test(e.name) && /PublicDoc/i.test(e.name)
     );
     for (const ne of noteEntries) {
       try {
@@ -55,8 +55,17 @@ module.exports = async (req, res) => {
       } catch {}
     }
 
+    // XBRLインラインドキュメント自体からも大株主データを探す
+    // （大株主の状況はHTMLノートではなくXBRL本体に含まれることが多い）
+    if (!data._majorShareholdersParsed) {
+      parseMajorShareholders(xbrlXml, data);
+    }
+
     // 土地含み益推定
     estimateLandGain(data);
+
+    // 内部フラグを除去
+    delete data._majorShareholdersParsed;
 
     res.json({ success: true, data });
   } catch (err) {
