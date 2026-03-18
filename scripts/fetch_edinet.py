@@ -625,10 +625,9 @@ def main():
             filer_name = doc.get("filerName", "")
             matched = match_activist(filer_name, activists)
 
-            # 証券コードがある報告、またはアクティビスト関連はXBRLダウンロード
+            # 全報告に対してXBRLダウンロード（証券コード・対象企業名・保有比率の取得のため）
             xbrl_data = {}
-            has_sec_code = bool((doc.get("secCode") or "").strip())
-            if API_KEY and (matched or has_sec_code):
+            if API_KEY:
                 time.sleep(1)  # レート制限対策
                 xbrl_data = download_xbrl_and_extract(doc_id)
 
