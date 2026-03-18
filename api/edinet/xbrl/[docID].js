@@ -126,6 +126,20 @@ module.exports = async (req, res) => {
         }
       }
     }
+    // パーサーを直接デバッグ実行
+    if (shFile && !data.majorShareholders) {
+      const shHtml3 = extractEntry(zipBuffer, shFile).toString('utf8');
+      const testData = {};
+      parseMajorShareholders(shHtml3, testData);
+      _dbg.directParseResult = {
+        hasMajorShareholders: !!testData.majorShareholders,
+        count: testData.majorShareholdersCount,
+        parsed: testData._majorShareholdersParsed,
+        firstShareholder: testData.majorShareholders ? testData.majorShareholders[0] : null
+      };
+    }
+    _dbg.dataHasMajorSH = !!data.majorShareholders;
+    _dbg.dataMajorSHParsed = !!data._majorShareholdersParsed;
     data._debug = _dbg;
 
     // 土地含み益推定
