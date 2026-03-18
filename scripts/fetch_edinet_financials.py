@@ -273,19 +273,33 @@ def parse_xbrl(xml):
 
 def parse_notes(html, data):
     """注記テキストから投資不動産・有価証券データを抽出"""
-    # 投資不動産
+    # 賃貸等不動産 / 投資不動産（日本基準では「賃貸等不動産」が正式名称）
     if "investmentPropertyBookValue" not in data:
-        ip_idx = html.find("投資不動産")
+        ip_idx = -1
+        for term in ["賃貸等不動産", "賃貸不動産", "投資不動産"]:
+            ip_idx = html.find(term)
+            if ip_idx > -1:
+                break
         if ip_idx > -1:
-            search = html[max(0, ip_idx - 500):min(len(html), ip_idx + 5000)]
-            bs_m = re.search(r"貸借対照表計上額[\s\S]{0,200}?([\d,]+)", search)
-            fv_m = re.search(r"(?:時価|公正価値)[\s\S]{0,200}?([\d,]+)", search)
+            search = html[max(0, ip_idx - 500):min(len(html), ip_idx + 8000)]
+            # パターン1: 「貸借対照表計上額」「時価」
+            bs_m = re.search(r"貸借対照表計上額[\s\S]{0,500}?([\d,]{3,})", search)
+            fv_m = re.search(r"(?:時価|公正価値)[\s\S]{0,500}?([\d,]{3,})", search)
             if bs_m and fv_m:
                 bv = int(bs_m.group(1).replace(",", ""))
                 fv = int(fv_m.group(1).replace(",", ""))
                 if bv > 0 and fv > 0:
                     data["investmentPropertyBookValue"] = bv
                     data["investmentPropertyFairValue"] = fv
+            # パターン2: 「期末」行から数値取得
+            if "investmentPropertyBookValue" not in data:
+                end_m = re.search(r"期末[\s\S]{0,300}?([\d,]{3,})[\s\S]{0,200}?([\d,]{3,})", search)
+                if end_m:
+                    v1 = int(end_m.group(1).replace(",", ""))
+                    v2 = int(end_m.group(2).replace(",", ""))
+                    if v1 > 0 and v2 > 0:
+                        data["investmentPropertyBookValue"] = v1
+                        data["investmentPropertyFairValue"] = v2
 
     # 有価証券
     if "securitiesBookValue" not in data:

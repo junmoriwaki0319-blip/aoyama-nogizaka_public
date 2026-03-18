@@ -130,7 +130,11 @@ async function fetchIndividual() {
   btn.disabled = true;
   loading.classList.add('active');
 
+  // 前回の分析結果をクリア（土地明細・政策保有株式・株主構成の残留データを防止）
+  resetIndividual();
   indData = { code };
+  document.getElementById('indCode').value = code;
+  document.getElementById('indEdinet').value = '';
 
   try {
     // Yahoo Finance取得
@@ -209,6 +213,11 @@ async function runAutoAnalysis() {
 
   const tasks = [];
 
+  // セクションを明示的に非表示（resetIndividual後に残るケースの防止）
+  var ls = document.getElementById('landAnalysisSection'); if (ls) ls.style.display = 'none';
+  var lr = document.getElementById('landResult'); if (lr) lr.classList.add('hidden');
+  var ps = document.getElementById('policyHoldingsSection'); if (ps) ps.style.display = 'none';
+
   // タスク1: 土地明細分析
   if (e.land && e.land > 0) {
     tasks.push((async () => {
@@ -221,10 +230,22 @@ async function runAutoAnalysis() {
           const lData = await lRes.json();
           if (lData.success && lData.data) {
             landParcelsData = lData.data;
-            displayLandParcels(lData.data);
             document.getElementById('landAnalysisSection').style.display = '';
-            if (lData.data.totalEstimatedGain != null) {
-              document.getElementById('manual_land_gain').value = Math.round(lData.data.totalEstimatedGain);
+            // 拠点が検出された場合のみ明細を表示
+            if (lData.data.parcelCount > 0) {
+              displayLandParcels(lData.data);
+              if (lData.data.totalEstimatedGain != null) {
+                document.getElementById('manual_land_gain').value = Math.round(lData.data.totalEstimatedGain);
+              }
+            } else {
+              // 不動産業等で主要な設備に土地明細がない場合
+              var landResult = document.getElementById('landResult');
+              if (landResult) {
+                landResult.classList.remove('hidden');
+                document.getElementById('land_parcel_count').textContent = '0件';
+                var landBody = document.getElementById('landParcelsBody');
+                if (landBody) landBody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text-light);font-size:.72rem;">「主要な設備の状況」に土地明細がありません。不動産業の場合、保有物件は「賃貸等不動産」注記に開示されるため、土地明細分析の対象外となります。</td></tr>';
+              }
             }
           }
         }
@@ -621,19 +642,40 @@ function resetIndividual() {
    'm_full_netcash','m_full_nc_ratio','m_ev_ebitda',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
     .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '-'; });
-  // 土地明細セクションをリセット
+  // 土地明細セクションをリセット（内部データもクリア）
   const landSection = document.getElementById('landAnalysisSection');
   if (landSection) landSection.style.display = 'none';
   const landResult = document.getElementById('landResult');
   if (landResult) landResult.classList.add('hidden');
-  // 政策保有株式セクションをリセット
+  landParcelsData = null;
+  ['land_parcel_count','land_total_bv','land_total_fv','land_total_gain'].forEach(id => {
+    var el = document.getElementById(id); if (el) el.textContent = '-';
+  });
+  var landMethod = document.getElementById('land_gain_method_detail');
+  if (landMethod) landMethod.textContent = '';
+  var landBody = document.getElementById('landParcelsBody');
+  if (landBody) landBody.innerHTML = '';
+
+  // 政策保有株式セクションをリセット（内部データもクリア）
   const phSection = document.getElementById('policyHoldingsSection');
   if (phSection) phSection.style.display = 'none';
   phPriceData = null;
-  // 株主構成セクションをリセット
+  ['ph_count','ph_report_total','ph_current_total','ph_gain'].forEach(id => {
+    var el = document.getElementById(id); if (el) el.textContent = '-';
+  });
+  var phBody = document.getElementById('policyHoldingsBody');
+  if (phBody) phBody.innerHTML = '';
+
+  // 株主構成セクションをリセット（内部データもクリア）
   const shSection = document.getElementById('shareholderSection');
   if (shSection) shSection.style.display = 'none';
-  landParcelsData = null;
+  ['sh_count','sh_total_ratio','sh_float_ratio'].forEach(id => {
+    var el = document.getElementById(id); if (el) el.textContent = '-';
+  });
+  var shChart = document.getElementById('shCategoryChart');
+  if (shChart) shChart.innerHTML = '';
+  var shBody = document.getElementById('shareholderBody');
+  if (shBody) shBody.innerHTML = '';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -729,14 +771,22 @@ function displayLandParcels(data) {
   // 各parcelに用途と調整係数を付与してからテーブル描画
   if (data.parcels && data.parcels.length > 0) {
     data.parcels.forEach(p => {
-      var use = guessLandUse(p.name, p.address);
-      p._useKey = use.key;
-      p._useLabel = use.label;
-      p._rate = getDefaultRate(use.key);
-      // 元の推定単価（API側の0.5適用済み）を基準単価に戻す
-      if (p.estimatedPricePerSqm) {
-        p._basePricePerSqm = Math.round(p.estimatedPricePerSqm / 0.5); // APIの0.5を戻す
+      // APIが用途情報を返していればそれを使い、なければフロントで推定
+      if (p.useType) {
+        p._useKey = p.useType;
+        p._useLabel = p.useLabel || p.useType;
+        p._basePricePerSqm = p.basePricePerSqm || null;
+      } else {
+        var use = guessLandUse(p.name, p.address);
+        p._useKey = use.key;
+        p._useLabel = use.label;
+        // APIが一律0.5適用の旧版の場合は戻す
+        if (p.estimatedPricePerSqm && !p.basePricePerSqm) {
+          p._basePricePerSqm = Math.round(p.estimatedPricePerSqm / 0.5);
+        }
       }
+      // UIのデフォルト調整係数を適用
+      p._rate = getDefaultRate(p._useKey);
     });
   }
 
@@ -765,15 +815,20 @@ function renderLandTable(data) {
         '<option value="' + r.key + '"' + (r.key === p._useKey ? ' selected' : '') + '>' + r.label + '</option>'
       ).join('') + '<option value="other"' + (p._useKey === 'other' ? ' selected' : '') + '>その他</option>';
 
+      // 推定単価の内訳ツールチップ
+      var priceTip = p._basePricePerSqm
+        ? '基準単価 ' + Math.round(p._basePricePerSqm).toLocaleString() + '円/㎡ × ' + rate.toFixed(2) + '（' + (p._useLabel || 'その他') + '）'
+        : '';
+
       tbody.innerHTML += '<tr>' +
         '<td>' + (i + 1) + '</td>' +
         '<td style="max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + (p.name || '') + '">' + (p.name || '-') + '</td>' +
         '<td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + (p.address || '') + '">' + (p.address || '-') + '</td>' +
-        '<td><select style="font-size:.68rem;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" onchange="updateParcelUse(' + i + ',this.value)">' + useOptions + '</select></td>' +
+        '<td><select style="font-size:.68rem;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" title="事業所名から自動推定" onchange="updateParcelUse(' + i + ',this.value)">' + useOptions + '</select></td>' +
         '<td style="text-align:right;">' + (p.area ? p.area.toLocaleString() : '-') + '</td>' +
         '<td style="text-align:right;">' + (p.bookValue ? Math.round(p.bookValue).toLocaleString() : '-') + '</td>' +
-        '<td style="text-align:center;"><input type="number" value="' + rate.toFixed(2) + '" step="0.05" min="0" max="3" style="width:48px;font-size:.68rem;text-align:center;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" onchange="updateParcelRate(' + i + ',this.value)"></td>' +
-        '<td style="text-align:right;">' + (adjPrice ? Math.round(adjPrice).toLocaleString() : '-') + '</td>' +
+        '<td style="text-align:center;" title="' + (p._useLabel || 'その他') + 'のデフォルト: ' + getDefaultRate(p._useKey).toFixed(2) + '"><input type="number" value="' + rate.toFixed(2) + '" step="0.05" min="0" max="3" style="width:48px;font-size:.68rem;text-align:center;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" onchange="updateParcelRate(' + i + ',this.value)"></td>' +
+        '<td style="text-align:right;cursor:help;" title="' + priceTip + '">' + (adjPrice ? Math.round(adjPrice).toLocaleString() : '-') + '</td>' +
         '<td style="text-align:right;">' + (adjValue != null ? Math.round(adjValue).toLocaleString() : '-') + '</td>' +
         '<td style="text-align:right;' + gainColor + '">' + (gain != null ? Math.round(gain).toLocaleString() : '-') + '</td>' +
         '</tr>';

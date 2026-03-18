@@ -407,15 +407,40 @@ const PREF_LAND_PRICES = {
   '鹿児島県':42099,'沖縄県':114814,
 };
 
+// 用途推定ルール（事業所名・所在地からキーワードマッチ）
+const LAND_USE_RULES = [
+  { key: 'office',      label: 'オフィス',   rate: 0.9, keywords: ['本社','本店','事務所','オフィス','事業所','支店','支社','営業所'] },
+  { key: 'factory',     label: '工場・倉庫', rate: 0.5, keywords: ['工場','製造所','製作所','倉庫','物流','配送','センター','プラント'] },
+  { key: 'commercial',  label: '商業施設',   rate: 0.8, keywords: ['店舗','ショッピング','商業','モール','販売','百貨店'] },
+  { key: 'residential', label: '住宅・寮',   rate: 1.0, keywords: ['社宅','寮','住宅','マンション','レジデンス'] },
+  { key: 'idle',        label: '遊休地',     rate: 0.6, keywords: ['遊休','未利用','跡地'] },
+];
+
+function guessLandUse(name, address) {
+  const text = ((name || '') + ' ' + (address || '')).toLowerCase();
+  for (const r of LAND_USE_RULES) {
+    for (const kw of r.keywords) {
+      if (text.includes(kw)) return r;
+    }
+  }
+  return { key: 'other', label: 'その他', rate: 0.5, keywords: [] };
+}
+
 async function estimateLandPrices(parcels) {
   // 都道府県別平均公示地価（円/㎡, 2025年基準地価）を使って推定
   for (const parcel of parcels) {
+    // 用途推定
+    const use = guessLandUse(parcel.name, parcel.address);
+    parcel.useType = use.key;
+    parcel.useLabel = use.label;
+    parcel.adjustmentRate = use.rate;
+
     if (!parcel.prefecture || !parcel.area) continue;
     const pricePerSqm = PREF_LAND_PRICES[parcel.prefecture];
     if (!pricePerSqm) continue;
 
-    // 工業地は全用途平均の約50%とする（工場・倉庫用地の経験則）
-    const adjustedPrice = Math.round(pricePerSqm * 0.5);
+    parcel.basePricePerSqm = pricePerSqm; // 調整前の全用途平均単価
+    const adjustedPrice = Math.round(pricePerSqm * use.rate);
     parcel.estimatedPricePerSqm = adjustedPrice;
     parcel.estimatedValue = Math.round(parcel.area * adjustedPrice / 1000000); // 百万円
   }
