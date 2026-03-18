@@ -283,11 +283,13 @@ function calculateAndDisplay(silent) {
   // 時価総額
   setMetric('m_mcap', d.marketCapOku, '億円', v => v.toLocaleString());
   const mcapCatEl = document.getElementById('m_mcap_cat');
-  if (d.marketCapOku != null) {
-    const cat = getMarketCapCategory(d.marketCapOku);
-    mcapCatEl.innerHTML = `<span class="mcap-cat ${cat.cls}">${cat.label}</span>`;
-  } else {
-    mcapCatEl.textContent = '-';
+  if (mcapCatEl) {
+    if (d.marketCapOku != null) {
+      const cat = getMarketCapCategory(d.marketCapOku);
+      mcapCatEl.innerHTML = `<span class="mcap-cat ${cat.cls}">${cat.label}</span>`;
+    } else {
+      mcapCatEl.textContent = '-';
+    }
   }
 
   // EDINET財務データ
@@ -370,10 +372,10 @@ function calculateAndDisplay(silent) {
   const phSection = document.getElementById('policyHoldingsSection');
   if (phSection && e.policyHoldingsMarketValue != null && e.policyHoldingsTop) {
     phSection.style.display = '';
-    document.getElementById('ph_count').textContent = e.policyHoldingsCount;
-    document.getElementById('ph_report_total').textContent = Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円';
-    document.getElementById('ph_current_total').textContent = '-';
-    document.getElementById('ph_gain').textContent = '-';
+    var phc = document.getElementById('ph_count'); if (phc) phc.textContent = e.policyHoldingsCount;
+    var phr = document.getElementById('ph_report_total'); if (phr) phr.textContent = Math.round(e.policyHoldingsMarketValue).toLocaleString() + ' 百万円';
+    var phct = document.getElementById('ph_current_total'); if (phct) phct.textContent = '-';
+    var phg = document.getElementById('ph_gain'); if (phg) phg.textContent = '-';
     renderPolicyHoldingsTable(e.policyHoldingsTop, null);
   } else if (phSection) {
     phSection.style.display = 'none';
@@ -434,9 +436,10 @@ function calculateAndDisplay(silent) {
   }
 
   // 企業名・市場情報
-  document.getElementById('indCompanyName').textContent = d.companyName || d.code;
-  document.getElementById('indMarketInfo').textContent =
-    [d.code, d.market, d.sector].filter(Boolean).join(' | ');
+  var elCompany = document.getElementById('indCompanyName');
+  var elMarket = document.getElementById('indMarketInfo');
+  if (elCompany) elCompany.textContent = d.companyName || d.code;
+  if (elMarket) elMarket.textContent = [d.code, d.market, d.sector].filter(Boolean).join(' | ');
 
   // スコア計算
   calculateScore();
@@ -532,6 +535,7 @@ const SCORE_CRITERIA = [
 
 function calculateScore() {
   const tbody = document.getElementById('indDetailBody');
+  if (!tbody) return;
   tbody.innerHTML = '';
   let total = 0;
 
@@ -557,25 +561,28 @@ function calculateScore() {
   }
 
   // 合計表示
-  const maxTotal = SCORE_CRITERIA.reduce((s, c) => s + c.max, 0);
-  document.getElementById('indTotalScore').textContent = total;
+  var scoreEl = document.getElementById('indTotalScore');
+  if (scoreEl) scoreEl.textContent = total;
 
   const badge = document.getElementById('indScoreBadge');
-  if (total >= 65) {
-    badge.textContent = '高リスク — アクティビスト標的可能性高';
-    badge.className = 'score-badge badge-high';
-  } else if (total >= 40) {
-    badge.textContent = '中リスク — 注意が必要';
-    badge.className = 'score-badge badge-mid';
-  } else {
-    badge.textContent = '低リスク';
-    badge.className = 'score-badge badge-low';
+  if (badge) {
+    if (total >= 65) {
+      badge.textContent = '高リスク — アクティビスト標的可能性高';
+      badge.className = 'score-badge badge-high';
+    } else if (total >= 40) {
+      badge.textContent = '中リスク — 注意が必要';
+      badge.className = 'score-badge badge-mid';
+    } else {
+      badge.textContent = '低リスク';
+      badge.className = 'score-badge badge-low';
+    }
   }
 }
 
 // ── ユーティリティ ──
 function setMetric(id, value, unit, fmt, colorFn) {
   const el = document.getElementById(id);
+  if (!el) return;
   if (value != null && !isNaN(value)) {
     const formatted = fmt ? fmt(value) : (Number.isInteger(value) ? value : (typeof value === 'number' ? value.toFixed(2) : value));
     el.textContent = formatted + ' ' + unit;
@@ -609,7 +616,7 @@ function resetIndividual() {
   document.getElementById('manual_cross').value = '';
   document.getElementById('m_land_gain_method').style.display = 'none';
   ['m_price','m_pbr','m_per','m_roe','m_eps','m_bps','m_divyield','m_payout',
-   'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_gain','m_land_bv','m_land_gain','m_total_gain',
+   'm_mcap','m_mcap_cat','m_netassets','m_sec_gain','m_prop_bv','m_prop_fv','m_prop_gain','m_land_bv','m_land_gain','m_total_gain',
    'm_adj_nav','m_adj_pbr','m_cash','m_debt','m_netcash','m_nc_ratio','m_adj_netcash','m_adj_nc_ratio',
    'm_full_netcash','m_full_nc_ratio','m_ev_ebitda',
    'm_equity_ratio','m_foreign','m_outside_dir','m_shares','m_treasury']
@@ -680,53 +687,137 @@ async function fetchLandParcels() {
   }
 }
 
+// 用途推定キーワード
+var LAND_USE_RULES = [
+  { key: 'office',      label: 'オフィス',   keywords: ['本社','本店','事務所','オフィス','事業所','支店','支社','営業所'] },
+  { key: 'factory',     label: '工場・倉庫', keywords: ['工場','製造所','製作所','倉庫','物流','配送','センター','プラント'] },
+  { key: 'commercial',  label: '商業施設',   keywords: ['店舗','ショッピング','商業','モール','販売','百貨店','SC'] },
+  { key: 'residential', label: '住宅・寮',   keywords: ['社宅','寮','住宅','マンション','レジデンス'] },
+  { key: 'idle',        label: '遊休地',     keywords: ['遊休','未利用','跡地'] },
+];
+
+function guessLandUse(name, address) {
+  var text = ((name || '') + ' ' + (address || '')).toLowerCase();
+  for (var r of LAND_USE_RULES) {
+    for (var kw of r.keywords) {
+      if (text.includes(kw)) return r;
+    }
+  }
+  return { key: 'other', label: 'その他', keywords: [] };
+}
+
+function getDefaultRate(useKey) {
+  var el = document.getElementById('defRate_' + useKey);
+  return el ? parseFloat(el.value) || 0.5 : 0.5;
+}
+
 function displayLandParcels(data) {
   const result = document.getElementById('landResult');
+  if (!result) return;
   result.classList.remove('hidden');
 
   // サマリー
   document.getElementById('land_parcel_count').textContent = data.parcelCount + '件';
   document.getElementById('land_total_bv').textContent =
     data.totalBookValue > 0 ? Math.round(data.totalBookValue).toLocaleString() + ' 百万円' : '-';
-  document.getElementById('land_total_fv').textContent =
-    data.totalEstimatedValue > 0 ? Math.round(data.totalEstimatedValue).toLocaleString() + ' 百万円' : '-';
-
-  const gainEl = document.getElementById('land_total_gain');
-  if (data.totalEstimatedGain != null) {
-    gainEl.textContent = Math.round(data.totalEstimatedGain).toLocaleString() + ' 百万円';
-    gainEl.style.color = data.totalEstimatedGain > 0 ? 'var(--green)' : 'var(--danger)';
-  } else {
-    gainEl.textContent = '-';
-  }
 
   const methodEl = document.getElementById('land_gain_method_detail');
   if (data.gainMethod) {
     methodEl.textContent = '推定方法: ' + data.gainMethod;
   }
 
-  // 明細テーブル
+  // 各parcelに用途と調整係数を付与してからテーブル描画
+  if (data.parcels && data.parcels.length > 0) {
+    data.parcels.forEach(p => {
+      var use = guessLandUse(p.name, p.address);
+      p._useKey = use.key;
+      p._useLabel = use.label;
+      p._rate = getDefaultRate(use.key);
+      // 元の推定単価（API側の0.5適用済み）を基準単価に戻す
+      if (p.estimatedPricePerSqm) {
+        p._basePricePerSqm = Math.round(p.estimatedPricePerSqm / 0.5); // APIの0.5を戻す
+      }
+    });
+  }
+
+  renderLandTable(data);
+}
+
+function renderLandTable(data) {
   const tbody = document.getElementById('landParcelsBody');
   tbody.innerHTML = '';
 
+  var totalFV = 0, totalGain = 0;
+
   if (data.parcels && data.parcels.length > 0) {
     data.parcels.forEach((p, i) => {
-      const gain = (p.estimatedValue && p.bookValue) ? p.estimatedValue - p.bookValue : null;
-      const gainColor = gain != null ? (gain > 0 ? 'color:var(--green);font-weight:600;' : 'color:var(--danger);') : '';
-      tbody.innerHTML += `<tr>
-        <td>${i + 1}</td>
-        <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.name || '-'}</td>
-        <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${p.address || ''}">${p.address || '-'}</td>
-        <td style="text-align:right;">${p.area ? p.area.toLocaleString() : '-'}</td>
-        <td style="text-align:right;">${p.bookValue ? Math.round(p.bookValue).toLocaleString() : '-'}</td>
-        <td style="text-align:right;">${p.estimatedPricePerSqm ? Math.round(p.estimatedPricePerSqm).toLocaleString() : '-'}</td>
-        <td style="text-align:right;">${p.estimatedValue ? Math.round(p.estimatedValue).toLocaleString() : '-'}</td>
-        <td style="text-align:right;${gainColor}">${gain != null ? Math.round(gain).toLocaleString() : '-'}</td>
-      </tr>`;
-    });
+      var rate = p._rate || 0.5;
+      var adjPrice = p._basePricePerSqm ? Math.round(p._basePricePerSqm * rate) : (p.estimatedPricePerSqm || null);
+      var adjValue = (adjPrice && p.area) ? Math.round(p.area * adjPrice / 1000000) : (p.estimatedValue || null);
+      var gain = (adjValue != null && p.bookValue) ? adjValue - p.bookValue : null;
+      var gainColor = gain != null ? (gain > 0 ? 'color:var(--green);font-weight:600;' : 'color:var(--danger);') : '';
 
+      if (adjValue != null) totalFV += adjValue;
+      if (gain != null) totalGain += gain;
+
+      // 用途selectのオプション生成
+      var useOptions = LAND_USE_RULES.map(r =>
+        '<option value="' + r.key + '"' + (r.key === p._useKey ? ' selected' : '') + '>' + r.label + '</option>'
+      ).join('') + '<option value="other"' + (p._useKey === 'other' ? ' selected' : '') + '>その他</option>';
+
+      tbody.innerHTML += '<tr>' +
+        '<td>' + (i + 1) + '</td>' +
+        '<td style="max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + (p.name || '') + '">' + (p.name || '-') + '</td>' +
+        '<td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + (p.address || '') + '">' + (p.address || '-') + '</td>' +
+        '<td><select style="font-size:.68rem;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" onchange="updateParcelUse(' + i + ',this.value)">' + useOptions + '</select></td>' +
+        '<td style="text-align:right;">' + (p.area ? p.area.toLocaleString() : '-') + '</td>' +
+        '<td style="text-align:right;">' + (p.bookValue ? Math.round(p.bookValue).toLocaleString() : '-') + '</td>' +
+        '<td style="text-align:center;"><input type="number" value="' + rate.toFixed(2) + '" step="0.05" min="0" max="3" style="width:48px;font-size:.68rem;text-align:center;padding:1px 2px;border:1px solid var(--mid-gray);border-radius:3px;" onchange="updateParcelRate(' + i + ',this.value)"></td>' +
+        '<td style="text-align:right;">' + (adjPrice ? Math.round(adjPrice).toLocaleString() : '-') + '</td>' +
+        '<td style="text-align:right;">' + (adjValue != null ? Math.round(adjValue).toLocaleString() : '-') + '</td>' +
+        '<td style="text-align:right;' + gainColor + '">' + (gain != null ? Math.round(gain).toLocaleString() : '-') + '</td>' +
+        '</tr>';
+    });
   } else {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-light);">土地明細が見つかりませんでした</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text-light);">土地明細が見つかりませんでした</td></tr>';
   }
+
+  // サマリー更新
+  document.getElementById('land_total_fv').textContent =
+    totalFV > 0 ? Math.round(totalFV).toLocaleString() + ' 百万円' : '-';
+  var gainEl = document.getElementById('land_total_gain');
+  gainEl.textContent = Math.round(totalGain).toLocaleString() + ' 百万円';
+  gainEl.style.color = totalGain > 0 ? 'var(--green)' : 'var(--danger)';
+
+  // landParcelsDataの合計も更新
+  if (landParcelsData) {
+    landParcelsData.totalEstimatedValue = totalFV;
+    landParcelsData.totalEstimatedGain = totalGain;
+  }
+}
+
+function updateParcelUse(idx, useKey) {
+  if (!landParcelsData || !landParcelsData.parcels[idx]) return;
+  var p = landParcelsData.parcels[idx];
+  var rule = LAND_USE_RULES.find(r => r.key === useKey) || { key: 'other', label: 'その他' };
+  p._useKey = rule.key;
+  p._useLabel = rule.label;
+  p._rate = getDefaultRate(rule.key);
+  renderLandTable(landParcelsData);
+}
+
+function updateParcelRate(idx, val) {
+  if (!landParcelsData || !landParcelsData.parcels[idx]) return;
+  landParcelsData.parcels[idx]._rate = parseFloat(val) || 0.5;
+  renderLandTable(landParcelsData);
+}
+
+function recalcLandWithRates() {
+  if (!landParcelsData || !landParcelsData.parcels) return;
+  landParcelsData.parcels.forEach(p => {
+    p._rate = getDefaultRate(p._useKey || 'other');
+  });
+  renderLandTable(landParcelsData);
 }
 
 function applyLandGainEstimate() {
@@ -746,6 +837,7 @@ var phPriceData = null; // 株価取得結果を保持
 
 function renderPolicyHoldingsTable(holdings, prices) {
   var body = document.getElementById('policyHoldingsBody');
+  if (!body) return;
   body.innerHTML = '';
   var basis = document.getElementById('phPriceBasis') ? document.getElementById('phPriceBasis').value : 'lastClose';
 
@@ -785,15 +877,18 @@ function updatePolicyHoldingsSummary(holdings, prices) {
     }
   });
 
-  document.getElementById('ph_current_total').textContent = counted > 0 ? Math.round(totalCurrent).toLocaleString() + ' 百万円' : '-';
+  var phCtEl = document.getElementById('ph_current_total');
+  if (phCtEl) phCtEl.textContent = counted > 0 ? Math.round(totalCurrent).toLocaleString() + ' 百万円' : '-';
   var gainEl = document.getElementById('ph_gain');
-  if (counted > 0) {
-    var gain = totalCurrent - totalReport;
-    gainEl.textContent = (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() + ' 百万円';
-    gainEl.style.color = gain > 0 ? 'var(--green)' : '#c0392b';
-  } else {
-    gainEl.textContent = '-';
-    gainEl.style.color = '';
+  if (gainEl) {
+    if (counted > 0) {
+      var gain = totalCurrent - totalReport;
+      gainEl.textContent = (gain > 0 ? '+' : '') + Math.round(gain).toLocaleString() + ' 百万円';
+      gainEl.style.color = gain > 0 ? 'var(--green)' : '#c0392b';
+    } else {
+      gainEl.textContent = '-';
+      gainEl.style.color = '';
+    }
   }
 }
 
@@ -872,21 +967,23 @@ function applyPolicyHoldingsGain() {
 function displayMajorShareholders() {
   var e = indData.edinet || {};
   var section = document.getElementById('shareholderSection');
-  if (!e.majorShareholders || e.majorShareholders.length === 0) {
+  if (!section || !e.majorShareholders || e.majorShareholders.length === 0) {
     if (section) section.style.display = 'none';
     return;
   }
   section.style.display = '';
 
   // サマリー
-  document.getElementById('sh_count').textContent = e.majorShareholdersCount + '名';
-  document.getElementById('sh_total_ratio').textContent = e.majorShareholdersTotalRatio.toFixed(1) + '%';
+  var shc = document.getElementById('sh_count'); if (shc) shc.textContent = e.majorShareholdersCount + '名';
+  var shr = document.getElementById('sh_total_ratio'); if (shr) shr.textContent = e.majorShareholdersTotalRatio.toFixed(1) + '%';
 
   // 浮動株比率概算（100% - 上位株主合計）
   var floatRatio = Math.max(0, 100 - e.majorShareholdersTotalRatio);
   var floatEl = document.getElementById('sh_float_ratio');
-  floatEl.textContent = floatRatio.toFixed(1) + '%';
-  floatEl.style.color = floatRatio > 60 ? 'var(--red)' : floatRatio > 40 ? 'var(--orange)' : 'var(--green)';
+  if (floatEl) {
+    floatEl.textContent = floatRatio.toFixed(1) + '%';
+    floatEl.style.color = floatRatio > 60 ? 'var(--red)' : floatRatio > 40 ? 'var(--orange)' : 'var(--green)';
+  }
 
   // カテゴリ別比率バー
   var cats = e.shareholderCategories || {};
