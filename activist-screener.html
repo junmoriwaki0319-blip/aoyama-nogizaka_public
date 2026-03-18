@@ -20,7 +20,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
     const firebaseConfig = {
@@ -43,7 +43,6 @@
       if (typeof updateAuthUI === 'function') {
         updateAuthUI(user);
       } else {
-        // screener.jsがまだ読み込まれていない場合、DOMContentLoadedで再実行
         document.addEventListener('DOMContentLoaded', () => {
           if (typeof updateAuthUI === 'function') updateAuthUI(user);
         });
@@ -64,6 +63,7 @@
         plan: "free", createdAt: serverTimestamp()
       });
       await sendEmailVerification(cred.user);
+      window.sendWelcomeEmail(email, name);
       return cred.user;
     };
     window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
@@ -71,6 +71,50 @@
       const snap = await getDoc(doc(db, "users", uid));
       return snap.exists() ? snap.data() : null;
     };
+
+    // Google ログイン
+    const googleProvider = new GoogleAuthProvider();
+    window.firebaseGoogleLogin = async () => {
+      const cred = await signInWithPopup(auth, googleProvider);
+      const user = cred.user;
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (!snap.exists()) {
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName || "",
+          company: "",
+          email: user.email || "",
+          affiliation: "",
+          affiliationCode: "",
+          jobTitle: "",
+          plan: "free",
+          createdAt: serverTimestamp()
+        });
+        window.sendWelcomeEmail(user.email, user.displayName || '');
+        return { user, needsProfile: true };
+      }
+      const data = snap.data();
+      const needsProfile = !data.affiliation || !data.jobTitle || !data.company;
+      return { user, needsProfile };
+    };
+
+    // ウェルカムメール送信
+    window.sendWelcomeEmail = async (email, name) => {
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name })
+        });
+      } catch (e) { console.warn('Welcome email failed:', e); }
+    };
+
+    // プロフィール更新
+    window.firebaseUpdateProfile = async (uid, data) => {
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, data, { merge: true });
+    };
+
     window.firebaseLogout = () => signOut(auth);
   </script>
   <style>
@@ -86,10 +130,11 @@
     .nav-links a{color:var(--mid-gray);text-decoration:none;font-size:.78rem;letter-spacing:.06em;transition:color .2s}
     .nav-links a:hover,.nav-links a.active{color:var(--gold)}
     .nav-links a.active{border-bottom:1px solid var(--gold);padding-bottom:2px}
-    .nav-dropdown{position:relative}.nav-dropdown-toggle{cursor:pointer}
-    .nav-dropdown-menu{display:none;position:absolute;top:100%;left:-12px;background:var(--navy);border-radius:6px;padding:8px 0;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:100;list-style:none;margin-top:8px}
-    .nav-dropdown-menu li a{display:block;padding:8px 20px;font-size:.76rem;white-space:nowrap;color:var(--mid-gray)}
-    .nav-dropdown-menu li a:hover,.nav-dropdown-menu li a.active{color:var(--gold);background:rgba(255,255,255,.05)}
+    .nav-dropdown{position:relative}.nav-dropdown-toggle{cursor:pointer;padding-bottom:18px;margin-bottom:-18px}
+    .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:-16px;background:var(--navy);border-radius:8px;padding:10px 0;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:100;list-style:none}
+    .nav-dropdown-menu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+    .nav-dropdown-menu li a{display:block;padding:11px 24px;font-size:.82rem;white-space:nowrap;color:rgba(255,255,255,.65);transition:color .15s,background .15s}
+    .nav-dropdown-menu li a:hover,.nav-dropdown-menu li a.active{color:var(--gold);background:rgba(255,255,255,.06)}
     .nav-dropdown:hover .nav-dropdown-menu{display:block}
     .nav-cta{background:var(--gold);color:var(--white)!important;border:none;cursor:pointer;padding:8px 20px;font-size:.78rem;font-family:var(--sans);letter-spacing:.06em;transition:opacity .2s;text-decoration:none}
     .nav-cta:hover{opacity:.85}

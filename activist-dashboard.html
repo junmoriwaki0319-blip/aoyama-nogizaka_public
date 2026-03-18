@@ -150,10 +150,11 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-links a.active { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
     .nav-dropdown { position: relative; }
-    .nav-dropdown-toggle { cursor: pointer; }
-    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -12px; background: var(--navy); border-radius: 6px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 100; list-style: none; margin-top: 8px; }
-    .nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 0.76rem; white-space: nowrap; color: var(--mid-gray); }
-    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.05); }
+    .nav-dropdown-toggle { cursor: pointer; padding-bottom: 18px; margin-bottom: -18px; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: -16px; background: var(--navy); border-radius: 8px; padding: 10px 0; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
+    .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.06); }
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
     .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
