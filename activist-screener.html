@@ -20,7 +20,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
     const firebaseConfig = {
@@ -402,7 +402,7 @@
         <div class="metric-card">
           <div class="metric-card-title">バリュー指標（含み益・実質PBR）</div>
           <div class="metric-row"><span class="metric-label">時価総額</span><span class="metric-value" id="m_mcap">-</span></div>
-          <div class="metric-row"><span class="metric-label">時価総額区分</span><span id="m_mcap_cat">-</span></div>
+          <div class="metric-row"><span class="metric-label">時価総額区分 <span class="info-tip" data-tip="ナノ: 〜50億 / マイクロ: 50〜300億 / スモール: 300〜1,000億 / ミッド: 1,000〜5,000億 / ラージ: 5,000億〜">?</span></span><span id="m_mcap_cat">-</span></div>
           <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
           <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
           <div class="metric-row"><span class="metric-label">賃貸等不動産（簿価）<span class="info-tip" data-tip="注記「賃貸等不動産」の貸借対照表計上額。投資不動産とも呼ばれる">?</span></span><span class="metric-value" id="m_prop_bv">-</span></div>
