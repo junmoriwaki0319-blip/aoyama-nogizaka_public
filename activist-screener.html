@@ -368,6 +368,14 @@
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <div class="m-auth" id="mobileAuthBtns" style="display:flex;gap:12px;margin-top:24px;">
+    <button class="btn-login" onclick="toggleMenu();openAuthModal('login')" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">ログイン</button>
+    <button class="btn-register" onclick="toggleMenu();openAuthModal('register')" style="background:var(--gold);border:none;color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">無料会員登録</button>
+  </div>
+  <div class="m-auth" id="mobileUserInfo" style="display:none;gap:12px;margin-top:24px;align-items:center;">
+    <span style="font-size:.85rem;color:rgba(255,255,255,.7);" id="mobileUserName"></span>
+    <button onclick="toggleMenu();doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:8px 16px;border-radius:4px;font-size:.78rem;cursor:pointer;">ログアウト</button>
+  </div>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 
