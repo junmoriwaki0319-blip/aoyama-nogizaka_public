@@ -13,14 +13,18 @@ function updateAuthUI(user){
   var lo=document.getElementById("authLoggedOut"),li=document.getElementById("authLoggedIn"),cb=document.getElementById("btnCsvExport");
   var gated=document.getElementById("screenerGated"),gatedR=document.getElementById("screenerGatedRank");
   var lwI=document.getElementById("loginWallIndividual"),lwR=document.getElementById("loginWallRanking");
+  var navAuth=document.getElementById("navAuthBtns"),navUser=document.getElementById("navUserInfo"),navName=document.getElementById("navUserName");
   if(user){
+    var dn=(user.displayName||user.email)+' 様';
     lo.classList.add("hidden");li.classList.remove("hidden");document.getElementById("authUserName").textContent=user.displayName||user.email;if(cb)cb.disabled=false;
     if(gated)gated.classList.remove("blurred");if(gatedR)gatedR.classList.remove("blurred");
     if(lwI)lwI.style.display="none";if(lwR)lwR.style.display="none";
+    if(navAuth)navAuth.style.display="none";if(navUser){navUser.style.display="flex";if(navName)navName.textContent=dn;}
   }else{
     lo.classList.remove("hidden");li.classList.add("hidden");if(cb)cb.disabled=true;
     if(gated)gated.classList.add("blurred");if(gatedR)gatedR.classList.add("blurred");
     if(lwI)lwI.style.display="block";if(lwR)lwR.style.display="block";
+    if(navAuth)navAuth.style.display="flex";if(navUser)navUser.style.display="none";
   }
 }
 function showRegister(){document.getElementById("authLoginForm").classList.add("hidden");var rf=document.getElementById("authResetForm");if(rf)rf.classList.add("hidden");document.getElementById("authRegisterForm").classList.remove("hidden")}
