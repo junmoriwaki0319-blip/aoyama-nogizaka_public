@@ -180,12 +180,93 @@ async function fetchIndividual() {
     // 計算 & 表示
     calculateAndDisplay();
 
+    // 大株主の状況を表示
+    displayMajorShareholders();
+
+    // === 自動分析チェーン ===
+    // 土地明細分析 → 政策保有株式分析 → 値反映 → 再計算を自動実行
+    await runAutoAnalysis(loadingText);
+
   } catch (err) {
     alert('エラー: ' + err.message);
   } finally {
     btn.disabled = false;
     loading.classList.remove('active');
   }
+}
+
+// 全自動分析チェーン
+async function runAutoAnalysis(loadingText) {
+  const e = indData.edinet || {};
+
+  // 1. 土地明細分析（土地データがあり、XBRL推定が不十分な場合）
+  if (e.land && e.land > 0) {
+    try {
+      loadingText.textContent = '土地明細分析中...';
+      const apiKey = document.getElementById('edinetApiKey').value.trim();
+      const edinetCode = document.getElementById('indEdinet').value.trim();
+      const stockCode = document.getElementById('indCode').value.trim();
+      const searchCode = edinetCode || stockCode;
+      const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
+
+      const sRes = await fetch(API_BASE + '/api/edinet/search/' + searchCode + apiParam);
+      const sData = await sRes.json();
+      if (sData.success && sData.documents && sData.documents.length > 0) {
+        const docID = sData.documents[0].docID;
+        const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + apiParam);
+        const lData = await lRes.json();
+        if (lData.success && lData.data) {
+          landParcelsData = lData.data;
+          displayLandParcels(lData.data);
+          document.getElementById('landAnalysisSection').style.display = '';
+
+          // 自動反映
+          if (lData.data.totalEstimatedGain != null) {
+            document.getElementById('manual_land_gain').value = Math.round(lData.data.totalEstimatedGain);
+          }
+        }
+      }
+    } catch (err) { console.warn('土地自動分析エラー:', err); }
+  }
+
+  // 2. 政策保有株式の株価取得・含み益計算
+  if (e.policyHoldingsTop && e.policyHoldingsTop.length > 0) {
+    try {
+      loadingText.textContent = '政策保有株式の株価取得中...';
+      document.getElementById('policyHoldingsSection').style.display = '';
+
+      const resp = await fetch(API_BASE + '/api/stock-prices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ holdings: e.policyHoldingsTop })
+      });
+      const data = await resp.json();
+      if (data.success && data.results) {
+        phPriceData = data.results;
+        renderPolicyHoldingsTable(e.policyHoldingsTop, phPriceData);
+        updatePolicyHoldingsSummary(e.policyHoldingsTop, phPriceData);
+
+        // 自動反映: 含み益を計算してセット
+        var basis = document.getElementById('phPriceBasis').value;
+        var totalCurrent = 0, totalReport = 0;
+        e.policyHoldingsTop.forEach(function(h) {
+          totalReport += h.marketValue;
+          var priceInfo = phPriceData.find(function(p) { return p.name === h.name; });
+          var price = priceInfo ? priceInfo[basis] : null;
+          if (price && h.shares) {
+            totalCurrent += h.shares * price / 1000000;
+          } else {
+            totalCurrent += h.marketValue;
+          }
+        });
+        document.getElementById('manual_sec_gain').value = Math.round(totalCurrent - totalReport);
+      }
+    } catch (err) { console.warn('政策保有株式自動分析エラー:', err); }
+  }
+
+  // 3. 全反映後に再計算
+  loadingText.textContent = '最終計算中...';
+  recalcIndividual();
 }
 
 function calculateAndDisplay() {
@@ -536,6 +617,14 @@ function resetIndividual() {
   if (landSection) landSection.style.display = 'none';
   const landResult = document.getElementById('landResult');
   if (landResult) landResult.classList.add('hidden');
+  // 政策保有株式セクションをリセット
+  const phSection = document.getElementById('policyHoldingsSection');
+  if (phSection) phSection.style.display = 'none';
+  phPriceData = null;
+  // 株主構成セクションをリセット
+  const shSection = document.getElementById('shareholderSection');
+  if (shSection) shSection.style.display = 'none';
+  landParcelsData = null;
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -773,6 +862,74 @@ function applyPolicyHoldingsGain() {
 }
 
 // Google Maps連携は将来の有料化時に追加予定
+
+// ═══════════════════════════════════════════════════════════════
+// 株主構成・大株主の状況
+// ═══════════════════════════════════════════════════════════════
+
+function displayMajorShareholders() {
+  var e = indData.edinet || {};
+  var section = document.getElementById('shareholderSection');
+  if (!e.majorShareholders || e.majorShareholders.length === 0) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+
+  // サマリー
+  document.getElementById('sh_count').textContent = e.majorShareholdersCount + '名';
+  document.getElementById('sh_total_ratio').textContent = e.majorShareholdersTotalRatio.toFixed(1) + '%';
+
+  // 浮動株比率概算（100% - 上位株主合計）
+  var floatRatio = Math.max(0, 100 - e.majorShareholdersTotalRatio);
+  var floatEl = document.getElementById('sh_float_ratio');
+  floatEl.textContent = floatRatio.toFixed(1) + '%';
+  floatEl.style.color = floatRatio > 60 ? 'var(--red)' : floatRatio > 40 ? 'var(--orange)' : 'var(--green)';
+
+  // カテゴリ別比率バー
+  var cats = e.shareholderCategories || {};
+  var catLabels = {
+    trust: { label: '信託銀行（受託）', color: '#3498db' },
+    foreign: { label: '外国法人等', color: '#e74c3c' },
+    insurance: { label: '保険会社', color: '#2ecc71' },
+    bank: { label: '銀行', color: '#9b59b6' },
+    fund: { label: 'ファンド・投資会社', color: '#e67e22' },
+    treasury: { label: '自己株式', color: '#95a5a6' },
+    other: { label: 'その他（個人・事業法人等）', color: '#1abc9c' }
+  };
+  var chartHtml = '<div style="margin-bottom:8px;font-size:.72rem;font-weight:600;color:var(--navy);">株主カテゴリ別比率</div>';
+  chartHtml += '<div style="display:flex;height:22px;border-radius:4px;overflow:hidden;margin-bottom:8px;">';
+  for (var k in catLabels) {
+    if (cats[k] && cats[k] > 0) {
+      chartHtml += '<div style="width:' + cats[k] + '%;background:' + catLabels[k].color + ';min-width:2px;" title="' + catLabels[k].label + ': ' + cats[k].toFixed(1) + '%"></div>';
+    }
+  }
+  chartHtml += '</div>';
+  chartHtml += '<div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.68rem;">';
+  for (var k in catLabels) {
+    if (cats[k] && cats[k] > 0) {
+      chartHtml += '<span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:' + catLabels[k].color + ';margin-right:4px;vertical-align:middle;"></span>' + catLabels[k].label + ' ' + cats[k].toFixed(1) + '%</span>';
+    }
+  }
+  chartHtml += '</div>';
+  document.getElementById('shCategoryChart').innerHTML = chartHtml;
+
+  // 大株主一覧テーブル
+  var tbody = document.getElementById('shareholderBody');
+  tbody.innerHTML = '';
+  var maxRatio = e.majorShareholders[0] ? e.majorShareholders[0].ratio : 1;
+  e.majorShareholders.forEach(function(sh, i) {
+    var barWidth = Math.max(2, (sh.ratio / maxRatio) * 100);
+    var barColor = sh.ratio >= 10 ? 'var(--red)' : sh.ratio >= 5 ? 'var(--orange)' : 'var(--gold)';
+    tbody.innerHTML += '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td style="font-family:var(--sans);max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + sh.name + '">' + sh.name + '</td>' +
+      '<td style="text-align:right;">' + (sh.shares ? (sh.shares >= 10000 ? Math.round(sh.shares / 1000).toLocaleString() + '千株' : sh.shares.toLocaleString() + '株') : '-') + '</td>' +
+      '<td style="text-align:right;font-weight:600;">' + sh.ratio.toFixed(2) + '%</td>' +
+      '<td><div style="width:100%;height:8px;background:var(--light-gray);border-radius:4px;"><div style="width:' + barWidth + '%;height:100%;background:' + barColor + ';border-radius:4px;"></div></div></td>' +
+      '</tr>';
+  });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // ランキング・スクリーニング

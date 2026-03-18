@@ -510,6 +510,46 @@
         </div>
       </div>
 
+      <!-- 株主構成・大株主の状況 -->
+      <div class="s-card" id="shareholderSection" style="display:none;">
+        <div class="s-card-title">株主構成・大株主の状況 <span class="info-tip" data-tip="有価証券報告書の「大株主の状況」から上位株主と持株比率を抽出しています">?</span></div>
+
+        <!-- 株主構成サマリー -->
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">大株主数</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="sh_count">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">上位合計持株比率</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="sh_total_ratio">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">浮動株比率（概算）</div>
+            <div style="font-size:1.3rem;font-weight:700;" id="sh_float_ratio" style="color:var(--navy);">-</div>
+          </div>
+        </div>
+
+        <!-- 株主カテゴリ別比率 -->
+        <div id="shCategoryChart" style="margin-bottom:16px;"></div>
+
+        <!-- 大株主一覧テーブル -->
+        <div style="overflow-x:auto;">
+          <table style="font-size:.75rem;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>株主名</th>
+                <th style="text-align:right;">所有株式数</th>
+                <th style="text-align:right;">持株比率</th>
+                <th style="width:120px;">比率</th>
+              </tr>
+            </thead>
+            <tbody id="shareholderBody"></tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="s-card">
         <div class="s-card-title">スコア詳細</div>
         <table>
@@ -580,6 +620,13 @@
             <option value="mid">ミッドキャップ（1000〜5000億円）</option>
             <option value="large">ラージキャップ（5000億円〜）</option>
           </select>
+          <div id="mcapCategoryLegend" class="mcap-legend" style="display:none;">
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-nano">ナノ</span><span class="mcap-legend-def">〜50億円</span><span class="mcap-legend-count" id="mcapCountNano">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-micro">マイクロ</span><span class="mcap-legend-def">50〜300億円</span><span class="mcap-legend-count" id="mcapCountMicro">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-small">スモール</span><span class="mcap-legend-def">300〜1,000億円</span><span class="mcap-legend-count" id="mcapCountSmall">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-mid">ミッド</span><span class="mcap-legend-def">1,000〜5,000億円</span><span class="mcap-legend-count" id="mcapCountMid">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-large">ラージ</span><span class="mcap-legend-def">5,000億円〜</span><span class="mcap-legend-count" id="mcapCountLarge">-</span></div>
+          </div>
         </div>
         <div class="form-field">
           <label>ソート基準</label>

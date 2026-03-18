@@ -219,6 +219,11 @@ function parseNotes(html, data) {
   if (!data._landParcelsFound) {
     parseLandFromFacilities(html, data);
   }
+
+  // 大株主の状況を解析
+  if (!data._majorShareholdersParsed) {
+    parseMajorShareholders(html, data);
+  }
 }
 
 function parseInvestmentPropertyNote(html, data) {
@@ -484,6 +489,120 @@ function parseLandFromFacilities(html, data) {
       .sort((a, b) => b[1] - a[1])
       .map(([pref, count]) => `${pref}(${count}件)`)
       .join(', ');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 大株主の状況
+// ═══════════════════════════════════════════════════════════════
+
+function parseMajorShareholders(html, data) {
+  // 「大株主の状況」セクションを探す
+  const idx = html.indexOf('大株主の状況');
+  if (idx === -1) return;
+
+  const afterSection = html.substring(idx, Math.min(html.length, idx + 100000));
+  const tableMatch = afterSection.match(/<table[\s\S]*?<\/table>/i);
+  if (!tableMatch) return;
+
+  const table = tableMatch[0];
+
+  // 全行を取得
+  const rowRegex = /<tr[\s\S]*?<\/tr>/gi;
+  const rows = [];
+  let rm;
+  while ((rm = rowRegex.exec(table)) !== null) {
+    rows.push(rm[0]);
+  }
+  if (rows.length < 3) return;
+
+  function getCells(rowHtml) {
+    const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
+    const cells = [];
+    let cm;
+    while ((cm = cellRegex.exec(rowHtml)) !== null) {
+      cells.push(cm[1].replace(/<[^>]*>/g, '').replace(/[\s\u00a0\u3000]+/g, ' ').replace(/,/g, '').trim());
+    }
+    return cells;
+  }
+
+  // ヘッダーを飛ばしてデータ行を探す
+  let dataStartIdx = 0;
+  for (let i = 0; i < Math.min(rows.length, 5); i++) {
+    const cells = getCells(rows[i]);
+    const rowText = cells.join('');
+    if (rowText.includes('所有株式数') || rowText.includes('持株比率') || rowText.includes('発行済株式')) {
+      dataStartIdx = i + 1;
+    }
+  }
+
+  // 単位判定（千株 or 株）
+  const tableText = table.replace(/<[^>]*>/g, '');
+  let shareUnit = 1; // 株
+  if (/千株/.test(tableText)) shareUnit = 1000;
+  if (/百万株/.test(tableText)) shareUnit = 1000000;
+
+  const shareholders = [];
+  let totalRatio = 0;
+
+  for (let i = dataStartIdx; i < rows.length; i++) {
+    const cells = getCells(rows[i]);
+    if (cells.length < 2) continue;
+
+    const name = cells[0].trim();
+    if (!name || name === '計' || name.includes('合計')) break;
+    // 「自己株式」行もスキップしない（表示用に残す）
+
+    // 数値を探す（所有株式数、持株比率）
+    const nums = [];
+    for (let j = 1; j < cells.length; j++) {
+      const cleaned = cells[j].replace(/[%％]/g, '');
+      const val = parseFloat(cleaned);
+      if (!isNaN(val)) nums.push(val);
+    }
+
+    if (nums.length >= 2) {
+      // 一般的に: [所有株式数, 持株比率(%)]
+      const shares = nums[0] * shareUnit;
+      const ratio = nums[nums.length - 1]; // 最後の数値が持株比率（%）
+
+      // 持株比率は通常0〜100の範囲
+      if (ratio > 0 && ratio <= 100) {
+        shareholders.push({ name, shares: Math.round(shares), ratio: Math.round(ratio * 100) / 100 });
+        totalRatio += ratio;
+      }
+    } else if (nums.length === 1) {
+      // 持株比率のみの場合
+      const ratio = nums[0];
+      if (ratio > 0 && ratio <= 100) {
+        shareholders.push({ name, shares: null, ratio: Math.round(ratio * 100) / 100 });
+        totalRatio += ratio;
+      }
+    }
+  }
+
+  if (shareholders.length > 0) {
+    data._majorShareholdersParsed = true;
+    data.majorShareholders = shareholders;
+    data.majorShareholdersCount = shareholders.length;
+    data.majorShareholdersTotalRatio = Math.round(totalRatio * 100) / 100;
+
+    // 株主分類（簡易カテゴリ分け）
+    const categories = { trust: 0, foreign: 0, insurance: 0, bank: 0, fund: 0, treasury: 0, other: 0 };
+    for (const sh of shareholders) {
+      const n = sh.name;
+      if (/自己株式|自社株/.test(n)) { categories.treasury += sh.ratio; }
+      else if (/信託|トラスト|マスタートラスト|日本カストディ|CUSTODY|TRUST|資産管理/.test(n)) { categories.trust += sh.ratio; }
+      else if (/生命保険|損害保険|保険/.test(n)) { categories.insurance += sh.ratio; }
+      else if (/銀行|バンク|BANK/.test(n)) { categories.bank += sh.ratio; }
+      else if (/ファンド|FUND|キャピタル|CAPITAL|インベストメント|INVESTMENT|パートナーズ|PARTNERS|アセット|ASSET|LLC|LLP|L\.P\.|MANAGEMENT/i.test(n)) { categories.fund += sh.ratio; }
+      else if (/[A-Z].*[A-Z]/.test(n) || /CORPORATION|COMPANY|LIMITED|INC|NOMINEE|CLEARING|BANK OF|CITIBANK|GOLDMAN|MORGAN|CHASE/i.test(n)) { categories.foreign += sh.ratio; }
+      else { categories.other += sh.ratio; }
+    }
+    data.shareholderCategories = {};
+    for (const [k, v] of Object.entries(categories)) {
+      if (v > 0) data.shareholderCategories[k] = Math.round(v * 100) / 100;
+    }
   }
 }
 
