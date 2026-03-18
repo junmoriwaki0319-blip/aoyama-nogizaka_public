@@ -58,6 +58,18 @@ module.exports = async (req, res) => {
     // 重複除去（同じ所在地のものをマージ）
     parcels = deduplicateParcels(parcels);
 
+    // ヒューリスティック: 簿価単位の自動修正
+    // 簿価/面積が異常に大きい場合、千円単位が百万円として誤認されている可能性が高い
+    for (const p of parcels) {
+      if (p.bookValue && p.area && p.area > 0) {
+        const bvPerSqm = p.bookValue * 1000000 / p.area; // 百万円→円に変換して/㎡
+        if (bvPerSqm > 50000000) { // 5000万円/㎡超は異常（銀座でも最大3000万円/㎡程度）
+          p.bookValue = p.bookValue / 1000; // 千円→百万円に変換
+          p._unitCorrected = true;
+        }
+      }
+    }
+
     // 国土交通省 地価公示データで時価推定
     if (parcels.length > 0) {
       await estimateLandPrices(parcels);
@@ -84,10 +96,10 @@ module.exports = async (req, res) => {
         // 明細表に載っていない土地もあるので按分
         const ratio = totalEstimatedValue / totalBookValue;
         totalEstimatedGain = Math.round(landBookValue * ratio - landBookValue);
-        gainMethod = `都道府県別公示地価×0.5による概算（${estimatedCount}件, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
+        gainMethod = `都道府県別公示地価×用途別係数による概算（${estimatedCount}件, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
       } else {
         totalEstimatedGain = Math.round(parcelGain);
-        gainMethod = `都道府県別公示地価×0.5による概算（${estimatedCount}/${parcels.length}件推定）`;
+        gainMethod = `都道府県別公示地価×用途別係数による概算（${estimatedCount}/${parcels.length}件推定）`;
       }
     }
 
@@ -186,7 +198,9 @@ function parseFacilityTable(html) {
     let colMap = {};
     let headerFound = false;
     let areaUnit = 1;
-    let bvUnitDivisor = 1; // 帳簿価額の単位: 百万円=1, 千円=1000
+    // テーブル全体から帳簿価額の単位をまず検出（ヘッダーのrowspan等で分散している場合対応）
+    const tableText = table.replace(/<[^>]*>/g, '');
+    let bvUnitDivisor = tableText.includes('千円') ? 1000 : 1; // 帳簿価額の単位: 百万円=1, 千円=1000
     let landDataCol = null; // データ行での土地列インデックス
 
     for (let ri = 0; ri < rows.length; ri++) {
@@ -218,6 +232,9 @@ function parseFacilityTable(html) {
         if (landCellIdx !== -1) {
           const landText = cellTexts[landCellIdx];
           if (landText.includes('千㎡') || landText.includes('千m')) areaUnit = 1000;
+          // サブヘッダー行にも単位表記がある場合（「千円」がヘッダー全体に含まれるか確認）
+          const rowText = cellTexts.join('');
+          if (bvUnitDivisor === 1 && rowText.includes('千円')) bvUnitDivisor = 1000;
 
           // データ行での列位置を計算
           // サブヘッダーは帳簿価額列の展開なので: landDataCol = bookValueCol + landCellIdx
