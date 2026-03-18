@@ -1305,7 +1305,7 @@ function filterRanking() {
     sorted = sorted.filter(a => (a.name || '').toLowerCase().includes(query) || (a.id || '').toLowerCase().includes(query));
   }
 
-  sorted = sorted.slice(0, 30);
+  sorted = sorted.slice(0, 50);
 
   if (!sorted.length) {
     container.innerHTML = '<div style="font-size:12px; color:var(--text-light);">該当する投資家がありません</div>';

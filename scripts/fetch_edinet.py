@@ -111,12 +111,30 @@ def load_known_activists():
     return data["activists"]
 
 
+def normalize_width(text):
+    """全角英数字・記号を半角に、全角スペースを半角に正規化"""
+    result = []
+    for ch in text:
+        cp = ord(ch)
+        # 全角英数字・記号 (！〜～) → 半角 (!〜~)
+        if 0xFF01 <= cp <= 0xFF5E:
+            result.append(chr(cp - 0xFEE0))
+        # 全角スペース → 半角スペース
+        elif cp == 0x3000:
+            result.append(' ')
+        else:
+            result.append(ch)
+    return ''.join(result)
+
+
 def match_activist(filer_name, activists):
-    """報告者名が既知のアクティビストに該当するか判定"""
+    """報告者名が既知のアクティビストに該当するか判定（全角半角正規化対応）"""
+    filer_norm = normalize_width(filer_name)
     for activist in activists:
         names_to_check = [activist["name"]] + activist.get("aliases", [])
         for name in names_to_check:
-            if name in filer_name or filer_name in name:
+            name_norm = normalize_width(name)
+            if name_norm in filer_norm or filer_norm in name_norm:
                 return activist
     return None
 
@@ -614,6 +632,34 @@ def main():
 
     # マージ
     all_reports = merge_reports(existing_reports, new_reports)
+
+    # 全レポートのアクティビスト判定を最新 known_activists.json で再実行
+    # （aliases 追加により新たにマッチするレポートを救済）
+    retag_count = 0
+    for r in all_reports:
+        filer_name = r.get("filer_name", "")
+        if not filer_name:
+            continue
+        matched = match_activist(filer_name, activists)
+        old_id = r.get("activist_id", "")
+        if matched:
+            new_id = matched["id"]
+            investor_type = matched.get("type", "activist")
+            if new_id != old_id:
+                retag_count += 1
+            r["activist_id"] = new_id
+            r["activist_type"] = investor_type
+            if investor_type == "notable_holder":
+                r["is_activist"] = False
+                r["is_notable"] = True
+            else:
+                r["is_activist"] = True
+                r["is_notable"] = False
+        elif old_id:
+            # 以前マッチしたが現在はマッチしない場合はそのまま維持
+            pass
+    if retag_count:
+        print(f"アクティビスト再タグ付け: {retag_count} 件を更新")
 
     # アクティビスト別サマリー
     activist_summary = build_activist_summary(all_reports, activists)

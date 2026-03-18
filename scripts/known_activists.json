@@ -27,7 +27,7 @@
     {
       "id": "strategic_capital",
       "name": "ストラテジックキャピタル",
-      "aliases": ["Strategic Capital", "ストラテジック・キャピタル"],
+      "aliases": ["Strategic Capital", "Strategic Capital, Inc.", "株式会社ストラテジックキャピタル", "ストラテジック・キャピタル"],
       "type": "activist",
       "representative": "丸木 強",
       "founded": "2012年",
@@ -38,7 +38,7 @@
     {
       "id": "city_index_elevens",
       "name": "シティインデックスイレブンス",
-      "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "南青山不動産", "オフィスサポート", "レノ", "Reno", "C&Iホールディングス", "ワイルドベアキャピタル", "コスモスインベストメント", "エスグラントコーポレーション", "株式会社ミライ"],
+      "aliases": ["City Index Elevens", "シティ・インデックス・イレブンス", "株式会社シティインデックスイレブンス", "南青山不動産", "株式会社南青山不動産", "オフィスサポート", "株式会社オフィスサポート", "レノ", "Reno", "株式会社レノ", "C&Iホールディングス", "株式会社C&Iホールディングス", "ワイルドベアキャピタル", "コスモスインベストメント", "エスグラントコーポレーション", "株式会社エスグラントコーポレーション", "株式会社ミライ", "シティインデックスサード", "株式会社シティインデックスサード"],
       "type": "activist",
       "group_id": "murakami_group",
       "representative": "村上世彰氏関連",
@@ -50,7 +50,7 @@
     {
       "id": "elliott",
       "name": "エリオット・マネジメント",
-      "aliases": ["Elliott Management", "Elliott Investment Management", "Elliott Advisors", "エリオット・インベストメント・マネジメント", "Elliott Associates"],
+      "aliases": ["Elliott Management", "Elliott Investment Management", "Elliott Investment Management L.P.", "Elliott Advisors", "Elliott Associates", "Elliott Associates, L.P.", "エリオット・インベストメント・マネジメント", "エリオット・インベストメント・マネージメント・エルピー", "エリオット・アドバイザーズ"],
       "type": "activist",
       "representative": "Paul Singer",
       "founded": "1977年",
@@ -61,7 +61,7 @@
     {
       "id": "oasis",
       "name": "オアシス・マネジメント",
-      "aliases": ["Oasis Management", "オアシス マネジメント"],
+      "aliases": ["Oasis Management", "Oasis Management Company", "Oasis Management Company Ltd.", "Oasis Management Company Ltd", "オアシス マネジメント", "オアシス・マネジメント・カンパニー・リミテッド", "オアシスマネジメント"],
       "type": "activist",
       "representative": "Seth Fischer",
       "founded": "2002年",
@@ -72,7 +72,7 @@
     {
       "id": "dalton",
       "name": "ダルトン・インベストメンツ",
-      "aliases": ["Dalton Investments", "ダルトン インベストメンツ"],
+      "aliases": ["Dalton Investments", "Dalton Investments, Inc.", "Dalton Investments LLC", "Dalton Investments Inc.", "ダルトン インベストメンツ", "ダルトン・インベストメンツ・インク"],
       "type": "activist",
       "representative": "James B. Rosenwald III",
       "founded": "1999年",
@@ -83,7 +83,7 @@
     {
       "id": "valueact",
       "name": "バリューアクト・キャピタル",
-      "aliases": ["ValueAct Capital", "バリューアクト"],
+      "aliases": ["ValueAct Capital", "ValueAct Capital Management, L.P.", "ValueAct Capital Master Fund, L.P.", "ValueAct Capital Management", "バリューアクト"],
       "type": "activist",
       "representative": "Mason Morfit",
       "founded": "2000年",
@@ -94,7 +94,7 @@
     {
       "id": "rmb_capital",
       "name": "RMBキャピタル",
-      "aliases": ["RMB Capital", "アールエムビーキャピタル"],
+      "aliases": ["RMB Capital", "RMB Capital Management, LLC", "RMB Capital Management", "アールエムビーキャピタル"],
       "type": "activist",
       "representative": "—",
       "founded": "2005年",
@@ -105,7 +105,7 @@
     {
       "id": "3d_investment",
       "name": "3Dインベストメント・パートナーズ",
-      "aliases": ["3D Investment Partners", "スリーディー・インベストメント"],
+      "aliases": ["3D Investment Partners", "3D Investment Partners Pte. Ltd.", "3D Investment Partners Pte Ltd", "スリーディー・インベストメント", "スリーディー・インベストメント・パートナーズ"],
       "type": "activist",
       "representative": "—",
       "founded": "—",
@@ -116,7 +116,7 @@
     {
       "id": "effissimo",
       "name": "エフィッシモ・キャピタル・マネジメント",
-      "aliases": ["Effissimo Capital Management", "エフィッシモ"],
+      "aliases": ["Effissimo Capital Management", "Effissimo Capital Management Pte Ltd", "Effissimo Capital Management Pte. Ltd.", "エフィッシモ", "エフィッシモ キャピタル マネージメント ピーティーイー エルティーディー"],
       "type": "activist",
       "representative": "高坂 卓志",
       "founded": "2006年",
@@ -138,7 +138,7 @@
     {
       "id": "nippon_active_value",
       "name": "ニッポン・アクティブ・バリュー・ファンド",
-      "aliases": ["Nippon Active Value Fund", "NAVF"],
+      "aliases": ["Nippon Active Value Fund", "NIPPON ACTIVE VALUE FUND PLC", "Nippon Active Value Fund plc", "NAVF"],
       "type": "activist",
       "representative": "—",
       "founded": "2020年",
@@ -149,7 +149,7 @@
     {
       "id": "silchester",
       "name": "シルチェスター・インターナショナル・インベスターズ",
-      "aliases": ["Silchester International Investors"],
+      "aliases": ["Silchester International Investors", "Silchester International Investors LLP", "シルチェスター"],
       "type": "activist",
       "representative": "—",
       "founded": "1994年",
@@ -160,7 +160,7 @@
     {
       "id": "sparx",
       "name": "スパークス・グループ",
-      "aliases": ["SPARX Group", "スパークス・アセット・マネジメント"],
+      "aliases": ["SPARX Group", "Sparx Asset Management Co., Ltd.", "スパークス・アセット・マネジメント", "スパークス・アセット・マネジメント株式会社", "スパークスアセットマネジメント"],
       "type": "activist",
       "representative": "阿部 修平",
       "founded": "1989年",
@@ -171,7 +171,7 @@
     {
       "id": "taiyo_pacific",
       "name": "タイヨウ・パシフィック・パートナーズ",
-      "aliases": ["Taiyo Pacific Partners", "タイヨウ・ファンド"],
+      "aliases": ["Taiyo Pacific Partners", "Taiyo Pacific Partners L.P.", "Taiyo Pacific CG LLC", "タイヨウ・ファンド", "タイヨウ・パシフィック・シージー・エルエルシー"],
       "type": "activist",
       "representative": "Brian K. Heywood",
       "founded": "2003年",
@@ -205,7 +205,7 @@
     {
       "id": "ichigo_asset",
       "name": "いちごアセットマネジメント",
-      "aliases": ["Ichigo Asset Management", "いちごトラスト", "Ichigo Trust"],
+      "aliases": ["Ichigo Asset Management", "Ichigo Asset Management International Pte. Ltd.", "いちごアセットマネジメント・インターナショナル", "いちごトラスト", "Ichigo Trust"],
       "type": "activist",
       "representative": "スコット キャロン",
       "founded": "2006年",
@@ -227,7 +227,7 @@
     {
       "id": "misaki",
       "name": "みさき投資",
-      "aliases": ["Misaki Capital", "みさきキャピタル"],
+      "aliases": ["Misaki Capital", "Misaki Capital Inc.", "みさき投資株式会社", "みさきキャピタル"],
       "type": "activist",
       "representative": "中神 康議",
       "founded": "2013年",
@@ -260,7 +260,7 @@
     {
       "id": "third_point",
       "name": "サードポイント",
-      "aliases": ["Third Point", "Third Point LLC"],
+      "aliases": ["Third Point", "Third Point LLC", "Third Point Partners Qualified", "サード・ポイント"],
       "type": "activist",
       "representative": "Daniel Loeb",
       "founded": "1995年",
@@ -271,7 +271,7 @@
     {
       "id": "avi",
       "name": "アセットバリューインベスターズ",
-      "aliases": ["Asset Value Investors", "AVI", "エーブイアイ"],
+      "aliases": ["Asset Value Investors", "Asset Value Investors Limited", "AVI", "AVI Japan Opportunity Trust", "エーブイアイ"],
       "type": "activist",
       "representative": "—",
       "founded": "1985年",
@@ -409,7 +409,7 @@
     {
       "id": "brandes",
       "name": "ブランデス・インベストメント・パートナーズ",
-      "aliases": ["Brandes Investment Partners", "ブランデス"],
+      "aliases": ["Brandes Investment Partners", "Brandes Investment Partners, L.P.", "Brandes Investment Partners L.P.", "ブランデス"],
       "type": "activist",
       "representative": "—",
       "founded": "1974年",
@@ -481,6 +481,227 @@
       "founded": "1975年",
       "headquarters": "米国・ペンシルベニア",
       "description": "世界最大級のインデックス運用会社。日本株をパッシブ運用で広く大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "farallon",
+      "name": "ファラロン・キャピタル",
+      "aliases": ["Farallon Capital Management", "Farallon Capital Management, L.L.C.", "Farallon Capital Management L.L.C.", "ファラロン・キャピタル・マネジメント"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1986年",
+      "headquarters": "米国・サンフランシスコ",
+      "description": "グローバルなイベントドリブン型ヘッジファンド。富士ソフト、フジテック等の日本企業に投資。",
+      "focus_sectors": ["IT・通信", "製造業"]
+    },
+    {
+      "id": "palliser",
+      "name": "パリサー・キャピタル",
+      "aliases": ["Palliser Capital", "Palliser Capital Master Fund Ltd", "Palliser Capital Master Fund"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "英国・ロンドン",
+      "description": "京成電鉄の大株主として株主提案を実施。OLC株保有に対する資本効率改善を要求。",
+      "focus_sectors": ["運輸", "レジャー"]
+    },
+    {
+      "id": "lim_advisors",
+      "name": "LIMアドバイザーズ",
+      "aliases": ["LIM Advisors", "LIM Advisors Limited", "リム・アドバイザーズ"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1995年",
+      "headquarters": "香港",
+      "description": "香港拠点のイベントドリブン型ファンド。日本の小型株に投資し、株主提案やTOB対抗で活動。",
+      "focus_sectors": ["製造業", "IT・通信", "小売"]
+    },
+    {
+      "id": "marathon_am",
+      "name": "マラソン・アセット・マネジメント",
+      "aliases": ["Marathon Asset Management", "Marathon Asset Management Limited", "Marathon Asset Management LLP"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1986年",
+      "headquarters": "英国・ロンドン",
+      "description": "長期バリュー投資家。大阪チタニウムテクノロジーズ、日本ハム等の日本企業を大量保有。",
+      "focus_sectors": ["素材", "食品", "製造業"]
+    },
+    {
+      "id": "starboard",
+      "name": "スターボード・バリュー",
+      "aliases": ["Starboard Value", "Starboard Value LP", "Starboard Value L.P."],
+      "type": "activist",
+      "representative": "Jeffrey Smith",
+      "founded": "2011年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "米国大手アクティビスト。取締役選任やM&A阻止・推進で積極的に活動。日本市場にも注目。",
+      "focus_sectors": ["IT・通信", "消費財", "製造業"]
+    },
+    {
+      "id": "engaged_capital",
+      "name": "エンゲージド・キャピタル",
+      "aliases": ["Engaged Capital", "Engaged Capital LLC"],
+      "type": "activist",
+      "representative": "Glenn Welling",
+      "founded": "2012年",
+      "headquarters": "米国・カリフォルニア",
+      "description": "中小型株を対象とするアクティビスト。経営陣との対話を通じた企業価値向上を推進。",
+      "focus_sectors": ["消費財", "製造業", "サービス"]
+    },
+    {
+      "id": "governance_for_owners",
+      "name": "ガバナンス・フォー・オーナーズ・ジャパン",
+      "aliases": ["Governance for Owners Japan", "GFOジャパン"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "コーポレートガバナンス改善を主目的とするエンゲージメント型投資家。機関投資家の代理としても活動。",
+      "focus_sectors": ["製造業", "金融"]
+    },
+    {
+      "id": "yoshiaki_murakami_personal",
+      "name": "村上世彰（個人）",
+      "aliases": ["村上 世彰"],
+      "type": "activist",
+      "group_id": "murakami_group",
+      "representative": "村上 世彰",
+      "founded": "—",
+      "headquarters": "シンガポール",
+      "description": "個人名義での大量保有報告も提出。旧村上ファンド系の中心人物。",
+      "focus_sectors": ["不動産", "金融", "建設"]
+    },
+    {
+      "id": "maki_hiroyuki",
+      "name": "牧寛之",
+      "aliases": ["牧 寛之", "マキス", "Makis", "アルファレオHD", "アルファレオホールディングス", "メルコ・アセット・マネジメント"],
+      "type": "activist",
+      "representative": "牧 寛之",
+      "founded": "—",
+      "headquarters": "東京",
+      "description": "メルコホールディングス（バッファロー）代表取締役社長兼CEO。個人名義で大量保有報告を提出し、BASE、ベースフード、メドピア等に集中投資。株主提案・TOBを積極的に実施し「令和の村上ファンド」と称される。",
+      "focus_sectors": ["IT・通信", "製造業", "食品"]
+    },
+    {
+      "id": "nikkei_am",
+      "name": "日興アセットマネジメント",
+      "aliases": ["Nikko Asset Management", "日興アセット"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1959年",
+      "headquarters": "東京",
+      "description": "大手資産運用会社。インデックス・アクティブ運用で幅広い上場株を大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "fidelity",
+      "name": "フィデリティ投信",
+      "aliases": ["Fidelity International", "FIL Investments", "FIL Limited", "フィデリティ・インターナショナル"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "英国・ロンドン",
+      "description": "世界有数の資産運用会社。日本株のアクティブ運用で多数の銘柄を大量保有。",
+      "focus_sectors": ["製造業", "IT・通信", "金融"]
+    },
+    {
+      "id": "jpmorgan_am",
+      "name": "JPモルガン・アセット・マネジメント",
+      "aliases": ["JPMorgan Asset Management", "JPモルガン・アセットマネジメント", "J.P. Morgan Asset Management"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "米国・ニューヨーク",
+      "description": "グローバル大手の資産運用会社。日本株を広範に大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "goldman_sachs_am",
+      "name": "ゴールドマン・サックス・アセット・マネジメント",
+      "aliases": ["Goldman Sachs Asset Management", "GSAM", "ゴールドマンサックスアセットマネジメント"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "—",
+      "headquarters": "米国・ニューヨーク",
+      "description": "グローバル大手の資産運用会社。日本株のアクティブ・定量運用で大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "renaissance",
+      "name": "ルネサンス・テクノロジーズ",
+      "aliases": ["Renaissance Technologies", "Renaissance Technologies LLC"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1982年",
+      "headquarters": "米国・ニューヨーク",
+      "description": "世界最大級のクオンツファンド。定量モデルに基づく大量保有が報告される。",
+      "focus_sectors": []
+    },
+    {
+      "id": "southeastern_am",
+      "name": "サウスイースタン・アセット・マネジメント",
+      "aliases": ["Southeastern Asset Management", "Southeastern Asset Management, Inc.", "Longleaf Partners"],
+      "type": "activist",
+      "representative": "—",
+      "founded": "1975年",
+      "headquarters": "米国・メンフィス",
+      "description": "長期集中型のバリュー投資家。日本企業への投資でもエンゲージメントを実施。",
+      "focus_sectors": ["製造業", "金融", "消費財"]
+    },
+    {
+      "id": "harris_associates",
+      "name": "ハリス・アソシエイツ",
+      "aliases": ["Harris Associates", "Harris Associates L.P.", "Harris Associates LP"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1976年",
+      "headquarters": "米国・シカゴ",
+      "description": "バリュー投資を主体とする大手運用会社。日本株を大量保有し、株主還元の改善を求めることも。",
+      "focus_sectors": ["金融", "製造業", "消費財"]
+    },
+    {
+      "id": "citadel",
+      "name": "シタデル",
+      "aliases": ["Citadel", "Citadel Advisors LLC", "Citadel Advisors", "シタデル・アドバイザーズ"],
+      "type": "notable_holder",
+      "representative": "Kenneth Griffin",
+      "founded": "1990年",
+      "headquarters": "米国・マイアミ",
+      "description": "世界最大級のヘッジファンド。マルチストラテジーで日本株も大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "point72",
+      "name": "ポイント72",
+      "aliases": ["Point72 Asset Management", "Point72", "ポイント72・アセット・マネジメント"],
+      "type": "notable_holder",
+      "representative": "Steven Cohen",
+      "founded": "2014年",
+      "headquarters": "米国・コネチカット",
+      "description": "大手ヘッジファンド。マルチストラテジーで日本株への投資も実施。",
+      "focus_sectors": []
+    },
+    {
+      "id": "daiichi_life",
+      "name": "第一生命保険",
+      "aliases": ["Dai-ichi Life Insurance", "第一生命"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1902年",
+      "headquarters": "東京",
+      "description": "大手生命保険会社。機関投資家として多数の上場株を大量保有。",
+      "focus_sectors": []
+    },
+    {
+      "id": "nippon_life",
+      "name": "日本生命保険",
+      "aliases": ["Nippon Life Insurance", "ニッセイ・アセットマネジメント", "ニッセイアセットマネジメント", "日本生命"],
+      "type": "notable_holder",
+      "representative": "—",
+      "founded": "1889年",
+      "headquarters": "大阪",
+      "description": "日本最大手の生命保険会社。機関投資家として多数の上場株を大量保有。",
       "focus_sectors": []
     }
   ]
