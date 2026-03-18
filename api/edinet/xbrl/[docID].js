@@ -61,6 +61,23 @@ module.exports = async (req, res) => {
       parseMajorShareholders(xbrlXml, data);
     }
 
+    // デバッグ: 全ファイルで「大株主」を検索
+    const _debug = { xbrlFile: xbrlEntry.name, allFiles: entries.map(e => e.name) };
+    const _debugSearch = [];
+    for (const e of entries) {
+      try {
+        const content = extractEntry(zipBuffer, e).toString('utf8');
+        const pos = content.indexOf('大株主');
+        if (pos !== -1) {
+          _debugSearch.push({ file: e.name, pos, snippet: content.substring(pos, pos + 200).replace(/[\n\r]+/g, ' ') });
+        }
+      } catch {}
+    }
+    _debug.filesWithShareholders = _debugSearch;
+    _debug.xbrlHasShareholders = xbrlXml.indexOf('大株主') !== -1;
+    _debug.xbrlLength = xbrlXml.length;
+    data._debug = _debug;
+
     // 土地含み益推定
     estimateLandGain(data);
 
