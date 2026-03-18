@@ -169,6 +169,20 @@
     .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
     .user-info{display:flex;align-items:center;gap:12px;font-size:.82rem}.user-info .name{font-weight:500;color:var(--navy)}
     .hidden{display:none!important}
+    .login-wall{position:relative;margin-top:-60px;padding-top:100px;padding-bottom:60px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--off-white) 30%,var(--off-white) 100%)}
+    .login-wall-inner{max-width:480px;margin:0 auto;background:var(--white);border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.08);padding:48px 40px}
+    .login-wall-icon{width:60px;height:60px;background:var(--light-gray);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px}
+    .login-wall h2{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--navy);margin-bottom:12px}
+    .login-wall p{font-size:14px;color:var(--text-light);margin-bottom:28px;line-height:1.8}
+    .login-wall .plan-features{text-align:left;background:var(--off-white);border-radius:8px;padding:20px 24px;margin-bottom:24px}
+    .login-wall .plan-features h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+    .login-wall .plan-features ul{list-style:none;padding:0}
+    .login-wall .plan-features li{font-size:.78rem;color:var(--text-mid);padding:4px 0;padding-left:18px;position:relative}
+    .login-wall .plan-features li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700}
+    .btn-cta-register{display:block;width:100%;padding:14px;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.88rem;font-family:var(--sans);cursor:pointer;letter-spacing:.06em;transition:opacity .2s;margin-bottom:12px}
+    .btn-cta-register:hover{opacity:.85}
+    .btn-cta-login{display:block;font-size:.78rem;color:var(--gold);cursor:pointer;text-decoration:underline}
+    .screener-gated{transition:filter .3s}.screener-gated.blurred{filter:blur(4px);pointer-events:none;user-select:none}
     .rank-view-tab{padding:10px 20px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;font-size:.78rem;font-family:var(--sans);color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.04em;font-weight:500}
     .rank-view-tab.active{color:var(--navy);border-bottom-color:var(--gold)}
     .rank-view-tab:not(.active):hover{color:var(--text-mid)}
@@ -289,6 +303,9 @@
       </div>
       <div class="loading" id="indLoading"><div class="spinner"></div><span id="indLoadingText">データ取得中...</span></div>
     </div>
+
+    <!-- ログインゲート: ここから先は会員限定 -->
+    <div class="screener-gated" id="screenerGated">
 
     <div id="indResult" class="hidden">
       <div class="score-hero">
@@ -486,6 +503,29 @@
         </table>
       </div>
     </div>
+
+    </div><!-- /.screener-gated (個別分析) -->
+
+    <!-- ログインウォール（個別分析タブ用） -->
+    <div class="login-wall" id="loginWallIndividual" style="display:none;">
+      <div class="login-wall-inner">
+        <div class="login-wall-icon">&#128274;</div>
+        <h2>分析結果は会員限定コンテンツです</h2>
+        <p>銘柄コードを入力して詳細分析・含み益推定・<br>政策保有株式の内訳をご覧いただけます</p>
+        <div class="plan-features">
+          <h4>無料会員でできること</h4>
+          <ul>
+            <li>個別銘柄の詳細スコアリング分析</li>
+            <li>EDINET連携 含み益・ネットキャッシュ自動計算</li>
+            <li>政策保有株式の銘柄別内訳・時価推定</li>
+            <li>複数銘柄の一括ランキング・CSV出力</li>
+          </ul>
+        </div>
+        <button class="btn-cta-register" onclick="showRegister()">無料会員登録</button>
+        <a class="btn-cta-login" onclick="showLogin()">すでに会員の方はログイン</a>
+      </div>
+    </div>
+
   </div>
 
   <!-- TAB 2: ランキング -->
@@ -554,6 +594,7 @@
       </div>
     </div>
 
+    <div class="screener-gated" id="screenerGatedRank">
     <div id="rankResult" class="hidden">
       <div class="s-card">
         <div class="s-card-title" style="display:flex; align-items:center; justify-content:space-between;">
@@ -700,11 +741,32 @@
           </div>
         </div>
       </div>
+    </div><!-- /.screener-gated (ランキング) -->
+
+    <!-- ログインウォール（ランキングタブ用） -->
+    <div class="login-wall" id="loginWallRanking" style="display:none;">
+      <div class="login-wall-inner">
+        <div class="login-wall-icon">&#128274;</div>
+        <h2>スクリーニング結果は会員限定です</h2>
+        <p>複数銘柄のスコアリング・ランキング・<br>CSV出力をご利用いただけます</p>
+        <div class="plan-features">
+          <h4>無料会員でできること</h4>
+          <ul>
+            <li>最大100銘柄の一括スクリーニング</li>
+            <li>アクティビスト標的スコアでランキング</li>
+            <li>NC/EV・含み益・バリュエーション分析</li>
+            <li>結果のCSVダウンロード</li>
+          </ul>
+        </div>
+        <button class="btn-cta-register" onclick="showRegister()">無料会員登録</button>
+        <a class="btn-cta-login" onclick="showLogin()">すでに会員の方はログイン</a>
+      </div>
+    </div>
 
       <div class="auth-section" id="authSection">
         <div id="authLoggedOut">
-          <h3>CSV出力は会員限定機能です</h3>
-          <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">ログインまたは新規登録してCSVエクスポート機能をご利用ください。</p>
+          <h3>ログインしてご利用ください</h3>
+          <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">スクリーニング結果の閲覧・CSVエクスポートには無料会員登録が必要です。</p>
           <div id="authLoginForm">
             <div class="auth-form">
               <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">

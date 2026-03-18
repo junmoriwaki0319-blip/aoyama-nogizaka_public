@@ -11,8 +11,17 @@ return "https://aoyama-nogizakapublic.vercel.app"})();
 /* Auth UI */
 function updateAuthUI(user){
   var lo=document.getElementById("authLoggedOut"),li=document.getElementById("authLoggedIn"),cb=document.getElementById("btnCsvExport");
-  if(user){lo.classList.add("hidden");li.classList.remove("hidden");document.getElementById("authUserName").textContent=user.displayName||user.email;if(cb)cb.disabled=false}
-  else{lo.classList.remove("hidden");li.classList.add("hidden");if(cb)cb.disabled=true}
+  var gated=document.getElementById("screenerGated"),gatedR=document.getElementById("screenerGatedRank");
+  var lwI=document.getElementById("loginWallIndividual"),lwR=document.getElementById("loginWallRanking");
+  if(user){
+    lo.classList.add("hidden");li.classList.remove("hidden");document.getElementById("authUserName").textContent=user.displayName||user.email;if(cb)cb.disabled=false;
+    if(gated)gated.classList.remove("blurred");if(gatedR)gatedR.classList.remove("blurred");
+    if(lwI)lwI.style.display="none";if(lwR)lwR.style.display="none";
+  }else{
+    lo.classList.remove("hidden");li.classList.add("hidden");if(cb)cb.disabled=true;
+    if(gated)gated.classList.add("blurred");if(gatedR)gatedR.classList.add("blurred");
+    if(lwI)lwI.style.display="block";if(lwR)lwR.style.display="block";
+  }
 }
 function showRegister(){document.getElementById("authLoginForm").classList.add("hidden");var rf=document.getElementById("authResetForm");if(rf)rf.classList.add("hidden");document.getElementById("authRegisterForm").classList.remove("hidden")}
 function showLogin(){document.getElementById("authRegisterForm").classList.add("hidden");var rf=document.getElementById("authResetForm");if(rf)rf.classList.add("hidden");document.getElementById("authLoginForm").classList.remove("hidden")}
@@ -105,6 +114,7 @@ function switchTab(tabId) {
 let indData = {}; // 取得データ保持
 
 async function fetchIndividual() {
+  if (!window.currentUser) { alert('この機能を利用するには無料会員登録が必要です。ページ下部からログインまたは新規登録してください。'); return; }
   const code = document.getElementById('indCode').value.trim().toUpperCase();
   if (!/^[0-9A-Za-z]{4}$/.test(code)) { alert('4桁の証券コードを入力してください（例: 7203）'); return; }
 
@@ -793,6 +803,7 @@ function loadPreset(key) {
 }
 
 async function startRankingScan() {
+  if (!window.currentUser) { alert('この機能を利用するには無料会員登録が必要です。ページ下部からログインまたは新規登録してください。'); return; }
   const text = document.getElementById('rankCodes').value.trim();
   if (!text) { alert('銘柄コードを入力してください'); return; }
 
