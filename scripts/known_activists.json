@@ -200,7 +200,7 @@
     {
       "id": "hikari_tsushin",
       "name": "光通信",
-      "aliases": ["Hikari Tsushin", "株式会社光通信", "光通信株式会社", "重田光時", "重田康光", "UH Partners ２", "UH Partners ３", "株式会社UH Partners ２", "株式会社UH Partners ３", "UHパートナーズ", "株式会社エスアイエル", "エスアイエル"],
+      "aliases": ["Hikari Tsushin", "株式会社光通信", "光通信株式会社", "重田光時", "重田康光", "重田 康光", "UH Partners ２", "UH Partners ３", "株式会社UH Partners ２", "株式会社UH Partners ３", "UHパートナーズ", "株式会社エスアイエル", "エスアイエル"],
       "type": "notable_holder",
       "group_id": "hikari_group",
       "representative": "重田 康光",
@@ -647,6 +647,17 @@
       "headquarters": "東京",
       "description": "ハンドルネーム「五月」で知られる個人投資家。65万円を12億円に増やし、現在資産150〜300億円規模。中小型成長株への集中投資で約25銘柄を大量保有。",
       "focus_sectors": ["IT・通信", "サービス", "消費財"]
+    },
+    {
+      "id": "gomi_daisuke",
+      "name": "五味大輔",
+      "aliases": ["五味 大輔"],
+      "type": "individual_investor",
+      "representative": "五味 大輔",
+      "founded": "—",
+      "headquarters": "長野",
+      "description": "個人投資家として日本屈指の資産規模。エニグモ、そーせいグループ、メディカル・データ・ビジョン等で大量保有報告を提出。中小型成長株への長期集中投資スタイルで知られる。",
+      "focus_sectors": ["IT・通信", "ヘルスケア", "サービス"]
     },
     {
       "id": "nikkei_am",
