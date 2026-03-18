@@ -228,6 +228,8 @@
     .auth-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
     .auth-form input{padding:8px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.82rem}
     .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
+    .btn-google{width:100%;padding:12px;background:var(--white);color:var(--text-dark);border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s}
+    .btn-google:hover{background:#f8f8f8;box-shadow:0 1px 4px rgba(0,0,0,.1)}
     .user-info{display:flex;align-items:center;gap:12px;font-size:.82rem}.user-info .name{font-weight:500;color:var(--navy)}
     .hidden{display:none!important}
     .login-wall{position:relative;margin-top:-60px;padding-top:100px;padding-bottom:60px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--off-white) 30%,var(--off-white) 100%)}
@@ -992,10 +994,15 @@
       <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">ログイン / 無料会員登録</h2>
       <p style="font-size:.76rem;color:var(--text-light);margin-bottom:16px;text-align:center;line-height:1.7;">スクリーニング結果の閲覧・CSV出力には<br>無料会員登録が必要です。</p>
       <div id="authModalLoginForm">
+        <button onclick="doModalGoogleLogin('login')" class="btn-google" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Googleでログイン
+        </button>
+        <div style="display:flex;align-items:center;gap:12px;margin:14px 0;"><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"><span style="font-size:.72rem;color:var(--text-light);">または</span><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"></div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <input type="email" id="authModalEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
           <input type="password" id="authModalPass" placeholder="パスワード" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
-          <button class="btn-primary" onclick="doModalLogin()" style="padding:12px;font-size:.88rem;width:100%;">ログイン</button>
+          <button class="btn-primary" onclick="doModalLogin()" style="padding:12px;font-size:.88rem;width:100%;">メールアドレスでログイン</button>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:10px;">
           <a href="#" onclick="showModalRegister();return false;" style="font-size:.74rem;color:var(--gold);">新規登録はこちら</a>
@@ -1004,7 +1011,7 @@
         <div class="auth-msg" id="authModalLoginMsg"></div>
       </div>
       <div id="authModalResetForm" class="hidden">
-        <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:12px;">登録済みメールアドレスにリセット用リンクを送信します。</p>
+        <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:12px;">登録済みメールアドレスにリセット用リンクを送信します。<br><span style="font-size:.7rem;color:var(--text-light);">※Googleアカウントでご登録の方はGoogleログインをご利用ください。</span></p>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <input type="email" id="authModalResetEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
           <button class="btn-primary" onclick="doModalReset()" style="padding:12px;width:100%;">送信</button>
@@ -1013,13 +1020,18 @@
         <div class="auth-msg" id="authModalResetMsg"></div>
       </div>
       <div id="authModalRegisterForm" class="hidden">
+        <button onclick="doModalGoogleLogin('register')" class="btn-google" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Googleで登録
+        </button>
+        <div style="display:flex;align-items:center;gap:12px;margin:14px 0;"><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"><span style="font-size:.72rem;color:var(--text-light);">または</span><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <input type="text" id="regModalName" placeholder="お名前 *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
           <input type="text" id="regModalCompany" placeholder="会社名（任意）" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
           <select id="regModalAffiliation" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
           <select id="regModalJobTitle" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト</option><option value="consultant">コンサルタント</option><option value="individual">個人</option><option value="other">その他</option></select>
           <input type="email" id="regModalEmail" placeholder="メールアドレス *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
-          <input type="password" id="regModalPass" placeholder="パスワード（6文字以上）*" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <input type="password" id="regModalPass" placeholder="パスワード（8文字以上）*" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
         </div>
         <button class="btn-primary" onclick="doModalRegister()" style="padding:12px;margin-top:12px;width:100%;">無料で登録する</button>
         <p style="font-size:.68rem;color:var(--text-light);margin-top:10px;line-height:1.7;text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。</p>
@@ -1030,6 +1042,25 @@
     <div id="authModalLoggedIn" class="hidden" style="text-align:center;">
       <p style="font-size:.88rem;color:var(--navy);margin-bottom:12px;">ログイン済みです</p>
       <button class="btn-secondary" onclick="closeAuthModal()" style="padding:8px 20px;">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- プロフィール補完モーダル（Google login） -->
+<div class="auth-modal-overlay" id="completeProfileOverlay" onclick="if(event.target===this)closeCompleteProfile()">
+  <div class="auth-modal">
+    <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">プロフィール登録</h2>
+    <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:16px;text-align:center;line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
+    <div class="auth-msg" id="completeProfileMsg"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <select id="cpModalAffiliation" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;background:var(--white);">
+        <option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option>
+      </select>
+      <select id="cpModalJobTitle" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;background:var(--white);">
+        <option value="">役職 *</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option>
+      </select>
+      <input type="text" id="cpModalCompany" placeholder="会社名・組織名 *" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+      <button class="btn-primary" onclick="doCompleteProfile()" style="padding:12px;width:100%;">登録して利用開始</button>
     </div>
   </div>
 </div>
@@ -1088,7 +1119,7 @@ async function doModalRegister() {
   var m = document.getElementById('authModalRegMsg');
   if (!n || !e || !p) { m.textContent = '必須項目を入力してください'; m.className = 'auth-msg error'; return; }
   if (!aff) { m.textContent = '所属種別を選択してください'; m.className = 'auth-msg error'; return; }
-  if (p.length < 6) { m.textContent = 'パスワードは6文字以上'; m.className = 'auth-msg error'; return; }
+  if (p.length < 8) { m.textContent = 'パスワードは8文字以上'; m.className = 'auth-msg error'; return; }
   try { await window.firebaseRegister(e, p, n, c, aff, '', jt); m.textContent = '登録しました。確認メールをお送りしました。'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 1500); }
   catch (err) { m.textContent = '登録失敗: ' + err.message; m.className = 'auth-msg error'; }
 }
@@ -1097,7 +1128,60 @@ async function doModalReset() {
   var m = document.getElementById('authModalResetMsg');
   if (!e) { m.textContent = 'メールアドレスを入力してください'; m.className = 'auth-msg error'; return; }
   try { await window.firebaseResetPassword(e); m.textContent = 'リセット用メールを送信しました。'; m.className = 'auth-msg success'; }
-  catch (err) { m.textContent = 'エラー: ' + err.message; m.className = 'auth-msg error'; }
+  catch (err) {
+    var messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+      'auth/too-many-requests': '送信回数が多すぎます。しばらくしてからお試しください。'
+    };
+    m.textContent = messages[err.code || ''] || 'エラー: ' + err.message; m.className = 'auth-msg error';
+  }
+}
+
+// Google ログイン
+async function doModalGoogleLogin(context) {
+  var m = document.getElementById(context === 'register' ? 'authModalRegMsg' : 'authModalLoginMsg');
+  try {
+    var result = await window.firebaseGoogleLogin();
+    closeAuthModal();
+    if (result && result.needsProfile) {
+      openCompleteProfile();
+    }
+  } catch (err) {
+    if (err.code === 'auth/popup-closed-by-user') return;
+    var messages = {
+      'auth/account-exists-with-different-credential': 'このメールアドレスは別の方法で登録されています。メールアドレスでログインしてください。',
+      'auth/popup-blocked': 'ポップアップがブロックされました。ブラウザの設定を確認してください。'
+    };
+    m.textContent = messages[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
+    m.className = 'auth-msg error';
+  }
+}
+
+// プロフィール補完モーダル
+function openCompleteProfile() {
+  document.getElementById('completeProfileOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeCompleteProfile() {
+  document.getElementById('completeProfileOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+async function doCompleteProfile() {
+  var aff = document.getElementById('cpModalAffiliation').value;
+  var jt = document.getElementById('cpModalJobTitle').value;
+  var comp = document.getElementById('cpModalCompany').value.trim();
+  var m = document.getElementById('completeProfileMsg');
+  if (!aff || !jt || !comp) { m.textContent = '全ての項目を入力してください'; m.className = 'auth-msg error'; return; }
+  try {
+    var user = window.currentUser;
+    if (!user) throw new Error('ログインされていません');
+    await window.firebaseUpdateProfile(user.uid, { affiliation: aff, jobTitle: jt, company: comp });
+    m.textContent = '登録しました'; m.className = 'auth-msg success';
+    setTimeout(closeCompleteProfile, 1000);
+  } catch (err) {
+    m.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || ''); m.className = 'auth-msg error';
+  }
 }
 
 // scrollToAuthをモーダル版にオーバーライド

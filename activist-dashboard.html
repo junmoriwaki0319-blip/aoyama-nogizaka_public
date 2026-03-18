@@ -1923,8 +1923,17 @@ async function openMyPage() {
 
 async function handleMyPageResetPassword() {
   const msg = document.getElementById('myPageMsg');
+  const user = window.currentUser;
+  if (user && user.providerData && user.providerData.length > 0) {
+    const hasPassword = user.providerData.some(p => p.providerId === 'password');
+    if (!hasPassword) {
+      msg.textContent = 'Googleアカウントでご登録のため、パスワードの変更はできません。Googleアカウントのセキュリティ設定をご確認ください。';
+      msg.style.display = 'block'; msg.style.background = '#fef3cd'; msg.style.color = '#856404';
+      return;
+    }
+  }
   try {
-    await window.firebaseResetPassword(window.currentUser.email);
+    await window.firebaseResetPassword(user.email);
     msg.textContent = 'パスワードリセット用メールを送信しました。';
     msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
   } catch (e) {
