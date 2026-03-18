@@ -61,16 +61,51 @@ module.exports = async (req, res) => {
       parseMajorShareholders(xbrlXml, data);
     }
 
-    // デバッグ: 簡易チェック
-    data._debug = {
-      xbrlFile: xbrlEntry.name,
-      noteFiles: noteEntries.map(e => e.name),
-      xbrlHasShareholders: xbrlXml.includes('大株主'),
-      xbrlLen: xbrlXml.length,
-      noteHasShareholders: noteEntries.map(e => {
-        try { return extractEntry(zipBuffer, e).toString('utf8').includes('大株主'); } catch { return false; }
-      })
-    };
+    // デバッグ: パーサー詳細トレース
+    const _dbg = {};
+    // 大株主が含まれるファイルを探す
+    const shFile = noteEntries.find((e, i) => {
+      try { return extractEntry(zipBuffer, e).toString('utf8').includes('大株主'); } catch { return false; }
+    });
+    if (shFile) {
+      const shHtml = extractEntry(zipBuffer, shFile).toString('utf8');
+      const shIdx = shHtml.indexOf('大株主の状況');
+      _dbg.file = shFile.name;
+      _dbg.idxFound = shIdx;
+      if (shIdx !== -1) {
+        const after = shHtml.substring(shIdx, Math.min(shHtml.length, shIdx + 100000));
+        const tm = after.match(/<table[\s\S]*?<\/table>/i);
+        _dbg.tableFound = !!tm;
+        if (tm) {
+          _dbg.tableLen = tm[0].length;
+          // テーブルの最初の500文字
+          _dbg.tableStart = tm[0].substring(0, 800).replace(/[\n\r]+/g, ' ');
+          // 行数チェック
+          const rr = /<tr[\s\S]*?<\/tr>/gi;
+          let cnt = 0; let m2;
+          while ((m2 = rr.exec(tm[0])) !== null) cnt++;
+          _dbg.rowCount = cnt;
+        } else {
+          // テーブルが見つからない場合、周辺500文字を表示
+          _dbg.contextAfterIdx = after.substring(0, 500).replace(/[\n\r]+/g, ' ');
+        }
+      }
+    }
+    // XBRLファイルもチェック
+    const xbrlIdx = xbrlXml.indexOf('大株主の状況');
+    _dbg.xbrlIdx = xbrlIdx;
+    if (xbrlIdx !== -1) {
+      const xAfter = xbrlXml.substring(xbrlIdx, Math.min(xbrlXml.length, xbrlIdx + 100000));
+      const xtm = xAfter.match(/<table[\s\S]*?<\/table>/i);
+      _dbg.xbrlTableFound = !!xtm;
+      if (!xtm) {
+        _dbg.xbrlContext = xAfter.substring(0, 500).replace(/[\n\r]+/g, ' ');
+      } else {
+        _dbg.xbrlTableLen = xtm[0].length;
+        _dbg.xbrlTableStart = xtm[0].substring(0, 500).replace(/[\n\r]+/g, ' ');
+      }
+    }
+    data._debug = _dbg;
 
     // 土地含み益推定
     estimateLandGain(data);
@@ -247,17 +282,22 @@ function parseNotes(html, data) {
 }
 
 function parseInvestmentPropertyNote(html, data) {
-  // "投資不動産" を含むセクションを探す
-  const ipIdx = html.indexOf('投資不動産');
+  // 「賃貸等不動産」「投資不動産」「賃貸不動産」を含むセクションを探す
+  // 日本基準では「賃貸等不動産」が正式名称
+  const searchTerms = ['賃貸等不動産', '賃貸不動産', '投資不動産'];
+  let ipIdx = -1;
+  for (const term of searchTerms) {
+    ipIdx = html.indexOf(term);
+    if (ipIdx !== -1) break;
+  }
   if (ipIdx === -1) return;
 
-  // 周辺のテーブルを解析
-  const searchRange = html.substring(Math.max(0, ipIdx - 500), Math.min(html.length, ipIdx + 5000));
+  // 周辺のテーブルを解析（前後を広めに取る）
+  const searchRange = html.substring(Math.max(0, ipIdx - 500), Math.min(html.length, ipIdx + 8000));
 
-  // 「貸借対照表計上額」「時価」のパターンを探す
-  // 一般的なパターン：BS計上額 → 時価 の順で数値が並ぶ
-  const bsMatch = searchRange.match(/貸借対照表計上額[\s\S]{0,200}?([0-9,]+)/);
-  const fvMatch = searchRange.match(/(?:時価|公正価値)[\s\S]{0,200}?([0-9,]+)/);
+  // パターン1: 「貸借対照表計上額」「時価」を探す（ヘッダー行とデータ行が離れている場合も対応）
+  const bsMatch = searchRange.match(/貸借対照表計上額[\s\S]{0,500}?(?:<[^>]*>[\s\S]{0,50}?)*?([0-9,]{3,})/);
+  const fvMatch = searchRange.match(/(?:時価|公正価値)[\s\S]{0,500}?(?:<[^>]*>[\s\S]{0,50}?)*?([0-9,]{3,})/);
 
   if (bsMatch && fvMatch) {
     const bv = parseFloat(bsMatch[1].replace(/,/g, ''));
@@ -268,7 +308,24 @@ function parseInvestmentPropertyNote(html, data) {
     }
   }
 
-  // 別パターン：テーブルセルから数値を連続抽出
+  // パターン2: テーブルから「期末残高」行の数値を取得
+  // 多くの企業では期首・増減・減少・期末の表形式
+  if (data.investmentPropertyBookValue == null) {
+    // 「期末」を含む行付近から数値を取得
+    const endBalMatch = searchRange.match(/期末[\s\S]{0,300}?([0-9,]{3,})[\s\S]{0,200}?([0-9,]{3,})/);
+    if (endBalMatch) {
+      const v1 = parseFloat(endBalMatch[1].replace(/,/g, ''));
+      const v2 = parseFloat(endBalMatch[2].replace(/,/g, ''));
+      if (!isNaN(v1) && !isNaN(v2) && v1 > 0 && v2 > 0) {
+        // 小さい方がBS計上額、大きい方が時価（含み益がある前提）
+        // ただし含み損のケースもあるので、最初の値をBS、2番目を時価とする
+        data.investmentPropertyBookValue = v1;
+        data.investmentPropertyFairValue = v2;
+      }
+    }
+  }
+
+  // パターン3: テーブルセルから数値を連続抽出
   if (data.investmentPropertyBookValue == null) {
     const tableMatch = searchRange.match(/<table[\s\S]*?<\/table>/i);
     if (tableMatch) {
