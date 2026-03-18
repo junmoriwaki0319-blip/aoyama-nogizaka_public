@@ -672,13 +672,22 @@
     }
     @media (max-width: 768px) {
       .page-hero-watermark { display: none; }
-      .page-hero-inner { padding: 60px 24px 50px; }
-      .intro-inner, .team-inner, .footer-inner { padding: 0 24px; }
-      .rep-card { padding: 32px 24px; }
+      .page-hero-inner { padding: 60px 20px 50px; }
+      .intro-inner, .team-inner, .footer-inner { padding: 0 20px; }
+      .rep-card { padding: 28px 20px; }
       .rep-skills { grid-template-columns: 1fr; }
       .member-card, .advisor-card { flex-direction: column; gap: 20px; }
+      .member-photo, .advisor-photo { width: 80px; height: 80px; }
       .footer-top { grid-template-columns: 1fr; gap: 24px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .page-hero-inner { padding: 48px 16px 40px; }
+      .page-hero-inner h1 { font-size: 1.3rem; }
+      .intro-inner, .team-inner, .footer-inner { padding: 0 16px; }
+      .rep-photo { max-width: 200px; }
+      .career-year { width: 52px; font-size: 11px; }
     }
   </style>
 </head>

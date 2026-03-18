@@ -665,9 +665,20 @@
       .section-inner { padding: 0 24px; }
       .footer-inner { padding: 0 20px; }
     }
-    @media (max-width: 640px) {
-      section { padding: 70px 0; }
-      .hero-title { font-size: 26px; }
+    @media (max-width: 768px) {
+      .section-inner { padding: 0 20px; }
+      .hero-inner { gap: 28px; }
+      .hero-visual { height: 220px; }
+      .hero-subtitle { font-size: 14px; }
+      .service-card, .value-card { padding: 28px 20px; }
+      .contact-form input, .contact-form textarea, .contact-form select { min-height: 44px; font-size: 14px; }
+      .contact-form button { min-height: 48px; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 60px 0; }
+      .hero-title { font-size: 24px; }
+      .section-inner { padding: 0 16px; }
+      .footer-inner { padding: 0 16px; }
     }
   </style>
 </head>

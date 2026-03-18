@@ -513,6 +513,14 @@
       .contact-card { grid-template-columns: 1fr; padding: 32px 28px; gap: 32px; }
       .footer-top { grid-template-columns: 1fr; gap: 24px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .page-hero-inner { padding: 48px 16px 40px; }
+      .page-hero-inner h1 { font-size: 1.3rem; }
+      .intro-inner, .policy-inner, .contact-block-inner, .footer-inner { padding: 0 16px; }
+      .article-num { font-size: 36px; }
+      .contact-card { padding: 24px 20px; }
     }
   </style>
 </head>
