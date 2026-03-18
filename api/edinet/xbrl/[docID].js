@@ -105,6 +105,27 @@ module.exports = async (req, res) => {
         _dbg.xbrlTableStart = xtm[0].substring(0, 500).replace(/[\n\r]+/g, ' ');
       }
     }
+    // さらにテーブルの最初の5行の全セルを表示
+    if (shFile && _dbg.tableFound) {
+      const shHtml2 = extractEntry(zipBuffer, shFile).toString('utf8');
+      const shIdx2 = shHtml2.indexOf('大株主の状況');
+      const after2 = shHtml2.substring(shIdx2, Math.min(shHtml2.length, shIdx2 + 100000));
+      const tm2 = after2.match(/<table[\s\S]*?<\/table>/i);
+      if (tm2) {
+        const rr2 = /<tr[\s\S]*?<\/tr>/gi;
+        let m3; let ri = 0;
+        _dbg.rows = [];
+        while ((m3 = rr2.exec(tm2[0])) !== null && ri < 6) {
+          const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
+          const cells = []; let cm;
+          while ((cm = cellRegex.exec(m3[0])) !== null) {
+            cells.push(cm[1].replace(/<[^>]*>/g, '').replace(/[\s\u00a0\u3000]+/g, ' ').replace(/,/g, '').trim());
+          }
+          _dbg.rows.push(cells);
+          ri++;
+        }
+      }
+    }
     data._debug = _dbg;
 
     // 土地含み益推定
