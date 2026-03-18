@@ -611,6 +611,7 @@
         <button onclick="setRankingFilter('all')" class="ranking-filter-btn active" data-filter="all" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:var(--navy);color:#fff;cursor:pointer;">すべて</button>
         <button onclick="setRankingFilter('activist')" class="ranking-filter-btn" data-filter="activist" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">ACT</button>
         <button onclick="setRankingFilter('notable_holder')" class="ranking-filter-btn" data-filter="notable_holder" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">注目</button>
+        <button onclick="setRankingFilter('individual_investor')" class="ranking-filter-btn" data-filter="individual_investor" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">個人</button>
       </div>
       <div class="ac-stock-list" id="activistRankingList" style="max-height:600px;overflow-y:auto;">
         <div class="loading-spinner">読み込み中...</div>
@@ -1177,7 +1178,7 @@ function renderReportTable() {
 
     return `<tr onclick="searchByCode('${r.sec_code || ''}')">
       <td class="date-cell col-date">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
-      <td class="col-filer" title="${escapeHtml(r.filer_name || '')}"><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
+      <td class="col-filer" title="${escapeHtml(r.filer_name || '')}"><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.activist_type === 'individual_investor' ? ' <span class="activist-type" style="background:#f0e6ff;color:#7c3aed;">個人</span>' : r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
       <td class="col-type"><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
       <td class="col-code">${r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—'}</td>
       <td class="col-target" title="${escapeHtml(r.target_company || '')}">${escapeHtml(r.target_company || '—')}</td>
@@ -1234,7 +1235,7 @@ function renderActivistCards() {
               報告件数: ${data.report_count || 0}件
             </div>
           </div>
-          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : data.type === 'notable_holder' ? 'type-notable' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : data.type === 'notable_holder' ? '注目投資家' : 'ファンド'}</span>
+          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : data.type === 'individual_investor' ? 'type-individual' : data.type === 'notable_holder' ? 'type-notable' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : data.type === 'individual_investor' ? '個人注目投資家' : data.type === 'notable_holder' ? '注目投資家' : 'ファンド'}</span>
         </div>
         <div class="ac-grid">
           <div>
@@ -1314,6 +1315,7 @@ function filterRanking() {
 
   container.innerHTML = sorted.map((a, idx) => {
     const typeTag = a.type === 'activist' ? '<span class="activist-type type-activist" style="font-size:9px;padding:1px 4px;margin-left:4px;">ACT</span>'
+      : a.type === 'individual_investor' ? '<span class="activist-type" style="font-size:9px;padding:1px 4px;margin-left:4px;background:#f0e6ff;color:#7c3aed;border-radius:4px;">個人</span>'
       : a.type === 'notable_holder' ? '<span class="activist-type type-notable" style="font-size:9px;padding:1px 4px;margin-left:4px;">注目</span>'
       : '';
     const rank = idx + 1;
@@ -2278,7 +2280,7 @@ function openInvestorDetail(activistId) {
   const metaParts = [];
   if (activist.representative) metaParts.push('代表: ' + activist.representative);
   if (activist.headquarters) metaParts.push('本拠: ' + activist.headquarters);
-  const typeLabel = activist.type === 'activist' ? 'アクティビスト' : activist.type === 'notable_holder' ? '注目投資家' : 'ファンド';
+  const typeLabel = activist.type === 'activist' ? 'アクティビスト' : activist.type === 'individual_investor' ? '個人注目投資家' : activist.type === 'notable_holder' ? '注目投資家' : 'ファンド';
   metaParts.push(typeLabel);
   if (activist.member_ids && activist.member_ids.length) metaParts.push('グループ（' + activist.member_ids.length + '主体）');
   document.getElementById('idmMeta').textContent = metaParts.join(' ｜ ');
