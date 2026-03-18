@@ -61,92 +61,13 @@ module.exports = async (req, res) => {
       parseMajorShareholders(xbrlXml, data);
     }
 
-    // デバッグ: パーサー詳細トレース
-    const _dbg = {};
-    // 大株主が含まれるファイルを探す
-    const shFile = noteEntries.find((e, i) => {
-      try { return extractEntry(zipBuffer, e).toString('utf8').includes('大株主'); } catch { return false; }
-    });
-    if (shFile) {
-      const shHtml = extractEntry(zipBuffer, shFile).toString('utf8');
-      const shIdx = shHtml.indexOf('大株主の状況');
-      _dbg.file = shFile.name;
-      _dbg.idxFound = shIdx;
-      if (shIdx !== -1) {
-        const after = shHtml.substring(shIdx, Math.min(shHtml.length, shIdx + 100000));
-        const tm = after.match(/<table[\s\S]*?<\/table>/i);
-        _dbg.tableFound = !!tm;
-        if (tm) {
-          _dbg.tableLen = tm[0].length;
-          // テーブルの最初の500文字
-          _dbg.tableStart = tm[0].substring(0, 800).replace(/[\n\r]+/g, ' ');
-          // 行数チェック
-          const rr = /<tr[\s\S]*?<\/tr>/gi;
-          let cnt = 0; let m2;
-          while ((m2 = rr.exec(tm[0])) !== null) cnt++;
-          _dbg.rowCount = cnt;
-        } else {
-          // テーブルが見つからない場合、周辺500文字を表示
-          _dbg.contextAfterIdx = after.substring(0, 500).replace(/[\n\r]+/g, ' ');
-        }
-      }
-    }
-    // XBRLファイルもチェック
-    const xbrlIdx = xbrlXml.indexOf('大株主の状況');
-    _dbg.xbrlIdx = xbrlIdx;
-    if (xbrlIdx !== -1) {
-      const xAfter = xbrlXml.substring(xbrlIdx, Math.min(xbrlXml.length, xbrlIdx + 100000));
-      const xtm = xAfter.match(/<table[\s\S]*?<\/table>/i);
-      _dbg.xbrlTableFound = !!xtm;
-      if (!xtm) {
-        _dbg.xbrlContext = xAfter.substring(0, 500).replace(/[\n\r]+/g, ' ');
-      } else {
-        _dbg.xbrlTableLen = xtm[0].length;
-        _dbg.xbrlTableStart = xtm[0].substring(0, 500).replace(/[\n\r]+/g, ' ');
-      }
-    }
-    // さらにテーブルの最初の5行の全セルを表示
-    if (shFile && _dbg.tableFound) {
-      const shHtml2 = extractEntry(zipBuffer, shFile).toString('utf8');
-      const shIdx2 = shHtml2.indexOf('大株主の状況');
-      const after2 = shHtml2.substring(shIdx2, Math.min(shHtml2.length, shIdx2 + 100000));
-      const tm2 = after2.match(/<table[\s\S]*?<\/table>/i);
-      if (tm2) {
-        const rr2 = /<tr[\s\S]*?<\/tr>/gi;
-        let m3; let ri = 0;
-        _dbg.rows = [];
-        while ((m3 = rr2.exec(tm2[0])) !== null && ri < 6) {
-          const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
-          const cells = []; let cm;
-          while ((cm = cellRegex.exec(m3[0])) !== null) {
-            cells.push(cm[1].replace(/<[^>]*>/g, '').replace(/[\s\u00a0\u3000]+/g, ' ').replace(/,/g, '').trim());
-          }
-          _dbg.rows.push(cells);
-          ri++;
-        }
-      }
-    }
-    // パーサーを直接デバッグ実行
-    if (shFile && !data.majorShareholders) {
-      const shHtml3 = extractEntry(zipBuffer, shFile).toString('utf8');
-      const testData = {};
-      parseMajorShareholders(shHtml3, testData);
-      _dbg.directParseResult = {
-        hasMajorShareholders: !!testData.majorShareholders,
-        count: testData.majorShareholdersCount,
-        parsed: testData._majorShareholdersParsed,
-        firstShareholder: testData.majorShareholders ? testData.majorShareholders[0] : null
-      };
-    }
-    _dbg.dataHasMajorSH = !!data.majorShareholders;
-    _dbg.dataMajorSHParsed = !!data._majorShareholdersParsed;
-    data._debug = _dbg;
-
     // 土地含み益推定
     estimateLandGain(data);
 
     // 内部フラグを除去
     delete data._majorShareholdersParsed;
+    delete data._policyHoldingsParsed;
+    delete data._landParcelsFound;
 
     res.json({ success: true, data });
   } catch (err) {
