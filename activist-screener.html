@@ -167,10 +167,19 @@
     .progress-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .3s}
     .progress-text{font-size:.72rem;color:var(--text-light)}
     .mcap-cat{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:500}
+    .mcap-legend{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+    .mcap-legend-row{display:flex;align-items:center;gap:4px;font-size:.66rem;color:var(--text-light)}
+    .mcap-legend-def{min-width:80px}
+    .mcap-legend-count{font-weight:600;color:var(--navy);font-size:.66rem}
     .mcap-nano{background:#fce4ec;color:#880e4f}.mcap-micro{background:#fff8e1;color:#f57f17}
     .mcap-small{background:#e8f5e9;color:#2e7d32}.mcap-mid{background:#e3f2fd;color:#1565c0}.mcap-large{background:#f3e5f5;color:#6a1b9a}
     .auth-section{margin-top:20px;padding:20px;background:var(--light-gray);border-radius:8px}
     .auth-section h3{font-family:var(--serif);font-weight:400;font-size:.92rem;color:var(--navy);margin-bottom:12px}
+    .auth-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center}
+    .auth-modal-overlay.show{display:flex}
+    .auth-modal{background:var(--white);border-radius:12px;padding:40px 36px;max-width:480px;width:90%;position:relative;max-height:90vh;overflow-y:auto}
+    .auth-modal-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text-light)}
+    .auth-modal-close:hover{color:var(--navy)}
     .auth-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
     .auth-form input{padding:8px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.82rem}
     .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
@@ -349,7 +358,9 @@
           <div class="metric-row"><span class="metric-label">時価総額区分</span><span id="m_mcap_cat">-</span></div>
           <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
           <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
-          <div class="metric-row"><span class="metric-label">投資不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産（簿価）<span class="info-tip" data-tip="注記「賃貸等不動産」の貸借対照表計上額。投資不動産とも呼ばれる">?</span></span><span class="metric-value" id="m_prop_bv">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産（時価）<span class="info-tip" data-tip="不動産鑑定評価額等に基づく時価。注記から取得">?</span></span><span class="metric-value" id="m_prop_fv">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
           <div class="metric-row"><span class="metric-label">土地（簿価）<span class="info-tip" data-tip="BSの有形固定資産に含まれる土地の帳簿価額">?</span></span><span class="metric-value" id="m_land_bv">-</span></div>
           <div class="metric-row"><span class="metric-label">推定土地含み益 <span class="info-tip" data-tip="投資不動産の時価/簿価比率等から推定">?</span></span><span class="metric-value highlight" id="m_land_gain">-</span></div>
           <div id="m_land_gain_method" style="font-size:.66rem;color:var(--text-light);padding:2px 0 4px;display:none;"></div>
@@ -422,16 +433,31 @@
           </div>
           <div id="land_gain_method_detail" style="font-size:.7rem;color:var(--text-light);margin-bottom:12px;"></div>
 
+          <!-- 用途別調整係数デフォルト設定 -->
+          <div style="background:var(--bg-alt);border-radius:8px;padding:12px 16px;margin-bottom:12px;">
+            <div style="font-size:.72rem;font-weight:600;color:var(--navy);margin-bottom:8px;">用途別調整係数（デフォルト）<span class="info-tip" data-tip="公示地価の全用途平均に対する調整係数。用途に応じて時価推定を補正します。各拠点で個別に変更も可能です。">?</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.72rem;">
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">工場・倉庫 <input type="number" id="defRate_factory" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">オフィス <input type="number" id="defRate_office" value="0.9" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">商業施設 <input type="number" id="defRate_commercial" value="0.8" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">住宅・寮 <input type="number" id="defRate_residential" value="1.0" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">遊休地 <input type="number" id="defRate_idle" value="0.6" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">その他 <input type="number" id="defRate_other" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+            </div>
+          </div>
+
           <!-- 土地明細テーブル -->
           <div style="overflow-x:auto;">
-            <table style="font-size:.78rem;">
+            <table style="font-size:.74rem;">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>事業所名</th>
                   <th>所在地</th>
+                  <th>用途推定</th>
                   <th style="text-align:right;">面積（㎡）</th>
                   <th style="text-align:right;">簿価（百万円）</th>
+                  <th style="text-align:center;">調整係数</th>
                   <th style="text-align:right;">推定単価（円/㎡）</th>
                   <th style="text-align:right;">推定時価（百万円）</th>
                   <th style="text-align:right;">含み益（百万円）</th>
@@ -442,7 +468,6 @@
           </div>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
             <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
-            <!-- 地図表示ボタンは将来の有料化時に追加予定 -->
           </div>
         </div>
       </div>
@@ -827,7 +852,7 @@
 
   </div>
 
-  <!-- 認証セクション（タブ外に配置して常時アクセス可能） -->
+  <!-- 認証セクション（インライン版 — 下部に配置） -->
   <div class="auth-section" id="authSection">
     <div id="authLoggedOut">
       <h3>ログインしてご利用ください</h3>
@@ -914,7 +939,124 @@
   </div>
 </footer>
 
-<!-- Google Maps連携は将来の有料化時に追加予定 -->
+<!-- 認証モーダル -->
+<div class="auth-modal-overlay" id="authModalOverlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div id="authModalLoggedOut">
+      <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">ログイン / 無料会員登録</h2>
+      <p style="font-size:.76rem;color:var(--text-light);margin-bottom:16px;text-align:center;line-height:1.7;">スクリーニング結果の閲覧・CSV出力には<br>無料会員登録が必要です。</p>
+      <div id="authModalLoginForm">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="email" id="authModalEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <input type="password" id="authModalPass" placeholder="パスワード" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <button class="btn-primary" onclick="doModalLogin()" style="padding:12px;font-size:.88rem;width:100%;">ログイン</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;">
+          <a href="#" onclick="showModalRegister();return false;" style="font-size:.74rem;color:var(--gold);">新規登録はこちら</a>
+          <a href="#" onclick="showModalReset();return false;" style="font-size:.74rem;color:var(--gold);">パスワードをお忘れの方</a>
+        </div>
+        <div class="auth-msg" id="authModalLoginMsg"></div>
+      </div>
+      <div id="authModalResetForm" class="hidden">
+        <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:12px;">登録済みメールアドレスにリセット用リンクを送信します。</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="email" id="authModalResetEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <button class="btn-primary" onclick="doModalReset()" style="padding:12px;width:100%;">送信</button>
+        </div>
+        <p style="margin-top:10px;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <div class="auth-msg" id="authModalResetMsg"></div>
+      </div>
+      <div id="authModalRegisterForm" class="hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <input type="text" id="regModalName" placeholder="お名前 *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <input type="text" id="regModalCompany" placeholder="会社名（任意）" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <select id="regModalAffiliation" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+          <select id="regModalJobTitle" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト</option><option value="consultant">コンサルタント</option><option value="individual">個人</option><option value="other">その他</option></select>
+          <input type="email" id="regModalEmail" placeholder="メールアドレス *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <input type="password" id="regModalPass" placeholder="パスワード（6文字以上）*" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+        </div>
+        <button class="btn-primary" onclick="doModalRegister()" style="padding:12px;margin-top:12px;width:100%;">無料で登録する</button>
+        <p style="font-size:.68rem;color:var(--text-light);margin-top:10px;line-height:1.7;text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。</p>
+        <p style="margin-top:8px;text-align:center;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <div class="auth-msg" id="authModalRegMsg"></div>
+      </div>
+    </div>
+    <div id="authModalLoggedIn" class="hidden" style="text-align:center;">
+      <p style="font-size:.88rem;color:var(--navy);margin-bottom:12px;">ログイン済みです</p>
+      <button class="btn-secondary" onclick="closeAuthModal()" style="padding:8px 20px;">閉じる</button>
+    </div>
+  </div>
+</div>
+
 <script src="/js/screener.js"></script>
+<script>
+// 認証モーダル制御
+function openAuthModal(mode) {
+  var overlay = document.getElementById('authModalOverlay');
+  if (window.currentUser) {
+    document.getElementById('authModalLoggedOut').classList.add('hidden');
+    document.getElementById('authModalLoggedIn').classList.remove('hidden');
+  } else {
+    document.getElementById('authModalLoggedOut').classList.remove('hidden');
+    document.getElementById('authModalLoggedIn').classList.add('hidden');
+    if (mode === 'register') showModalRegister();
+    else showModalLogin();
+  }
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeAuthModal() {
+  document.getElementById('authModalOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function showModalLogin() {
+  document.getElementById('authModalLoginForm').classList.remove('hidden');
+  document.getElementById('authModalRegisterForm').classList.add('hidden');
+  document.getElementById('authModalResetForm').classList.add('hidden');
+}
+function showModalRegister() {
+  document.getElementById('authModalLoginForm').classList.add('hidden');
+  document.getElementById('authModalRegisterForm').classList.remove('hidden');
+  document.getElementById('authModalResetForm').classList.add('hidden');
+}
+function showModalReset() {
+  document.getElementById('authModalLoginForm').classList.add('hidden');
+  document.getElementById('authModalRegisterForm').classList.add('hidden');
+  document.getElementById('authModalResetForm').classList.remove('hidden');
+}
+async function doModalLogin() {
+  var e = document.getElementById('authModalEmail').value.trim();
+  var p = document.getElementById('authModalPass').value;
+  var m = document.getElementById('authModalLoginMsg');
+  if (!e || !p) { m.textContent = 'メールとパスワードを入力してください'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseLogin(e, p); m.textContent = 'ログインしました'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 1000); }
+  catch (err) { m.textContent = 'ログイン失敗: ' + err.message; m.className = 'auth-msg error'; }
+}
+async function doModalRegister() {
+  var n = document.getElementById('regModalName').value.trim();
+  var c = document.getElementById('regModalCompany').value.trim();
+  var e = document.getElementById('regModalEmail').value.trim();
+  var p = document.getElementById('regModalPass').value;
+  var aff = document.getElementById('regModalAffiliation').value;
+  var jt = document.getElementById('regModalJobTitle').value;
+  var m = document.getElementById('authModalRegMsg');
+  if (!n || !e || !p) { m.textContent = '必須項目を入力してください'; m.className = 'auth-msg error'; return; }
+  if (!aff) { m.textContent = '所属種別を選択してください'; m.className = 'auth-msg error'; return; }
+  if (p.length < 6) { m.textContent = 'パスワードは6文字以上'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseRegister(e, p, n, c, aff, '', jt); m.textContent = '登録しました。確認メールをお送りしました。'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 1500); }
+  catch (err) { m.textContent = '登録失敗: ' + err.message; m.className = 'auth-msg error'; }
+}
+async function doModalReset() {
+  var e = document.getElementById('authModalResetEmail').value.trim();
+  var m = document.getElementById('authModalResetMsg');
+  if (!e) { m.textContent = 'メールアドレスを入力してください'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseResetPassword(e); m.textContent = 'リセット用メールを送信しました。'; m.className = 'auth-msg success'; }
+  catch (err) { m.textContent = 'エラー: ' + err.message; m.className = 'auth-msg error'; }
+}
+
+// scrollToAuthをモーダル版にオーバーライド
+scrollToAuth = function(mode) { openAuthModal(mode); };
+</script>
 </body>
 </html>
