@@ -778,43 +778,44 @@
       </div>
     </div>
 
-      <div class="auth-section" id="authSection">
-        <div id="authLoggedOut">
-          <h3>ログインしてご利用ください</h3>
-          <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">スクリーニング結果の閲覧・CSVエクスポートには無料会員登録が必要です。</p>
-          <div id="authLoginForm">
-            <div class="auth-form">
-              <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">
-              <input type="password" id="authPass" placeholder="パスワード" style="min-width:0;">
-              <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
-            <div class="auth-msg" id="authLoginMsg"></div>
-          </div>
-          <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" onclick="doResetPassword()" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
-          <div id="authRegisterForm" class="hidden">
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-              <input type="text" id="regName" placeholder="お名前 *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
-              <input type="text" id="regCompany" placeholder="会社名・組織名（任意）" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
-              <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
-              <input type="text" id="regAffiliationCode" placeholder="証券コード（例: 7203）" maxlength="4" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; display:none;">
-              <select id="regJobTitle" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option></select>
-              <input type="email" id="regEmail" placeholder="メールアドレス *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
-              <input type="password" id="regPass" placeholder="パスワード（6文字以上）*" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
-            </div>
-            <button class="btn-primary" onclick="doRegister()" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
-            <p style="font-size:0.68rem; color:var(--text-light); margin-top:10px; line-height:1.7; text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。</p>
-            <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログイン</a></p>
-            <div class="auth-msg" id="authRegMsg"></div>
-          </div>
+  </div>
+
+  <!-- 認証セクション（タブ外に配置して常時アクセス可能） -->
+  <div class="auth-section" id="authSection">
+    <div id="authLoggedOut">
+      <h3>ログインしてご利用ください</h3>
+      <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">スクリーニング結果の閲覧・CSVエクスポートには無料会員登録が必要です。</p>
+      <div id="authLoginForm">
+        <div class="auth-form">
+          <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">
+          <input type="password" id="authPass" placeholder="パスワード" style="min-width:0;">
+          <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
         </div>
-        <div id="authLoggedIn" class="hidden">
-          <div class="user-info">
-            <a class="name" id="authUserName" onclick="openMyPage()" style="cursor:pointer; text-decoration:underline;"></a>
-            <span style="color:var(--text-light);">でログイン中</span>
-            <button class="btn-secondary" onclick="doLogout()" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
-          </div>
+        <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
+        <div class="auth-msg" id="authLoginMsg"></div>
+      </div>
+      <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" onclick="doResetPassword()" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
+      <div id="authRegisterForm" class="hidden">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input type="text" id="regName" placeholder="お名前 *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <input type="text" id="regCompany" placeholder="会社名・組織名（任意）" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+          <input type="text" id="regAffiliationCode" placeholder="証券コード（例: 7203）" maxlength="4" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; display:none;">
+          <select id="regJobTitle" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option></select>
+          <input type="email" id="regEmail" placeholder="メールアドレス *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <input type="password" id="regPass" placeholder="パスワード（6文字以上）*" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
         </div>
+        <button class="btn-primary" onclick="doRegister()" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
+        <p style="font-size:0.68rem; color:var(--text-light); margin-top:10px; line-height:1.7; text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。</p>
+        <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログイン</a></p>
+        <div class="auth-msg" id="authRegMsg"></div>
+      </div>
+    </div>
+    <div id="authLoggedIn" class="hidden">
+      <div class="user-info">
+        <a class="name" id="authUserName" onclick="openMyPage()" style="cursor:pointer; text-decoration:underline;"></a>
+        <span style="color:var(--text-light);">でログイン中</span>
+        <button class="btn-secondary" onclick="doLogout()" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
       </div>
     </div>
   </div>
