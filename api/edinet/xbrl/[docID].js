@@ -290,116 +290,91 @@ function parseInvestmentPropertyNote(html, data) {
   //
   // 必要なのは当連結会計年度の「期末残高」(=BS計上額) と「時価」
 
-  // 戦略: 行のラベルと数値行の並びパターンを認識する
-  // パターンA (1期分ずつ): ラベル行→数値行→ラベル行→数値行... (三井不動産等)
-  //   連結貸借対照表計上額 / 期首残高 / 増減額 / 期末残高 / 時価 → 数値,数値,...,数値
-  // パターンB (2期並列): ラベル→前期数値→当期数値 (中小企業等)
-  //   期末残高  AAA  BBB / 時価  CCC  DDD
+  // 戦略: 当期セクション内の全数値を順序通り取得し、構造から期末BVと時価を特定
+  // 典型的な数値の並び: [期首, 増減, 期末, 時価] (4数値)
+  // 検証: 期首 + 増減 ≒ 期末 → 次が時価
 
-  // 当連結会計年度セクションを優先（複数期ある場合、後半が当期）
-  // 「当連結会計年度」以降のテキストを使う
-  let currentPeriodStart = 0;
+  // 当連結会計年度セクションの特定
+  let currentPeriodStart = -1;
   for (let i = 0; i < lines.length; i++) {
     if (/当連結会計年度|当(?:事業)?年度/.test(lines[i]) && /自.*至|20[0-9]{2}年/.test(lines[i])) {
       currentPeriodStart = i;
     }
   }
 
-  // 当期セクションから探索
-  const searchLines = lines.slice(currentPeriodStart);
+  // 当期セクション（見つからなければ全体の後半を使用）
+  const sectionStart = currentPeriodStart >= 0 ? currentPeriodStart : Math.floor(lines.length / 2);
 
-  let endBalance = null;
-  let fairValue = null;
+  // 「（注）」「※」が出るまでの数値行と、全行を収集
+  const allNums = [];
+  for (let i = sectionStart; i < lines.length; i++) {
+    const line = lines[i];
+    // 注記行に到達したら終了
+    if (/^[\s]*[（(]注[）)]|^[\s]*※/.test(line)) break;
+    // 次の注記セクション（「収益認識」等）に到達したら終了
+    if (i > sectionStart + 2 && /関係[）)]$/.test(line.replace(/\s/g, ''))) break;
 
-  for (let i = 0; i < searchLines.length; i++) {
-    const line = searchLines[i];
-    const stripped = line.replace(/\s/g, '');
-
-    // 「期末残高」「年度末残高」を探す
-    if (/期末(?:残高)?$|年度末(?:残高)?$/.test(stripped) && !/期首/.test(stripped)) {
-      // この行に数値があるか、なければ次の行
-      const nums = extractNums(line);
-      if (nums.length > 0) {
-        endBalance = nums;
-      } else {
-        // 次の数行で最初に見つかる数値行
-        for (let j = i + 1; j < Math.min(i + 4, searchLines.length); j++) {
-          const nn = extractNums(searchLines[j]);
-          if (nn.length > 0) { endBalance = nn; break; }
-        }
-      }
+    const nums = extractNums(line);
+    for (const n of nums) {
+      allNums.push(n);
     }
+  }
 
-    // 「時価」「の時価」を探す（ラベル行）
-    if ((/時価$|の時価$/.test(stripped) || /^時価$/.test(stripped))
-        && !stripped.includes('貸借') && !stripped.includes('期首')
-        && !stripped.includes('増減') && !stripped.includes('賃貸')) {
-      const nums = extractNums(line);
-      if (nums.length > 0) {
-        fairValue = nums;
-      } else {
-        for (let j = i + 1; j < Math.min(i + 4, searchLines.length); j++) {
-          const nn = extractNums(searchLines[j]);
-          if (nn.length > 0) { fairValue = nn; break; }
+  // パターン1: 4数値 [期首, 増減, 期末, 時価]
+  // 検証: nums[0] + nums[1] ≒ nums[2] (±1%以内)
+  if (allNums.length >= 4) {
+    for (let i = 0; i <= allNums.length - 4; i++) {
+      const first = allNums[i], delta = allNums[i + 1], endBal = allNums[i + 2], fv = allNums[i + 3];
+      // 増減は負になりうるので絶対値で検証はしない
+      if (Math.abs((first + delta) - endBal) <= Math.max(Math.abs(first) * 0.02, 10)) {
+        if (endBal > 0 && fv > 0) {
+          data.investmentPropertyBookValue = endBal;
+          data.investmentPropertyFairValue = fv;
+          data._ipDebug = { pattern: 'sequence-verify', bv: endBal, fv, allNums: allNums.slice(i, i + 4), term: matchedTerm };
+          return;
         }
       }
     }
   }
 
-  // 結果を取得
+  // パターン2: 直接ラベルマッチ（パターンBの2期並列テーブル形式）
+  let endBalance = null, fairValue = null;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const stripped = line.replace(/\s/g, '');
+    const nums = extractNums(line);
+
+    // 期末残高行に数値がある場合（2期並列）
+    if (/期末(?:残高)?|年度末(?:残高)?/.test(stripped) && !/期首/.test(stripped) && nums.length > 0) {
+      endBalance = nums;
+    }
+    // 時価行に数値がある場合
+    if ((/時価/.test(stripped) && !stripped.includes('貸借') && !stripped.includes('期首')
+        && !stripped.includes('増減') && !stripped.includes('賃貸')) && nums.length > 0) {
+      fairValue = nums;
+    }
+  }
+
   if (endBalance && endBalance.length > 0 && fairValue && fairValue.length > 0) {
-    // パターンA(1期分): それぞれ1つの数値
-    // パターンB(2期並列): 最後の列が当期
     const bv = endBalance[endBalance.length - 1];
     const fv = fairValue[fairValue.length - 1];
     if (bv > 0 && fv > 0) {
       data.investmentPropertyBookValue = bv;
       data.investmentPropertyFairValue = fv;
-      data._ipDebug = { pattern: 'text-lines', bv, fv, endBalance, fairValue, term: matchedTerm };
+      data._ipDebug = { pattern: 'label-inline', bv, fv, endBalance, fairValue, term: matchedTerm };
       return;
     }
   }
 
-  // フォールバック: 当期セクションが見つからない場合は全行で探索
-  if (!endBalance || !fairValue) {
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      const stripped = line.replace(/\s/g, '');
-
-      if (/期末(?:残高)?$|年度末(?:残高)?$/.test(stripped) && !/期首/.test(stripped)) {
-        const nums = extractNums(line);
-        if (nums.length > 0) endBalance = nums;
-        else {
-          for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
-            const nn = extractNums(lines[j]);
-            if (nn.length > 0) { endBalance = nn; break; }
-          }
-        }
-      }
-
-      if ((/時価$|の時価$/.test(stripped) || /^時価$/.test(stripped))
-          && !stripped.includes('貸借') && !stripped.includes('期首')
-          && !stripped.includes('増減') && !stripped.includes('賃貸')) {
-        const nums = extractNums(line);
-        if (nums.length > 0) fairValue = nums;
-        else {
-          for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
-            const nn = extractNums(lines[j]);
-            if (nn.length > 0) { fairValue = nn; break; }
-          }
-        }
-      }
-    }
-
-    if (endBalance && endBalance.length > 0 && fairValue && fairValue.length > 0) {
-      const bv = endBalance[endBalance.length - 1];
-      const fv = fairValue[fairValue.length - 1];
-      if (bv > 0 && fv > 0) {
-        data.investmentPropertyBookValue = bv;
-        data.investmentPropertyFairValue = fv;
-        data._ipDebug = { pattern: 'text-lines-fallback', bv, fv, endBalance, fairValue, term: matchedTerm };
-        return;
-      }
+  // パターン3: 全数値から最後の2つの大きな値を使用（最終フォールバック）
+  if (allNums.length >= 2) {
+    const bv = allNums[allNums.length - 2];
+    const fv = allNums[allNums.length - 1];
+    if (bv > 0 && fv > 0) {
+      data.investmentPropertyBookValue = bv;
+      data.investmentPropertyFairValue = fv;
+      data._ipDebug = { pattern: 'last2-fallback', bv, fv, allNums, term: matchedTerm };
+      return;
     }
   }
 
@@ -407,9 +382,9 @@ function parseInvestmentPropertyNote(html, data) {
   data._ipDebug = {
     pattern: 'no-match',
     term: matchedTerm,
-    endBalance,
-    fairValue,
-    linesSample: lines.slice(currentPeriodStart, currentPeriodStart + 40),
+    allNums,
+    sectionStart,
+    linesSample: lines.slice(sectionStart, sectionStart + 30),
   };
 }
 
