@@ -56,14 +56,10 @@ function fetchBuffer(url) {
 // ── EDINET Code List ──
 async function loadEdinetCodeMap() {
   console.log('EDINETコードリスト取得中...');
-  const url = `${EDINET_API_BASE}/EdinetcodeDlInfo/codes?Subscription-Key=${API_KEY}`;
+  const url = 'https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelist/Edinetcode.zip';
   const buf = await fetchBuffer(url);
 
-  // The response is a ZIP containing a CSV
-  const AdmZip = require('./lib_adm_zip');
-  // If adm-zip not available, try manual parse
-  // Actually, let's parse the ZIP manually - it's simpler with built-in zlib
-  const zlib = require('zlib');
+  // The response is a ZIP containing a CSV - parse manually with built-in zlib
 
   // ZIP file parsing (minimal implementation)
   const entries = parseZipEntries(buf);
@@ -73,7 +69,9 @@ async function loadEdinetCodeMap() {
     return parseEdinetCsv(buf.toString('utf-8'));
   }
 
-  const csvText = csvEntry.data.toString('utf-8');
+  // CSV is Shift-JIS encoded
+  const { TextDecoder } = require('util');
+  const csvText = new TextDecoder('shift-jis').decode(csvEntry.data);
   return parseEdinetCsv(csvText);
 }
 
@@ -115,8 +113,8 @@ function parseZipEntries(buf) {
 function parseEdinetCsv(csvText) {
   const lines = csvText.split('\n');
   const map = {};
-  // Skip header (first 1-2 lines)
-  for (let i = 1; i < lines.length; i++) {
+  // Skip header (first line is download date, second is column headers)
+  for (let i = 2; i < lines.length; i++) {
     const line = lines[i].trim();
     if (!line) continue;
     // CSV format: EDINETコード,提出者種別,上場区分,連結の有無,資本金,決算日,提出者名,提出者名（英字）,提出者名（カナ）,所在地,提出者業種,証券コード,提出者法人番号
