@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5D57P05PM');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>外食産業 セクター分析レポート | Aoyama Nogizaka Partners</title>
@@ -371,11 +368,29 @@
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
 
+    /* === Download Buttons === */
+    .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: 8px 18px; border-radius: var(--radius);
+      font-size: 0.75rem; font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
+    .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
     /* === Print === */
     @media print {
-      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay { display: none !important; }
+      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; }
+      .main { padding: 0 !important; }
       .section { display: block !important; page-break-before: always; }
-      .premium-blur { filter: none; pointer-events: auto; }
+      .section:first-child { page-break-before: avoid; }
+      .premium-blur { filter: none !important; pointer-events: auto !important; user-select: auto !important; }
+      .report-cover { padding: 32px 24px 24px; }
+      .chart-panel { break-inside: avoid; }
+      .table-panel { break-inside: avoid; }
+      body { font-size: 11px; }
     }
     @media (max-width: 900px) {
       .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
@@ -436,6 +451,16 @@
       <span>対象: <strong id="companyCount">0</strong>社</span>
       <span>分析指標: <strong>50+項目</strong></span>
       <span>出所: 各社IR・決算資料, 日本フードサービス協会, 総務省家計調査, 厚生労働省, 農林水産省</span>
+    </div>
+    <div class="dl-btns">
+      <button class="dl-btn" onclick="downloadPDF()">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+        PDFダウンロード
+      </button>
+      <button class="dl-btn" onclick="downloadCSV()">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12z"/></svg>
+        CSVダウンロード
+      </button>
     </div>
   </div>
 </div>
@@ -2037,6 +2062,55 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     h+='</tbody>';t.innerHTML=h;
   }
   function bindRows(el){el.querySelectorAll('.clickable-row').forEach(tr=>tr.addEventListener('click',()=>{selComp=companies.find(c=>c.code===tr.dataset.code);document.querySelector('.nav-item[data-tab="detail"]').click();}));}
+
+  // ============ DOWNLOAD FUNCTIONS ============
+  window.downloadPDF = function() {
+    window.print();
+  };
+
+  window.downloadCSV = function() {
+    const BOM = '\uFEFF';
+    const headers = [
+      'コード','企業名','セグメント','決算期','株価(円)','時価総額(百万円)','発行済株式数(千株)',
+      '売上高(百万円)','営業利益(百万円)','純利益(百万円)','営業利益率(%)','純利益率(%)',
+      'PER(倍)','PBR(倍)','ROE(%)','D/Eレシオ','NetD/Eレシオ',
+      '総資産回転率','財務レバレッジ',
+      '個人投資家比率(%)','配当利回り(%)','優待価値(円/年)','優待最低株数','優待利回り(%)','総合利回り(%)',
+      '店舗数','従業員数',
+      '株価騰落率1Y(%)','vs TOPIX(pp)',
+      '月次売上4月','月次売上5月','月次売上6月','月次売上7月','月次売上8月','月次売上9月',
+      '月次売上10月','月次売上11月','月次売上12月','月次売上1月','月次売上2月','月次売上3月',
+      '既存店売上4月','既存店売上5月','既存店売上6月','既存店売上7月','既存店売上8月','既存店売上9月',
+      '既存店売上10月','既存店売上11月','既存店売上12月','既存店売上1月','既存店売上2月','既存店売上3月',
+      '原価率4月','原価率5月','原価率6月','原価率7月','原価率8月','原価率9月',
+      '原価率10月','原価率11月','原価率12月','原価率1月','原価率2月','原価率3月'
+    ];
+    const rows = companies.map(c => [
+      c.code, c.name, SEGMENTS[c.segment]||c.segment, c.fiscalYear||'',
+      c.stockPrice, c.marketCap, c.shares,
+      c.revenue, c.opProfit, c.netProfit, c.opMargin, c.netMargin,
+      c.per, c.pbr, c.roe, c.deRatio, c.netDeRatio,
+      c.assetTurnover, c.leverage,
+      c.individualRatio, c.dividendYield, c.yutaiValue, c.yutaiMinShares, c.yutaiYield, c.totalYutaiYield,
+      c.stores, c.employees,
+      c.stockReturn1Y, c.relativeReturn,
+      ...c.monthlyRevenue,
+      ...c.sameStoreSales,
+      ...c.costRatio
+    ]);
+    const esc = v => {
+      const s = v == null ? '' : String(v);
+      return s.includes(',') || s.includes('"') || s.includes('\n') ? '"'+s.replace(/"/g,'""')+'"' : s;
+    };
+    const csv = BOM + headers.map(esc).join(',') + '\n' + rows.map(r => r.map(esc).join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '外食産業セクター分析_データ一覧_' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 })();
 
 </script>
