@@ -88,7 +88,7 @@ function openMyPage(){
   }).catch(function(e){console.error(e)});
 }
 async function handleMyPageReset(){var m=document.getElementById("myPageMsg");try{await window.firebaseResetPassword(window.currentUser.email);m.textContent="パスワードリセット用メールを送信しました。";m.style.display="block";m.style.background="#d1fae5";m.style.color="#065f46"}catch(e){m.textContent="エラー: "+e.message;m.style.display="block";m.style.background="#fee2e2";m.style.color="#991b1b"}}
-async function handleResendVerify(){var m=document.getElementById("myPageMsg");try{var mod=await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");await mod.sendEmailVerification(window.currentUser);m.textContent="認証メールを再送しました。";m.style.display="block";m.style.background="#d1fae5";m.style.color="#065f46"}catch(e){m.textContent=e.code==="auth/too-many-requests"?"送信回数が多すぎます。しばらくしてからお試しください。":"エラー: "+e.message;m.style.display="block";m.style.background="#fee2e2";m.style.color="#991b1b"}}
+async function handleResendVerify(){var m=document.getElementById("myPageMsg");try{var mod=await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");await mod.sendEmailVerification(window.currentUser);m.innerHTML='認証メールを再送しました。<br><span style="font-size:11px;">届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';m.style.display="block";m.style.background="#d1fae5";m.style.color="#065f46"}catch(e){m.textContent=e.code==="auth/too-many-requests"?"送信回数が多すぎます。しばらくしてからお試しください。":"エラー: "+e.message;m.style.display="block";m.style.background="#fee2e2";m.style.color="#991b1b"}}
 
 
 /* CSV Export (Member Only) */

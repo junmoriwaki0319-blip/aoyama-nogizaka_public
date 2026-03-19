@@ -1865,7 +1865,7 @@ async function handleRegister(e) {
     const affiliationCode = document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '';
     const jobTitle = document.getElementById('regJobTitle').value;
     await window.firebaseRegister(email, password, name, company, affiliation, affiliationCode, jobTitle);
-    successEl.textContent = '登録が完了しました。確認メールをお送りしましたのでご確認ください。';
+    successEl.innerHTML = '登録が完了しました。確認メールをお送りしましたのでご確認ください。<br><span style="font-size:12px;color:#065f46;">メールが届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
     successEl.style.display = 'block';
     setTimeout(() => {
       closeModal('register');
@@ -2007,7 +2007,7 @@ async function handleResendVerification() {
   try {
     const { sendEmailVerification } = await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");
     await sendEmailVerification(window.currentUser);
-    msg.textContent = '認証メールを再送しました。メールをご確認ください。';
+    msg.innerHTML = '認証メールを再送しました。メールをご確認ください。<br><span style="font-size:11px;">届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
     msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
   } catch (e) {
     msg.textContent = (e.code === 'auth/too-many-requests') ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
