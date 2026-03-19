@@ -1738,7 +1738,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         ${kpi('総店舗数',ts.toLocaleString(),'','c-navy')}
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 百万円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / セグメント色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>
       </div>
       <div class="chart-row">
@@ -1754,7 +1754,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       </div>`;
     dc(['exMC','exPie','exBub']);
     const s15=[...companies].sort((a,b)=>b.marketCap-a.marketCap).slice(0,15);
-    mc('exMC','bar',{labels:s15.map(c=>shortName(c.name)),datasets:[{data:s15.map(c=>c.marketCap),backgroundColor:s15.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v>=10000?(v/10000).toFixed(0)+'億':v.toLocaleString()}}});
+    mc('exMC','bar',{labels:s15.map(c=>shortName(c.name)),datasets:[{data:s15.map(c=>Math.round(c.marketCap/10000*10)/10),backgroundColor:s15.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v.toLocaleString()+'億'}}});
     const segMC={}; companies.forEach(c=>{segMC[c.segment]=(segMC[c.segment]||0)+c.marketCap;});
     mc('exPie','doughnut',{labels:Object.keys(segMC).map(k=>SEGMENTS[k]),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(k=>SC[k]),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:(v,ctx)=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return(v/t*100).toFixed(1)+'%';}}}});
     const mx=Math.max(...companies.map(c=>c.marketCap));
@@ -1788,7 +1788,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>セグメント</th><th>株価</th><th>時価総額</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>ROE</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td><span class="badge">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.roe}%</td></tr>`).join('')}</tbody>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td><span class="badge">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${Math.round(c.marketCap/10000).toLocaleString()}億</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.roe}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);
     dc(['mkT17','mkIdx','mkStocks']);
@@ -1961,7 +1961,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       <div class="chip-select" style="margin-bottom:24px;">${c.brands.map(b=>`<span class="chip selected">${b}</span>`).join('')}</div>
       <div class="kpi-grid">
         ${kpi('株価',c.stockPrice.toLocaleString()+'円','','c-navy')}
-        ${kpi('時価総額',c.marketCap.toLocaleString()+'百万','','c-navy')}
+        ${kpi('時価総額',Math.round(c.marketCap/10000).toLocaleString()+'億円','','c-navy')}
         ${kpi('営業利益率',c.opMargin+'%','','c-green')}
         ${kpi('ROE',c.roe+'%','','c-gold')}
         ${kpi('PER / PBR',c.per.toFixed(1)+' / '+c.pbr.toFixed(1),'','c-navy')}
