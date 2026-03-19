@@ -1837,9 +1837,9 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     const el = g('sec-dupont');
     const sorted=[...companies].sort((a,b)=>b.roe-a.roe);
     el.innerHTML = `
-      ${secH('04','DuPont分解分析','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
+      ${secH('04','DuPont分解','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
       <div class="commentary">
-        <strong>DuPont分析:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
+        <strong>DuPont分解:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
         総資産回転率平均<strong>${avg(companies,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(companies,'leverage')}x</strong>。
         エターナルホスピタリティG(ROE${companies.find(c=>c.code==='3193')?.roe}%)やクリエイト・レストランツHD等は高レバレッジが高ROEに寄与。
         一方、コメダHDは純利益率${companies.find(c=>c.code==='3543')?.netMargin}%と突出するが回転率は0.5xと低い(FCモデルの特性)。
