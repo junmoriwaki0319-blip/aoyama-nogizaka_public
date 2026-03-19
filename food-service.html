@@ -2064,11 +2064,18 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
   function bindRows(el){el.querySelectorAll('.clickable-row').forEach(tr=>tr.addEventListener('click',()=>{selComp=companies.find(c=>c.code===tr.dataset.code);document.querySelector('.nav-item[data-tab="detail"]').click();}));}
 
   // ============ DOWNLOAD FUNCTIONS ============
+  function requireAuth() {
+    if (!window.currentUser) { window.openModal('login'); return false; }
+    return true;
+  }
+
   window.downloadPDF = function() {
+    if (!requireAuth()) return;
     window.print();
   };
 
   window.downloadCSV = function() {
+    if (!requireAuth()) return;
     const BOM = '\uFEFF';
     const headers = [
       'コード','企業名','セグメント','決算期','株価(円)','時価総額(百万円)','発行済株式数(千株)',
