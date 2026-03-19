@@ -420,7 +420,7 @@
 
 <!-- Utility functions -->
 <script>
-function fmtM(v){if(v>=100000)return(v/100000).toFixed(1)+'兆円';if(v>=100)return(v/100).toFixed(0)+'億円';return v.toFixed(0)+'百万円';}
+function fmtM(v){if(v>=10000)return(v/10000).toFixed(1)+'兆円';return v.toLocaleString()+'億円';}
 function fmtB(v){return v>=10000?(v/10000).toFixed(1)+'億':v.toLocaleString();}
 function shortName(n){return n.replace(/ホールディングス|HD|グループ/g,'').trim();}
 function avg(arr,key){const v=arr.filter(c=>c[key]!=null);return v.length?(v.reduce((s,c)=>s+c[key],0)/v.length).toFixed(1):'-';}
@@ -588,9 +588,9 @@ const companies = [
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">主要ランキング</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding-top:8px;">
-            ${rankCard('時価総額',topMC,c=>fmtM(c.marketCap))}
-            ${rankCard('営業利益率',topN(companies,'opMargin',3),c=>c.opMargin+'%')}
-            ${rankCard('ROE',topN(companies,'roe',3),c=>c.roe+'%')}
+            ${rankCard('時価総額',topMC,c=>c.marketCap.toLocaleString()+'億円')}
+            ${rankCard('営業利益率',topN(companies,'opMargin',3),c=>c.opMargin.toFixed(1)+'%')}
+            ${rankCard('ROE',topN(companies,'roe',3),c=>c.roe.toFixed(1)+'%')}
           </div>
         </div>
       </div>`;
