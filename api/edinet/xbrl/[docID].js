@@ -17,6 +17,9 @@ module.exports = async (req, res) => {
   if (!docID) {
     return res.status(400).json({ success: false, error: 'docIDが必要です' });
   }
+  if (!/^[A-Za-z0-9]{8,12}$/.test(docID)) {
+    return res.status(400).json({ success: false, error: 'docIDの形式が不正です' });
+  }
   if (!apiKey) {
     return res.status(400).json({ success: false, error: 'EDINET APIキーが必要です' });
   }
@@ -72,7 +75,7 @@ module.exports = async (req, res) => {
     res.json({ success: true, data });
   } catch (err) {
     console.error('EDINET XBRL error:', err.message);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, error: 'XBRL解析に失敗しました' });
   }
 };
 
@@ -242,64 +245,136 @@ function parseInvestmentPropertyNote(html, data) {
   // 日本基準では「賃貸等不動産」が正式名称
   const searchTerms = ['賃貸等不動産', '賃貸不動産', '投資不動産'];
   let ipIdx = -1;
+  let matchedTerm = '';
   for (const term of searchTerms) {
     ipIdx = html.indexOf(term);
-    if (ipIdx !== -1) break;
+    if (ipIdx !== -1) { matchedTerm = term; break; }
   }
   if (ipIdx === -1) return;
 
   // 周辺のテーブルを解析（前後を広めに取る）
   const searchRange = html.substring(Math.max(0, ipIdx - 500), Math.min(html.length, ipIdx + 8000));
+  const debugInfo = { matchedTerm, ipIdx };
 
-  // パターン1: 「貸借対照表計上額」「時価」を探す（ヘッダー行とデータ行が離れている場合も対応）
-  const bsMatch = searchRange.match(/貸借対照表計上額[\s\S]{0,500}?(?:<[^>]*>[\s\S]{0,50}?)*?([0-9,]{3,})/);
-  const fvMatch = searchRange.match(/(?:時価|公正価値)[\s\S]{0,500}?(?:<[^>]*>[\s\S]{0,50}?)*?([0-9,]{3,})/);
+  // 賃貸等不動産の典型的なテーブル構造:
+  // 日本基準の注記では以下の2つの表がある:
+  //   表1: 期首残高、期中増減額、期末残高（BS計上額ベース）
+  //   表2: 貸借対照表計上額（期末）、時価（期末）、差額
+  // ここでは表2（期末のBS計上額と時価）を抽出したい
 
+  // HTMLタグを除去したクリーンテキスト（数値位置の特定用）
+  const cleanText = searchRange.replace(/<[^>]*>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ');
+
+  // パターン1: テーブルから期末の「貸借対照表計上額」「時価」「差額」を探す
+  // 典型的な構造: ... 貸借対照表計上額 ... 時価 ... 差額 ...
+  //              ... 1,234,567 ... 2,345,678 ... 1,111,111 ...
+  // 数値は百万円単位が多い（大企業は百万円、中小は千円）
+
+  // 期末の貸借対照表計上額と時価を含む行を探す
+  // 「貸借対照表計上額」と「時価」が近くにある部分を見つけ、その下の数値を取得
+  const bsFvPattern = cleanText.match(/貸借対照表計上額[\s（(]*(?:百万円|千円|円)*[\s）)]*[\s,]*(?:時価|当期末の時価)[\s（(]*(?:百万円|千円|円)*[\s）)]*[\s,]*(?:差額)/);
+  if (bsFvPattern) {
+    // ヘッダー行の後の数値行を探す
+    const afterHeader = cleanText.substring(cleanText.indexOf(bsFvPattern[0]) + bsFvPattern[0].length);
+    const numsInRow = afterHeader.match(/([0-9,]{4,})/g);
+    if (numsInRow && numsInRow.length >= 2) {
+      const bv = parseFloat(numsInRow[0].replace(/,/g, ''));
+      const fv = parseFloat(numsInRow[1].replace(/,/g, ''));
+      if (bv > 100 && fv > 100) { // 百万円単位なら最低100百万円 = 1億円以上
+        data.investmentPropertyBookValue = bv;
+        data.investmentPropertyFairValue = fv;
+        data._ipDebug = { pattern: '1a-header-then-nums', bv, fv };
+        return;
+      }
+    }
+  }
+
+  // パターン1b: 「貸借対照表計上額」の後の最初の4桁以上数値、「時価」の後の最初の4桁以上数値
+  const bsMatch = cleanText.match(/貸借対照表計上額[\s\S]{0,300}?([0-9,]{4,})/);
+  const fvMatch = cleanText.match(/(?:当期末の時価|時価|公正価値)[\s\S]{0,300}?([0-9,]{4,})/);
   if (bsMatch && fvMatch) {
     const bv = parseFloat(bsMatch[1].replace(/,/g, ''));
     const fv = parseFloat(fvMatch[1].replace(/,/g, ''));
-    if (!isNaN(bv) && !isNaN(fv) && bv > 0 && fv > 0) {
+    if (bv > 100 && fv > 100) {
       data.investmentPropertyBookValue = bv;
       data.investmentPropertyFairValue = fv;
+      data._ipDebug = { pattern: '1b-bs-fv-keywords', bv, fv };
+      return;
     }
   }
 
-  // パターン2: テーブルから「期末残高」行の数値を取得
-  // 多くの企業では期首・増減・減少・期末の表形式
+  // パターン2: テーブルの最終行付近から「期末」の数値を取得
+  // テーブル構造: 期首 | 増加 | 減少 | 期末(BS) | 期末(時価) | 差額
   if (data.investmentPropertyBookValue == null) {
-    // 「期末」を含む行付近から数値を取得
-    const endBalMatch = searchRange.match(/期末[\s\S]{0,300}?([0-9,]{3,})[\s\S]{0,200}?([0-9,]{3,})/);
+    // テーブル内のすべての行を解析
+    const tables = searchRange.match(/<table[\s\S]*?<\/table>/gi);
+    if (tables) {
+      for (const table of tables) {
+        const rows = table.match(/<tr[\s\S]*?<\/tr>/gi);
+        if (!rows) continue;
+
+        // ヘッダーに「貸借対照表計上額」「時価」が含まれるテーブルを探す
+        const tableText = table.replace(/<[^>]*>/g, ' ');
+        if (!tableText.includes('貸借対照表計上額') && !tableText.includes('時価')) continue;
+
+        // 各行のセルを解析し、4桁以上の数値を持つ行を収集
+        for (const row of rows) {
+          const cells = row.match(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi);
+          if (!cells) continue;
+          const cellTexts = cells.map(c => c.replace(/<[^>]*>/g, '').replace(/&nbsp;/gi, ' ').replace(/\s+/g, '').trim());
+
+          // 「期末」「当期末」を含む行を探す
+          const isEndRow = cellTexts.some(t => /期末|当期末/.test(t));
+          if (!isEndRow) continue;
+
+          // この行から4桁以上の数値を収集
+          const nums = [];
+          for (const t of cellTexts) {
+            const cleaned = t.replace(/,/g, '');
+            const n = parseFloat(cleaned);
+            if (!isNaN(n) && n >= 100 && cleaned.length >= 3) nums.push(n);
+          }
+
+          if (nums.length >= 2) {
+            // 最後の2つまたは3つの数値が「BS計上額」「時価」「差額」
+            // 差額 = 時価 - BS計上額 なので検証可能
+            if (nums.length >= 3) {
+              const last3 = nums.slice(-3);
+              // last3[2] ≈ last3[1] - last3[0] なら正しい
+              if (Math.abs(last3[2] - (last3[1] - last3[0])) < last3[0] * 0.01) {
+                data.investmentPropertyBookValue = last3[0];
+                data.investmentPropertyFairValue = last3[1];
+                data._ipDebug = { pattern: '2-table-end-row-3nums', nums: last3 };
+                return;
+              }
+            }
+            // 2つだけの場合は最初がBS、次が時価
+            data.investmentPropertyBookValue = nums[nums.length - 2];
+            data.investmentPropertyFairValue = nums[nums.length - 1];
+            data._ipDebug = { pattern: '2-table-end-row-2nums', nums };
+            return;
+          }
+        }
+      }
+    }
+  }
+
+  // パターン3: 「期末」キーワード付近から4桁以上の数値ペアを取得（フォールバック）
+  if (data.investmentPropertyBookValue == null) {
+    const endBalMatch = cleanText.match(/期末[\s\S]{0,300}?([0-9,]{4,})[\s\S]{0,200}?([0-9,]{4,})/);
     if (endBalMatch) {
       const v1 = parseFloat(endBalMatch[1].replace(/,/g, ''));
       const v2 = parseFloat(endBalMatch[2].replace(/,/g, ''));
-      if (!isNaN(v1) && !isNaN(v2) && v1 > 0 && v2 > 0) {
-        // 小さい方がBS計上額、大きい方が時価（含み益がある前提）
-        // ただし含み損のケースもあるので、最初の値をBS、2番目を時価とする
+      if (v1 > 100 && v2 > 100) {
         data.investmentPropertyBookValue = v1;
         data.investmentPropertyFairValue = v2;
+        data._ipDebug = { pattern: '3-period-end-fallback', v1, v2 };
       }
     }
   }
 
-  // パターン3: テーブルセルから数値を連続抽出
-  if (data.investmentPropertyBookValue == null) {
-    const tableMatch = searchRange.match(/<table[\s\S]*?<\/table>/i);
-    if (tableMatch) {
-      const cells = tableMatch[0].match(/<td[^>]*>[\s\S]*?<\/td>/gi);
-      if (cells) {
-        const nums = [];
-        for (const cell of cells) {
-          const text = cell.replace(/<[^>]*>/g, '').replace(/\s+/g, '').replace(/,/g, '');
-          const n = parseFloat(text);
-          if (!isNaN(n) && n > 0) nums.push(n);
-        }
-        // 2つ以上の数値があればBS計上額と時価と推定
-        if (nums.length >= 2) {
-          data.investmentPropertyBookValue = nums[0];
-          data.investmentPropertyFairValue = nums[1];
-        }
-      }
-    }
+  if (!data._ipDebug) {
+    data._ipDebug = { pattern: 'no-match', searchSnippet: cleanText.substring(0, 500) };
   }
 }
 
