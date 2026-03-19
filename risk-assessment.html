@@ -305,7 +305,7 @@
   <div class="stock-input-section">
     <div class="stock-input-card">
       <h2>銘柄コードで自動診断</h2>
-      <p>4桁の証券コード（英数字対応）を入力すると、kabutan・Yahoo Finance・EDINETから各指標を自動取得します。</p>
+      <p>4桁の証券コード（英数字対応）を入力すると、kabutan・Yahoo!ファイナンス・EDINETから各指標を自動取得します。</p>
       <div class="stock-input-row">
         <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203">
         <button class="btn-fetch" id="btnFetch" onclick="fetchStockData()">データ取得</button>
@@ -515,7 +515,7 @@ async function fetchStockData() {
 
   btn.disabled = true;
   btn.textContent = '取得中...';
-  info.textContent = 'kabutan + Yahoo Financeからデータ取得中...';
+  info.textContent = 'kabutan + Yahoo!ファイナンスからデータ取得中...';
   info.className = 'stock-info';
   document.querySelectorAll('.auto-filled').forEach(el => el.classList.remove('auto-filled'));
   _edinetData = {};

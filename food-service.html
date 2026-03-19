@@ -466,7 +466,7 @@
 <!-- Login Wall (shown when not authenticated) -->
 <div id="loginWall" class="login-wall">
   <h3>会員限定コンテンツ</h3>
-  <p>外食産業セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
+  <p>外食セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
   <button class="btn-cta" onclick="openModal('register')">無料会員登録</button><br>
   <span class="btn-login-link" onclick="openModal('login')">既にアカウントをお持ちの方はログイン</span>
 </div>
@@ -475,7 +475,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-brand">Aoyama Nogizaka Partners</span>
-    <span>本レポートは各社IR開示情報・Yahoo Finance Japan等に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
+    <span>本レポートは各社IR開示情報・Yahoo!ファイナンス等に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
   </div>
 </footer>
 
@@ -1566,7 +1566,7 @@ const SECTOR_AVG_SSS = [105.0,104.5,111.2,103.8,108.1,107.6,104.6,110.5,110.6,10
 // ---------- データ基準日 ----------
 const DATA_AS_OF = {
   stockPrice: '2026年3月13日終値',
-  financials: '各社直近本決算(Yahoo Finance Japan自動取得)',
+  financials: '各社直近本決算(Yahoo!ファイナンス自動取得)',
   sameStoreSales: '2024年4月～2025年3月',
   topixPeriod: '2025年3月19日～2026年3月13日',
   minimumWage: '2024年10月改定(厚生労働省)',
@@ -1718,7 +1718,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
-        外食産業セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
+        外食セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
         F&LC(スシロー)が+121.7%と突出、サイゼリヤ+48.2%、物語コーポレーション+43.1%が続く。<br><br>
         <strong>足元のリスク要因:</strong>
         (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
@@ -1769,12 +1769,12 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     el.innerHTML = `
       ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
       <div class="commentary">
-        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食産業セクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
+        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
         TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの銘柄はTOPIXを下回った。
         TOPIXを上回ったのは<strong>${above}銘柄</strong>、下回ったのは${companies.length-above}銘柄。
       </div>
       <div class="kpi-grid">
-        ${kpi('外食産業セクター','130.0pt','直近1年','c-navy')}
+        ${kpi('外食セクター','130.0pt','直近1年','c-navy')}
         ${kpi('TOPIX','129.8pt','同期間','c-navy')}
         ${kpi('超過リターン','+0.2pt','ほぼ同水準','c-navy')}
         ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
@@ -1839,7 +1839,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     el.innerHTML = `
       ${secH('04','DuPont分解分析','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
       <div class="commentary">
-        <strong>DuPont Analysis:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
+        <strong>DuPont分析:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
         総資産回転率平均<strong>${avg(companies,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(companies,'leverage')}x</strong>。
         エターナルホスピタリティG(ROE${companies.find(c=>c.code==='3193')?.roe}%)やクリエイト・レストランツHD等は高レバレッジが高ROEに寄与。
         一方、コメダHDは純利益率${companies.find(c=>c.code==='3543')?.netMargin}%と突出するが回転率は0.5xと低い(FCモデルの特性)。

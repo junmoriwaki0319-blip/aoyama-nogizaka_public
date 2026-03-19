@@ -141,7 +141,7 @@ async function fetchIndividual() {
 
   try {
     // Yahoo Finance取得
-    loadingText.textContent = 'kabutan + Yahoo Finance からデータ取得中...';
+    loadingText.textContent = 'kabutan + Yahoo!ファイナンス からデータ取得中...';
     const yRes = await fetch(API_BASE+'/api/stock/' + code);
     if (!yRes.ok) {
       console.warn('Stock API returned status:', yRes.status);
