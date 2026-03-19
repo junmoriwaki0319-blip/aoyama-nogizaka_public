@@ -12,17 +12,10 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const docID = req.query.docID;
-  if (!/^[A-Za-z0-9]{8,12}$/.test(docID)) {
-    return res.status(400).json({ success: false, error: 'docIDの形式が不正です' });
+  if (!docID || !/^[A-Za-z0-9]{8,12}$/.test(docID)) {
+    return res.status(400).json({ success: false, error: 'docIDが必要です（英数字8-12桁）' });
   }
   const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
-
-  if (!docID) {
-    return res.status(400).json({ success: false, error: 'docIDが必要です' });
-  }
-  if (!/^[A-Za-z0-9]{8,12}$/.test(docID)) {
-    return res.status(400).json({ success: false, error: 'docIDの形式が不正です' });
-  }
   if (!apiKey) {
     return res.status(400).json({ success: false, error: 'EDINET APIキーが必要です' });
   }
@@ -321,34 +314,38 @@ function parseInvestmentPropertyNote(html, data) {
   }
 
   // パターン1: 4数値 [期首, 増減, 期末, 時価]
-  // 検証: nums[0] + nums[1] ≒ nums[2] (±1%以内)
+  // 検証: nums[0] + nums[1] ≒ nums[2] (±2%以内)
+  // 複数マッチがある場合は最大のendBalを採用（合計 > 内訳）
+  const seqMatches = [];
   if (allNums.length >= 4) {
     for (let i = 0; i <= allNums.length - 4; i++) {
       const first = allNums[i], delta = allNums[i + 1], endBal = allNums[i + 2], fv = allNums[i + 3];
-      // 増減は負になりうるので絶対値で検証はしない
       if (Math.abs((first + delta) - endBal) <= Math.max(Math.abs(first) * 0.02, 10)) {
         if (endBal > 0 && fv > 0) {
-          data.investmentPropertyBookValue = endBal;
-          data.investmentPropertyFairValue = fv;
-          data._ipDebug = { pattern: 'sequence-verify', bv: endBal, fv, allNums: allNums.slice(i, i + 4), term: matchedTerm };
-          return;
+          seqMatches.push({ i, first, delta, endBal, fv });
         }
       }
     }
   }
+  if (seqMatches.length > 0) {
+    // 最大のendBalを持つマッチを選択（合計行を優先）
+    const best = seqMatches.reduce((a, b) => b.endBal > a.endBal ? b : a);
+    data.investmentPropertyBookValue = best.endBal;
+    data.investmentPropertyFairValue = best.fv;
+    data._ipDebug = { pattern: 'sequence-verify', bv: best.endBal, fv: best.fv, allNums: allNums.slice(best.i, best.i + 4), term: matchedTerm, matchCount: seqMatches.length };
+    return;
+  }
 
-  // パターン2: 直接ラベルマッチ（パターンBの2期並列テーブル形式）
+  // パターン2: 直接ラベルマッチ（2期並列テーブル形式）
   let endBalance = null, fairValue = null;
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const stripped = line.replace(/\s/g, '');
     const nums = extractNums(line);
 
-    // 期末残高行に数値がある場合（2期並列）
     if (/期末(?:残高)?|年度末(?:残高)?/.test(stripped) && !/期首/.test(stripped) && nums.length > 0) {
       endBalance = nums;
     }
-    // 時価行に数値がある場合
     if ((/時価/.test(stripped) && !stripped.includes('貸借') && !stripped.includes('期首')
         && !stripped.includes('増減') && !stripped.includes('賃貸')) && nums.length > 0) {
       fairValue = nums;
@@ -365,6 +362,24 @@ function parseInvestmentPropertyNote(html, data) {
       return;
     }
   }
+
+  // パターン3: 末尾2数値フォールバック
+  // 期中増減が複数行に分割されている場合、sequence-verifyが失敗する
+  // テーブルの最後の2数値が [期末BV, 時価FV] であることが多い
+  if (allNums.length >= 2) {
+    const bv = allNums[allNums.length - 2];
+    const fv = allNums[allNums.length - 1];
+    // 妥当性チェック: 両方正、FVがBVの5%以上（時価は通常BVと同桁）
+    if (bv > 0 && fv > 0 && fv >= bv * 0.05 && bv >= fv * 0.05) {
+      data.investmentPropertyBookValue = bv;
+      data.investmentPropertyFairValue = fv;
+      data._ipDebug = { pattern: 'tail-2', bv, fv, allNums: allNums.slice(0, 20), term: matchedTerm };
+      return;
+    }
+  }
+
+  // パターン4: 数値1個のみ（小規模賃貸等不動産）
+  // BVのみ記載のケース - FV不明のため記録しない
 
   // デバッグ情報（マッチしなかった場合）
   data._ipDebug = {
