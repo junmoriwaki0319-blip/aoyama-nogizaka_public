@@ -407,6 +407,7 @@
       <span class="cross-nav-sep"></span>
       <span class="cross-nav-cat">アクティビスト</span>
       <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/risk-assessment.html" class="cross-nav-link">機会評価</a>
       <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
     </nav>
     <div class="nav-auth-btns" id="navAuthBtns">
@@ -425,7 +426,7 @@
 <div class="report-cover">
   <div class="report-cover-inner">
     <div class="report-label">Sector Analysis Report</div>
-    <div class="report-title">Restaurants セクター分析 KPIダッシュボード</div>
+    <div class="report-title">外食産業 セクター分析 KPIダッシュボード</div>
     <div class="report-subtitle">上場外食企業35社のファンダメンタルズ・バリュエーション・月次KPI横断分析</div>
     <div class="report-meta">
       <span>株価基準日: <strong>2026年3月13日終値</strong></span>
@@ -1717,7 +1718,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
-        Restaurantsセクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
+        外食産業セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
         F&LC(スシロー)が+121.7%と突出、サイゼリヤ+48.2%、物語コーポレーション+43.1%が続く。<br><br>
         <strong>足元のリスク要因:</strong>
         (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
@@ -1768,19 +1769,19 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     el.innerHTML = `
       ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
       <div class="commentary">
-        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> Restaurantsセクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
+        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食産業セクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
         TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの銘柄はTOPIXを下回った。
         TOPIXを上回ったのは<strong>${above}銘柄</strong>、下回ったのは${companies.length-above}銘柄。
       </div>
       <div class="kpi-grid">
-        ${kpi('Restaurantsセクター','130.0pt','直近1年','c-navy')}
+        ${kpi('外食産業セクター','130.0pt','直近1年','c-navy')}
         ${kpi('TOPIX','129.8pt','同期間','c-navy')}
         ${kpi('超過リターン','+0.2pt','ほぼ同水準','c-navy')}
         ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">TOPIX-17セクター別パフォーマンス比較</div><div class="chart-panel-sub">直近1年騰落率 / 100基準</div><div class="chart-area tall"><canvas id="mkT17"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">Restaurants vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100)</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">外食産業 vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100)</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
       </div>
       <div class="chart-row single">
         <div class="chart-panel"><div class="chart-panel-title">銘柄別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
@@ -1793,7 +1794,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     dc(['mkT17','mkIdx','mkStocks']);
     mc('mkT17','bar',{labels:TOPIX17_SECTORS.map(s=>s.name),datasets:[{data:TOPIX17_SECTORS.map(s=>s.point-100),backgroundColor:TOPIX17_SECTORS.map(s=>s.name==='Restaurant'?'#1a2d4f':s.name==='TOPIX'?'#9b8b6e':'#c8c4bb'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>(v>=0?'+':'')+v.toFixed(1)+'pt'}}});
     const ml=['24/05','24/06','24/07','24/08','24/09','24/10','24/11','24/12','25/01','25/02','25/03','25/04','25/05'];
-    mc('mkIdx','line',{labels:ml,datasets:[{label:'Restaurants',data:RESTAURANT_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{});
+    mc('mkIdx','line',{labels:ml,datasets:[{label:'外食産業',data:RESTAURANT_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{});
     const hasAnnotation = Chart.registry?.plugins?.get?.('annotation') || (typeof window !== 'undefined' && window['chartjs-plugin-annotation']);
     mc('mkStocks','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.stockReturn1Y),backgroundColor:sorted.map(c=>c.stockReturn1Y>=TOPIX_RETURN_1Y?'#1a2d4f':'rgba(181,58,58,0.6)'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},annotation:{annotations:{topix:{type:'line',xMin:TOPIX_RETURN_1Y,xMax:TOPIX_RETURN_1Y,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'TOPIX '+TOPIX_RETURN_1Y+'%',position:'start'}}}}}});
   }
