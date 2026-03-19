@@ -277,13 +277,13 @@ function parseInvestmentPropertyNote(html, data) {
   // 「貸借対照表計上額」と「時価」が近くにある部分を見つけ、その下の数値を取得
   const bsFvPattern = cleanText.match(/貸借対照表計上額[\s（(]*(?:百万円|千円|円)*[\s）)]*[\s,]*(?:時価|当期末の時価)[\s（(]*(?:百万円|千円|円)*[\s）)]*[\s,]*(?:差額)/);
   if (bsFvPattern) {
-    // ヘッダー行の後の数値行を探す
+    // ヘッダー行の後の数値行を探す（5桁以上 or カンマ付き数値のみ）
     const afterHeader = cleanText.substring(cleanText.indexOf(bsFvPattern[0]) + bsFvPattern[0].length);
-    const numsInRow = afterHeader.match(/([0-9,]{4,})/g);
+    const numsInRow = afterHeader.match(/([0-9]{1,3},[0-9]{3}(?:,[0-9]{3})*|[0-9]{5,})/g);
     if (numsInRow && numsInRow.length >= 2) {
       const bv = parseFloat(numsInRow[0].replace(/,/g, ''));
       const fv = parseFloat(numsInRow[1].replace(/,/g, ''));
-      if (bv > 100 && fv > 100) { // 百万円単位なら最低100百万円 = 1億円以上
+      if (bv > 100 && fv > 100) {
         data.investmentPropertyBookValue = bv;
         data.investmentPropertyFairValue = fv;
         data._ipDebug = { pattern: '1a-header-then-nums', bv, fv };
@@ -292,9 +292,11 @@ function parseInvestmentPropertyNote(html, data) {
     }
   }
 
-  // パターン1b: 「貸借対照表計上額」の後の最初の4桁以上数値、「時価」の後の最初の4桁以上数値
-  const bsMatch = cleanText.match(/貸借対照表計上額[\s\S]{0,300}?([0-9,]{4,})/);
-  const fvMatch = cleanText.match(/(?:当期末の時価|時価|公正価値)[\s\S]{0,300}?([0-9,]{4,})/);
+  // パターン1b: 「貸借対照表計上額」の後の最初の大きな数値、「時価」の後の最初の大きな数値
+  // 年号(2023,2024,2025等)を除外するため、5桁以上 or カンマ付き4桁以上を対象
+  const numPattern = '([0-9]{1,3},[0-9]{3}(?:,[0-9]{3})*|[0-9]{5,})';
+  const bsMatch = cleanText.match(new RegExp('貸借対照表計上額[\\s\\S]{0,300}?' + numPattern));
+  const fvMatch = cleanText.match(new RegExp('(?:当期末の時価|時価|公正価値)[\\s\\S]{0,300}?' + numPattern));
   if (bsMatch && fvMatch) {
     const bv = parseFloat(bsMatch[1].replace(/,/g, ''));
     const fv = parseFloat(fvMatch[1].replace(/,/g, ''));
@@ -330,12 +332,15 @@ function parseInvestmentPropertyNote(html, data) {
           const isEndRow = cellTexts.some(t => /期末|当期末/.test(t));
           if (!isEndRow) continue;
 
-          // この行から4桁以上の数値を収集
+          // この行からカンマ付き数値 or 5桁以上の数値を収集（年号除外）
           const nums = [];
           for (const t of cellTexts) {
-            const cleaned = t.replace(/,/g, '');
-            const n = parseFloat(cleaned);
-            if (!isNaN(n) && n >= 100 && cleaned.length >= 3) nums.push(n);
+            // カンマ付き数値（例: 1,234,567）か5桁以上を対象
+            if (/[0-9]{1,3},[0-9]{3}/.test(t) || /[0-9]{5,}/.test(t.replace(/,/g, ''))) {
+              const cleaned = t.replace(/,/g, '').replace(/[△\-]/g, '');
+              const n = parseFloat(cleaned);
+              if (!isNaN(n) && n >= 100) nums.push(n);
+            }
           }
 
           if (nums.length >= 2) {
@@ -362,9 +367,10 @@ function parseInvestmentPropertyNote(html, data) {
     }
   }
 
-  // パターン3: 「期末」キーワード付近から4桁以上の数値ペアを取得（フォールバック）
+  // パターン3: 「期末」キーワード付近から大きな数値ペアを取得（フォールバック）
   if (data.investmentPropertyBookValue == null) {
-    const endBalMatch = cleanText.match(/期末[\s\S]{0,300}?([0-9,]{4,})[\s\S]{0,200}?([0-9,]{4,})/);
+    const bigNumPat = '([0-9]{1,3},[0-9]{3}(?:,[0-9]{3})*|[0-9]{5,})';
+    const endBalMatch = cleanText.match(new RegExp('期末[\\s\\S]{0,300}?' + bigNumPat + '[\\s\\S]{0,200}?' + bigNumPat));
     if (endBalMatch) {
       const v1 = parseFloat(endBalMatch[1].replace(/,/g, ''));
       const v2 = parseFloat(endBalMatch[2].replace(/,/g, ''));
@@ -377,7 +383,8 @@ function parseInvestmentPropertyNote(html, data) {
   }
 
   if (!data._ipDebug) {
-    data._ipDebug = { pattern: 'no-match', searchSnippet: cleanText.substring(0, 500) };
+    // デバッグ: マッチしなかった場合、周辺テキストを返す
+    data._ipDebug = { pattern: 'no-match', searchSnippet: cleanText.substring(0, 800) };
   }
 }
 
