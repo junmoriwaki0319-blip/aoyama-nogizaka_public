@@ -421,7 +421,7 @@
 <!-- Utility functions -->
 <script>
 function fmtM(v){if(v>=10000)return(v/10000).toFixed(1)+'兆円';return v.toLocaleString()+'億円';}
-function fmtB(v){return v>=10000?(v/10000).toFixed(1)+'億':v.toLocaleString();}
+function fmtB(v){if(v>=100000)return(v/100000).toFixed(1)+'兆円';if(v>=100)return Math.round(v/100).toLocaleString()+'億円';return v.toLocaleString()+'百万円';}
 function shortName(n){return n.replace(/ホールディングス|HD|グループ/g,'').trim();}
 function avg(arr,key){const v=arr.filter(c=>c[key]!=null);return v.length?(v.reduce((s,c)=>s+c[key],0)/v.length).toFixed(1):'-';}
 function topN(arr,key,n){return[...arr].filter(c=>c[key]!=null).sort((a,b)=>b[key]-a[key]).slice(0,n);}
@@ -549,7 +549,7 @@ const companies = [
     el.innerHTML=`
       ${secH('01','Executive Summary','国内SaaS セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
-        <strong>セクター概況 (2026年3月基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}百万円</strong>。
+        <strong>セクター概況 (2026年3月基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}</strong>。
         SaaSインデックスは直近15ヶ月(2025年1月起点)で<strong>138.2pt</strong>(TOPIX:129.8pt)と<strong>+8.4pt</strong>のアウトパフォーム。
         TOPIX超過は${above}/${companies.length}社。平均営業利益率${aOP}%、平均ROE${aROE}%。<br><br>
         <strong>足元のリスク要因:</strong>
@@ -570,7 +570,7 @@ const companies = [
       <div class="kpi-grid">
         ${kpi('対象企業数',companies.length+'社','','c-navy')}
         ${kpi('時価総額合計',fmtM(tm),'','c-navy')}
-        ${kpi('売上高合計',fmtB(tr)+'百万','','c-gold')}
+        ${kpi('売上高合計',fmtB(tr),'','c-gold')}
         ${kpi('平均営業利益率',aOP+'%','','c-gold')}
         ${kpi('平均ROE',aROE+'%','','c-navy')}
         ${kpi('平均Gross Margin',avg(companies,'grossMargin')+'%','','c-green')}
@@ -646,7 +646,7 @@ const companies = [
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>セグメント</th><th>株価</th><th>時価総額(億)</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>PSR</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td></tr>`).join('')}</tbody>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y.toFixed(1)}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['mkIdx','mkStocks']);
     const mkAnnot={};
@@ -675,8 +675,8 @@ const companies = [
         <div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="fnHist"></canvas></div></div>
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>PSR</th><th>ROE</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td></tr>`).join('')}</tbody>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>営業利益(百万)</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>PSR</th><th>ROE</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['fnRP','fnPSR','fnPBR','fnHist']);
     const t15=sorted.slice(0,15);
@@ -706,7 +706,7 @@ const companies = [
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">収益性指標一覧 (ROE順)</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>ROE</th><th>純利益率</th><th>営業利益率</th><th>Gross Margin</th><th>PBR</th><th>PER</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe}%</td><td>${c.netMargin}%</td><td>${c.opMargin}%</td><td>${c.grossMargin}%</td><td>${c.pbr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td></tr>`).join('')}</tbody>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td>${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td><td>${c.pbr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['dpBar','dpScatter']);
     mc('dpBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:sorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'営業利益率(%)',data:sorted.map(c=>c.opMargin),backgroundColor:'#9b8b6e'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
@@ -736,8 +736,8 @@ const companies = [
         <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="ivPBR"></canvas></div></div>
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧 (PSR順)</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>時価総額(億)</th><th>売上高</th><th>PSR</th><th>PER</th><th>PBR</th><th>ROE</th><th>営業利益率</th><th>vs TOPIX</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.marketCap.toLocaleString()}</td><td>${c.revenue.toLocaleString()}</td><td style="font-weight:700">${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>時価総額(億)</th><th>売上高(百万)</th><th>PSR</th><th>PER</th><th>PBR</th><th>ROE</th><th>営業利益率</th><th>vs TOPIX</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.marketCap.toLocaleString()}</td><td>${c.revenue.toLocaleString()}</td><td style="font-weight:700">${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['ivPSR','ivPBR']);
     const mx=Math.max(...companies.map(c=>c.marketCap));
@@ -765,8 +765,8 @@ const companies = [
         <div class="chart-panel"><div class="chart-panel-title">四半期売上高推移 (TOP10)</div><div class="chart-area tall"><canvas id="mtQRev"></canvas></div></div>
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">主要KPI一覧 (売上高順)</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.grossMargin}%</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['mtRev','mtGM','mtQRev']);
     const mx=Math.max(...companies.map(c=>c.marketCap));
@@ -799,13 +799,13 @@ const companies = [
         <div class="chart-panel"><div class="chart-panel-title">Gross Margin ランキング</div><div class="chart-panel-sub">セグメント別</div><div class="chart-area tall"><canvas id="utGMBar"></canvas></div></div>
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">収益構造一覧 (Gross Margin順)</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>Gross Margin</th><th>営業利益率</th><th>純利益率</th><th>ROE</th><th>売上高</th><th>営業利益</th><th>セグメント</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-weight:700">${c.grossMargin}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td></tr>`).join('')}</tbody>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>Gross Margin</th><th>営業利益率</th><th>純利益率</th><th>ROE</th><th>売上高(百万)</th><th>営業利益(百万)</th><th>セグメント</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-weight:700">${c.grossMargin.toFixed(1)}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['utGM','utGMBar']);
     const mxRev=Math.max(...companies.map(c=>c.revenue));
     mc('utGM','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.grossMargin,y:c.opMargin,r:Math.max(4,Math.sqrt(c.revenue/mxRev)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'Gross Margin (%)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: GM${x.raw.x}% / OPM${x.raw.y}%`}}}});
-    mc('utGMBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.grossMargin),backgroundColor:sorted.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v+'%'}}});
+    mc('utGMBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.grossMargin),backgroundColor:sorted.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v.toFixed(1)+'%'}}});
   }
 
   // ============ 08 DETAIL ============
@@ -824,10 +824,10 @@ const companies = [
       <div class="kpi-grid">
         ${kpi('株価',c.stockPrice.toLocaleString()+'円','','c-navy')}
         ${kpi('時価総額',c.marketCap.toLocaleString()+'億円','','c-navy')}
-        ${kpi('売上高',c.revenue.toLocaleString()+'百万','','c-gold')}
-        ${kpi('営業利益率',c.opMargin+'%','','c-gold')}
-        ${kpi('Gross Margin',c.grossMargin+'%','','c-green')}
-        ${kpi('ROE',c.roe+'%','','c-navy')}
+        ${kpi('売上高',c.revenue.toLocaleString()+'百万円','','c-gold')}
+        ${kpi('営業利益率',c.opMargin.toFixed(1)+'%','','c-gold')}
+        ${kpi('Gross Margin',c.grossMargin.toFixed(1)+'%','','c-green')}
+        ${kpi('ROE',c.roe.toFixed(1)+'%','','c-navy')}
         ${kpi('PSR / PER',c.psr.toFixed(1)+' / '+c.per.toFixed(1),'','c-navy')}
         ${kpi('vs TOPIX (1Y)',(c.relativeReturn>0?'+':'')+c.relativeReturn.toFixed(1)+'%','','c-gold')}
       </div>
@@ -836,9 +836,9 @@ const companies = [
         <div class="chart-panel"><div class="chart-panel-title">四半期営業利益率推移</div><div class="chart-area short"><canvas id="dtOPM"></canvas></div></div>
       </div>
       ${peers.length?`<div class="table-panel"><div class="table-header"><div class="table-header-title">同業比較 - ${SEGMENTS[c.segment]}</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
-        <tbody><tr class="row-hl"><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opMargin}%</td><td>${c.grossMargin}%</td><td>${c.roe}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>
-        ${peers.map(p=>`<tr><td>${shortName(p.name)}</td><td>${p.revenue.toLocaleString()}</td><td>${p.opMargin}%</td><td>${p.grossMargin}%</td><td>${p.roe}%</td><td>${p.psr.toFixed(1)}</td><td>${p.per.toFixed(1)}</td><td>${p.relativeReturn>0?'+':''}${p.relativeReturn.toFixed(1)}%</td></tr>`).join('')}
+        <thead><tr><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
+        <tbody><tr class="row-hl"><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td><td>${c.roe.toFixed(1)}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>
+        ${peers.map(p=>`<tr><td>${shortName(p.name)}</td><td>${p.revenue.toLocaleString()}</td><td>${p.opMargin.toFixed(1)}%</td><td>${p.grossMargin.toFixed(1)}%</td><td>${p.roe.toFixed(1)}%</td><td>${p.psr.toFixed(1)}</td><td>${p.per.toFixed(1)}</td><td>${p.relativeReturn>0?'+':''}${p.relativeReturn.toFixed(1)}%</td></tr>`).join('')}
         </tbody></table></div></div>`:''}
       <div style="margin-top:16px;"><a href="${c.irUrl}" target="_blank" style="color:var(--navy);font-size:0.82rem;">IR情報ページを開く &rarr;</a></div>`;
     g('dtSel').addEventListener('change',e=>{selComp=companies.find(c=>c.code===e.target.value);rDetail();});
