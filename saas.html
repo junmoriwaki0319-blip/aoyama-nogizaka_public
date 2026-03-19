@@ -157,7 +157,17 @@
     .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
-    @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
+    .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: 8px 18px; border-radius: var(--radius);
+      font-size: 0.75rem; font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
+    .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
+    @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
     @media (max-width: 900px) { .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; } .chart-row, .chart-row.tri { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } .header-right { gap: 10px; } .cross-nav { display: none; } .nav-auth-btns { gap: 6px; } .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; } }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -201,6 +211,16 @@
       <span>対象: <strong id="companyCount">30</strong>社</span>
       <span>分析指標: <strong>50+項目</strong></span>
       <span>出所: 各社IR・決算説明会資料</span>
+    </div>
+    <div class="dl-btns">
+      <button class="dl-btn" onclick="downloadPDF()">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+        PDFダウンロード
+      </button>
+      <button class="dl-btn" onclick="downloadCSV()">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12z"/></svg>
+        CSVダウンロード
+      </button>
     </div>
   </div>
 </div>
@@ -875,6 +895,55 @@ const companies = [
         ・<strong>ROIC:</strong> 投下資本利益率 = NOPAT / 投下資本
       </div>`;
   }
+
+  function requireAuth() {
+    if (!window.currentUser) { window.openModal('login'); return false; }
+    return true;
+  }
+
+  window.downloadPDF = function() {
+    if (!requireAuth()) return;
+    window.print();
+  };
+
+  window.downloadCSV = function() {
+    if (!requireAuth()) return;
+    const BOM = '\uFEFF';
+    const headers = [
+      'コード','企業名','セグメント','主要プロダクト','IR URL',
+      '株価(円)','時価総額(億円)','発行済株式数(千株)',
+      '株価騰落率1Y(%)','vs TOPIX(pp)',
+      '売上高(百万円)','営業利益(百万円)','純利益(百万円)',
+      '営業利益率(%)','純利益率(%)','Gross Margin(%)',
+      'PER(倍)','PBR(倍)','PSR(倍)','ROE(%)',
+      '四半期売上Q1','四半期売上Q2','四半期売上Q3','四半期売上Q4',
+      '四半期売上Q5','四半期売上Q6','四半期売上Q7','四半期売上Q8',
+      '四半期OPM Q1','四半期OPM Q2','四半期OPM Q3','四半期OPM Q4',
+      '四半期OPM Q5','四半期OPM Q6','四半期OPM Q7','四半期OPM Q8'
+    ];
+    const rows = companies.map(c => [
+      c.code, c.name, SEGMENTS[c.segment]||c.segment, c.products.join(' / '), c.irUrl,
+      c.stockPrice, c.marketCap, c.shares,
+      c.stockReturn1Y, c.relativeReturn,
+      c.revenue, c.opProfit, c.netProfit,
+      c.opMargin, c.netMargin, c.grossMargin,
+      c.per, c.pbr, c.psr, c.roe,
+      ...(c.quarterlyRevenue||[]),
+      ...(c.quarterlyOpMargin||[])
+    ]);
+    const esc = v => {
+      const s = v == null ? '' : String(v);
+      return s.includes(',') || s.includes('"') || s.includes('\n') ? '"'+s.replace(/"/g,'""')+'"' : s;
+    };
+    const csv = BOM + headers.map(esc).join(',') + '\n' + rows.map(r => r.map(esc).join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'SaaSセクター分析_データ一覧_' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
 })();
 </script>
