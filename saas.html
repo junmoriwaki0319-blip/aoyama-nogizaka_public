@@ -122,15 +122,32 @@
     .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
 
     @media (max-width: 900px) {
-      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 20px; padding-right: 20px; }
       .coming-soon-features { grid-template-columns: 1fr; }
       .header-right { gap: 10px; }
       .cross-nav { display: none; }
       .nav-auth-btns { gap: 6px; }
       .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; }
-      .report-cover::after { left: 16px; right: 16px; }
-      .coming-soon { padding: 60px 16px 80px; }
+      .report-cover::after { left: 20px; right: 20px; }
+      .coming-soon { padding: 60px 20px 80px; }
       .btn-back, .btn-secondary { display: block; width: 100%; text-align: center; margin-left: 0; margin-top: 12px; }
+    }
+    @media (max-width: 768px) {
+      .report-title { font-size: 1.4rem; }
+      .modal { padding: 32px 24px; }
+      .modal .form-group input, .modal .form-group select { min-height: 44px; font-size: 14px; }
+      .btn-submit, .btn-google { min-height: 44px; }
+      .btn-back, .btn-secondary { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .report-cover::after { left: 16px; right: 16px; }
+      .report-title { font-size: 1.2rem; }
+      .report-subtitle { font-size: 0.8rem; }
+      .coming-soon { padding: 48px 16px 60px; }
+      .coming-soon h2 { font-size: 1.2rem; }
+      .feature-card { padding: 16px 18px; }
     }
   </style>
 </head>
