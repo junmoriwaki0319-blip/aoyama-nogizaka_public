@@ -366,25 +366,14 @@ function parseInvestmentPropertyNote(html, data) {
     }
   }
 
-  // パターン3: 全数値から最後の2つの大きな値を使用（最終フォールバック）
-  if (allNums.length >= 2) {
-    const bv = allNums[allNums.length - 2];
-    const fv = allNums[allNums.length - 1];
-    if (bv > 0 && fv > 0) {
-      data.investmentPropertyBookValue = bv;
-      data.investmentPropertyFairValue = fv;
-      data._ipDebug = { pattern: 'last2-fallback', bv, fv, allNums, term: matchedTerm };
-      return;
-    }
-  }
-
-  // デバッグ情報
+  // デバッグ情報（マッチしなかった場合）
   data._ipDebug = {
     pattern: 'no-match',
     term: matchedTerm,
-    allNums,
+    allNums: allNums.slice(0, 20),
     sectionStart,
-    linesSample: lines.slice(sectionStart, sectionStart + 30),
+    endBalance,
+    fairValue,
   };
 }
 
