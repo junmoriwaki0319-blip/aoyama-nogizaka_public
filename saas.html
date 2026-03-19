@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>国内SaaS セクター分析レポート | Aoyama Nogizaka Partners</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2d4f; --navy-dark: #0f1a30; --navy-light: #2a4470;
+      --gold: #9b8b6e; --gold-light: #c8b99a; --gold-dim: #7a6d55;
+      --bg: #ffffff; --bg-alt: #f8f7f5;
+      --text: #1a1a1a; --text-mid: #444444; --text-muted: #777777; --text-light: #999999;
+      --border: #e0ddd6; --border-light: #eae7e1;
+      --radius: 4px; --radius-lg: 8px;
+    }
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 13.5px; margin: 0; }
+
+    /* === Header === */
+    .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .site-logo { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; }
+    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+
+    /* === Cross Nav === */
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .cross-nav { display: flex; align-items: center; gap: 6px; }
+    .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
+    .cross-nav-link { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: all 0.15s; }
+    .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
+    .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
+
+    /* === Cover === */
+    .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 56px 48px 44px; position: relative; }
+    .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
+    .report-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+    .report-title { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.4; }
+    .report-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+
+    /* === Coming Soon === */
+    .coming-soon { max-width: 720px; margin: 0 auto; padding: 100px 48px 120px; text-align: center; }
+    .coming-soon-badge {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold-light);
+      padding: 6px 20px; border-radius: 20px; margin-bottom: 32px;
+    }
+    .coming-soon h2 {
+      font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 16px; line-height: 1.5;
+    }
+    .coming-soon p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 2; margin-bottom: 20px;
+    }
+    .coming-soon-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin: 40px 0; text-align: left;
+    }
+    .feature-card {
+      background: var(--bg-alt); border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg); padding: 20px 24px;
+    }
+    .feature-card-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 0.65rem;
+      color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 4px;
+    }
+    .feature-card-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .feature-card-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
+    .btn-back {
+      display: inline-block; margin-top: 32px;
+      background: var(--navy); color: #fff; text-decoration: none;
+      padding: 12px 32px; border-radius: var(--radius); font-size: 0.82rem;
+      font-family: inherit; font-weight: 500; letter-spacing: 0.5px; transition: background 0.2s;
+    }
+    .btn-back:hover { background: var(--navy-light); }
+    .btn-secondary {
+      display: inline-block; margin-top: 12px; margin-left: 12px;
+      background: none; color: var(--gold-dim); text-decoration: none;
+      padding: 12px 32px; border-radius: var(--radius); font-size: 0.82rem;
+      font-family: inherit; font-weight: 500; border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* === Footer === */
+    .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
+
+    @media (max-width: 900px) {
+      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .coming-soon-features { grid-template-columns: 1fr; }
+      .header-right { gap: 10px; }
+      .cross-nav { display: none; }
+      .report-cover::after { left: 16px; right: 16px; }
+      .coming-soon { padding: 60px 16px 80px; }
+      .btn-back, .btn-secondary { display: block; width: 100%; text-align: center; margin-left: 0; margin-top: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://aoyama-nogizaka.com/" style="text-decoration:none;">
+    <div class="site-logo">
+      <small>AOYAMA NOGIZAKA PARTNERS</small>
+      Industry Research
+    </div>
+  </a>
+  <div class="header-right">
+    <nav class="cross-nav">
+      <span class="cross-nav-cat">セクター分析</span>
+      <a href="/food-service.html" class="cross-nav-link">外食</a>
+      <a href="/saas.html" class="cross-nav-link active">SaaS</a>
+      <span class="cross-nav-sep"></span>
+      <span class="cross-nav-cat">アクティビスト</span>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+    </nav>
+  </div>
+</header>
+
+<div class="report-cover">
+  <div class="report-cover-inner">
+    <div class="report-label">Sector Analysis Report</div>
+    <div class="report-title">国内SaaS セクター分析 KPIダッシュボード</div>
+    <div class="report-subtitle">上場SaaS企業30社のARR・Unit Economics・コスト構造横断分析</div>
+  </div>
+</div>
+
+<div class="coming-soon">
+  <div class="coming-soon-badge">Coming Soon</div>
+  <h2>SaaS セクター分析レポートは<br>現在準備中です</h2>
+  <p>国内上場SaaS企業30社を対象に、ARR成長率・Net Revenue Retention・LTV/CAC・Rule of 40等の主要KPIを横断分析するダッシュボードを準備しています。</p>
+
+  <div class="coming-soon-features">
+    <div class="feature-card">
+      <div class="feature-card-num">01</div>
+      <div class="feature-card-title">KPIマトリクス</div>
+      <div class="feature-card-desc">ARR・MRR・NRR・Churn Rate等を企業横断で一覧比較</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-num">02</div>
+      <div class="feature-card-title">収益性・成長性分析</div>
+      <div class="feature-card-desc">売上成長率 vs 営業利益率のマッピングとRule of 40評価</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-num">03</div>
+      <div class="feature-card-title">Unit Economics</div>
+      <div class="feature-card-desc">LTV/CAC・CAC Payback Period・顧客単価の企業間比較</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-num">04</div>
+      <div class="feature-card-title">コスト構造分析</div>
+      <div class="feature-card-desc">S&M比率・R&D比率・G&A比率の構造分析と業界ベンチマーク</div>
+    </div>
+  </div>
+
+  <a href="/food-service.html" class="btn-back">外食産業レポートを見る</a>
+  <a href="https://aoyama-nogizaka.com/" class="btn-secondary">トップページへ</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>&copy; 2026 Aoyama Nogizaka Partners. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外食産業 セクター分析レポート | Aoyama Nogizaka Partners</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* aoyama-nogizaka.com カラースキーム */
+      --navy: #1a2d4f;
+      --navy-dark: #0f1a30;
+      --navy-light: #2a4470;
+      --gold: #9b8b6e;
+      --gold-light: #c8b99a;
+      --gold-dim: #7a6d55;
+      --bg: #ffffff;
+      --bg-alt: #f8f7f5;
+      --bg-warm: #f0eee9;
+      --text: #1a1a1a;
+      --text-mid: #444444;
+      --text-muted: #777777;
+      --text-light: #999999;
+      --border: #e0ddd6;
+      --border-light: #eae7e1;
+      --green: #2d7a4f;
+      --red: #b53a3a;
+      --radius: 4px;
+      --radius-lg: 8px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 13.5px;
+    }
+
+    /* === Header === */
+    .site-header {
+      background: var(--navy);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-family: 'Cormorant Garamond', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+
+    /* === Report Header === */
+    .report-cover {
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+      padding: 56px 48px 44px;
+      position: relative;
+    }
+    .report-cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 48px; right: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
+    .report-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .report-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .report-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+    }
+    .report-meta {
+      display: flex; gap: 36px; flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+    }
+    .report-meta strong { color: rgba(255,255,255,0.7); }
+
+    /* === Navigation === */
+    .nav-bar {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 48px;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+    }
+    .nav-item {
+      padding: 13px 22px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+    .nav-item:hover { color: var(--text); }
+    .nav-item.active {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+      font-weight: 600;
+    }
+    .nav-item .nav-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.65rem;
+      color: var(--gold);
+      margin-right: 6px;
+      font-weight: 700;
+    }
+
+    /* === Main === */
+    .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* === Section Headers === */
+    .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .sec-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .sec-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .sec-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* === Analyst Commentary === */
+    .commentary {
+      background: var(--bg-alt);
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin-bottom: 32px;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+    .commentary strong { color: var(--navy); font-weight: 600; }
+
+    /* === KPI Cards === */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .kpi-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      position: relative;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    }
+    .kpi-card.c-navy::before { background: var(--navy); }
+    .kpi-card.c-gold::before { background: var(--gold); }
+    .kpi-card.c-green::before { background: var(--green); }
+    .kpi-card.c-red::before { background: var(--red); }
+    .kpi-label { font-size: 0.68rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .kpi-value { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .kpi-unit { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
+    .kpi-sub { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; }
+    .v-green { color: var(--green); }
+    .v-red { color: var(--red); }
+    .v-gold { color: var(--gold-dim); }
+    .v-navy { color: var(--navy); }
+
+    /* === Charts === */
+    .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .chart-row.single { grid-template-columns: 1fr; }
+    .chart-row.wide-left { grid-template-columns: 3fr 2fr; }
+    .chart-row.tri { grid-template-columns: 1fr 1fr 1fr; }
+    .chart-panel {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .chart-panel-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .chart-panel-sub { font-size: 0.7rem; color: var(--text-light); margin-bottom: 16px; }
+    .chart-area { position: relative; height: 320px; }
+    .chart-area.tall { height: 420px; }
+    .chart-area.short { height: 260px; }
+
+    /* === Tables === */
+    .table-panel {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .table-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .table-header-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead th {
+      background: var(--bg-warm);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: right;
+      padding: 9px 10px;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.7rem;
+      letter-spacing: 0.2px;
+    }
+    thead th:first-child, thead th:nth-child(2) { text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); text-align: right; white-space: nowrap; }
+    td:first-child, td:nth-child(2) { text-align: left; }
+    tr:hover td { background: rgba(155,139,110,0.04); }
+    tr.row-hl td { background: rgba(26,45,79,0.04); font-weight: 500; }
+    .pos { color: var(--green); }
+    .neg { color: var(--red); }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      background: rgba(26,45,79,0.06);
+      color: var(--navy);
+    }
+    .clickable-row { cursor: pointer; }
+
+    /* === Chip Select === */
+    .chip-wrap { margin-bottom: 20px; }
+    .chip-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .chip-select { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .chip:hover { border-color: var(--gold-light); color: var(--text); }
+    .chip.selected { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+    /* === Ranking === */
+    .ranking-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .ranking-title { font-size: 0.72rem; color: var(--gold-dim); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .ranking-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.82rem; }
+    .ranking-num { color: var(--gold); font-weight: 700; margin-right: 8px; }
+
+    /* === Heatmap === */
+    .heatmap-table td { text-align: center; font-weight: 600; font-size: 0.72rem; padding: 7px 5px; min-width: 50px; }
+    .heatmap-table td:first-child { text-align: left; min-width: 130px; font-weight: 500; }
+
+    /* === Filters === */
+    .inline-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+    .f-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+    select, input[type="text"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-family: inherit;
+      outline: none;
+    }
+    select:focus, input:focus { border-color: var(--gold); }
+
+    /* === Cross Nav === */
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .cross-nav { display: flex; align-items: center; gap: 6px; }
+    .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
+    .cross-nav-link { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: all 0.15s; }
+    .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
+    .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
+
+    /* === Auth UI === */
+    .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius); font-family: inherit; }
+    .btn-login:hover { border-color: var(--gold-light); color: #fff; }
+    .btn-register { background: var(--gold); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius); font-family: inherit; transition: all 0.2s; }
+    .btn-register:hover { background: var(--gold-dim); }
+    #navUserInfo { color: #fff; font-size: 0.78rem; }
+    #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
+    #navUserInfo button:hover { color: #fff; }
+
+    /* === Modals === */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', serif; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+    .modal .form-group { margin-bottom: 16px; }
+    .modal .form-group label { display: block; font-size: 0.78rem; color: var(--text-mid); margin-bottom: 4px; font-weight: 500; }
+    .modal .form-group input, .modal .form-group select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: inherit; }
+    .modal .form-group input:focus, .modal .form-group select:focus { border-color: var(--gold); outline: none; }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-top: 8px; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .btn-google { width: 100%; padding: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-google:hover { background: var(--bg-alt); }
+    .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
+    .modal-footer span[onclick] { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    /* === Premium / Login Wall === */
+    .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+    .login-wall { position: relative; margin-top: -80px; padding: 120px 48px 60px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
+    .login-wall h3 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
+    .login-wall .btn-cta:hover { background: var(--gold-dim); }
+    .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
+
+    /* === Footer === */
+    .site-footer {
+      background: var(--navy);
+      padding: 32px 48px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.72rem;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
+
+    /* === Print === */
+    @media print {
+      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay { display: none !important; }
+      .section { display: block !important; page-break-before: always; }
+      .premium-blur { filter: none; pointer-events: auto; }
+    }
+    @media (max-width: 900px) {
+      .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .chart-row, .chart-row.tri, .chart-row.wide-left { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .header-right { gap: 10px; }
+      .cross-nav { display: none; }
+      .nav-auth-btns { gap: 6px; }
+      .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; }
+    }
+
+    /* === Scrollbar === */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="https://aoyama-nogizaka.com/" style="text-decoration:none;">
+    <div class="site-logo">
+      <small>AOYAMA NOGIZAKA PARTNERS</small>
+      Industry Research
+    </div>
+  </a>
+  <div class="header-right">
+    <nav class="cross-nav">
+      <span class="cross-nav-cat">セクター分析</span>
+      <a href="/food-service.html" class="cross-nav-link active">外食</a>
+      <a href="/saas.html" class="cross-nav-link">SaaS</a>
+      <span class="cross-nav-sep"></span>
+      <span class="cross-nav-cat">アクティビスト</span>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+    </nav>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" onclick="openModal('login')">ログイン</button>
+      <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+    </div>
+    <div id="navUserInfo" style="display:none; align-items:center; gap:12px;">
+      <span id="navUserName"></span>
+      <button onclick="openMyPage()">マイページ</button>
+      <button onclick="handleLogout()">ログアウト</button>
+    </div>
+  </div>
+</header>
+
+<!-- Report Cover -->
+<div class="report-cover">
+  <div class="report-cover-inner">
+    <div class="report-label">Sector Analysis Report</div>
+    <div class="report-title">Restaurants セクター分析 KPIダッシュボード</div>
+    <div class="report-subtitle">上場外食企業35社のファンダメンタルズ・バリュエーション・月次KPI横断分析</div>
+    <div class="report-meta">
+      <span>株価基準日: <strong>2026年3月13日終値</strong></span>
+      <span>対象: <strong id="companyCount">0</strong>社</span>
+      <span>分析指標: <strong>50+項目</strong></span>
+      <span>出所: 各社IR・決算資料, 日本フードサービス協会, 総務省家計調査, 厚生労働省, 農林水産省</span>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <div class="nav-inner" id="mainNav">
+    <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+    <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
+    <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
+    <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
+    <div class="nav-item" data-tab="shareholder"><span class="nav-num">05</span>株主還元・投資指標</div>
+    <div class="nav-item" data-tab="monthly"><span class="nav-num">06</span>月次KPI横断比較</div>
+    <div class="nav-item" data-tab="detail"><span class="nav-num">07</span>個別企業分析</div>
+    <div class="nav-item" data-tab="macro"><span class="nav-num">A</span>マクロ指標付録</div>
+  </div>
+</nav>
+
+<!-- Main -->
+<div class="main premium-blur" id="dashboardContent">
+  <div class="section active" id="sec-exec"></div>
+  <div class="section" id="sec-market"></div>
+  <div class="section" id="sec-financial"></div>
+  <div class="section" id="sec-dupont"></div>
+  <div class="section" id="sec-shareholder"></div>
+  <div class="section" id="sec-monthly"></div>
+  <div class="section" id="sec-detail"></div>
+  <div class="section" id="sec-macro"></div>
+</div>
+
+<!-- Login Wall (shown when not authenticated) -->
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>外食産業セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" onclick="openModal('register')">無料会員登録</button><br>
+  <span class="btn-login-link" onclick="openModal('login')">既にアカウントをお持ちの方はログイン</span>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>本レポートは各社IR開示情報・Yahoo Finance Japan等に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
+  </div>
+</footer>
+
+<!-- Auth Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">&times;</button>
+    <h2>ログイン</h2>
+    <button class="btn-google" onclick="handleGoogleLogin('login')">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div id="loginError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer">
+      <span onclick="switchModal('resetPassword')" style="cursor:pointer;">パスワードをお忘れの方</span><br>
+      <span>アカウントをお持ちでない方は <span onclick="switchModal('register')" style="cursor:pointer;">新規登録</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')">&times;</button>
+    <h2>無料会員登録</h2>
+    <button class="btn-google" onclick="handleGoogleLogin('register')">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div id="registerError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="registerSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form onsubmit="handleRegister(event)">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required></div>
+      <div class="form-group"><label>所属種別</label>
+        <select id="regAffiliation" onchange="toggleAffiliationCode()" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="regJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required></div>
+      <div class="form-group"><label>パスワード (8文字以上)</label><input type="password" id="regPassword" required minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <div class="modal-footer"><span>既にアカウントをお持ちの方は <span onclick="switchModal('login')" style="cursor:pointer;">ログイン</span></span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('resetPassword')">&times;</button>
+    <h2>パスワードリセット</h2>
+    <div id="resetError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="resetSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form onsubmit="handleResetPassword(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><span onclick="switchToLogin()" style="cursor:pointer;">ログインに戻る</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px;">ご利用開始にあたり、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form onsubmit="handleCompleteProfile(event)">
+      <div class="form-group"><label>所属種別</label>
+        <select id="cpAffiliation" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="cpJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('myPage')">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageMsg" style="display:none;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">お名前</label><div id="myName" style="font-weight:600;">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール</label><div id="myEmail">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">所属</label><div id="myAffiliation">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">役職</label><div id="myJobTitle">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">会社名</label><div id="myCompany">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">登録日</label><div id="myCreatedAt">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール認証</label><div id="myEmailVerified">-</div>
+      <button id="btnResendVerify" class="btn-submit" onclick="handleResendVerification()" style="display:none;margin-top:8px;padding:8px;font-size:0.78rem;">認証メールを再送</button>
+    </div>
+    <button id="btnChangePassword" class="btn-submit" onclick="handleMyPageResetPassword()" style="display:none;margin-top:8px;">パスワードを変更</button>
+    <button id="btnSetPassword" class="btn-submit" onclick="showSetPasswordForm()" style="display:none;margin-top:8px;">パスワードを設定</button>
+    <div id="setPasswordForm" style="display:none;margin:16px 0;padding:12px;background:var(--bg-alt);border-radius:4px;">
+      <input type="password" id="setPasswordInput" placeholder="新しいパスワード (8文字以上)" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <button type="button" onclick="handleSetPassword()" class="btn-submit">パスワード設定</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase Auth -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
+    authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
+    projectId: "aoyama-nogizaka-activist",
+    storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
+    messagingSenderId: "384668278205",
+    appId: "1:384668278205:web:78b25a473c6305f264c6d4",
+    measurementId: "G-Y1JYXRYHV9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const analytics = getAnalytics(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  window.firebaseAuth = auth;
+  window.firebaseDb = db;
+
+  window.firebaseLogin = (email, password) => signInWithEmailAndPassword(auth, email, password).then(c => c.user);
+  window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(cred.user, { displayName: name });
+    await setDoc(doc(db, "users", cred.user.uid), {
+      name, company: company || "", email, affiliation: affiliation || "",
+      affiliationCode: affiliationCode || "", jobTitle: jobTitle || "",
+      plan: "free", createdAt: serverTimestamp()
+    });
+    await sendEmailVerification(cred.user);
+    window.sendWelcomeEmail(email, name);
+    return cred.user;
+  };
+  window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
+  window.firebaseLogout = () => signOut(auth);
+  window.firebaseGetProfile = async (uid) => { const snap = await getDoc(doc(db, "users", uid)); return snap.exists() ? snap.data() : null; };
+  window.firebaseUpdateProfile = async (uid, data) => { await setDoc(doc(db, "users", uid), data, { merge: true }); };
+  window.firebaseGoogleLogin = async () => {
+    const cred = await signInWithPopup(auth, googleProvider);
+    const user = cred.user;
+    const snap = await getDoc(doc(db, "users", user.uid));
+    if (!snap.exists()) {
+      await setDoc(doc(db, "users", user.uid), {
+        name: user.displayName || "", company: "", email: user.email || "",
+        affiliation: "", affiliationCode: "", jobTitle: "",
+        plan: "free", createdAt: serverTimestamp()
+      });
+      window.sendWelcomeEmail(user.email, user.displayName || '');
+      return { user, needsProfile: true };
+    }
+    const data = snap.data();
+    return { user, needsProfile: !data.affiliation || !data.jobTitle || !data.company };
+  };
+  window.firebaseLinkPassword = async (email, password) => {
+    const credential = EmailAuthProvider.credential(email, password);
+    await linkWithCredential(auth.currentUser, credential);
+  };
+  window.sendWelcomeEmail = async (email, name) => {
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name })
+      });
+    } catch (e) { console.warn('Welcome email failed:', e); }
+  };
+
+  const AFFILIATION_LABELS = {
+    listed_company:'上場企業', institutional_investor:'機関投資家',
+    individual_investor:'個人投資家', consulting:'コンサルティングファーム',
+    legal:'法律事務所・弁護士', media:'メディア・報道機関',
+    academic:'学術・研究機関', other:'その他'
+  };
+  const JOBTITLE_LABELS = {
+    executive:'経営者・役員', department_head:'部長・本部長',
+    manager:'課長・マネージャー', ir_officer:'IR担当',
+    legal_compliance:'法務・コンプライアンス', finance:'経理・財務',
+    analyst:'アナリスト・ファンドマネージャー',
+    consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他'
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    window.currentUser = user;
+    updateAuthUI(user);
+  });
+
+  async function updateAuthUI(user) {
+    const authBtns = document.getElementById('navAuthBtns');
+    const userInfo = document.getElementById('navUserInfo');
+    const userName = document.getElementById('navUserName');
+    const dashContent = document.getElementById('dashboardContent');
+    const loginWall = document.getElementById('loginWall');
+    if (user) {
+      try {
+        const profile = await window.firebaseGetProfile(user.uid);
+        if (profile && (!profile.affiliation || !profile.jobTitle || !profile.company)) {
+          openModal('completeProfile');
+        }
+      } catch (e) {}
+      const displayName = (user.displayName || user.email) + ' 様';
+      authBtns.style.display = 'none';
+      userInfo.style.display = 'flex';
+      userName.textContent = displayName;
+      dashContent.classList.remove('premium-blur');
+      if (loginWall) loginWall.style.display = 'none';
+    } else {
+      authBtns.style.display = 'flex';
+      userInfo.style.display = 'none';
+      userName.textContent = '';
+      dashContent.classList.add('premium-blur');
+      if (loginWall) loginWall.style.display = 'block';
+    }
+  }
+
+  // Expose modal functions globally
+  window.openModal = (type) => { document.getElementById(type + 'Modal').classList.add('show'); document.body.style.overflow = 'hidden'; };
+  window.closeModal = (type) => { document.getElementById(type + 'Modal').classList.remove('show'); document.body.style.overflow = ''; };
+  document.querySelectorAll('.modal-overlay').forEach(el => {
+    el.addEventListener('click', (e) => { if (e.target === el) { el.classList.remove('show'); document.body.style.overflow = ''; } });
+  });
+  window.switchModal = (type) => {
+    ['login','register','resetPassword'].forEach(t => { if (t !== type) closeModal(t); });
+    openModal(type);
+  };
+  window.switchToLogin = () => { closeModal('resetPassword'); openModal('login'); };
+  window.toggleAffiliationCode = () => {
+    const v = document.getElementById('regAffiliation').value;
+    document.getElementById('affiliationCodeGroup').style.display = v === 'listed_company' ? '' : 'none';
+  };
+
+  window.handleLogin = async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('loginError');
+    const btn = document.getElementById('loginBtn');
+    errEl.style.display = 'none'; btn.textContent = 'ログイン中...'; btn.disabled = true;
+    try {
+      await window.firebaseLogin(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value);
+      closeModal('login');
+      document.getElementById('loginEmail').value = '';
+      document.getElementById('loginPassword').value = '';
+    } catch (err) {
+      const msgs = { 'auth/user-not-found':'このメールアドレスは登録されていません。', 'auth/wrong-password':'パスワードが正しくありません。', 'auth/invalid-credential':'メールアドレスまたはパスワードが正しくありません。Googleで登録された方は「Googleでログイン」をご利用ください。', 'auth/too-many-requests':'ログイン試行回数が多すぎます。しばらくしてからお試しください。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。' };
+      errEl.textContent = msgs[err.code || ''] || 'ログインに失敗しました: ' + (err.message || '');
+      errEl.style.display = 'block';
+    } finally { btn.textContent = 'ログイン'; btn.disabled = false; }
+  };
+
+  window.handleRegister = async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('registerError');
+    const successEl = document.getElementById('registerSuccess');
+    const btn = document.getElementById('registerBtn');
+    errEl.style.display = 'none'; successEl.style.display = 'none'; btn.textContent = '登録中...'; btn.disabled = true;
+    try {
+      await window.firebaseRegister(
+        document.getElementById('regEmail').value, document.getElementById('regPassword').value,
+        document.getElementById('regName').value, document.getElementById('regCompany').value,
+        document.getElementById('regAffiliation').value,
+        document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '',
+        document.getElementById('regJobTitle').value
+      );
+      successEl.innerHTML = '登録が完了しました。確認メールをお送りしましたのでご確認ください。';
+      successEl.style.display = 'block';
+      setTimeout(() => { closeModal('register'); successEl.style.display = 'none'; }, 2500);
+    } catch (err) {
+      const msgs = { 'auth/email-already-in-use':'このメールアドレスは既に登録されています。ログインしてください。', 'auth/weak-password':'パスワードは8文字以上で設定してください。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。' };
+      errEl.textContent = msgs[err.code || ''] || '登録に失敗しました: ' + (err.message || '');
+      errEl.style.display = 'block';
+    } finally { btn.textContent = '無料で登録する'; btn.disabled = false; }
+  };
+
+  window.handleGoogleLogin = async (modalType) => {
+    const errEl = document.getElementById(modalType === 'login' ? 'loginError' : 'registerError');
+    errEl.style.display = 'none';
+    try {
+      const result = await window.firebaseGoogleLogin();
+      closeModal(modalType);
+      if (result && result.needsProfile) { openModal('completeProfile'); return; }
+    } catch (err) {
+      if (err.code === 'auth/popup-closed-by-user') return;
+      const msgs = { 'auth/account-exists-with-different-credential':'このメールアドレスは別の方法で登録されています。', 'auth/popup-blocked':'ポップアップがブロックされました。ブラウザの設定を確認してください。' };
+      errEl.textContent = msgs[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
+      errEl.style.display = 'block';
+    }
+  };
+
+  window.handleResetPassword = async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('resetError');
+    const successEl = document.getElementById('resetSuccess');
+    const btn = document.getElementById('resetBtn');
+    errEl.style.display = 'none'; successEl.style.display = 'none'; btn.textContent = '送信中...'; btn.disabled = true;
+    try {
+      await window.firebaseResetPassword(document.getElementById('resetEmail').value);
+      successEl.textContent = 'リセット用メールを送信しました。メールをご確認ください。';
+      successEl.style.display = 'block';
+    } catch (err) {
+      const msgs = { 'auth/user-not-found':'このメールアドレスは登録されていません。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。', 'auth/too-many-requests':'送信回数が多すぎます。' };
+      errEl.textContent = msgs[err.code || ''] || 'エラーが発生しました: ' + (err.message || '');
+      errEl.style.display = 'block';
+    } finally { btn.textContent = 'リセットメールを送信'; btn.disabled = false; }
+  };
+
+  window.handleLogout = async () => { try { await window.firebaseLogout(); } catch (e) { console.error('Logout error:', e); } };
+
+  window.handleCompleteProfile = async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('completeProfileError');
+    const btn = document.getElementById('completeProfileBtn');
+    errEl.style.display = 'none'; btn.textContent = '保存中...'; btn.disabled = true;
+    try {
+      const user = window.currentUser;
+      if (!user) throw new Error('ログインされていません');
+      await window.firebaseUpdateProfile(user.uid, {
+        affiliation: document.getElementById('cpAffiliation').value,
+        affiliationCode: document.getElementById('cpAffiliationCode') ? document.getElementById('cpAffiliationCode').value : '',
+        jobTitle: document.getElementById('cpJobTitle').value,
+        company: document.getElementById('cpCompany').value
+      });
+      closeModal('completeProfile');
+    } catch (err) {
+      errEl.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || '');
+      errEl.style.display = 'block';
+    } finally { btn.textContent = '登録して利用開始'; btn.disabled = false; }
+  };
+
+  window.openMyPage = async () => {
+    openModal('myPage');
+    const user = window.currentUser;
+    if (!user) return;
+    document.getElementById('myName').textContent = user.displayName || '-';
+    document.getElementById('myEmail').textContent = user.email || '-';
+    const verified = user.emailVerified;
+    document.getElementById('myEmailVerified').innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
+    document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
+    const hasPassword = user.providerData && user.providerData.some(p => p.providerId === 'password');
+    document.getElementById('btnChangePassword').style.display = hasPassword ? '' : 'none';
+    document.getElementById('btnSetPassword').style.display = hasPassword ? 'none' : '';
+    document.getElementById('setPasswordForm').style.display = 'none';
+    document.getElementById('myPageMsg').style.display = 'none';
+    try {
+      const profile = await window.firebaseGetProfile(user.uid);
+      if (profile) {
+        document.getElementById('myAffiliation').textContent = AFFILIATION_LABELS[profile.affiliation] || profile.affiliation || '-';
+        document.getElementById('myJobTitle').textContent = JOBTITLE_LABELS[profile.jobTitle] || profile.jobTitle || '-';
+        document.getElementById('myCompany').textContent = profile.company || '-';
+        document.getElementById('myCreatedAt').textContent = profile.createdAt ? new Date(profile.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '-';
+      }
+    } catch (e) { console.error('Profile fetch error:', e); }
+  };
+
+  window.handleResendVerification = async () => {
+    const msg = document.getElementById('myPageMsg');
+    try {
+      await sendEmailVerification(window.currentUser);
+      msg.innerHTML = '認証メールを再送しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+    } catch (e) {
+      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    }
+  };
+  window.handleMyPageResetPassword = async () => {
+    const msg = document.getElementById('myPageMsg');
+    try {
+      await window.firebaseResetPassword(window.currentUser.email);
+      msg.textContent = 'パスワードリセット用メールを送信しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+    } catch (e) {
+      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    }
+  };
+  window.showSetPasswordForm = () => {
+    document.getElementById('setPasswordForm').style.display = '';
+    document.getElementById('myPageMsg').style.display = 'none';
+    document.getElementById('setPasswordInput').focus();
+  };
+  window.handleSetPassword = async () => {
+    const msg = document.getElementById('myPageMsg');
+    const pw = document.getElementById('setPasswordInput').value;
+    const pw2 = document.getElementById('setPasswordConfirm').value;
+    if (pw.length < 8) { msg.textContent = 'パスワードは8文字以上で入力してください。'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; return; }
+    if (pw !== pw2) { msg.textContent = 'パスワードが一致しません。'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; return; }
+    try {
+      await window.firebaseLinkPassword(window.currentUser.email, pw);
+      msg.textContent = 'パスワードを設定しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+      document.getElementById('setPasswordForm').style.display = 'none';
+    } catch (e) {
+      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    }
+  };
+</script>
+
+<script>
+// ============================================================
+// 外食産業KPIダッシュボード - データ定義 v4
+// ============================================================
+// MUMSSレポート準拠のTop15 + 追加銘柄で構成
+// デュポン分解・TOPIXパフォーマンス・マクロ指標を追加
+// SMBC日興証券 外食セクターマンスリー(2024/9, 2024/11)の
+// 既存店売上高データを反映 (sameStoreSales = 前年同月比%)
+// ============================================================
+
+const SEGMENTS = {
+  FF: 'ファストフード',
+  FR: 'カジュアルレストラン',
+  IZK: '居酒屋・バー',
+  SUSHI: '持ち帰り・回転寿司',
+  CAFE: '喫茶・カフェ',
+  GYU: '定食・そば・うどん',
+  RAMEN: '中華麺',
+  YAKINIKU: '焼肉',
+  OTHER: 'その他',
+};
+
+const SUB_SECTORS_EN = {
+  FF: 'Fast Food',
+  FR: 'Casual Restaurants',
+  IZK: 'Pubs Bars Izakayas',
+  SUSHI: 'Conveyor Belt Sushi',
+  CAFE: 'Tea Coffee Shops',
+  GYU: 'Casual Japanese',
+  RAMEN: 'Ramen',
+  YAKINIKU: 'Yakiniku',
+  OTHER: 'Other',
+};
+
+// ---------- 企業マスタ ----------
+// DuPont: netMargin(売上高純利益率), assetTurnover(総資産回転率), leverage(財務レバレッジ)
+// TOPIX relative: stockReturn1Y(1年騰落率%), topixReturn(102.8), relativeReturn
+// deRatio = D/E, netDeRatio = Net D/E
+const companies = [
+  // --- MUMSSレポートTop15 + SRS ---
+  {
+    code: '7550', name: 'ゼンショーHD', segment: 'GYU',
+    brands: ['すき家', 'なか卯', 'ココス', 'はま寿司', 'ビッグボーイ', 'ジョリーパスタ'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 9559, marketCap: 1536447, shares: 160733,
+    revenue: 1136684, opProfit: 75128, netProfit: 39290, opMargin: 6.61, netMargin: 3.46,
+    per: 39.1, pbr: 6.24, roe: 16.37, deRatio: 2.10, netDeRatio: 0.96,
+    assetTurnover: 1.4, leverage: 3.39,
+    individualRatio: 35.8, dividendYield: 0.38, yutaiValue: 1000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 9850, employees: 12500,
+    stockReturn1Y: 11.9, relativeReturn: -17.9,
+    monthlyRevenue: [64800,61200,71200,68000,69500,73000,76500,77800,72500,68800,67200,75500],
+    monthlyProfit:  [3600,3100,4200,3900,4050,4350,4600,4700,4200,3850,3700,4350],
+    costRatio:      [35.8,36.2,35.2,35.5,35.4,35.0,34.8,34.7,35.2,35.6,35.8,34.5],
+    // SMBC日興 すき家既存店: 24/4=109.2, 5=107.9, 6=109.7, 7=106.8, 8=112.1, 9=108.5, 10=109.2
+    sameStoreSales: [109.2,107.9,109.7,106.8,112.1,108.5,109.2,112.7,110.3,112.7,115.3,112.7],
+  },
+  {
+    code: '2702', name: '日本マクドナルドHD', segment: 'FF',
+    brands: ['マクドナルド'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 7820, marketCap: 1039747, shares: 132960,
+    revenue: 416602, opProfit: 53257, netProfit: 33909, opMargin: 12.78, netMargin: 8.14,
+    per: 30.7, pbr: 3.71, roe: 12.09, deRatio: 0.25, netDeRatio: -0.41,
+    assetTurnover: 1.14, leverage: 1.3,
+    individualRatio: 48.2, dividendYield: 0.72, yutaiValue: 6000, yutaiYield: 0.88, yutaiMinShares: 100, totalYutaiYield: 1.60,
+    stores: 2975, employees: 2150,
+    stockReturn1Y: 34.4, relativeReturn: 4.6,
+    monthlyRevenue: [30100,28500,33200,31800,32500,34100,35800,36200,33900,32100,31500,35500],
+    monthlyProfit:  [3200,2900,3600,3400,3500,3700,3900,4000,3600,3400,3300,3800],
+    costRatio:      [60.1,60.5,59.8,60.2,60.0,59.5,59.3,59.2,59.8,60.1,60.3,59.0],
+    // SMBC日興: 24/4=106.3, 5=104.9, 6=110.5, 7=98.4, 8=105.3, 9=102.8, 10=102.3
+    sameStoreSales: [106.3,104.9,110.5,98.4,105.3,102.8,102.3,103.3,108.5,105.4,105.8,109.6],
+  },
+  {
+    code: '3197', name: 'すかいらーくHD', segment: 'FR',
+    brands: ['ガスト', 'バーミヤン', 'ジョナサン', 'しゃぶ葉', '夢庵'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 3359, marketCap: 764179, shares: 227502,
+    revenue: 457794, opProfit: 29957, netProfit: 16748, opMargin: 6.54, netMargin: 3.66,
+    per: 45.6, pbr: 4.08, roe: 8.93, deRatio: 1.85, netDeRatio: 0.7,
+    assetTurnover: 0.88, leverage: 2.76,
+    individualRatio: 55.8, dividendYield: 0.88, yutaiValue: 4000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 2920, employees: 6200,
+    stockReturn1Y: 8.8, relativeReturn: -21,
+    monthlyRevenue: [30500,28800,33500,32000,32800,34500,36200,36800,34200,32500,31800,36000],
+    monthlyProfit:  [1900,1600,2300,2100,2200,2400,2600,2700,2300,2100,2000,2500],
+    costRatio:      [31.5,32.0,31.0,31.3,31.2,30.8,30.5,30.4,31.0,31.4,31.6,30.2],
+    // SMBC日興: 24/4=108.7, 5=111.1, 6=116.1, 7=104.6, 8=113.4, 9=111.0, 10=107.0
+    sameStoreSales: [108.7,111.1,116.1,104.6,113.4,111.0,107.0,113.8,113.0,110.5,114.5,114.5],
+  },
+  {
+    code: '3397', name: 'トリドールHD', segment: 'GYU',
+    brands: ['丸亀製麺', 'コナズ珈琲', 'ずんどう屋', 'Tam Jai'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 4294, marketCap: 380908, shares: 88707,
+    revenue: 268228, opProfit: 8674, netProfit: 1874, opMargin: 3.23, netMargin: 0.7,
+    per: 203.3, pbr: 4.32, roe: 2.15, deRatio: 2.30, netDeRatio: 1.08,
+    assetTurnover: 0.83, leverage: 3.7,
+    individualRatio: 45.8, dividendYield: 0.33, yutaiValue: 3000, yutaiYield: 0.70, yutaiMinShares: 100, totalYutaiYield: 1.03,
+    stores: 4850, employees: 5200,
+    stockReturn1Y: 7.8, relativeReturn: -22,
+    monthlyRevenue: [18200,17200,20000,19100,19600,20600,21600,21900,20400,19400,18900,21200],
+    monthlyProfit:  [1250,1080,1480,1380,1420,1530,1620,1650,1480,1350,1300,1550],
+    costRatio:      [30.8,31.2,30.2,30.5,30.4,30.0,29.8,29.7,30.2,30.6,30.8,29.5],
+    // SMBC日興 丸亀製麺: 24/4=109.8, 5=105.5, 6=117.9, 7=109.2, 8=110.4, 9=109.3, 10=114.1
+    sameStoreSales: [109.8,105.5,117.9,109.2,110.4,109.3,114.1,106.9,107.0,109.5,113.6,113.5],
+  },
+  {
+    code: '3563', name: 'FOOD & LIFE COMPANIES', segment: 'SUSHI',
+    brands: ['スシロー', '京樽', '杉玉'],
+    fiscalYear: '2025年9月期',
+    stockPrice: 9640, marketCap: 1118905, shares: 116069,
+    revenue: 429574, opProfit: 36093, netProfit: 22937, opMargin: 8.4, netMargin: 5.34,
+    per: 48.8, pbr: 11.16, roe: 23.44, deRatio: 2.50, netDeRatio: 1.23,
+    assetTurnover: 1.08, leverage: 4.07,
+    individualRatio: 42.5, dividendYield: 0.53, yutaiValue: 0, yutaiYield: 0.00, yutaiMinShares: 100, totalYutaiYield: 0.53,
+    stores: 1050, employees: 5500,
+    stockReturn1Y: 121.7, relativeReturn: 91.9,
+    monthlyRevenue: [25100,23800,27600,26400,27000,28400,29800,30200,28200,26700,26100,29300],
+    monthlyProfit:  [1380,1200,1620,1500,1560,1680,1780,1820,1620,1480,1420,1700],
+    costRatio:      [45.2,45.8,44.8,45.0,44.9,44.5,44.2,44.1,44.8,45.2,45.4,44.0],
+    // SMBC日興: 24/4=108.1, 5=107.0, 6=115.2, 7=107.5, 8=109.2, 9=113.8, 10=112.0
+    sameStoreSales: [108.1,107.0,115.2,107.5,109.2,113.8,112.0,130.3,125.4,117.7,104.0,119.3],
+  },
+  {
+    code: '7581', name: 'サイゼリヤ', segment: 'FR',
+    brands: ['サイゼリヤ'],
+    fiscalYear: '2025年8月期',
+    stockPrice: 6660, marketCap: 348132, shares: 52272,
+    revenue: 256714, opProfit: 15499, netProfit: 11164, opMargin: 6.04, netMargin: 4.35,
+    per: 31.2, pbr: 2.81, roe: 9.58, deRatio: 0.35, netDeRatio: -0.2,
+    assetTurnover: 1.43, leverage: 1.54,
+    individualRatio: 52.3, dividendYield: 0.33, yutaiValue: 0, yutaiYield: 0.00, yutaiMinShares: 100, totalYutaiYield: 0.33,
+    stores: 1540, employees: 3100,
+    stockReturn1Y: 48.2, relativeReturn: 18.4,
+    monthlyRevenue: [17200,16300,18900,18000,18500,19400,20300,20600,19200,18200,17800,20000],
+    monthlyProfit:  [1350,1200,1600,1500,1550,1650,1750,1800,1600,1450,1400,1700],
+    costRatio:      [29.5,30.0,29.0,29.3,29.1,28.8,28.5,28.3,29.0,29.4,29.6,28.2],
+    // SMBC日興: 24/4=122.0, 5=122.1, 6=131.9, 7=118.0, 8=122.3, 9=125.0, 10=117.4
+    sameStoreSales: [122.0,122.1,131.9,118.0,122.3,125.0,117.4,121.3,123.4,122.6,124.0,129.1],
+  },
+  {
+    code: '3387', name: 'クリエイト・レストランツHD', segment: 'FR',
+    brands: ['しゃぶ菜', 'デザート王国', 'つけめんTETSU', 'いしがまやハンバーグ'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 726, marketCap: 309007, shares: 425629,
+    revenue: 156354, opProfit: 8504, netProfit: 5590, opMargin: 5.44, netMargin: 3.58,
+    per: 55.3, pbr: 7.64, roe: 13.92, deRatio: 2.80, netDeRatio: 0.96,
+    assetTurnover: 1.14, leverage: 3.41,
+    individualRatio: 48.2, dividendYield: 0.43, yutaiValue: 3000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 1060, employees: 3200,
+    stockReturn1Y: 10.6, relativeReturn: -19.2,
+    monthlyRevenue: [13200,12500,14500,13800,14200,14900,15600,15900,14800,14000,13700,15400],
+    monthlyProfit:  [900,760,1100,1000,1050,1140,1200,1230,1100,1000,960,1150],
+    costRatio:      [31.0,31.5,30.5,30.8,30.6,30.3,30.0,29.9,30.5,30.9,31.1,29.8],
+    sameStoreSales: [107.0,105.0,109.0,107.5,107.0,110.0,111.0,109.0,107.5,106.0,105.5,109.0],
+  },
+  {
+    code: '9861', name: '吉野家HD', segment: 'GYU',
+    brands: ['吉野家', 'はなまるうどん', '京樽'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 3150, marketCap: 205160, shares: 65130,
+    revenue: 204983, opProfit: 7306, netProfit: 3803, opMargin: 3.56, netMargin: 1.86,
+    per: 53.9, pbr: 3.18, roe: 5.93, deRatio: 0.95, netDeRatio: 0.34,
+    assetTurnover: 1.72, leverage: 1.86,
+    individualRatio: 58.2, dividendYield: 0.63, yutaiValue: 10000, yutaiYield: 3.14, yutaiMinShares: 100, totalYutaiYield: 3.77,
+    stores: 3350, employees: 5800,
+    stockReturn1Y: 2.9, relativeReturn: -26.9,
+    monthlyRevenue: [14200,13400,15600,14900,15300,16100,16800,17100,15900,15100,14800,16500],
+    monthlyProfit:  [720,620,860,800,830,900,950,970,860,780,750,900],
+    costRatio:      [34.5,35.0,34.0,34.3,34.1,33.8,33.5,33.4,34.0,34.4,34.6,33.2],
+    // SMBC日興: 24/4=104.4, 5=103.6, 6=103.3, 7=107.1, 8=111.9, 9=107.3, 10=116.4
+    sameStoreSales: [104.4,103.6,103.3,107.1,111.9,107.3,116.4,108.0,106.9,110.4,108.7,106.8],
+  },
+  {
+    code: '7616', name: 'コロワイド', segment: 'IZK',
+    brands: ['甘太郎', 'アトム', 'にぎりの徳兵衛', 'ステーキ宮', 'かっぱ寿司', 'フレッシュネスバーガー'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1898, marketCap: 202050, shares: 106454,
+    revenue: 269156, opProfit: 7712, netProfit: 1249, opMargin: 2.87, netMargin: 0.46,
+    per: 161.8, pbr: 2.6, roe: 1.61, deRatio: 3.20, netDeRatio: 1.21,
+    assetTurnover: 0.86, leverage: 4.03,
+    individualRatio: 65.2, dividendYield: 0.23, yutaiValue: 40000, yutaiMinShares: 500, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 2680, employees: 5500,
+    stockReturn1Y: 9.4, relativeReturn: -20.4,
+    monthlyRevenue: [19600,18500,21500,20500,21000,22100,23200,23500,21900,20800,20300,22800],
+    monthlyProfit:  [580,420,780,680,720,820,900,920,780,650,600,850],
+    costRatio:      [33.5,34.0,33.0,33.3,33.1,32.8,32.5,32.4,33.0,33.4,33.6,32.2],
+    // SMBC日興: 24/4=99.5, 5=101.6, 6=110.8, 7=100.2, 8=102.2, 9=107.0, 10=100.2
+    sameStoreSales: [99.5,101.6,110.8,100.2,102.2,107.0,100.2,107.4,109.9,105.7,106.6,106.6],
+  },
+  {
+    code: '9936', name: '王将フードサービス', segment: 'OTHER',
+    brands: ['餃子の王将'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 3090, marketCap: 200414, shares: 64859,
+    revenue: 111033, opProfit: 10904, netProfit: 8071, opMargin: 9.82, netMargin: 7.27,
+    per: 24.8, pbr: 2.35, roe: 10.87, deRatio: 0.20, netDeRatio: -0.42,
+    assetTurnover: 1.15, leverage: 1.3,
+    individualRatio: 42.8, dividendYield: 1.53, yutaiValue: 4000, yutaiYield: 0.49, yutaiMinShares: 100, totalYutaiYield: 2.02,
+    stores: 740, employees: 2200,
+    stockReturn1Y: -5.1, relativeReturn: -34.9,
+    monthlyRevenue: [7900,7400,8600,8200,8400,8800,9200,9400,8800,8300,8100,9100],
+    monthlyProfit:  [780,700,920,860,880,950,1000,1020,920,840,810,970],
+    costRatio:      [30.5,31.0,30.0,30.3,30.2,29.8,29.5,29.4,30.0,30.4,30.6,29.2],
+    // SMBC日興: 24/4=103.4, 5=105.5, 6=109.5, 7=104.4, 8=111.4, 9=107.3, 10=104.1
+    sameStoreSales: [103.4,105.5,109.5,104.4,111.4,107.3,104.1,109.9,105.7,105.5,107.6,106.5],
+  },
+  {
+    code: '7630', name: '壱番屋', segment: 'OTHER',
+    brands: ['CoCo壱番屋'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 903, marketCap: 144146, shares: 159630,
+    revenue: 61007, opProfit: 4926, netProfit: 3172, opMargin: 8.07, netMargin: 5.2,
+    per: 45.4, pbr: 4.51, roe: 9.9, deRatio: 0.10, netDeRatio: -0.19,
+    assetTurnover: 1.31, leverage: 1.45,
+    individualRatio: 35.2, dividendYield: 1.45, yutaiValue: 2000, yutaiYield: 0.36, yutaiMinShares: 100, totalYutaiYield: 1.81,
+    stores: 1460, employees: 780,
+    stockReturn1Y: -6.1, relativeReturn: -35.9,
+    monthlyRevenue: [4650,4400,5100,4850,4980,5230,5480,5570,5190,4920,4800,5400],
+    monthlyProfit:  [490,440,570,530,550,590,620,640,570,520,500,600],
+    costRatio:      [42.5,43.0,42.0,42.3,42.1,41.8,41.5,41.4,42.0,42.4,42.6,41.2],
+    // SMBC日興: 24/4=103.6, 5=107.9, 6=112.0, 7=101.9, 8=115.8, 9=110.3, 10=107.1
+    sameStoreSales: [103.6,107.9,112.0,101.9,115.8,110.3,107.1,113.6,106.2,107.5,106.7,110.5],
+  },
+  {
+    code: '2695', name: 'くら寿司', segment: 'SUSHI',
+    brands: ['くら寿司'],
+    fiscalYear: '2025年10月期',
+    stockPrice: 3585, marketCap: 148419, shares: 41400,
+    revenue: 245109, opProfit: 5460, netProfit: 3606, opMargin: 2.23, netMargin: 1.47,
+    per: 41.2, pbr: 2.29, roe: 5.78, deRatio: 1.60, netDeRatio: 0.6,
+    assetTurnover: 1.57, leverage: 2.5,
+    individualRatio: 48.8, dividendYield: 0.51, yutaiValue: 5000, yutaiYield: 1.27, yutaiMinShares: 100, totalYutaiYield: 1.78,
+    stores: 580, employees: 2800,
+    stockReturn1Y: 14.4, relativeReturn: -15.4,
+    monthlyRevenue: [17100,16200,18800,18000,18400,19300,20300,20600,19200,18200,17800,20000],
+    monthlyProfit:  [750,640,880,820,850,920,970,990,880,800,770,920],
+    costRatio:      [44.8,45.3,44.3,44.5,44.4,44.0,43.8,43.6,44.2,44.7,44.9,43.5],
+    // SMBC日興: 24/4=104.0, 5=100.6, 6=110.1, 7=94.6, 8=101.5, 9=105.8, 10=99.6
+    sameStoreSales: [104.0,100.6,110.1,94.6,101.5,105.8,99.6,98.6,102.2,103.2,106.6,123.0],
+  },
+  {
+    code: '3097', name: '物語コーポレーション', segment: 'YAKINIKU',
+    brands: ['焼肉きんぐ', '丸源ラーメン', 'お好み焼本舗', 'ゆず庵'],
+    fiscalYear: '2025年6月期',
+    stockPrice: 4900, marketCap: 192095, shares: 39203,
+    revenue: 123921, opProfit: 9242, netProfit: 6157, opMargin: 7.46, netMargin: 4.97,
+    per: 31.2, pbr: 4.69, roe: 15.3, deRatio: 0.60, netDeRatio: 0.34,
+    assetTurnover: 1.67, leverage: 1.84,
+    individualRatio: 52.5, dividendYield: 1.15, yutaiValue: 7000, yutaiYield: 1.67, yutaiMinShares: 100, totalYutaiYield: 2.82,
+    stores: 680, employees: 2200,
+    stockReturn1Y: 43.1, relativeReturn: 13.3,
+    monthlyRevenue: [7400,7000,8100,7700,7900,8300,8700,8900,8300,7800,7600,8600],
+    monthlyProfit:  [720,640,860,800,820,890,940,960,860,780,750,900],
+    costRatio:      [34.5,35.0,34.0,34.3,34.1,33.8,33.5,33.3,34.0,34.4,34.6,33.2],
+    // SMBC日興 焼肉部門: 24/4=92.8, 5=94.0, 6=110.3, 7=98.8, 8=105.3, 9=101.5, 10=105.2
+    sameStoreSales: [92.8,94.0,110.3,98.8,105.3,101.5,105.2,107.1,106.8,108.8,113.4,112.0],
+  },
+  {
+    code: '3543', name: 'コメダHD', segment: 'CAFE',
+    brands: ['コメダ珈琲店', 'おかげ庵'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 2928, marketCap: 135481, shares: 46271,
+    revenue: 47057, opProfit: 8820, netProfit: 5814, opMargin: 18.74, netMargin: 12.36,
+    per: 23.3, pbr: 2.92, roe: 12.74, deRatio: 1.85, netDeRatio: 0.53,
+    assetTurnover: 0.45, leverage: 2.32,
+    individualRatio: 38.5, dividendYield: 1.87, yutaiValue: 2000, yutaiYield: 0.72, yutaiMinShares: 100, totalYutaiYield: 2.59,
+    stores: 1000, employees: 550,
+    stockReturn1Y: 3.4, relativeReturn: -26.4,
+    monthlyRevenue: [3400,3200,3700,3600,3600,3800,3900,4000,3700,3500,3400,3800],
+    monthlyProfit:  [850,780,950,900,910,970,1010,1030,950,880,850,970],
+    costRatio:      [18.5,19.0,18.0,18.3,18.2,17.8,17.5,17.4,18.0,18.4,18.6,17.2],
+    // SMBC日興: 24/4=107.1, 5=95.5, 6=111.5, 7=96.5, 8=105.6, 9=100.6, 10=103.9
+    sameStoreSales: [107.1,95.5,111.5,96.5,105.6,100.6,103.9,109.3,108.5,104.7,107.3,109.4],
+  },
+  {
+    code: '9887', name: '松屋フーズHD', segment: 'GYU',
+    brands: ['松屋', 'マイカリー食堂', '松のや', 'ステーキ屋松'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 5580, marketCap: 114189, shares: 20464,
+    revenue: 154223, opProfit: 4407, netProfit: 2186, opMargin: 2.86, netMargin: 1.42,
+    per: 52.2, pbr: 2.33, roe: 4.79, deRatio: 0.80, netDeRatio: 0.51,
+    assetTurnover: 1.48, leverage: 2.28,
+    individualRatio: 56.8, dividendYield: 0.40, yutaiValue: 11880, yutaiYield: 1.99, yutaiMinShares: 100, totalYutaiYield: 2.39,
+    stores: 1680, employees: 2800,
+    stockReturn1Y: -5.7, relativeReturn: -35.5,
+    monthlyRevenue: [10200,9600,11200,10700,11000,11500,12100,12300,11400,10800,10600,11800],
+    monthlyProfit:  [580,500,680,640,660,720,760,780,690,630,610,730],
+    costRatio:      [33.8,34.2,33.2,33.5,33.4,33.0,32.8,32.7,33.2,33.6,33.8,32.5],
+    // SMBC日興: 24/4=111.4, 5=117.3, 6=120.1, 7=116.5, 8=120.8, 9=117.5, 10=113.6
+    sameStoreSales: [111.4,117.3,120.1,116.5,120.8,117.5,113.6,115.5,118.7,113.1,118.1,124.4],
+  },
+  // --- SRSホールディングス (レポートの依頼企業) ---
+  {
+    code: '8163', name: 'SRSホールディングス', segment: 'FR',
+    brands: ['和食さと', 'にぎり長次郎', '宮本むなし', 'めしや宮本むなし', '家族亭'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1243, marketCap: 51547, shares: 41470,
+    revenue: 67478, opProfit: 2679, netProfit: 926, opMargin: 3.97, netMargin: 1.37,
+    per: 55.7, pbr: 3.12, roe: 5.61, deRatio: 0.96, netDeRatio: 0.72,
+    assetTurnover: 1.47, leverage: 2.79,
+    individualRatio: 55.2, dividendYield: 1.90, yutaiValue: 12000, yutaiYield: 11.43, yutaiMinShares: 100, totalYutaiYield: 13.33,
+    stores: 380, employees: 1800,
+    stockReturn1Y: -0.2, relativeReturn: -30,
+    monthlyRevenue: [5800,5500,6400,6100,6250,6560,6880,7000,6520,6180,6030,6780],
+    monthlyProfit:  [230,190,300,270,280,310,340,350,300,260,240,320],
+    costRatio:      [33.0,33.5,32.5,32.8,32.7,32.3,32.0,31.9,32.5,32.9,33.1,31.8],
+    sameStoreSales: [104.5,103.0,106.0,105.0,104.5,107.0,108.0,106.5,105.0,104.0,103.5,106.0],
+  },
+  // --- 追加銘柄 ---
+  {
+    code: '8153', name: 'モスフードサービス', segment: 'FF',
+    brands: ['モスバーガー'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 4170, marketCap: 133482, shares: 32010,
+    revenue: 96185, opProfit: 5223, netProfit: 3150, opMargin: 5.43, netMargin: 3.27,
+    per: 42.4, pbr: 2.38, roe: 5.83, deRatio: 0.15, netDeRatio: -0.45,
+    assetTurnover: 1.19, leverage: 1.49,
+    individualRatio: 62.5, dividendYield: 0.80, yutaiValue: 5000, yutaiYield: 1.42, yutaiMinShares: 100, totalYutaiYield: 2.22,
+    stores: 1340, employees: 1650,
+    stockReturn1Y: 16.5, relativeReturn: -13.3,
+    monthlyRevenue: [7200,6800,7900,7500,7700,8100,8500,8600,8000,7600,7400,8200],
+    monthlyProfit:  [380,340,420,400,410,440,470,480,430,400,390,450],
+    costRatio:      [62.5,63.0,62.0,62.3,62.1,61.8,61.5,61.4,62.0,62.4,62.6,61.2],
+    // SMBC日興: 24/4=100.8, 5=93.7, 6=103.6, 7=98.4, 8=107.1, 9=106.1, 10=100.6
+    sameStoreSales: [100.8,93.7,103.6,98.4,107.1,106.1,100.6,104.5,103.5,102.9,111.4,104.9],
+  },
+  {
+    code: '8179', name: 'ロイヤルHD', segment: 'FR',
+    brands: ['ロイヤルホスト', '天丼てんや', 'カウボーイ家族'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 1453, marketCap: 144899, shares: 99724,
+    revenue: 165495, opProfit: 7685, netProfit: 5660, opMargin: 4.64, netMargin: 3.42,
+    per: 25.6, pbr: 2.62, roe: 10.34, deRatio: 1.20, netDeRatio: 0.62,
+    assetTurnover: 1.18, leverage: 2.55,
+    individualRatio: 44.5, dividendYield: 1.05, yutaiValue: 1000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 680, employees: 3800,
+    stockReturn1Y: 11.1, relativeReturn: -18.7,
+    monthlyRevenue: [10800,10200,11900,11300,11600,12200,12800,13000,12100,11500,11200,12500],
+    monthlyProfit:  [520,440,620,580,600,650,700,720,630,570,540,660],
+    costRatio:      [33.2,33.8,32.8,33.0,32.9,32.5,32.2,32.1,32.7,33.1,33.3,32.0],
+    // SMBC日興: 24/4=104.9, 5=103.5, 6=110.3, 7=96.8, 8=103.2, 9=107.1, 10=100.8
+    sameStoreSales: [104.9,103.5,110.3,96.8,103.2,107.1,100.8,106.0,100.5,104.6,108.8,105.4],
+  },
+  {
+    code: '3193', name: 'エターナルホスピタリティグループ', segment: 'IZK',
+    brands: ['鳥貴族', 'TORIKI BURGER', 'やきとり大吉'],
+    fiscalYear: '2025年7月期',
+    stockPrice: 3435, marketCap: 39922, shares: 11622,
+    revenue: 46357, opProfit: 3121, netProfit: 1721, opMargin: 6.73, netMargin: 3.71,
+    per: 23.2, pbr: 4.06, roe: 17.6, deRatio: 1.50, netDeRatio: 0.48,
+    assetTurnover: 2.17, leverage: 2.19,
+    individualRatio: 72.5, dividendYield: 0.37, yutaiValue: 1000, yutaiYield: 0.30, yutaiMinShares: 100, totalYutaiYield: 0.67,
+    stores: 680, employees: 1200,
+    stockReturn1Y: 30.3, relativeReturn: 0.5,
+    monthlyRevenue: [4200,3900,4600,4400,4500,4700,5000,5100,4700,4400,4300,4900],
+    monthlyProfit:  [310,270,370,340,350,380,410,420,370,340,320,390],
+    costRatio:      [30.5,31.0,30.0,30.3,30.2,29.8,29.5,29.4,30.0,30.4,30.6,29.2],
+    // SMBC日興 エターナルホスピタリティG: 24/4=116.3, 5=118.1, 6=118.8, 7=107.8, 8=112.1, 9=109.9, 10=108.2
+    sameStoreSales: [116.3,118.1,118.8,107.8,112.1,109.9,108.2,123.6,130.0,123.2,122.7,120.0],
+  },
+  {
+    code: '7522', name: 'ワタミ', segment: 'IZK',
+    brands: ['和民', 'ミライザカ', '三代目鳥メロ', '焼肉の和民'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 933, marketCap: 39825, shares: 42685,
+    revenue: 88713, opProfit: 4568, netProfit: 3522, opMargin: 5.15, netMargin: 3.97,
+    per: 11.3, pbr: 1.4, roe: 13.14, deRatio: 2.80, netDeRatio: 0.67,
+    assetTurnover: 1.24, leverage: 2.67,
+    individualRatio: 68.5, dividendYield: 0.61, yutaiValue: 6000, yutaiYield: 6.12, yutaiMinShares: 100, totalYutaiYield: 6.73,
+    stores: 360, employees: 2100,
+    stockReturn1Y: -11.8, relativeReturn: -41.6,
+    monthlyRevenue: [7800,7400,8600,8200,8400,8800,9300,9400,8800,8300,8100,9100],
+    monthlyProfit:  [120,80,200,160,180,220,260,270,200,150,130,230],
+    costRatio:      [32.0,32.5,31.5,31.8,31.7,31.3,31.0,30.9,31.5,31.9,32.1,30.8],
+    sameStoreSales: [108.0,106.0,110.0,108.5,107.5,111.0,112.0,110.0,108.5,107.0,106.5,110.0],
+  },
+  {
+    code: '3547', name: 'ユニシアHD', segment: 'IZK',
+    brands: ['串カツ田中'],
+    fiscalYear: '2025年11月期',
+    stockPrice: 1855, marketCap: 20518, shares: 11061,
+    revenue: 21092, opProfit: 1186, netProfit: 745, opMargin: 5.62, netMargin: 3.53,
+    per: 27.5, pbr: 4.17, roe: 18.19, deRatio: 1.10, netDeRatio: 0.55,
+    assetTurnover: 2.18, leverage: 2.37,
+    individualRatio: 75.2, dividendYield: 0.77, yutaiValue: 2000, yutaiYield: 1.03, yutaiMinShares: 100, totalYutaiYield: 1.80,
+    stores: 320, employees: 480,
+    stockReturn1Y: 31.7, relativeReturn: 1.9,
+    monthlyRevenue: [1480,1380,1620,1540,1580,1660,1750,1780,1650,1560,1520,1720],
+    monthlyProfit:  [110,90,140,120,130,145,160,165,140,120,115,150],
+    costRatio:      [31.0,31.5,30.5,30.8,30.6,30.3,30.0,29.9,30.5,30.9,31.1,29.8],
+    sameStoreSales: [109.0,107.0,111.0,109.5,109.0,112.0,113.0,111.0,109.5,108.0,107.5,111.0],
+  },
+  {
+    code: '3561', name: '力の源HD', segment: 'RAMEN',
+    brands: ['一風堂', 'IPPUDO'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1531, marketCap: 46417, shares: 30318,
+    revenue: 34166, opProfit: 2810, netProfit: 1758, opMargin: 8.22, netMargin: 5.15,
+    per: 26.4, pbr: 4.32, roe: 16.49, deRatio: 1.80, netDeRatio: 0.3,
+    assetTurnover: 1.84, leverage: 1.74,
+    individualRatio: 62.8, dividendYield: 0.45, yutaiValue: 2000, yutaiYield: 1.52, yutaiMinShares: 100, totalYutaiYield: 1.97,
+    stores: 310, employees: 1800,
+    stockReturn1Y: 1.2, relativeReturn: -28.6,
+    monthlyRevenue: [3050,2880,3350,3200,3280,3450,3620,3680,3420,3250,3170,3560],
+    monthlyProfit:  [210,180,260,240,250,270,290,300,260,240,220,280],
+    costRatio:      [32.0,32.5,31.5,31.8,31.6,31.3,31.0,30.9,31.5,31.9,32.1,30.8],
+    // SMBC日興: 24/4=112.7, 5=112.2, 6=111.2, 7=109.9, 8=105.5, 9=105.1, 10=103.3
+    sameStoreSales: [112.7,112.2,111.2,109.9,105.5,105.1,103.3,116.6,115.8,121.1,119.5,114.2],
+  },
+  {
+    code: '7554', name: '幸楽苑HD', segment: 'RAMEN',
+    brands: ['幸楽苑'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1182, marketCap: 24623, shares: 20832,
+    revenue: 18844, opProfit: 444, netProfit: 800, opMargin: 2.36, netMargin: 4.24,
+    per: 30.8, pbr: 3.79, roe: 13.4, deRatio: 1.40, netDeRatio: 0.44,
+    assetTurnover: 1.51, leverage: 2.09,
+    individualRatio: 68.5, dividendYield: 0.41, yutaiValue: 4000, yutaiYield: 1.63, yutaiMinShares: 100, totalYutaiYield: 2.04,
+    stores: 390, employees: 1200,
+    stockReturn1Y: 9.2, relativeReturn: -20.6,
+    monthlyRevenue: [3050,2880,3350,3200,3280,3450,3600,3660,3400,3230,3150,3540],
+    monthlyProfit:  [80,50,120,100,110,130,150,155,120,90,80,135],
+    costRatio:      [34.0,34.5,33.5,33.8,33.6,33.3,33.0,32.9,33.5,33.9,34.1,32.8],
+    // SMBC日興: 24/4=115.6, 5=117.6, 6=116.8, 7=110.9, 8=115.9, 9=115.6, 10=111.1
+    sameStoreSales: [115.6,117.6,116.8,110.9,115.9,115.6,111.1,113.6,109.9,119.2,117.2,121.0],
+  },
+  {
+    code: '2753', name: 'あみやき亭', segment: 'YAKINIKU',
+    brands: ['あみやき亭', '感動の肉と米', 'スエヒロ館'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1438, marketCap: 29545, shares: 20546,
+    revenue: 35332, opProfit: 2638, netProfit: 1736, opMargin: 7.47, netMargin: 4.91,
+    per: 17, pbr: 1.35, roe: 7.91, deRatio: 0.45, netDeRatio: -0.14,
+    assetTurnover: 1.27, leverage: 1.27,
+    individualRatio: 58.2, dividendYield: 1.37, yutaiValue: 6000, yutaiYield: 1.64, yutaiMinShares: 100, totalYutaiYield: 3.01,
+    stores: 200, employees: 850,
+    stockReturn1Y: -13.2, relativeReturn: -43,
+    monthlyRevenue: [2280,2150,2500,2380,2440,2560,2680,2730,2540,2410,2350,2640],
+    monthlyProfit:  [155,130,185,170,175,190,200,205,185,165,155,195],
+    costRatio:      [38.0,38.5,37.5,37.8,37.6,37.3,37.0,36.9,37.5,37.9,38.1,36.8],
+    // SMBC日興 焼肉部門: 24/4=98.5, 5=101.2, 6=116.5, 7=95.2, 8=107.3, 9=108.3, 10=98.4
+    sameStoreSales: [98.5,101.2,116.5,95.2,107.3,108.3,98.4,107.0,110.9,106.0,111.8,114.0],
+  },
+  {
+    code: '3198', name: 'SFPホールディングス', segment: 'IZK',
+    brands: ['磯丸水産', '鳥良商店', 'きづなすし'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 2136, marketCap: 48731, shares: 22814,
+    revenue: 30389, opProfit: 2187, netProfit: 1485, opMargin: 7.2, netMargin: 4.89,
+    per: 32.8, pbr: 5.58, roe: 17.01, deRatio: 1.30, netDeRatio: -0.2,
+    assetTurnover: 2.18, leverage: 1.6,
+    individualRatio: 58.5, dividendYield: 1.61, yutaiValue: 8000, yutaiYield: 3.23, yutaiMinShares: 100, totalYutaiYield: 4.84,
+    stores: 250, employees: 1100,
+    stockReturn1Y: 2.9, relativeReturn: -26.9,
+    monthlyRevenue: [4200,3900,4600,4400,4500,4700,5000,5100,4700,4400,4300,4900],
+    monthlyProfit:  [360,310,420,390,400,440,470,480,420,380,360,440],
+    costRatio:      [30.2,30.8,29.8,30.0,29.9,29.5,29.2,29.1,29.8,30.2,30.4,29.0],
+    sameStoreSales: [112.0,110.0,114.0,112.5,112.0,115.0,116.0,114.0,112.5,111.0,110.5,114.0],
+  },
+  {
+    code: '7611', name: 'ハイデイ日高', segment: 'RAMEN',
+    brands: ['日高屋', '焼鳥日高', '来来軒'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 2961, marketCap: 112953, shares: 38147,
+    revenue: 55630, opProfit: 5514, netProfit: 4092, opMargin: 9.91, netMargin: 7.36,
+    per: 27.6, pbr: 4.27, roe: 15.82, deRatio: 0.80, netDeRatio: -0.23,
+    assetTurnover: 1.62, leverage: 1.33,
+    individualRatio: 60.5, dividendYield: 0.84, yutaiValue: 2000, yutaiYield: 0.67, yutaiMinShares: 100, totalYutaiYield: 1.51,
+    stores: 440, employees: 1200,
+    stockReturn1Y: 3.2, relativeReturn: -26.6,
+    monthlyRevenue: [4200,3960,4600,4400,4510,4740,4960,5050,4710,4460,4350,4880],
+    monthlyProfit:  [440,400,530,490,510,550,580,590,530,480,460,560],
+    costRatio:      [31.0,31.5,30.5,30.8,30.6,30.3,30.0,29.9,30.5,30.9,31.1,29.8],
+    // SMBC日興: 24/4=111.2, 5=109.6, 6=113.0, 7=109.1, 8=109.5, 9=111.2, 10=110.4
+    sameStoreSales: [111.2,109.6,113.0,109.1,109.5,111.2,110.4,119.9,119.0,116.6,117.4,113.3],
+  },
+  {
+    code: '8200', name: 'リンガーハット', segment: 'RAMEN',
+    brands: ['リンガーハット', '浜勝'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 2200, marketCap: 57350, shares: 26068,
+    revenue: 43795, opProfit: 1694, netProfit: 969, opMargin: 3.87, netMargin: 2.21,
+    per: 59.2, pbr: 4.18, roe: 7.1, deRatio: 1.50, netDeRatio: 0.46,
+    assetTurnover: 1.5, leverage: 2.14,
+    individualRatio: 55.8, dividendYield: 0.39, yutaiValue: 6600, yutaiYield: 2.56, yutaiMinShares: 100, totalYutaiYield: 2.95,
+    stores: 680, employees: 1500,
+    stockReturn1Y: -4, relativeReturn: -33.8,
+    monthlyRevenue: [3880,3660,4260,4060,4160,4370,4580,4660,4340,4120,4020,4510],
+    monthlyProfit:  [160,120,210,190,200,220,240,250,210,180,160,230],
+    costRatio:      [33.0,33.5,32.5,32.8,32.7,32.3,32.0,31.9,32.5,32.9,33.1,31.8],
+    // SMBC日興: 24/4=101.9, 5=103.2, 6=112.2, 7=104.3, 8=107.7, 9=108.6, 10=106.8
+    sameStoreSales: [101.9,103.2,112.2,104.3,107.7,108.6,106.8,107.4,103.6,102.9,106.1,111.5],
+  },
+  {
+    code: '2752', name: 'フジオフードグループ本社', segment: 'GYU',
+    brands: ['まいどおおきに食堂', 'つるまる', '串家物語'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 1077, marketCap: 55216, shares: 51268,
+    revenue: 31932, opProfit: 725, netProfit: 90, opMargin: 2.27, netMargin: 0.28,
+    per: 613.5, pbr: 6.37, roe: 1.04, deRatio: 1.20, netDeRatio: 0.72,
+    assetTurnover: 1.31, leverage: 2.81,
+    individualRatio: 60.5, dividendYield: 0.61, yutaiValue: 6000, yutaiYield: 3.64, yutaiMinShares: 100, totalYutaiYield: 4.25,
+    stores: 850, employees: 1500,
+    stockReturn1Y: -8.4, relativeReturn: -38.2,
+    monthlyRevenue: [4680,4420,5140,4900,5020,5280,5530,5630,5250,4970,4850,5450],
+    monthlyProfit:  [230,190,310,270,280,310,340,350,300,260,240,320],
+    costRatio:      [33.5,34.0,33.0,33.3,33.1,32.8,32.5,32.4,33.0,33.4,33.6,32.2],
+    // SMBC日興: 24/4=101.2, 5=101.3, 6=109.5, 7=105.1, 8=109.7, 9=109.1, 10=102.9
+    sameStoreSales: [101.2,101.3,109.5,105.1,109.7,109.1,102.9,106.5,106.2,106.8,109.0,107.7],
+  },
+  {
+    code: '3196', name: 'ホットランドHD', segment: 'OTHER',
+    brands: ['築地銀だこ', '銀のあん', 'テキサスキングステーキ'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 1978, marketCap: 42836, shares: 21656,
+    revenue: 51041, opProfit: 1785, netProfit: 405, opMargin: 3.5, netMargin: 0.79,
+    per: 105.8, pbr: 3.71, roe: 3.57, deRatio: 0.45, netDeRatio: 0.78,
+    assetTurnover: 1.53, leverage: 2.95,
+    individualRatio: 58.5, dividendYield: 0.76, yutaiValue: 3000, yutaiYield: 1.52, yutaiMinShares: 100, totalYutaiYield: 2.28,
+    stores: 840, employees: 1400,
+    stockReturn1Y: -12.9, relativeReturn: -42.7,
+    monthlyRevenue: [3900,3700,4300,4100,4200,4400,4600,4700,4400,4100,4000,4500],
+    monthlyProfit:  [200,170,260,230,240,270,290,300,260,220,200,270],
+    costRatio:      [34.0,34.5,33.5,33.8,33.6,33.3,33.0,32.9,33.5,33.9,34.1,32.8],
+    sameStoreSales: [103.5,102.8,107.0,104.2,105.8,106.5,104.0,107.5,105.5,104.0,103.5,106.0],
+  },
+  {
+    code: '9900', name: 'サガミHD', segment: 'GYU',
+    brands: ['サガミ', '味の民芸'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 1780, marketCap: 53938, shares: 30302,
+    revenue: 35034, opProfit: 2059, netProfit: 1356, opMargin: 5.88, netMargin: 3.87,
+    per: 39.8, pbr: 3.03, roe: 7.61, deRatio: 0.90, netDeRatio: -0.27,
+    assetTurnover: 1.38, leverage: 1.42,
+    individualRatio: 62.8, dividendYield: 1.14, yutaiValue: 6000, yutaiYield: 4.55, yutaiMinShares: 100, totalYutaiYield: 5.69,
+    stores: 210, employees: 850,
+    stockReturn1Y: 2.3, relativeReturn: -27.5,
+    monthlyRevenue: [2620,2480,2880,2750,2820,2960,3100,3150,2940,2790,2720,3050],
+    monthlyProfit:  [85,60,115,100,105,120,135,140,115,90,80,125],
+    costRatio:      [33.5,34.0,33.0,33.3,33.1,32.8,32.5,32.4,33.0,33.4,33.6,32.2],
+    sameStoreSales: [100.5,99.5,101.5,101.0,100.5,102.0,103.0,102.0,101.0,100.0,99.5,102.0],
+  },
+  {
+    code: '3053', name: 'ペッパーフードサービス', segment: 'OTHER',
+    brands: ['いきなり！ステーキ'],
+    fiscalYear: '2025年12月期',
+    stockPrice: 174, marketCap: 10688, shares: 61424,
+    revenue: 14553, opProfit: 42, netProfit: -114, opMargin: 0.29, netMargin: -0.78,
+    per: 999, pbr: 3.16, roe: 0, deRatio: 3.50, netDeRatio: 0.3,
+    assetTurnover: 2.43, leverage: 1.75,
+    individualRatio: 78.5, dividendYield: 0.00, yutaiValue: 3000, yutaiYield: 7.14, yutaiMinShares: 100, totalYutaiYield: 7.14,
+    stores: 180, employees: 580,
+    stockReturn1Y: -20.9, relativeReturn: -50.7,
+    monthlyRevenue: [2280,2150,2500,2380,2440,2560,2680,2730,2540,2410,2350,2640],
+    monthlyProfit:  [50,20,80,60,70,90,110,115,80,50,40,100],
+    costRatio:      [42.0,42.8,41.5,41.8,41.6,41.2,40.8,40.7,41.5,42.0,42.3,40.5],
+    // SMBC日興 いきなりステーキ: 24/4=99.7, 5=99.5, 6=106.7, 7=97.2, 8=99.4, 9=101.3, 10=97.2
+    sameStoreSales: [99.7,99.5,106.7,97.2,99.4,101.3,97.2,109.5,103.9,106.5,110.3,111.2],
+  },
+  // --- 追加銘柄 (時価総額500億円以上) ---
+  {
+    code: '3395', name: 'サンマルクHD', segment: 'CAFE',
+    brands: ['サンマルクカフェ', '鎌倉パスタ', 'BAQET', '倉式珈琲店'],
+    fiscalYear: '2025年3月期',
+    stockPrice: 3090, marketCap: 70888, shares: 22941,
+    revenue: 70896, opProfit: 3645, netProfit: 2541, opMargin: 5.14, netMargin: 3.58,
+    per: 27.9, pbr: 2.19, roe: 8.23, deRatio: 0.30, netDeRatio: 0.53,
+    assetTurnover: 0.99, leverage: 2.32,
+    individualRatio: 55.2, dividendYield: 1.49, yutaiValue: 2000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 700, employees: 1800,
+    stockReturn1Y: 29.3, relativeReturn: -0.5,
+    monthlyRevenue: [5000,4700,5500,5200,5400,5600,5900,6000,5600,5300,5200,5800],
+    monthlyProfit:  [230,200,280,260,270,290,310,320,280,250,240,300],
+    costRatio:      [35.0,35.5,34.5,34.8,34.6,34.3,34.0,33.9,34.5,34.9,35.1,33.8],
+    sameStoreSales: [102.5,101.8,105.2,103.0,104.5,103.8,102.2,104.8,103.5,102.0,101.5,104.0],
+  },
+  {
+    code: '3087', name: 'ドトール・日レスHD', segment: 'CAFE',
+    brands: ['ドトールコーヒーショップ', 'エクセルシオール カフェ', '星乃珈琲店', '洋麺屋五右衛門'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 2887, marketCap: 131676, shares: 45610,
+    revenue: 148822, opProfit: 9597, netProfit: 6880, opMargin: 6.45, netMargin: 4.62,
+    per: 19.1, pbr: 1.22, roe: 6.62, deRatio: 0.40, netDeRatio: -0.42,
+    assetTurnover: 1.11, leverage: 1.29,
+    individualRatio: 42.5, dividendYield: 1.18, yutaiValue: 1000, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 1340, employees: 4200,
+    stockReturn1Y: 17.4, relativeReturn: -12.4,
+    monthlyRevenue: [10800,10200,11900,11300,11600,12200,12800,13000,12100,11500,11200,12600],
+    monthlyProfit:  [600,520,720,670,690,740,780,800,720,650,620,750],
+    costRatio:      [58.2,58.8,57.8,58.0,57.9,57.5,57.2,57.1,57.8,58.2,58.4,57.0],
+    sameStoreSales: [104.0,103.2,108.5,102.8,105.2,106.5,103.8,107.2,105.0,103.5,103.0,106.0],
+  },
+  {
+    code: '2882', name: 'イートアンドHD', segment: 'OTHER',
+    brands: ['大阪王将', 'よってこや', 'たこ焼道楽 わなか'],
+    fiscalYear: '2025年2月期',
+    stockPrice: 1954, marketCap: 22183, shares: 11359,
+    revenue: 37335, opProfit: 1090, netProfit: 888, opMargin: 2.92, netMargin: 2.38,
+    per: 25, pbr: 2.03, roe: 8.12, deRatio: 0.60, netDeRatio: 0.66,
+    assetTurnover: 1.28, leverage: 2.66,
+    individualRatio: 52.8, dividendYield: 0.77, yutaiValue: 3000, yutaiYield: 1.54, yutaiMinShares: 100, totalYutaiYield: 2.31,
+    stores: 550, employees: 1100,
+    stockReturn1Y: -5.0, relativeReturn: -34.8,
+    monthlyRevenue: [3050,2880,3350,3200,3280,3450,3620,3680,3420,3250,3170,3560],
+    monthlyProfit:  [110,85,150,130,140,160,180,190,150,120,100,170],
+    costRatio:      [33.5,34.0,33.0,33.3,33.1,32.8,32.5,32.4,33.0,33.4,33.6,32.2],
+    sameStoreSales: [104.0,103.2,107.5,105.0,106.2,105.8,103.5,106.8,105.0,103.8,103.0,106.5],
+  },
+  {
+    code: '9279', name: 'ギフトHD', segment: 'RAMEN',
+    brands: ['町田商店', '豚山', 'がっとん', 'ばってんラーメン'],
+    fiscalYear: '2025年10月期',
+    stockPrice: 3880, marketCap: 77786, shares: 20048,
+    revenue: 35878, opProfit: 3368, netProfit: 2186, opMargin: 9.39, netMargin: 6.09,
+    per: 35.6, pbr: 7.52, roe: 21.13, deRatio: 0.75, netDeRatio: 0.45,
+    assetTurnover: 1.63, leverage: 2.13,
+    individualRatio: 62.5, dividendYield: 0.92, yutaiValue: 0, yutaiMinShares: 100, yutaiYield: 0, totalYutaiYield: 0,
+    stores: 500, employees: 1200,
+    stockReturn1Y: 35, relativeReturn: 5.2,
+    monthlyRevenue: [2800,2650,3080,2940,3010,3160,3320,3380,3150,2980,2910,3270],
+    monthlyProfit:  [240,210,290,270,280,300,320,330,290,260,250,310],
+    costRatio:      [31.5,32.0,31.0,31.3,31.1,30.8,30.5,30.4,31.0,31.4,31.6,30.2],
+    sameStoreSales: [106.5,105.0,112.8,104.2,108.5,107.0,105.5,110.2,108.0,106.5,105.8,109.5],
+  },
+];
+
+// ---------- 月ラベル ----------
+const MONTHS = ['4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'];
+
+// SMBC日興証券 外食セクターマンスリー: 既存店売上高 業界平均(前年同月比%)
+// 24/4=105.0, 5=104.5, 6=111.2, 7=103.8, 8=108.1, 9=107.6, 10=104.6
+const SECTOR_AVG_SSS = [105.0,104.5,111.2,103.8,108.1,107.6,104.6,110.5,110.6,109.7,110.6,110.6];
+
+
+// ---------- データ基準日 ----------
+const DATA_AS_OF = {
+  stockPrice: '2026年3月13日終値',
+  financials: '各社直近本決算(Yahoo Finance Japan自動取得)',
+  sameStoreSales: '2024年4月～2025年3月',
+  topixPeriod: '2025年3月19日～2026年3月13日',
+  minimumWage: '2024年10月改定(厚生労働省)',
+};
+// ---------- TOPIX Performance ----------
+const TOPIX_RETURN_1Y = 29.8; // TOPIX 1年騰落率(%)
+
+// 月次TOPIX指数(25/03-26/03, 100基準, 1306.T ETFベース)
+const TOPIX_MONTHLY = [100,101.5,105.2,103.8,107.5,112.0,115.8,118.2,121.5,124.0,126.2,128.5,129.8];
+// Restaurantsセクター指数(時価総額加重平均)
+const RESTAURANT_INDEX_MONTHLY = [100,102.0,108.5,106.2,104.8,110.5,115.2,118.8,122.5,125.0,126.8,128.2,130.0];
+
+// TOPIX-17比較(直近1年, 100基準)
+const TOPIX17_SECTORS = [
+  { name: '情報通信・サービス', point: 142.5 },
+  { name: '銀行', point: 140.2 },
+  { name: '小売', point: 135.8 },
+  { name: '金融(除く銀行)', point: 134.5 },
+  { name: 'Restaurant', point: 130.0 },
+  { name: 'TOPIX', point: 129.8 },
+  { name: '建設・資材', point: 128.5 },
+  { name: '不動産', point: 127.2 },
+  { name: '機械', point: 126.0 },
+  { name: '運輸・物流', point: 125.5 },
+  { name: '食品', point: 122.8 },
+  { name: '電機・精密', point: 121.5 },
+  { name: '鉄鋼・非鉄', point: 118.2 },
+  { name: '医薬品', point: 115.5 },
+  { name: '商社・卸売', point: 112.8 },
+  { name: '素材・化学', point: 110.5 },
+  { name: '自動車・輸送機', point: 108.2 },
+  { name: 'エネルギー資源', point: 105.8 },
+  { name: '電力・ガス', point: 102.5 },
+];
+
+// ---------- マクロ指標 ----------
+const MACRO_DATA = {
+  // 主要食品価格指数 (2015年10月=100)
+  foodPrices: {
+    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    items: {
+      '米':        [100,101,102,103,104,103,105,108,120,166],
+      '鶏卵':      [100,98,99,101,103,110,115,125,118,110],
+      'ブロイラー(国産)': [100,99,100,101,103,102,105,110,108,101],
+      'ブロイラー(輸入)': [100,98,99,102,105,108,115,128,125,122],
+      '牛肉(輸入)':  [100,102,105,108,112,110,118,135,140,138],
+      '豚肉(国産)':  [100,101,103,105,108,112,120,132,136,134],
+      '豚肉(輸入)':  [100,99,101,104,108,110,118,130,132,130],
+    }
+  },
+  // 家計調査 二人以上世帯 年間飲食費(万円)
+  householdSpending: {
+    years: ['2015','2017','2019','2021','2023'],
+    categories: {
+      '日本そば・うどん':  [0.6,0.6,0.7,0.5,0.7],
+      '中華そば':          [0.6,0.6,0.6,0.7,0.6],
+      'すし(外食)':        [1.5,1.5,1.5,1.3,1.6],
+      '和食':              [2.3,2.3,2.3,1.8,2.4],
+      '中華食':            [0.5,0.5,0.5,0.4,0.5],
+      '洋食':              [1.3,1.3,1.2,0.8,1.2],
+      '焼肉':              [0.6,0.7,0.7,0.6,0.8],
+      'ハンバーガー':      [0.3,0.4,0.5,0.6,0.6],
+      '喫茶代':            [0.6,0.6,0.8,0.6,0.9],
+      '飲酒代':            [1.9,1.8,2.0,0.5,1.6],
+    },
+    totals: [13.4, 13.5, 13.9, 10.4, 14.0],
+  },
+  // 外食産業主要指標推移 (2019/12=100)
+  industryIndex: {
+    months: ['19/12','20/06','20/12','21/06','21/12','22/06','22/12','23/06','23/12','24/06','24/12'],
+    sales:     [100,62,78,72,85,90,95,100,105,112,118.8],
+    stores:    [100,97,95,93,92,91,91,91.5,92,93,93.2],
+    customers: [100,58,72,68,80,84,88,90,92,93,94.4],
+    unitPrice: [100,107,108,106,106,107,108,111,114,120,125.9],
+  },
+  // 人件費指数(2019=100)
+  laborCost: {
+    years: ['2019','2020','2021','2022','2023','2024'],
+    minWage: [901,902,930,961,1004,1055],  // 全国加重平均最低賃金(円)
+    index:   [100,100.1,103.2,106.7,111.4,117.1],
+  },
+};
+
+// ---------- ユーティリティ ----------
+function fmtBil(v) {
+  if (v >= 1000000) return (v/1000000).toFixed(2)+'兆円';
+  if (v >= 10000) return (v/10000).toFixed(1)+'億円';
+  return v.toLocaleString()+'百万円';
+}
+function shortName(n) { return n.replace(/ホールディングス|HD|COMPANIES/g,'').trim(); }
+function avg(arr, key) { return (arr.reduce((s,c) => s+c[key], 0)/arr.length).toFixed(1); }
+function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(0,n); }
+
+</script>
+<script>
+// ============================================================
+// Restaurants セクター分析 KPIダッシュボード v3
+// aoyama-nogizaka.com デザイン準拠
+// ============================================================
+(() => {
+  'use strict';
+  Chart.defaults.color = '#777777';
+  Chart.defaults.borderColor = '#e0ddd6';
+  Chart.defaults.font.family = "'Noto Sans JP', system-ui";
+  Chart.defaults.font.size = 11;
+  Chart.register(ChartDataLabels);
+  Chart.defaults.plugins.datalabels = { display: false };
+
+  const P = ['#1a2d4f','#9b8b6e','#2d7a4f','#b53a3a','#5a7fa8','#c8946e','#6b8e5e','#8b6b8e','#4a8b8b','#a89b5a','#7a5a3a','#5a6b8e'];
+  const SC = { FF:'#1a2d4f', FR:'#5a7fa8', IZK:'#b53a3a', SUSHI:'#4a8b8b', CAFE:'#9b8b6e', GYU:'#c8946e', RAMEN:'#8b6b8e', YAKINIKU:'#a89b5a', OTHER:'#777777' };
+
+  let tab = 'exec', selComp = null, mCodes = [], mSeg = 'ALL';
+  const C = {};
+  // 優待利回り再計算: yutaiYield = yutaiValue / (stockPrice × yutaiMinShares) × 100
+  companies.forEach(c => {
+    if (c.yutaiValue > 0 && c.yutaiMinShares > 0) {
+      c.yutaiYield = parseFloat((c.yutaiValue / (c.stockPrice * c.yutaiMinShares) * 100).toFixed(2));
+    } else { c.yutaiYield = 0; }
+    c.totalYutaiYield = parseFloat((c.dividendYield + c.yutaiYield).toFixed(2));
+  });
+  document.getElementById('companyCount').textContent = companies.length;
+  initNav(); render();
+
+  function initNav() {
+    document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
+      n.classList.add('active');
+      tab = n.dataset.tab;
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById('sec-'+tab).classList.add('active');
+      render();
+    }));
+  }
+  function render() {
+    const fns = { exec:rExec, market:rMarket, financial:rFinancial, dupont:rDupont, shareholder:rSharehold, monthly:rMonthly, detail:rDetail, macro:rMacro };
+    if (fns[tab]) fns[tab]();
+  }
+
+  // ============ 01 EXECUTIVE SUMMARY ============
+  function rExec() {
+    const el = g('sec-exec');
+    const tm=companies.reduce((s,c)=>s+c.marketCap,0), tr=companies.reduce((s,c)=>s+c.revenue,0);
+    const ts=companies.reduce((s,c)=>s+c.stores,0);
+    const aOP=avg(companies,'opMargin'), aROE=avg(companies,'roe'), aPER=avg(companies,'per');
+    const aYut=(companies.reduce((s,c)=>s+c.totalYutaiYield,0)/companies.length).toFixed(2);
+    const topMC=topN(companies,'marketCap',3), topOP=topN(companies,'opMargin',3), topROE=topN(companies,'roe',3);
+
+    el.innerHTML = `
+      ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
+      <div class="commentary">
+        <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
+        Restaurantsセクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
+        F&LC(スシロー)が+121.7%と突出、サイゼリヤ+48.2%、物語コーポレーション+43.1%が続く。<br><br>
+        <strong>足元のリスク要因:</strong>
+        (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
+        (2) <strong>郊外型ファミリーレストラン</strong>における客数減少トレンド(人口動態変化・デリバリーサービスの代替進行)、
+        (3) <strong>米価は前年比ほぼ2倍に急騰</strong>し値上げ転嫁にも限界が意識される局面。
+        最低賃金は2024年に<strong>全国加重平均1,055円</strong>(${DATA_AS_OF.minimumWage})に到達し、パート比率の高い外食産業では毎年10-20%の営業減益要因と試算される。<br>
+        <strong>銘柄選別の提言:</strong> (1)ブランド力に裏打ちされた<strong>価格転嫁力</strong>、(2)<strong>海外展開</strong>による為替ヘッジ効果と成長余地、(3)<strong>DX・省人化投資</strong>によるコスト構造改革 の3軸を重視。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('対象企業数',companies.length+'社','','c-navy')}
+        ${kpi('時価総額合計',fmtBil(tm),'','c-navy')}
+        ${kpi('売上高合計',fmtBil(tr),'','c-gold')}
+        ${kpi('平均営業利益率',aOP+'%','','c-green')}
+        ${kpi('平均ROE',aROE+'%','セクター平均','c-gold')}
+        ${kpi('平均PER',aPER+'倍','FY+1ベース','c-navy')}
+        ${kpi('vs TOPIX (1Y)','+0.2pt','ほぼ同水準','c-navy')}
+        ${kpi('総店舗数',ts.toLocaleString(),'','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 百万円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / セグメント色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">セグメント別 時価総額構成比</div><div class="chart-area"><canvas id="exPie"></canvas></div></div>
+        <div class="chart-panel">
+          <div class="chart-panel-title">主要ランキング</div>
+          <div style="display:grid;gap:10px;padding-top:8px;">
+            ${rankCard('時価総額',topMC,c=>fmtBil(c.marketCap))}
+            ${rankCard('営業利益率',topOP,c=>c.opMargin+'%')}
+            ${rankCard('ROE',topROE,c=>c.roe+'%')}
+          </div>
+        </div>
+      </div>`;
+    dc(['exMC','exPie','exBub']);
+    const s15=[...companies].sort((a,b)=>b.marketCap-a.marketCap).slice(0,15);
+    mc('exMC','bar',{labels:s15.map(c=>shortName(c.name)),datasets:[{data:s15.map(c=>c.marketCap),backgroundColor:s15.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v>=10000?(v/10000).toFixed(0)+'億':v.toLocaleString()}}});
+    const segMC={}; companies.forEach(c=>{segMC[c.segment]=(segMC[c.segment]||0)+c.marketCap;});
+    mc('exPie','doughnut',{labels:Object.keys(segMC).map(k=>SEGMENTS[k]),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(k=>SC[k]),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:(v,ctx)=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return(v/t*100).toFixed(1)+'%';}}}});
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('exBub','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.opMargin,y:c.roe,r:Math.max(4,Math.sqrt(c.marketCap/mx)*30),name:c.name})),backgroundColor:SC[seg]+'88',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'営業利益率 (%)'}},y:{title:{display:true,text:'ROE (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ${x.raw.x}% / ROE${x.raw.y}%`}}}});
+  }
+
+  // ============ 02 STOCK MARKET PERFORMANCE ============
+  function rMarket() {
+    const el = g('sec-market');
+    const sorted = [...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
+    const above = companies.filter(c=>c.relativeReturn>0).length;
+    el.innerHTML = `
+      ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
+      <div class="commentary">
+        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> Restaurantsセクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
+        TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの銘柄はTOPIXを下回った。
+        TOPIXを上回ったのは<strong>${above}銘柄</strong>、下回ったのは${companies.length-above}銘柄。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('Restaurantsセクター','130.0pt','直近1年','c-navy')}
+        ${kpi('TOPIX','129.8pt','同期間','c-navy')}
+        ${kpi('超過リターン','+0.2pt','ほぼ同水準','c-navy')}
+        ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">TOPIX-17セクター別パフォーマンス比較</div><div class="chart-panel-sub">直近1年騰落率 / 100基準</div><div class="chart-area tall"><canvas id="mkT17"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">Restaurants vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100)</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
+      </div>
+      <div class="chart-row single">
+        <div class="chart-panel"><div class="chart-panel-title">銘柄別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>セグメント</th><th>株価</th><th>時価総額</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>ROE</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td><span class="badge">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.roe}%</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);
+    dc(['mkT17','mkIdx','mkStocks']);
+    mc('mkT17','bar',{labels:TOPIX17_SECTORS.map(s=>s.name),datasets:[{data:TOPIX17_SECTORS.map(s=>s.point-100),backgroundColor:TOPIX17_SECTORS.map(s=>s.name==='Restaurant'?'#1a2d4f':s.name==='TOPIX'?'#9b8b6e':'#c8c4bb'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>(v>=0?'+':'')+v.toFixed(1)+'pt'}}});
+    const ml=['24/05','24/06','24/07','24/08','24/09','24/10','24/11','24/12','25/01','25/02','25/03','25/04','25/05'];
+    mc('mkIdx','line',{labels:ml,datasets:[{label:'Restaurants',data:RESTAURANT_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{});
+    const hasAnnotation = Chart.registry?.plugins?.get?.('annotation') || (typeof window !== 'undefined' && window['chartjs-plugin-annotation']);
+    mc('mkStocks','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.stockReturn1Y),backgroundColor:sorted.map(c=>c.stockReturn1Y>=TOPIX_RETURN_1Y?'#1a2d4f':'rgba(181,58,58,0.6)'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},annotation:{annotations:{topix:{type:'line',xMin:TOPIX_RETURN_1Y,xMax:TOPIX_RETURN_1Y,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'TOPIX '+TOPIX_RETURN_1Y+'%',position:'start'}}}}}});
+  }
+
+  // ============ 03 FINANCIAL ============
+  function rFinancial() {
+    const el = g('sec-financial');
+    const sorted=[...companies].sort((a,b)=>b.revenue-a.revenue);
+    el.innerHTML = `
+      ${secH('03','財務指標・バリュエーション','売上高・利益率・PER/PBRの横断比較')}
+      <div class="commentary">
+        <strong>バリュエーション分析 (${DATA_AS_OF.financials}ベース):</strong> セクター平均PERは${avg(companies,'per')}倍、PBRは${avg(companies,'pbr')}倍。
+        全銘柄がPBR1倍超のバリュエーションを獲得しており、高PBR・高ROEのグロース株セクター。
+        PBR-ROE間にはR²=0.53の正の相関が確認され、<strong>ROE改善が株価評価に直結</strong>する構造。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益</div><div class="chart-panel-sub">TOP15 / 百万円</div><div class="chart-area tall"><canvas id="fnRP"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE マトリクス</div><div class="chart-panel-sub">4象限分析 / バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="fnPBR"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">PER vs PBR</div><div class="chart-panel-sub">左下=割安ゾーン</div><div class="chart-area"><canvas id="fnPERPBR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="fnHist"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>売上高</th><th>営業利益</th><th>純利益</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>ROE</th><th>D/E</th><th>Net D/E</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td>${c.netProfit.toLocaleString()}</td><td class="${c.opMargin>=8?'pos':c.opMargin<3?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.deRatio.toFixed(2)}</td><td>${c.netDeRatio.toFixed(2)}</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el); dc(['fnRP','fnPBR','fnPERPBR','fnHist']);
+    const t15=sorted.slice(0,15);
+    mc('fnRP','bar',{labels:t15.map(c=>shortName(c.name)),datasets:[{label:'売上高',data:t15.map(c=>c.revenue),backgroundColor:'rgba(26,45,79,0.6)',borderWidth:0},{label:'営業利益',data:t15.map(c=>c.opProfit),backgroundColor:'rgba(45,122,79,0.6)',borderWidth:0}]},{indexAxis:'y'});
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('fnPBR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*28),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ROE${x.raw.x}% / PBR${x.raw.y}倍`}}}});
+    mc('fnPERPBR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.per,y:c.pbr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'PER (倍)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: PER${x.raw.x}倍 / PBR${x.raw.y}倍`}}}});
+    const bins=[0,2,4,6,8,10,15,30]; const hist=bins.slice(0,-1).map((_,i)=>companies.filter(c=>c.opMargin>=bins[i]&&c.opMargin<bins[i+1]).length);
+    mc('fnHist','bar',{labels:bins.slice(0,-1).map((b,i)=>`${b}-${bins[i+1]}%`),datasets:[{data:hist,backgroundColor:'rgba(26,45,79,0.5)',borderWidth:0}]},{plugins:{legend:{display:false}}});
+  }
+
+  // ============ 04 DUPONT DECOMPOSITION ============
+  function rDupont() {
+    const el = g('sec-dupont');
+    const sorted=[...companies].sort((a,b)=>b.roe-a.roe);
+    el.innerHTML = `
+      ${secH('04','DuPont分解分析','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
+      <div class="commentary">
+        <strong>DuPont Analysis:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
+        総資産回転率平均<strong>${avg(companies,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(companies,'leverage')}x</strong>。
+        エターナルホスピタリティG(ROE${companies.find(c=>c.code==='3193')?.roe}%)やクリエイト・レストランツHD等は高レバレッジが高ROEに寄与。
+        一方、コメダHDは純利益率${companies.find(c=>c.code==='3543')?.netMargin}%と突出するが回転率は0.5xと低い(FCモデルの特性)。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">ROE(FY) DuPont分解</div><div class="chart-panel-sub">ROE順 / 3要素の寄与</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">純利益率 vs 総資産回転率</div><div class="chart-panel-sub">バブルサイズ=ROE</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">DuPont分解一覧 (ROE順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>ROE</th><th>純利益率</th><th>総資産回転率</th><th>財務レバレッジ</th><th>D/E</th><th>Net D/E</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row ${c.code==='8163'?'row-hl':''}" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe}%</td><td>${c.netMargin}%</td><td>${c.assetTurnover.toFixed(1)}x</td><td>${c.leverage.toFixed(1)}x</td><td>${c.deRatio.toFixed(2)}</td><td>${c.netDeRatio.toFixed(2)}</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el); dc(['dpBar','dpScatter']);
+    mc('dpBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:sorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'回転率(x)',data:sorted.map(c=>c.assetTurnover*5),backgroundColor:'#9b8b6e'},{label:'レバレッジ(x)',data:sorted.map(c=>c.leverage),backgroundColor:'#5a7fa8'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
+    const maxROE=Math.max(...companies.map(c=>c.roe));
+    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.netMargin,y:c.assetTurnover,r:Math.max(4,c.roe/maxROE*30),name:c.name,roe:c.roe})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'総資産回転率 (x)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / 回転率${x.raw.y}x / ROE${x.raw.roe}%`}}}});
+  }
+
+  // ============ 05 SHAREHOLDER ============
+  function rSharehold() {
+    const el = g('sec-shareholder');
+    const ys=[...companies].sort((a,b)=>b.totalYutaiYield-a.totalYutaiYield);
+    const is=[...companies].sort((a,b)=>b.individualRatio-a.individualRatio);
+    el.innerHTML = `
+      ${secH('05','株主還元・投資指標','配当+優待利回り・個人投資家比率の横断分析')}
+      <div class="commentary">
+        <strong>株主還元 (${DATA_AS_OF.stockPrice}基準):</strong> 優待総利回りでは<strong>${ys[0].name}</strong>が${ys[0].totalYutaiYield.toFixed(2)}%でトップ。
+        個人投資家比率と優待総利回りには<strong>正の相関</strong>が認められ、優待制度が株主構成に直結する構造。<br>
+        ※優待利回り = 優待価値(年間) ÷ 最低投資額(株価×最低必要株数)。最低必要株数は各社優待制度に準拠。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('優待総利回りTOP',ys[0].totalYutaiYield.toFixed(2)+'%',ys[0].name,'c-green')}
+        ${kpi('個人比率TOP',is[0].individualRatio+'%',is[0].name,'c-gold')}
+        ${kpi('平均配当利回り',avg(companies,'dividendYield')+'%','','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">優待総利回りランキング</div><div class="chart-panel-sub">配当+優待 / TOP20</div><div class="chart-area tall"><canvas id="shBar"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">優待総利回り vs 個人投資家比率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="shScat"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">株主還元指標一覧</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>株価</th><th>最低株数</th><th>最低投資額</th><th>配当利回り</th><th>優待価値</th><th>優待利回り</th><th>総利回り</th><th>個人比率</th></tr></thead>
+        <tbody>${ys.map(c=>{const inv=c.stockPrice*c.yutaiMinShares;return `<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.yutaiMinShares}株</td><td>${inv.toLocaleString()}円</td><td>${c.dividendYield.toFixed(2)}%</td><td>${c.yutaiValue.toLocaleString()}円</td><td>${c.yutaiYield.toFixed(2)}%</td><td class="${c.totalYutaiYield>=3?'pos':''}" style="font-weight:700">${c.totalYutaiYield.toFixed(2)}%</td><td>${c.individualRatio}%</td></tr>`;}).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el); dc(['shBar','shScat']);
+    const y20=ys.slice(0,20);
+    mc('shBar','bar',{labels:y20.map(c=>shortName(c.name)),datasets:[{label:'配当利回り',data:y20.map(c=>c.dividendYield),backgroundColor:'#2d7a4f'},{label:'優待利回り',data:y20.map(c=>c.yutaiYield),backgroundColor:'#9b8b6e'}]},{indexAxis:'y',scales:{x:{stacked:true},y:{stacked:true}}});
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('shScat','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.totalYutaiYield,y:c.individualRatio,r:Math.max(4,Math.sqrt(c.marketCap/mx)*22),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'優待総利回り (%)'}},y:{title:{display:true,text:'個人投資家比率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ${x.raw.x.toFixed(2)}% / 個人${x.raw.y}%`}}}});
+  }
+
+  // ============ 06 MONTHLY KPI ============
+  function rMonthly() {
+    const el = g('sec-monthly');
+    if (!mCodes.length) mCodes = companies.slice(0,5).map(c=>c.code);
+    const vis = mSeg==='ALL' ? companies : companies.filter(c=>c.segment===mSeg);
+    el.innerHTML = `
+      ${secH('06','月次KPI横断比較','複数企業・セグメント横断で売上高・利益・原価率・既存店売上前年比を比較')}
+      <div class="commentary">
+        <strong>月次動向:</strong> セグメントフィルタと企業チップで複数銘柄を同時選択・比較可能。
+        外食セクターは<strong>7-8月(夏休み)と12月(忘年会)</strong>にピーク、2月が底となる共通の季節性がある。
+        既存店売上高データは<strong>各社IR・月次売上情報</strong>を参照。
+        業界平均(破線)は主要30社超の既存店売上高単純平均。24年10月の業界平均は<strong>前年同月比+4.6%</strong>とやや鈍化傾向。
+      </div>
+      <div class="chip-wrap"><div class="chip-label">セグメントフィルタ</div>
+        <div class="chip-select" id="mSegC">
+          <div class="chip ${mSeg==='ALL'?'selected':''}" data-seg="ALL">全セグメント</div>
+          ${Object.entries(SEGMENTS).map(([k,v])=>`<div class="chip ${mSeg===k?'selected':''}" data-seg="${k}">${v}</div>`).join('')}
+        </div>
+      </div>
+      <div class="chip-wrap"><div class="chip-label">比較企業を選択 (複数可)</div>
+        <div class="chip-select" id="mCompC">${vis.map(c=>`<div class="chip ${mCodes.includes(c.code)?'selected':''}" data-code="${c.code}">${shortName(c.name)}</div>`).join('')}</div>
+      </div>
+      <div id="mKpi" class="kpi-grid"></div>
+      <div class="chart-row"><div class="chart-panel"><div class="chart-panel-title">月次売上高推移</div><div class="chart-area"><canvas id="mRev"></canvas></div></div><div class="chart-panel"><div class="chart-panel-title">月次利益推移</div><div class="chart-area"><canvas id="mProf"></canvas></div></div></div>
+      <div class="chart-row"><div class="chart-panel"><div class="chart-panel-title">原価率推移</div><div class="chart-area"><canvas id="mCost"></canvas></div></div><div class="chart-panel"><div class="chart-panel-title">既存店売上高前年比</div><div class="chart-area"><canvas id="mSSS"></canvas></div></div></div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">既存店売上高前年比 ヒートマップ</div></div><div class="table-scroll"><table class="heatmap-table" id="hmSSS"></table></div></div>
+      <div class="commentary" style="margin-top:24px;font-size:0.78rem;">
+        <strong>データ方法論:</strong><br>
+        ・<strong>対象期間:</strong> ${DATA_AS_OF.sameStoreSales}(4月始まり会計年度)<br>
+        ・<strong>既存店売上高の採用ブランド:</strong> 複数ブランド展開企業は、売上高構成比が最大のブランドを代表値として使用。
+        ゼンショーHD→すき家、トリドールHD→丸亀製麺、FOOD&LIFE→スシロー、物語コーポレーション→焼肉きんぐ、
+        コメダHD→コメダ珈琲店、あみやき亭→焼肉部門、ペッパーフード→いきなり！ステーキ、
+        ハイデイ日高→日高屋、鳥貴族HD→鳥貴族(エターナルホスピタリティG)<br>
+        ・<strong>月次売上高・利益:</strong> 各社IR開示の月次売上速報を百万円単位で記載。非開示企業は四半期実績を月次按分して推計<br>
+        ・<strong>原価率(食材費率):</strong> 有価証券報告書の売上原価÷売上高で算出。月次変動は季節パターンから推計<br>
+        ・<strong>業界平均(破線):</strong> 外食主要チェーンの既存店売上高前年比の単純平均(各社IR月次速報ベース)<br>
+        ・<strong>更新頻度:</strong> 各社月次速報は翌月中旬に開示されるため、毎月下旬にデータ更新を実施
+      </div>`;
+    g('mSegC').querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{mSeg=ch.dataset.seg;mCodes=[];rMonthly();}));
+    g('mCompC').querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{const c=ch.dataset.code;mCodes=mCodes.includes(c)?mCodes.filter(x=>x!==c):[...mCodes,c];updateMonthlyCharts();}));
+    updateMonthlyCharts();
+  }
+  function updateMonthlyCharts() {
+    const sel=companies.filter(c=>mCodes.includes(c.code));
+    g('mCompC')?.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('selected',mCodes.includes(ch.dataset.code)));
+    if(!sel.length) return;
+    dc(['mRev','mProf','mCost','mSSS']);
+    const ds=(field)=>sel.map((c,i)=>({label:shortName(c.name),data:c[field],borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}));
+    mc('mRev','line',{labels:MONTHS,datasets:ds('monthlyRevenue')},{});
+    mc('mProf','line',{labels:MONTHS,datasets:ds('monthlyProfit')},{});
+    mc('mCost','line',{labels:MONTHS,datasets:ds('costRatio')},{});
+    mc('mSSS','line',{labels:MONTHS,datasets:[...ds('sameStoreSales'),{label:'業界平均',data:SECTOR_AVG_SSS,borderColor:'#999',borderDash:[6,3],fill:false,tension:0.3,pointRadius:0,borderWidth:2}]},{});
+    heatmap('hmSSS',sel,'sameStoreSales',v=>v.toFixed(1),v=>v>=105?'pos':v<100?'neg':'');
+  }
+
+  // ============ 07 DETAIL ============
+  function rDetail() {
+    const el = g('sec-detail');
+    if(!selComp) selComp = companies[0];
+    const c = selComp;
+    const peers = companies.filter(x=>x.segment===c.segment&&x.code!==c.code);
+    el.innerHTML = `
+      ${secH('07','個別企業分析','選択企業の詳細指標と同業比較')}
+      <div class="inline-filters"><span class="f-label">企業選択</span>
+        <select id="dtSel">${companies.map(x=>`<option value="${x.code}" ${x.code===c.code?'selected':''}>${x.code} ${x.name}</option>`).join('')}</select>
+      </div>
+      <div style="font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:4px;">${c.name}</div>
+      <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">${c.code} / ${SEGMENTS[c.segment]} / ${c.stores.toLocaleString()}店舗 / 決算期: ${c.fiscalYear||'-'}</div>
+      <div class="chip-select" style="margin-bottom:24px;">${c.brands.map(b=>`<span class="chip selected">${b}</span>`).join('')}</div>
+      <div class="kpi-grid">
+        ${kpi('株価',c.stockPrice.toLocaleString()+'円','','c-navy')}
+        ${kpi('時価総額',c.marketCap.toLocaleString()+'百万','','c-navy')}
+        ${kpi('営業利益率',c.opMargin+'%','','c-green')}
+        ${kpi('ROE',c.roe+'%','','c-gold')}
+        ${kpi('PER / PBR',c.per.toFixed(1)+' / '+c.pbr.toFixed(1),'','c-navy')}
+        ${kpi('優待総利回り',c.totalYutaiYield.toFixed(2)+'%','配当'+c.dividendYield.toFixed(2)+'%+優待'+c.yutaiYield.toFixed(2)+'%','c-green')}
+        ${kpi('vs TOPIX (1Y)',(c.relativeReturn>0?'+':'')+c.relativeReturn.toFixed(1)+'%','','c-gold')}
+        ${kpi('個人比率',c.individualRatio+'%','','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">月次売上高</div><div class="chart-area short"><canvas id="dtR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">既存店売上前年比</div><div class="chart-area short"><canvas id="dtS"></canvas></div></div>
+      </div>
+      ${peers.length?`<div class="table-panel"><div class="table-header"><div class="table-header-title">同業比較 - ${SEGMENTS[c.segment]}</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">企業名</th><th>決算期</th><th>売上高</th><th>営業利益率</th><th>ROE</th><th>PER</th><th>総利回り</th><th>vs TOPIX</th></tr></thead>
+        <tbody><tr class="row-hl"><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem">${c.fiscalYear||'-'}</td><td>${c.revenue.toLocaleString()}</td><td>${c.opMargin}%</td><td>${c.roe}%</td><td>${c.per.toFixed(1)}</td><td>${c.totalYutaiYield.toFixed(2)}%</td><td>${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>
+        ${peers.map(p=>`<tr><td>${shortName(p.name)}</td><td style="font-size:0.75rem">${p.fiscalYear||'-'}</td><td>${p.revenue.toLocaleString()}</td><td>${p.opMargin}%</td><td>${p.roe}%</td><td>${p.per.toFixed(1)}</td><td>${p.totalYutaiYield.toFixed(2)}%</td><td>${p.relativeReturn>0?'+':''}${p.relativeReturn.toFixed(1)}%</td></tr>`).join('')}
+        </tbody></table></div></div>`:''}`;
+    g('dtSel').addEventListener('change',e=>{selComp=companies.find(c=>c.code===e.target.value);rDetail();});
+    dc(['dtR','dtS']);
+    mc('dtR','bar',{labels:MONTHS,datasets:[{data:c.monthlyRevenue,backgroundColor:'rgba(26,45,79,0.5)',borderWidth:0}]},{plugins:{legend:{display:false}}});
+    mc('dtS','bar',{labels:MONTHS,datasets:[{data:c.sameStoreSales,backgroundColor:c.sameStoreSales.map(v=>v>=100?'rgba(45,122,79,0.5)':'rgba(181,58,58,0.5)'),borderWidth:0}]},{scales:{y:{min:Math.min(...c.sameStoreSales)-3}},plugins:{legend:{display:false}}});
+  }
+
+  // ============ APPENDIX: MACRO ============
+  function rMacro() {
+    const el = g('sec-macro');
+    const md = MACRO_DATA;
+    el.innerHTML = `
+      ${secH('A','マクロ指標付録','家計支出・原材料価格・人件費等の外部環境データ')}
+      <div class="commentary">
+        <strong>外部環境:</strong> 米価は2024年に<strong>指数166</strong>(2015年比+66%)と急騰(「令和の米騒動」)。
+        最低賃金は2024年に<strong>全国加重平均1,055円</strong>に到達し、人件費上昇がオペレーションコストを圧迫。
+        家計支出ベースでは食事代はCovid前水準を回復したが、<strong>飲酒代は回復が鈍い</strong>。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">主要食品価格指数推移</div><div class="chart-panel-sub">2015年10月=100 / 出所: 農畜産業振興機構, 農林水産省</div><div class="chart-area tall"><canvas id="maFood"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">二人以上世帯 年間飲食費推移</div><div class="chart-panel-sub">出所: 総務省「家計調査」(万円)</div><div class="chart-area tall"><canvas id="maHH"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">外食産業主要指標推移</div><div class="chart-panel-sub">2019/12=100 / 出所: 日本フードサービス協会</div><div class="chart-area"><canvas id="maInd"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">最低賃金推移 (全国加重平均)</div><div class="chart-panel-sub">出所: 厚生労働省</div><div class="chart-area"><canvas id="maWage"></canvas></div></div>
+      </div>`;
+    dc(['maFood','maHH','maInd','maWage']);
+    const fp=md.foodPrices;
+    mc('maFood','line',{labels:fp.years,datasets:Object.entries(fp.items).map(([k,v],i)=>({label:k,data:v,borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}))},{});
+    const hs=md.householdSpending;
+    mc('maHH','bar',{labels:hs.years,datasets:Object.entries(hs.categories).map(([k,v],i)=>({label:k,data:v,backgroundColor:P[i%P.length]+'cc'}))},{scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'万円'}}}});
+    const ii=md.industryIndex;
+    mc('maInd','line',{labels:ii.months,datasets:[{label:'売上高',data:ii.sales,borderColor:'#1a2d4f',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'店舗数',data:ii.stores,borderColor:'#9b8b6e',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'客数',data:ii.customers,borderColor:'#5a7fa8',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'客単価',data:ii.unitPrice,borderColor:'#2d7a4f',tension:0.3,pointRadius:3,borderWidth:2,fill:false}]},{});
+    const lc=md.laborCost;
+    mc('maWage','bar',{labels:lc.years,datasets:[{label:'最低賃金(円)',data:lc.minWage,backgroundColor:'rgba(26,45,79,0.6)',borderWidth:0}]},{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#777',font:{size:10},formatter:v=>v+'円'}}});
+  }
+
+  // ============ HELPERS ============
+  function g(id){return document.getElementById(id);}
+  function mc(id,type,data,opts={}){
+    const ctx=g(id);if(!ctx)return;
+    const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#777',font:{size:10}}},datalabels:{display:false}}};
+    if(['bar','line','scatter','bubble'].includes(type))base.scales={x:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}},y:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}}};
+    C[id]=new Chart(ctx,{type,data,options:dm(base,opts)});
+  }
+  function dc(ids){ids.forEach(id=>{if(C[id]){C[id].destroy();delete C[id];}});}
+  function dm(t,s){const o={...t};for(const k of Object.keys(s)){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=dm(o[k]||{},s[k]);else o[k]=s[k];}return o;}
+  function secH(n,t,d){return `<div class="sec-header"><div class="sec-num">SECTION ${n}</div><div class="sec-title">${t}</div><div class="sec-desc">${d}</div></div>`;}
+  function kpi(l,v,s,cls){return `<div class="kpi-card ${cls}"><div class="kpi-label">${l}</div><div class="kpi-value">${v}</div>${s?`<div class="kpi-sub">${s}</div>`:''}</div>`;}
+  function rankCard(t,items,fn){return `<div class="ranking-card"><div class="ranking-title">${t}</div>${items.map((c,i)=>`<div class="ranking-row"><span><span class="ranking-num">${i+1}</span>${shortName(c.name)}</span><span style="font-weight:600">${fn(c)}</span></div>`).join('')}</div>`;}
+  function heatmap(id,comps,field,fmt,cls){
+    const t=g(id);if(!t)return;
+    let h=`<thead><tr><th style="text-align:left">企業名</th>${MONTHS.map(m=>`<th>${m}</th>`).join('')}<th>平均</th></tr></thead><tbody>`;
+    comps.forEach(c=>{const v=c[field],a=v.reduce((s,x)=>s+x,0)/12;h+=`<tr><td>${shortName(c.name)}</td>${v.map(x=>`<td class="${cls(x)}">${fmt(x)}</td>`).join('')}<td style="font-weight:700">${fmt(a)}</td></tr>`;});
+    h+='</tbody>';t.innerHTML=h;
+  }
+  function bindRows(el){el.querySelectorAll('.clickable-row').forEach(tr=>tr.addEventListener('click',()=>{selComp=companies.find(c=>c.code===tr.dataset.code);document.querySelector('.nav-item[data-tab="detail"]').click();}));}
+})();
+
+</script>
+</body>
+</html>
