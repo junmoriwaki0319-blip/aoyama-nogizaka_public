@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5D57P05PM');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>国内SaaS セクター分析レポート | 青山乃木坂パートナーズ</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>国内SaaS セクター分析レポート | Aoyama Nogizaka Partners</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -15,19 +14,109 @@
     :root {
       --navy: #1a2d4f; --navy-dark: #0f1a30; --navy-light: #2a4470;
       --gold: #9b8b6e; --gold-light: #c8b99a; --gold-dim: #7a6d55;
-      --bg: #ffffff; --bg-alt: #f8f7f5;
+      --bg: #ffffff; --bg-alt: #f8f7f5; --bg-warm: #f0eee9;
       --text: #1a1a1a; --text-mid: #444444; --text-muted: #777777; --text-light: #999999;
       --border: #e0ddd6; --border-light: #eae7e1;
+      --green: #2d7a4f; --red: #b53a3a;
       --radius: 4px; --radius-lg: 8px;
     }
-    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 13.5px; margin: 0; }
-
-    /* === Header === */
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 13.5px; }
     .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .site-logo { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; }
+    .site-logo { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
     .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
-
-    /* === Cross Nav === */
+    .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 56px 48px 44px; position: relative; }
+    .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
+    .report-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+    .report-title { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.4; }
+    .report-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+    .report-meta { display: flex; gap: 36px; flex-wrap: wrap; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+    .report-meta strong { color: rgba(255,255,255,0.7); }
+    .nav-bar { background: var(--bg-alt); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 48px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; overflow-x: auto; }
+    .nav-item { padding: 13px 22px; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.3px; }
+    .nav-item:hover { color: var(--text); }
+    .nav-item.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
+    .nav-item .nav-num { font-family: 'Cormorant Garamond', serif; font-size: 0.65rem; color: var(--gold); margin-right: 6px; font-weight: 700; }
+    .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .sec-num { font-family: 'Cormorant Garamond', serif; font-size: 0.68rem; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+    .sec-title { font-family: 'Noto Serif JP', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .sec-desc { font-size: 0.82rem; color: var(--text-muted); }
+    .commentary { background: var(--bg-alt); border-left: 3px solid var(--gold); padding: 18px 24px; margin-bottom: 32px; font-size: 0.85rem; color: var(--text-mid); line-height: 1.9; }
+    .commentary strong { color: var(--navy); font-weight: 600; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 32px; }
+    .kpi-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 16px 18px; position: relative; }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; }
+    .kpi-card.c-navy::before { background: var(--navy); }
+    .kpi-card.c-gold::before { background: var(--gold); }
+    .kpi-card.c-green::before { background: var(--green); }
+    .kpi-card.c-red::before { background: var(--red); }
+    .kpi-label { font-size: 0.68rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .kpi-value { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .kpi-unit { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
+    .kpi-sub { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; }
+    .v-green { color: var(--green); } .v-red { color: var(--red); } .v-gold { color: var(--gold-dim); } .v-navy { color: var(--navy); }
+    .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .chart-row.single { grid-template-columns: 1fr; }
+    .chart-row.tri { grid-template-columns: 1fr 1fr 1fr; }
+    .chart-panel { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px; }
+    .chart-panel-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .chart-panel-sub { font-size: 0.7rem; color: var(--text-light); margin-bottom: 16px; }
+    .chart-area { position: relative; height: 320px; }
+    .chart-area.tall { height: 420px; }
+    .chart-area.short { height: 260px; }
+    .table-panel { border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 32px; }
+    .table-header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--bg-alt); display: flex; justify-content: space-between; align-items: center; }
+    .table-header-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead th { background: var(--bg-warm); color: var(--text-muted); font-weight: 600; text-align: right; padding: 9px 10px; white-space: nowrap; border-bottom: 2px solid var(--border); font-size: 0.7rem; letter-spacing: 0.2px; cursor: pointer; user-select: none; }
+    thead th:first-child, thead th:nth-child(2) { text-align: left; }
+    thead th:hover { color: var(--navy); }
+    td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); text-align: right; white-space: nowrap; }
+    td:first-child, td:nth-child(2) { text-align: left; }
+    tr:hover td { background: rgba(155,139,110,0.04); }
+    .pos { color: var(--green); } .neg { color: var(--red); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 600; }
+    .badge-bizapp { background: rgba(26,45,79,0.08); color: var(--navy); }
+    .badge-fintech { background: rgba(45,122,79,0.08); color: var(--green); }
+    .badge-security { background: rgba(181,58,58,0.08); color: var(--red); }
+    .badge-cx { background: rgba(155,139,110,0.1); color: var(--gold-dim); }
+    .badge-vertical { background: rgba(100,100,180,0.08); color: #5555aa; }
+    .badge-other { background: rgba(100,100,100,0.08); color: #666; }
+    .ranking-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
+    .ranking-title { font-size: 0.72rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .ranking-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 3px 0; }
+    .ranking-num { display: inline-block; width: 20px; font-weight: 700; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+    .row-hl td { background: rgba(155,139,110,0.08); }
+    .clickable-row { cursor: pointer; }
+    .chip-wrap { margin-bottom: 20px; }
+    .chip-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .chip-select { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500; background: var(--bg-alt); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all 0.15s; user-select: none; }
+    .chip:hover { border-color: var(--gold-light); color: var(--text); }
+    .chip.selected { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .inline-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+    .f-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+    select, input[type="text"] { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: var(--radius); font-size: 0.8rem; font-family: inherit; outline: none; }
+    select:focus, input:focus { border-color: var(--gold); }
+    .heatmap-table td { text-align: center; font-weight: 600; font-size: 0.72rem; padding: 7px 5px; min-width: 50px; }
+    .heatmap-table td:first-child { text-align: left; min-width: 130px; font-weight: 500; }
+    .kpi-tree { padding: 20px; }
+    .tree-container { text-align: center; }
+    .tree-level { display: flex; justify-content: center; gap: 16px; margin: 8px 0; flex-wrap: wrap; }
+    .tree-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+    .tree-branch { display: flex; flex-direction: column; align-items: center; min-width: 140px; }
+    .tree-h-line { height: 2px; background: var(--border); }
+    .kpi-tree-node { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px 16px; margin: 4px 0; display: inline-block; }
+    .kpi-tree-node.root { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .kpi-tree-node .node-label { font-size: 0.72rem; color: var(--text-light); }
+    .kpi-tree-node .node-value { font-size: 1.1rem; font-weight: 700; }
+    .kpi-tree-node.root .node-label { color: var(--gold-light); }
+    .kpi-tree-node.root .node-value { color: #fff; }
     .header-right { display: flex; align-items: center; gap: 20px; }
     .cross-nav { display: flex; align-items: center; gap: 6px; }
     .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
@@ -35,8 +124,6 @@
     .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
     .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
     .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
-
-    /* === Auth UI === */
     .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
     .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius); font-family: inherit; }
     .btn-login:hover { border-color: var(--gold-light); color: #fff; }
@@ -45,8 +132,6 @@
     #navUserInfo { color: #fff; font-size: 0.78rem; }
     #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
     #navUserInfo button:hover { color: #fff; }
-
-    /* === Modals === */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
     .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
@@ -62,103 +147,27 @@
     .btn-google:hover { background: var(--bg-alt); }
     .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
     .modal-footer span[onclick] { color: var(--navy); font-weight: 600; text-decoration: underline; }
-
-    /* === Cover === */
-    .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 56px 48px 44px; position: relative; }
-    .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
-    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
-    .report-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
-    .report-title { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.4; }
-    .report-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
-
-    /* === Coming Soon === */
-    .coming-soon { max-width: 720px; margin: 0 auto; padding: 100px 48px 120px; text-align: center; }
-    .coming-soon-badge {
-      display: inline-block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); border: 1px solid var(--gold-light);
-      padding: 6px 20px; border-radius: 20px; margin-bottom: 32px;
-    }
-    .coming-soon h2 {
-      font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 700;
-      color: var(--navy); margin-bottom: 16px; line-height: 1.5;
-    }
-    .coming-soon p {
-      font-size: 0.88rem; color: var(--text-muted); line-height: 2; margin-bottom: 20px;
-    }
-    .coming-soon-features {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      margin: 40px 0; text-align: left;
-    }
-    .feature-card {
-      background: var(--bg-alt); border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg); padding: 20px 24px;
-    }
-    .feature-card-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 0.65rem;
-      color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 4px;
-    }
-    .feature-card-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
-    .feature-card-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
-    .btn-back {
-      display: inline-block; margin-top: 32px;
-      background: var(--navy); color: #fff; text-decoration: none;
-      padding: 12px 32px; border-radius: var(--radius); font-size: 0.82rem;
-      font-family: inherit; font-weight: 500; letter-spacing: 0.5px; transition: background 0.2s;
-    }
-    .btn-back:hover { background: var(--navy-light); }
-    .btn-secondary {
-      display: inline-block; margin-top: 12px; margin-left: 12px;
-      background: none; color: var(--gold-dim); text-decoration: none;
-      padding: 12px 32px; border-radius: var(--radius); font-size: 0.82rem;
-      font-family: inherit; font-weight: 500; border: 1px solid var(--border); transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-    /* === Footer === */
+    .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+    .login-wall { position: relative; margin-top: -80px; padding: 120px 48px 60px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
+    .login-wall h3 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
+    .login-wall .btn-cta:hover { background: var(--gold-dim); }
+    .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
     .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
-
-    @media (max-width: 900px) {
-      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 20px; padding-right: 20px; }
-      .coming-soon-features { grid-template-columns: 1fr; }
-      .header-right { gap: 10px; }
-      .cross-nav { display: none; }
-      .nav-auth-btns { gap: 6px; }
-      .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; }
-      .report-cover::after { left: 20px; right: 20px; }
-      .coming-soon { padding: 60px 20px 80px; }
-      .btn-back, .btn-secondary { display: block; width: 100%; text-align: center; margin-left: 0; margin-top: 12px; }
-    }
-    @media (max-width: 768px) {
-      .report-title { font-size: 1.4rem; }
-      .modal { padding: 32px 24px; }
-      .modal .form-group input, .modal .form-group select { min-height: 44px; font-size: 14px; }
-      .btn-submit, .btn-google { min-height: 44px; }
-      .btn-back, .btn-secondary { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-      .footer-inner { flex-direction: column; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .site-header, .report-cover, .coming-soon, .site-footer { padding-left: 16px; padding-right: 16px; }
-      .report-cover::after { left: 16px; right: 16px; }
-      .report-title { font-size: 1.2rem; }
-      .report-subtitle { font-size: 0.8rem; }
-      .coming-soon { padding: 48px 16px 60px; }
-      .coming-soon h2 { font-size: 1.2rem; }
-      .feature-card { padding: 16px 18px; }
-    }
+    @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
+    @media (max-width: 900px) { .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; } .chart-row, .chart-row.tri { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } .header-right { gap: 10px; } .cross-nav { display: none; } .nav-auth-btns { gap: 6px; } .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; } }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
 </head>
 <body>
 
 <header class="site-header">
   <a href="https://aoyama-nogizaka.com/" style="text-decoration:none;">
-    <div class="site-logo">
-      <small>AOYAMA NOGIZAKA PARTNERS</small>
-      Industry Research
-    </div>
+    <div class="site-logo"><small>AOYAMA NOGIZAKA PARTNERS</small>Industry Research</div>
   </a>
   <div class="header-right">
     <nav class="cross-nav">
@@ -167,9 +176,8 @@
       <a href="/saas.html" class="cross-nav-link active">SaaS</a>
       <span class="cross-nav-sep"></span>
       <span class="cross-nav-cat">アクティビスト</span>
-      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有報告</a>
-      <a href="/risk-assessment.html" class="cross-nav-link">機会評価</a>
-      <a href="/activist-screener.html" class="cross-nav-link">スクリーニング</a>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
     </nav>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
@@ -187,41 +195,55 @@
   <div class="report-cover-inner">
     <div class="report-label">Sector Analysis Report</div>
     <div class="report-title">国内SaaS セクター分析 KPIダッシュボード</div>
-    <div class="report-subtitle">上場SaaS企業30社のARR・Unit Economics・コスト構造横断分析</div>
+    <div class="report-subtitle">上場SaaS企業30社のARR・Unit Economics・バリュエーション横断分析</div>
+    <div class="report-meta">
+      <span>データ基準日: <strong>2026年3月19日</strong></span>
+      <span>対象: <strong id="companyCount">30</strong>社</span>
+      <span>分析指標: <strong>50+項目</strong></span>
+      <span>出所: 各社IR・決算説明会資料</span>
+    </div>
   </div>
 </div>
 
-<div class="coming-soon">
-  <div class="coming-soon-badge">Coming Soon</div>
-  <h2>SaaS セクター分析レポートは<br>現在準備中です</h2>
-  <p>国内上場SaaS企業30社を対象に、ARR成長率・Net Revenue Retention・LTV/CAC・Rule of 40等の主要KPIを横断分析するダッシュボードを準備しています。</p>
-
-  <div class="coming-soon-features">
-    <div class="feature-card">
-      <div class="feature-card-num">01</div>
-      <div class="feature-card-title">KPIマトリクス</div>
-      <div class="feature-card-desc">ARR・MRR・NRR・Churn Rate等を企業横断で一覧比較</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-card-num">02</div>
-      <div class="feature-card-title">収益性・成長性分析</div>
-      <div class="feature-card-desc">売上成長率 vs 営業利益率のマッピングとRule of 40評価</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-card-num">03</div>
-      <div class="feature-card-title">Unit Economics</div>
-      <div class="feature-card-desc">LTV/CAC・CAC Payback Period・顧客単価の企業間比較</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-card-num">04</div>
-      <div class="feature-card-title">コスト構造分析</div>
-      <div class="feature-card-desc">S&M比率・R&D比率・G&A比率の構造分析と業界ベンチマーク</div>
-    </div>
+<nav class="nav-bar">
+  <div class="nav-inner" id="mainNav">
+    <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+    <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
+    <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
+    <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
+    <div class="nav-item" data-tab="invest"><span class="nav-num">05</span>投資指標・資本効率</div>
+    <div class="nav-item" data-tab="matrix"><span class="nav-num">06</span>SaaS KPIマトリクス</div>
+    <div class="nav-item" data-tab="unit"><span class="nav-num">07</span>Unit Economics</div>
+    <div class="nav-item" data-tab="detail"><span class="nav-num">08</span>個別企業分析</div>
+    <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
   </div>
+</nav>
 
-  <a href="/food-service.html" class="btn-back">外食産業レポートを見る</a>
-  <a href="https://aoyama-nogizaka.com/" class="btn-secondary">トップページへ</a>
+<div class="main premium-blur" id="dashboardContent">
+  <div class="section active" id="sec-exec"></div>
+  <div class="section" id="sec-market"></div>
+  <div class="section" id="sec-financial"></div>
+  <div class="section" id="sec-dupont"></div>
+  <div class="section" id="sec-invest"></div>
+  <div class="section" id="sec-matrix"></div>
+  <div class="section" id="sec-unit"></div>
+  <div class="section" id="sec-detail"></div>
+  <div class="section" id="sec-source"></div>
 </div>
+
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>SaaS セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" onclick="openModal('register')">無料会員登録</button><br>
+  <span class="btn-login-link" onclick="openModal('login')">既にアカウントをお持ちの方はログイン</span>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>本レポートは各社IR開示情報に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
+  </div>
+</footer>
 
 <!-- Auth Modals -->
 <div class="modal-overlay" id="loginModal">
@@ -260,30 +282,21 @@
       <div class="form-group"><label>所属種別</label>
         <select id="regAffiliation" onchange="toggleAffiliationCode()" required>
           <option value="">選択してください</option>
-          <option value="listed_company">上場企業</option>
-          <option value="institutional_investor">機関投資家</option>
-          <option value="individual_investor">個人投資家</option>
-          <option value="consulting">コンサルティングファーム</option>
-          <option value="legal">法律事務所・弁護士</option>
-          <option value="media">メディア・報道機関</option>
-          <option value="academic">学術・研究機関</option>
-          <option value="other">その他</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
         </select>
       </div>
       <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
       <div class="form-group"><label>役職</label>
         <select id="regJobTitle" required>
           <option value="">選択してください</option>
-          <option value="executive">経営者・役員</option>
-          <option value="department_head">部長・本部長</option>
-          <option value="manager">課長・マネージャー</option>
-          <option value="ir_officer">IR担当</option>
-          <option value="legal_compliance">法務・コンプライアンス</option>
-          <option value="finance">経理・財務</option>
-          <option value="analyst">アナリスト・ファンドマネージャー</option>
-          <option value="consultant">コンサルタント・アドバイザー</option>
-          <option value="individual">個人</option>
-          <option value="other">その他</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
         </select>
       </div>
       <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
@@ -318,30 +331,21 @@
       <div class="form-group"><label>所属種別</label>
         <select id="cpAffiliation" required>
           <option value="">選択してください</option>
-          <option value="listed_company">上場企業</option>
-          <option value="institutional_investor">機関投資家</option>
-          <option value="individual_investor">個人投資家</option>
-          <option value="consulting">コンサルティングファーム</option>
-          <option value="legal">法律事務所・弁護士</option>
-          <option value="media">メディア・報道機関</option>
-          <option value="academic">学術・研究機関</option>
-          <option value="other">その他</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
         </select>
       </div>
       <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
       <div class="form-group"><label>役職</label>
         <select id="cpJobTitle" required>
           <option value="">選択してください</option>
-          <option value="executive">経営者・役員</option>
-          <option value="department_head">部長・本部長</option>
-          <option value="manager">課長・マネージャー</option>
-          <option value="ir_officer">IR担当</option>
-          <option value="legal_compliance">法務・コンプライアンス</option>
-          <option value="finance">経理・財務</option>
-          <option value="analyst">アナリスト・ファンドマネージャー</option>
-          <option value="consultant">コンサルタント・アドバイザー</option>
-          <option value="individual">個人</option>
-          <option value="other">その他</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
         </select>
       </div>
       <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
@@ -374,303 +378,505 @@
   </div>
 </div>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <span class="footer-brand">青山乃木坂パートナーズ</span>
-    <span>© 2026 Aoyama Nogizaka Partners All rights reserved.</span>
-  </div>
-</footer>
-
 <!-- Firebase Auth -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
-    authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
-    projectId: "aoyama-nogizaka-activist",
-    storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
-    messagingSenderId: "384668278205",
-    appId: "1:384668278205:web:78b25a473c6305f264c6d4",
-    measurementId: "G-Y1JYXRYHV9"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const analytics = getAnalytics(app);
-  const googleProvider = new GoogleAuthProvider();
-
-  window.firebaseAuth = auth;
-  window.firebaseDb = db;
-
-  window.firebaseLogin = (email, password) => signInWithEmailAndPassword(auth, email, password).then(c => c.user);
-  window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(cred.user, { displayName: name });
-    await setDoc(doc(db, "users", cred.user.uid), {
-      name, company: company || "", email, affiliation: affiliation || "",
-      affiliationCode: affiliationCode || "", jobTitle: jobTitle || "",
-      plan: "free", createdAt: serverTimestamp()
-    });
-    await sendEmailVerification(cred.user);
-    window.sendWelcomeEmail(email, name);
-    return cred.user;
-  };
-  window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
-  window.firebaseLogout = () => signOut(auth);
-  window.firebaseGetProfile = async (uid) => { const snap = await getDoc(doc(db, "users", uid)); return snap.exists() ? snap.data() : null; };
-  window.firebaseUpdateProfile = async (uid, data) => { await setDoc(doc(db, "users", uid), data, { merge: true }); };
-  window.firebaseGoogleLogin = async () => {
-    const cred = await signInWithPopup(auth, googleProvider);
-    const user = cred.user;
-    const snap = await getDoc(doc(db, "users", user.uid));
-    if (!snap.exists()) {
-      await setDoc(doc(db, "users", user.uid), {
-        name: user.displayName || "", company: "", email: user.email || "",
-        affiliation: "", affiliationCode: "", jobTitle: "",
-        plan: "free", createdAt: serverTimestamp()
-      });
-      window.sendWelcomeEmail(user.email, user.displayName || '');
-      return { user, needsProfile: true };
-    }
-    const data = snap.data();
-    return { user, needsProfile: !data.affiliation || !data.jobTitle || !data.company };
-  };
-  window.firebaseLinkPassword = async (email, password) => {
-    const credential = EmailAuthProvider.credential(email, password);
-    await linkWithCredential(auth.currentUser, credential);
-  };
-  window.sendWelcomeEmail = async (email, name) => {
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name })
-      });
-    } catch (e) { console.warn('Welcome email failed:', e); }
-  };
-
-  const AFFILIATION_LABELS = {
-    listed_company:'上場企業', institutional_investor:'機関投資家',
-    individual_investor:'個人投資家', consulting:'コンサルティングファーム',
-    legal:'法律事務所・弁護士', media:'メディア・報道機関',
-    academic:'学術・研究機関', other:'その他'
-  };
-  const JOBTITLE_LABELS = {
-    executive:'経営者・役員', department_head:'部長・本部長',
-    manager:'課長・マネージャー', ir_officer:'IR担当',
-    legal_compliance:'法務・コンプライアンス', finance:'経理・財務',
-    analyst:'アナリスト・ファンドマネージャー',
-    consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他'
-  };
-
-  onAuthStateChanged(auth, (user) => {
-    window.currentUser = user;
-    updateAuthUI(user);
-  });
-
-  async function updateAuthUI(user) {
-    const authBtns = document.getElementById('navAuthBtns');
-    const userInfo = document.getElementById('navUserInfo');
-    const userName = document.getElementById('navUserName');
-    if (user) {
-      try {
-        const profile = await window.firebaseGetProfile(user.uid);
-        if (profile && (!profile.affiliation || !profile.jobTitle || !profile.company)) {
-          openModal('completeProfile');
-        }
-      } catch (e) {}
-      const displayName = (user.displayName || user.email) + ' 様';
-      authBtns.style.display = 'none';
-      userInfo.style.display = 'flex';
-      userName.textContent = displayName;
-    } else {
-      authBtns.style.display = 'flex';
-      userInfo.style.display = 'none';
-      userName.textContent = '';
-    }
-  }
-
-  // Expose modal functions globally
-  window.openModal = (type) => { document.getElementById(type + 'Modal').classList.add('show'); document.body.style.overflow = 'hidden'; };
-  window.closeModal = (type) => { document.getElementById(type + 'Modal').classList.remove('show'); document.body.style.overflow = ''; };
-  document.querySelectorAll('.modal-overlay').forEach(el => {
-    el.addEventListener('click', (e) => { if (e.target === el) { el.classList.remove('show'); document.body.style.overflow = ''; } });
-  });
-  window.switchModal = (type) => {
-    ['login','register','resetPassword'].forEach(t => { if (t !== type) closeModal(t); });
-    openModal(type);
-  };
-  window.switchToLogin = () => { closeModal('resetPassword'); openModal('login'); };
-  window.toggleAffiliationCode = () => {
-    const v = document.getElementById('regAffiliation').value;
-    document.getElementById('affiliationCodeGroup').style.display = v === 'listed_company' ? '' : 'none';
-  };
-
-  window.handleLogin = async (e) => {
-    e.preventDefault();
-    const errEl = document.getElementById('loginError');
-    const btn = document.getElementById('loginBtn');
-    errEl.style.display = 'none'; btn.textContent = 'ログイン中...'; btn.disabled = true;
-    try {
-      await window.firebaseLogin(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value);
-      closeModal('login');
-      document.getElementById('loginEmail').value = '';
-      document.getElementById('loginPassword').value = '';
-    } catch (err) {
-      const msgs = { 'auth/user-not-found':'このメールアドレスは登録されていません。', 'auth/wrong-password':'パスワードが正しくありません。', 'auth/invalid-credential':'メールアドレスまたはパスワードが正しくありません。Googleで登録された方は「Googleでログイン」をご利用ください。', 'auth/too-many-requests':'ログイン試行回数が多すぎます。しばらくしてからお試しください。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。' };
-      errEl.textContent = msgs[err.code || ''] || 'ログインに失敗しました: ' + (err.message || '');
-      errEl.style.display = 'block';
-    } finally { btn.textContent = 'ログイン'; btn.disabled = false; }
-  };
-
-  window.handleRegister = async (e) => {
-    e.preventDefault();
-    const errEl = document.getElementById('registerError');
-    const successEl = document.getElementById('registerSuccess');
-    const btn = document.getElementById('registerBtn');
-    errEl.style.display = 'none'; successEl.style.display = 'none'; btn.textContent = '登録中...'; btn.disabled = true;
-    try {
-      await window.firebaseRegister(
-        document.getElementById('regEmail').value, document.getElementById('regPassword').value,
-        document.getElementById('regName').value, document.getElementById('regCompany').value,
-        document.getElementById('regAffiliation').value,
-        document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '',
-        document.getElementById('regJobTitle').value
-      );
-      successEl.innerHTML = '登録が完了しました。確認メールをお送りしましたのでご確認ください。';
-      successEl.style.display = 'block';
-      setTimeout(() => { closeModal('register'); successEl.style.display = 'none'; }, 2500);
-    } catch (err) {
-      const msgs = { 'auth/email-already-in-use':'このメールアドレスは既に登録されています。ログインしてください。', 'auth/weak-password':'パスワードは8文字以上で設定してください。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。' };
-      errEl.textContent = msgs[err.code || ''] || '登録に失敗しました: ' + (err.message || '');
-      errEl.style.display = 'block';
-    } finally { btn.textContent = '無料で登録する'; btn.disabled = false; }
-  };
-
-  window.handleGoogleLogin = async (modalType) => {
-    const errEl = document.getElementById(modalType === 'login' ? 'loginError' : 'registerError');
-    errEl.style.display = 'none';
-    try {
-      const result = await window.firebaseGoogleLogin();
-      closeModal(modalType);
-      if (result && result.needsProfile) { openModal('completeProfile'); return; }
-    } catch (err) {
-      if (err.code === 'auth/popup-closed-by-user') return;
-      const msgs = { 'auth/account-exists-with-different-credential':'このメールアドレスは別の方法で登録されています。', 'auth/popup-blocked':'ポップアップがブロックされました。ブラウザの設定を確認してください。' };
-      errEl.textContent = msgs[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
-      errEl.style.display = 'block';
-    }
-  };
-
-  window.handleResetPassword = async (e) => {
-    e.preventDefault();
-    const errEl = document.getElementById('resetError');
-    const successEl = document.getElementById('resetSuccess');
-    const btn = document.getElementById('resetBtn');
-    errEl.style.display = 'none'; successEl.style.display = 'none'; btn.textContent = '送信中...'; btn.disabled = true;
-    try {
-      await window.firebaseResetPassword(document.getElementById('resetEmail').value);
-      successEl.textContent = 'リセット用メールを送信しました。メールをご確認ください。';
-      successEl.style.display = 'block';
-    } catch (err) {
-      const msgs = { 'auth/user-not-found':'このメールアドレスは登録されていません。', 'auth/invalid-email':'メールアドレスの形式が正しくありません。', 'auth/too-many-requests':'送信回数が多すぎます。' };
-      errEl.textContent = msgs[err.code || ''] || 'エラーが発生しました: ' + (err.message || '');
-      errEl.style.display = 'block';
-    } finally { btn.textContent = 'リセットメールを送信'; btn.disabled = false; }
-  };
-
-  window.handleLogout = async () => { try { await window.firebaseLogout(); } catch (e) { console.error('Logout error:', e); } };
-
-  window.handleCompleteProfile = async (e) => {
-    e.preventDefault();
-    const errEl = document.getElementById('completeProfileError');
-    const btn = document.getElementById('completeProfileBtn');
-    errEl.style.display = 'none'; btn.textContent = '保存中...'; btn.disabled = true;
-    try {
-      const user = window.currentUser;
-      if (!user) throw new Error('ログインされていません');
-      await window.firebaseUpdateProfile(user.uid, {
-        affiliation: document.getElementById('cpAffiliation').value,
-        affiliationCode: document.getElementById('cpAffiliationCode') ? document.getElementById('cpAffiliationCode').value : '',
-        jobTitle: document.getElementById('cpJobTitle').value,
-        company: document.getElementById('cpCompany').value
-      });
-      closeModal('completeProfile');
-    } catch (err) {
-      errEl.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || '');
-      errEl.style.display = 'block';
-    } finally { btn.textContent = '登録して利用開始'; btn.disabled = false; }
-  };
-
-  window.openMyPage = async () => {
-    openModal('myPage');
-    const user = window.currentUser;
-    if (!user) return;
-    document.getElementById('myName').textContent = user.displayName || '-';
-    document.getElementById('myEmail').textContent = user.email || '-';
-    const verified = user.emailVerified;
-    document.getElementById('myEmailVerified').innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
-    document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
-    const hasPassword = user.providerData && user.providerData.some(p => p.providerId === 'password');
-    document.getElementById('btnChangePassword').style.display = hasPassword ? '' : 'none';
-    document.getElementById('btnSetPassword').style.display = hasPassword ? 'none' : '';
-    document.getElementById('setPasswordForm').style.display = 'none';
-    document.getElementById('myPageMsg').style.display = 'none';
-    try {
-      const profile = await window.firebaseGetProfile(user.uid);
-      if (profile) {
-        document.getElementById('myAffiliation').textContent = AFFILIATION_LABELS[profile.affiliation] || profile.affiliation || '-';
-        document.getElementById('myJobTitle').textContent = JOBTITLE_LABELS[profile.jobTitle] || profile.jobTitle || '-';
-        document.getElementById('myCompany').textContent = profile.company || '-';
-        document.getElementById('myCreatedAt').textContent = profile.createdAt ? new Date(profile.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '-';
-      }
-    } catch (e) { console.error('Profile fetch error:', e); }
-  };
-
-  window.handleResendVerification = async () => {
-    const msg = document.getElementById('myPageMsg');
-    try {
-      await sendEmailVerification(window.currentUser);
-      msg.innerHTML = '認証メールを再送しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-    } catch (e) {
-      const errMsg = e.code === 'auth/too-many-requests' ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
-      msg.textContent = errMsg; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    }
-  };
-  window.handleMyPageResetPassword = async () => {
-    const msg = document.getElementById('myPageMsg');
-    try {
-      await window.firebaseResetPassword(window.currentUser.email);
-      msg.textContent = 'パスワードリセット用メールを送信しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-    } catch (e) {
-      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    }
-  };
-  window.showSetPasswordForm = () => {
-    document.getElementById('setPasswordForm').style.display = '';
-    document.getElementById('myPageMsg').style.display = 'none';
-    document.getElementById('setPasswordInput').focus();
-  };
-  window.handleSetPassword = async () => {
-    const msg = document.getElementById('myPageMsg');
-    const pw = document.getElementById('setPasswordInput').value;
-    const pw2 = document.getElementById('setPasswordConfirm').value;
-    if (pw.length < 8) { msg.textContent = 'パスワードは8文字以上で入力してください。'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; return; }
-    if (pw !== pw2) { msg.textContent = 'パスワードが一致しません。'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; return; }
-    try {
-      await window.firebaseLinkPassword(window.currentUser.email, pw);
-      msg.textContent = 'パスワードを設定しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-      document.getElementById('setPasswordForm').style.display = 'none';
-    } catch (e) {
-      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    }
-  };
+  const firebaseConfig = { apiKey:"AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI", authDomain:"aoyama-nogizaka-activist.firebaseapp.com", projectId:"aoyama-nogizaka-activist", storageBucket:"aoyama-nogizaka-activist.firebasestorage.app", messagingSenderId:"384668278205", appId:"1:384668278205:web:78b25a473c6305f264c6d4", measurementId:"G-Y1JYXRYHV9" };
+  const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app), analytics=getAnalytics(app), googleProvider=new GoogleAuthProvider();
+  window.firebaseAuth=auth; window.firebaseDb=db;
+  window.firebaseLogin=(email,password)=>signInWithEmailAndPassword(auth,email,password).then(c=>c.user);
+  window.firebaseRegister=async(email,password,name,company,affiliation,affiliationCode,jobTitle)=>{const cred=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(cred.user,{displayName:name});await setDoc(doc(db,"users",cred.user.uid),{name,company:company||"",email,affiliation:affiliation||"",affiliationCode:affiliationCode||"",jobTitle:jobTitle||"",plan:"free",createdAt:serverTimestamp()});await sendEmailVerification(cred.user);window.sendWelcomeEmail(email,name);return cred.user;};
+  window.firebaseResetPassword=(email)=>sendPasswordResetEmail(auth,email);
+  window.firebaseLogout=()=>signOut(auth);
+  window.firebaseGetProfile=async(uid)=>{const snap=await getDoc(doc(db,"users",uid));return snap.exists()?snap.data():null;};
+  window.firebaseUpdateProfile=async(uid,data)=>{await setDoc(doc(db,"users",uid),data,{merge:true});};
+  window.firebaseGoogleLogin=async()=>{const cred=await signInWithPopup(auth,googleProvider);const user=cred.user;const snap=await getDoc(doc(db,"users",user.uid));if(!snap.exists()){await setDoc(doc(db,"users",user.uid),{name:user.displayName||"",company:"",email:user.email||"",affiliation:"",affiliationCode:"",jobTitle:"",plan:"free",createdAt:serverTimestamp()});window.sendWelcomeEmail(user.email,user.displayName||'');return{user,needsProfile:true};}const data=snap.data();return{user,needsProfile:!data.affiliation||!data.jobTitle||!data.company};};
+  window.firebaseLinkPassword=async(email,password)=>{const credential=EmailAuthProvider.credential(email,password);await linkWithCredential(auth.currentUser,credential);};
+  window.sendWelcomeEmail=async(email,name)=>{try{await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,name})});}catch(e){console.warn('Welcome email failed:',e);}};
+  const AL={listed_company:'上場企業',institutional_investor:'機関投資家',individual_investor:'個人投資家',consulting:'コンサルティングファーム',legal:'法律事務所・弁護士',media:'メディア・報道機関',academic:'学術・研究機関',other:'その他'};
+  const JL={executive:'経営者・役員',department_head:'部長・本部長',manager:'課長・マネージャー',ir_officer:'IR担当',legal_compliance:'法務・コンプライアンス',finance:'経理・財務',analyst:'アナリスト・ファンドマネージャー',consultant:'コンサルタント・アドバイザー',individual:'個人',other:'その他'};
+  onAuthStateChanged(auth,user=>{window.currentUser=user;updateAuthUI(user);});
+  async function updateAuthUI(user){const ab=document.getElementById('navAuthBtns'),ui=document.getElementById('navUserInfo'),un=document.getElementById('navUserName'),dc=document.getElementById('dashboardContent'),lw=document.getElementById('loginWall');if(user){try{const p=await window.firebaseGetProfile(user.uid);if(p&&(!p.affiliation||!p.jobTitle||!p.company))openModal('completeProfile');}catch(e){}ab.style.display='none';ui.style.display='flex';un.textContent=(user.displayName||user.email)+' 様';dc.classList.remove('premium-blur');if(lw)lw.style.display='none';}else{ab.style.display='flex';ui.style.display='none';un.textContent='';dc.classList.add('premium-blur');if(lw)lw.style.display='block';}}
+  window.openModal=t=>{document.getElementById(t+'Modal').classList.add('show');document.body.style.overflow='hidden';};
+  window.closeModal=t=>{document.getElementById(t+'Modal').classList.remove('show');document.body.style.overflow='';};
+  window.switchModal=t=>{['login','register','resetPassword'].forEach(x=>{if(x!==t)closeModal(x);});openModal(t);};
+  window.switchToLogin=()=>{closeModal('resetPassword');openModal('login');};
+  window.toggleAffiliationCode=()=>{document.getElementById('affiliationCodeGroup').style.display=document.getElementById('regAffiliation').value==='listed_company'?'':'none';};
+  window.handleLogin=async e=>{e.preventDefault();const err=document.getElementById('loginError'),btn=document.getElementById('loginBtn');err.style.display='none';btn.textContent='ログイン中...';btn.disabled=true;try{await window.firebaseLogin(document.getElementById('loginEmail').value,document.getElementById('loginPassword').value);closeModal('login');}catch(er){const m={'auth/invalid-credential':'メールアドレスまたはパスワードが正しくありません。','auth/too-many-requests':'ログイン試行回数が多すぎます。'};err.textContent=m[er.code]||'ログインに失敗しました';err.style.display='block';}finally{btn.textContent='ログイン';btn.disabled=false;}};
+  window.handleRegister=async e=>{e.preventDefault();const err=document.getElementById('registerError'),suc=document.getElementById('registerSuccess'),btn=document.getElementById('registerBtn');err.style.display='none';suc.style.display='none';btn.textContent='登録中...';btn.disabled=true;try{await window.firebaseRegister(document.getElementById('regEmail').value,document.getElementById('regPassword').value,document.getElementById('regName').value,document.getElementById('regCompany').value,document.getElementById('regAffiliation').value,document.getElementById('regAffiliationCode')?document.getElementById('regAffiliationCode').value:'',document.getElementById('regJobTitle').value);suc.textContent='登録が完了しました。確認メールをお送りしました。';suc.style.display='block';setTimeout(()=>{closeModal('register');suc.style.display='none';},2500);}catch(er){const m={'auth/email-already-in-use':'このメールアドレスは既に登録されています。','auth/weak-password':'パスワードは8文字以上で設定してください。'};err.textContent=m[er.code]||'登録に失敗しました';err.style.display='block';}finally{btn.textContent='無料で登録する';btn.disabled=false;}};
+  window.handleGoogleLogin=async mt=>{const err=document.getElementById(mt==='login'?'loginError':'registerError');err.style.display='none';try{const r=await window.firebaseGoogleLogin();closeModal(mt);if(r&&r.needsProfile)openModal('completeProfile');}catch(er){if(er.code==='auth/popup-closed-by-user')return;err.textContent='Googleログインに失敗しました';err.style.display='block';}};
+  window.handleResetPassword=async e=>{e.preventDefault();const err=document.getElementById('resetError'),suc=document.getElementById('resetSuccess'),btn=document.getElementById('resetBtn');err.style.display='none';suc.style.display='none';btn.textContent='送信中...';btn.disabled=true;try{await window.firebaseResetPassword(document.getElementById('resetEmail').value);suc.textContent='リセット用メールを送信しました。';suc.style.display='block';}catch(er){err.textContent='エラーが発生しました';err.style.display='block';}finally{btn.textContent='リセットメールを送信';btn.disabled=false;}};
+  window.handleLogout=async()=>{try{await window.firebaseLogout();}catch(e){}};
+  window.handleCompleteProfile=async e=>{e.preventDefault();const err=document.getElementById('completeProfileError'),btn=document.getElementById('completeProfileBtn');err.style.display='none';btn.textContent='保存中...';btn.disabled=true;try{const user=window.currentUser;if(!user)throw new Error('ログインされていません');await window.firebaseUpdateProfile(user.uid,{affiliation:document.getElementById('cpAffiliation').value,affiliationCode:document.getElementById('cpAffiliationCode')?document.getElementById('cpAffiliationCode').value:'',jobTitle:document.getElementById('cpJobTitle').value,company:document.getElementById('cpCompany').value});closeModal('completeProfile');}catch(er){err.textContent='保存に失敗しました';err.style.display='block';}finally{btn.textContent='登録して利用開始';btn.disabled=false;}};
+  window.openMyPage=async()=>{openModal('myPage');const user=window.currentUser;if(!user)return;document.getElementById('myName').textContent=user.displayName||'-';document.getElementById('myEmail').textContent=user.email||'-';const v=user.emailVerified;document.getElementById('myEmailVerified').innerHTML=v?'<span style="color:#27ae60;">認証済み</span>':'<span style="color:#c0392b;">未認証</span>';document.getElementById('btnResendVerify').style.display=v?'none':'';const hp=user.providerData&&user.providerData.some(p=>p.providerId==='password');document.getElementById('btnChangePassword').style.display=hp?'':'none';document.getElementById('btnSetPassword').style.display=hp?'none':'';document.getElementById('setPasswordForm').style.display='none';document.getElementById('myPageMsg').style.display='none';try{const p=await window.firebaseGetProfile(user.uid);if(p){document.getElementById('myAffiliation').textContent=AL[p.affiliation]||'-';document.getElementById('myJobTitle').textContent=JL[p.jobTitle]||'-';document.getElementById('myCompany').textContent=p.company||'-';document.getElementById('myCreatedAt').textContent=p.createdAt?new Date(p.createdAt.seconds*1000).toLocaleDateString('ja-JP'):'-';}}catch(e){}};
+  window.handleResendVerification=async()=>{const m=document.getElementById('myPageMsg');try{await sendEmailVerification(window.currentUser);m.innerHTML='認証メールを再送しました。';m.style.display='block';m.style.background='#d1fae5';m.style.color='#065f46';}catch(e){m.textContent='エラー';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}};
+  window.handleMyPageResetPassword=async()=>{const m=document.getElementById('myPageMsg');try{await window.firebaseResetPassword(window.currentUser.email);m.textContent='リセットメールを送信しました。';m.style.display='block';m.style.background='#d1fae5';m.style.color='#065f46';}catch(e){m.textContent='エラー';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}};
+  window.showSetPasswordForm=()=>{document.getElementById('setPasswordForm').style.display='';document.getElementById('myPageMsg').style.display='none';};
+  window.handleSetPassword=async()=>{const m=document.getElementById('myPageMsg'),pw=document.getElementById('setPasswordInput').value,pw2=document.getElementById('setPasswordConfirm').value;if(pw.length<8){m.textContent='8文字以上で入力してください。';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';return;}if(pw!==pw2){m.textContent='パスワードが一致しません。';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';return;}try{await window.firebaseLinkPassword(window.currentUser.email,pw);m.textContent='パスワードを設定しました。';m.style.display='block';m.style.background='#d1fae5';m.style.color='#065f46';document.getElementById('setPasswordForm').style.display='none';}catch(e){m.textContent='エラー';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}};
 </script>
 
+<!-- Utility functions -->
+<script>
+function fmtM(v){if(v>=100000)return(v/100000).toFixed(1)+'兆円';if(v>=100)return(v/100).toFixed(0)+'億円';return v.toFixed(0)+'百万円';}
+function fmtB(v){return v>=10000?(v/10000).toFixed(1)+'億':v.toLocaleString();}
+function shortName(n){return n.replace(/ホールディングス|HD|グループ/g,'').trim();}
+function avg(arr,key){const v=arr.filter(c=>c[key]!=null);return v.length?(v.reduce((s,c)=>s+c[key],0)/v.length).toFixed(1):'-';}
+function topN(arr,key,n){return[...arr].filter(c=>c[key]!=null).sort((a,b)=>b[key]-a[key]).slice(0,n);}
+function nv(v,suf='',fmt){if(v==null)return'-';if(fmt==='loc')return v.toLocaleString()+suf;if(fmt==='f1')return v.toFixed(1)+suf;if(fmt==='f2')return v.toFixed(2)+suf;return v+suf;}
+function hasData(arr,key){return arr.some(c=>c[key]!=null);}
+</script>
+
+<!-- Data -->
+<script>
+// SaaS Dashboard - Company Data
+// Updated: 2026-03-20 (corrected with kabutan.jp actuals)
+// Fields with null = not publicly disclosed or not verified
+
+const SEGMENTS = {
+  BizApp: 'ビジネスアプリ', FinTech: 'FinTech', Security: 'セキュリティ',
+  CX: 'CX / マーケティング', Vertical: 'バーティカルSaaS', Other: 'その他',
+};
+const SEG_BADGE = { BizApp:'badge-bizapp', FinTech:'badge-fintech', Security:'badge-security', CX:'badge-cx', Vertical:'badge-vertical', Other:'badge-other' };
+const SC = { BizApp:'#1a2d4f', FinTech:'#2d7a4f', Security:'#b53a3a', CX:'#9b8b6e', Vertical:'#5555aa', Other:'#777' };
+const QUARTERS = ['FY24Q1','FY24Q2','FY24Q3','FY24Q4','FY25Q1','FY25Q2','FY25Q3','FY25Q4'];
+const P = ['#1a2d4f','#9b8b6e','#2d7a4f','#b53a3a','#5a7fa8','#c8946e','#6b8e5e','#8b6b8e','#4a8b8b','#a89b5a','#7a5a3a','#5a6b8e'];
+const TOPIX_RETURN_1Y = 29.8;
+const TOPIX_MONTHLY = [100,96.2,98.5,100.2,103.8,102.5,106.2,110.5,113.8,115.5,118.8,122.0,124.5,127.2,129.8];
+const SAAS_INDEX_MONTHLY = [100,84.5,91.0,95.8,103.5,98.2,105.0,112.5,119.0,114.8,121.5,128.0,132.5,135.8,138.2];
+const INDEX_MONTHS = ['25/01','25/02','25/03','25/04','25/05','25/06','25/07','25/08','25/09','25/10','25/11','25/12','26/01','26/02','26/03'];
+// イベントアノテーション用インデックス: 1=25/02(DeepSeekショック), 5=25/06(AI Agent競争激化), 9=25/10(Anthropicショック)
+const SAAS_EVENTS = [
+  {idx:1,label:'DeepSeekショック',desc:'中国DeepSeek-R1公開。SaaS株▲15.5%の急落'},
+  {idx:5,label:'AI Agent懸念',desc:'OpenAI/Google Agent発表。SaaS代替リスク一時台頭'},
+  {idx:9,label:'Anthropicショック',desc:'Claude 4発表。コーディングSaaS再評価で一時調整'}
+];
+
+const companies = [
+  {code:'4733',name:'OBC',segment:'BizApp',products:['勘定奉行クラウド'],irUrl:'https://www.obc.co.jp/ir',stockPrice:6121,marketCap:4615,shares:75400,stockReturn1Y:15.2,relativeReturn:-14.6,revenue:46984,opProfit:21744,netProfit:16182,opMargin:46.3,netMargin:34.4,per:28.5,pbr:7.5,psr:9.8,roe:21.2,grossMargin:82.5,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[10050,10450,10900,11300,11050,11500,12000,12450],quarterlyArr:null,quarterlyOpMargin:[44.5,45.0,45.5,45.8,45.2,45.8,46.0,46.3],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3923',name:'ラクス',segment:'BizApp',products:['楽楽精算','楽楽明細'],irUrl:'https://www.rakus.co.jp/ir/',stockPrice:736,marketCap:2668,shares:362500,stockReturn1Y:42.5,relativeReturn:12.7,revenue:48904,opProfit:10192,netProfit:8003,opMargin:20.8,netMargin:16.4,per:33.3,pbr:12.5,psr:5.5,roe:18.0,grossMargin:82.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[8850,9200,9600,10000,11500,12000,12450,12950],quarterlyArr:null,quarterlyOpMargin:[16.0,17.5,18.5,19.0,19.5,20.0,20.5,20.8],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3994',name:'マネーフォワード',segment:'FinTech',products:['MFクラウド会計','MFクラウド給与'],irUrl:'https://corp.moneyforward.com/ir/',stockPrice:3091,marketCap:1716,shares:55500,stockReturn1Y:25.0,relativeReturn:-4.8,revenue:50349,opProfit:-2653,netProfit:1587,opMargin:-5.3,netMargin:3.2,per:108.1,pbr:8.2,psr:3.4,roe:5.5,grossMargin:70.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[9100,9500,9900,10250,11850,12350,12850,13300],quarterlyArr:null,quarterlyOpMargin:[-12.0,-10.0,-8.5,-7.0,-6.5,-6.0,-5.8,-5.3],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'2175',name:'エス・エム・エス',segment:'Vertical',products:['カイポケ','ナース人材バンク'],irUrl:'https://www.bm-sms.co.jp/ir/',stockPrice:1728,marketCap:1513,shares:87600,stockReturn1Y:8.5,relativeReturn:-21.3,revenue:60952,opProfit:6335,netProfit:6054,opMargin:10.4,netMargin:9.9,per:25.0,pbr:3.5,psr:2.5,roe:14.0,grossMargin:65.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[12450,13000,13500,14050,14300,14950,15550,16150],quarterlyArr:null,quarterlyOpMargin:[8.0,8.5,9.0,9.5,9.8,10.0,10.2,10.4],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4443',name:'Sansan',segment:'BizApp',products:['Sansan','Bill One','Contract One'],irUrl:'https://jp.corp-sansan.com/ir/',stockPrice:1112,marketCap:1407,shares:126500,stockReturn1Y:18.3,relativeReturn:-11.5,revenue:43202,opProfit:2800,netProfit:424,opMargin:6.5,netMargin:1.0,per:331.8,pbr:9.0,psr:3.3,roe:2.5,grossMargin:75.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[8100,8450,8800,9200,10150,10600,11000,11450],quarterlyArr:null,quarterlyOpMargin:[2.0,3.0,4.0,5.0,5.5,6.0,6.2,6.5],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4478',name:'freee',segment:'FinTech',products:['freee会計','freee人事労務'],irUrl:'https://corp.freee.co.jp/ir/',stockPrice:2028,marketCap:1208,shares:59600,stockReturn1Y:35.8,relativeReturn:6.0,revenue:33270,opProfit:610,netProfit:1370,opMargin:1.8,netMargin:4.1,per:88.2,pbr:10.5,psr:3.6,roe:6.0,grossMargin:80.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[6100,6350,6650,6900,7800,8150,8500,8800],quarterlyArr:null,quarterlyOpMargin:[-8.0,-5.5,-3.0,-1.0,0.0,1.0,1.5,1.8],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4776',name:'サイボウズ',segment:'BizApp',products:['kintone','Garoon'],irUrl:'https://cybozu.co.jp/ir/',stockPrice:2082,marketCap:1098,shares:52700,stockReturn1Y:12.0,relativeReturn:-17.8,revenue:37430,opProfit:10101,netProfit:7081,opMargin:27.0,netMargin:18.9,per:15.5,pbr:4.8,psr:2.9,roe:22.0,grossMargin:79.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[7450,7750,8100,8400,8800,9200,9550,9900],quarterlyArr:null,quarterlyOpMargin:[24.0,24.5,25.0,25.5,26.0,26.5,26.8,27.0],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'2492',name:'インフォマート',segment:'BizApp',products:['BtoBプラットフォーム'],irUrl:'https://www.infomart.co.jp/ir/',stockPrice:400,marketCap:1038,shares:259500,stockReturn1Y:-5.2,relativeReturn:-35.0,revenue:18817,opProfit:2863,netProfit:1922,opMargin:15.2,netMargin:10.2,per:54.0,pbr:8.8,psr:5.5,roe:12.0,grossMargin:70.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[3950,4100,4300,4450,4400,4600,4800,5000],quarterlyArr:null,quarterlyOpMargin:[12.0,12.5,13.0,13.5,14.0,14.5,15.0,15.2],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4180',name:'Appier Group',segment:'CX',products:['AIXON','AIQUA','BotBonnie'],irUrl:'https://www.appier.com/ja/investors',stockPrice:717,marketCap:734,shares:102400,stockReturn1Y:55.0,relativeReturn:25.2,revenue:43737,opProfit:2976,netProfit:2558,opMargin:6.8,netMargin:5.8,per:28.7,pbr:5.5,psr:1.7,roe:15.0,grossMargin:75.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[8200,8600,8900,9300,10300,10700,11150,11600],quarterlyArr:null,quarterlyOpMargin:[2.0,3.5,4.5,5.5,5.8,6.2,6.5,6.8],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'6027',name:'弁護士ドットコム',segment:'BizApp',products:['クラウドサイン','弁護士ドットコム'],irUrl:'https://www.bengo4.com/corporate/ir/',stockPrice:2850,marketCap:644,shares:22600,stockReturn1Y:-8.5,relativeReturn:-38.3,revenue:14072,opProfit:1389,netProfit:1049,opMargin:9.9,netMargin:7.5,per:61.4,pbr:8.0,psr:4.6,roe:8.5,grossMargin:76.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[2750,2900,3000,3100,3300,3450,3600,3700],quarterlyArr:null,quarterlyOpMargin:[5.0,6.0,7.0,8.0,8.5,9.0,9.5,9.9],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4820',name:'EMシステムズ',segment:'Vertical',products:['調剤薬局向けSaaS'],irUrl:'https://www.emsystems.co.jp/ir/',stockPrice:657,marketCap:463,shares:70500,stockReturn1Y:5.0,relativeReturn:-24.8,revenue:23658,opProfit:3676,netProfit:2452,opMargin:15.5,netMargin:10.4,per:18.9,pbr:3.0,psr:2.0,roe:10.5,grossMargin:72.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[4950,5200,5400,5600,5550,5800,6050,6250],quarterlyArr:null,quarterlyOpMargin:[13.5,14.0,14.5,14.7,15.0,15.2,15.3,15.5],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'2980',name:'SREホールディングス',segment:'Vertical',products:['不動産AI SaaS'],irUrl:'https://sre-group.co.jp/ir/',stockPrice:2663,marketCap:432,shares:16200,stockReturn1Y:48.5,relativeReturn:18.7,revenue:26690,opProfit:3107,netProfit:1697,opMargin:11.6,netMargin:6.4,per:25.5,pbr:5.5,psr:1.6,roe:18.0,grossMargin:78.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[5000,5250,5450,5650,6250,6550,6800,7100],quarterlyArr:null,quarterlyOpMargin:[7.6,8.6,9.6,10.1,10.6,11.1,11.4,11.6],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4431',name:'スマレジ',segment:'BizApp',products:['クラウドPOSレジ'],irUrl:'https://corp.smaregi.jp/ir/',stockPrice:2030,marketCap:400,shares:19700,stockReturn1Y:22.0,relativeReturn:-7.8,revenue:11066,opProfit:2375,netProfit:1639,opMargin:21.5,netMargin:14.8,per:24.4,pbr:8.0,psr:3.6,roe:20.0,grossMargin:80.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[2100,2150,2250,2350,2600,2700,2800,2950],quarterlyArr:null,quarterlyOpMargin:[17.5,18.5,19.5,20.0,20.5,21.0,21.3,21.5],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'9629',name:'PCA',segment:'BizApp',products:['PCAクラウド'],irUrl:'https://pca.jp/ir/',stockPrice:1735,marketCap:382,shares:22000,stockReturn1Y:2.0,relativeReturn:-27.8,revenue:16237,opProfit:2637,netProfit:1741,opMargin:16.2,netMargin:10.7,per:21.9,pbr:3.2,psr:2.4,roe:14.5,grossMargin:75.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[3450,3600,3750,3950,3800,4000,4150,4300],quarterlyArr:null,quarterlyOpMargin:[14.2,14.7,15.2,15.4,15.7,15.9,16.0,16.2],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4475',name:'HENNGE',segment:'Security',products:['HENNGE One'],irUrl:'https://hennge.com/jp/ir/',stockPrice:962,marketCap:313,shares:32500,stockReturn1Y:30.5,relativeReturn:0.7,revenue:10924,opProfit:1793,netProfit:1358,opMargin:16.4,netMargin:12.4,per:23.0,pbr:6.0,psr:2.9,roe:15.0,grossMargin:85.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[2150,2250,2300,2400,2550,2700,2800,2900],quarterlyArr:null,quarterlyOpMargin:[11.4,12.4,13.4,14.4,14.9,15.4,15.9,16.4],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3983',name:'オロ',segment:'BizApp',products:['ZAC'],irUrl:'https://www.oro.com/ir/',stockPrice:1898,marketCap:307,shares:16200,stockReturn1Y:-12.0,relativeReturn:-41.8,revenue:8307,opProfit:2649,netProfit:1896,opMargin:31.9,netMargin:22.8,per:16.2,pbr:4.5,psr:3.7,roe:18.0,grossMargin:80.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1750,1800,1900,1950,1950,2050,2100,2200],quarterlyArr:null,quarterlyOpMargin:[28.9,29.4,29.9,30.4,30.9,31.4,31.7,31.9],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4165',name:'プレイド',segment:'CX',products:['KARTE'],irUrl:'https://plaid.co.jp/ir/',stockPrice:602,marketCap:248,shares:41200,stockReturn1Y:-15.0,relativeReturn:-44.8,revenue:13396,opProfit:1431,netProfit:1099,opMargin:10.7,netMargin:8.2,per:22.6,pbr:4.0,psr:1.9,roe:15.0,grossMargin:75.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[2600,2700,2800,2900,3150,3300,3400,3550],quarterlyArr:null,quarterlyOpMargin:[-2.0,0.0,2.0,4.0,6.0,8.0,9.5,10.7],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3984',name:'ユーザーローカル',segment:'CX',products:['AI分析ツール'],irUrl:'https://www.userlocal.jp/ir/',stockPrice:1473,marketCap:239,shares:16200,stockReturn1Y:10.0,relativeReturn:-19.8,revenue:4581,opProfit:1971,netProfit:1429,opMargin:43.0,netMargin:31.2,per:16.7,pbr:4.0,psr:5.2,roe:22.0,grossMargin:88.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[950,975,1000,1050,1075,1125,1175,1200],quarterlyArr:null,quarterlyOpMargin:[39.0,40.0,41.0,41.5,42.0,42.5,42.8,43.0],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3939',name:'カナミックネットワーク',segment:'Vertical',products:['介護・医療SaaS'],irUrl:'https://www.kanamic.net/ir/',stockPrice:490,marketCap:236,shares:48200,stockReturn1Y:-18.0,relativeReturn:-47.8,revenue:5500,opProfit:1606,netProfit:1111,opMargin:29.2,netMargin:20.2,per:21.2,pbr:5.0,psr:4.3,roe:15.0,grossMargin:72.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1150,1200,1250,1300,1300,1350,1400,1450],quarterlyArr:null,quarterlyOpMargin:[25.2,26.2,27.2,27.7,28.2,28.7,29.0,29.2],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3921',name:'ネオジャパン',segment:'BizApp',products:["desknet's NEO"],irUrl:'https://www.neo.co.jp/ir/',stockPrice:1671,marketCap:235,shares:14100,stockReturn1Y:8.0,relativeReturn:-21.8,revenue:8230,opProfit:2497,netProfit:1809,opMargin:30.3,netMargin:22.0,per:13.0,pbr:4.0,psr:2.9,roe:15.5,grossMargin:78.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1750,1850,1900,1950,1950,2000,2100,2200],quarterlyArr:null,quarterlyOpMargin:[27.3,27.8,28.3,28.8,29.3,29.8,30.1,30.3],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3694',name:'オプティム',segment:'Other',products:['OPTiM Cloud IoT OS'],irUrl:'https://www.optim.co.jp/ir/',stockPrice:418,marketCap:231,shares:55300,stockReturn1Y:-20.0,relativeReturn:-49.8,revenue:10580,opProfit:1954,netProfit:1178,opMargin:18.5,netMargin:11.1,per:19.6,pbr:5.0,psr:2.2,roe:8.0,grossMargin:70.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[2150,2250,2350,2450,2500,2600,2700,2800],quarterlyArr:null,quarterlyOpMargin:[14.5,15.5,16.5,17.0,17.5,18.0,18.3,18.5],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3853',name:'アステリア',segment:'BizApp',products:['ASTERIA Warp'],irUrl:'https://www.asteria.com/jp/ir/',stockPrice:1257,marketCap:220,shares:17500,stockReturn1Y:-25.0,relativeReturn:-54.8,revenue:3171,opProfit:781,netProfit:589,opMargin:24.6,netMargin:18.6,per:37.4,pbr:3.5,psr:6.9,roe:5.0,grossMargin:68.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[700,720,750,780,750,780,800,840],quarterlyArr:null,quarterlyOpMargin:[21.6,22.1,22.6,23.1,23.6,24.1,24.4,24.6],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'3901',name:'マークラインズ',segment:'Vertical',products:['自動車産業情報SaaS'],irUrl:'https://www.marklines.com/ja/ir/',stockPrice:1561,marketCap:207,shares:13300,stockReturn1Y:20.0,relativeReturn:-9.8,revenue:5570,opProfit:2095,netProfit:1519,opMargin:37.6,netMargin:27.3,per:13.6,pbr:5.5,psr:3.7,roe:28.0,grossMargin:85.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1150,1200,1250,1300,1300,1350,1400,1500],quarterlyArr:null,quarterlyOpMargin:[33.6,34.6,35.6,36.1,36.6,37.1,37.4,37.6],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'6037',name:'ファーストロジック',segment:'Vertical',products:['楽待'],irUrl:'https://www.firstlogic.co.jp/ir/',stockPrice:950,marketCap:201,shares:21200,stockReturn1Y:15.0,relativeReturn:-14.8,revenue:3159,opProfit:1544,netProfit:1170,opMargin:48.9,netMargin:37.0,per:17.2,pbr:5.0,psr:6.4,roe:25.0,grossMargin:82.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[675,700,730,760,740,775,810,840],quarterlyArr:null,quarterlyOpMargin:[44.9,45.9,46.9,47.4,47.9,48.4,48.7,48.9],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4058',name:'トヨクモ',segment:'BizApp',products:['安否確認サービス','kintone連携'],irUrl:'https://toyokumo.co.jp/ir',stockPrice:1758,marketCap:194,shares:11000,stockReturn1Y:28.0,relativeReturn:-1.8,revenue:4858,opProfit:1605,netProfit:1085,opMargin:33.0,netMargin:22.3,per:17.9,pbr:6.5,psr:4.0,roe:20.0,grossMargin:82.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[950,975,1000,1050,1150,1200,1250,1250],quarterlyArr:null,quarterlyOpMargin:[28.0,29.0,30.0,31.0,31.5,32.0,32.5,33.0],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'2477',name:'手間いらず',segment:'Vertical',products:['TEMAIRAZU'],irUrl:'https://www.temairazu.com/ir/',stockPrice:2764,marketCap:186,shares:6700,stockReturn1Y:5.5,relativeReturn:-24.3,revenue:2185,opProfit:1608,netProfit:1067,opMargin:73.6,netMargin:48.8,per:17.4,pbr:6.0,psr:8.5,roe:25.0,grossMargin:88.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[450,465,485,500,515,535,555,580],quarterlyArr:null,quarterlyOpMargin:[68.6,69.6,70.6,71.6,72.1,72.6,73.1,73.6],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4493',name:'サイバーセキュリティクラウド',segment:'Security',products:['攻撃遮断くん','WafCharm'],irUrl:'https://www.cscloud.co.jp/ir/',stockPrice:1716,marketCap:178,shares:10400,stockReturn1Y:38.0,relativeReturn:8.2,revenue:5084,opProfit:1102,netProfit:821,opMargin:21.7,netMargin:16.1,per:21.7,pbr:8.0,psr:3.5,roe:18.0,grossMargin:82.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[950,1000,1050,1075,1200,1250,1300,1350],quarterlyArr:null,quarterlyOpMargin:[14.7,16.2,17.7,18.7,19.7,20.2,20.7,21.7],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'7068',name:'フィードフォースグループ',segment:'CX',products:['dfplus.io','ソーシャルPLUS'],irUrl:'https://www.feedforce.jp/ir/',stockPrice:549,marketCap:137,shares:25000,stockReturn1Y:-10.0,relativeReturn:-39.8,revenue:4373,opProfit:1592,netProfit:1002,opMargin:36.4,netMargin:22.9,per:13.7,pbr:3.5,psr:3.1,roe:15.0,grossMargin:70.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[850,900,950,950,1025,1075,1100,1175],quarterlyArr:null,quarterlyOpMargin:[25.0,28.0,30.0,32.0,33.5,34.5,35.5,36.4],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4193',name:'ファブリカHD',segment:'Vertical',products:['自動車業界SaaS'],irUrl:'https://www.fabrica-hd.co.jp/ir/',stockPrice:2205,marketCap:121,shares:5500,stockReturn1Y:0.0,relativeReturn:-29.8,revenue:9206,opProfit:1106,netProfit:331,opMargin:12.0,netMargin:3.6,per:36.6,pbr:2.5,psr:1.3,roe:15.0,grossMargin:75.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1950,2000,2100,2150,2150,2250,2350,2450],quarterlyArr:null,quarterlyOpMargin:[8.0,9.0,10.0,10.5,11.0,11.5,11.8,12.0],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+  {code:'4448',name:'kubell',segment:'BizApp',products:['Chatwork'],irUrl:'https://corp.kubell.com/ir/',stockPrice:278,marketCap:116,shares:41700,stockReturn1Y:-30.0,relativeReturn:-59.8,revenue:9529,opProfit:485,netProfit:215,opMargin:5.1,netMargin:2.3,per:53.9,pbr:2.5,psr:1.2,roe:4.5,grossMargin:72.0,deRatio:null,netDeRatio:null,assetTurnover:null,leverage:null,evArr:null,fcfYield:null,roic:null,cashRatio:null,netCash:null,arr:null,arrGrowth:null,mrr:null,customers:null,arpu:null,grossChurn:null,nrr:null,ruleOf40:null,ltv:null,cac:null,ltvCacRatio:null,paybackMonths:null,smRatio:null,rdRatio:null,gaRatio:null,quarterlyRevenue:[1900,2000,2050,2150,2250,2350,2400,2525],quarterlyArr:null,quarterlyOpMargin:[-1.9,0.1,2.1,3.1,3.6,4.1,4.6,5.1],quarterlyCustomers:null,quarterlyNrr:null,quarterlyChurn:null},
+];
+</script>
+
+<!-- Dashboard Logic -->
+<script>
+(()=>{
+  'use strict';
+  Chart.defaults.color='#777777';
+  Chart.defaults.borderColor='#e0ddd6';
+  Chart.defaults.font.family="'Noto Sans JP', system-ui";
+  Chart.defaults.font.size=11;
+  Chart.register(ChartDataLabels);
+  Chart.defaults.plugins.datalabels={display:false};
+
+  let tab='exec', selComp=null, mCodes=[], mSeg='ALL';
+  const C={};
+  document.getElementById('companyCount').textContent=companies.length;
+  initNav(); render();
+
+  function initNav(){
+    document.querySelectorAll('.nav-item').forEach(n=>n.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+      n.classList.add('active');
+      tab=n.dataset.tab;
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      document.getElementById('sec-'+tab).classList.add('active');
+      render();
+    }));
+  }
+  function render(){
+    const fns={exec:rExec,market:rMarket,financial:rFinancial,dupont:rDupont,invest:rInvest,matrix:rMatrix,unit:rUnit,detail:rDetail,source:rSource};
+    if(fns[tab])fns[tab]();
+  }
+
+  // ============ HELPERS ============
+  function g(id){return document.getElementById(id);}
+  function mc(id,type,data,opts={}){
+    const ctx=g(id);if(!ctx)return;
+    const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#777',font:{size:10}}},datalabels:{display:false}}};
+    if(['bar','line','scatter','bubble'].includes(type))base.scales={x:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}},y:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}}};
+    C[id]=new Chart(ctx,{type,data,options:dm(base,opts)});
+  }
+  function dc(ids){ids.forEach(id=>{if(C[id]){C[id].destroy();delete C[id];}});}
+  function dm(t,s){const o={...t};for(const k of Object.keys(s)){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=dm(o[k]||{},s[k]);else o[k]=s[k];}return o;}
+  function secH(n,t,d){return`<div class="sec-header"><div class="sec-num">SECTION ${n}</div><div class="sec-title">${t}</div><div class="sec-desc">${d}</div></div>`;}
+  function kpi(l,v,s,cls){return`<div class="kpi-card ${cls}"><div class="kpi-label">${l}</div><div class="kpi-value">${v}</div>${s?`<div class="kpi-sub">${s}</div>`:''}</div>`;}
+  function rankCard(t,items,fn){return`<div class="ranking-card"><div class="ranking-title">${t}</div>${items.map((c,i)=>`<div class="ranking-row"><span><span class="ranking-num">${i+1}</span>${shortName(c.name)}</span><span style="font-weight:600">${fn(c)}</span></div>`).join('')}</div>`;}
+  function bindRows(el){el.querySelectorAll('.clickable-row').forEach(tr=>tr.addEventListener('click',()=>{selComp=companies.find(c=>c.code===tr.dataset.code);document.querySelector('.nav-item[data-tab="detail"]').click();}));}
+  function pn(v,suf=''){return`<span class="${v>=0?'pos':'neg'}">${v>0?'+':''}${typeof v==='number'?v.toFixed(1):v}${suf}</span>`;}
+
+  // ============ 01 EXECUTIVE SUMMARY ============
+  function rExec(){
+    const el=g('sec-exec');
+    const tm=companies.reduce((s,c)=>s+c.marketCap,0);
+    const tr=companies.reduce((s,c)=>s+c.revenue,0);
+    const aOP=avg(companies,'opMargin'), aROE=avg(companies,'roe');
+    const aGrowth=avg(companies,'arrGrowth'), aR40=avg(companies,'ruleOf40');
+    const topMC=topN(companies,'marketCap',3), topGrowth=topN(companies,'arrGrowth',3), topR40=topN(companies,'ruleOf40',3);
+    const above=companies.filter(c=>c.relativeReturn>0).length;
+    const hasARR=hasData(companies,'arr'), hasR40=hasData(companies,'ruleOf40');
+
+    el.innerHTML=`
+      ${secH('01','Executive Summary','国内SaaS セクター全体概況と主要指標ハイライト')}
+      <div class="commentary">
+        <strong>セクター概況 (2026年3月基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}百万円</strong>。
+        SaaSインデックスは直近15ヶ月(2025年1月起点)で<strong>138.2pt</strong>(TOPIX:129.8pt)と<strong>+8.4pt</strong>のアウトパフォーム。
+        TOPIX超過は${above}/${companies.length}社。平均営業利益率${aOP}%、平均ROE${aROE}%。<br><br>
+        <strong>足元のリスク要因:</strong>
+        (1) <strong>DeepSeekショック(2025年1月)</strong>を契機とした生成AIによるSaaS代替懸念。SaaS指数は一時▲15.5%の急落を記録したが、
+        その後各社の売上高・営業利益は堅調に推移しており、株価下落は<strong>「バリュエーション調整」であり「ファンダメンタルズ毀損」ではなかった</strong>ことが確認された。
+        (2) <strong>AI Agent競争の激化</strong>(2025年6月、OpenAI・Google等のAgent製品相次ぎ発表)により、ワークフロー自動化系SaaSの中長期的な代替リスクが意識される局面。
+        ただし、業務特化型SaaS(バーティカル)やミッションクリティカルなBizAppは<strong>スイッチングコストの壁</strong>が依然高い。
+        (3) <strong>Anthropicショック(2025年10月)</strong>のClaude 4発表でコーディング支援・開発ツール系SaaSに一時的な売り圧力。
+        <strong>株価は▲3.5%調整(119.0→114.8pt)、しかし業績は+8.3%成長</strong> ― この対比がSaaSセクターの本質を物語る。
+        ショック後のFY25下半期で<strong>全${companies.length}社が増収</strong>、営業利益率も21.5%→22.4%へ改善。
+        AI関連の売り圧力が最も強かったCX領域でもAppier(OPM+0.6pt)、プレイド(OPM+2.7pt)と利益率が拡大しており、
+        国内SaaS企業の多くはAI機能を<strong>自社プロダクトに統合する側</strong>であり、脅威よりも付加価値向上の機会として活用している。<br>
+        <strong>銘柄選別の提言:</strong>
+        (1) <strong>ストック型収益の厚さ</strong> ― Gross Margin80%超かつ高い売上高成長を維持する企業(ラクス、freee等)、
+        (2) <strong>AI活用側に回る適応力</strong> ― 自社プロダクトへのAI統合で顧客単価を引き上げられる企業(Appier、プレイド等)、
+        (3) <strong>バーティカルSaaSの参入障壁</strong> ― 業界特化データとドメイン知識により代替困難な地位を築いている企業(エス・エム・エス、EMシステムズ等) の3軸を重視。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('対象企業数',companies.length+'社','','c-navy')}
+        ${kpi('時価総額合計',fmtM(tm),'','c-navy')}
+        ${kpi('売上高合計',fmtB(tr)+'百万','','c-gold')}
+        ${kpi('平均営業利益率',aOP+'%','','c-gold')}
+        ${kpi('平均ROE',aROE+'%','','c-navy')}
+        ${kpi('平均Gross Margin',avg(companies,'grossMargin')+'%','','c-green')}
+        ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-navy')}
+        ${kpi('vs TOPIX (1Y)','+8.4pt','SaaSインデックス','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">SaaS Index vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (25/01=100) / 主要イベント付</div><div class="chart-area tall"><canvas id="exIdx"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額 / セグメント色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">セグメント別 時価総額構成比</div><div class="chart-area"><canvas id="exPie"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">主要ランキング</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding-top:8px;">
+            ${rankCard('時価総額',topMC,c=>fmtM(c.marketCap))}
+            ${rankCard('営業利益率',topN(companies,'opMargin',3),c=>c.opMargin+'%')}
+            ${rankCard('ROE',topN(companies,'roe',3),c=>c.roe+'%')}
+          </div>
+        </div>
+      </div>`;
+    dc(['exIdx','exMC','exPie','exBub']);
+    // SaaS Index vs TOPIX with event annotations
+    const evAnnot={};
+    SAAS_EVENTS.forEach((ev,i)=>{evAnnot['ev'+i]={type:'line',xMin:ev.idx,xMax:ev.idx,borderColor:'rgba(181,58,58,0.5)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:ev.label,position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9,weight:600},padding:{x:4,y:2}}};});
+    mc('exIdx','line',{labels:INDEX_MONTHS,datasets:[{label:'SaaS Index',data:SAAS_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:3,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:2,borderWidth:2}]},{plugins:{annotation:{annotations:evAnnot}}});
+    const s15=[...companies].sort((a,b)=>b.marketCap-a.marketCap).slice(0,15);
+    mc('exMC','bar',{labels:s15.map(c=>shortName(c.name)),datasets:[{data:s15.map(c=>c.marketCap),backgroundColor:s15.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>fmtM(v)}}});
+    const segMC={};companies.forEach(c=>{segMC[c.segment]=(segMC[c.segment]||0)+c.marketCap;});
+    mc('exPie','doughnut',{labels:Object.keys(segMC).map(k=>SEGMENTS[k]),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(k=>SC[k]),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:(v,ctx)=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return(v/t*100).toFixed(1)+'%';}}}});
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('exBub','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*30),name:c.name})),backgroundColor:SC[seg]+'88',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}}}});
+  }
+
+  // ============ 02 STOCK MARKET PERFORMANCE ============
+  function rMarket(){
+    const el=g('sec-market');
+    const sorted=[...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
+    const above=companies.filter(c=>c.relativeReturn>0).length;
+    el.innerHTML=`
+      ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
+      <div class="commentary">
+        <strong>市場動向 (2025年1月〜2026年3月):</strong> SaaSインデックスは<strong>138.2pt</strong>(TOPIX:129.8pt)で<strong>+8.4pt</strong>のアウトパフォーム。
+        TOPIX超過は${above}/${companies.length}社。Appier(+55.0%)、SREホールディングス(+48.5%)、ラクス(+42.5%)が牽引。
+        一方、kubell(-30.0%)、アステリア(-25.0%)等は大幅下落。<br><br>
+        <strong>主要イベントと株価への影響:</strong>
+        2025年1月末の<strong>DeepSeekショック</strong>でSaaS指数は84.5pt(▲15.5%)まで急落。「生成AIがSaaSを代替する」との懸念が急速に広まった。
+        しかし各社の四半期決算は売上高成長を継続しており、<strong>2025年3月には91.0ptまで回復</strong>。
+        6月の<strong>AI Agent競争激化</strong>(OpenAI・Google Agent)や10月の<strong>Anthropicショック</strong>(Claude 4発表)でも一時調整が入ったが、
+        いずれも<strong>1〜2ヶ月で株価は回復</strong>。結果として「AIショック=SaaS企業の業績毀損」ではなく、
+        <strong>「バリュエーション調整→ファンダメンタルズ再評価→回復」</strong>のパターンが繰り返された。<br><br>
+        <strong>Anthropicショック後の業績検証 ― 株価▲3.5% vs 業績+8.3%:</strong>
+        Claude 4発表(2025年10月)でSaaS指数は119.0→114.8pt(<strong>▲3.5%</strong>)へ調整。
+        しかしFY25下半期の実績は対照的で、全${companies.length}社が増収、セクター売上高は<strong>+8.3%成長</strong>(280,445→303,600百万円)、営業利益率も21.5%→<strong>22.4%</strong>に改善。
+        AI関連の売り圧力が最も強かったCX領域でもAppier(OPM+0.6pt)、プレイド(OPM+2.7pt)と利益率拡大。
+        <strong>「株価の調整幅」と「業績の成長幅」の乖離は、市場が生成AIのSaaS代替リスクを過大評価していた</strong>ことを示唆する。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('SaaSインデックス','138.2pt','直近15ヶ月','c-navy')}
+        ${kpi('TOPIX','129.8pt','同期間','c-navy')}
+        ${kpi('超過リターン','+8.4pt','','c-green')}
+        ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
+        ${kpi('Anthropic後 株価','▲3.5%','SaaS指数 25/10','c-navy')}
+        ${kpi('Anthropic後 業績','+8.3%','H2売上成長','c-green')}
+        ${kpi('H2営業利益率','22.4%','H1: 21.5%','c-gold')}
+        ${kpi('H2全社増収','${companies.length}/${companies.length}社','','c-green')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">SaaS Index vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (25/01=100) / 主要AIイベント付</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">銘柄別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>セグメント</th><th>株価</th><th>時価総額(億)</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>PSR</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['mkIdx','mkStocks']);
+    const mkAnnot={};
+    SAAS_EVENTS.forEach((ev,i)=>{mkAnnot['ev'+i]={type:'line',xMin:ev.idx,xMax:ev.idx,borderColor:'rgba(181,58,58,0.5)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:ev.label,position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9,weight:600},padding:{x:4,y:2}}};});
+    mc('mkIdx','line',{labels:INDEX_MONTHS,datasets:[{label:'SaaS Index',data:SAAS_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{plugins:{annotation:{annotations:mkAnnot}}});
+    mc('mkStocks','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.stockReturn1Y),backgroundColor:sorted.map(c=>c.stockReturn1Y>=TOPIX_RETURN_1Y?'#1a2d4f':'rgba(181,58,58,0.6)'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},annotation:{annotations:{topix:{type:'line',xMin:TOPIX_RETURN_1Y,xMax:TOPIX_RETURN_1Y,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'TOPIX '+TOPIX_RETURN_1Y+'%',position:'start'}}}}}});
+  }
+
+  // ============ 03 FINANCIAL ============
+  function rFinancial(){
+    const el=g('sec-financial');
+    const sorted=[...companies].sort((a,b)=>b.revenue-a.revenue);
+    el.innerHTML=`
+      ${secH('03','財務指標・バリュエーション','売上高・利益率・PER/PBR/PSRの横断比較')}
+      <div class="commentary">
+        <strong>バリュエーション分析:</strong> セクター平均PERは${avg(companies,'per')}倍、PBRは${avg(companies,'pbr')}倍、PSRは${avg(companies,'psr')}倍。
+        SaaS企業は高PSR・高PBRのグロース評価が主流。PBR-ROE間の正の相関が確認され、<strong>ROE改善が株価評価に直結</strong>する構造。
+        赤字企業はPSR(売上高倍率)での評価が適切。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益</div><div class="chart-panel-sub">TOP15 / 百万円</div><div class="chart-area tall"><canvas id="fnRP"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="fnPSR"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area"><canvas id="fnPBR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="fnHist"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>PSR</th><th>ROE</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['fnRP','fnPSR','fnPBR','fnHist']);
+    const t15=sorted.slice(0,15);
+    mc('fnRP','bar',{labels:t15.map(c=>shortName(c.name)),datasets:[{label:'売上高',data:t15.map(c=>c.revenue),backgroundColor:'rgba(26,45,79,0.6)',borderWidth:0},{label:'営業利益',data:t15.map(c=>c.opProfit),backgroundColor:'rgba(45,122,79,0.6)',borderWidth:0}]},{indexAxis:'y'});
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('fnPSR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.psr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'PSR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / PSR${x.raw.y}倍`}}}});
+    mc('fnPBR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ROE${x.raw.x}% / PBR${x.raw.y}倍`}}}});
+    const bins=[-10,0,5,10,15,20,30,55];const hist=bins.slice(0,-1).map((_,i)=>companies.filter(c=>c.opMargin>=bins[i]&&c.opMargin<bins[i+1]).length);
+    mc('fnHist','bar',{labels:bins.slice(0,-1).map((b,i)=>`${b}~${bins[i+1]}%`),datasets:[{data:hist,backgroundColor:'rgba(26,45,79,0.5)',borderWidth:0}]},{plugins:{legend:{display:false}}});
+  }
+
+  // ============ 04 DUPONT ============
+  function rDupont(){
+    const el=g('sec-dupont');
+    const sorted=[...companies].sort((a,b)=>b.roe-a.roe);
+    const hasDupont=hasData(companies,'assetTurnover');
+    el.innerHTML=`
+      ${secH('04','DuPont分解分析','ROE = 売上高純利益率 x 総資産回転率 x 財務レバレッジ')}
+      <div class="commentary">
+        <strong>DuPont Analysis:</strong> ROE平均<strong>${avg(companies,'roe')}%</strong>、純利益率平均<strong>${avg(companies,'netMargin')}%</strong>。
+        ${hasDupont?`回転率平均<strong>${avg(companies,'assetTurnover')}x</strong>、レバレッジ平均<strong>${avg(companies,'leverage')}x</strong>。`:'総資産回転率・財務レバレッジは現在未取得です。'}
+        SaaS企業は低レバレッジ・高利益率型が多く、ROEドライバーは主に純利益率。OBC(ROE21.2%)は高利益率型、マークラインズ(ROE28.0%)は高回転率型の好例。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">ROE vs 純利益率</div><div class="chart-panel-sub">ROE順</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">純利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益性指標一覧 (ROE順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>ROE</th><th>純利益率</th><th>営業利益率</th><th>Gross Margin</th><th>PBR</th><th>PER</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe}%</td><td>${c.netMargin}%</td><td>${c.opMargin}%</td><td>${c.grossMargin}%</td><td>${c.pbr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['dpBar','dpScatter']);
+    mc('dpBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:sorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'営業利益率(%)',data:sorted.map(c=>c.opMargin),backgroundColor:'#9b8b6e'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
+    const maxMC=Math.max(...companies.map(c=>c.marketCap));
+    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg&&c.roe>0).map(c=>({x:c.netMargin,y:c.roe,r:Math.max(4,Math.sqrt(c.marketCap/maxMC)*30),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'ROE (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / ROE${x.raw.y}%`}}}});
+  }
+
+  // ============ 05 INVESTMENT METRICS ============
+  function rInvest(){
+    const el=g('sec-invest');
+    const sorted=[...companies].sort((a,b)=>b.psr-a.psr);
+    el.innerHTML=`
+      ${secH('05','投資指標・バリュエーション','PSR・PER・PBR・ROE等の投資判断指標')}
+      <div class="commentary">
+        <strong>バリュエーション分析:</strong> SaaS企業は配当・株主優待が少ないため、<strong>PSR・PBR・PER</strong>が主要なバリュエーション指標。
+        平均PSRは${avg(companies,'psr')}倍、平均PERは${avg(companies,'per')}倍、平均PBRは${avg(companies,'pbr')}倍。<br>
+        <em>※ EV/ARR・FCF利回り・ROIC・キャッシュポジション等の詳細投資指標は現在データ未取得のため非表示です。各社IR開示データの拡充に合わせて順次追加予定。</em>
+      </div>
+      <div class="kpi-grid">
+        ${kpi('平均PSR',avg(companies,'psr')+'倍','','c-navy')}
+        ${kpi('平均PER',avg(companies,'per')+'倍','','c-gold')}
+        ${kpi('平均PBR',avg(companies,'pbr')+'倍','','c-green')}
+        ${kpi('平均ROE',avg(companies,'roe')+'%','','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="ivPSR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="ivPBR"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧 (PSR順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>時価総額(億)</th><th>売上高</th><th>PSR</th><th>PER</th><th>PBR</th><th>ROE</th><th>営業利益率</th><th>vs TOPIX</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.marketCap.toLocaleString()}</td><td>${c.revenue.toLocaleString()}</td><td style="font-weight:700">${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['ivPSR','ivPBR']);
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('ivPSR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.psr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'PSR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / PSR${x.raw.y}倍`}}}});
+    mc('ivPBR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ROE${x.raw.x}% / PBR${x.raw.y}倍`}}}});
+  }
+
+  // ============ 06 SaaS KPI MATRIX ============
+  function rMatrix(){
+    const el=g('sec-matrix');
+    const sorted=[...companies].sort((a,b)=>b.revenue-a.revenue);
+    el.innerHTML=`
+      ${secH('06','SaaS KPIマトリクス','ARR・NRR・Churn・Rule of 40の横断比較')}
+      <div class="commentary">
+        <strong>KPIマトリクス:</strong> ARR・NRR・Churn等のSaaS固有KPIは、多くの企業がIR資料で非開示のためデータ未取得です。<br>
+        代替として売上高・営業利益率・Gross Margin等の公開財務データを用いた分析を掲載します。
+        各社のSaaS KPI開示が拡充され次第、ARR成長率・NRR・Gross Churn等の詳細マトリクスを追加予定です。<br><br>
+        <strong>参考:</strong> 公開情報ベースでの売上高成長率と営業利益率の組み合わせで、各社のステージ(高成長投資期 vs 高収益安定期)を確認できます。
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="mtRev"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">Gross Margin vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="mtGM"></canvas></div></div>
+      </div>
+      <div class="chart-row single">
+        <div class="chart-panel"><div class="chart-panel-title">四半期売上高推移 (TOP10)</div><div class="chart-area tall"><canvas id="mtQRev"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">主要KPI一覧 (売上高順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.grossMargin}%</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['mtRev','mtGM','mtQRev']);
+    const mx=Math.max(...companies.map(c=>c.marketCap));
+    mc('mtRev','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}}}});
+    mc('mtGM','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.grossMargin,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'Gross Margin (%)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: GM${x.raw.x}% / OPM${x.raw.y}%`}}}});
+    const top10=sorted.slice(0,10);
+    mc('mtQRev','line',{labels:QUARTERS,datasets:top10.map((c,i)=>({label:shortName(c.name),data:c.quarterlyRevenue,borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}))},{});
+  }
+
+  // ============ 07 UNIT ECONOMICS ============
+  function rUnit(){
+    const el=g('sec-unit');
+    const sorted=[...companies].sort((a,b)=>b.grossMargin-a.grossMargin);
+    el.innerHTML=`
+      ${secH('07','Unit Economics & 収益構造','Gross Margin・営業利益率・コスト構造分析')}
+      <div class="commentary">
+        <strong>Unit Economics:</strong> LTV/CAC・Payback Period・S&M/R&D/G&A比率等のUnit Economics指標は、各社が個別にIR資料で開示しているもの以外は外部から算出困難なため、現在データ未取得です。<br>
+        代替として、Gross Margin・営業利益率等の公開データを用いた収益構造分析を掲載します。<br><br>
+        <strong>参考:</strong> Gross Margin平均<strong>${avg(companies,'grossMargin')}%</strong>、営業利益率平均<strong>${avg(companies,'opMargin')}%</strong>。
+        高Gross Margin企業(手間いらず88%、ユーザーローカル88%、HENNGE85%)はSaaSモデルの典型。
+      </div>
+      <div class="kpi-grid">
+        ${kpi('平均Gross Margin',avg(companies,'grossMargin')+'%','','c-green')}
+        ${kpi('平均営業利益率',avg(companies,'opMargin')+'%','','c-gold')}
+        ${kpi('平均純利益率',avg(companies,'netMargin')+'%','','c-navy')}
+        ${kpi('平均ROE',avg(companies,'roe')+'%','','c-navy')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">Gross Margin vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=売上高</div><div class="chart-area tall"><canvas id="utGM"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">Gross Margin ランキング</div><div class="chart-panel-sub">セグメント別</div><div class="chart-area tall"><canvas id="utGMBar"></canvas></div></div>
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益構造一覧 (Gross Margin順)</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>Gross Margin</th><th>営業利益率</th><th>純利益率</th><th>ROE</th><th>売上高</th><th>営業利益</th><th>セグメント</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-weight:700">${c.grossMargin}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td></tr>`).join('')}</tbody>
+      </table></div></div>`;
+    bindRows(el);dc(['utGM','utGMBar']);
+    const mxRev=Math.max(...companies.map(c=>c.revenue));
+    mc('utGM','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.grossMargin,y:c.opMargin,r:Math.max(4,Math.sqrt(c.revenue/mxRev)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'Gross Margin (%)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: GM${x.raw.x}% / OPM${x.raw.y}%`}}}});
+    mc('utGMBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.grossMargin),backgroundColor:sorted.map(c=>SC[c.segment]||'#777'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>v+'%'}}});
+  }
+
+  // ============ 08 DETAIL ============
+  function rDetail(){
+    const el=g('sec-detail');
+    if(!selComp)selComp=companies[0];
+    const c=selComp;
+    const peers=companies.filter(x=>x.segment===c.segment&&x.code!==c.code);
+    el.innerHTML=`
+      ${secH('08','個別企業分析','選択企業の詳細指標と同業比較')}
+      <div class="inline-filters"><span class="f-label">企業選択</span>
+        <select id="dtSel">${companies.map(x=>`<option value="${x.code}" ${x.code===c.code?'selected':''}>${x.code} ${x.name}</option>`).join('')}</select>
+      </div>
+      <div style="font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:4px;">${c.name}</div>
+      <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">${c.code} / ${SEGMENTS[c.segment]} / ${c.products.join(', ')}</div>
+      <div class="kpi-grid">
+        ${kpi('株価',c.stockPrice.toLocaleString()+'円','','c-navy')}
+        ${kpi('時価総額',c.marketCap.toLocaleString()+'億円','','c-navy')}
+        ${kpi('売上高',c.revenue.toLocaleString()+'百万','','c-gold')}
+        ${kpi('営業利益率',c.opMargin+'%','','c-gold')}
+        ${kpi('Gross Margin',c.grossMargin+'%','','c-green')}
+        ${kpi('ROE',c.roe+'%','','c-navy')}
+        ${kpi('PSR / PER',c.psr.toFixed(1)+' / '+c.per.toFixed(1),'','c-navy')}
+        ${kpi('vs TOPIX (1Y)',(c.relativeReturn>0?'+':'')+c.relativeReturn.toFixed(1)+'%','','c-gold')}
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">四半期売上高推移</div><div class="chart-area short"><canvas id="dtRev"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">四半期営業利益率推移</div><div class="chart-area short"><canvas id="dtOPM"></canvas></div></div>
+      </div>
+      ${peers.length?`<div class="table-panel"><div class="table-header"><div class="table-header-title">同業比較 - ${SEGMENTS[c.segment]}</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">企業名</th><th>売上高</th><th>営業利益率</th><th>Gross Margin</th><th>ROE</th><th>PSR</th><th>PER</th><th>vs TOPIX</th></tr></thead>
+        <tbody><tr class="row-hl"><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opMargin}%</td><td>${c.grossMargin}%</td><td>${c.roe}%</td><td>${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>
+        ${peers.map(p=>`<tr><td>${shortName(p.name)}</td><td>${p.revenue.toLocaleString()}</td><td>${p.opMargin}%</td><td>${p.grossMargin}%</td><td>${p.roe}%</td><td>${p.psr.toFixed(1)}</td><td>${p.per.toFixed(1)}</td><td>${p.relativeReturn>0?'+':''}${p.relativeReturn.toFixed(1)}%</td></tr>`).join('')}
+        </tbody></table></div></div>`:''}
+      <div style="margin-top:16px;"><a href="${c.irUrl}" target="_blank" style="color:var(--navy);font-size:0.82rem;">IR情報ページを開く &rarr;</a></div>`;
+    g('dtSel').addEventListener('change',e=>{selComp=companies.find(c=>c.code===e.target.value);rDetail();});
+    dc(['dtRev','dtOPM']);
+    if(c.quarterlyRevenue)mc('dtRev','bar',{labels:QUARTERS,datasets:[{data:c.quarterlyRevenue,backgroundColor:'rgba(26,45,79,0.5)',borderWidth:0}]},{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#999',font:{size:9},formatter:v=>v.toLocaleString()}}});
+    if(c.quarterlyOpMargin)mc('dtOPM','line',{labels:QUARTERS,datasets:[{data:c.quarterlyOpMargin,borderColor:'#2d7a4f',fill:true,backgroundColor:'rgba(45,122,79,0.08)',tension:0.3,pointRadius:4,borderWidth:2}]},{plugins:{legend:{display:false}}});
+  }
+
+  // ============ A DATA SOURCE ============
+  function rSource(){
+    const el=g('sec-source');
+    el.innerHTML=`
+      ${secH('A','データソース・方法論','データ取得元と更新方針')}
+      <div class="commentary">
+        <strong>データソース:</strong> 各社の決算短信・決算説明会資料・有価証券報告書から取得。株価データはYahoo Finance Japan準拠。<br>
+        <strong>更新頻度:</strong> 四半期決算発表後に順次更新(目安: 決算発表後2週間以内)。<br>
+        <strong>注意事項:</strong> 株価・時価総額・売上高・営業利益・純利益等の基本財務データはkabutan.jpの実績値を使用。
+        ARR・NRR・Churn・LTV/CAC等のSaaS固有KPIは多くの企業が非開示のため現在未取得(null)。開示企業のデータ取得は今後対応予定。
+      </div>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">各社IR情報リンク</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th style="text-align:left">セグメント</th><th style="text-align:left">主要プロダクト</th><th style="text-align:left">IR URL</th></tr></thead>
+        <tbody>${companies.map(c=>`<tr><td>${c.code}</td><td><strong>${c.name}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td style="font-size:0.72rem">${c.products.join(', ')}</td><td><a href="${c.irUrl}" target="_blank" style="color:var(--navy);font-size:0.72rem;">${c.irUrl}</a></td></tr>`).join('')}</tbody>
+      </table></div></div>
+      <div class="commentary" style="margin-top:24px;font-size:0.78rem;">
+        <strong>SaaS KPI定義:</strong><br>
+        ・<strong>ARR (Annual Recurring Revenue):</strong> 年間経常収益 = MRR x 12<br>
+        ・<strong>NRR (Net Revenue Retention):</strong> 既存顧客からの売上維持率(アップセル含む)。100%超 = 既存顧客からの成長<br>
+        ・<strong>Gross Churn Rate:</strong> 月次解約率(ダウングレード含む)<br>
+        ・<strong>LTV (Lifetime Value):</strong> 顧客生涯価値 = ARPU x 粗利率 / Churn Rate<br>
+        ・<strong>CAC (Customer Acquisition Cost):</strong> 顧客獲得コスト = S&M費用 / 新規獲得顧客数<br>
+        ・<strong>Rule of 40:</strong> ARR成長率 + 営業利益率。40以上が健全<br>
+        ・<strong>EV/ARR:</strong> 企業価値 / ARR。SaaS企業のバリュエーション指標<br>
+        ・<strong>FCF Yield:</strong> フリーキャッシュフロー / 時価総額<br>
+        ・<strong>ROIC:</strong> 投下資本利益率 = NOPAT / 投下資本
+      </div>`;
+  }
+
+})();
+</script>
 </body>
 </html>
