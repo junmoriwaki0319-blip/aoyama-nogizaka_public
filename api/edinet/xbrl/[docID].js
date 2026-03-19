@@ -12,6 +12,9 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
   const docID = req.query.docID;
+  if (!/^[A-Za-z0-9]{8,12}$/.test(docID)) {
+    return res.status(400).json({ success: false, error: 'docIDの形式が不正です' });
+  }
   const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
   if (!docID) {

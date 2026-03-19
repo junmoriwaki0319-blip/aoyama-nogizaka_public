@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
   const apiKey = req.query.apiKey || process.env.EDINET_API_KEY;
 
   if (!docID) return res.status(400).json({ success: false, error: 'docIDが必要です' });
+  if (!/^[A-Za-z0-9]{8,12}$/.test(docID)) return res.status(400).json({ success: false, error: 'docIDの形式が不正です' });
   if (!apiKey) return res.status(400).json({ success: false, error: 'EDINET APIキーが必要です' });
 
   try {
@@ -120,7 +121,7 @@ module.exports = async (req, res) => {
 
   } catch (err) {
     console.error('Land parcels error:', err.message);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, error: '土地データ取得に失敗しました' });
   }
 };
 

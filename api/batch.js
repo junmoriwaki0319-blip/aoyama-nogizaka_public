@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
   if (req.method !== 'POST') { return res.status(405).json({ error: 'POST only' }); }
 
-  const codes = req.body?.codes?.map(c => typeof c === 'string' ? c.toUpperCase() : c);
+  const codes = req.body?.codes?.map(c => typeof c === 'string' ? c.toUpperCase() : String(c)).filter(c => /^[0-9A-Za-z]{4}$/.test(c));
   if (!Array.isArray(codes) || codes.length === 0) {
     return res.json({ success: false, error: '銘柄コードの配列が必要です' });
   }
@@ -50,15 +50,16 @@ async function fetchStock(code) {
   const y = yf.status === 'fulfilled' ? yf.value : {};
   const ec = edinetCache[code] || {};
 
+  const _ = (...vs) => { for (const v of vs) if (v != null) return v; return null; };
   return {
     code,
     companyName: k.companyName || y.companyName || '',
-    price: k.price || y.price || null,
-    pbr: k.pbr || null, per: k.per || null, roe: k.roe || null,
-    bps: k.bps || null, eps: k.eps || null, dps: k.dps || null,
-    dividendYield: k.dividendYield || null, payoutRatio: k.payoutRatio || null,
-    equityRatio: k.equityRatio || null,
-    marketCapOku: k.marketCapOku || null, sharesIssued: k.sharesIssued || null,
+    price: _(k.price, y.price),
+    pbr: _(k.pbr), per: _(k.per), roe: _(k.roe),
+    bps: _(k.bps), eps: _(k.eps), dps: _(k.dps),
+    dividendYield: _(k.dividendYield), payoutRatio: _(k.payoutRatio),
+    equityRatio: _(k.equityRatio),
+    marketCapOku: _(k.marketCapOku), sharesIssued: _(k.sharesIssued),
     market: k.market || null, sector: k.sector || null,
     // EDINETキャッシュからの含み益・土地データ
     land: ec.land || null,
@@ -186,21 +187,23 @@ async function fetchYFChart(code) {
   return { companyName: meta.longName || meta.shortName || '', price: meta.regularMarketPrice || null, previousClose: meta.chartPreviousClose || null, fiftyTwoWeekHigh: meta.fiftyTwoWeekHigh || null, fiftyTwoWeekLow: meta.fiftyTwoWeekLow || null };
 }
 
-function fetchHtml(url) {
+function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) return reject(new Error('Too many redirects'));
     const u = new URL(url);
     https.get({ hostname: u.hostname, path: u.pathname + u.search, headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'Accept': 'text/html', 'Accept-Language': 'ja' } }, (r) => {
-      if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchHtml(r.headers.location).then(resolve).catch(reject); r.resume(); return; }
+      if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchHtml(r.headers.location, depth + 1).then(resolve).catch(reject); r.resume(); return; }
       let d = ''; r.on('data', c => d += c); r.on('end', () => resolve(d));
     }).on('error', reject);
   });
 }
 
-function fetchJson(url) {
+function fetchJson(url, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) return reject(new Error('Too many redirects'));
     const u = new URL(url);
     https.get({ hostname: u.hostname, path: u.pathname + u.search, headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' } }, (r) => {
-      if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchJson(r.headers.location).then(resolve).catch(reject); r.resume(); return; }
+      if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchJson(r.headers.location, depth + 1).then(resolve).catch(reject); r.resume(); return; }
       let d = ''; r.on('data', c => d += c); r.on('end', () => { try { resolve(JSON.parse(d)); } catch { resolve(null); } });
     }).on('error', reject);
   });

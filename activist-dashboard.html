@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>大量保有報告ダッシュボード | 青山乃木坂パートナーズ</title>
-  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、標的リスクを評価。">
+  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -270,41 +270,6 @@
     .ac-stock-item { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
     .ac-stock-pct { font-weight: 500; color: var(--navy); }
 
-    /* RISK ASSESSMENT TOOL */
-    .risk-tool { padding: 24px; }
-    .risk-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
-    .risk-field label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 4px; letter-spacing: 0.04em; }
-    .risk-field input, .risk-field select { width: 100%; padding: 10px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; }
-    .risk-field input:focus, .risk-field select:focus { outline: none; border-color: var(--gold); }
-    .risk-field .field-hint { font-size: 11px; color: var(--text-light); margin-top: 2px; }
-    .risk-btn-area { grid-column: 1 / -1; display: flex; gap: 12px; margin-top: 8px; }
-    .risk-btn { padding: 12px 32px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; letter-spacing: 0.06em; }
-    .risk-btn:hover { background: var(--navy-light); }
-    .risk-btn-clear { padding: 12px 24px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
-
-    /* RISK RESULT */
-    .risk-result { display: none; margin-top: 24px; }
-    .risk-result.show { display: block; }
-    .risk-score-card { background: var(--off-white); border-radius: 12px; padding: 32px; text-align: center; margin-bottom: 24px; }
-    .risk-score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative; }
-    .risk-score-value { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 500; line-height: 1; }
-    .risk-score-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
-    .risk-level { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
-    .risk-level-desc { font-size: 14px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin: 0 auto; }
-    .risk-low { color: var(--green); }
-    .risk-medium { color: var(--orange); }
-    .risk-high { color: var(--red); }
-    .risk-bg-low { background: linear-gradient(135deg, #d1fae5, #ecfdf5); border: 2px solid #a7f3d0; }
-    .risk-bg-medium { background: linear-gradient(135deg, #fef3c7, #fffbeb); border: 2px solid #fde68a; }
-    .risk-bg-high { background: linear-gradient(135deg, #fee2e2, #fef2f2); border: 2px solid #fecaca; }
-    .risk-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-    .risk-detail-item { background: var(--white); border: 1px solid var(--light-gray); border-radius: 8px; padding: 16px; }
-    .risk-detail-item h4 { font-size: 12px; color: var(--text-light); margin-bottom: 6px; }
-    .risk-detail-item .score { font-size: 20px; font-weight: 500; color: var(--navy); }
-    .risk-detail-item .max-score { font-size: 12px; color: var(--text-light); }
-    .risk-detail-item .bar { width: 100%; height: 4px; background: var(--light-gray); border-radius: 2px; margin-top: 8px; overflow: hidden; }
-    .risk-detail-item .bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s; }
-
     /* TIMELINE */
     .report-timeline { padding: 24px; }
     .timeline-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--light-gray); }
@@ -368,7 +333,6 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-auth-btns { display: none; }
-      .risk-form { grid-template-columns: 1fr; }
       .ac-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
@@ -395,10 +359,6 @@
       .activist-table .col-filer, .activist-table .col-target { max-width: 120px; }
       .watchlist-add-form { flex-direction: column; }
       .watchlist-add-btn { width: 100%; min-height: 44px; }
-      .risk-form { gap: 12px; }
-      .risk-score-circle { width: 100px; height: 100px; }
-      .risk-score-value { font-size: 28px; }
-      .risk-detail-grid { grid-template-columns: 1fr; }
       .sidebar-card { padding: 16px; }
       .modal { width: 95%; padding: 28px 20px; }
       .footer-inner { padding: 0 20px; }
@@ -558,7 +518,7 @@
   <div class="page-header-inner">
     <div class="page-header-label">Large Shareholding Dashboard &mdash; Powered by EDINET API</div>
     <h1>大量保有報告ダッシュボード</h1>
-    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家や主要投資家の動向を可視化し、標的リスクを評価します。</p>
+    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析します。</p>
     <div class="data-source">データソース: <span>EDINET（金融庁）</span> ｜ 最終更新: <span id="lastUpdated">読み込み中...</span></div>
   </div>
 </header>
@@ -1208,7 +1168,7 @@ function renderReportTable() {
     })() : '';
     const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#';
 
-    return `<tr onclick="searchByCode('${r.sec_code || ''}')">
+    return `<tr onclick="searchByCode('${escapeJs(r.sec_code || '')}')">
       <td class="date-cell col-date">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
       <td class="col-filer" title="${escapeHtml(r.filer_name || '')}"><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.activist_type === 'individual_investor' ? ' <span class="activist-type" style="background:#f0e6ff;color:#7c3aed;">個人</span>' : r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
       <td class="col-type"><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
@@ -1260,7 +1220,7 @@ function renderActivistCards() {
       <div class="activist-card">
         <div class="ac-header">
           <div>
-            <div class="ac-name" style="cursor:pointer;text-decoration:underline;text-decoration-color:var(--mid-gray);text-underline-offset:2px;" onclick="openInvestorDetail('${escapeHtml(id)}')">${escapeHtml(data.name)}</div>
+            <div class="ac-name" style="cursor:pointer;text-decoration:underline;text-decoration-color:var(--mid-gray);text-underline-offset:2px;" onclick="openInvestorDetail('${escapeJs(id)}')">${escapeHtml(data.name)}</div>
             <div class="ac-meta">
               ${data.representative ? '代表: ' + escapeHtml(data.representative) + ' ｜ ' : ''}
               ${data.headquarters ? '本拠: ' + escapeHtml(data.headquarters) + ' ｜ ' : ''}
@@ -1354,11 +1314,11 @@ function filterRanking() {
     const rankStyle = rank <= 3 ? 'font-weight:bold;color:var(--gold);' : 'color:var(--text-light);';
     const isGroup = a.member_ids && a.member_ids.length;
     const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:9px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
-    return `<div class="ac-stock-item" style="cursor:pointer;display:flex;align-items:center;" onclick="openInvestorDetail('${escapeHtml(a.id)}')">
+    return `<div class="ac-stock-item" style="cursor:pointer;display:flex;align-items:center;" onclick="openInvestorDetail('${escapeJs(a.id)}')">
       <span style="min-width:22px;${rankStyle}">${rank}</span>
       <span style="flex:1;">${escapeHtml(a.name)}${groupIcon}${typeTag}</span>
       <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'}; margin-right:6px;">${a.report_count || 0}件</span>
-      <span title="報告一覧を絞り込み" style="font-size:10px;color:var(--text-light);cursor:pointer;" onclick="event.stopPropagation();filterByActivist('${escapeHtml(a.id)}')">&#9654;</span>
+      <span title="報告一覧を絞り込み" style="font-size:10px;color:var(--text-light);cursor:pointer;" onclick="event.stopPropagation();filterByActivist('${escapeJs(a.id)}')">&#9654;</span>
     </div>`;
   }).join('');
 }
@@ -1480,7 +1440,12 @@ function searchByCode(code) {
 }
 
 function filterByActivist(activistId) {
-  const activist = reportData.activists[activistId];
+  let activist = reportData.activists[activistId];
+  if (!activist) {
+    // IDで見つからない場合、名前で検索
+    const found = Object.entries(reportData.activists || {}).find(([, a]) => a.name === activistId);
+    if (found) { activistId = found[0]; activist = found[1]; }
+  }
   if (!activist) return;
 
   // グループの場合はメンバーの報告を全て表示
@@ -1504,219 +1469,6 @@ function filterByActivist(activistId) {
     applyFilters();
   }
   switchTab('list', document.querySelector('.tab-btn'));
-}
-
-// ===== RISK ASSESSMENT =====
-function calculateRisk() {
-  const pbr = parseFloat(document.getElementById('risk_pbr').value) || null;
-  const roe = parseFloat(document.getElementById('risk_roe').value) || null;
-  const payout = parseFloat(document.getElementById('risk_payout').value) || null;
-  const cash = parseFloat(document.getElementById('risk_cash').value) || null;
-  const equity = parseFloat(document.getElementById('risk_equity').value) || null;
-  const foreign = parseFloat(document.getElementById('risk_foreign').value) || null;
-  const crosshold = parseFloat(document.getElementById('risk_crosshold').value) || null;
-  const outside = parseFloat(document.getElementById('risk_outside').value) || null;
-  const marketcap = parseFloat(document.getElementById('risk_marketcap').value) || null;
-  const defense = document.getElementById('risk_defense').value;
-
-  const factors = [];
-  let total = 0;
-  let maxTotal = 0;
-
-  // 1. PBR (max 15)
-  if (pbr !== null) {
-    let score = 0;
-    if (pbr < 0.5) score = 15;
-    else if (pbr < 0.8) score = 12;
-    else if (pbr < 1.0) score = 10;
-    else if (pbr < 1.3) score = 5;
-    else score = 2;
-    factors.push({ name: 'PBR', score, max: 15, value: pbr.toFixed(2), desc: pbr < 1.0 ? '1倍割れ: アクティビストの主要ターゲット' : 'PBR1倍以上: 相対的に低リスク' });
-    total += score; maxTotal += 15;
-  }
-
-  // 2. ROE (max 12)
-  if (roe !== null) {
-    let score = 0;
-    if (roe < 3) score = 12;
-    else if (roe < 5) score = 10;
-    else if (roe < 8) score = 7;
-    else if (roe < 10) score = 3;
-    else score = 1;
-    factors.push({ name: 'ROE', score, max: 12, value: roe.toFixed(1) + '%', desc: roe < 8 ? '資本効率に改善余地あり' : '資本効率は概ね良好' });
-    total += score; maxTotal += 12;
-  }
-
-  // 3. 配当性向 (max 10)
-  if (payout !== null) {
-    let score = 0;
-    if (payout < 15) score = 10;
-    else if (payout < 25) score = 8;
-    else if (payout < 30) score = 5;
-    else if (payout < 40) score = 2;
-    else score = 1;
-    factors.push({ name: '配当性向', score, max: 10, value: payout.toFixed(1) + '%', desc: payout < 30 ? '株主還元に課題' : '株主還元は概ね適切' });
-    total += score; maxTotal += 10;
-  }
-
-  // 4. ネットキャッシュ比率 (max 15)
-  if (cash !== null) {
-    let score = 0;
-    if (cash > 50) score = 15;
-    else if (cash > 30) score = 12;
-    else if (cash > 20) score = 8;
-    else if (cash > 10) score = 4;
-    else score = 1;
-    factors.push({ name: 'ネットキャッシュ比率', score, max: 15, value: cash.toFixed(1) + '%', desc: cash > 30 ? '過剰現金: 自社株買い・特別配当の要求対象' : 'キャッシュ水準は適正範囲' });
-    total += score; maxTotal += 15;
-  }
-
-  // 5. 自己資本比率 (max 8)
-  if (equity !== null) {
-    let score = 0;
-    if (equity > 80) score = 8;
-    else if (equity > 70) score = 6;
-    else if (equity > 60) score = 3;
-    else score = 1;
-    factors.push({ name: '自己資本比率', score, max: 8, value: equity.toFixed(1) + '%', desc: equity > 70 ? '資本過剰の可能性' : '資本構成は適正' });
-    total += score; maxTotal += 8;
-  }
-
-  // 6. 外国人持株比率 (max 10)
-  if (foreign !== null) {
-    let score = 0;
-    if (foreign > 40) score = 10;
-    else if (foreign > 25) score = 7;
-    else if (foreign > 15) score = 5;
-    else if (foreign > 5) score = 3;
-    else score = 1;
-    factors.push({ name: '外国人持株比率', score, max: 10, value: foreign.toFixed(1) + '%', desc: foreign > 25 ? '海外アクティビストが参入しやすい環境' : '海外投資家の比率は低め' });
-    total += score; maxTotal += 10;
-  }
-
-  // 7. 政策保有株式 (max 10)
-  if (crosshold !== null) {
-    let score = 0;
-    if (crosshold > 20) score = 10;
-    else if (crosshold > 10) score = 7;
-    else if (crosshold > 5) score = 4;
-    else score = 1;
-    factors.push({ name: '政策保有株式比率', score, max: 10, value: crosshold.toFixed(1) + '%', desc: crosshold > 10 ? 'ガバナンス上の懸念材料' : '政策保有は限定的' });
-    total += score; maxTotal += 10;
-  }
-
-  // 8. 社外取締役比率 (max 8)
-  if (outside !== null) {
-    let score = 0;
-    if (outside < 20) score = 8;
-    else if (outside < 33) score = 6;
-    else if (outside < 50) score = 3;
-    else score = 1;
-    factors.push({ name: '社外取締役比率', score, max: 8, value: outside.toFixed(1) + '%', desc: outside < 33 ? '取締役会の独立性に課題' : '取締役会の独立性は確保' });
-    total += score; maxTotal += 8;
-  }
-
-  // 9. 時価総額 (max 8)
-  if (marketcap !== null) {
-    let score = 0;
-    if (marketcap >= 100 && marketcap <= 500) score = 8;
-    else if (marketcap > 500 && marketcap <= 2000) score = 6;
-    else if (marketcap > 2000 && marketcap <= 5000) score = 4;
-    else if (marketcap < 100) score = 3;
-    else score = 2;
-    factors.push({ name: '時価総額', score, max: 8, value: marketcap + '億円', desc: marketcap >= 100 && marketcap <= 2000 ? 'アクティビストのターゲットゾーン' : 'ターゲットゾーン外' });
-    total += score; maxTotal += 8;
-  }
-
-  // 10. 買収防衛策 (max 4)
-  if (defense) {
-    let score = 0;
-    if (defense === 'none') score = 3;
-    else if (defense === 'expired') score = 4;
-    else score = 1;
-    const labels = { none: 'なし', active: '導入中', expired: '廃止済み' };
-    factors.push({ name: '買収防衛策', score, max: 4, value: labels[defense], desc: defense === 'active' ? '防衛策あり（ただし廃止圧力の可能性）' : '防衛策なし/廃止: エントリーしやすい' });
-    total += score; maxTotal += 4;
-  }
-
-  if (!factors.length) {
-    alert('少なくとも1つの項目を入力してください。');
-    return;
-  }
-
-  // 100点満点にスケーリング
-  const normalizedScore = Math.round((total / maxTotal) * 100);
-
-  // 表示
-  const resultDiv = document.getElementById('riskResult');
-  resultDiv.classList.add('show');
-
-  const circle = document.getElementById('riskScoreCircle');
-  const scoreEl = document.getElementById('riskScoreValue');
-  const levelEl = document.getElementById('riskLevel');
-  const descEl = document.getElementById('riskLevelDesc');
-
-  scoreEl.textContent = normalizedScore;
-
-  let level, levelClass, bgClass, desc;
-  if (normalizedScore >= 70) {
-    level = '高リスク'; levelClass = 'risk-high'; bgClass = 'risk-bg-high';
-    desc = 'アクティビストの標的となる可能性が高い状態です。資本効率・株主還元・ガバナンスの早急な改善が推奨されます。';
-  } else if (normalizedScore >= 40) {
-    level = '中リスク'; levelClass = 'risk-medium'; bgClass = 'risk-bg-medium';
-    desc = 'アクティビストが関心を持つ可能性があります。予防的な対策を検討することを推奨します。';
-  } else {
-    level = '低リスク'; levelClass = 'risk-low'; bgClass = 'risk-bg-low';
-    desc = '現時点でアクティビストの標的となるリスクは比較的低いと考えられます。';
-  }
-
-  circle.className = 'risk-score-circle ' + bgClass;
-  scoreEl.style.color = levelClass === 'risk-high' ? 'var(--red)' : levelClass === 'risk-medium' ? 'var(--orange)' : 'var(--green)';
-  levelEl.textContent = level;
-  levelEl.className = 'risk-level ' + levelClass;
-  descEl.textContent = desc;
-
-  // 詳細グリッド
-  const grid = document.getElementById('riskDetailGrid');
-  grid.innerHTML = factors.map(f => {
-    const pct = (f.score / f.max * 100).toFixed(0);
-    const barColor = pct >= 70 ? 'var(--red)' : pct >= 40 ? 'var(--orange)' : 'var(--green)';
-    return `<div class="risk-detail-item">
-      <h4>${f.name}</h4>
-      <div><span class="score">${f.score}</span><span class="max-score"> / ${f.max}</span></div>
-      <div style="font-size:12px; color:var(--text-mid); margin-top:4px;">入力値: ${f.value}</div>
-      <div class="bar"><div class="bar-fill" style="width:${pct}%; background:${barColor};"></div></div>
-      <div style="font-size:11px; color:var(--text-light); margin-top:6px;">${f.desc}</div>
-    </div>`;
-  }).join('');
-
-  // 推奨アクション
-  const recs = document.getElementById('riskRecommendations');
-  const recommendations = [];
-  factors.forEach(f => {
-    const pct = f.score / f.max * 100;
-    if (pct >= 60) {
-      if (f.name === 'PBR') recommendations.push('PBR改善: 成長戦略の明確化、IR強化による市場評価の向上を検討');
-      if (f.name === 'ROE') recommendations.push('ROE改善: 低収益事業の見直し、資本効率を意識した経営目標の設定');
-      if (f.name === '配当性向') recommendations.push('株主還元: 配当性向の引上げ、自社株買いの実施検討');
-      if (f.name === 'ネットキャッシュ比率') recommendations.push('現金活用: 成長投資の実行、株主還元の強化（特別配当・自社株買い）');
-      if (f.name === '政策保有株式比率') recommendations.push('政策保有の縮減: CG コード対応として計画的な売却を推進');
-      if (f.name === '社外取締役比率') recommendations.push('取締役会改革: 社外取締役比率の引上げ（過半数目標）');
-      if (f.name === '買収防衛策') recommendations.push('対話体制の整備: アクティビスト接触時の対応マニュアル策定');
-    }
-  });
-  if (normalizedScore >= 50) {
-    recommendations.push('専門アドバイザーへの相談: 資本政策・IR戦略の包括的な見直し');
-  }
-  recs.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
-
-  // スクロール
-  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function clearRisk() {
-  document.querySelectorAll('#riskForm input, #riskForm select').forEach(el => el.value = '');
-  document.getElementById('riskResult').classList.remove('show');
 }
 
 // ===== CHARTS =====
@@ -2078,6 +1830,7 @@ function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('
 
 // ===== UTILS =====
 function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function escapeJs(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"'); }
 function isRecentReport(dateStr, days) {
   if (!dateStr) return false;
   const d = new Date(dateStr);
@@ -2252,8 +2005,8 @@ function renderWatchlist() {
         <div class="watchlist-item-meta">${typeLabel ? typeLabel + ' · ' : ''}追加日: ${w.addedAt ? w.addedAt.slice(0, 10) : '—'}</div>
       </div>
       <div class="watchlist-item-actions">
-        <button class="watchlist-btn-remove" onclick="filterByActivist('${escapeHtml(w.name)}')">報告を表示</button>
-        <button class="watchlist-btn-remove" onclick="removeFromWatchlist('${escapeHtml(w.name)}')">削除</button>
+        <button class="watchlist-btn-remove" onclick="filterByActivist('${escapeJs(w.name)}')">報告を表示</button>
+        <button class="watchlist-btn-remove" onclick="removeFromWatchlist('${escapeJs(w.name)}')">削除</button>
       </div>
     </div>`;
   }).join('');
@@ -2266,7 +2019,7 @@ function renderWatchlistPresets() {
 
   container.innerHTML = names.map(name => {
     const isAdded = watchlist.some(w => w.name === name);
-    return `<button class="watchlist-preset-btn${isAdded ? ' added' : ''}" onclick="${isAdded ? "removeFromWatchlist('" + escapeHtml(name) + "')" : "addToWatchlist('" + escapeHtml(name) + "')"}">${isAdded ? '✓ ' : ''}${escapeHtml(name)}</button>`;
+    return `<button class="watchlist-preset-btn${isAdded ? ' added' : ''}" onclick="${isAdded ? "removeFromWatchlist('" + escapeJs(name) + "')" : "addToWatchlist('" + escapeJs(name) + "')"}">${isAdded ? '✓ ' : ''}${escapeHtml(name)}</button>`;
   }).join('');
 }
 

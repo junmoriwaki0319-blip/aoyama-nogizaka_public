@@ -18,25 +18,26 @@ module.exports = async (req, res) => {
     const k = kb.status === 'fulfilled' ? kb.value : {};
     const y = yf.status === 'fulfilled' ? yf.value : {};
 
+    const _ = (...vs) => { for (const v of vs) if (v != null) return v; return null; };
     const result = {
       companyName: k.companyName || y.companyName || '',
-      price: k.price || y.price || null,
-      pbr: k.pbr || null,
-      per: k.per || null,
-      roe: k.roe || null,
-      eps: k.eps || null,
-      bps: k.bps || null,
-      dps: k.dps || null,
-      dividendYield: k.dividendYield || null,
-      payoutRatio: k.payoutRatio || null,
-      equityRatio: k.equityRatio || null,
-      marketCapOku: k.marketCapOku || null,
-      sharesIssued: k.sharesIssued || null,
+      price: _(k.price, y.price),
+      pbr: _(k.pbr),
+      per: _(k.per),
+      roe: _(k.roe),
+      eps: _(k.eps),
+      bps: _(k.bps),
+      dps: _(k.dps),
+      dividendYield: _(k.dividendYield),
+      payoutRatio: _(k.payoutRatio),
+      equityRatio: _(k.equityRatio),
+      marketCapOku: _(k.marketCapOku),
+      sharesIssued: _(k.sharesIssued),
       market: k.market || null,
       sector: k.sector || null,
-      fiftyTwoWeekHigh: y.fiftyTwoWeekHigh || null,
-      fiftyTwoWeekLow: y.fiftyTwoWeekLow || null,
-      previousClose: y.previousClose || null,
+      fiftyTwoWeekHigh: _(y.fiftyTwoWeekHigh),
+      fiftyTwoWeekLow: _(y.fiftyTwoWeekLow),
+      previousClose: _(y.previousClose),
     };
     if (!result.marketCapOku && result.price && result.sharesIssued) {
       result.marketCapOku = Math.round(result.price * result.sharesIssued / 100000000);
@@ -44,7 +45,7 @@ module.exports = async (req, res) => {
     res.json({ success: true, data: result });
   } catch (err) {
     console.error('Stock fetch error:', err.message);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, error: 'データ取得に失敗しました' });
   }
 };
 
@@ -180,8 +181,9 @@ async function fetchYFChart(code) {
   };
 }
 
-function fetchHtml(url) {
+function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) return reject(new Error('Too many redirects'));
     const urlObj = new URL(url);
     https.get({
       hostname: urlObj.hostname,
@@ -193,7 +195,7 @@ function fetchHtml(url) {
       }
     }, (resp) => {
       if (resp.statusCode >= 300 && resp.statusCode < 400 && resp.headers.location) {
-        fetchHtml(resp.headers.location).then(resolve).catch(reject);
+        fetchHtml(resp.headers.location, depth + 1).then(resolve).catch(reject);
         resp.resume();
         return;
       }
@@ -204,8 +206,9 @@ function fetchHtml(url) {
   });
 }
 
-function fetchJson(url) {
+function fetchJson(url, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) return reject(new Error('Too many redirects'));
     const urlObj = new URL(url);
     https.get({
       hostname: urlObj.hostname,
@@ -213,7 +216,7 @@ function fetchJson(url) {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
     }, (resp) => {
       if (resp.statusCode >= 300 && resp.statusCode < 400 && resp.headers.location) {
-        fetchJson(resp.headers.location).then(resolve).catch(reject);
+        fetchJson(resp.headers.location, depth + 1).then(resolve).catch(reject);
         resp.resume();
         return;
       }

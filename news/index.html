@@ -69,6 +69,8 @@
     .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
     .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.06); }
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-cat { padding: 8px 24px 4px; font-size: 0.65rem; color: var(--gold-light); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
+    .nav-dropdown-cat:first-child { border-top: none; }
     .nav-cta {
       background: var(--gold); color: var(--white); border: none; cursor: pointer;
       padding: 8px 20px; font-size: .78rem; font-family: var(--sans);
@@ -340,9 +342,13 @@
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
         <ul class="nav-dropdown-menu">
+          <li class="nav-dropdown-cat">アクティビスト分析</li>
           <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
           <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+          <li class="nav-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
+          <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
         </ul>
       </li>
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
@@ -358,10 +364,13 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" class="active">ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">データ</div>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
+  <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
 </div>
 

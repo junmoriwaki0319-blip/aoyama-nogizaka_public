@@ -317,7 +317,7 @@
   <!-- Risk Form -->
   <div class="risk-section">
     <div class="risk-card">
-      <h2>評価項目（12項目 / 100点満点）</h2>
+      <h2>評価項目（12項目 / 100点スコア）</h2>
       <div class="risk-form" id="riskForm">
         <div class="risk-field">
           <label>PBR（株価純資産倍率）<span class="data-src yahoo">Yahoo自動</span></label>
@@ -327,12 +327,12 @@
         <div class="risk-field">
           <label>ROE（自己資本利益率）%<span class="data-src yahoo">Yahoo自動</span></label>
           <input type="number" id="risk_roe" step="0.1" placeholder="例: 5.2">
-          <div class="field-hint">8%未満は高リスク（配点: 12点）</div>
+          <div class="field-hint">8%未満は高リスク（配点: 10点）</div>
         </div>
         <div class="risk-field">
           <label>配当性向 %<span class="data-src yahoo">Yahoo自動</span></label>
           <input type="number" id="risk_payout" step="0.1" placeholder="例: 25">
-          <div class="field-hint">30%未満は高リスク（配点: 10点）</div>
+          <div class="field-hint">30%未満は高リスク（配点: 8点）</div>
         </div>
         <div class="risk-field">
           <label>NC / 時価総額 %<span class="data-src edinet">EDINET自動</span></label>
@@ -525,7 +525,7 @@ async function fetchStockData() {
 
     // Phase 1: Stock API (kabutan + Yahoo Finance)
     try {
-      const resp = await fetch(API_BASE + '/api/stock/' + code, { signal: AbortSignal.timeout(15000) });
+      const resp = await fetch(API_BASE + '/api/stock/' + code, { signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
       if (resp.ok) {
         const json = await resp.json();
         if (json.success && json.data) {
@@ -543,11 +543,11 @@ async function fetchStockData() {
     // Phase 2: EDINET (search + XBRL)
     try {
       info.textContent = 'EDINET書類検索中...';
-      const sRes = await fetch(API_BASE + '/api/edinet/search/' + code, { signal: AbortSignal.timeout(15000) });
+      const sRes = await fetch(API_BASE + '/api/edinet/search/' + code, { signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
       const sData = await sRes.json();
       if (sData.success && sData.documents && sData.documents.length > 0) {
         info.textContent = 'XBRL財務データ解析中...';
-        const xRes = await fetch(API_BASE + '/api/edinet/xbrl/' + sData.documents[0].docID, { signal: AbortSignal.timeout(30000) });
+        const xRes = await fetch(API_BASE + '/api/edinet/xbrl/' + sData.documents[0].docID, { signal: AbortSignal.timeout ? AbortSignal.timeout(30000) : undefined });
         const xData = await xRes.json();
         if (xData.success && xData.data) {
           _edinetData = xData.data;
@@ -669,17 +669,18 @@ function recalcMarketCap() {
 
 /* ===== RISK CALCULATION ===== */
 function calculateRisk() {
-  const pbr = parseFloat(document.getElementById('risk_pbr').value) || null;
-  const roe = parseFloat(document.getElementById('risk_roe').value) || null;
-  const payout = parseFloat(document.getElementById('risk_payout').value) || null;
-  const cash = parseFloat(document.getElementById('risk_cash').value) || null;
-  const adjNc = parseFloat(document.getElementById('risk_adj_nc').value) || null;
-  const evEbitda = parseFloat(document.getElementById('risk_ev_ebitda').value) || null;
-  const equity = parseFloat(document.getElementById('risk_equity').value) || null;
-  const foreign = parseFloat(document.getElementById('risk_foreign').value) || null;
-  const crosshold = parseFloat(document.getElementById('risk_crosshold').value) || null;
-  const outside = parseFloat(document.getElementById('risk_outside').value) || null;
-  const marketcap = parseFloat(document.getElementById('risk_marketcap').value) || null;
+  const _p = id => { const v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; };
+  const pbr = _p('risk_pbr');
+  const roe = _p('risk_roe');
+  const payout = _p('risk_payout');
+  const cash = _p('risk_cash');
+  const adjNc = _p('risk_adj_nc');
+  const evEbitda = _p('risk_ev_ebitda');
+  const equity = _p('risk_equity');
+  const foreign = _p('risk_foreign');
+  const crosshold = _p('risk_crosshold');
+  const outside = _p('risk_outside');
+  const marketcap = _p('risk_marketcap');
   const defense = document.getElementById('risk_defense').value;
 
   const factors = [];

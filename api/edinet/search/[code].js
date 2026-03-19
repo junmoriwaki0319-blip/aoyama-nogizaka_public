@@ -80,7 +80,7 @@ module.exports = async (req, res) => {
     res.json({ success: true, documents: found });
   } catch (err) {
     console.error('EDINET search error:', err.message);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, error: 'EDINET検索に失敗しました' });
   }
 };
 

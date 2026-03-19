@@ -89,12 +89,13 @@ module.exports = async (req, res) => {
     });
   } catch (err) {
     console.error('Error:', err.message);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, error: 'データ取得に失敗しました' });
   }
 };
 
-function fetchHtml(url) {
+function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) return reject(new Error('Too many redirects'));
     const urlObj = new URL(url);
     const options = {
       hostname: urlObj.hostname,
@@ -106,7 +107,7 @@ function fetchHtml(url) {
     };
     https.get(options, (resp) => {
       if (resp.statusCode >= 300 && resp.statusCode < 400 && resp.headers.location) {
-        fetchHtml(resp.headers.location).then(resolve).catch(reject);
+        fetchHtml(resp.headers.location, depth + 1).then(resolve).catch(reject);
         resp.resume();
         return;
       }
