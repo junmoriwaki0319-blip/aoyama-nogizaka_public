@@ -9,7 +9,7 @@ const CITY_LAND_PRICES = require('./city-land-prices');
  * GET /api/edinet/land-parcels/:docID?apiKey=xxx
  */
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://aoyama-nogizaka.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
@@ -598,7 +598,10 @@ function downloadDoc(docID, apiKey) {
       timeout: 30000,
     }, (resp) => {
       if (resp.statusCode >= 300 && resp.statusCode < 400 && resp.headers.location) {
-        downloadDoc(resp.headers.location.includes('http') ? resp.headers.location : `https://api.edinet-fsa.go.jp${resp.headers.location}`, apiKey)
+        const loc = resp.headers.location.startsWith('http') ? resp.headers.location : `https://api.edinet-fsa.go.jp${resp.headers.location}`;
+        const locHost = new URL(loc).hostname;
+        if (!locHost.endsWith('.edinet-fsa.go.jp') && locHost !== 'api.edinet-fsa.go.jp') { resp.resume(); return reject(new Error('Untrusted redirect')); }
+        downloadDoc(loc, apiKey)
           .then(resolve).catch(reject);
         resp.resume();
         return;

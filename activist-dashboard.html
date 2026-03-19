@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g" crossorigin="anonymous"></script>
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
@@ -1166,13 +1166,13 @@ function renderReportTable() {
       const color = d > 0 ? '#c0392b' : d < 0 ? '#2980b9' : 'var(--text-light)';
       return `<span style="font-size:10px;color:${color};margin-left:4px;">(${sign}${d.toFixed(1)})</span>`;
     })() : '';
-    const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${r.doc_id}` : '#';
+    const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${encodeURIComponent(r.doc_id)}` : '#';
 
     return `<tr onclick="searchByCode('${escapeJs(r.sec_code || '')}')">
-      <td class="date-cell col-date">${r.date || '—'}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
+      <td class="date-cell col-date">${escapeHtml(r.date || '—')}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
       <td class="col-filer" title="${escapeHtml(r.filer_name || '')}"><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.activist_type === 'individual_investor' ? ' <span class="activist-type" style="background:#f0e6ff;color:#7c3aed;">個人</span>' : r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
-      <td class="col-type"><span class="activist-type ${typeClass}">${r.report_type || '—'}</span></td>
-      <td class="col-code">${r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—'}</td>
+      <td class="col-type"><span class="activist-type ${typeClass}">${escapeHtml(r.report_type || '—')}</span></td>
+      <td class="col-code">${r.sec_code ? '<span class="sec-code">' + escapeHtml(r.sec_code) + '</span>' : '—'}</td>
       <td class="col-target" title="${escapeHtml(r.target_company || '')}">${escapeHtml(r.target_company || '—')}</td>
       <td class="col-ratio">${ratio}${deltaHtml}${barWidth ? '<div class="holding-bar"><div class="holding-bar-fill" style="width:' + barWidth + '%"></div></div>' : ''}</td>
       <td class="col-purpose" style="font-size:12px;">${escapeHtml(r.purpose || '—')}</td>
@@ -1339,9 +1339,9 @@ function renderTimeline() {
 
   container.innerHTML = activistReports.map(r =>
     `<div class="timeline-item">
-      <div class="timeline-date">${r.date || '—'}</div>
+      <div class="timeline-date">${escapeHtml(r.date || '—')}</div>
       <div class="timeline-content">
-        <div class="timeline-title">${escapeHtml(r.filer_name || '')} ${r.sec_code ? '(' + r.sec_code + ')' : ''}</div>
+        <div class="timeline-title">${escapeHtml(r.filer_name || '')} ${r.sec_code ? '(' + escapeHtml(r.sec_code) + ')' : ''}</div>
         <div class="timeline-detail">${escapeHtml(r.target_company || '')}${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? ' — 保有比率: ' + parseFloat(r.holding_ratio).toFixed(1) + '%' : ''}${r.purpose ? ' — 目的: ' + escapeHtml(r.purpose) : ''}</div>
         <div class="timeline-tags">
           <span class="timeline-tag">${r.report_type || '報告'}</span>
@@ -2052,9 +2052,9 @@ function renderWatchlistReports() {
   html += '<tr style="background:var(--light-gray);"><th style="padding:6px 8px; text-align:left;">日付</th><th style="padding:6px 8px; text-align:left;">報告者</th><th style="padding:6px 8px; text-align:left;">対象</th><th style="padding:6px 8px; text-align:right;">保有比率</th></tr>';
   matched.forEach(r => {
     html += `<tr style="border-bottom:1px solid var(--light-gray);">
-      <td style="padding:6px 8px;">${r.date || '—'}</td>
+      <td style="padding:6px 8px;">${escapeHtml(r.date || '—')}</td>
       <td style="padding:6px 8px;">${escapeHtml(r.filer_name || '')}</td>
-      <td style="padding:6px 8px;">${escapeHtml(r.target_company || '').slice(0, 30)}</td>
+      <td style="padding:6px 8px;">${escapeHtml((r.target_company || '').slice(0, 30))}</td>
       <td style="padding:6px 8px; text-align:right;">${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(1) + '%' : '—'}</td>
     </tr>`;
   });
@@ -2176,9 +2176,9 @@ function openInvestorDetail(activistId) {
       }
       const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
       return '<tr>' +
-        '<td>' + (r.date || '—') + '</td>' +
-        '<td><span class="activist-type ' + typeClass + '" style="font-size:10px;padding:1px 6px;">' + (r.report_type || '—') + '</span></td>' +
-        '<td>' + (r.sec_code ? '<span class="sec-code">' + r.sec_code + '</span>' : '—') + '</td>' +
+        '<td>' + escapeHtml(r.date || '—') + '</td>' +
+        '<td><span class="activist-type ' + typeClass + '" style="font-size:10px;padding:1px 6px;">' + escapeHtml(r.report_type || '—') + '</span></td>' +
+        '<td>' + (r.sec_code ? '<span class="sec-code">' + escapeHtml(r.sec_code) + '</span>' : '—') + '</td>' +
         '<td title="' + escapeHtml(r.target_company || '') + '">' + escapeHtml((r.target_company || '—').slice(0, 25)) + '</td>' +
         '<td style="text-align:right;">' + ratioStr + '</td>' +
         '<td style="text-align:right;">' + deltaStr + '</td>' +
@@ -2222,7 +2222,7 @@ function openInvestorDetail(activistId) {
         return '<div style="background:var(--off-white);border-radius:6px;padding:12px 14px;">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;">' +
           '<span style="font-size:12px;font-weight:500;color:var(--navy);">' +
-          '<span class="sec-code">' + h.sec_code + '</span> ' + escapeHtml(h.target.slice(0, 20)) +
+          '<span class="sec-code">' + escapeHtml(h.sec_code) + '</span> ' + escapeHtml(h.target.slice(0, 20)) +
           '</span></div>' +
           '<div style="margin-top:6px;font-size:13px;">' +
           '最新比率: <strong>' + (h.latestRatio != null ? h.latestRatio.toFixed(1) + '%' : '—') + '</strong>' + deltaLabel +

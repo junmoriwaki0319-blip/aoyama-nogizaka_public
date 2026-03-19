@@ -7,7 +7,7 @@ const zlib = require('zlib');
  * GET /api/edinet/xbrl/:docID?apiKey=xxx
  */
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://aoyama-nogizaka.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
 
@@ -254,6 +254,14 @@ function parseInvestmentPropertyNote(html, data) {
         pos += term.length;
         continue;
       }
+      // 文中の「賃貸等不動産の○○」は除外（注記見出しではなく文中のもの）
+      const after = html.substring(pos + term.length, pos + term.length + 30);
+      if (/^の(?![\s<】）])/.test(after)) {
+        // 「賃貸等不動産の」の後にすぐテキストが続く場合は文中使用→スキップ
+        // ただし「賃貸等不動産の<tag>」「賃貸等不動産の】」は見出しの可能性あり
+        pos += term.length;
+        continue;
+      }
       ipIdx = pos;
       matchedTerm = term;
       break;
@@ -262,50 +270,60 @@ function parseInvestmentPropertyNote(html, data) {
   }
   if (ipIdx === -1) return;
 
-  // 注記セクション全体を取得（前後広めに）
-  // 大企業の注記は巨大なので20000文字を確保
-  const searchRange = html.substring(ipIdx, Math.min(html.length, ipIdx + 20000));
+  // 注記セクションを取得（次の注記見出しまで、最大8000文字）
+  // 賃貸等不動産の注記は通常500-3000文字。次の注記見出し（HTMLタグ付き）で終了
+  let sectionEnd = Math.min(html.length, ipIdx + 8000);
+  const afterTitle = html.substring(ipIdx + matchedTerm.length, sectionEnd);
+  // HTML見出しタグ付きの次のセクション見出しを検出
+  // 例: <b>【セグメント情報等】</b>, <p class="...">（企業結合関係）</p>
+  const headingPattern = afterTitle.match(/<(?:b|h[1-6]|p)[^>]*>\s*(?:【|（|[（(]\s*(?:企業結合|セグメント|収益認識|金融商品|退職給付|税効果|ストック|事業分離|資産除去|関連当事者|重要な後発|減損|１株|１株|持分法|偶発))/i);
+  if (headingPattern) {
+    sectionEnd = ipIdx + matchedTerm.length + headingPattern.index;
+  }
+  const searchRange = html.substring(ipIdx, sectionEnd);
 
   // HTMLタグを除去してクリーンテキストを生成
   const clean = searchRange.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/gi, ' ').replace(/&#160;/g, ' ');
-  // 各行をトリムし、空行除去
   const lines = clean.split('\n').map(l => l.trim()).filter(l => l.length > 0);
 
-  // 注記の典型的なテーブル構造（テキスト化後）:
-  // ...（単位：百万円）...
-  // 前連結会計年度 / 当連結会計年度
-  // (連結)貸借対照表計上額
-  //   期首残高  AAA  BBB
-  //   期中増減額  CCC  DDD
-  //   期末残高  EEE  FFF
-  // 時価  GGG  HHH
-  // 差額  III  JJJ
-  //
-  // 必要なのは当連結会計年度の「期末残高」(=BS計上額) と「時価」
-
   // 戦略: 当期セクション内の全数値を順序通り取得し、構造から期末BVと時価を特定
-  // 典型的な数値の並び: [期首, 増減, 期末, 時価] (4数値)
+  // 典型的な数値の並び: [期首, 増減, 期末, 時価] (4数値) or 2期並列テーブル
   // 検証: 期首 + 増減 ≒ 期末 → 次が時価
 
-  // 当連結会計年度セクションの特定
+  // 当連結会計年度セクションの特定（緩い条件で検索）
   let currentPeriodStart = -1;
   for (let i = 0; i < lines.length; i++) {
+    // まず日付付きの当期ヘッダを探す
     if (/当連結会計年度|当(?:事業)?年度/.test(lines[i]) && /自.*至|20[0-9]{2}年/.test(lines[i])) {
       currentPeriodStart = i;
     }
   }
+  // 日付なしでも「当連結会計年度」単独を探す（テーブルヘッダの場合）
+  if (currentPeriodStart === -1) {
+    for (let i = 0; i < lines.length; i++) {
+      if (/当連結会計年度|当(?:事業)?年度/.test(lines[i])) {
+        currentPeriodStart = i;
+        break;
+      }
+    }
+  }
 
-  // 当期セクション（見つからなければ全体の後半を使用）
-  const sectionStart = currentPeriodStart >= 0 ? currentPeriodStart : Math.floor(lines.length / 2);
+  // 当期セクション（見つからなければ先頭から。賃貸等不動産テーブルは注記の冒頭にある）
+  const sectionStart = currentPeriodStart >= 0 ? currentPeriodStart : 0;
 
-  // 「（注）」「※」が出るまでの数値行と、全行を収集
+  // 「（注）」「※」が出るまでの数値を収集
   const allNums = [];
   for (let i = sectionStart; i < lines.length; i++) {
     const line = lines[i];
     // 注記行に到達したら終了
     if (/^[\s]*[（(]注[）)]|^[\s]*※/.test(line)) break;
-    // 次の注記セクション（「収益認識」等）に到達したら終了
-    if (i > sectionStart + 2 && /関係[）)]$/.test(line.replace(/\s/g, ''))) break;
+    // 「差額」の数値行の後にある次の注記セクション見出しで終了
+    if (i > sectionStart + 2) {
+      const stripped = line.replace(/\s/g, '');
+      if (/関係[）)]$/.test(stripped)) break;
+      // 別の注記キーワードが出現したら終了
+      if (/企業結合|セグメント情報|収益認識|金融商品関係|退職給付|税効果/.test(stripped)) break;
+    }
 
     const nums = extractNums(line);
     for (const n of nums) {
@@ -328,11 +346,10 @@ function parseInvestmentPropertyNote(html, data) {
     }
   }
   if (seqMatches.length > 0) {
-    // 最大のendBalを持つマッチを選択（合計行を優先）
     const best = seqMatches.reduce((a, b) => b.endBal > a.endBal ? b : a);
     data.investmentPropertyBookValue = best.endBal;
     data.investmentPropertyFairValue = best.fv;
-    data._ipDebug = { pattern: 'sequence-verify', bv: best.endBal, fv: best.fv, allNums: allNums.slice(best.i, best.i + 4), term: matchedTerm, matchCount: seqMatches.length };
+    data._ipDebug = { pattern: 'sequence-verify', bv: best.endBal, fv: best.fv, allNums: allNums.slice(0, 20), term: matchedTerm, matchCount: seqMatches.length };
     return;
   }
 
@@ -373,7 +390,7 @@ function parseInvestmentPropertyNote(html, data) {
     if (bv > 0 && fv > 0 && fv >= bv * 0.05 && bv >= fv * 0.05) {
       data.investmentPropertyBookValue = bv;
       data.investmentPropertyFairValue = fv;
-      data._ipDebug = { pattern: 'tail-2', bv, fv, allNums: allNums.slice(0, 20), term: matchedTerm };
+      data._ipDebug = { pattern: 'tail-2', bv, fv, allNums: allNums.slice(0, 20), term: matchedTerm, sectionStart, lines20: lines.slice(0, 20) };
       return;
     }
   }
@@ -385,10 +402,13 @@ function parseInvestmentPropertyNote(html, data) {
   data._ipDebug = {
     pattern: 'no-match',
     term: matchedTerm,
-    allNums: allNums.slice(0, 20),
+    allNums: allNums.slice(0, 30),
     sectionStart,
+    currentPeriodStart,
     endBalance,
     fairValue,
+    sectionLines: lines.slice(sectionStart, sectionStart + 40).map((l, i) => `[${sectionStart + i}] ${l}`),
+    totalLines: lines.length,
   };
 }
 
@@ -842,7 +862,10 @@ function downloadDoc(docID, apiKey) {
       timeout: 30000,
     }, (resp) => {
       if (resp.statusCode >= 300 && resp.statusCode < 400 && resp.headers.location) {
-        downloadDoc(resp.headers.location.includes('http') ? resp.headers.location : `https://api.edinet-fsa.go.jp${resp.headers.location}`, apiKey)
+        const loc = resp.headers.location.startsWith('http') ? resp.headers.location : `https://api.edinet-fsa.go.jp${resp.headers.location}`;
+        const locHost = new URL(loc).hostname;
+        if (!locHost.endsWith('.edinet-fsa.go.jp') && locHost !== 'api.edinet-fsa.go.jp') { resp.resume(); return reject(new Error('Untrusted redirect')); }
+        downloadDoc(loc, apiKey)
           .then(resolve).catch(reject);
         resp.resume();
         return;
