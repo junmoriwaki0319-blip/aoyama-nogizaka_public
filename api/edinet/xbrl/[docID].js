@@ -242,25 +242,25 @@ function parseInvestmentPropertyNote(html, data) {
 
   const searchTerms = ['賃貸等不動産関係', '賃貸等不動産', '賃貸不動産関係', '賃貸不動産', '投資不動産'];
 
-  // 注記タイトルとして使われている出現位置を探す（括弧内のものは除外）
+  // 注記タイトルとして使われている出現位置を探す（文中使用は除外）
   let ipIdx = -1;
   let matchedTerm = '';
   for (const term of searchTerms) {
     let pos = 0;
     while ((pos = html.indexOf(term, pos)) !== -1) {
-      // 括弧内の「(うち、賃貸等不動産)」は除外
       const before = html.substring(Math.max(0, pos - 60), pos);
-      if (/[（(](?:うち|内)/.test(before)) {
-        pos += term.length;
-        continue;
-      }
-      // 文中の「賃貸等不動産の○○」は除外（注記見出しではなく文中のもの）
       const after = html.substring(pos + term.length, pos + term.length + 30);
-      if (/^の(?![\s<】）])/.test(after)) {
-        // 「賃貸等不動産の」の後にすぐテキストが続く場合は文中使用→スキップ
-        // ただし「賃貸等不動産の<tag>」「賃貸等不動産の】」は見出しの可能性あり
-        pos += term.length;
-        continue;
+      // 除外: (うち、賃貸等不動産)
+      if (/[（(](?:うち|内)/.test(before)) { pos += term.length; continue; }
+      // 除外: 文中使用（HTMLタグ除去後、助詞が直後に続く）
+      // ただしHTMLタグのみが直後に来る場合は見出しの可能性があるのでスキップしない
+      const afterText = after.replace(/<[^>]*>/g, '').trim();
+      if (afterText.length > 0 && /^(?:など|は|を|が|に|と|へ|で|も|、|及び|並びに|又は|等の)/.test(afterText)) {
+        pos += term.length; continue;
+      }
+      // "賃貸等不動産の" は文中使用の可能性が高いが、"賃貸等不動産の<tag>" は見出し内の可能性
+      if (afterText.length > 0 && /^の[^\s<】）)関]/.test(afterText)) {
+        pos += term.length; continue;
       }
       ipIdx = pos;
       matchedTerm = term;
@@ -270,17 +270,8 @@ function parseInvestmentPropertyNote(html, data) {
   }
   if (ipIdx === -1) return;
 
-  // 注記セクションを取得（次の注記見出しまで、最大8000文字）
-  // 賃貸等不動産の注記は通常500-3000文字。次の注記見出し（HTMLタグ付き）で終了
-  let sectionEnd = Math.min(html.length, ipIdx + 8000);
-  const afterTitle = html.substring(ipIdx + matchedTerm.length, sectionEnd);
-  // HTML見出しタグ付きの次のセクション見出しを検出
-  // 例: <b>【セグメント情報等】</b>, <p class="...">（企業結合関係）</p>
-  const headingPattern = afterTitle.match(/<(?:b|h[1-6]|p)[^>]*>\s*(?:【|（|[（(]\s*(?:企業結合|セグメント|収益認識|金融商品|退職給付|税効果|ストック|事業分離|資産除去|関連当事者|重要な後発|減損|１株|１株|持分法|偶発))/i);
-  if (headingPattern) {
-    sectionEnd = ipIdx + matchedTerm.length + headingPattern.index;
-  }
-  const searchRange = html.substring(ipIdx, sectionEnd);
+  // 注記セクション全体を取得（最大20000文字）
+  const searchRange = html.substring(ipIdx, Math.min(html.length, ipIdx + 20000));
 
   // HTMLタグを除去してクリーンテキストを生成
   const clean = searchRange.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/gi, ' ').replace(/&#160;/g, ' ');
@@ -315,14 +306,14 @@ function parseInvestmentPropertyNote(html, data) {
   const allNums = [];
   for (let i = sectionStart; i < lines.length; i++) {
     const line = lines[i];
-    // 注記行に到達したら終了
+    // 注記行 or 次のセクション見出しに到達したら終了
     if (/^[\s]*[（(]注[）)]|^[\s]*※/.test(line)) break;
-    // 「差額」の数値行の後にある次の注記セクション見出しで終了
     if (i > sectionStart + 2) {
       const stripped = line.replace(/\s/g, '');
       if (/関係[）)]$/.test(stripped)) break;
-      // 別の注記キーワードが出現したら終了
       if (/企業結合|セグメント情報|収益認識|金融商品関係|退職給付|税効果/.test(stripped)) break;
+      // 【○○】形式の次の注記見出し
+      if (/^【/.test(stripped)) break;
     }
 
     const nums = extractNums(line);
@@ -349,7 +340,6 @@ function parseInvestmentPropertyNote(html, data) {
     const best = seqMatches.reduce((a, b) => b.endBal > a.endBal ? b : a);
     data.investmentPropertyBookValue = best.endBal;
     data.investmentPropertyFairValue = best.fv;
-    data._ipDebug = { pattern: 'sequence-verify', bv: best.endBal, fv: best.fv, allNums: allNums.slice(0, 20), term: matchedTerm, matchCount: seqMatches.length };
     return;
   }
 
@@ -375,7 +365,6 @@ function parseInvestmentPropertyNote(html, data) {
     if (bv > 0 && fv > 0) {
       data.investmentPropertyBookValue = bv;
       data.investmentPropertyFairValue = fv;
-      data._ipDebug = { pattern: 'label-inline', bv, fv, endBalance, fairValue, term: matchedTerm };
       return;
     }
   }
@@ -390,7 +379,6 @@ function parseInvestmentPropertyNote(html, data) {
     if (bv > 0 && fv > 0 && fv >= bv * 0.05 && bv >= fv * 0.05) {
       data.investmentPropertyBookValue = bv;
       data.investmentPropertyFairValue = fv;
-      data._ipDebug = { pattern: 'tail-2', bv, fv, allNums: allNums.slice(0, 20), term: matchedTerm, sectionStart, lines20: lines.slice(0, 20) };
       return;
     }
   }
@@ -398,18 +386,7 @@ function parseInvestmentPropertyNote(html, data) {
   // パターン4: 数値1個のみ（小規模賃貸等不動産）
   // BVのみ記載のケース - FV不明のため記録しない
 
-  // デバッグ情報（マッチしなかった場合）
-  data._ipDebug = {
-    pattern: 'no-match',
-    term: matchedTerm,
-    allNums: allNums.slice(0, 30),
-    sectionStart,
-    currentPeriodStart,
-    endBalance,
-    fairValue,
-    sectionLines: lines.slice(sectionStart, sectionStart + 40).map((l, i) => `[${sectionStart + i}] ${l}`),
-    totalLines: lines.length,
-  };
+  // マッチしなかった場合（データなし）
 }
 
 /** テキスト行から数値を抽出（年号を除外） */
