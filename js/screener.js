@@ -783,6 +783,8 @@ function displayLandParcels(data) {
         p._useKey = p.useType;
         p._useLabel = p.useLabel || p.useType;
         p._basePricePerSqm = p.basePricePerSqm || null;
+        p._priceSource = p.priceSource || null;
+        p._cityMatch = p.cityMatch || null;
       } else {
         var use = guessLandUse(p.name, p.address, p.area);
         p._useKey = use.key;
@@ -822,9 +824,10 @@ function renderLandTable(data) {
         '<option value="' + r.key + '"' + (r.key === p._useKey ? ' selected' : '') + '>' + r.label + '</option>'
       ).join('') + '<option value="other"' + (p._useKey === 'other' ? ' selected' : '') + '>その他</option>';
 
-      // 推定単価の内訳ツールチップ
+      // 推定単価の内訳ツールチップ（市区町村名を表示）
+      var srcLabel = p._priceSource && p._priceSource !== '都道府県平均' ? p._priceSource + '公示地価' : (p.prefecture || '') + '平均';
       var priceTip = p._basePricePerSqm
-        ? '基準単価 ' + Math.round(p._basePricePerSqm).toLocaleString() + '円/㎡ × ' + rate.toFixed(2) + '（' + (p._useLabel || 'その他') + '）'
+        ? srcLabel + ' ' + Math.round(p._basePricePerSqm).toLocaleString() + '円/㎡ × ' + rate.toFixed(2) + '（' + (p._useLabel || 'その他') + '）'
         : '';
 
       tbody.innerHTML += '<tr>' +

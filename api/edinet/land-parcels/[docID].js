@@ -1,5 +1,6 @@
 const https = require('https');
 const zlib = require('zlib');
+const CITY_LAND_PRICES = require('./city-land-prices');
 
 /**
  * 土地明細抽出API
@@ -96,10 +97,10 @@ module.exports = async (req, res) => {
         // 明細表に載っていない土地もあるので按分
         const ratio = totalEstimatedValue / totalBookValue;
         totalEstimatedGain = Math.round(landBookValue * ratio - landBookValue);
-        gainMethod = `都道府県別公示地価×用途別係数による概算（${estimatedCount}件, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
+        gainMethod = `市区町村別公示地価×用途別係数による概算（${estimatedCount}件, 明細簿価${Math.round(totalBookValue)}→全土地${Math.round(landBookValue)}百万円に按分）`;
       } else {
         totalEstimatedGain = Math.round(parcelGain);
-        gainMethod = `都道府県別公示地価×用途別係数による概算（${estimatedCount}/${parcels.length}件推定）`;
+        gainMethod = `市区町村別公示地価×用途別係数による概算（${estimatedCount}/${parcels.length}件推定）`;
       }
     }
 
@@ -450,8 +451,41 @@ function guessLandUse(name, address, area) {
   return { key: 'other', label: 'その他', rate: 0.5, keywords: [] };
 }
 
+/**
+ * 住所文字列から市区町村名を抽出し、市区町村別地価を検索する
+ * 政令指定都市は「○○市△△区」形式を優先し、見つからなければ「○○市」にフォールバック
+ */
+function findCityPrice(prefecture, address) {
+  const prefData = CITY_LAND_PRICES[prefecture];
+  if (!prefData) return null;
+
+  const addr = (address || '').replace(prefecture, '');
+
+  // 政令指定都市パターン: 「○○市○○区」を最優先
+  const seirei = addr.match(/^((?:札幌|仙台|さいたま|千葉|横浜|川崎|相模原|新潟|静岡|浜松|名古屋|京都|大阪|堺|神戸|岡山|広島|北九州|福岡|熊本)市[^\s市区]{1,5}区)/);
+  if (seirei && prefData[seirei[1]]) {
+    return { city: seirei[1], price: prefData[seirei[1]], level: '区' };
+  }
+
+  // 市区町村パターン: 「○○市」「○○区」「○○町」「○○村」
+  const cityMatch = addr.match(/^([^\s]{1,8}(?:市|区|町|村))/);
+  if (cityMatch && prefData[cityMatch[1]]) {
+    return { city: cityMatch[1], price: prefData[cityMatch[1]], level: '市区町村' };
+  }
+
+  // 部分一致フォールバック: prefDataのキーで住所に含まれるものを探す
+  // 長い名前から順に試す（「千葉市中央区」>「千葉市」）
+  const keys = Object.keys(prefData).sort((a, b) => b.length - a.length);
+  for (const k of keys) {
+    if (addr.includes(k)) {
+      return { city: k, price: prefData[k], level: '部分一致' };
+    }
+  }
+
+  return null;
+}
+
 async function estimateLandPrices(parcels) {
-  // 都道府県別平均公示地価（円/㎡, 2025年基準地価）を使って推定
   for (const parcel of parcels) {
     // 用途推定（面積も考慮）
     const use = guessLandUse(parcel.name, parcel.address, parcel.area);
@@ -460,10 +494,23 @@ async function estimateLandPrices(parcels) {
     parcel.adjustmentRate = use.rate;
 
     if (!parcel.prefecture || !parcel.area) continue;
-    const pricePerSqm = PREF_LAND_PRICES[parcel.prefecture];
+
+    // 市区町村レベルの地価を優先検索
+    let pricePerSqm = null;
+    let priceSource = '都道府県平均';
+    const cityResult = findCityPrice(parcel.prefecture, parcel.address);
+    if (cityResult) {
+      pricePerSqm = cityResult.price;
+      priceSource = cityResult.city;
+      parcel.cityMatch = cityResult.city;
+      parcel.cityMatchLevel = cityResult.level;
+    } else {
+      pricePerSqm = PREF_LAND_PRICES[parcel.prefecture];
+    }
     if (!pricePerSqm) continue;
 
-    parcel.basePricePerSqm = pricePerSqm; // 調整前の全用途平均単価
+    parcel.basePricePerSqm = pricePerSqm;
+    parcel.priceSource = priceSource;
     const adjustedPrice = Math.round(pricePerSqm * use.rate);
     parcel.estimatedPricePerSqm = adjustedPrice;
     parcel.estimatedValue = Math.round(parcel.area * adjustedPrice / 1000000); // 百万円
