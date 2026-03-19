@@ -6,7 +6,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5D57P05PM');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>国内SaaS セクター分析レポート | Aoyama Nogizaka Partners</title>
+  <title>国内SaaS セクター分析レポート | 青山乃木坂パートナーズ</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
@@ -167,9 +167,9 @@
       <a href="/saas.html" class="cross-nav-link active">SaaS</a>
       <span class="cross-nav-sep"></span>
       <span class="cross-nav-cat">アクティビスト</span>
-      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有報告</a>
       <a href="/risk-assessment.html" class="cross-nav-link">機会評価</a>
-      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーニング</a>
     </nav>
     <div class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
@@ -376,8 +376,8 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <span class="footer-brand">Aoyama Nogizaka Partners</span>
-    <span>&copy; 2026 Aoyama Nogizaka Partners. All rights reserved.</span>
+    <span class="footer-brand">青山乃木坂パートナーズ</span>
+    <span>© 2026 Aoyama Nogizaka Partners All rights reserved.</span>
   </div>
 </footer>
 
@@ -638,7 +638,8 @@
       await sendEmailVerification(window.currentUser);
       msg.innerHTML = '認証メールを再送しました。'; msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
     } catch (e) {
-      msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+      const errMsg = e.code === 'auth/too-many-requests' ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
+      msg.textContent = errMsg; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
     }
   };
   window.handleMyPageResetPassword = async () => {
