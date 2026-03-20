@@ -13,12 +13,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>青山乃木坂パートナーズ | 経営コンサルティング・M&Aアドバイザリー【東京・港区】</title>
   <meta name="description" content="青山乃木坂パートナーズは、企業価値の可視化と成長戦略の実行支援に特化した経営コンサルティング会社です。M&A・資本政策・上場支援まで、東京港区六本木を拠点にご支援します。">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="青山乃木坂パートナーズ | 経営コンサルティング・M&Aアドバイザリー【東京・港区】">
+  <meta property="og:description" content="青山乃木坂パートナーズは、企業価値の可視化と成長戦略の実行支援に特化した経営コンサルティング会社です。M&A・資本政策・上場支援まで、東京港区六本木を拠点にご支援します。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="青山乃木坂パートナーズ | 経営コンサルティング・M&Aアドバイザリー【東京・港区】">
+  <meta name="twitter:description" content="青山乃木坂パートナーズは、企業価値の可視化と成長戦略の実行支援に特化した経営コンサルティング会社です。M&A・資本政策・上場支援まで、東京港区六本木を拠点にご支援します。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/">
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "青山乃木坂パートナーズ",
+    "alternateName": "Aoyama Nogizaka Partners",
+    "url": "https://aoyama-nogizaka.com",
+    "logo": "https://aoyama-nogizaka.com/og-image.png",
+    "description": "企業価値の可視化と成長戦略の実行支援に特化した経営コンサルティング会社。M&A・資本政策・上場支援。",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "港区",
+      "addressRegion": "東京都",
+      "addressCountry": "JP"
+    },
+    "areaServed": "JP",
+    "serviceType": ["経営コンサルティング", "M&Aアドバイザリー", "IR支援", "アクティビスト対策"]
+  }
+  </script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
     :root {
       --navy: #1a2d4f;
       --navy-light: #243b63;
@@ -685,9 +721,10 @@
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- NAVIGATION -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="メインナビゲーション">
     <div class="nav-inner">
       <a href="https://aoyama-nogizaka.com/" class="nav-logo">
         <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
@@ -713,9 +750,9 @@
         </li>
         <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
-      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
@@ -735,6 +772,7 @@
   </div>
 
   <!-- HERO -->
+  <main id="main">
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid-bg"></div>

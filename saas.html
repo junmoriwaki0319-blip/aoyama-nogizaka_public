@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-C5D57P05PM");</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>国内SaaS セクター分析レポート | Aoyama Nogizaka Partners</title>
+  <title>国内SaaS セクター分析レポート | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="国内SaaS企業の主要KPIを横断比較。ARR・チャーンレート・NRR・Rule of 40をダッシュボード形式で分析。">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="国内SaaS セクター分析レポート | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="国内SaaS企業の主要KPIを横断比較。ARR・チャーンレート・NRR・Rule of 40をダッシュボード形式で分析。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/saas">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="国内SaaS セクター分析レポート | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="国内SaaS企業の主要KPIを横断比較。ARR・チャーンレート・NRR・Rule of 40をダッシュボード形式で分析。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/saas">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
     :root {
       --navy: #1a2d4f; --navy-dark: #0f1a30; --navy-light: #2a4470;
       --gold: #9b8b6e; --gold-light: #c8b99a; --gold-dim: #7a6d55;
@@ -174,13 +195,14 @@
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
 <header class="site-header">
   <a href="https://aoyama-nogizaka.com/" style="text-decoration:none;">
     <div class="site-logo"><small>AOYAMA NOGIZAKA PARTNERS</small>Industry Research</div>
   </a>
   <div class="header-right">
-    <nav class="cross-nav">
+    <nav class="cross-nav" aria-label="メインナビゲーション">
       <span class="cross-nav-cat">セクター分析</span>
       <a href="/food-service.html" class="cross-nav-link">外食</a>
       <a href="/saas.html" class="cross-nav-link active">SaaS</a>
@@ -188,8 +210,7 @@
       <span class="cross-nav-cat">アクティビスト</span>
       <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
       <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
-    </nav>
-    <div class="nav-auth-btns" id="navAuthBtns">
+     id="main"class="nav-auth-btns" id="navAuthBtns">
       <button class="btn-login" onclick="openModal('login')">ログイン</button>
       <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
     </div>

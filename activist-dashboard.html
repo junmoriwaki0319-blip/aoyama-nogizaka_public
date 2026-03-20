@@ -12,7 +12,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>大量保有報告ダッシュボード | 青山乃木坂パートナーズ</title>
   <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="大量保有報告ダッシュボード | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/activist-dashboard">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="大量保有報告ダッシュボード | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/activist-dashboard">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -135,7 +149,9 @@
     window.firebaseLogout = () => signOut(auth);
   </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
     :root {
       --navy: #1a2d4f; --navy-light: #243b63; --gold: #9b8b6e; --gold-light: #c8b99a;
       --white: #ffffff; --off-white: #f8f7f5; --light-gray: #f0eee9; --mid-gray: #e0dcd5;
@@ -450,9 +466,10 @@
   <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
 </head>
 <body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav id="navbar" aria-label="メインナビゲーション">
   <div class="nav-inner">
     <a href="https://aoyama-nogizaka.com/" class="nav-logo">
       <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
@@ -485,11 +502,9 @@
       <a onclick="openMyPage()" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
       <button class="btn-login" onclick="handleLogout()">ログアウト</button>
     </div>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
+    </button>
 <div class="mobile-menu" id="mobileMenu">
   <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
   <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>

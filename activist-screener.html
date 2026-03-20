@@ -13,7 +13,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>アクティビスト・スクリーニング | 青山乃木坂パートナーズ</title>
   <meta name="description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="アクティビスト・スクリーニング | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/activist-screener">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="アクティビスト・スクリーニング | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/activist-screener">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -325,9 +339,10 @@
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
 <!-- Nav -->
-<nav>
+<nav aria-label="メインナビゲーション">
   <div class="nav-inner">
     <a href="https://aoyama-nogizaka.com/" class="nav-logo">
       <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
@@ -360,11 +375,9 @@
       <a onclick="openMyPage()" id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;letter-spacing:.04em;text-decoration:underline;"></a>
       <button onclick="doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:4px;font-size:.68rem;cursor:pointer;">ログアウト</button>
     </div>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
+    </button>
 <div class="mobile-menu" id="mobileMenu">
   <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
   <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
