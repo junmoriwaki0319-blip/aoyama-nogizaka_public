@@ -712,7 +712,7 @@
           <div style="display:flex; gap:8px;">
             <button class="export-btn" onclick="exportWatchlistCSV()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M12 17v-6"/><path d="M9.5 14.5L12 17l2.5-2.5"/></svg>
-              リスト CSV出力
+              リスト CSV出力<span class="member-badge">会員限定</span>
             </button>
           </div>
         </div>
@@ -2081,7 +2081,7 @@ function renderWatchlistReports() {
 
   let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
     <span style="font-size:12px; color:var(--text-light);">直近 ${matched.length} 件</span>
-    <button class="export-btn" onclick="exportWatchlistCSV()" style="font-size:11px; padding:4px 10px;">CSV出力</button>
+    <button class="export-btn" onclick="exportWatchlistCSV()" style="font-size:11px; padding:4px 10px;">CSV出力<span class="member-badge">会員限定</span></button>
   </div>`;
 
   html += '<table style="width:100%; border-collapse:collapse; font-size:12px;">';
