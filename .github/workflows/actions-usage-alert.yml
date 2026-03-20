@@ -1,0 +1,99 @@
+name: Actions Usage Alert
+
+on:
+  schedule:
+    # 毎週月曜 JST 9:00 = UTC 0:00 にチェック
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # 手動実行可能
+
+permissions:
+  contents: read
+
+jobs:
+  check-usage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Actions usage and alert
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ALERT_THRESHOLD_PERCENT: "70"
+          PRO_PLAN_MINUTES: "3000"
+        run: |
+          echo "=== GitHub Actions 使用量チェック ==="
+          echo "実行日時: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+
+          # GitHub API から今月の使用量を取得
+          USAGE=$(gh api /user/settings/billing/actions 2>/dev/null || echo '{}')
+
+          TOTAL_MINUTES=$(echo "$USAGE" | jq -r '.total_minutes_used // 0')
+          INCLUDED_MINUTES=$(echo "$USAGE" | jq -r '.included_minutes // '"$PRO_PLAN_MINUTES"'')
+
+          # 使用率を計算
+          if [ "$INCLUDED_MINUTES" -gt 0 ]; then
+            USAGE_PERCENT=$(( TOTAL_MINUTES * 100 / INCLUDED_MINUTES ))
+          else
+            USAGE_PERCENT=0
+          fi
+
+          REMAINING=$((INCLUDED_MINUTES - TOTAL_MINUTES))
+
+          echo "使用量: ${TOTAL_MINUTES} 分 / ${INCLUDED_MINUTES} 分 (${USAGE_PERCENT}%)"
+          echo "残り: ${REMAINING} 分"
+          echo ""
+
+          # リポジトリごとの内訳
+          echo "=== リポジトリ別内訳 ==="
+          echo "$USAGE" | jq -r '.minutes_used_breakdown | to_entries[] | "\(.key): \(.value) 分"' 2>/dev/null || echo "内訳取得不可"
+          echo ""
+
+          # アラート判定
+          if [ "$USAGE_PERCENT" -ge "${{ env.ALERT_THRESHOLD_PERCENT || 70 }}" ]; then
+            echo "::warning::⚠️ Actions使用量が${USAGE_PERCENT}%に達しています！(${TOTAL_MINUTES}/${INCLUDED_MINUTES}分)"
+
+            # GitHub Issue でアラートを作成
+            EXISTING_ISSUE=$(gh issue list --repo "${{ github.repository }}" --label "actions-alert" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+            if [ -z "$EXISTING_ISSUE" ]; then
+              # ラベルがなければ作成
+              gh label create "actions-alert" --color "d93f0b" --description "Actions使用量アラート" --repo "${{ github.repository }}" 2>/dev/null || true
+
+              gh issue create \
+                --repo "${{ github.repository }}" \
+                --title "⚠️ Actions使用量アラート: ${USAGE_PERCENT}% (${TOTAL_MINUTES}/${INCLUDED_MINUTES}分)" \
+                --label "actions-alert" \
+                --body "$(cat <<EOF
+          ## GitHub Actions 使用量アラート
+
+          | 項目 | 値 |
+          |------|-----|
+          | 使用量 | ${TOTAL_MINUTES} 分 |
+          | 上限 | ${INCLUDED_MINUTES} 分 |
+          | 使用率 | **${USAGE_PERCENT}%** |
+          | 残り | ${REMAINING} 分 |
+
+          ### 推奨アクション
+          - バックフィル実行を月末まで控える
+          - 不要なワークフロー実行を停止する
+          - Settings > Billing > Actions で詳細を確認する
+
+          > このIssueは自動生成されました (actions-usage-alert workflow)
+          EOF
+          )"
+              echo "アラートIssueを作成しました"
+            else
+              # 既存Issueにコメント追加
+              gh issue comment "$EXISTING_ISSUE" \
+                --repo "${{ github.repository }}" \
+                --body "**更新**: 使用量 ${USAGE_PERCENT}% (${TOTAL_MINUTES}/${INCLUDED_MINUTES}分) - $(date -u '+%Y-%m-%d')"
+              echo "既存Issue #${EXISTING_ISSUE} にコメントを追加しました"
+            fi
+          else
+            echo "✅ 使用量は正常範囲内です (${USAGE_PERCENT}% < 閾値${ALERT_THRESHOLD_PERCENT}%)"
+          fi
+
+          # 90%以上なら追加の緊急アラート
+          if [ "$USAGE_PERCENT" -ge 90 ]; then
+            echo "::error::🚨 緊急: Actions使用量が90%を超えています！従量課金が発生する可能性があります。"
+          fi

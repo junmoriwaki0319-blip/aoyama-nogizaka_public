@@ -39,3 +39,17 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+
+      - name: Check Actions usage
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          USAGE=$(gh api /user/settings/billing/actions 2>/dev/null || echo '{}')
+          TOTAL=$(echo "$USAGE" | jq -r '.total_minutes_used // 0')
+          LIMIT=$(echo "$USAGE" | jq -r '.included_minutes // 3000')
+          PCT=$((TOTAL * 100 / (LIMIT > 0 ? LIMIT : 3000)))
+          echo "Actions使用量: ${TOTAL}/${LIMIT}分 (${PCT}%)"
+          if [ "$PCT" -ge 80 ]; then
+            echo "::warning::⚠️ Actions使用量が${PCT}%です。上限に注意してください。"
+          fi

@@ -10,7 +10,7 @@ const path = require('path');
 const https = require('https');
 const http = require('http');
 
-const API_KEY = 'a774e10f01054494b5a245beae3bb3bc';
+const API_KEY = process.env.EDINET_API_KEY || '';
 const EDINET_API_BASE = 'https://api.edinet-fsa.go.jp/api/v2';
 const BASE = path.resolve(__dirname, '..');
 const REPORTS_FILE = path.join(BASE, 'data', 'reports.json');
