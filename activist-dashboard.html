@@ -77,8 +77,23 @@
     window.firebaseDb = db;
 
     // 認証状態の監視
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       window.currentUser = user;
+      if (user) {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (!snap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "",
+            company: "",
+            email: user.email || "",
+            affiliation: "",
+            affiliationCode: "",
+            jobTitle: "",
+            plan: "free",
+            createdAt: serverTimestamp()
+          });
+        }
+      }
       updateAuthUI(user);
     });
 
@@ -1046,38 +1061,64 @@ let reportData = { reports: [], activists: {} };
 let filteredReports = [];
 let dataLoaded = false;
 const PREMIUM_API = 'https://aoyama-nogizakapublic.vercel.app/api/premium-reports';
+const DATA_URL = '/data/reports.json';
 
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadData();
   renderAll();
 });
 
 async function loadData() {
   if (dataLoaded) return;
-  const user = window.currentUser;
-  if (!user) return;
 
-  try {
-    const idToken = await user.getIdToken();
-    const resp = await fetch(PREMIUM_API + '?type=reports', {
-      headers: { 'Authorization': 'Bearer ' + idToken }
-    });
-    if (resp.ok) {
-      reportData = await resp.json();
-    }
-  } catch (e) {
-    console.log('Data not yet available, using empty dataset');
+  // まず認証付きAPIを試行、失敗したら直接ファイル取得にフォールバック
+  let loaded = false;
+  const user = window.currentUser;
+  if (user) {
+    try {
+      const idToken = await user.getIdToken();
+      const resp = await fetch(PREMIUM_API + '?type=reports', {
+        headers: { 'Authorization': 'Bearer ' + idToken }
+      });
+      if (resp.ok) {
+        reportData = await resp.json();
+        loaded = true;
+      }
+    } catch (e) { /* フォールバックへ */ }
   }
+
+  // フォールバック: 直接ファイル取得
+  if (!loaded) {
+    try {
+      const cacheBuster = '?t=' + Date.now();
+      const resp = await fetch(DATA_URL + cacheBuster, { cache: 'no-store' });
+      if (resp.ok) {
+        reportData = await resp.json();
+      }
+    } catch (e) {
+      console.log('Data not yet available, using empty dataset');
+    }
+  }
+
   // reports が空なら空配列を保証
   if (!reportData.reports) reportData.reports = [];
   if (!reportData.activists) reportData.activists = {};
 
-  // known_activists.json を読み込み（認証付き）
+  // known_activists.json を読み込み
   try {
-    const idToken = await user.getIdToken();
-    const kaResp = await fetch(PREMIUM_API + '?type=activists', {
-      headers: { 'Authorization': 'Bearer ' + idToken }
-    });
+    let kaResp;
+    if (user) {
+      try {
+        const idToken = await user.getIdToken();
+        kaResp = await fetch(PREMIUM_API + '?type=activists', {
+          headers: { 'Authorization': 'Bearer ' + idToken }
+        });
+      } catch (e) { /* フォールバックへ */ }
+    }
+    if (!kaResp || !kaResp.ok) {
+      kaResp = await fetch('/scripts/known_activists.json?t=' + Date.now(), { cache: 'no-store' });
+    }
     if (kaResp.ok) {
       const kaData = await kaResp.json();
       const groups = kaData.groups || {};
