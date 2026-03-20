@@ -71,8 +71,23 @@
     const analytics = getAnalytics(app);
     window.firebaseAuth = auth;
     window.firebaseDb = db;
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       window.currentUser = user;
+      if (user) {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (!snap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "",
+            company: "",
+            email: user.email || "",
+            affiliation: "",
+            affiliationCode: "",
+            jobTitle: "",
+            plan: "free",
+            createdAt: serverTimestamp()
+          });
+        }
+      }
       if (typeof updateAuthUI === 'function') {
         updateAuthUI(user);
       } else {

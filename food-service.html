@@ -812,8 +812,23 @@
     consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他'
   };
 
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     window.currentUser = user;
+    if (user) {
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (!snap.exists()) {
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName || "",
+          company: "",
+          email: user.email || "",
+          affiliation: "",
+          affiliationCode: "",
+          jobTitle: "",
+          plan: "free",
+          createdAt: serverTimestamp()
+        });
+      }
+    }
     updateAuthUI(user);
   });
 
