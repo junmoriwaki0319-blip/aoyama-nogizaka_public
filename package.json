@@ -1,0 +1,24 @@
+{
+  "name": "aoyama-nogizaka_public",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public/issues"
+  },
+  "homepage": "https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public#readme",
+  "dependencies": {
+    "firebase-admin": "^13.7.0"
+  }
+}

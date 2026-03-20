@@ -6,9 +6,13 @@
     },
     "api/stock-prices.js": {
       "maxDuration": 30
+    },
+    "api/premium-reports.js": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
+    { "source": "/api/premium-reports", "destination": "/api/premium-reports" },
     { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" },
     { "source": "/api/stock/:code", "destination": "/api/stock/:code" },
     { "source": "/api/batch", "destination": "/api/batch" },
@@ -23,7 +27,7 @@
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "https://aoyama-nogizaka.com" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
       ]
     },
     {

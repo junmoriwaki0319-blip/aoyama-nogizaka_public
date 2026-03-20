@@ -1044,18 +1044,24 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
 // ===== GLOBAL DATA =====
 let reportData = { reports: [], activists: {} };
 let filteredReports = [];
-const DATA_URL = '/data/reports.json';
+let dataLoaded = false;
+const PREMIUM_API = 'https://aoyama-nogizakapublic.vercel.app/api/premium-reports';
 
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadData();
+document.addEventListener('DOMContentLoaded', () => {
   renderAll();
 });
 
 async function loadData() {
+  if (dataLoaded) return;
+  const user = window.currentUser;
+  if (!user) return;
+
   try {
-    const cacheBuster = '?t=' + Date.now();
-    const resp = await fetch(DATA_URL + cacheBuster, { cache: 'no-store' });
+    const idToken = await user.getIdToken();
+    const resp = await fetch(PREMIUM_API + '?type=reports', {
+      headers: { 'Authorization': 'Bearer ' + idToken }
+    });
     if (resp.ok) {
       reportData = await resp.json();
     }
@@ -1066,9 +1072,12 @@ async function loadData() {
   if (!reportData.reports) reportData.reports = [];
   if (!reportData.activists) reportData.activists = {};
 
-  // known_activists.json を読み込み、グループ名寄せ＋報告0件の投資家も一覧に追加
+  // known_activists.json を読み込み（認証付き）
   try {
-    const kaResp = await fetch('/scripts/known_activists.json' + '?t=' + Date.now(), { cache: 'no-store' });
+    const idToken = await user.getIdToken();
+    const kaResp = await fetch(PREMIUM_API + '?type=activists', {
+      headers: { 'Authorization': 'Bearer ' + idToken }
+    });
     if (kaResp.ok) {
       const kaData = await kaResp.json();
       const groups = kaData.groups || {};
@@ -1145,6 +1154,7 @@ async function loadData() {
   });
 
   filteredReports = [...reportData.reports];
+  dataLoaded = true;
 }
 
 function renderAll() {
@@ -1849,6 +1859,11 @@ async function updateAuthUI(user) {
     premiumEls.forEach(el => el.style.display = 'none');
     premiumBlurs.forEach(el => el.classList.remove('premium-blur'));
     if (loginWall) loginWall.style.display = 'none';
+    // 認証後にデータを読み込み
+    if (!dataLoaded) {
+      await loadData();
+      renderAll();
+    }
   } else {
     authBtns.style.display = 'flex';
     userInfo.style.display = 'none';
