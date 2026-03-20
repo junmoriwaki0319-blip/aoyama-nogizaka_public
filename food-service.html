@@ -532,7 +532,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-brand">青山乃木坂パートナーズ</span>
-    <span>本レポートは各社IR開示情報・Yahoo!ファイナンス等に基づき作成。既存店売上高は各社IR月次開示に準拠(SFP・イートアンド・クリエイトRは未検証推定値、リンガーハット1月は補間推定)。投資判断の責任は利用者に帰属します。 © 2026 Aoyama Nogizaka Partners All rights reserved.</span>
+    <span>本レポートは各社IR開示情報・Yahoo!ファイナンス等に基づき作成。既存店売上高は各社IR月次開示に準拠(SFP・イートアンド・クリエイトRは月次非開示のためデータなし、リンガーハット1月は補間推定)。投資判断の責任は利用者に帰属します。 © 2026 Aoyama Nogizaka Partners All rights reserved.</span>
   </div>
 </footer>
 
@@ -991,7 +991,7 @@
 // MUMSSレポート準拠のTop15 + 追加銘柄で構成
 // デュポン分解・TOPIXパフォーマンス・マクロ指標を追加
 // 既存店売上高データは各社IR月次開示に基づく (sameStoreSales = 前年同月比%)
-// SFP・イートアンド・クリエイトRは未検証推定値、リンガーハット1月は補間推定
+// SFP・イートアンド・クリエイトRは月次非開示のためnull、リンガーハット1月は補間推定
 // ============================================================
 
 const SEGMENTS = {
@@ -1140,7 +1140,8 @@ const companies = [
     monthlyRevenue: [13200,12500,14500,13800,14200,14900,15600,15900,14800,14000,13700,15400],
     monthlyProfit:  [900,760,1100,1000,1050,1140,1200,1230,1100,1000,960,1150],
     costRatio:      [31.0,31.5,30.5,30.8,30.6,30.3,30.0,29.9,30.5,30.9,31.1,29.8],
-    sameStoreSales: [107.0,105.0,109.0,107.5,107.0,110.0,111.0,109.0,107.5,106.0,105.5,109.0],
+    // クリエイトR: 月次既存店非開示のためnull
+    sameStoreSales: [null,null,null,null,null,null,null,null,null,null,null,null],
   },
   {
     code: '9861', name: '吉野家HD', segment: 'GYU',
@@ -1447,7 +1448,8 @@ const companies = [
     monthlyRevenue: [4200,3900,4600,4400,4500,4700,5000,5100,4700,4400,4300,4900],
     monthlyProfit:  [360,310,420,390,400,440,470,480,420,380,360,440],
     costRatio:      [30.2,30.8,29.8,30.0,29.9,29.5,29.2,29.1,29.8,30.2,30.4,29.0],
-    sameStoreSales: [112.0,110.0,114.0,112.5,112.0,115.0,116.0,114.0,112.5,111.0,110.5,114.0],
+    // SFP: 月次既存店非開示のためnull
+    sameStoreSales: [null,null,null,null,null,null,null,null,null,null,null,null],
   },
   {
     code: '7611', name: 'ハイデイ日高', segment: 'RAMEN',
@@ -1600,7 +1602,8 @@ const companies = [
     monthlyRevenue: [3050,2880,3350,3200,3280,3450,3620,3680,3420,3250,3170,3560],
     monthlyProfit:  [110,85,150,130,140,160,180,190,150,120,100,170],
     costRatio:      [33.5,34.0,33.0,33.3,33.1,32.8,32.5,32.4,33.0,33.4,33.6,32.2],
-    sameStoreSales: [104.0,103.2,107.5,105.0,106.2,105.8,103.5,106.8,105.0,103.8,103.0,106.5],
+    // イートアンド: 月次既存店非開示のためnull
+    sameStoreSales: [null,null,null,null,null,null,null,null,null,null,null,null],
   },
   {
     code: '9279', name: 'ギフトHD', segment: 'RAMEN',
@@ -2048,7 +2051,9 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     g('dtSel').addEventListener('change',e=>{selComp=companies.find(c=>c.code===e.target.value);rDetail();});
     dc(['dtR','dtS']);
     mc('dtR','bar',{labels:MONTHS,datasets:[{data:c.monthlyRevenue,backgroundColor:'rgba(26,45,79,0.5)',borderWidth:0}]},{plugins:{legend:{display:false}}});
-    mc('dtS','bar',{labels:MONTHS,datasets:[{data:c.sameStoreSales,backgroundColor:c.sameStoreSales.map(v=>v>=100?'rgba(45,122,79,0.5)':'rgba(181,58,58,0.5)'),borderWidth:0}]},{scales:{y:{min:Math.min(...c.sameStoreSales)-3}},plugins:{legend:{display:false}}});
+    const sssValid = c.sameStoreSales.filter(v=>v!=null);
+    if(sssValid.length) mc('dtS','bar',{labels:MONTHS,datasets:[{data:c.sameStoreSales,backgroundColor:c.sameStoreSales.map(v=>v==null?'rgba(200,200,200,0.3)':v>=100?'rgba(45,122,79,0.5)':'rgba(181,58,58,0.5)'),borderWidth:0}]},{scales:{y:{min:Math.min(...sssValid)-3}},plugins:{legend:{display:false}}});
+    else g('dtS').parentElement.innerHTML='<p style="text-align:center;color:#999;padding:2em">月次既存店データ非開示</p>';
   }
 
   // ============ APPENDIX: MACRO ============
