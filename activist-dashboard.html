@@ -1841,7 +1841,7 @@ async function handleSetPassword() {
   const pw2 = document.getElementById('setPasswordConfirm').value;
   msg.style.display = 'none';
   if (!pw || pw.length < 8) {
-    msg.textContent = 'パスワードは8文字以上で入力してください。';
+    msg.textContent = 'パスワードは8文字以上で設定してください。';
     msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
     return;
   }
@@ -1864,7 +1864,7 @@ async function handleSetPassword() {
       'auth/weak-password': 'パスワードが弱すぎます。8文字以上で設定してください。',
       'auth/requires-recent-login': 'セキュリティのため再ログインが必要です。一度ログアウトしてGoogleで再ログインしてください。',
     };
-    msg.textContent = messages[e.code] || 'エラーが発生しました: ' + (e.message || '');
+    msg.textContent = messages[e.code] || 'エラーが発生しました。しばらくしてから再度お試しください。';
     msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
   }
 }

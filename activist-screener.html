@@ -1242,9 +1242,9 @@ async function doModalRegister() {
   var m = document.getElementById('authModalRegMsg');
   if (!n || !e || !p) { m.textContent = '必須項目を入力してください'; m.className = 'auth-msg error'; return; }
   if (!aff) { m.textContent = '所属種別を選択してください'; m.className = 'auth-msg error'; return; }
-  if (p.length < 8) { m.textContent = 'パスワードは8文字以上'; m.className = 'auth-msg error'; return; }
+  if (p.length < 8) { m.textContent = 'パスワードは8文字以上で設定してください。'; m.className = 'auth-msg error'; return; }
   try { await window.firebaseRegister(e, p, n, c, aff, '', jt); m.innerHTML = '登録しました。確認メールをお送りしました。<br><span style="font-size:.68rem;">メールが届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:var(--green);text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 3000); }
-  catch (err) { m.textContent = '登録失敗: ' + err.message; m.className = 'auth-msg error'; }
+  catch (err) { const msgs = {'auth/email-already-in-use':'このメールアドレスは既に登録されています。ログインしてください。','auth/weak-password':'パスワードは8文字以上で設定してください。','auth/invalid-email':'メールアドレスの形式が正しくありません。'}; m.textContent = msgs[err.code] || '登録に失敗しました。'; m.className = 'auth-msg error'; }
 }
 async function doModalReset() {
   var e = document.getElementById('authModalResetEmail').value.trim();

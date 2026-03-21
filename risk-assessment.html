@@ -580,10 +580,12 @@ async function fetchStockData() {
     try {
       info.textContent = 'EDINET書類検索中...';
       const sRes = await fetch(API_BASE + '/api/edinet/search/' + code, { signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
+      if (!sRes.ok) throw new Error('EDINET検索エラー');
       const sData = await sRes.json();
       if (sData.success && sData.documents && sData.documents.length > 0) {
         info.textContent = 'XBRL財務データ解析中...';
         const xRes = await fetch(API_BASE + '/api/edinet/xbrl/' + sData.documents[0].docID, { signal: AbortSignal.timeout ? AbortSignal.timeout(30000) : undefined });
+        if (!xRes.ok) throw new Error('XBRLデータ取得エラー');
         const xData = await xRes.json();
         if (xData.success && xData.data) {
           _edinetData = xData.data;

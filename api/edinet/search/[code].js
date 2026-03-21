@@ -101,6 +101,7 @@ function fetchDocList(date, apiKey) {
       headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json' },
       timeout: 8000,
     }, (resp) => {
+      if (resp.statusCode !== 200) { resp.resume(); return resolve([]); }
       let data = '';
       resp.on('data', chunk => data += chunk);
       resp.on('end', () => {
