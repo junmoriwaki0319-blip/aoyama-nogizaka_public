@@ -16,6 +16,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="robots" content="noindex, nofollow">
+  <script>
+    // GitHub PagesクリーンURL対応: /team → /team.html にリダイレクト
+    (function(){
+      var defined = ['team','privacy','risk-assessment','activist-dashboard','activist-screener','food-service','saas'];
+      var path = location.pathname.replace(/\/$/,'');
+      var slug = path.substring(1);
+      if (defined.indexOf(slug) !== -1) {
+        location.replace('/' + slug + '.html');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
