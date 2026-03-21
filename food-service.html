@@ -1138,7 +1138,8 @@ const DATA_AS_OF = {
 };
 // ---------- TOPIX Performance ----------
 // マーケットデータ: Firestoreから動的取得（認証後）
-let TOPIX_RETURN_1Y, TOPIX_MONTHLY, RESTAURANT_INDEX_MONTHLY;
+let TOPIX_RETURN_1Y, TOPIX_MONTHLY, RESTAURANT_INDEX_MONTHLY, INDEX_MONTHS;
+let SECTOR_AVG_SSS_HISTORY = {}; // { FY2023: [12], FY2022: [12] }
 
 // TOPIX-17比較(直近1年, 100基準)
 const TOPIX17_SECTORS = [
@@ -1239,7 +1240,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
   const P = ['#1a2d4f','#9b8b6e','#2d7a4f','#b53a3a','#5a7fa8','#c8946e','#6b8e5e','#8b6b8e','#4a8b8b','#a89b5a','#7a5a3a','#5a6b8e'];
   const SC = { FF:'#1a2d4f', FR:'#5a7fa8', IZK:'#b53a3a', SUSHI:'#4a8b8b', CAFE:'#9b8b6e', GYU:'#c8946e', RAMEN:'#8b6b8e', YAKINIKU:'#a89b5a', OTHER:'#777777' };
 
-  let tab = 'exec', selComp = null, mCodes = [], mSeg = 'ALL';
+  let tab = 'exec', selComp = null, mCodes = [], mSeg = 'ALL', mFY = 'latest';
   const C = {};
 
   function recalcYutai() {
@@ -1265,6 +1266,9 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         TOPIX_RETURN_1Y = m.TOPIX_RETURN_1Y;
         TOPIX_MONTHLY = m.TOPIX_MONTHLY;
         RESTAURANT_INDEX_MONTHLY = m.RESTAURANT_INDEX_MONTHLY;
+        INDEX_MONTHS = m.INDEX_MONTHS;
+        if (m.SECTOR_AVG_SSS_FY2023) SECTOR_AVG_SSS_HISTORY['FY2023'] = m.SECTOR_AVG_SSS_FY2023;
+        if (m.SECTOR_AVG_SSS_FY2022) SECTOR_AVG_SSS_HISTORY['FY2022'] = m.SECTOR_AVG_SSS_FY2022;
       }
       // 企業データ取得
       const compSnap = await getDoc(doc(db, 'premiumContent', 'food-companies'));
@@ -1310,14 +1314,14 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
-        外食セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、銘柄間の格差が顕著。
+        外食セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、企業間の格差が顕著。
         F&LC(スシロー)が+121.7%と突出、サイゼリヤ+48.2%、物語コーポレーション+43.1%が続く。<br><br>
         <strong>足元のリスク要因:</strong>
         (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
         (2) <strong>郊外型ファミリーレストラン</strong>における客数減少トレンド(人口動態変化・デリバリーサービスの代替進行)、
         (3) <strong>米価指数は前年比+38%と急騰</strong>(2015年基準指数120→166、小売店頭価格ベースでは約1.8倍)し値上げ転嫁にも限界が意識される局面。
         最低賃金は2024年に<strong>全国加重平均1,055円</strong>(${DATA_AS_OF.minimumWage})に到達し、パート比率の高い外食産業では人件費率30-40%×賃金上昇率約5%により、<strong>営業利益の数%〜十数%</strong>の下押し圧力と試算される(自社推計、パート比率・業態により幅あり)。<br>
-        <strong>銘柄選別の提言:</strong> (1)ブランド力に裏打ちされた<strong>価格転嫁力</strong>、(2)<strong>海外展開</strong>による為替ヘッジ効果と成長余地、(3)<strong>DX・省人化投資</strong>によるコスト構造改革 の3軸を重視。
+        <strong>企業選別の提言:</strong> (1)ブランド力に裏打ちされた<strong>価格転嫁力</strong>、(2)<strong>海外展開</strong>による為替ヘッジ効果と成長余地、(3)<strong>DX・省人化投資</strong>によるコスト構造改革 の3軸を重視。
       </div>
       <div class="kpi-grid">
         ${kpi('対象企業数',companies.length+'社','','c-navy')}
@@ -1330,7 +1334,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         ${kpi('総店舗数',ts.toLocaleString(),'','c-navy')}
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 百億円 / ${DATA_AS_OF.stockPrice}基準</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / セグメント色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>
       </div>
       <div class="chart-row">
@@ -1359,33 +1363,33 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     const sorted = [...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
     const above = companies.filter(c=>c.relativeReturn>0).length;
     el.innerHTML = `
-      ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
+      ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と企業別騰落率')}
       <div class="commentary">
         <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
-        TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの銘柄はTOPIXを下回った。
-        TOPIXを上回ったのは<strong>${above}銘柄</strong>、下回ったのは${companies.length-above}銘柄。
+        TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの企業はTOPIXを下回った。
+        TOPIXを上回ったのは<strong>${above}企業</strong>、下回ったのは${companies.length-above}企業。
       </div>
       <div class="kpi-grid">
         ${kpi('外食セクター','130.0pt','直近1年','c-navy')}
         ${kpi('TOPIX','129.8pt','同期間','c-navy')}
         ${kpi('超過リターン','+0.2pt','ほぼ同水準','c-navy')}
-        ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
+        ${kpi('TOPIX超過企業',above+'/'+companies.length+'社','','c-gold')}
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">TOPIX-17セクター別パフォーマンス比較</div><div class="chart-panel-sub">直近1年騰落率 / 100基準</div><div class="chart-area tall"><canvas id="mkT17"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">外食産業 vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100)</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">外食産業 vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100) / ${DATA_AS_OF.topixPeriod}</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
       </div>
       <div class="chart-row single">
-        <div class="chart-panel"><div class="chart-panel-title">銘柄別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">企業別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">企業別パフォーマンス一覧</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">株価: ${DATA_AS_OF.stockPrice} / PER・PBR・ROE: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>セグメント</th><th>株価</th><th>時価総額</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>ROE</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td><span class="badge">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${Math.round(c.marketCap/10000).toLocaleString()}億</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.roe}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);
     dc(['mkT17','mkIdx','mkStocks']);
     mc('mkT17','bar',{labels:TOPIX17_SECTORS.map(s=>s.name),datasets:[{data:TOPIX17_SECTORS.map(s=>s.point-100),backgroundColor:TOPIX17_SECTORS.map(s=>s.name==='Restaurant'?'#1a2d4f':s.name==='TOPIX'?'#9b8b6e':'#c8c4bb'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:v=>(v>=0?'+':'')+v.toFixed(1)+'pt'}}});
-    const ml=['24/05','24/06','24/07','24/08','24/09','24/10','24/11','24/12','25/01','25/02','25/03','25/04','25/05'];
+    const ml=INDEX_MONTHS||['24/05','24/06','24/07','24/08','24/09','24/10','24/11','24/12','25/01','25/02','25/03','25/04','25/05'];
     mc('mkIdx','line',{labels:ml,datasets:[{label:'外食産業',data:RESTAURANT_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{});
     const hasAnnotation = Chart.registry?.plugins?.get?.('annotation') || (typeof window !== 'undefined' && window['chartjs-plugin-annotation']);
     mc('mkStocks','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{data:sorted.map(c=>c.stockReturn1Y),backgroundColor:sorted.map(c=>c.stockReturn1Y>=TOPIX_RETURN_1Y?'#1a2d4f':'rgba(181,58,58,0.6)'),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},annotation:{annotations:{topix:{type:'line',xMin:TOPIX_RETURN_1Y,xMax:TOPIX_RETURN_1Y,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'TOPIX '+TOPIX_RETURN_1Y+'%',position:'start'}}}}}});
@@ -1399,7 +1403,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
       ${secH('03','財務指標・バリュエーション','売上高・利益率・PER/PBRの横断比較')}
       <div class="commentary">
         <strong>バリュエーション分析 (${DATA_AS_OF.financials}ベース):</strong> セクター平均PERは${avg(companies,'per')}倍、PBRは${avg(companies,'pbr')}倍。
-        全銘柄がPBR1倍超のバリュエーションを獲得しており、高PBR・高ROEのグロース株セクター。
+        全企業がPBR1倍超のバリュエーションを獲得しており、高PBR・高ROEのグロース株セクター。
         PBR-ROE間にはR²=0.53の正の相関が確認され、<strong>ROE改善が株価評価に直結</strong>する構造。
       </div>
       <div class="chart-row">
@@ -1410,7 +1414,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         <div class="chart-panel"><div class="chart-panel-title">PER vs PBR</div><div class="chart-panel-sub">左下=割安ゾーン</div><div class="chart-area"><canvas id="fnPERPBR"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="fnHist"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials} / 株価: ${DATA_AS_OF.stockPrice}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>売上高</th><th>営業利益</th><th>純利益</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>ROE</th><th>D/E</th><th>Net D/E</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td>${c.netProfit.toLocaleString()}</td><td class="${c.opMargin>=8?'pos':c.opMargin<3?'neg':''}">${c.opMargin}%</td><td>${c.netMargin}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe}%</td><td>${c.deRatio.toFixed(2)}</td><td>${c.netDeRatio.toFixed(2)}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
@@ -1440,7 +1444,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         <div class="chart-panel"><div class="chart-panel-title">ROE(FY) DuPont分解</div><div class="chart-panel-sub">ROE順 / 3要素の寄与</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">純利益率 vs 総資産回転率</div><div class="chart-panel-sub">バブルサイズ=ROE</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">DuPont分解一覧 (ROE順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">DuPont分解一覧 (ROE順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>ROE</th><th>純利益率</th><th>総資産回転率</th><th>財務レバレッジ</th><th>D/E</th><th>Net D/E</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row ${c.code==='8163'?'row-hl':''}" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe}%</td><td>${c.netMargin}%</td><td>${c.assetTurnover.toFixed(1)}x</td><td>${c.leverage.toFixed(1)}x</td><td>${c.deRatio.toFixed(2)}</td><td>${c.netDeRatio.toFixed(2)}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
@@ -1471,7 +1475,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         <div class="chart-panel"><div class="chart-panel-title">優待総利回りランキング</div><div class="chart-panel-sub">配当+優待 / TOP20</div><div class="chart-area tall"><canvas id="shBar"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">優待総利回り vs 個人投資家比率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="shScat"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">株主還元指標一覧</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">株主還元指標一覧</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">株価: ${DATA_AS_OF.stockPrice}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>株価</th><th>最低株数</th><th>最低投資額</th><th>配当利回り</th><th>優待価値</th><th>優待利回り</th><th>総利回り</th><th>個人比率</th></tr></thead>
         <tbody>${ys.map(c=>{const inv=c.stockPrice*c.yutaiMinShares;return `<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.yutaiMinShares}株</td><td>${inv.toLocaleString()}円</td><td>${c.dividendYield.toFixed(2)}%</td><td>${c.yutaiValue.toLocaleString()}円</td><td>${c.yutaiYield.toFixed(2)}%</td><td class="${c.totalYutaiYield>=3?'pos':''}" style="font-weight:700">${c.totalYutaiYield.toFixed(2)}%</td><td>${c.individualRatio}%</td></tr>`;}).join('')}</tbody>
       </table></div></div>`;
@@ -1483,17 +1487,65 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
   }
 
   // ============ 06 MONTHLY KPI ============
+  // 複数年度データ取得ヘルパー
+  // 企業データに monthlyHistory があれば複数年度表示可能
+  // monthlyHistory: { 'FY2023': { revenue:[12], profit:[12], costRatio:[12], sameStoreSales:[12] }, ... }
+  function getAvailableFYs() {
+    const fys = new Set(['latest']);
+    companies.forEach(c => {
+      if (c.monthlyHistory) Object.keys(c.monthlyHistory).forEach(fy => fys.add(fy));
+    });
+    return [...fys].sort();
+  }
+
+  function getMonthlyData(company, field, fy) {
+    if (fy === 'latest') return company[field] || [];
+    if (company.monthlyHistory && company.monthlyHistory[fy]) {
+      const fieldMap = { monthlyRevenue:'revenue', monthlyProfit:'profit', costRatio:'costRatio', sameStoreSales:'sameStoreSales' };
+      return company.monthlyHistory[fy][fieldMap[field] || field] || [];
+    }
+    return [];
+  }
+
+  function getMonthLabels(selectedFYs) {
+    if (selectedFYs.length <= 1) return MONTHS;
+    // 複数年度: 年度+月のラベルを生成
+    const labels = [];
+    selectedFYs.forEach(fy => {
+      const year = fy === 'latest' ? DATA_AS_OF.sameStoreSales.match(/(\d{4})年/)?.[1] || '' : fy.replace('FY','');
+      MONTHS.forEach(m => labels.push(`${year}/${m}`));
+    });
+    return labels;
+  }
+
+  function getConcatData(company, field, selectedFYs) {
+    if (selectedFYs.length <= 1) return getMonthlyData(company, field, selectedFYs[0] || 'latest');
+    return selectedFYs.flatMap(fy => getMonthlyData(company, field, fy));
+  }
+
   function rMonthly() {
     const el = g('sec-monthly');
     if (!mCodes.length) mCodes = companies.slice(0,5).map(c=>c.code);
     const vis = mSeg==='ALL' ? companies : companies.filter(c=>c.segment===mSeg);
+    const availFYs = getAvailableFYs();
+    const hasMulitYear = availFYs.length > 1;
+    const latestYear = DATA_AS_OF.sameStoreSales.match(/(\d{4})年\d+月～(\d{4})年/);
+    const fyLabel = latestYear ? `${latestYear[1]}年度` : '直近1年';
     el.innerHTML = `
       ${secH('06','月次KPI横断比較','複数企業・セグメント横断で売上高・利益・原価率・既存店売上前年比を比較')}
       <div class="commentary">
-        <strong>月次動向:</strong> セグメントフィルタと企業チップで複数銘柄を同時選択・比較可能。
+        <strong>月次動向:</strong> セグメントフィルタと企業チップで複数企業を同時選択・比較可能。
         外食セクターは<strong>7-8月(夏休み)と12月(忘年会)</strong>にピーク、2月が底となる共通の季節性がある。
         既存店売上高データは<strong>各社IR・月次売上情報</strong>を参照。
         業界平均(破線)は主要30社超の既存店売上高単純平均。24年10月の業界平均は<strong>前年同月比+4.6%</strong>とやや鈍化傾向。
+      </div>
+      <div class="chip-wrap"><div class="chip-label">表示期間</div>
+        <div class="chip-select" id="mFYC">
+          <div class="chip ${mFY==='latest'?'selected':''}" data-fy="latest">${fyLabel}</div>
+          ${availFYs.filter(f=>f!=='latest').map(fy=>`<div class="chip ${mFY===fy?'selected':''}" data-fy="${fy}">${fy.replace('FY','')+'年度'}</div>`).join('')}
+          ${hasMulitYear?`<div class="chip ${mFY==='all'?'selected':''}" data-fy="all">全期間 (最大3年)</div>`:''}
+        </div>
+        ${!hasMulitYear?'<div style="font-size:0.72rem;color:#999;margin-top:4px;">※ 過去年度のデータが追加されると、ここで期間を切り替えて最長3年分を表示できます</div>':''}
       </div>
       <div class="chip-wrap"><div class="chip-label">セグメントフィルタ</div>
         <div class="chip-select" id="mSegC">
@@ -1520,6 +1572,7 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
         ・<strong>業界平均(破線):</strong> 外食主要チェーンの既存店売上高前年比の単純平均(各社IR月次速報ベース)<br>
         ・<strong>更新頻度:</strong> 各社月次速報は翌月中旬に開示されるため、毎月下旬にデータ更新を実施
       </div>`;
+    g('mFYC').querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{mFY=ch.dataset.fy;updateMonthlyCharts();g('mFYC').querySelectorAll('.chip').forEach(x=>x.classList.toggle('selected',x.dataset.fy===mFY));}));
     g('mSegC').querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{mSeg=ch.dataset.seg;mCodes=[];rMonthly();}));
     g('mCompC').querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{const c=ch.dataset.code;mCodes=mCodes.includes(c)?mCodes.filter(x=>x!==c):[...mCodes,c];updateMonthlyCharts();}));
     updateMonthlyCharts();
@@ -1529,12 +1582,40 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
     g('mCompC')?.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('selected',mCodes.includes(ch.dataset.code)));
     if(!sel.length) return;
     dc(['mRev','mProf','mCost','mSSS']);
-    const ds=(field)=>sel.map((c,i)=>({label:shortName(c.name),data:c[field],borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}));
-    mc('mRev','line',{labels:MONTHS,datasets:ds('monthlyRevenue')},{});
-    mc('mProf','line',{labels:MONTHS,datasets:ds('monthlyProfit')},{});
-    mc('mCost','line',{labels:MONTHS,datasets:ds('costRatio')},{});
-    mc('mSSS','line',{labels:MONTHS,datasets:[...ds('sameStoreSales'),{label:'業界平均',data:SECTOR_AVG_SSS,borderColor:'#999',borderDash:[6,3],fill:false,tension:0.3,pointRadius:0,borderWidth:2}]},{});
-    heatmap('hmSSS',sel,'sameStoreSales',v=>v.toFixed(1),v=>v>=105?'pos':v<100?'neg':'');
+
+    // 表示期間に応じたデータ取得
+    const availFYs = getAvailableFYs();
+    let selectedFYs;
+    if (mFY === 'all') {
+      selectedFYs = availFYs.filter(f=>f!=='latest').concat(['latest']);
+    } else {
+      selectedFYs = [mFY];
+    }
+    const labels = getMonthLabels(selectedFYs);
+
+    const ds=(field)=>sel.map((c,i)=>({label:shortName(c.name),data:getConcatData(c,field,selectedFYs),borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}));
+    mc('mRev','line',{labels,datasets:ds('monthlyRevenue')},{});
+    mc('mProf','line',{labels,datasets:ds('monthlyProfit')},{});
+    mc('mCost','line',{labels,datasets:ds('costRatio')},{});
+
+    // 既存店売上高: 業界平均も期間に合わせて年度別データを使用
+    const getSectorAvg = (fy) => {
+      if (fy === 'latest') return SECTOR_AVG_SSS;
+      return SECTOR_AVG_SSS_HISTORY[fy] || SECTOR_AVG_SSS;
+    };
+    const sssAvgData = selectedFYs.flatMap(fy => getSectorAvg(fy));
+    mc('mSSS','line',{labels,datasets:[...ds('sameStoreSales'),{label:'業界平均',data:sssAvgData,borderColor:'#999',borderDash:[6,3],fill:false,tension:0.3,pointRadius:0,borderWidth:2}]},{});
+    // ヒートマップ: 現在選択中の年度のデータのみ
+    if (selectedFYs.length <= 1) {
+      heatmap('hmSSS',sel,'sameStoreSales',v=>v==null?'-':v.toFixed(1),v=>v==null?'':v>=105?'pos':v<100?'neg':'');
+    } else {
+      // 複数年度: カスタムヒートマップ
+      const t=g('hmSSS');if(t){
+        let h=`<thead><tr><th style="text-align:left">企業名</th>${labels.map(m=>`<th style="font-size:0.65rem">${m}</th>`).join('')}</tr></thead><tbody>`;
+        sel.forEach(c=>{const v=getConcatData(c,'sameStoreSales',selectedFYs);h+=`<tr><td>${shortName(c.name)}</td>${v.map(x=>`<td class="${x==null?'':x>=105?'pos':x<100?'neg':''}">${x==null?'-':x.toFixed(1)}</td>`).join('')}</tr>`;});
+        h+='</tbody>';t.innerHTML=h;
+      }
+    }
   }
 
   // ============ 07 DETAIL ============

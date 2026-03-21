@@ -177,7 +177,7 @@ async function main() {
     }
 
     const marketData = {};
-    for (const name of ['TOPIX_RETURN_1Y', 'TOPIX_MONTHLY', 'FOOD_INDEX_MONTHLY', 'INDEX_MONTHS', 'FOOD_EVENTS', 'QUARTERS', 'SEGMENTS']) {
+    for (const name of ['TOPIX_RETURN_1Y', 'TOPIX_MONTHLY', 'RESTAURANT_INDEX_MONTHLY', 'INDEX_MONTHS', 'FOOD_EVENTS', 'QUARTERS', 'SEGMENTS']) {
       const val = extractDataFromHtml(foodPath, name);
       if (val !== null) marketData[name] = val;
     }
