@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "regions": ["hnd1"],
   "functions": {
     "api/edinet/**/*.js": {
