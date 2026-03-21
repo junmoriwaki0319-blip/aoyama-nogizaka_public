@@ -437,6 +437,17 @@
       <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
       <button type="button" onclick="handleSetPassword()" class="btn-submit">パスワード設定</button>
     </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button onclick="handleDeleteAccount()" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button onclick="confirmDeleteAccount()" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button onclick="cancelDeleteAccount()" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -444,7 +455,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
   const firebaseConfig = { apiKey:"AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI", authDomain:"aoyama-nogizaka-activist.firebaseapp.com", projectId:"aoyama-nogizaka-activist", storageBucket:"aoyama-nogizaka-activist.firebasestorage.app", messagingSenderId:"384668278205", appId:"1:384668278205:web:78b25a473c6305f264c6d4", measurementId:"G-Y1JYXRYHV9" };
   const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app), analytics=getAnalytics(app), googleProvider=new GoogleAuthProvider();
@@ -457,6 +468,7 @@
   window.firebaseUpdateProfile=async(uid,data)=>{await setDoc(doc(db,"users",uid),data,{merge:true});};
   window.firebaseGoogleLogin=async()=>{const cred=await signInWithPopup(auth,googleProvider);const user=cred.user;const snap=await getDoc(doc(db,"users",user.uid));if(!snap.exists()){await setDoc(doc(db,"users",user.uid),{name:user.displayName||"",company:"",email:user.email||"",affiliation:"",affiliationCode:"",jobTitle:"",plan:"free",createdAt:serverTimestamp()});window.sendWelcomeEmail(user.email,user.displayName||'');return{user,needsProfile:true};}const data=snap.data();return{user,needsProfile:!data.affiliation||!data.jobTitle||!data.company};};
   window.firebaseLinkPassword=async(email,password)=>{const credential=EmailAuthProvider.credential(email,password);await linkWithCredential(auth.currentUser,credential);};
+  window.firebaseDeleteAccount=async()=>{const user=auth.currentUser;if(!user)throw new Error('ログインされていません');await deleteDoc(doc(db,"users",user.uid));await user.delete();};
   window.sendWelcomeEmail=async(email,name)=>{try{await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,name})});}catch(e){console.warn('Welcome email failed:',e);}};
   const AL={listed_company:'上場企業',institutional_investor:'機関投資家',individual_investor:'個人投資家',consulting:'コンサルティングファーム',legal:'法律事務所・弁護士',media:'メディア・報道機関',academic:'学術・研究機関',other:'その他'};
   const JL={executive:'経営者・役員',department_head:'部長・本部長',manager:'課長・マネージャー',ir_officer:'IR担当',legal_compliance:'法務・コンプライアンス',finance:'経理・財務',analyst:'アナリスト・ファンドマネージャー',consultant:'コンサルタント・アドバイザー',individual:'個人',other:'その他'};
@@ -478,6 +490,9 @@
   window.handleMyPageResetPassword=async()=>{const m=document.getElementById('myPageMsg');try{await window.firebaseResetPassword(window.currentUser.email);m.textContent='リセットメールを送信しました。';m.style.display='block';m.style.background='#d1fae5';m.style.color='#065f46';}catch(e){m.textContent='エラー';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}};
   window.showSetPasswordForm=()=>{document.getElementById('setPasswordForm').style.display='';document.getElementById('myPageMsg').style.display='none';};
   window.handleSetPassword=async()=>{const m=document.getElementById('myPageMsg'),pw=document.getElementById('setPasswordInput').value,pw2=document.getElementById('setPasswordConfirm').value;if(pw.length<8){m.textContent='8文字以上で入力してください。';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';return;}if(pw!==pw2){m.textContent='パスワードが一致しません。';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';return;}try{await window.firebaseLinkPassword(window.currentUser.email,pw);m.textContent='パスワードを設定しました。';m.style.display='block';m.style.background='#d1fae5';m.style.color='#065f46';document.getElementById('setPasswordForm').style.display='none';}catch(e){m.textContent='エラー';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}};
+  window.handleDeleteAccount=()=>{document.getElementById('deleteConfirm').style.display='';document.getElementById('deleteAccountSection').style.display='none';};
+  window.cancelDeleteAccount=()=>{document.getElementById('deleteConfirm').style.display='none';document.getElementById('deleteAccountSection').style.display='';};
+  window.confirmDeleteAccount=async()=>{const m=document.getElementById('myPageMsg');try{await window.firebaseDeleteAccount();closeModal('myPage');window.location.reload();}catch(e){if(e.code==='auth/requires-recent-login'){m.textContent='セキュリティのため再ログインが必要です。一度ログアウトして再度ログインしてからお試しください。';m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';document.getElementById('deleteConfirm').style.display='none';document.getElementById('deleteAccountSection').style.display='';}else{m.textContent='退会処理に失敗しました: '+(e.message||'');m.style.display='block';m.style.background='#fee2e2';m.style.color='#991b1b';}}};
 </script>
 
 <!-- Utility functions -->

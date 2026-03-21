@@ -54,7 +54,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
 
     const firebaseConfig = {
@@ -177,6 +177,13 @@
     window.firebaseLinkPassword = async (email, password) => {
       const credential = EmailAuthProvider.credential(email, password);
       await linkWithCredential(auth.currentUser, credential);
+    };
+
+    window.firebaseDeleteAccount = async () => {
+      const user = auth.currentUser;
+      if (!user) throw new Error('ログインされていません');
+      await deleteDoc(doc(db, "users", user.uid));
+      await user.delete();
     };
 
     // ログアウト
@@ -979,6 +986,17 @@
       </div>
     </div>
     <div id="myPageMsg" style="display:none; text-align:center; padding:10px 14px; border-radius:4px; font-size:13px; margin-top:16px;"></div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--mid-gray);">
+    <div id="deleteAccountSection" style="text-align:center;">
+      <button onclick="handleDeleteAccount()" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;text-align:center;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button onclick="confirmDeleteAccount()" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button onclick="cancelDeleteAccount()" style="background:#f5f5f5;color:#444;border:1px solid var(--mid-gray);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1861,6 +1879,34 @@ async function handleResendVerification() {
   } catch (e) {
     msg.textContent = (e.code === 'auth/too-many-requests') ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
     msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+function handleDeleteAccount() {
+  document.getElementById('deleteConfirm').style.display = '';
+  document.getElementById('deleteAccountSection').style.display = 'none';
+}
+
+function cancelDeleteAccount() {
+  document.getElementById('deleteConfirm').style.display = 'none';
+  document.getElementById('deleteAccountSection').style.display = '';
+}
+
+async function confirmDeleteAccount() {
+  const msg = document.getElementById('myPageMsg');
+  try {
+    await window.firebaseDeleteAccount();
+    closeModal('myPage');
+    window.location.reload();
+  } catch (e) {
+    if (e.code === 'auth/requires-recent-login') {
+      msg.textContent = 'セキュリティのため再ログインが必要です。一度ログアウトして再度ログインしてからお試しください。';
+    } else {
+      msg.textContent = '退会処理に失敗しました: ' + (e.message || '');
+    }
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    document.getElementById('deleteConfirm').style.display = 'none';
+    document.getElementById('deleteAccountSection').style.display = '';
   }
 }
 

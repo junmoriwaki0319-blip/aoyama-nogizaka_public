@@ -722,6 +722,17 @@
       <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
       <button type="button" onclick="handleSetPassword()" class="btn-submit">パスワード設定</button>
     </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button onclick="handleDeleteAccount()" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button onclick="confirmDeleteAccount()" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button onclick="cancelDeleteAccount()" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -729,7 +740,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
 
   const firebaseConfig = {
@@ -787,6 +798,12 @@
   window.firebaseLinkPassword = async (email, password) => {
     const credential = EmailAuthProvider.credential(email, password);
     await linkWithCredential(auth.currentUser, credential);
+  };
+  window.firebaseDeleteAccount = async () => {
+    const user = auth.currentUser;
+    if (!user) throw new Error('ログインされていません');
+    await deleteDoc(doc(db, "users", user.uid));
+    await user.delete();
   };
   window.sendWelcomeEmail = async (email, name) => {
     try {
@@ -1034,6 +1051,31 @@
       document.getElementById('setPasswordForm').style.display = 'none';
     } catch (e) {
       msg.textContent = 'エラー: ' + (e.message || ''); msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    }
+  };
+  window.handleDeleteAccount = () => {
+    document.getElementById('deleteConfirm').style.display = '';
+    document.getElementById('deleteAccountSection').style.display = 'none';
+  };
+  window.cancelDeleteAccount = () => {
+    document.getElementById('deleteConfirm').style.display = 'none';
+    document.getElementById('deleteAccountSection').style.display = '';
+  };
+  window.confirmDeleteAccount = async () => {
+    const msg = document.getElementById('myPageMsg');
+    try {
+      await window.firebaseDeleteAccount();
+      closeModal('myPage');
+      window.location.reload();
+    } catch (e) {
+      if (e.code === 'auth/requires-recent-login') {
+        msg.textContent = 'セキュリティのため再ログインが必要です。一度ログアウトして再度ログインしてからお試しください。';
+      } else {
+        msg.textContent = '退会処理に失敗しました: ' + (e.message || '');
+      }
+      msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+      document.getElementById('deleteConfirm').style.display = 'none';
+      document.getElementById('deleteAccountSection').style.display = '';
     }
   };
 </script>
