@@ -1,5 +1,13 @@
 const https = require('https');
 
+const ALLOWED_HOSTS = ['kabutan.jp', 'query1.finance.yahoo.com', 'finance.yahoo.co.jp'];
+const MAX_RESPONSE_SIZE = 2 * 1024 * 1024;
+
+function isAllowedHost(url) {
+  try { const h = new URL(url).hostname; return ALLOWED_HOSTS.some(a => h === a || h.endsWith('.' + a)); }
+  catch { return false; }
+}
+
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://aoyama-nogizaka.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
@@ -184,6 +192,7 @@ async function fetchYFChart(code) {
 function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth > 5) return reject(new Error('Too many redirects'));
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const urlObj = new URL(url);
     https.get({
       hostname: urlObj.hostname,
@@ -199,8 +208,8 @@ function fetchHtml(url, depth = 0) {
         resp.resume();
         return;
       }
-      let data = '';
-      resp.on('data', chunk => data += chunk);
+      let data = ''; let size = 0;
+      resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => resolve(data));
     }).on('error', reject);
   });
@@ -209,6 +218,7 @@ function fetchHtml(url, depth = 0) {
 function fetchJson(url, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth > 5) return reject(new Error('Too many redirects'));
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const urlObj = new URL(url);
     https.get({
       hostname: urlObj.hostname,
@@ -220,8 +230,8 @@ function fetchJson(url, depth = 0) {
         resp.resume();
         return;
       }
-      let data = '';
-      resp.on('data', chunk => data += chunk);
+      let data = ''; let size = 0;
+      resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => {
         try { resolve(JSON.parse(data)); }
         catch { resolve(null); }

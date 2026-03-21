@@ -1,5 +1,13 @@
 const https = require('https');
 
+const ALLOWED_HOSTS = ['finance.yahoo.co.jp'];
+const MAX_RESPONSE_SIZE = 2 * 1024 * 1024;
+
+function isAllowedHost(url) {
+  try { const h = new URL(url).hostname; return ALLOWED_HOSTS.some(a => h === a || h.endsWith('.' + a)); }
+  catch { return false; }
+}
+
 module.exports = async (req, res) => {
   // CORS
   res.setHeader('Access-Control-Allow-Origin', 'https://aoyama-nogizaka.com');
@@ -96,6 +104,7 @@ module.exports = async (req, res) => {
 function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth > 5) return reject(new Error('Too many redirects'));
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const urlObj = new URL(url);
     const options = {
       hostname: urlObj.hostname,
@@ -111,8 +120,8 @@ function fetchHtml(url, depth = 0) {
         resp.resume();
         return;
       }
-      let data = '';
-      resp.on('data', chunk => data += chunk);
+      let data = ''; let size = 0;
+      resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => resolve(data));
     }).on('error', reject);
   });

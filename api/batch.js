@@ -15,6 +15,10 @@ try {
   console.warn('EDINET cache load failed:', e.message);
 }
 
+// リダイレクト先ホスト名のホワイトリスト
+const ALLOWED_HOSTS = ['kabutan.jp', 'query1.finance.yahoo.com', 'finance.yahoo.co.jp'];
+const MAX_RESPONSE_SIZE = 2 * 1024 * 1024; // 2MB
+
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://aoyama-nogizaka.com');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -187,13 +191,21 @@ async function fetchYFChart(code) {
   return { companyName: meta.longName || meta.shortName || '', price: meta.regularMarketPrice || null, previousClose: meta.chartPreviousClose || null, fiftyTwoWeekHigh: meta.fiftyTwoWeekHigh || null, fiftyTwoWeekLow: meta.fiftyTwoWeekLow || null };
 }
 
+function isAllowedHost(url) {
+  try { const h = new URL(url).hostname; return ALLOWED_HOSTS.some(a => h === a || h.endsWith('.' + a)); }
+  catch { return false; }
+}
+
 function fetchHtml(url, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth > 5) return reject(new Error('Too many redirects'));
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const u = new URL(url);
     https.get({ hostname: u.hostname, path: u.pathname + u.search, headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'Accept': 'text/html', 'Accept-Language': 'ja' } }, (r) => {
       if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchHtml(r.headers.location, depth + 1).then(resolve).catch(reject); r.resume(); return; }
-      let d = ''; r.on('data', c => d += c); r.on('end', () => resolve(d));
+      let d = ''; let size = 0;
+      r.on('data', c => { size += c.length; if (size > MAX_RESPONSE_SIZE) { r.destroy(); return reject(new Error('Response too large')); } d += c; });
+      r.on('end', () => resolve(d));
     }).on('error', reject);
   });
 }
@@ -201,10 +213,13 @@ function fetchHtml(url, depth = 0) {
 function fetchJson(url, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth > 5) return reject(new Error('Too many redirects'));
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const u = new URL(url);
     https.get({ hostname: u.hostname, path: u.pathname + u.search, headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' } }, (r) => {
       if (r.statusCode >= 300 && r.statusCode < 400 && r.headers.location) { fetchJson(r.headers.location, depth + 1).then(resolve).catch(reject); r.resume(); return; }
-      let d = ''; r.on('data', c => d += c); r.on('end', () => { try { resolve(JSON.parse(d)); } catch { resolve(null); } });
+      let d = ''; let size = 0;
+      r.on('data', c => { size += c.length; if (size > MAX_RESPONSE_SIZE) { r.destroy(); return reject(new Error('Response too large')); } d += c; });
+      r.on('end', () => { try { resolve(JSON.parse(d)); } catch { resolve(null); } });
     }).on('error', reject);
   });
 }

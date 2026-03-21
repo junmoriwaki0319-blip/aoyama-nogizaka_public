@@ -1,5 +1,13 @@
 const https = require('https');
 
+const ALLOWED_HOSTS = ['finance.yahoo.co.jp', 'query1.finance.yahoo.com', 'query2.finance.yahoo.com'];
+const MAX_RESPONSE_SIZE = 2 * 1024 * 1024;
+
+function isAllowedHost(url) {
+  try { const h = new URL(url).hostname; return ALLOWED_HOSTS.some(a => h === a || h.endsWith('.' + a)); }
+  catch { return false; }
+}
+
 /**
  * 政策保有株式の現在株価を一括取得するAPI
  * POST /api/stock-prices
@@ -209,6 +217,7 @@ function round2(v) {
 
 function fetchJSON(url) {
   return new Promise((resolve, reject) => {
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const urlObj = new URL(url);
     const req = https.get({
       hostname: urlObj.hostname,
@@ -216,8 +225,8 @@ function fetchJSON(url) {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
       timeout: 10000,
     }, resp => {
-      let data = '';
-      resp.on('data', chunk => data += chunk);
+      let data = ''; let size = 0;
+      resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => {
         try { resolve(JSON.parse(data)); }
         catch { resolve({}); }
@@ -230,6 +239,7 @@ function fetchJSON(url) {
 
 function fetchText(url) {
   return new Promise((resolve, reject) => {
+    if (!isAllowedHost(url)) return reject(new Error('Untrusted host'));
     const urlObj = new URL(url);
     const req = https.get({
       hostname: urlObj.hostname,
@@ -237,8 +247,8 @@ function fetchText(url) {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
       timeout: 10000,
     }, resp => {
-      let data = '';
-      resp.on('data', chunk => data += chunk);
+      let data = ''; let size = 0;
+      resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => resolve(data));
     });
     req.on('error', reject);

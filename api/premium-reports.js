@@ -79,9 +79,9 @@ async function verifyIdToken(idToken) {
       throw new Error('Invalid signature');
     }
   } catch (e) {
-    if (e.message === 'Invalid signature') throw e;
-    // 鍵取得エラー等はクレーム検証のみで通す
-    console.warn('Signature verification skipped:', e.message);
+    // 署名検証に失敗した場合は必ず拒否（fail-closed）
+    console.warn('Signature verification failed:', e.message);
+    throw new Error('Signature verification failed');
   }
 
   return payload;
@@ -135,7 +135,7 @@ module.exports = async (req, res) => {
   try {
     await verifyIdToken(idToken);
   } catch (e) {
-    return res.status(403).json({ error: '認証トークンが無効です: ' + e.message });
+    return res.status(403).json({ error: '認証トークンが無効です' });
   }
 
   // type パラメータで返すデータを切り替え
