@@ -13,6 +13,13 @@
     }
   },
   "rewrites": [
+    { "source": "/team", "destination": "/team.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/risk-assessment", "destination": "/risk-assessment.html" },
+    { "source": "/activist-dashboard", "destination": "/activist-dashboard.html" },
+    { "source": "/activist-screener", "destination": "/activist-screener.html" },
+    { "source": "/food-service", "destination": "/food-service.html" },
+    { "source": "/saas", "destination": "/saas.html" },
     { "source": "/api/premium-reports", "destination": "/api/premium-reports" },
     { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" },
     { "source": "/api/stock/:code", "destination": "/api/stock/:code" },
