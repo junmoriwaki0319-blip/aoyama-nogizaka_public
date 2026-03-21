@@ -1,1 +1,2387 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta http-equiv="refresh" content="0;url=/activist-dashboard.html"><link rel="canonical" href="https://aoyama-nogizaka.com/activist-dashboard.html"><title>リダイレクト中...</title></head><body><p><a href="/activist-dashboard.html">こちら</a>へ移動します。</p></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5D57P05PM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大量保有報告ダッシュボード | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="大量保有報告ダッシュボード | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/activist-dashboard">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="大量保有報告ダッシュボード | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/activist-dashboard">
+  <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/activist-dashboard">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "大量保有報告ダッシュボード",
+    "description": "EDINET大量保有報告書をリアルタイム追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析。",
+    "url": "https://aoyama-nogizaka.com/activist-dashboard",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "provider": {
+      "@type": "Organization",
+      "name": "青山乃木坂パートナーズ",
+      "url": "https://aoyama-nogizaka.com"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g" crossorigin="anonymous"></script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
+      authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
+      projectId: "aoyama-nogizaka-activist",
+      storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
+      messagingSenderId: "384668278205",
+      appId: "1:384668278205:web:78b25a473c6305f264c6d4",
+      measurementId: "G-Y1JYXRYHV9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+
+    // グローバルに公開
+    window.firebaseAuth = auth;
+    window.firebaseDb = db;
+
+    // 認証状態の監視
+    onAuthStateChanged(auth, async (user) => {
+      window.currentUser = user;
+      if (user) {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (!snap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "",
+            company: "",
+            email: user.email || "",
+            affiliation: "",
+            affiliationCode: "",
+            jobTitle: "",
+            plan: "free",
+            createdAt: serverTimestamp()
+          });
+        }
+      }
+      updateAuthUI(user);
+    });
+
+    // ログイン
+    window.firebaseLogin = async (email, password) => {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      return cred.user;
+    };
+
+    // 新規登録
+    window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      await setDoc(doc(db, "users", cred.user.uid), {
+        name, company: company || "", email,
+        affiliation: affiliation || "",
+        affiliationCode: affiliationCode || "",
+        jobTitle: jobTitle || "",
+        plan: "free",
+        createdAt: serverTimestamp()
+      });
+      await sendEmailVerification(cred.user);
+      window.sendWelcomeEmail(email, name);
+      return cred.user;
+    };
+
+    // パスワードリセット
+    window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
+
+    // ユーザープロフィール取得
+    window.firebaseGetProfile = async (uid) => {
+      const snap = await getDoc(doc(db, "users", uid));
+      return snap.exists() ? snap.data() : null;
+    };
+
+    // Google ログイン
+    const googleProvider = new GoogleAuthProvider();
+    window.firebaseGoogleLogin = async () => {
+      const cred = await signInWithPopup(auth, googleProvider);
+      const user = cred.user;
+      // Firestore にユーザー情報がなければ作成
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (!snap.exists()) {
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName || "",
+          company: "",
+          email: user.email || "",
+          affiliation: "",
+          affiliationCode: "",
+          jobTitle: "",
+          plan: "free",
+          createdAt: serverTimestamp()
+        });
+        window.sendWelcomeEmail(user.email, user.displayName || '');
+        return { user, needsProfile: true };
+      }
+      const data = snap.data();
+      const needsProfile = !data.affiliation || !data.jobTitle || !data.company;
+      return { user, needsProfile };
+    };
+
+    // ウェルカムメール送信
+    window.sendWelcomeEmail = async (email, name) => {
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name })
+        });
+      } catch (e) { console.warn('Welcome email failed:', e); }
+    };
+
+    // プロフィール更新
+    window.firebaseUpdateProfile = async (uid, data) => {
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, data, { merge: true });
+    };
+
+    // パスワードをリンク（Google登録ユーザー向け）
+    window.firebaseLinkPassword = async (email, password) => {
+      const credential = EmailAuthProvider.credential(email, password);
+      await linkWithCredential(auth.currentUser, credential);
+    };
+
+    window.firebaseDeleteAccount = async () => {
+      const user = auth.currentUser;
+      if (!user) throw new Error('ログインされていません');
+      await deleteDoc(doc(db, "users", user.uid));
+      await user.delete();
+    };
+
+    // ログアウト
+    window.firebaseLogout = () => signOut(auth);
+  </script>
+  <style>
+    
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
+    :root {
+      --navy: #1a2d4f; --navy-light: #243b63; --gold: #9b8b6e; --gold-light: #c8b99a;
+      --white: #ffffff; --off-white: #f8f7f5; --light-gray: #f0eee9; --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a; --text-mid: #444444; --text-light: #888888;
+      --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-jp { font-family: 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--mid-gray); font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; padding-bottom: 18px; margin-bottom: -18px; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: -16px; background: var(--navy); border-radius: 8px; padding: 10px 0; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
+    .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .nav-dropdown-cat { padding: 8px 24px 4px; font-size: 0.65rem; color: var(--gold-light); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
+    .nav-dropdown-cat:first-child { border-top: none; }
+    .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
+    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.06); }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
+    .btn-login:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-register { background: var(--gold); border: none; color: var(--white); padding: 7px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s; }
+    .btn-register:hover { opacity: 0.85; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+
+    /* PAGE HEADER */
+    .page-header { margin-top: 64px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 60px 40px 50px; position: relative; overflow: hidden; }
+    .page-header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%); }
+    .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .page-header-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Noto Serif JP', serif; font-weight: 300; color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.5; margin-bottom: 8px; }
+    .page-header p { color: rgba(255,255,255,0.6); font-size: 14px; letter-spacing: 0.04em; }
+    .page-header .data-source { margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.35); }
+    .page-header .data-source span { color: var(--gold-light); }
+
+    /* STATS BAR */
+    .stats-bar { max-width: 1200px; margin: -30px auto 0; padding: 0 40px; position: relative; z-index: 2; }
+    .stats-bar-inner { background: var(--white); border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); display: grid; grid-template-columns: repeat(4, 1fr); padding: 28px 0; }
+    .stat-item { text-align: center; border-right: 1px solid var(--light-gray); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--navy); line-height: 1.2; }
+    .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-top: 4px; }
+
+    /* MAIN LAYOUT */
+    .dashboard-layout { max-width: 1200px; margin: 40px auto; padding: 0 40px; display: grid; grid-template-columns: 280px 1fr; gap: 32px; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); padding: 24px; }
+    .sidebar-card h3 { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--navy); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--light-gray); }
+    .filter-group { margin-bottom: 16px; }
+    .filter-group:last-child { margin-bottom: 0; }
+    .filter-label { font-size: 12px; color: var(--text-light); margin-bottom: 6px; display: block; }
+    .filter-select, .filter-input { width: 100%; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--white); transition: border-color 0.2s; }
+    .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--gold); }
+    .filter-checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .filter-checkbox { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-mid); cursor: pointer; }
+    .filter-checkbox input[type="checkbox"] { accent-color: var(--navy); width: 16px; height: 16px; }
+    .btn-filter { width: 100%; padding: 10px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    .btn-filter:hover { background: var(--navy-light); }
+    .btn-reset { width: 100%; padding: 8px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 6px; }
+    .btn-reset:hover { border-color: var(--text-light); color: var(--text-mid); }
+    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .category-tag { padding: 4px 10px; background: var(--light-gray); border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; transition: all 0.2s; border: none; }
+    .category-tag:hover, .category-tag.active { background: var(--navy); color: var(--white); }
+
+    /* MAIN CONTENT */
+    .main-content { display: flex; flex-direction: column; gap: 24px; }
+    .tab-nav { display: flex; gap: 0; border-bottom: 2px solid var(--light-gray); flex-wrap: wrap; }
+    .tab-btn { padding: 12px 20px; background: none; border: none; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-light); cursor: pointer; letter-spacing: 0.06em; position: relative; transition: color 0.2s; white-space: nowrap; }
+    .tab-btn:hover { color: var(--text-mid); }
+    .tab-btn.active { color: var(--navy); font-weight: 500; }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold); }
+    .content-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow: hidden; }
+    .card-header { padding: 20px 24px; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .card-header h2 { font-size: 15px; font-weight: 500; color: var(--navy); letter-spacing: 0.04em; }
+    .sort-select { padding: 6px 10px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); background: var(--white); }
+
+    /* TABLE */
+    .activist-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .activist-table th { padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; background: var(--off-white); border-bottom: 1px solid var(--light-gray); white-space: nowrap; }
+    .activist-table td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--light-gray); vertical-align: middle; }
+    .activist-table .col-date { width: 110px; }
+    .activist-table .col-filer { width: 22%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .activist-table .col-type { width: 70px; }
+    .activist-table .col-code { width: 70px; }
+    .activist-table .col-target { width: 22%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .activist-table .col-ratio { width: 14%; }
+    .activist-table .col-purpose { width: 60px; }
+    .activist-table .col-edinet { width: 50px; }
+    .activist-table tbody tr { transition: background 0.15s; cursor: pointer; }
+    .activist-table tbody tr:hover { background: rgba(155,139,110,0.04); }
+    .activist-name { font-weight: 500; color: var(--navy); }
+    .sec-code { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--gold); font-weight: 500; margin-right: 6px; }
+    .activist-type { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+    .type-activist { background: #fef3c7; color: #92400e; }
+    .type-fund { background: #dbeafe; color: #1e40af; }
+    .type-notable { background: #dcfce7; color: #166534; }
+    .type-new { background: #fee2e2; color: #991b1b; }
+    .type-change { background: #e0e7ff; color: #3730a3; }
+    .change-positive { color: var(--green); font-weight: 500; }
+    .change-negative { color: var(--red); font-weight: 500; }
+    .holding-bar { width: 80px; height: 6px; background: var(--light-gray); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+    .holding-bar-fill { height: 100%; border-radius: 3px; background: var(--navy); }
+    .date-cell { font-size: 12px; color: var(--text-light); white-space: nowrap; }
+    .badge-new { display: inline-block; padding: 1px 6px; background: var(--red); color: var(--white); font-size: 10px; border-radius: 3px; margin-left: 6px; font-weight: 500; }
+    .edinet-link { color: var(--blue); text-decoration: none; font-size: 12px; }
+    .edinet-link:hover { text-decoration: underline; }
+    .no-data { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 14px; }
+
+    /* ACTIVIST CARDS */
+    .activist-cards { display: flex; flex-direction: column; gap: 16px; padding: 24px; }
+    .activist-card { border: 1px solid var(--light-gray); border-radius: 8px; padding: 20px 24px; transition: box-shadow 0.2s; }
+    .activist-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .ac-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--light-gray); margin-bottom: 16px; }
+    .ac-name { font-size: 16px; font-weight: 500; color: var(--navy); }
+    .ac-meta { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+    .ac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ac-section-title { font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+    .ac-stock-list { display: flex; flex-direction: column; gap: 6px; }
+    .ac-stock-item { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+    .ac-stock-pct { font-weight: 500; color: var(--navy); }
+
+    /* TIMELINE */
+    .report-timeline { padding: 24px; }
+    .timeline-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--light-gray); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { min-width: 80px; font-size: 12px; color: var(--text-light); padding-top: 2px; }
+    .timeline-content { flex: 1; }
+    .timeline-title { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .timeline-detail { font-size: 13px; color: var(--text-mid); }
+    .timeline-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .timeline-tag { padding: 2px 8px; background: var(--light-gray); border-radius: 3px; font-size: 11px; color: var(--text-mid); }
+
+    /* LOGIN WALL */
+    .login-wall { position: relative; margin-top: -60px; padding-top: 100px; padding-bottom: 60px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--off-white) 30%, var(--off-white) 100%); }
+    .login-wall-inner { max-width: 480px; margin: 0 auto; background: var(--white); border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: 48px 40px; }
+    .login-wall-icon { width: 60px; height: 60px; background: var(--light-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; }
+    .login-wall h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; line-height: 1.8; }
+    .btn-cta-register { display: inline-block; background: var(--navy); color: var(--white); padding: 14px 40px; border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s; margin-bottom: 12px; }
+    .btn-cta-register:hover { background: var(--navy-light); }
+    .btn-cta-login { display: block; color: var(--gold); font-size: 13px; text-decoration: none; cursor: pointer; }
+    .plan-features { text-align: left; margin: 24px 0; padding: 20px; background: var(--off-white); border-radius: 6px; }
+    .plan-features h4 { font-size: 12px; font-weight: 500; color: var(--navy); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .plan-features li { font-size: 13px; color: var(--text-mid); padding: 4px 0; list-style: none; position: relative; padding-left: 20px; }
+    .plan-features li::before { content: '\2713'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+    /* PREMIUM BLUR */
+    .premium-content { position: relative; }
+    .premium-blur { filter: blur(4px); pointer-events: none; user-select: none; }
+    .premium-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 10; }
+    .premium-badge { background: var(--white); border: 1px solid var(--mid-gray); border-radius: 8px; padding: 20px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .premium-badge p { font-size: 13px; color: var(--text-mid); margin-bottom: 10px; }
+    .premium-badge button { background: var(--gold); color: var(--white); border: none; padding: 8px 20px; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: var(--white); border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-light); }
+    .modal h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 6px; letter-spacing: 0.06em; }
+    .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; transition: border-color 0.2s; }
+    .form-group input:focus { outline: none; border-color: var(--navy); }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .btn-google { width: 100%; padding: 12px; background: var(--white); color: var(--text-dark); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, box-shadow 0.2s; }
+    .btn-google:hover { background: #f8f8f8; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .modal-footer { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-light); }
+    .modal-footer a { color: var(--gold); text-decoration: none; cursor: pointer; }
+
+    /* CHART */
+    .chart-container { padding: 24px; }
+    .chart-wrapper { position: relative; height: 300px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .dashboard-layout { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-auth-btns { display: none; }
+      .ac-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .page-header { padding: 48px 20px 40px; }
+      .page-header h1 { font-size: 1.3rem; }
+      .page-header p { font-size: 13px; }
+      .stats-bar { padding: 0 16px; }
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat-item { padding: 14px 12px; }
+      .stat-value { font-size: 1.3rem; }
+      .dashboard-layout { padding: 0 12px; gap: 16px; }
+      .card { border-radius: 10px; }
+      .card-header { padding: 16px; }
+      .card-header h2 { font-size: 13px; }
+      .chart-container { padding: 16px; }
+      .chart-wrapper { height: 240px; }
+      .tab-btn { padding: 12px 14px; font-size: 12px; min-height: 44px; }
+      .export-bar { flex-direction: column; gap: 8px; }
+      .export-btn { width: 100%; justify-content: center; min-height: 44px; }
+      .form-group input, .form-group select { padding: 12px 14px; min-height: 44px; font-size: 14px; }
+      .activist-table { table-layout: auto; }
+      .activist-table th, .activist-table td { padding: 10px 8px; font-size: 12px; }
+      .activist-table .col-filer, .activist-table .col-target { max-width: 120px; }
+      .watchlist-add-form { flex-direction: column; }
+      .watchlist-add-btn { width: 100%; min-height: 44px; }
+      .sidebar-card { padding: 16px; }
+      .modal { width: 95%; padding: 28px 20px; }
+      .footer-inner { padding: 0 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-bar-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none !important; }
+      .page-header h1 { font-size: 1.1rem; }
+      .dashboard-layout { padding: 0 8px; }
+      .footer-inner { padding: 0 16px; }
+      .category-tag { padding: 6px 12px; font-size: 12px; min-height: 32px; }
+      .btn-filter, .btn-reset { min-height: 44px; }
+      .sort-select { min-height: 36px; font-size: 13px; }
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 36px 28px; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1rem; letter-spacing: 0.06em; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu a.active { color: var(--gold); }
+    .mobile-menu .m-auth { display: flex; gap: 12px; margin-top: 24px; }
+    .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
+
+    /* INVESTOR DETAIL MODAL */
+    .investor-detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2500; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 40px 16px; }
+    .investor-detail-overlay.show { display: flex; }
+    .investor-detail-modal { background: var(--white); border-radius: 12px; max-width: 900px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .idm-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 28px 32px 20px; border-bottom: 1px solid var(--light-gray); }
+    .idm-header h2 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 400; color: var(--navy); margin: 0 0 4px; }
+    .idm-header .idm-meta { font-size: 12px; color: var(--text-light); }
+    .idm-close { background: none; border: none; font-size: 22px; color: var(--text-light); cursor: pointer; padding: 4px 8px; }
+    .idm-close:hover { color: var(--navy); }
+    .idm-body { padding: 24px 32px 32px; }
+    .idm-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .idm-stat { background: var(--off-white); border-radius: 6px; padding: 14px 16px; text-align: center; }
+    .idm-stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.05em; }
+    .idm-stat-value { font-size: 20px; font-weight: 500; color: var(--navy); margin-top: 2px; }
+    .idm-section-title { font-size: 13px; font-weight: 500; color: var(--navy); letter-spacing: 0.05em; margin-bottom: 12px; border-bottom: 1px solid var(--light-gray); padding-bottom: 8px; }
+    .idm-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .idm-table th { background: var(--off-white); padding: 8px 10px; text-align: left; font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.04em; position: sticky; top: 0; }
+    .idm-table td { padding: 8px 10px; border-bottom: 1px solid var(--light-gray); }
+    .idm-table tr:hover { background: rgba(26,35,53,0.02); }
+    .idm-delta-up { color: #c0392b; font-weight: 500; }
+    .idm-delta-down { color: #2980b9; font-weight: 500; }
+    .idm-table-wrap { max-height: 500px; overflow-y: auto; border: 1px solid var(--light-gray); border-radius: 6px; }
+    @media (max-width: 600px) {
+      .investor-detail-overlay { padding: 20px 8px; }
+      .investor-detail-modal { border-radius: 8px; }
+      .idm-header, .idm-body { padding-left: 16px; padding-right: 16px; }
+      .idm-summary { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* EXPORT BUTTONS */
+    .export-bar { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid var(--light-gray); background: var(--off-white); }
+    .export-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--mid-gray); border-radius: 4px; background: var(--white); font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+    .export-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .export-btn svg { width: 14px; height: 14px; }
+    .export-btn.locked { opacity: 0.5; cursor: not-allowed; }
+    .export-btn.locked:hover { border-color: var(--mid-gray); color: var(--text-light); }
+    .member-badge { font-size: 10px; background: var(--gold); color: var(--white); padding: 1px 6px; border-radius: 3px; margin-left: 4px; }
+
+    /* WATCHLIST */
+    .watchlist-panel { padding: 24px; }
+    .watchlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .watchlist-header h3 { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .watchlist-count { font-size: 12px; color: var(--text-light); }
+    .watchlist-items { display: flex; flex-direction: column; gap: 8px; }
+    .watchlist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--light-gray); border-radius: 6px; transition: all 0.2s; }
+    .watchlist-item:hover { border-color: var(--gold-light); background: rgba(155,139,110,0.03); }
+    .watchlist-item-info { flex: 1; }
+    .watchlist-item-name { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .watchlist-item-meta { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+    .watchlist-item-actions { display: flex; gap: 8px; }
+    .watchlist-btn-remove { background: none; border: 1px solid var(--mid-gray); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-light); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-btn-remove:hover { border-color: var(--red); color: var(--red); }
+    .watchlist-add-form { display: flex; gap: 8px; margin-bottom: 16px; }
+    .watchlist-add-form input { flex: 1; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; }
+    .watchlist-add-form input:focus { outline: none; border-color: var(--gold); }
+    .watchlist-add-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; white-space: nowrap; }
+    .watchlist-add-btn:hover { background: var(--navy-light); }
+    .watchlist-empty { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 13px; }
+    .watchlist-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .watchlist-preset-btn { padding: 4px 10px; background: var(--light-gray); border: none; border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-preset-btn:hover { background: var(--navy); color: var(--white); }
+    .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
+  </style>
+  <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="メインナビゲーション">
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li class="nav-dropdown-cat">アクティビスト分析</li>
+          <li><a href="/activist-dashboard.html" class="active">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+          <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+          <li class="nav-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
+          <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" onclick="openModal('login')">ログイン</button>
+      <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+    </div>
+    <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
+      <a onclick="openMyPage()" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
+      <button class="btn-login" onclick="handleLogout()">ログアウト</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
+  <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
+  <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
+  <div class="m-auth" id="mobileAuthBtns">
+    <button class="btn-login" onclick="openModal('login')">ログイン</button>
+    <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+  </div>
+  <div class="m-auth" id="mobileUserInfo" style="display:none;">
+    <span style="font-size:0.85rem; color:rgba(255,255,255,0.7);" id="mobileUserName"></span>
+    <button class="btn-login" onclick="handleLogout()">ログアウト</button>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-label">Large Shareholding Dashboard &mdash; Powered by EDINET API</div>
+    <h1>大量保有報告ダッシュボード</h1>
+    <p>大量保有報告書をリアルタイムで追跡。アクティビスト投資家や主要投資家の動向を可視化し、投資動向を分析します。</p>
+    <div class="data-source">データソース: <span>EDINET（金融庁）</span> ｜ 最終更新: <span id="lastUpdated">読み込み中...</span></div>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><div class="stat-number" id="statTotal">-</div><div class="stat-label">総報告件数（直近90日）</div></div>
+    <div class="stat-item"><div class="stat-number" id="statActivist">-</div><div class="stat-label">注目投資家関連</div></div>
+    <div class="stat-item"><div class="stat-number" id="statThisMonth">-</div><div class="stat-label">今月の報告</div></div>
+    <div class="stat-item"><div class="stat-number" id="statTracked">-</div><div class="stat-label">追跡中の投資家</div></div>
+  </div>
+</div>
+
+<!-- ACTIVIST DEFINITION NOTE -->
+<div style="max-width:1200px; margin:0 auto 0; padding:0 20px;">
+  <details style="background:#f8f9fa; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; font-size:13px; color:#4a5568; line-height:1.7;">
+    <summary style="cursor:pointer; font-weight:500; color:#2d3748;">アクティビストの定義について</summary>
+    <p style="margin:10px 0 4px;">当ダッシュボードでは、大量保有報告書の保有目的に<strong>「重要提案行為を行うことを保有の目的とする」</strong>等の記載を<strong>過去に一度でも一銘柄でも</strong>行っている投資家を「アクティビスト」と定義しています。当初は「純投資」と記載していても、その後保有目的を変更して重要提案の記載に変更した投資家も含みます。</p>
+    <p style="margin:4px 0;">光通信等のアクティビストに該当しない主要投資家についても「注目投資家」として追跡対象に含めています。</p>
+    <p style="margin:4px 0 0; font-size:12px; color:#718096;">参考: <a href="https://activist-blog.com/definition/" target="_blank" rel="noopener" style="color:#2b6cb0;">アクティビストの定義｜アクティビストのことがわかるブログ</a></p>
+  </details>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>検索・フィルター</h3>
+      <div class="filter-group">
+        <label class="filter-label">銘柄コード / 投資家名</label>
+        <input type="text" class="filter-input" id="searchKeyword" placeholder="例: 9531, エリオット">
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">報告タイプ</label>
+        <div class="filter-checkbox-group">
+          <label class="filter-checkbox"><input type="checkbox" name="reportType" value="new" checked> 新規報告</label>
+          <label class="filter-checkbox"><input type="checkbox" name="reportType" value="change" checked> 変更報告</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">注目投資家フィルター</label>
+        <select class="filter-select" id="investorFilter">
+          <option value="all">すべて表示</option>
+          <option value="activist">アクティビストのみ</option>
+          <option value="notable">注目投資家のみ（アクティビスト除く）</option>
+          <option value="both">アクティビスト＋注目投資家</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">報告期間</label>
+        <select class="filter-select" id="periodFilter">
+          <option value="7">直近1週間</option>
+          <option value="30">直近1ヶ月</option>
+          <option value="90" selected>直近3ヶ月</option>
+          <option value="180">直近6ヶ月</option>
+          <option value="270">直近9ヶ月</option>
+          <option value="365">直近12ヶ月</option>
+          <option value="455">直近15ヶ月</option>
+          <option value="540">直近18ヶ月</option>
+        </select>
+      </div>
+      <button class="btn-filter" onclick="applyFilters()">フィルター適用</button>
+      <button class="btn-reset" onclick="resetFilters()">リセット</button>
+    </div>
+
+    <div class="sidebar-card" id="activistRanking">
+      <h3>注目投資家 活動ランキング</h3>
+      <input type="text" id="rankingSearch" placeholder="投資家名で絞り込み..." oninput="filterRanking()" style="width:100%;padding:6px 10px;margin-bottom:8px;border:1px solid var(--light-gray);border-radius:4px;font-size:12px;box-sizing:border-box;">
+      <div style="display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;">
+        <button onclick="setRankingFilter('all')" class="ranking-filter-btn active" data-filter="all" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:var(--navy);color:#fff;cursor:pointer;">すべて</button>
+        <button onclick="setRankingFilter('activist')" class="ranking-filter-btn" data-filter="activist" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">ACT</button>
+        <button onclick="setRankingFilter('notable_holder')" class="ranking-filter-btn" data-filter="notable_holder" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">注目</button>
+        <button onclick="setRankingFilter('individual_investor')" class="ranking-filter-btn" data-filter="individual_investor" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">個人</button>
+      </div>
+      <div class="ac-stock-list" id="activistRankingList" style="max-height:600px;overflow-y:auto;">
+        <div class="loading-spinner">読み込み中...</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('list', this)">報告一覧</button>
+      <button class="tab-btn" onclick="switchTab('activists', this)">投資家別</button>
+      <button class="tab-btn" onclick="switchTab('watchlist', this)">ウォッチリスト</button>
+      <button class="tab-btn" onclick="switchTab('chart', this)">トレンド分析</button>
+      <button class="tab-btn" onclick="switchTab('timeline', this)">タイムライン</button>
+    </div>
+
+    <!-- TAB: 報告一覧 -->
+    <div class="tab-content active" id="tab-list">
+      <div class="content-card">
+        <div class="card-header">
+          <h2>大量保有報告書 一覧 <small style="font-size:11px; color:var(--text-light); font-weight:400;">（EDINET自動取得 / 毎日3回更新）</small></h2>
+          <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+            <option value="date-desc">報告日（新しい順）</option>
+            <option value="date-asc">報告日（古い順）</option>
+            <option value="ratio-desc">保有比率（高い順）</option>
+            <option value="ratio-asc">保有比率（低い順）</option>
+            <option value="delta-desc">比率変動（増加順）</option>
+            <option value="delta-asc">比率変動（減少順）</option>
+          </select>
+        </div>
+        <div class="export-bar">
+          <button class="export-btn" id="btnCsvExport" onclick="exportCSV()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M12 17v-6"/><path d="M9.5 14.5L12 17l2.5-2.5"/></svg>
+            CSV ダウンロード<span class="member-badge">会員限定</span>
+          </button>
+          <button class="export-btn" id="btnPdfExport" onclick="exportPDF()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M9 15h6"/><path d="M9 11h6"/></svg>
+            PDF レポート出力<span class="member-badge">会員限定</span>
+          </button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="activist-table">
+            <thead>
+              <tr>
+                <th class="col-date">報告日</th>
+                <th class="col-filer">報告者</th>
+                <th class="col-type">種別</th>
+                <th class="col-code">証券コード</th>
+                <th class="col-target">対象企業</th>
+                <th class="col-ratio">保有比率</th>
+                <th class="col-purpose">目的</th>
+                <th class="col-edinet">EDINET</th>
+              </tr>
+            </thead>
+            <tbody id="reportTableBody">
+              <tr><td colspan="8" class="no-data">データを読み込み中...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: アクティビスト別 -->
+    <div class="tab-content" id="tab-activists">
+      <div class="content-card">
+        <div class="card-header"><h2>投資家別ポートフォリオ</h2></div>
+        <div class="activist-cards" id="activistCards">
+          <div class="loading-spinner">データを読み込み中...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: ウォッチリスト -->
+    <div class="tab-content" id="tab-watchlist">
+      <div class="content-card">
+        <div class="card-header">
+          <h2>アクティビスト ウォッチリスト</h2>
+          <div style="display:flex; gap:8px;">
+            <button class="export-btn" onclick="exportWatchlistCSV()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M12 17v-6"/><path d="M9.5 14.5L12 17l2.5-2.5"/></svg>
+              リスト CSV出力<span class="member-badge">会員限定</span>
+            </button>
+          </div>
+        </div>
+        <div class="watchlist-panel">
+          <p style="font-size:13px; color:var(--text-mid); margin-bottom:16px; line-height:1.8;">
+            注目しているアクティビストをリストに追加して管理できます。リストに追加したアクティビストの新規報告を一覧で確認できます。
+          </p>
+
+          <div class="watchlist-add-form">
+            <input type="text" id="watchlistInput" placeholder="アクティビスト名を入力（例: エリオット）">
+            <button class="watchlist-add-btn" onclick="addToWatchlist()">追加</button>
+          </div>
+
+          <div class="watchlist-presets" id="watchlistPresets">
+            <!-- JSで生成 -->
+          </div>
+
+          <div class="watchlist-header">
+            <h3>ウォッチリスト</h3>
+            <span class="watchlist-count" id="watchlistCount">0 件</span>
+          </div>
+
+          <div class="watchlist-items" id="watchlistItems">
+            <div class="watchlist-empty">ウォッチリストは空です。上のボタンまたは入力欄からアクティビストを追加してください。</div>
+          </div>
+
+          <div style="margin-top:24px; padding:16px; background:var(--off-white); border-radius:6px;">
+            <h4 style="font-size:12px; font-weight:500; color:var(--navy); margin-bottom:8px;">ウォッチリスト内の最新報告</h4>
+            <div id="watchlistReports" style="font-size:13px; color:var(--text-mid);">
+              リストにアクティビストを追加すると、関連する最新報告がここに表示されます。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: チャート -->
+    <div class="tab-content" id="tab-chart">
+      <div class="content-card">
+        <div class="card-header"><h2>月別報告件数トレンド</h2></div>
+        <div class="chart-container"><div class="chart-wrapper"><canvas id="trendChart"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- TAB: タイムライン -->
+    <div class="tab-content" id="tab-timeline">
+      <div class="content-card">
+        <div class="card-header"><h2>タイムライン（アクティビスト関連）</h2></div>
+        <div class="report-timeline" id="timelineContainer">
+          <div class="loading-spinner">データを読み込み中...</div>
+        </div>
+
+        <div class="login-wall" id="loginWall" style="display:none;">
+          <div class="login-wall-inner">
+            <div class="login-wall-icon">&#128274;</div>
+            <h2>ここから先は会員限定コンテンツです</h2>
+            <p>過去のタイムライン・詳細分析・アラート通知など<br>すべての機能をご利用いただけます</p>
+            <div class="plan-features">
+              <h4>会員特典</h4>
+              <ul>
+                <li>全アクティビストの詳細プロフィール</li>
+                <li>過去データの全件検索・CSV出力</li>
+                <li>銘柄別・投資家別の詳細分析</li>
+                <li>新規報告のリアルタイムアラート</li>
+              </ul>
+            </div>
+            <button class="btn-cta-register" onclick="openModal('register')">無料会員登録</button>
+            <a class="btn-cta-login" onclick="openModal('login')">すでに会員の方はログイン</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">&times;</button>
+    <h2>ログイン</h2>
+    <div id="loginError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <button onclick="handleGoogleLogin('login')" class="btn-google" type="button">
+      <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0;"><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"><span style="font-size:12px; color:var(--text-light);">または</span><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"></div>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required placeholder="example@company.co.jp"></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required placeholder="パスワード"></div>
+      <button type="submit" class="btn-submit" id="loginBtn">メールアドレスでログイン</button>
+    </form>
+    <div style="text-align:center; margin-top:12px;"><a onclick="openModal('resetPassword')" style="font-size:12px; color:var(--gold); cursor:pointer;">パスワードをお忘れの方</a></div>
+    <div class="modal-footer"><p>アカウントをお持ちでない方は <a onclick="switchModal('register')">新規登録</a></p></div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')">&times;</button>
+    <h2>無料会員登録</h2>
+    <div id="registerError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <div id="registerSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <button onclick="handleGoogleLogin('register')" class="btn-google" type="button">
+      <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0;"><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"><span style="font-size:12px; color:var(--text-light);">または</span><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"></div>
+    <form onsubmit="handleRegister(event)">
+      <div class="form-group"><label>お名前 <span style="color:var(--red);">*</span></label><input type="text" id="regName" required placeholder="山田 太郎"></div>
+      <div class="form-group">
+        <label>所属種別 <span style="color:var(--red);">*</span></label>
+        <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;">
+        <label>証券コード</label>
+        <input type="text" id="regAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="[0-9A-Za-z]{4}">
+      </div>
+      <div class="form-group">
+        <label>役職 <span style="color:var(--red);">*</span></label>
+        <select id="regJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名 <span style="color:var(--red);">*</span></label><input type="text" id="regCompany" required placeholder="株式会社○○"></div>
+      <div class="form-group"><label>メールアドレス <span style="color:var(--red);">*</span></label><input type="email" id="regEmail" required placeholder="example@company.co.jp"></div>
+      <div class="form-group"><label>パスワード <span style="color:var(--red);">*</span></label><input type="password" id="regPassword" required placeholder="8文字以上" minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <p style="text-align:center; font-size:11px; color:var(--text-light); margin-top:16px; line-height:1.7;">
+      登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>
+      ※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。
+    </p>
+    <div class="modal-footer"><p>すでにアカウントをお持ちの方は <a onclick="switchModal('login')">ログイン</a></p></div>
+  </div>
+</div>
+
+<!-- PASSWORD RESET MODAL -->
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('resetPassword')">&times;</button>
+    <h2>パスワードリセット</h2>
+    <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">登録済みのメールアドレスを入力してください。<br>パスワードリセット用のリンクをお送りします。</p>
+    <div id="resetError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <div id="resetSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleResetPassword(event)">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required placeholder="example@company.co.jp"></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><p><a onclick="switchToLogin()" style="cursor:pointer;">ログインに戻る</a></p></div>
+  </div>
+</div>
+
+<!-- COMPLETE PROFILE MODAL (Google login) -->
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal" style="max-width:480px;">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+    <form onsubmit="handleCompleteProfile(event)">
+      <div class="form-group">
+        <label>所属種別 <span style="color:var(--red);">*</span></label>
+        <select id="cpAffiliation" required onchange="document.getElementById('cpAffiliationCodeGroup').style.display = this.value === 'listed_company' ? '' : 'none'" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="cpAffiliationCodeGroup" style="display:none;">
+        <label>証券コード</label>
+        <input type="text" id="cpAffiliationCode" placeholder="例: 7203" maxlength="4" pattern="[0-9A-Za-z]{4}">
+      </div>
+      <div class="form-group">
+        <label>役職 <span style="color:var(--red);">*</span></label>
+        <select id="cpJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名 <span style="color:var(--red);">*</span></label><input type="text" id="cpCompany" required placeholder="株式会社○○"></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<!-- MY PAGE MODAL -->
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal" style="max-width:500px;">
+    <button class="modal-close" onclick="closeModal('myPage')">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageContent" style="font-size:14px; color:var(--text-mid);">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy); width:120px;">お名前</td><td style="padding:12px 0;" id="myName">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">メール</td><td style="padding:12px 0;" id="myEmail">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">メール認証</td><td style="padding:12px 0;" id="myEmailVerified">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">所属種別</td><td style="padding:12px 0;" id="myAffiliation">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">役職</td><td style="padding:12px 0;" id="myJobTitle">-</td></tr>
+        <tr style="border-bottom:1px solid var(--mid-gray);"><td style="padding:12px 0; font-weight:500; color:var(--navy);">会社名</td><td style="padding:12px 0;" id="myCompany">-</td></tr>
+        <tr><td style="padding:12px 0; font-weight:500; color:var(--navy);">登録日</td><td style="padding:12px 0;" id="myCreatedAt">-</td></tr>
+      </table>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:24px; justify-content:center; flex-wrap:wrap;">
+      <button onclick="handleMyPageResetPassword()" class="btn-submit" id="btnChangePassword" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
+      <button onclick="showSetPasswordForm()" class="btn-submit" id="btnSetPassword" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">パスワードを設定</button>
+      <button onclick="handleResendVerification()" class="btn-submit" id="btnResendVerify" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">認証メールを再送</button>
+    </div>
+    <div id="setPasswordForm" style="display:none; margin-top:16px; text-align:center;">
+      <p style="font-size:12px; color:var(--text-mid); margin-bottom:10px;">メールアドレスでもログインできるようパスワードを設定します。</p>
+      <div style="display:flex; flex-direction:column; gap:8px; max-width:300px; margin:0 auto;">
+        <input type="password" id="setPasswordInput" placeholder="新しいパスワード（8文字以上）" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
+        <input type="password" id="setPasswordConfirm" placeholder="パスワード確認" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
+        <button onclick="handleSetPassword()" class="btn-submit" style="padding:10px 24px; font-size:13px;">パスワードを設定する</button>
+      </div>
+    </div>
+    <div id="myPageMsg" style="display:none; text-align:center; padding:10px 14px; border-radius:4px; font-size:13px; margin-top:16px;"></div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--mid-gray);">
+    <div id="deleteAccountSection" style="text-align:center;">
+      <button onclick="handleDeleteAccount()" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;text-align:center;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button onclick="confirmDeleteAccount()" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button onclick="cancelDeleteAccount()" style="background:#f5f5f5;color:#444;border:1px solid var(--mid-gray);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<style>
+footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 40px}
+.footer-top{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.footer-brand{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.7rem;letter-spacing:0.12em;color:var(--gold)}
+.footer-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 24px;list-style:none;align-items:center}
+.footer-nav a{text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;transition:color .2s}
+.footer-nav a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-address{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:24px}.footer-nav{grid-template-columns:repeat(2,1fr)}.footer-bottom{flex-direction:column;gap:16px;text-align:center}}
+</style>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
+      <p class="footer-copy">© 2026 Aoyama Nogizaka Partners All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- INVESTOR DETAIL MODAL -->
+<div class="investor-detail-overlay" id="investorDetailOverlay" onclick="if(event.target===this){closeInvestorDetail();}">
+  <div class="investor-detail-modal">
+    <div class="idm-header">
+      <div>
+        <h2 id="idmName">—</h2>
+        <div class="idm-meta" id="idmMeta"></div>
+      </div>
+      <button class="idm-close" onclick="closeInvestorDetail()">&times;</button>
+    </div>
+    <div class="idm-body">
+      <div class="idm-summary" id="idmSummary"></div>
+      <div style="margin-bottom:24px;">
+        <div class="idm-section-title">保有銘柄の時系列変動</div>
+        <div class="idm-table-wrap">
+          <table class="idm-table">
+            <thead><tr>
+              <th>報告日</th><th>種別</th><th>証券コード</th><th>対象企業</th><th style="text-align:right;">保有比率</th><th style="text-align:right;">変動</th><th>目的</th>
+            </tr></thead>
+            <tbody id="idmTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="idm-section-title">銘柄別 保有比率サマリー</div>
+        <div id="idmHoldingSummary"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== GLOBAL DATA =====
+let reportData = { reports: [], activists: {} };
+let filteredReports = [];
+let dataLoaded = false;
+const PREMIUM_API = 'https://aoyama-nogizakapublic.vercel.app/api/premium-reports';
+const DATA_URL = '/data/reports.json';
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadData();
+  renderAll();
+});
+
+async function loadData() {
+  if (dataLoaded) return;
+
+  // まず認証付きAPIを試行、失敗したら直接ファイル取得にフォールバック
+  let loaded = false;
+  const user = window.currentUser;
+  if (user) {
+    try {
+      const idToken = await user.getIdToken();
+      const resp = await fetch(PREMIUM_API + '?type=reports', {
+        headers: { 'Authorization': 'Bearer ' + idToken }
+      });
+      if (resp.ok) {
+        reportData = await resp.json();
+        loaded = true;
+      }
+    } catch (e) { /* フォールバックへ */ }
+  }
+
+  // フォールバック: 直接ファイル取得
+  if (!loaded) {
+    try {
+      const cacheBuster = '?t=' + Date.now();
+      const resp = await fetch(DATA_URL + cacheBuster, { cache: 'no-store' });
+      if (resp.ok) {
+        reportData = await resp.json();
+      }
+    } catch (e) {
+      console.log('Data not yet available, using empty dataset');
+    }
+  }
+
+  // reports が空なら空配列を保証
+  if (!reportData.reports) reportData.reports = [];
+  if (!reportData.activists) reportData.activists = {};
+
+  // known_activists.json を読み込み
+  try {
+    let kaResp;
+    if (user) {
+      try {
+        const idToken = await user.getIdToken();
+        kaResp = await fetch(PREMIUM_API + '?type=activists', {
+          headers: { 'Authorization': 'Bearer ' + idToken }
+        });
+      } catch (e) { /* フォールバックへ */ }
+    }
+    if (!kaResp || !kaResp.ok) {
+      kaResp = await fetch('/scripts/known_activists.json?t=' + Date.now(), { cache: 'no-store' });
+    }
+    if (kaResp.ok) {
+      const kaData = await kaResp.json();
+      const groups = kaData.groups || {};
+      const activistList = kaData.activists || [];
+
+      // グループに属する個別IDをグループIDに名寄せ（Python側で既にマージ済みだが、0件エントリ用）
+      const idToGroup = {};
+      activistList.forEach(ka => {
+        if (ka.group_id && groups[ka.group_id]) {
+          idToGroup[ka.id] = ka.group_id;
+        }
+      });
+
+      // グループエントリを追加（0件でも表示）
+      Object.entries(groups).forEach(([gid, g]) => {
+        if (!reportData.activists[gid]) {
+          reportData.activists[gid] = {
+            id: gid,
+            name: g.name || gid,
+            type: g.type || 'activist',
+            representative: g.representative || '',
+            headquarters: '',
+            description: g.description || '',
+            focus_sectors: [],
+            holdings: [],
+            report_count: 0,
+            latest_date: '',
+            member_ids: activistList.filter(a => a.group_id === gid).map(a => a.id)
+          };
+        }
+      });
+
+      // グループに属さない個別投資家を追加
+      activistList.forEach(ka => {
+        if (!idToGroup[ka.id] && !reportData.activists[ka.id]) {
+          reportData.activists[ka.id] = {
+            id: ka.id,
+            name: ka.name,
+            type: ka.type || 'activist',
+            representative: ka.representative || '',
+            headquarters: ka.headquarters || '',
+            description: ka.description || '',
+            focus_sectors: ka.focus_sectors || [],
+            holdings: [],
+            report_count: 0,
+            latest_date: ''
+          };
+        }
+      });
+
+      // グループに属する個別エントリを除外（二重カウント防止）
+      Object.keys(idToGroup).forEach(id => {
+        if (reportData.activists[id]) {
+          delete reportData.activists[id];
+        }
+      });
+    }
+  } catch (e) {
+    console.log('known_activists.json not available');
+  }
+
+  // 全レポートの比率変動（デルタ）を事前計算
+  const sortedForDelta = [...reportData.reports].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  const prevRatioMap = {};
+  sortedForDelta.forEach(r => {
+    const key = (r.filer_name || '') + '|' + (r.sec_code || '');
+    const cur = parseFloat(r.holding_ratio);
+    if (prevRatioMap[key] !== undefined && !isNaN(cur)) {
+      r._delta = cur - prevRatioMap[key];
+    } else {
+      r._delta = null;
+    }
+    if (!isNaN(cur)) prevRatioMap[key] = cur;
+  });
+
+  filteredReports = [...reportData.reports];
+  dataLoaded = true;
+}
+
+function renderAll() {
+  updateStats();
+  renderReportTable();
+  renderActivistCards();
+  renderActivistRanking();
+  renderTimeline();
+  updateLastUpdated();
+}
+
+// ===== STATS =====
+function updateStats() {
+  const now = new Date();
+  const thisMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+  const monthReports = reportData.reports.filter(r => r.date && r.date.startsWith(thisMonth));
+  const activistIds = new Set();
+  reportData.reports.forEach(r => { if (r.activist_id) activistIds.add(r.activist_id); });
+
+  document.getElementById('statTotal').textContent = reportData.total_reports || reportData.reports.length;
+  document.getElementById('statActivist').textContent = (reportData.activist_reports || 0) + reportData.reports.filter(r => r.is_notable).length;
+  document.getElementById('statThisMonth').textContent = monthReports.length;
+  document.getElementById('statTracked').textContent = Object.keys(reportData.activists).length;
+}
+
+function updateLastUpdated() {
+  const el = document.getElementById('lastUpdated');
+  if (reportData.last_updated) {
+    const d = new Date(reportData.last_updated);
+    el.textContent = d.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+  } else {
+    el.textContent = 'データ未取得（EDINET APIキー設定後に自動更新）';
+  }
+}
+
+// ===== REPORT TABLE =====
+function renderReportTable() {
+  const tbody = document.getElementById('reportTableBody');
+  const reports = filteredReports;
+
+  if (!reports.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="no-data">条件に合う報告がありません。EDINET APIキー設定後にデータが表示されます。</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = reports.slice(0, 50).map(r => {
+    const isNew = isRecentReport(r.date, 3);
+    const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
+    const ratioNum = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+    const ratio = !isNaN(ratioNum) ? ratioNum.toFixed(1) + '%' : '—';
+    const barWidth = !isNaN(ratioNum) ? Math.min(ratioNum * 2, 100) : 0;
+    const deltaHtml = r._delta != null ? (() => {
+      const d = r._delta;
+      const sign = d > 0 ? '+' : '';
+      const color = d > 0 ? '#c0392b' : d < 0 ? '#2980b9' : 'var(--text-light)';
+      return `<span style="font-size:10px;color:${color};margin-left:4px;">(${sign}${d.toFixed(1)})</span>`;
+    })() : '';
+    const edinetUrl = r.doc_id ? `https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?${encodeURIComponent(r.doc_id)}` : '#';
+
+    return `<tr onclick="searchByCode('${escapeJs(r.sec_code || '')}')">
+      <td class="date-cell col-date">${escapeHtml(r.date || '—')}${isNew ? '<span class="badge-new">NEW</span>' : ''}</td>
+      <td class="col-filer" title="${escapeHtml(r.filer_name || '')}"><span class="activist-name">${escapeHtml(r.filer_name || '—')}</span>${r.activist_type === 'individual_investor' ? ' <span class="activist-type" style="background:#f0e6ff;color:#7c3aed;">個人</span>' : r.is_activist ? ' <span class="activist-type type-activist">ACT</span>' : r.is_notable ? ' <span class="activist-type type-notable">注目</span>' : ''}</td>
+      <td class="col-type"><span class="activist-type ${typeClass}">${escapeHtml(r.report_type || '—')}</span></td>
+      <td class="col-code">${r.sec_code ? '<span class="sec-code">' + escapeHtml(r.sec_code) + '</span>' : '—'}</td>
+      <td class="col-target" title="${escapeHtml(r.target_company || '')}">${escapeHtml(r.target_company || '—')}</td>
+      <td class="col-ratio">${ratio}${deltaHtml}${barWidth ? '<div class="holding-bar"><div class="holding-bar-fill" style="width:' + barWidth + '%"></div></div>' : ''}</td>
+      <td class="col-purpose" style="font-size:12px;">${escapeHtml(r.purpose || '—')}</td>
+      <td class="col-edinet"><a href="${edinetUrl}" target="_blank" rel="noopener" class="edinet-link" onclick="event.stopPropagation();">原文</a></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== ACTIVIST CARDS =====
+function renderActivistCards() {
+  const container = document.getElementById('activistCards');
+  const activists = reportData.activists;
+
+  if (!Object.keys(activists).length) {
+    container.innerHTML = '<div class="no-data">EDINET APIキー設定後にアクティビスト情報が表示されます。</div>';
+    return;
+  }
+
+  let html = '';
+  let count = 0;
+  for (const [id, data] of Object.entries(activists)) {
+    count++;
+    const isPremium = count > 3;
+
+    // 保有比率の高い上位3銘柄を表示（比率ありを優先）
+    const sortedHoldings = [...(data.holdings || [])].sort((a, b) => (b.holding_ratio || 0) - (a.holding_ratio || 0));
+    const topHoldings = sortedHoldings.slice(0, 3);
+    const holdingsHtml = topHoldings.map(h => {
+      const genericNames = ['変更報告書', '大量保有報告書', '訂正報告書', '変更報告書（特例対象株券等）', '大量保有報告書（特例対象株券等）', '訂正報告書（', ''];
+      const name = h.target_company && !genericNames.some(g => h.target_company === g || h.target_company.startsWith('訂正報告書'))
+        ? h.target_company : (h.sec_code ? h.sec_code : '—');
+      const codeLabel = h.sec_code ? '<span class="sec-code">' + h.sec_code + '</span> ' : '';
+      const hRatio = h.holding_ratio != null ? parseFloat(h.holding_ratio) : NaN;
+      const ratio = !isNaN(hRatio) ? hRatio.toFixed(1) + '%' : '—';
+      const typeTag = h.report_type === '新規報告' ? '<span class="badge-new" style="margin-left:6px;">新規</span>' : '';
+      return `<div class="ac-stock-item" style="padding:6px 0; border-bottom:1px solid var(--light-gray);">
+        <span style="flex:1;">${codeLabel}${escapeHtml(name)}${typeTag}</span>
+        <span class="ac-stock-pct" style="min-width:50px; text-align:right;">${ratio}</span>
+      </div>`;
+    }).join('');
+    const moreCount = sortedHoldings.length - 3;
+    const moreHtml = moreCount > 0 ? `<div style="font-size:11px; color:var(--text-light); margin-top:6px;">他 ${moreCount} 銘柄</div>` : '';
+
+    const cardHtml = `
+      <div class="activist-card">
+        <div class="ac-header">
+          <div>
+            <div class="ac-name" style="cursor:pointer;text-decoration:underline;text-decoration-color:var(--mid-gray);text-underline-offset:2px;" onclick="openInvestorDetail('${escapeJs(id)}')">${escapeHtml(data.name)}</div>
+            <div class="ac-meta">
+              ${data.representative ? '代表: ' + escapeHtml(data.representative) + ' ｜ ' : ''}
+              ${data.headquarters ? '本拠: ' + escapeHtml(data.headquarters) + ' ｜ ' : ''}
+              報告件数: ${data.report_count || 0}件
+            </div>
+          </div>
+          <span class="activist-type ${data.type === 'activist' ? 'type-activist' : data.type === 'individual_investor' ? 'type-individual' : data.type === 'notable_holder' ? 'type-notable' : 'type-fund'}">${data.type === 'activist' ? 'アクティビスト' : data.type === 'individual_investor' ? '個人注目投資家' : data.type === 'notable_holder' ? '注目投資家' : 'ファンド'}</span>
+        </div>
+        <div class="ac-grid">
+          <div>
+            <div class="ac-section-title">保有銘柄（大量保有報告ベース）</div>
+            <div class="ac-stock-list">${holdingsHtml || '<div style="font-size:13px; color:var(--text-light);">データなし</div>'}${moreHtml}</div>
+          </div>
+          <div>
+            <div class="ac-section-title">活動傾向</div>
+            <div style="font-size:13px; color:var(--text-mid); line-height:1.8;">${escapeHtml(data.description || '—')}</div>
+            ${data.focus_sectors && data.focus_sectors.length ?
+              '<div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">' +
+              data.focus_sectors.map(s => '<span class="timeline-tag">' + escapeHtml(s) + '</span>').join('') +
+              '</div>' : ''}
+          </div>
+        </div>
+      </div>`;
+
+    if (isPremium && count === 4) {
+      html += `<div class="premium-content">
+        <div class="premium-blur">${cardHtml}</div>
+        <div class="premium-overlay"><div class="premium-badge"><p>この先は会員限定コンテンツです</p><button onclick="openModal('register')">無料会員登録して続きを見る</button></div></div>
+      </div>`;
+      break;
+    } else {
+      html += cardHtml;
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+// ===== ACTIVIST RANKING =====
+let rankingTypeFilter = 'all';
+
+function setRankingFilter(type) {
+  rankingTypeFilter = type;
+  document.querySelectorAll('.ranking-filter-btn').forEach(btn => {
+    if (btn.dataset.filter === type) {
+      btn.style.background = 'var(--navy)';
+      btn.style.color = '#fff';
+    } else {
+      btn.style.background = '#fff';
+      btn.style.color = 'var(--text-mid)';
+    }
+  });
+  filterRanking();
+}
+
+function filterRanking() {
+  const query = (document.getElementById('rankingSearch').value || '').toLowerCase();
+  const container = document.getElementById('activistRankingList');
+  const activists = reportData.activists;
+
+  if (!Object.keys(activists).length) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--text-light);">データ取得後に表示</div>';
+    return;
+  }
+
+  let sorted = Object.values(activists).sort((a, b) => (b.report_count || 0) - (a.report_count || 0));
+
+  // タイプフィルター
+  if (rankingTypeFilter !== 'all') {
+    sorted = sorted.filter(a => a.type === rankingTypeFilter);
+  }
+
+  // テキスト検索
+  if (query) {
+    sorted = sorted.filter(a => (a.name || '').toLowerCase().includes(query) || (a.id || '').toLowerCase().includes(query));
+  }
+
+  sorted = sorted.slice(0, 50);
+
+  if (!sorted.length) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--text-light);">該当する投資家がありません</div>';
+    return;
+  }
+
+  container.innerHTML = sorted.map((a, idx) => {
+    const typeTag = a.type === 'activist' ? '<span class="activist-type type-activist" style="font-size:9px;padding:1px 4px;margin-left:4px;">ACT</span>'
+      : a.type === 'individual_investor' ? '<span class="activist-type" style="font-size:9px;padding:1px 4px;margin-left:4px;background:#f0e6ff;color:#7c3aed;border-radius:4px;">個人</span>'
+      : a.type === 'notable_holder' ? '<span class="activist-type type-notable" style="font-size:9px;padding:1px 4px;margin-left:4px;">注目</span>'
+      : '';
+    const rank = idx + 1;
+    const rankStyle = rank <= 3 ? 'font-weight:bold;color:var(--gold);' : 'color:var(--text-light);';
+    const isGroup = a.member_ids && a.member_ids.length;
+    const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:9px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
+    return `<div class="ac-stock-item" style="cursor:pointer;display:flex;align-items:center;" onclick="openInvestorDetail('${escapeJs(a.id)}')">
+      <span style="min-width:22px;${rankStyle}">${rank}</span>
+      <span style="flex:1;">${escapeHtml(a.name)}${groupIcon}${typeTag}</span>
+      <span style="color:${(a.report_count || 0) >= 5 ? 'var(--red)' : 'var(--text-mid)'}; margin-right:6px;">${a.report_count || 0}件</span>
+      <span title="報告一覧を絞り込み" style="font-size:10px;color:var(--text-light);cursor:pointer;" onclick="event.stopPropagation();filterByActivist('${escapeJs(a.id)}')">&#9654;</span>
+    </div>`;
+  }).join('');
+}
+
+function renderActivistRanking() {
+  filterRanking();
+}
+
+// ===== TIMELINE =====
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  const activistReports = reportData.reports.filter(r => r.is_activist || r.is_notable).slice(0, 10);
+
+  if (!activistReports.length) {
+    container.innerHTML = '<div class="no-data">注目投資家の報告がまだありません。</div>';
+    return;
+  }
+
+  container.innerHTML = activistReports.map(r =>
+    `<div class="timeline-item">
+      <div class="timeline-date">${escapeHtml(r.date || '—')}</div>
+      <div class="timeline-content">
+        <div class="timeline-title">${escapeHtml(r.filer_name || '')} ${r.sec_code ? '(' + escapeHtml(r.sec_code) + ')' : ''}</div>
+        <div class="timeline-detail">${escapeHtml(r.target_company || '')}${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? ' — 保有比率: ' + parseFloat(r.holding_ratio).toFixed(1) + '%' : ''}${r.purpose ? ' — 目的: ' + escapeHtml(r.purpose) : ''}</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">${r.report_type || '報告'}</span>
+          ${r.is_activist ? '<span class="timeline-tag">アクティビスト</span>' : ''}
+        </div>
+      </div>
+    </div>`
+  ).join('');
+
+  // Show login wall after timeline
+  document.getElementById('loginWall').style.display = 'block';
+}
+
+// ===== FILTERS =====
+function applyFilters() {
+  const keyword = document.getElementById('searchKeyword').value.trim().toLowerCase();
+  const investorFilter = document.getElementById('investorFilter').value;
+  const period = parseInt(document.getElementById('periodFilter').value);
+  const sortBy = document.getElementById('sortSelect').value;
+
+  const reportTypes = [];
+  document.querySelectorAll('input[name="reportType"]:checked').forEach(cb => reportTypes.push(cb.value));
+
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - period);
+  const cutoffStr = cutoffDate.toISOString().slice(0, 10);
+
+  filteredReports = reportData.reports.filter(r => {
+    if (keyword) {
+      const text = [r.filer_name, r.sec_code, r.target_company, r.purpose].join(' ').toLowerCase();
+      if (!text.includes(keyword)) return false;
+    }
+    if (investorFilter === 'activist' && !r.is_activist) return false;
+    if (investorFilter === 'notable' && !r.is_notable) return false;
+    if (investorFilter === 'both' && !r.is_activist && !r.is_notable) return false;
+    if (r.date && r.date < cutoffStr) return false;
+
+    if (reportTypes.length) {
+      const typeMap = { 'new': '新規報告', 'change': '変更報告' };
+      const allowed = reportTypes.map(t => typeMap[t]);
+      if (!allowed.includes(r.report_type)) return false;
+    }
+
+    return true;
+  });
+
+  switch (sortBy) {
+    case 'date-asc':
+      filteredReports.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      break;
+    case 'ratio-desc':
+      filteredReports.sort((a, b) => (parseFloat(b.holding_ratio) || 0) - (parseFloat(a.holding_ratio) || 0));
+      break;
+    case 'ratio-asc':
+      filteredReports.sort((a, b) => {
+        const ra = a.holding_ratio != null ? parseFloat(a.holding_ratio) : Infinity;
+        const rb = b.holding_ratio != null ? parseFloat(b.holding_ratio) : Infinity;
+        return ra - rb;
+      });
+      break;
+    case 'delta-desc':
+      filteredReports.sort((a, b) => {
+        const da = a._delta != null ? a._delta : -Infinity;
+        const db = b._delta != null ? b._delta : -Infinity;
+        return db - da;
+      });
+      break;
+    case 'delta-asc':
+      filteredReports.sort((a, b) => {
+        const da = a._delta != null ? a._delta : Infinity;
+        const db = b._delta != null ? b._delta : Infinity;
+        return da - db;
+      });
+      break;
+    default: // date-desc
+      filteredReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
+
+  renderReportTable();
+}
+
+function resetFilters() {
+  document.getElementById('searchKeyword').value = '';
+  document.getElementById('investorFilter').value = 'all';
+  document.getElementById('periodFilter').value = '90';
+  document.querySelectorAll('input[name="reportType"]').forEach(cb => cb.checked = true);
+  filteredReports = [...reportData.reports];
+  renderReportTable();
+}
+
+function searchByCode(code) {
+  if (!code) return;
+  document.getElementById('searchKeyword').value = code;
+  applyFilters();
+  switchTab('list', document.querySelector('.tab-btn'));
+}
+
+function filterByActivist(activistId) {
+  let activist = reportData.activists[activistId];
+  if (!activist) {
+    // IDで見つからない場合、名前で検索
+    const found = Object.entries(reportData.activists || {}).find(([, a]) => a.name === activistId);
+    if (found) { activistId = found[0]; activist = found[1]; }
+  }
+  if (!activist) return;
+
+  // グループの場合はメンバーの報告を全て表示
+  if (activist.member_ids && activist.member_ids.length) {
+    const memberIds = new Set(activist.member_ids);
+    const keyword = document.getElementById('searchKeyword');
+    keyword.value = '';
+    // メンバーIDでフィルター
+    const period = parseInt(document.getElementById('periodFilter').value);
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - period);
+    const cutoffStr = cutoffDate.toISOString().slice(0, 10);
+    filteredReports = reportData.reports.filter(r => {
+      if (!memberIds.has(r.activist_id)) return false;
+      if (r.date && r.date < cutoffStr) return false;
+      return true;
+    });
+    renderReportTable();
+  } else {
+    document.getElementById('searchKeyword').value = activist.name;
+    applyFilters();
+  }
+  switchTab('list', document.querySelector('.tab-btn'));
+}
+
+// ===== CHARTS =====
+let chartsInitialized = false;
+function initCharts() {
+  if (chartsInitialized) return;
+  chartsInitialized = true;
+
+  // 月別集計
+  const monthCounts = {};
+  reportData.reports.forEach(r => {
+    if (!r.date) return;
+    const ym = r.date.slice(0, 7);
+    if (!monthCounts[ym]) monthCounts[ym] = { total: 0, activist: 0 };
+    monthCounts[ym].total++;
+    if (r.is_activist) monthCounts[ym].activist++;
+  });
+
+  const months = Object.keys(monthCounts).sort().slice(-6);
+  const totalData = months.map(m => monthCounts[m].total);
+  const activistData = months.map(m => monthCounts[m].activist);
+
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        { label: '全報告', data: totalData, borderColor: '#1a2d4f', backgroundColor: 'rgba(26,45,79,0.08)', fill: true, tension: 0.4 },
+        { label: 'アクティビスト関連', data: activistData, borderColor: '#9b8b6e', backgroundColor: 'rgba(155,139,110,0.08)', fill: true, tension: 0.4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { font: { family: "'Noto Sans JP', sans-serif", size: 12 } } } },
+      scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } }, x: { grid: { display: false } } }
+    }
+  });
+}
+
+// ===== TAB SWITCH =====
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (tab === 'chart') setTimeout(initCharts, 100);
+}
+
+// ===== MODAL =====
+function openModal(type) { document.getElementById(type + 'Modal').classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeModal(type) { document.getElementById(type + 'Modal').classList.remove('show'); document.body.style.overflow = ''; }
+function switchModal(type) { closeModal(type === 'login' ? 'register' : 'login'); openModal(type); }
+document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('show'); document.body.style.overflow = ''; } }));
+
+// ===== FIREBASE AUTH HANDLERS =====
+async function handleGoogleLogin(modalType) {
+  const errEl = document.getElementById(modalType === 'login' ? 'loginError' : 'registerError');
+  errEl.style.display = 'none';
+  try {
+    const result = await window.firebaseGoogleLogin();
+    closeModal(modalType);
+    if (result && result.needsProfile) {
+      openModal('completeProfile');
+      return;
+    }
+  } catch (err) {
+    if (err.code === 'auth/popup-closed-by-user') return;
+    const messages = {
+      'auth/account-exists-with-different-credential': 'このメールアドレスは別の方法で登録されています。メールアドレスでログインしてください。',
+      'auth/popup-blocked': 'ポップアップがブロックされました。ブラウザの設定を確認してください。',
+    };
+    errEl.textContent = messages[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  }
+}
+
+async function handleCompleteProfile(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('completeProfileError');
+  const btn = document.getElementById('completeProfileBtn');
+  errEl.style.display = 'none';
+  btn.textContent = '保存中...';
+  btn.disabled = true;
+  try {
+    const user = window.currentUser;
+    if (!user) throw new Error('ログインされていません');
+    const affiliation = document.getElementById('cpAffiliation').value;
+    const affiliationCode = document.getElementById('cpAffiliationCode') ? document.getElementById('cpAffiliationCode').value : '';
+    const jobTitle = document.getElementById('cpJobTitle').value;
+    const company = document.getElementById('cpCompany').value;
+    await window.firebaseUpdateProfile(user.uid, { affiliation, affiliationCode, jobTitle, company });
+    closeModal('completeProfile');
+  } catch (err) {
+    errEl.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = '登録して利用開始';
+    btn.disabled = false;
+  }
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  errEl.style.display = 'none';
+  btn.textContent = 'ログイン中...';
+  btn.disabled = true;
+
+  try {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    await window.firebaseLogin(email, password);
+    closeModal('login');
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+  } catch (err) {
+    const messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/wrong-password': 'パスワードが正しくありません。',
+      'auth/invalid-credential': 'メールアドレスまたはパスワードが正しくありません。Googleで登録された方は「Googleでログイン」をご利用ください。',
+      'auth/too-many-requests': 'ログイン試行回数が多すぎます。しばらくしてからお試しください。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+    };
+    const code = err.code || '';
+    errEl.textContent = messages[code] || 'ログインに失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = 'ログイン';
+    btn.disabled = false;
+  }
+}
+
+// 所属種別で証券コード欄の表示切替
+function toggleAffiliationCode() {
+  const v = document.getElementById('regAffiliation').value;
+  document.getElementById('affiliationCodeGroup').style.display = v === 'listed_company' ? '' : 'none';
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('registerError');
+  const successEl = document.getElementById('registerSuccess');
+  const btn = document.getElementById('registerBtn');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+  btn.textContent = '登録中...';
+  btn.disabled = true;
+
+  try {
+    const name = document.getElementById('regName').value;
+    const company = document.getElementById('regCompany').value;
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+    const affiliation = document.getElementById('regAffiliation').value;
+    const affiliationCode = document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '';
+    const jobTitle = document.getElementById('regJobTitle').value;
+    await window.firebaseRegister(email, password, name, company, affiliation, affiliationCode, jobTitle);
+    successEl.innerHTML = '登録が完了しました。確認メールをお送りしましたのでご確認ください。<br><span style="font-size:12px;color:#065f46;">メールが届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
+    successEl.style.display = 'block';
+    setTimeout(() => {
+      closeModal('register');
+      successEl.style.display = 'none';
+    }, 2500);
+  } catch (err) {
+    const messages = {
+      'auth/email-already-in-use': 'このメールアドレスは既に登録されています。ログインしてください。',
+      'auth/weak-password': 'パスワードは8文字以上で設定してください。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+    };
+    const code = err.code || '';
+    errEl.textContent = messages[code] || '登録に失敗しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = '無料で登録する';
+    btn.disabled = false;
+  }
+}
+
+// パスワードリセット
+async function handleResetPassword(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('resetError');
+  const successEl = document.getElementById('resetSuccess');
+  const btn = document.getElementById('resetBtn');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+  btn.textContent = '送信中...';
+  btn.disabled = true;
+  try {
+    const email = document.getElementById('resetEmail').value;
+    await window.firebaseResetPassword(email);
+    successEl.textContent = 'リセット用メールを送信しました。メールをご確認ください。';
+    successEl.style.display = 'block';
+  } catch (err) {
+    const messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+      'auth/too-many-requests': '送信回数が多すぎます。しばらくしてからお試しください。',
+    };
+    errEl.textContent = messages[err.code || ''] || 'エラーが発生しました: ' + (err.message || '');
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = 'リセットメールを送信';
+    btn.disabled = false;
+  }
+}
+
+function switchToLogin() { closeModal('resetPassword'); openModal('login'); }
+
+// マイページ
+const AFFILIATION_LABELS = { listed_company:'上場企業', institutional_investor:'機関投資家', individual_investor:'個人投資家', consulting:'コンサルティングファーム', legal:'法律事務所・弁護士', media:'メディア・報道機関', academic:'学術・研究機関', other:'その他' };
+const JOBTITLE_LABELS = { executive:'経営者・役員', department_head:'部長・本部長', manager:'課長・マネージャー', ir_officer:'IR担当', legal_compliance:'法務・コンプライアンス', finance:'経理・財務', analyst:'アナリスト・ファンドマネージャー', consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他' };
+
+async function openMyPage() {
+  openModal('myPage');
+  const user = window.currentUser;
+  if (!user) return;
+  document.getElementById('myName').textContent = user.displayName || '-';
+  document.getElementById('myEmail').textContent = user.email || '-';
+  const verified = user.emailVerified;
+  const verifiedEl = document.getElementById('myEmailVerified');
+  verifiedEl.innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
+  document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
+  const hasPassword = user.providerData && user.providerData.some(p => p.providerId === 'password');
+  document.getElementById('btnChangePassword').style.display = hasPassword ? '' : 'none';
+  document.getElementById('btnSetPassword').style.display = hasPassword ? 'none' : '';
+  document.getElementById('setPasswordForm').style.display = 'none';
+  document.getElementById('myPageMsg').style.display = 'none';
+  try {
+    const profile = await window.firebaseGetProfile(user.uid);
+    if (profile) {
+      document.getElementById('myAffiliation').textContent = AFFILIATION_LABELS[profile.affiliation] || profile.affiliation || '-';
+      document.getElementById('myJobTitle').textContent = JOBTITLE_LABELS[profile.jobTitle] || profile.jobTitle || '-';
+      document.getElementById('myCompany').textContent = profile.company || '-';
+      document.getElementById('myCreatedAt').textContent = profile.createdAt ? new Date(profile.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '-';
+    }
+  } catch (e) { console.error('Profile fetch error:', e); }
+}
+
+async function handleMyPageResetPassword() {
+  const msg = document.getElementById('myPageMsg');
+  const user = window.currentUser;
+  try {
+    await window.firebaseResetPassword(user.email);
+    msg.textContent = 'パスワードリセット用メールを送信しました。';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+  } catch (e) {
+    msg.textContent = 'エラーが発生しました: ' + (e.message || '');
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+function showSetPasswordForm() {
+  document.getElementById('setPasswordForm').style.display = '';
+  document.getElementById('myPageMsg').style.display = 'none';
+  document.getElementById('setPasswordInput').value = '';
+  document.getElementById('setPasswordConfirm').value = '';
+  document.getElementById('setPasswordInput').focus();
+}
+
+async function handleSetPassword() {
+  const msg = document.getElementById('myPageMsg');
+  const pw = document.getElementById('setPasswordInput').value;
+  const pw2 = document.getElementById('setPasswordConfirm').value;
+  msg.style.display = 'none';
+  if (!pw || pw.length < 8) {
+    msg.textContent = 'パスワードは8文字以上で設定してください。';
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    return;
+  }
+  if (pw !== pw2) {
+    msg.textContent = 'パスワードが一致しません。';
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    return;
+  }
+  try {
+    const user = window.currentUser;
+    await window.firebaseLinkPassword(user.email, pw);
+    msg.textContent = 'パスワードを設定しました。メールアドレスでもログインできます。';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+    document.getElementById('setPasswordForm').style.display = 'none';
+    document.getElementById('btnSetPassword').style.display = 'none';
+    document.getElementById('btnChangePassword').style.display = '';
+  } catch (e) {
+    const messages = {
+      'auth/provider-already-linked': 'すでにパスワードが設定されています。「パスワードを変更」からリセットしてください。',
+      'auth/weak-password': 'パスワードが弱すぎます。8文字以上で設定してください。',
+      'auth/requires-recent-login': 'セキュリティのため再ログインが必要です。一度ログアウトしてGoogleで再ログインしてください。',
+    };
+    msg.textContent = messages[e.code] || 'エラーが発生しました。しばらくしてから再度お試しください。';
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+async function handleResendVerification() {
+  const msg = document.getElementById('myPageMsg');
+  try {
+    const { sendEmailVerification } = await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");
+    await sendEmailVerification(window.currentUser);
+    msg.innerHTML = '認証メールを再送しました。メールをご確認ください。<br><span style="font-size:11px;">届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
+    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
+  } catch (e) {
+    msg.textContent = (e.code === 'auth/too-many-requests') ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+  }
+}
+
+function handleDeleteAccount() {
+  document.getElementById('deleteConfirm').style.display = '';
+  document.getElementById('deleteAccountSection').style.display = 'none';
+}
+
+function cancelDeleteAccount() {
+  document.getElementById('deleteConfirm').style.display = 'none';
+  document.getElementById('deleteAccountSection').style.display = '';
+}
+
+async function confirmDeleteAccount() {
+  const msg = document.getElementById('myPageMsg');
+  try {
+    await window.firebaseDeleteAccount();
+    closeModal('myPage');
+    window.location.reload();
+  } catch (e) {
+    if (e.code === 'auth/requires-recent-login') {
+      msg.textContent = 'セキュリティのため再ログインが必要です。一度ログアウトして再度ログインしてからお試しください。';
+    } else {
+      msg.textContent = '退会処理に失敗しました: ' + (e.message || '');
+    }
+    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
+    document.getElementById('deleteConfirm').style.display = 'none';
+    document.getElementById('deleteAccountSection').style.display = '';
+  }
+}
+
+async function handleLogout() {
+  try {
+    await window.firebaseLogout();
+  } catch (err) {
+    console.error('Logout error:', err);
+  }
+}
+
+async function updateAuthUI(user) {
+  const authBtns = document.getElementById('navAuthBtns');
+  const userInfo = document.getElementById('navUserInfo');
+  const userName = document.getElementById('navUserName');
+  const mobileAuthBtns = document.getElementById('mobileAuthBtns');
+  const mobileUserInfo = document.getElementById('mobileUserInfo');
+  const mobileUserName = document.getElementById('mobileUserName');
+  const premiumEls = document.querySelectorAll('.premium-overlay');
+  const premiumBlurs = document.querySelectorAll('.premium-blur');
+  const loginWall = document.getElementById('loginWall');
+
+  if (user) {
+    // プロフィール未完了チェック
+    try {
+      const profile = await window.firebaseGetProfile(user.uid);
+      if (profile && (!profile.affiliation || !profile.jobTitle || !profile.company)) {
+        openModal('completeProfile');
+      }
+    } catch (e) { /* ignore */ }
+    const displayName = (user.displayName || user.email) + ' 様';
+    authBtns.style.display = 'none';
+    userInfo.style.display = 'flex';
+    userName.textContent = displayName;
+    if (mobileAuthBtns) mobileAuthBtns.style.display = 'none';
+    if (mobileUserInfo) { mobileUserInfo.style.display = 'flex'; mobileUserName.textContent = displayName; }
+    premiumEls.forEach(el => el.style.display = 'none');
+    premiumBlurs.forEach(el => el.classList.remove('premium-blur'));
+    if (loginWall) loginWall.style.display = 'none';
+    // 認証後にデータを読み込み
+    if (!dataLoaded) {
+      await loadData();
+      renderAll();
+    }
+  } else {
+    authBtns.style.display = 'flex';
+    userInfo.style.display = 'none';
+    userName.textContent = '';
+    if (mobileAuthBtns) mobileAuthBtns.style.display = 'flex';
+    if (mobileUserInfo) { mobileUserInfo.style.display = 'none'; mobileUserName.textContent = ''; }
+    premiumEls.forEach(el => el.style.display = 'flex');
+    premiumBlurs.forEach(el => el.classList.add('premium-blur'));
+    if (loginWall) loginWall.style.display = 'block';
+  }
+}
+
+// ===== NAV =====
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+// ===== UTILS =====
+function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function escapeJs(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"'); }
+function isRecentReport(dateStr, days) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  const now = new Date();
+  return (now - d) < days * 86400000;
+}
+
+// ===== CSV EXPORT (会員限定) =====
+function exportCSV() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+  const rows = [['日付', '報告者', '証券コード', '対象企業', '報告種別', '保有比率(%)', '保有目的', 'アクティビスト']];
+  filteredReports.forEach(r => {
+    rows.push([
+      r.date || '',
+      r.filer_name || '',
+      r.sec_code || '',
+      r.target_company || '',
+      r.report_type || '',
+      r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '',
+      r.purpose || '',
+      r.is_activist ? 'Yes' : 'No'
+    ]);
+  });
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(row => row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'activist_reports_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ===== PDF EXPORT (会員限定) =====
+function exportPDF() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+
+  // ブラウザ印刷（PDF保存）で日本語を完全サポート
+  const data = filteredReports.slice(0, 300);
+  const dateStr = new Date().toLocaleString('ja-JP');
+
+  let html = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<title>大量保有報告書レポート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; font-size:10px; color:#1a2d4f; padding:15mm; }
+  h1 { font-size:16px; margin-bottom:4px; }
+  .meta { font-size:9px; color:#666; margin-bottom:10px; }
+  table { width:100%; border-collapse:collapse; font-size:9px; }
+  th { background:#1a2d4f; color:#fff; padding:4px 6px; text-align:left; font-weight:700; white-space:nowrap; }
+  td { padding:3px 6px; border-bottom:1px solid #e0ddd8; }
+  tr:nth-child(even) { background:#f8f7f5; }
+  .ratio-cell { text-align:right; }
+  .act-badge { display:inline-block; background:#c7a04b; color:#fff; font-size:7px; padding:1px 4px; border-radius:3px; }
+  .notable-badge { display:inline-block; background:#6b8e6b; color:#fff; font-size:7px; padding:1px 4px; border-radius:3px; }
+  @media print {
+    body { padding:10mm; }
+    @page { size:A4 landscape; margin:10mm; }
+  }
+</style></head><body>
+<h1>大量保有報告書 レポート</h1>
+<div class="meta">出力日時: ${escapeHtml(dateStr)} ｜ 件数: ${data.length} 件 ｜ データソース: EDINET（金融庁）</div>
+<table>
+<thead><tr>
+  <th>報告日</th><th>報告者</th><th>種別</th><th>証券コード</th><th>対象企業</th>
+  <th>保有比率</th><th>目的</th><th>区分</th>
+</tr></thead><tbody>`;
+
+  data.forEach(r => {
+    const ratioNum = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+    const ratio = !isNaN(ratioNum) ? ratioNum.toFixed(2) + '%' : '—';
+    const badge = r.is_activist ? '<span class="act-badge">ACT</span>'
+      : r.is_notable ? '<span class="notable-badge">注目</span>' : '—';
+    html += `<tr>
+      <td>${escapeHtml(r.date || '')}</td>
+      <td>${escapeHtml(r.filer_name || '')}</td>
+      <td>${escapeHtml(r.report_type || '')}</td>
+      <td>${escapeHtml(r.sec_code || '')}</td>
+      <td>${escapeHtml(r.target_company || '')}</td>
+      <td class="ratio-cell">${ratio}</td>
+      <td>${escapeHtml(r.purpose || '')}</td>
+      <td>${badge}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table></body></html>';
+
+  const printWin = window.open('', '_blank');
+  printWin.document.write(html);
+  printWin.document.close();
+  // フォント読み込み待ちの後に印刷ダイアログを表示
+  printWin.onload = () => setTimeout(() => printWin.print(), 500);
+}
+
+// ===== WATCHLIST =====
+let watchlist = JSON.parse(localStorage.getItem('activist_watchlist') || '[]');
+
+function saveWatchlist() {
+  localStorage.setItem('activist_watchlist', JSON.stringify(watchlist));
+}
+
+function addToWatchlist(name) {
+  if (!name) {
+    name = document.getElementById('watchlistInput').value.trim();
+  }
+  if (!name) return;
+
+  // 重複チェック
+  if (watchlist.some(w => w.name === name)) {
+    renderWatchlist();
+    document.getElementById('watchlistInput').value = '';
+    return;
+  }
+
+  // known_activistsから情報を取得
+  const activists = reportData.activists || {};
+  let info = null;
+  for (const [id, a] of Object.entries(activists)) {
+    if (a.name === name || (a.name && a.name.includes(name)) || name.includes(a.name || '')) {
+      info = { id, ...a };
+      break;
+    }
+  }
+
+  watchlist.push({
+    name: info ? info.name : name,
+    id: info ? info.id : '',
+    type: info ? (info.type || '') : '',
+    addedAt: new Date().toISOString()
+  });
+
+  saveWatchlist();
+  renderWatchlist();
+  renderWatchlistReports();
+  document.getElementById('watchlistInput').value = '';
+
+  // プリセットボタンの状態更新
+  renderWatchlistPresets();
+}
+
+function removeFromWatchlist(name) {
+  watchlist = watchlist.filter(w => w.name !== name);
+  saveWatchlist();
+  renderWatchlist();
+  renderWatchlistReports();
+  renderWatchlistPresets();
+}
+
+function renderWatchlist() {
+  const container = document.getElementById('watchlistItems');
+  const countEl = document.getElementById('watchlistCount');
+  countEl.textContent = watchlist.length + ' 件';
+
+  if (!watchlist.length) {
+    container.innerHTML = '<div class="watchlist-empty">ウォッチリストは空です。上のボタンまたは入力欄からアクティビストを追加してください。</div>';
+    return;
+  }
+
+  container.innerHTML = watchlist.map(w => {
+    const typeLabel = w.type === 'activist' ? 'アクティビスト' : w.type === 'fund' ? 'ファンド' : '';
+    return `<div class="watchlist-item">
+      <div class="watchlist-item-info">
+        <div class="watchlist-item-name">${escapeHtml(w.name)}</div>
+        <div class="watchlist-item-meta">${typeLabel ? typeLabel + ' · ' : ''}追加日: ${w.addedAt ? w.addedAt.slice(0, 10) : '—'}</div>
+      </div>
+      <div class="watchlist-item-actions">
+        <button class="watchlist-btn-remove" onclick="filterByActivist('${escapeJs(w.name)}')">報告を表示</button>
+        <button class="watchlist-btn-remove" onclick="removeFromWatchlist('${escapeJs(w.name)}')">削除</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderWatchlistPresets() {
+  const container = document.getElementById('watchlistPresets');
+  const activists = reportData.activists || {};
+  const names = Object.values(activists).map(a => a.name).filter(Boolean).slice(0, 15);
+
+  container.innerHTML = names.map(name => {
+    const isAdded = watchlist.some(w => w.name === name);
+    return `<button class="watchlist-preset-btn${isAdded ? ' added' : ''}" onclick="${isAdded ? "removeFromWatchlist('" + escapeJs(name) + "')" : "addToWatchlist('" + escapeJs(name) + "')"}">${isAdded ? '✓ ' : ''}${escapeHtml(name)}</button>`;
+  }).join('');
+}
+
+function renderWatchlistReports() {
+  const container = document.getElementById('watchlistReports');
+  if (!watchlist.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const watchNames = watchlist.map(w => w.name);
+  const matched = reportData.reports.filter(r => {
+    return watchNames.some(name => {
+      const filer = r.filer_name || '';
+      return filer.includes(name) || name.includes(filer);
+    });
+  }).slice(0, 20);
+
+  if (!matched.length) {
+    container.innerHTML = '<div style="padding:16px; color:var(--text-light); font-size:12px;">ウォッチリスト対象の報告はまだありません。</div>';
+    return;
+  }
+
+  let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <span style="font-size:12px; color:var(--text-light);">直近 ${matched.length} 件</span>
+    <button class="export-btn" onclick="exportWatchlistCSV()" style="font-size:11px; padding:4px 10px;">CSV出力<span class="member-badge">会員限定</span></button>
+  </div>`;
+
+  html += '<table style="width:100%; border-collapse:collapse; font-size:12px;">';
+  html += '<tr style="background:var(--light-gray);"><th style="padding:6px 8px; text-align:left;">日付</th><th style="padding:6px 8px; text-align:left;">報告者</th><th style="padding:6px 8px; text-align:left;">対象</th><th style="padding:6px 8px; text-align:right;">保有比率</th></tr>';
+  matched.forEach(r => {
+    html += `<tr style="border-bottom:1px solid var(--light-gray);">
+      <td style="padding:6px 8px;">${escapeHtml(r.date || '—')}</td>
+      <td style="padding:6px 8px;">${escapeHtml(r.filer_name || '')}</td>
+      <td style="padding:6px 8px;">${escapeHtml((r.target_company || '').slice(0, 30))}</td>
+      <td style="padding:6px 8px; text-align:right;">${r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(1) + '%' : '—'}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  container.innerHTML = html;
+}
+
+function exportWatchlistCSV() {
+  if (!window.currentUser) {
+    openModal('login');
+    return;
+  }
+  const watchNames = watchlist.map(w => w.name);
+  const matched = reportData.reports.filter(r => {
+    return watchNames.some(name => {
+      const filer = r.filer_name || '';
+      return filer.includes(name) || name.includes(filer);
+    });
+  });
+
+  const rows = [['日付', '報告者', '証券コード', '対象企業', '報告種別', '保有比率(%)', '保有目的']];
+  matched.forEach(r => {
+    rows.push([
+      r.date || '', r.filer_name || '', r.sec_code || '', r.target_company || '',
+      r.report_type || '', r.holding_ratio != null && !isNaN(parseFloat(r.holding_ratio)) ? parseFloat(r.holding_ratio).toFixed(2) : '', r.purpose || ''
+    ]);
+  });
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(row => row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'watchlist_reports_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ウォッチリストタブ切替時に初期化
+const origSwitchTab = switchTab;
+switchTab = function(tab, btn) {
+  origSwitchTab(tab, btn);
+  if (tab === 'watchlist') {
+    renderWatchlist();
+    renderWatchlistPresets();
+    renderWatchlistReports();
+  }
+};
+
+// ===== INVESTOR DETAIL MODAL =====
+function openInvestorDetail(activistId) {
+  const activist = reportData.activists[activistId];
+  if (!activist) return;
+
+  document.getElementById('idmName').textContent = activist.name;
+  const metaParts = [];
+  if (activist.representative) metaParts.push('代表: ' + activist.representative);
+  if (activist.headquarters) metaParts.push('本拠: ' + activist.headquarters);
+  const typeLabel = activist.type === 'activist' ? 'アクティビスト' : activist.type === 'individual_investor' ? '個人注目投資家' : activist.type === 'notable_holder' ? '注目投資家' : 'ファンド';
+  metaParts.push(typeLabel);
+  if (activist.member_ids && activist.member_ids.length) metaParts.push('グループ（' + activist.member_ids.length + '主体）');
+  document.getElementById('idmMeta').textContent = metaParts.join(' ｜ ');
+
+  // この投資家の全報告を取得（グループ対応）
+  let investorReports;
+  if (activist.member_ids && activist.member_ids.length) {
+    const memberIds = new Set(activist.member_ids);
+    investorReports = reportData.reports.filter(r => memberIds.has(r.activist_id));
+  } else {
+    const name = activist.name;
+    investorReports = reportData.reports.filter(r => r.filer_name === name || r.activist_id === activistId);
+  }
+
+  investorReports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  // サマリー統計
+  const uniqueSecCodes = new Set(investorReports.filter(r => r.sec_code).map(r => r.sec_code));
+  const ratios = investorReports.map(r => parseFloat(r.holding_ratio)).filter(v => !isNaN(v));
+  const maxRatio = ratios.length ? Math.max(...ratios) : null;
+  const latestDate = investorReports.length ? investorReports[0].date : '—';
+  const newCount = investorReports.filter(r => r.report_type === '新規報告').length;
+
+  document.getElementById('idmSummary').innerHTML = `
+    <div class="idm-stat"><div class="idm-stat-label">報告件数</div><div class="idm-stat-value">${investorReports.length}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">対象銘柄数</div><div class="idm-stat-value">${uniqueSecCodes.size}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">最高保有比率</div><div class="idm-stat-value">${maxRatio != null ? maxRatio.toFixed(1) + '%' : '—'}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">新規報告</div><div class="idm-stat-value">${newCount}</div></div>
+    <div class="idm-stat"><div class="idm-stat-label">最新報告日</div><div class="idm-stat-value" style="font-size:14px;">${latestDate}</div></div>
+  `;
+
+  // デルタ計算用に古い順でソート
+  const chronological = [...investorReports].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  const prevMap = {};
+  chronological.forEach(r => {
+    const key = (r.filer_name || '') + '|' + (r.sec_code || '');
+    const cur = parseFloat(r.holding_ratio);
+    if (prevMap[key] !== undefined && !isNaN(cur)) {
+      r._idm_delta = cur - prevMap[key];
+    } else {
+      r._idm_delta = null;
+    }
+    if (!isNaN(cur)) prevMap[key] = cur;
+  });
+
+  // 時系列テーブル（新→旧）
+  const tbody = document.getElementById('idmTableBody');
+  if (!investorReports.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--text-light);">報告データがありません</td></tr>';
+  } else {
+    tbody.innerHTML = investorReports.map(r => {
+      const ratioVal = r.holding_ratio != null ? parseFloat(r.holding_ratio) : NaN;
+      const ratioStr = !isNaN(ratioVal) ? ratioVal.toFixed(1) + '%' : '—';
+      let deltaStr = '—';
+      if (r._idm_delta != null) {
+        const d = r._idm_delta;
+        const sign = d > 0 ? '+' : '';
+        const cls = d > 0 ? 'idm-delta-up' : d < 0 ? 'idm-delta-down' : '';
+        deltaStr = '<span class="' + cls + '">' + sign + d.toFixed(1) + '%</span>';
+      }
+      const typeClass = r.report_type === '新規報告' ? 'type-new' : 'type-change';
+      return '<tr>' +
+        '<td>' + escapeHtml(r.date || '—') + '</td>' +
+        '<td><span class="activist-type ' + typeClass + '" style="font-size:10px;padding:1px 6px;">' + escapeHtml(r.report_type || '—') + '</span></td>' +
+        '<td>' + (r.sec_code ? '<span class="sec-code">' + escapeHtml(r.sec_code) + '</span>' : '—') + '</td>' +
+        '<td title="' + escapeHtml(r.target_company || '') + '">' + escapeHtml((r.target_company || '—').slice(0, 25)) + '</td>' +
+        '<td style="text-align:right;">' + ratioStr + '</td>' +
+        '<td style="text-align:right;">' + deltaStr + '</td>' +
+        '<td style="font-size:11px;">' + escapeHtml((r.purpose || '—').slice(0, 20)) + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // 銘柄別サマリー
+  const holdingMap = {};
+  chronological.forEach(r => {
+    if (!r.sec_code) return;
+    if (!holdingMap[r.sec_code]) {
+      holdingMap[r.sec_code] = { sec_code: r.sec_code, target: r.target_company || '—', reports: [], latestRatio: null, firstRatio: null };
+    }
+    const h = holdingMap[r.sec_code];
+    h.reports.push(r);
+    const rv = parseFloat(r.holding_ratio);
+    if (!isNaN(rv)) {
+      if (h.firstRatio === null) h.firstRatio = rv;
+      h.latestRatio = rv;
+    }
+    if (r.target_company && r.target_company !== '—') h.target = r.target_company;
+  });
+
+  const holdingSummary = document.getElementById('idmHoldingSummary');
+  const holdings = Object.values(holdingMap).sort((a, b) => (b.latestRatio || 0) - (a.latestRatio || 0));
+
+  if (!holdings.length) {
+    holdingSummary.innerHTML = '<div style="font-size:12px;color:var(--text-light);padding:12px;">銘柄データがありません</div>';
+  } else {
+    holdingSummary.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">' +
+      holdings.map(h => {
+        const totalDelta = (h.latestRatio != null && h.firstRatio != null) ? h.latestRatio - h.firstRatio : null;
+        let deltaLabel = '';
+        if (totalDelta != null) {
+          const sign = totalDelta > 0 ? '+' : '';
+          const cls = totalDelta > 0 ? 'idm-delta-up' : totalDelta < 0 ? 'idm-delta-down' : '';
+          deltaLabel = '<span class="' + cls + '" style="font-size:11px;margin-left:6px;">(' + sign + totalDelta.toFixed(1) + '%)</span>';
+        }
+        return '<div style="background:var(--off-white);border-radius:6px;padding:12px 14px;">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+          '<span style="font-size:12px;font-weight:500;color:var(--navy);">' +
+          '<span class="sec-code">' + escapeHtml(h.sec_code) + '</span> ' + escapeHtml(h.target.slice(0, 20)) +
+          '</span></div>' +
+          '<div style="margin-top:6px;font-size:13px;">' +
+          '最新比率: <strong>' + (h.latestRatio != null ? h.latestRatio.toFixed(1) + '%' : '—') + '</strong>' + deltaLabel +
+          '</div>' +
+          '<div style="font-size:11px;color:var(--text-light);margin-top:2px;">報告 ' + h.reports.length + '件</div>' +
+          '</div>';
+      }).join('') + '</div>';
+  }
+
+  document.getElementById('investorDetailOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInvestorDetail() {
+  document.getElementById('investorDetailOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+</script>
+
+</body>
+</html>

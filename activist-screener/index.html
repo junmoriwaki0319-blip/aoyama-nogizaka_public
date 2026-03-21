@@ -1,1 +1,1314 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta http-equiv="refresh" content="0;url=/activist-screener.html"><link rel="canonical" href="https://aoyama-nogizaka.com/activist-screener.html"><title>リダイレクト中...</title></head><body><p><a href="/activist-screener.html">こちら</a>へ移動します。</p></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5D57P05PM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクティビスト・スクリーニング | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="アクティビスト・スクリーニング | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/activist-screener">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="アクティビスト・スクリーニング | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/activist-screener">
+  <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/activist-screener">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "アクティビスト・スクリーニング",
+    "description": "上場企業のアクティビスト標的リスクをスクリーニング。含み益・実質PBR分析、複数銘柄の一括ランキング。",
+    "url": "https://aoyama-nogizaka.com/activist-screener",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "provider": {
+      "@type": "Organization",
+      "name": "青山乃木坂パートナーズ",
+      "url": "https://aoyama-nogizaka.com"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, EmailAuthProvider, linkWithCredential } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBtkjBDGp-piXXdpiVgKEzvPmGZNzd6LMI",
+      authDomain: "aoyama-nogizaka-activist.firebaseapp.com",
+      projectId: "aoyama-nogizaka-activist",
+      storageBucket: "aoyama-nogizaka-activist.firebasestorage.app",
+      messagingSenderId: "384668278205",
+      appId: "1:384668278205:web:78b25a473c6305f264c6d4",
+      measurementId: "G-Y1JYXRYHV9"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+    window.firebaseAuth = auth;
+    window.firebaseDb = db;
+    onAuthStateChanged(auth, async (user) => {
+      window.currentUser = user;
+      if (user) {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (!snap.exists()) {
+          await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "",
+            company: "",
+            email: user.email || "",
+            affiliation: "",
+            affiliationCode: "",
+            jobTitle: "",
+            plan: "free",
+            createdAt: serverTimestamp()
+          });
+        }
+      }
+      if (typeof updateAuthUI === 'function') {
+        updateAuthUI(user);
+      } else {
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof updateAuthUI === 'function') updateAuthUI(user);
+        });
+      }
+    });
+    window.firebaseLogin = async (email, password) => {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      return cred.user;
+    };
+    window.firebaseRegister = async (email, password, name, company, affiliation, affiliationCode, jobTitle) => {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      await setDoc(doc(db, "users", cred.user.uid), {
+        name, company: company || "", email,
+        affiliation: affiliation || "",
+        affiliationCode: affiliationCode || "",
+        jobTitle: jobTitle || "",
+        plan: "free", createdAt: serverTimestamp()
+      });
+      await sendEmailVerification(cred.user);
+      window.sendWelcomeEmail(email, name);
+      return cred.user;
+    };
+    window.firebaseResetPassword = (email) => sendPasswordResetEmail(auth, email);
+    window.firebaseGetProfile = async (uid) => {
+      const snap = await getDoc(doc(db, "users", uid));
+      return snap.exists() ? snap.data() : null;
+    };
+
+    // Google ログイン
+    const googleProvider = new GoogleAuthProvider();
+    window.firebaseGoogleLogin = async () => {
+      const cred = await signInWithPopup(auth, googleProvider);
+      const user = cred.user;
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (!snap.exists()) {
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName || "",
+          company: "",
+          email: user.email || "",
+          affiliation: "",
+          affiliationCode: "",
+          jobTitle: "",
+          plan: "free",
+          createdAt: serverTimestamp()
+        });
+        window.sendWelcomeEmail(user.email, user.displayName || '');
+        return { user, needsProfile: true };
+      }
+      const data = snap.data();
+      const needsProfile = !data.affiliation || !data.jobTitle || !data.company;
+      return { user, needsProfile };
+    };
+
+    // ウェルカムメール送信
+    window.sendWelcomeEmail = async (email, name) => {
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyn3g-fn4edjI84f-eJ2UHeuCLlZNbvR4sTuup9qYvwGqBypSh6ndtkYjTR6yBGq4zY/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name })
+        });
+      } catch (e) { console.warn('Welcome email failed:', e); }
+    };
+
+    // プロフィール更新
+    window.firebaseUpdateProfile = async (uid, data) => {
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, data, { merge: true });
+    };
+
+    // パスワードをリンク（Google登録ユーザー向け）
+    window.firebaseLinkPassword = async (email, password) => {
+      const credential = EmailAuthProvider.credential(email, password);
+      await linkWithCredential(auth.currentUser, credential);
+    };
+
+    window.firebaseLogout = () => signOut(auth);
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#1a2d4f;--navy-light:#243b63;--gold:#9b8b6e;--gold-light:#c8b99a;--white:#fff;--off-white:#f8f7f5;--light-gray:#f0eee9;--mid-gray:#e0dcd5;--text-dark:#1a1a1a;--text-mid:#444;--text-light:#888;--red:#c0392b;--green:#27ae60;--blue:#2980b9;--orange:#e67e22;--danger:#c0392b;--muted:#888;--serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--deco:'Cormorant Garamond',serif}
+    html{scroll-behavior:smooth}body{font-family:var(--sans);color:var(--text-dark);background:var(--off-white)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy);height:64px;display:flex;align-items:center}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 40px;width:100%;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{text-decoration:none;display:flex;flex-direction:column;gap:1px}
+    .nav-logo-jp{font-family:var(--serif);font-size:.75rem;color:var(--mid-gray);letter-spacing:.1em}
+    .nav-logo-en{font-family:var(--deco);font-size:1rem;color:var(--white);letter-spacing:.08em}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links a{color:var(--mid-gray);text-decoration:none;font-size:.78rem;letter-spacing:.06em;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-links a.active{border-bottom:1px solid var(--gold);padding-bottom:2px}
+    .nav-dropdown{position:relative}.nav-dropdown-toggle{cursor:pointer;padding-bottom:18px;margin-bottom:-18px}
+    .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:-16px;background:var(--navy);border-radius:8px;padding:10px 0;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:100;list-style:none}
+    .nav-dropdown-menu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+    .nav-dropdown-cat{padding:8px 24px 4px;font-size:.65rem;color:var(--gold-light);letter-spacing:.1em;font-weight:600;text-transform:uppercase;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08)}
+    .nav-dropdown-cat:first-child{border-top:none}
+    .nav-dropdown-menu li a{display:block;padding:11px 24px;font-size:.82rem;white-space:nowrap;color:rgba(255,255,255,.65);transition:color .15s,background .15s}
+    .nav-dropdown-menu li a:hover,.nav-dropdown-menu li a.active{color:var(--gold);background:rgba(255,255,255,.06)}
+    .nav-dropdown:hover .nav-dropdown-menu{display:block}
+    .nav-cta{background:var(--gold);color:var(--white)!important;border:none;cursor:pointer;padding:8px 20px;font-size:.78rem;font-family:var(--sans);letter-spacing:.06em;transition:opacity .2s;text-decoration:none}
+    .nav-cta:hover{opacity:.85}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s}
+    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;padding:36px 28px;gap:0}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{text-decoration:none;color:rgba(255,255,255,.8);font-size:1rem;letter-spacing:.06em;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:color .2s}
+    .mobile-menu a:hover{color:var(--gold)}.mobile-menu a.active{color:var(--gold)}
+    .mobile-menu a.m-cta{color:var(--gold);margin-top:20px;border:1px solid var(--gold);text-align:center;padding:14px}
+    @media(max-width:860px){.nav-inner{padding:0 20px}.nav-links{display:none}.nav-hamburger{display:flex}}
+    .page-hero{margin-top:64px;background:linear-gradient(160deg,var(--navy) 0%,#243b60 60%,#2a4570 100%);padding:72px 40px 60px;position:relative;overflow:hidden}
+    .page-hero::after{content:'';position:absolute;right:-40px;top:-40px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(155,139,110,.1) 0%,transparent 70%)}
+    .page-hero-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1}
+    .page-hero-en{font-family:var(--deco);font-style:italic;color:var(--gold);font-size:.95rem;letter-spacing:.12em;margin-bottom:10px}
+    .page-hero h1{font-family:var(--serif);font-weight:300;color:var(--white);font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:16px;line-height:1.5}
+    .page-hero p{color:rgba(255,255,255,.65);font-size:.88rem;max-width:600px;margin:0 auto;line-height:1.8}
+    .hero-badge{display:inline-block;margin-top:20px;padding:6px 20px;border:1px solid var(--gold);color:var(--gold);font-size:.72rem;letter-spacing:.1em}
+    .container{max-width:1100px;margin:0 auto;padding:0 40px}
+    .tab-bar{display:flex;gap:0;margin-top:36px}
+    .tab-btn{flex:1;padding:16px 20px;background:var(--white);border:2px solid var(--mid-gray);border-bottom:none;border-radius:10px 10px 0 0;font-size:.88rem;font-family:var(--sans);color:var(--text-light);cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.04em}
+    .tab-btn.active{border-color:var(--gold);color:var(--navy);font-weight:500}
+    .tab-btn:not(.active):hover{color:var(--text-mid)}
+    .tab-panel{display:none;background:var(--white);border:2px solid var(--gold);border-radius:0 0 12px 12px;padding:36px}
+    .tab-panel.active{display:block}
+    .s-card{background:var(--off-white);border-radius:10px;padding:24px 28px;margin-bottom:20px}
+    .s-card-title{font-family:var(--serif);font-weight:400;font-size:.95rem;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--mid-gray)}
+    .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+    .form-field label{display:block;font-size:.76rem;color:var(--navy);font-weight:500;margin-bottom:5px}
+    .form-field input,.form-field select,.form-field textarea{width:100%;padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.88rem;font-family:var(--sans);color:var(--text-dark);background:var(--white);transition:border-color .2s;outline:none}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
+    .form-field textarea{resize:vertical}
+    .btn-primary{padding:12px 28px;background:var(--navy);color:var(--white);border:none;border-radius:8px;font-size:.85rem;font-family:var(--sans);letter-spacing:.06em;cursor:pointer;transition:background .2s}
+    .btn-primary:hover{background:var(--navy-light)}.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+    .btn-secondary{padding:12px 24px;background:none;color:var(--text-light);border:1px solid var(--mid-gray);border-radius:8px;font-size:.82rem;font-family:var(--sans);cursor:pointer;transition:all .2s}
+    .btn-secondary:hover{border-color:var(--text-mid);color:var(--text-mid)}
+    .btn-gold{padding:10px 22px;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.82rem;font-family:var(--sans);cursor:pointer;transition:opacity .2s}
+    .btn-gold:hover{opacity:.85}.btn-gold:disabled{opacity:.4;cursor:not-allowed}
+    .btn-row{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+    .loading{display:none;align-items:center;gap:8px;color:var(--gold);padding:12px 0;font-size:.82rem}
+    .loading.active{display:flex}
+    .spinner{width:16px;height:16px;border:2px solid var(--mid-gray);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .score-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);border-radius:10px;padding:28px;text-align:center;color:var(--white);margin-bottom:20px}
+    .score-hero .company{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+    .score-hero .market-info{font-size:.72rem;color:var(--gold-light);margin-bottom:12px}
+    .score-number{font-family:var(--deco);font-size:3.2rem;font-weight:500;line-height:1}
+    .score-number .max{font-size:1.1rem;color:rgba(255,255,255,.45)}
+    .score-badge{display:inline-block;padding:4px 16px;border-radius:16px;font-size:.78rem;font-weight:600;margin-top:10px;color:var(--white)}
+    .badge-high{background:var(--red)}.badge-mid{background:var(--orange)}.badge-low{background:var(--green)}
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px}
+    .metric-card{background:var(--white);border:1px solid var(--light-gray);border-radius:8px;padding:16px}
+    .metric-card-title{font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid var(--gold-light)}
+    .metric-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--light-gray)}
+    .metric-row:last-child{border-bottom:none}
+    .metric-label{font-size:.78rem;color:var(--text-light)}
+    .metric-value{font-size:.82rem;font-weight:600;font-family:var(--deco);letter-spacing:.03em}
+    .metric-value.highlight{color:var(--red);font-size:.88rem}
+    .metric-value.positive{color:var(--green)}.metric-value.negative{color:var(--red)}.metric-value.warning{color:var(--orange)}
+    table{width:100%;border-collapse:collapse;font-size:.78rem}
+    th{background:var(--light-gray);color:var(--text-light);font-weight:600;font-size:.72rem;letter-spacing:.04em}
+    th,td{padding:8px 10px;text-align:left}td{border-top:1px solid var(--light-gray)}
+    tbody tr:hover td{background:var(--off-white)}
+    .bar-container{width:70px;height:5px;background:var(--light-gray);border-radius:3px;display:inline-block;vertical-align:middle}
+    .bar-fill{height:100%;border-radius:3px}.bar-high{background:var(--red)}.bar-mid{background:var(--orange)}.bar-low{background:var(--green)}
+    .ranking-table{overflow-x:auto}.ranking-table table{min-width:900px}
+    .ranking-table th{cursor:pointer;user-select:none;white-space:nowrap}.ranking-table th:hover{background:var(--mid-gray)}
+    .ranking-table td{font-family:var(--deco);font-size:.78rem}.ranking-table td.name-cell{font-family:var(--sans)}
+    .rank-badge{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;font-size:.68rem;font-weight:700;color:#fff}
+    .rank-1{background:#c8a84e}.rank-2{background:#a0aec0}.rank-3{background:#b87333}.rank-other{background:var(--text-light)}
+    .chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .chip{padding:4px 14px;border-radius:14px;font-size:.72rem;font-weight:500;background:var(--light-gray);color:var(--gold);border:1px solid var(--gold-light);cursor:pointer;transition:all .2s}
+    .chip:hover{background:var(--gold);color:var(--white)}
+    .progress-bar{width:100%;height:5px;background:var(--light-gray);border-radius:3px;margin:8px 0}
+    .progress-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .3s}
+    .progress-text{font-size:.72rem;color:var(--text-light)}
+    .mcap-cat{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:500}
+    .mcap-legend{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+    .mcap-legend-row{display:flex;align-items:center;gap:4px;font-size:.66rem;color:var(--text-light)}
+    .mcap-legend-def{min-width:80px}
+    .mcap-legend-count{font-weight:600;color:var(--navy);font-size:.66rem}
+    .mcap-nano{background:#fce4ec;color:#880e4f}.mcap-micro{background:#fff8e1;color:#f57f17}
+    .mcap-small{background:#e8f5e9;color:#2e7d32}.mcap-mid{background:#e3f2fd;color:#1565c0}.mcap-large{background:#f3e5f5;color:#6a1b9a}
+    .auth-section{margin-top:20px;padding:20px;background:var(--light-gray);border-radius:8px}
+    .auth-section h3{font-family:var(--serif);font-weight:400;font-size:.92rem;color:var(--navy);margin-bottom:12px}
+    .auth-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center}
+    .auth-modal-overlay.show{display:flex}
+    .auth-modal{background:var(--white);border-radius:12px;padding:40px 36px;max-width:480px;width:90%;position:relative;max-height:90vh;overflow-y:auto}
+    .auth-modal-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text-light)}
+    .auth-modal-close:hover{color:var(--navy)}
+    .auth-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+    .auth-form input{padding:8px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.82rem}
+    .auth-msg{font-size:.76rem;margin-top:8px}.auth-msg.error{color:var(--red)}.auth-msg.success{color:var(--green)}
+    .btn-google{width:100%;padding:12px;background:var(--white);color:var(--text-dark);border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s}
+    .btn-google:hover{background:#f8f8f8;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+    .user-info{display:flex;align-items:center;gap:12px;font-size:.82rem}.user-info .name{font-weight:500;color:var(--navy)}
+    .hidden{display:none!important}
+    .login-wall{position:relative;margin-top:-60px;padding-top:100px;padding-bottom:60px;text-align:center;background:linear-gradient(to bottom,transparent 0%,var(--off-white) 30%,var(--off-white) 100%)}
+    .login-wall-inner{max-width:480px;margin:0 auto;background:var(--white);border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.08);padding:48px 40px}
+    .login-wall-icon{width:60px;height:60px;background:var(--light-gray);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px}
+    .login-wall h2{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--navy);margin-bottom:12px}
+    .login-wall p{font-size:14px;color:var(--text-light);margin-bottom:28px;line-height:1.8}
+    .login-wall .plan-features{text-align:left;background:var(--off-white);border-radius:8px;padding:20px 24px;margin-bottom:24px}
+    .login-wall .plan-features h4{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+    .login-wall .plan-features ul{list-style:none;padding:0}
+    .login-wall .plan-features li{font-size:.78rem;color:var(--text-mid);padding:4px 0;padding-left:18px;position:relative}
+    .login-wall .plan-features li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700}
+    .btn-cta-register{display:block;width:100%;padding:14px;background:var(--gold);color:var(--white);border:none;border-radius:8px;font-size:.88rem;font-family:var(--sans);cursor:pointer;letter-spacing:.06em;transition:opacity .2s;margin-bottom:12px}
+    .btn-cta-register:hover{opacity:.85}
+    .btn-cta-login{display:block;font-size:.78rem;color:var(--gold);cursor:pointer;text-decoration:underline}
+    .screener-gated{transition:filter .3s}.screener-gated.blurred{filter:blur(4px);pointer-events:none;user-select:none}
+    .rank-view-tab{padding:10px 20px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;font-size:.78rem;font-family:var(--sans);color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.04em;font-weight:500}
+    .rank-view-tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+    .rank-view-tab:not(.active):hover{color:var(--text-mid)}
+    .rank-view{display:none}.rank-view.active{display:block}
+    .info-tip{display:inline-block;width:15px;height:15px;line-height:15px;text-align:center;border-radius:50%;background:var(--mid-gray);color:var(--text-light);font-size:.62rem;font-weight:700;cursor:help;position:relative}
+    .info-tip:hover::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);bottom:20px;background:var(--navy);color:#fff;padding:5px 10px;border-radius:5px;font-size:.68rem;white-space:nowrap;z-index:10;font-weight:400}
+    .cta-section{padding:56px 0 0}
+    .cta-card{background:var(--navy);border-radius:12px;padding:40px;text-align:center}
+    .cta-card h3{font-family:var(--serif);font-weight:300;color:var(--white);font-size:1.2rem;margin-bottom:12px}
+    .cta-card p{color:rgba(255,255,255,.6);font-size:.82rem;margin-bottom:24px;line-height:1.8}
+    .cta-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .cta-links a{padding:12px 28px;border-radius:6px;font-size:.82rem;letter-spacing:.06em;font-family:var(--sans);text-decoration:none;transition:all .2s}
+    .cta-primary{background:var(--gold);color:var(--white)}.cta-primary:hover{opacity:.85}
+    .cta-secondary{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8)}.cta-secondary:hover{border-color:var(--gold);color:var(--gold)}
+    footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
+    .footer-inner{max-width:1200px;margin:0 auto;padding:0 40px}
+    .footer-top{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .footer-brand{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
+    .footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.7rem;letter-spacing:0.12em;color:var(--gold)}
+    .footer-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 24px;list-style:none;align-items:center}
+    .footer-nav a{text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;transition:color .2s}.footer-nav a:hover{color:var(--white)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-address{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
+    @media(max-width:860px){#navAuthBtns,#navUserInfo{display:none!important}}
+    @media(max-width:768px){
+      .page-hero{padding:56px 20px 44px}
+      .container{padding:0 20px}
+      .tab-panel{padding:20px 14px}
+      .s-card{padding:18px 16px}
+      .metrics-grid{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+      .tab-bar{flex-direction:column;gap:0}
+      .tab-btn{border-radius:0;border-bottom:2px solid var(--mid-gray);min-height:44px;font-size:.82rem}
+      .tab-btn:first-child{border-radius:10px 10px 0 0}
+      .tab-btn.active{border-bottom-color:var(--gold)}
+      .btn-primary,.btn-secondary,.btn-gold,.btn-cta-register{min-height:44px}
+      .btn-row{flex-direction:column}
+      .btn-row .btn-primary,.btn-row .btn-secondary,.btn-row .btn-gold{width:100%}
+      .form-field input,.form-field select,.form-field textarea{min-height:44px;font-size:.88rem}
+      .score-hero{padding:20px 16px}
+      .score-number{font-size:2.6rem}
+      .metric-card{padding:14px 12px}
+      .ranking-table{margin:0 -14px}
+      .ranking-table table{font-size:.72rem}
+      .ranking-table th,.ranking-table td{padding:8px 6px}
+      .chip{padding:6px 14px;min-height:36px;display:inline-flex;align-items:center}
+      .cta-card{padding:28px 20px}
+      .cta-links{flex-direction:column}
+      .cta-links a{text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
+      .login-wall-inner{padding:36px 24px}
+      .auth-modal{padding:32px 24px}
+      .auth-form{flex-direction:column}
+      .info-tip:hover::after{left:auto;right:0;transform:none;max-width:200px;white-space:normal}
+      .footer-top{grid-template-columns:1fr;gap:24px}
+      .footer-nav{grid-template-columns:repeat(2,1fr)}
+      .footer-inner{padding:0 20px}
+      .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+    }
+    @media(max-width:480px){
+      .page-hero h1{font-size:1.3rem}
+      .page-hero p{font-size:.82rem}
+      .score-number{font-size:2.2rem}
+      .metric-row{flex-direction:column;align-items:flex-start;gap:2px}
+      .chip-row{gap:4px}
+      .chip{font-size:.72rem;padding:5px 12px;min-height:32px}
+      .container{padding:0 16px}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+<!-- Nav -->
+<nav aria-label="メインナビゲーション">
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li class="nav-dropdown-cat">アクティビスト分析</li>
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+          <li><a href="/activist-screener.html" class="active">スクリーニング・ランキング</a></li>
+          <li class="nav-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
+          <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div id="navAuthBtns" style="display:flex;gap:10px;align-items:center;">
+      <button onclick="scrollToAuth('login')" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">ログイン</button>
+      <button onclick="scrollToAuth('register')" style="background:var(--gold);border:none;color:#fff;padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">無料会員登録</button>
+    </div>
+    <div id="navUserInfo" style="display:none;align-items:center;gap:10px;">
+      <a onclick="openMyPage()" id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;letter-spacing:.04em;text-decoration:underline;"></a>
+      <button onclick="doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:4px;font-size:.68rem;cursor:pointer;">ログアウト</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
+  <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+  <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
+  <a href="/activist-screener.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
+  <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
+  <div class="m-auth" id="mobileAuthBtns" style="display:flex;gap:12px;margin-top:24px;">
+    <button class="btn-login" onclick="toggleMenu();openAuthModal('login')" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">ログイン</button>
+    <button class="btn-register" onclick="toggleMenu();openAuthModal('register')" style="background:var(--gold);border:none;color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">無料会員登録</button>
+  </div>
+  <div class="m-auth" id="mobileUserInfo" style="display:none;gap:12px;margin-top:24px;align-items:center;">
+    <span style="font-size:.85rem;color:rgba(255,255,255,.7);" id="mobileUserName"></span>
+    <button onclick="toggleMenu();doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:8px 16px;border-radius:4px;font-size:.78rem;cursor:pointer;">ログアウト</button>
+  </div>
+  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+</div>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-en">Activist Screening &amp; Ranking</div>
+    <h1>アクティビスト・スクリーニング</h1>
+    <p>含み益・実質PBR分析から複数銘柄の一括スキャンまで。<br>アクティビストが標的としそうな企業を定量的にスクリーニングします。</p>
+    <div class="hero-badge">含み益分析 &amp; バッチスキャン対応</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('individual')">個別銘柄分析</button>
+    <button class="tab-btn" onclick="switchTab('ranking')">ランキング・スクリーニング</button>
+  </div>
+
+  <!-- TAB 1: 個別銘柄分析 -->
+  <div class="tab-panel active" id="tab-individual">
+    <div class="s-card">
+      <div class="s-card-title">銘柄コード入力 &amp; データ取得</div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>証券コード（4桁英数字）</label>
+          <input type="text" id="indCode" placeholder="例: 7203" maxlength="4">
+        </div>
+        <div class="form-field">
+          <label>EDINETコード（任意）</label>
+          <input type="text" id="indEdinet" placeholder="例: E02144">
+        </div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary style="font-size:0.76rem; color:var(--text-light); cursor:pointer;">EDINET API設定（含み益・ネットキャッシュ自動計算に利用）</summary>
+        <div class="form-grid" style="margin-top:8px;">
+          <div class="form-field">
+            <label>EDINET APIキー（任意・未入力でもデフォルトキーで動作）</label>
+            <input type="text" id="edinetApiKey" placeholder="未入力でもOK（独自キーがあれば入力）">
+          </div>
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-light); margin-top:4px;">
+          デフォルトのAPIキーが設定済みです。独自キーを使いたい場合は<a href="https://disclosure2.edinet-fsa.go.jp" target="_blank" style="color:var(--gold);">EDINET</a>で無料登録できます
+        </p>
+      </details>
+      <div class="btn-row">
+        <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
+        <button class="btn-secondary" onclick="resetIndividual()">リセット</button>
+      </div>
+      <div class="loading" id="indLoading"><div class="spinner"></div><span id="indLoadingText">データ取得中...</span></div>
+    </div>
+
+    <!-- ログインゲート: ここから先は会員限定 -->
+    <div class="screener-gated" id="screenerGated">
+
+    <div id="indResult" class="hidden">
+      <div class="score-hero">
+        <div class="company" id="indCompanyName">-</div>
+        <div class="market-info" id="indMarketInfo">-</div>
+        <div style="font-size:0.72rem; margin-bottom:6px; color:rgba(255,255,255,0.55);">アクティビスト標的スコア</div>
+        <div class="score-number"><span id="indTotalScore">0</span><span class="max"> / 100</span></div>
+        <div class="score-badge" id="indScoreBadge">-</div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-card-title">基本指標</div>
+          <div class="metric-row"><span class="metric-label">株価</span><span class="metric-value" id="m_price">-</span></div>
+          <div class="metric-row"><span class="metric-label">PBR</span><span class="metric-value" id="m_pbr">-</span></div>
+          <div class="metric-row"><span class="metric-label">PER</span><span class="metric-value" id="m_per">-</span></div>
+          <div class="metric-row"><span class="metric-label">ROE</span><span class="metric-value" id="m_roe">-</span></div>
+          <div class="metric-row"><span class="metric-label">EPS</span><span class="metric-value" id="m_eps">-</span></div>
+          <div class="metric-row"><span class="metric-label">BPS</span><span class="metric-value" id="m_bps">-</span></div>
+          <div class="metric-row"><span class="metric-label">配当利回り</span><span class="metric-value" id="m_divyield">-</span></div>
+          <div class="metric-row"><span class="metric-label">配当性向</span><span class="metric-value" id="m_payout">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">バリュー指標（含み益・実質PBR）</div>
+          <div class="metric-row"><span class="metric-label">時価総額</span><span class="metric-value" id="m_mcap">-</span></div>
+          <div class="metric-row"><span class="metric-label">時価総額区分 <span class="info-tip" data-tip="ナノ: 〜50億 / マイクロ: 50〜300億 / スモール: 300〜1,000億 / ミッド: 1,000〜5,000億 / ラージ: 5,000億〜">?</span></span><span id="m_mcap_cat">-</span></div>
+          <div class="metric-row"><span class="metric-label">純資産（簿価）</span><span class="metric-value" id="m_netassets">-</span></div>
+          <div class="metric-row"><span class="metric-label">有価証券含み益</span><span class="metric-value highlight" id="m_sec_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産（簿価）<span class="info-tip" data-tip="注記「賃貸等不動産」の貸借対照表計上額。投資不動産とも呼ばれる">?</span></span><span class="metric-value" id="m_prop_bv">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産（時価）<span class="info-tip" data-tip="不動産鑑定評価額等に基づく時価。注記から取得">?</span></span><span class="metric-value" id="m_prop_fv">-</span></div>
+          <div class="metric-row"><span class="metric-label">賃貸等不動産含み益</span><span class="metric-value highlight" id="m_prop_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">土地（簿価）<span class="info-tip" data-tip="BSの有形固定資産に含まれる土地の帳簿価額">?</span></span><span class="metric-value" id="m_land_bv">-</span></div>
+          <div class="metric-row"><span class="metric-label">推定土地含み益 <span class="info-tip" data-tip="投資不動産の時価/簿価比率等から推定">?</span></span><span class="metric-value highlight" id="m_land_gain">-</span></div>
+          <div id="m_land_gain_method" style="font-size:.66rem;color:var(--text-light);padding:2px 0 4px;display:none;"></div>
+          <div class="metric-row"><span class="metric-label">含み益合計</span><span class="metric-value highlight" id="m_total_gain">-</span></div>
+          <div class="metric-row"><span class="metric-label">修正純資産</span><span class="metric-value" id="m_adj_nav">-</span></div>
+          <div class="metric-row"><span class="metric-label">実質PBR</span><span class="metric-value highlight" id="m_adj_pbr">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">キャッシュ・財務指標</div>
+          <div class="metric-row"><span class="metric-label">現金及び預金</span><span class="metric-value" id="m_cash">-</span></div>
+          <div class="metric-row"><span class="metric-label">有利子負債</span><span class="metric-value" id="m_debt">-</span></div>
+          <div class="metric-row"><span class="metric-label">ネットキャッシュ</span><span class="metric-value" id="m_netcash">-</span></div>
+          <div class="metric-row"><span class="metric-label">NC/時価総額</span><span class="metric-value highlight" id="m_nc_ratio">-</span></div>
+          <div class="metric-row"><span class="metric-label">実質NC <span class="info-tip" data-tip="NC＋有価証券時価評価額。政策保有株式等の時価を加算した実質的なネットキャッシュ">?</span></span><span class="metric-value" id="m_adj_netcash">-</span></div>
+          <div class="metric-row"><span class="metric-label">実質NC/時価総額</span><span class="metric-value highlight" id="m_adj_nc_ratio">-</span></div>
+          <div class="metric-row"><span class="metric-label">含み資産NC <span class="info-tip" data-tip="実質NC＋投資不動産時価。有価証券と不動産の含み益を加味した総合的ネットキャッシュ">?</span></span><span class="metric-value" id="m_full_netcash">-</span></div>
+          <div class="metric-row"><span class="metric-label">含み資産NC/時価総額</span><span class="metric-value highlight" id="m_full_nc_ratio">-</span></div>
+          <div class="metric-row"><span class="metric-label">EV/EBITDA <span class="info-tip" data-tip="企業価値(時価総額+有利子負債-現金)/EBITDA(営業利益+減価償却費)。低いほど割安">?</span></span><span class="metric-value highlight" id="m_ev_ebitda">-</span></div>
+          <div class="metric-row"><span class="metric-label">自己資本比率</span><span class="metric-value" id="m_equity_ratio">-</span></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-title">ガバナンス指標</div>
+          <div class="metric-row"><span class="metric-label">外国人持株比率</span><span class="metric-value" id="m_foreign">-</span></div>
+          <div class="metric-row"><span class="metric-label">社外取締役比率</span><span class="metric-value" id="m_outside_dir">-</span></div>
+          <div class="metric-row"><span class="metric-label">発行済株式数</span><span class="metric-value" id="m_shares">-</span></div>
+          <div class="metric-row"><span class="metric-label">自己株式数</span><span class="metric-value" id="m_treasury">-</span></div>
+        </div>
+      </div>
+
+      <div class="s-card">
+        <div class="s-card-title">手動補正入力 <span class="info-tip" data-tip="APIで取得できない値を手動入力し再計算">?</span></div>
+        <div class="form-grid">
+          <div class="form-field"><label>有価証券含み益（百万円）</label><input type="number" id="manual_sec_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>投資不動産含み益（百万円）</label><input type="number" id="manual_prop_gain" placeholder="自動取得 or 手動入力"></div>
+          <div class="form-field"><label>土地含み益（百万円）</label><input type="number" id="manual_land_gain" placeholder="EDINET推定 or 手動入力"></div>
+          <div class="form-field"><label>政策保有株式/純資産（%）</label><input type="number" id="manual_cross" step="0.1" placeholder="例: 12.0"></div>
+        </div>
+        <div class="btn-row"><button class="btn-secondary" onclick="recalcIndividual()">再計算</button></div>
+      </div>
+
+      <!-- 土地明細分析セクション -->
+      <div class="s-card" id="landAnalysisSection" style="display:none;">
+        <div class="s-card-title">土地明細分析 <span class="info-tip" data-tip="有価証券報告書の「主要な設備の状況」から土地の所在地・面積を抽出し、国土交通省の不動産取引価格情報で時価を推定します">?</span></div>
+        <div class="btn-row" style="margin-bottom:12px;">
+          <button class="btn-primary" id="btnLandAnalysis" onclick="fetchLandParcels()" style="background:var(--gold);">
+            <span style="margin-right:6px;">&#x1f4cd;</span>土地明細分析を実行
+          </button>
+        </div>
+        <div class="loading" id="landLoading"><div class="spinner"></div><span id="landLoadingText">土地明細を解析中...</span></div>
+
+        <!-- 土地明細結果 -->
+        <div id="landResult" class="hidden">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">検出拠点数</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_parcel_count">-</div>
+            </div>
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">明細簿価合計</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="land_total_bv">-</div>
+            </div>
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">推定時価合計</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="land_total_fv">-</div>
+            </div>
+            <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+              <div style="font-size:.72rem;color:var(--text-light);">推定含み益</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="land_total_gain">-</div>
+            </div>
+          </div>
+          <div id="land_gain_method_detail" style="font-size:.7rem;color:var(--text-light);margin-bottom:12px;"></div>
+
+          <!-- 用途別調整係数デフォルト設定 -->
+          <div style="background:var(--bg-alt);border-radius:8px;padding:12px 16px;margin-bottom:12px;">
+            <div style="font-size:.72rem;font-weight:600;color:var(--navy);margin-bottom:8px;">用途別調整係数（デフォルト）<span class="info-tip" data-tip="公示地価の全用途平均に対する調整係数。用途に応じて時価推定を補正します。各拠点で個別に変更も可能です。">?</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.72rem;">
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">工場・倉庫 <input type="number" id="defRate_factory" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">オフィス <input type="number" id="defRate_office" value="0.9" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">商業施設 <input type="number" id="defRate_commercial" value="0.8" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">住宅・寮 <input type="number" id="defRate_residential" value="1.0" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">遊休地 <input type="number" id="defRate_idle" value="0.6" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">その他 <input type="number" id="defRate_other" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+            </div>
+          </div>
+
+          <!-- 土地明細テーブル -->
+          <div style="overflow-x:auto;">
+            <table style="font-size:.74rem;">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>事業所名</th>
+                  <th>所在地</th>
+                  <th>用途推定</th>
+                  <th style="text-align:right;">面積（㎡）</th>
+                  <th style="text-align:right;">簿価（百万円）</th>
+                  <th style="text-align:center;">調整係数</th>
+                  <th style="text-align:right;">推定単価（円/㎡）</th>
+                  <th style="text-align:right;">推定時価（百万円）</th>
+                  <th style="text-align:right;">含み益（百万円）</th>
+                </tr>
+              </thead>
+              <tbody id="landParcelsBody"></tbody>
+            </table>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 政策保有株式セクション -->
+      <!-- 政策保有株式セクション -->
+      <div class="s-card" id="policyHoldingsSection" style="display:none;">
+        <div class="s-card-title">政策保有株式分析 <span class="info-tip" data-tip="有価証券報告書の「特定投資株式」から保有銘柄・株式数・BS計上額を抽出し、Yahoo!ファイナンスの株価で現在時価と含み益を推計します">?</span></div>
+
+        <!-- サマリーカード -->
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">保有銘柄数</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_count">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">報告書時価合計</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="ph_report_total">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">現在推定時価合計</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--green);" id="ph_current_total">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">推定含み益</div>
+            <div style="font-size:1.3rem;font-weight:700;" id="ph_gain">-</div>
+          </div>
+        </div>
+
+        <!-- 株価取得コントロール -->
+        <div class="btn-row" style="margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <label style="font-size:.76rem;color:var(--text-light);">株価基準:</label>
+          <select id="phPriceBasis" onchange="if(phPriceData){var e=indData.edinet||{};renderPolicyHoldingsTable(e.policyHoldingsTop,phPriceData);updatePolicyHoldingsSummary(e.policyHoldingsTop,phPriceData);}" style="font-size:.76rem;padding:4px 8px;border:1px solid #ccc;border-radius:4px;">
+            <option value="lastClose">前日終値</option>
+            <option value="avg3m">3ヶ月平均</option>
+            <option value="avg6m">6ヶ月平均</option>
+            <option value="avg12m">12ヶ月平均</option>
+          </select>
+          <button class="btn-primary" id="btnFetchStockPrices" onclick="fetchPolicyHoldingsPrices()" style="background:var(--gold);font-size:.78rem;">
+            株価取得・含み益計算
+          </button>
+        </div>
+        <div class="loading" id="phLoading" style="display:none;"><div class="spinner"></div><span id="phLoadingText">株価を取得中...</span></div>
+
+        <!-- 明細テーブル -->
+        <div style="overflow-x:auto;">
+          <table style="font-size:.75rem;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>銘柄</th>
+                <th>ティッカー</th>
+                <th style="text-align:right;">株式数</th>
+                <th style="text-align:right;">BS計上額（百万円）</th>
+                <th style="text-align:right;">現在株価</th>
+                <th style="text-align:right;">現在時価（百万円）</th>
+                <th style="text-align:right;">含み益（百万円）</th>
+              </tr>
+            </thead>
+            <tbody id="policyHoldingsBody"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="applyPolicyHoldingsGain()" style="font-size:.76rem;">この推定値を有価証券含み益に反映</button>
+        </div>
+      </div>
+
+      <!-- 株主構成・大株主の状況 -->
+      <div class="s-card" id="shareholderSection" style="display:none;">
+        <div class="s-card-title">株主構成・大株主の状況 <span class="info-tip" data-tip="有価証券報告書の「大株主の状況」から上位株主と持株比率を抽出しています">?</span></div>
+
+        <!-- 株主構成サマリー -->
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">大株主数</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="sh_count">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">上位合計持株比率</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="sh_total_ratio">-</div>
+          </div>
+          <div style="flex:1;min-width:0;background:var(--bg-alt);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:.72rem;color:var(--text-light);">浮動株比率（概算）</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--navy);" id="sh_float_ratio">-</div>
+          </div>
+        </div>
+
+        <!-- 株主カテゴリ別比率 -->
+        <div id="shCategoryChart" style="margin-bottom:16px;"></div>
+
+        <!-- 大株主一覧テーブル -->
+        <div style="overflow-x:auto;">
+          <table style="font-size:.75rem;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>株主名</th>
+                <th style="text-align:right;">所有株式数</th>
+                <th style="text-align:right;">持株比率</th>
+                <th style="width:120px;">比率</th>
+              </tr>
+            </thead>
+            <tbody id="shareholderBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="s-card">
+        <div class="s-card-title">スコア詳細</div>
+        <table>
+          <thead><tr><th>評価項目</th><th>値</th><th style="text-align:right;">スコア</th><th style="text-align:right;">配点</th><th style="width:90px;">リスク度</th></tr></thead>
+          <tbody id="indDetailBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    </div><!-- /.screener-gated (個別分析) -->
+
+    <!-- ログインウォール（個別分析タブ用） -->
+    <div class="login-wall" id="loginWallIndividual" style="display:none;">
+      <div class="login-wall-inner">
+        <div class="login-wall-icon">&#128274;</div>
+        <h2>分析結果は会員限定コンテンツです</h2>
+        <p>銘柄コードを入力して詳細分析・含み益推定・<br>政策保有株式の内訳をご覧いただけます</p>
+        <div class="plan-features">
+          <h4>無料会員でできること</h4>
+          <ul>
+            <li>個別銘柄の詳細スコアリング分析</li>
+            <li>EDINET連携 含み益・ネットキャッシュ自動計算</li>
+            <li>政策保有株式の銘柄別内訳・時価推定</li>
+            <li>複数銘柄の一括ランキング・CSV出力</li>
+          </ul>
+        </div>
+        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
+        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TAB 2: ランキング -->
+  <div class="tab-panel" id="tab-ranking">
+    <div class="s-card">
+      <div class="s-card-title">銘柄コード入力（一括スキャン）</div>
+      <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:10px;">カンマ区切りまたは改行区切りで複数の証券コードを入力（最大100銘柄）</p>
+      <div class="chip-row">
+        <span class="chip" onclick="loadPreset('nikkei225')">日経225（主要20社）</span>
+        <span class="chip" onclick="loadPreset('mega')">メガバンク・大手金融</span>
+        <span class="chip" onclick="loadPreset('lowpbr')">低PBR注目銘柄</span>
+        <span class="chip" onclick="loadPreset('auto')">自動車関連</span>
+        <span class="chip" onclick="loadPreset('trading')">総合商社</span>
+        <span class="chip" onclick="loadPreset('it')">IT・通信</span>
+        <span class="chip" onclick="loadPreset('conglomerate')">コングロマリット</span>
+        <span class="chip" onclick="loadPreset('realestate')">不動産</span>
+        <span class="chip" onclick="loadPreset('food')">食品・飲料</span>
+        <span class="chip" onclick="loadPreset('pharma')">医薬品・ヘルスケア</span>
+        <span class="chip" onclick="loadPreset('chemical')">素材・化学</span>
+        <span class="chip" onclick="loadPreset('steel')">鉄鋼・非鉄</span>
+        <span class="chip" onclick="loadPreset('construction')">建設</span>
+        <span class="chip" onclick="loadPreset('retail')">小売・流通</span>
+        <span class="chip" onclick="loadPreset('transport')">鉄道・運輸・海運</span>
+        <span class="chip" onclick="loadPreset('utility')">電力・ガス</span>
+        <span class="chip" onclick="loadPreset('machinery')">機械</span>
+        <span class="chip" onclick="loadPreset('electronics')">電機・精密</span>
+      </div>
+      <div class="form-field"><textarea id="rankCodes" rows="4" placeholder="例: 7203, 6758, 9984, 8306, 4502&#10;または1行1コードで入力"></textarea></div>
+      <div class="form-grid" style="margin-top:10px;">
+        <div class="form-field">
+          <label>時価総額フィルタ</label>
+          <select id="rankMcapFilter" onchange="filterAndDisplayRanking()">
+            <option value="all">全て</option>
+            <option value="nano">ナノキャップ（〜50億円）</option>
+            <option value="micro">マイクロキャップ（50〜300億円）</option>
+            <option value="small">スモールキャップ（300〜1000億円）</option>
+            <option value="mid">ミッドキャップ（1000〜5000億円）</option>
+            <option value="large">ラージキャップ（5000億円〜）</option>
+          </select>
+          <div id="mcapCategoryLegend" class="mcap-legend" style="display:none;">
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-nano">ナノ</span><span class="mcap-legend-def">〜50億円</span><span class="mcap-legend-count" id="mcapCountNano">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-micro">マイクロ</span><span class="mcap-legend-def">50〜300億円</span><span class="mcap-legend-count" id="mcapCountMicro">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-small">スモール</span><span class="mcap-legend-def">300〜1,000億円</span><span class="mcap-legend-count" id="mcapCountSmall">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-mid">ミッド</span><span class="mcap-legend-def">1,000〜5,000億円</span><span class="mcap-legend-count" id="mcapCountMid">-</span></div>
+            <div class="mcap-legend-row"><span class="mcap-cat mcap-large">ラージ</span><span class="mcap-legend-def">5,000億円〜</span><span class="mcap-legend-count" id="mcapCountLarge">-</span></div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>ソート基準</label>
+          <select id="rankSortBy" onchange="filterAndDisplayRanking()">
+            <option value="score">アクティビスト標的スコア</option>
+            <option value="pbr">PBR（低い順）</option>
+            <option value="roe">ROE（低い順）</option>
+            <option value="divyield">配当利回り（高い順）</option>
+            <option value="equity">自己資本比率（高い順）</option>
+            <option value="per">PER（低い順）</option>
+            <option value="payout">配当性向（低い順）</option>
+            <option value="mcap">時価総額（大きい順）</option>
+            <option value="ncRatio">NC/時価総額（高い順）</option>
+            <option value="adjNcRatio">実質NC/時価総額（高い順）</option>
+            <option value="evEbitda">EV/EBITDA（低い順）</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" id="btnRankScan" onclick="startRankingScan()">スキャン開始</button>
+        <button class="btn-secondary" id="btnRankCancel" onclick="cancelScan()" style="display:none;">キャンセル</button>
+      </div>
+      <div class="loading" id="rankLoading"><div class="spinner"></div><span id="rankLoadingText">スキャン中...</span></div>
+      <div id="rankProgress" class="hidden">
+        <div class="progress-bar"><div class="progress-fill" id="rankProgressBar"></div></div>
+        <div class="progress-text" id="rankProgressText">0 / 0</div>
+      </div>
+    </div>
+
+    <div class="screener-gated" id="screenerGatedRank">
+    <div id="rankResult" class="hidden">
+      <div class="s-card">
+        <div class="s-card-title" style="display:flex; align-items:center; justify-content:space-between;">
+          <span>スクリーニング結果 <span style="font-size:0.76rem; color:var(--text-light); font-weight:400; margin-left:8px;" id="rankResultCount">0件</span></span>
+          <button class="btn-gold" id="btnCsvExport" onclick="exportCSV()" disabled>CSV出力</button>
+        </div>
+
+        <!-- バフェットコード風カテゴリタブ -->
+        <div class="rank-view-tabs" style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid var(--mid-gray); overflow-x:auto;">
+          <button class="rank-view-tab active" onclick="switchRankView('overview')">概要</button>
+          <button class="rank-view-tab" onclick="switchRankView('valuation')">バリュエーション</button>
+          <button class="rank-view-tab" onclick="switchRankView('dividend')">配当・還元</button>
+          <button class="rank-view-tab" onclick="switchRankView('financial')">財務健全性</button>
+          <button class="rank-view-tab" onclick="switchRankView('ncev')">NC・EV</button>
+          <button class="rank-view-tab" onclick="switchRankView('assets')">含み益・資産</button>
+        </div>
+
+        <!-- 概要ビュー -->
+        <div class="rank-view active" id="rankView-overview">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('sector')">セクター</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('divyield')">配当利回り</th>
+                <th onclick="sortRanking('equity')">自己資本比率</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th onclick="sortRanking('mcapCat')">区分</th>
+              </tr></thead>
+              <tbody id="rankTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- バリュエーションビュー -->
+        <div class="rank-view" id="rankView-valuation">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('eps')">EPS</th>
+                <th onclick="sortRanking('bps')">BPS</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-valuation"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配当・還元ビュー -->
+        <div class="rank-view" id="rankView-dividend">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('divyield')">配当利回り</th>
+                <th onclick="sortRanking('payout')">配当性向</th>
+                <th onclick="sortRanking('dps')">1株配当</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-dividend"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 財務健全性ビュー -->
+        <div class="rank-view" id="rankView-financial">
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('equity')">自己資本比率</th>
+                <th onclick="sortRanking('roe')">ROE</th>
+                <th onclick="sortRanking('per')">PER</th>
+                <th onclick="sortRanking('payout')">配当性向</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th onclick="sortRanking('mcapCat')">区分</th>
+              </tr></thead>
+              <tbody id="rankTableBody-financial"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- NC・EVビュー -->
+        <div class="rank-view" id="rankView-ncev">
+          <p style="font-size:.7rem; color:var(--text-light); margin-bottom:10px;">EDINETキャッシュがある銘柄のみNC・EV指標が表示されます</p>
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('ncRatio')">NC/時価総額</th>
+                <th onclick="sortRanking('adjNcRatio')">実質NC/時価総額</th>
+                <th onclick="sortRanking('fullNcRatio')">含み資産NC/時価総額</th>
+                <th onclick="sortRanking('evEbitda')">EV/EBITDA</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-ncev"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 含み益・資産ビュー -->
+        <div class="rank-view" id="rankView-assets">
+          <p style="font-size:.7rem; color:var(--text-light); margin-bottom:10px;">EDINETキャッシュがある銘柄のみ含み益データが表示されます（週次更新）</p>
+          <div class="ranking-table">
+            <table>
+              <thead><tr>
+                <th onclick="sortRanking('rank')">順位</th>
+                <th onclick="sortRanking('code')">コード</th>
+                <th onclick="sortRanking('name')">銘柄名</th>
+                <th onclick="sortRanking('score')">スコア</th>
+                <th onclick="sortRanking('pbr')">PBR</th>
+                <th onclick="sortRanking('land')">土地簿価</th>
+                <th onclick="sortRanking('landGain')">推定土地含み益</th>
+                <th onclick="sortRanking('secGain')">有価証券含み益</th>
+                <th onclick="sortRanking('ipGain')">投資不動産含み益</th>
+                <th onclick="sortRanking('totalGain')">含み益合計</th>
+                <th onclick="sortRanking('mcap')">時価総額</th>
+              </tr></thead>
+              <tbody id="rankTableBody-assets"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.screener-gated (ランキング) -->
+
+    <!-- ログインウォール（ランキングタブ用） -->
+    <div class="login-wall" id="loginWallRanking" style="display:none;">
+      <div class="login-wall-inner">
+        <div class="login-wall-icon">&#128274;</div>
+        <h2>スクリーニング結果は会員限定です</h2>
+        <p>複数銘柄のスコアリング・ランキング・<br>CSV出力をご利用いただけます</p>
+        <div class="plan-features">
+          <h4>無料会員でできること</h4>
+          <ul>
+            <li>最大100銘柄の一括スクリーニング</li>
+            <li>アクティビスト標的スコアでランキング</li>
+            <li>NC/EV・含み益・バリュエーション分析</li>
+            <li>結果のCSVダウンロード</li>
+          </ul>
+        </div>
+        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
+        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 認証セクション（インライン版 — 下部に配置） -->
+  <div class="auth-section" id="authSection">
+    <div id="authLoggedOut">
+      <h3>ログインしてご利用ください</h3>
+      <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:12px;">スクリーニング結果の閲覧・CSVエクスポートには無料会員登録が必要です。</p>
+      <div id="authLoginForm">
+        <div class="auth-form">
+          <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">
+          <input type="password" id="authPass" placeholder="パスワード" style="min-width:0;">
+          <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
+        <div class="auth-msg" id="authLoginMsg"></div>
+      </div>
+      <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" onclick="doResetPassword()" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
+      <div id="authRegisterForm" class="hidden">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input type="text" id="regName" placeholder="お名前 *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <input type="text" id="regCompany" placeholder="会社名・組織名（任意）" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+          <input type="text" id="regAffiliationCode" placeholder="証券コード（例: 7203）" maxlength="4" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; display:none;">
+          <select id="regJobTitle" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option></select>
+          <input type="email" id="regEmail" placeholder="メールアドレス *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+          <input type="password" id="regPass" placeholder="パスワード（8文字以上）*" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
+        </div>
+        <button class="btn-primary" onclick="doRegister()" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
+        <p style="font-size:0.68rem; color:var(--text-light); margin-top:10px; line-height:1.7; text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。</p>
+        <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログイン</a></p>
+        <div class="auth-msg" id="authRegMsg"></div>
+      </div>
+    </div>
+    <div id="authLoggedIn" class="hidden">
+      <div class="user-info">
+        <a class="name" id="authUserName" onclick="openMyPage()" style="cursor:pointer; text-decoration:underline;"></a>
+        <span style="color:var(--text-light);">でログイン中</span>
+        <button class="btn-secondary" onclick="doLogout()" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div style="max-width:800px; margin:40px auto 0; padding:24px 28px; background:var(--light-gray); border-radius:8px; border-left:3px solid var(--gold);">
+    <p style="font-size:0.7rem; font-weight:500; color:var(--navy); margin-bottom:8px; letter-spacing:0.06em;">ご利用にあたっての注意事項</p>
+    <p style="font-size:0.68rem; color:var(--text-mid); line-height:1.9; margin:0;">本ツールは、公開情報に基づく定量的な企業分析を目的として提供するものであり、特定の銘柄の売買や投資行動を推奨・勧誘するものではありません。表示されるスコア・指標・ランキング等は、アクティビスト投資家による株主提案等の対象となりうる可能性を統計的観点から分析したものであり、実際の投資判断に利用される場合は、ご自身の責任において行ってください。当社は、本ツールの利用により生じたいかなる損害についても一切の責任を負いません。データの正確性・完全性・最新性については保証いたしかねますので、必ず一次情報をご確認ください。本ツールは金融商品取引法に基づく投資助言・代理業に該当するサービスではありません。</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-card">
+      <h3>アクティビスト対応にお悩みですか？</h3>
+      <p>青山乃木坂パートナーズでは、アクティビスト対応戦略の策定から<br>IR強化・資本政策の見直しまで、包括的にご支援いたします。</p>
+      <div class="cta-links">
+        <a href="https://aoyama-nogizaka.com/#contact" class="cta-primary">無料相談を申し込む</a>
+        <a href="/activist-dashboard.html" class="cta-secondary">ダッシュボードを見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+        <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
+      <p class="footer-copy">© 2026 Aoyama Nogizaka Partners All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 認証モーダル -->
+<div class="auth-modal-overlay" id="authModalOverlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div id="authModalLoggedOut">
+      <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">ログイン / 無料会員登録</h2>
+      <p style="font-size:.76rem;color:var(--text-light);margin-bottom:16px;text-align:center;line-height:1.7;">スクリーニング結果の閲覧・CSV出力には<br>無料会員登録が必要です。</p>
+      <div id="authModalLoginForm">
+        <button onclick="doModalGoogleLogin('login')" class="btn-google" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Googleでログイン
+        </button>
+        <div style="display:flex;align-items:center;gap:12px;margin:14px 0;"><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"><span style="font-size:.72rem;color:var(--text-light);">または</span><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"></div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="email" id="authModalEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <input type="password" id="authModalPass" placeholder="パスワード" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <button class="btn-primary" onclick="doModalLogin()" style="padding:12px;font-size:.88rem;width:100%;">メールアドレスでログイン</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;">
+          <a href="#" onclick="showModalRegister();return false;" style="font-size:.74rem;color:var(--gold);">新規登録はこちら</a>
+          <a href="#" onclick="showModalReset();return false;" style="font-size:.74rem;color:var(--gold);">パスワードをお忘れの方</a>
+        </div>
+        <div class="auth-msg" id="authModalLoginMsg"></div>
+      </div>
+      <div id="authModalResetForm" class="hidden">
+        <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:12px;">登録済みメールアドレスにリセット用リンクを送信します。<br><span style="font-size:.7rem;color:var(--text-light);">※Googleアカウントでご登録の方はGoogleログインをご利用ください。</span></p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="email" id="authModalResetEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+          <button class="btn-primary" onclick="doModalReset()" style="padding:12px;width:100%;">送信</button>
+        </div>
+        <p style="margin-top:10px;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <div class="auth-msg" id="authModalResetMsg"></div>
+      </div>
+      <div id="authModalRegisterForm" class="hidden">
+        <button onclick="doModalGoogleLogin('register')" class="btn-google" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Googleで登録
+        </button>
+        <div style="display:flex;align-items:center;gap:12px;margin:14px 0;"><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"><span style="font-size:.72rem;color:var(--text-light);">または</span><hr style="flex:1;border:none;border-top:1px solid var(--mid-gray);"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <input type="text" id="regModalName" placeholder="お名前 *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <input type="text" id="regModalCompany" placeholder="会社名（任意）" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <select id="regModalAffiliation" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+          <select id="regModalJobTitle" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト</option><option value="consultant">コンサルタント</option><option value="individual">個人</option><option value="other">その他</option></select>
+          <input type="email" id="regModalEmail" placeholder="メールアドレス *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+          <input type="password" id="regModalPass" placeholder="パスワード（8文字以上）*" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
+        </div>
+        <button class="btn-primary" onclick="doModalRegister()" style="padding:12px;margin-top:12px;width:100%;">無料で登録する</button>
+        <p style="font-size:.68rem;color:var(--text-light);margin-top:10px;line-height:1.7;text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。</p>
+        <p style="margin-top:8px;text-align:center;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <div class="auth-msg" id="authModalRegMsg"></div>
+      </div>
+    </div>
+    <div id="authModalLoggedIn" class="hidden" style="text-align:center;">
+      <p style="font-size:.88rem;color:var(--navy);margin-bottom:12px;">ログイン済みです</p>
+      <button class="btn-secondary" onclick="closeAuthModal()" style="padding:8px 20px;">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- プロフィール補完モーダル（Google login） -->
+<div class="auth-modal-overlay" id="completeProfileOverlay" onclick="if(event.target===this)closeCompleteProfile()">
+  <div class="auth-modal">
+    <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">プロフィール登録</h2>
+    <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:16px;text-align:center;line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
+    <div class="auth-msg" id="completeProfileMsg"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <select id="cpModalAffiliation" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;background:var(--white);">
+        <option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option>
+      </select>
+      <select id="cpModalJobTitle" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;background:var(--white);">
+        <option value="">役職 *</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option>
+      </select>
+      <input type="text" id="cpModalCompany" placeholder="会社名・組織名 *" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
+      <button class="btn-primary" onclick="doCompleteProfile()" style="padding:12px;width:100%;">登録して利用開始</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/screener.js"></script>
+<script>
+// 認証モーダル制御
+function openAuthModal(mode) {
+  var overlay = document.getElementById('authModalOverlay');
+  if (window.currentUser) {
+    document.getElementById('authModalLoggedOut').classList.add('hidden');
+    document.getElementById('authModalLoggedIn').classList.remove('hidden');
+  } else {
+    document.getElementById('authModalLoggedOut').classList.remove('hidden');
+    document.getElementById('authModalLoggedIn').classList.add('hidden');
+    if (mode === 'register') showModalRegister();
+    else showModalLogin();
+  }
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeAuthModal() {
+  document.getElementById('authModalOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function showModalLogin() {
+  document.getElementById('authModalLoginForm').classList.remove('hidden');
+  document.getElementById('authModalRegisterForm').classList.add('hidden');
+  document.getElementById('authModalResetForm').classList.add('hidden');
+}
+function showModalRegister() {
+  document.getElementById('authModalLoginForm').classList.add('hidden');
+  document.getElementById('authModalRegisterForm').classList.remove('hidden');
+  document.getElementById('authModalResetForm').classList.add('hidden');
+}
+function showModalReset() {
+  document.getElementById('authModalLoginForm').classList.add('hidden');
+  document.getElementById('authModalRegisterForm').classList.add('hidden');
+  document.getElementById('authModalResetForm').classList.remove('hidden');
+}
+async function doModalLogin() {
+  var e = document.getElementById('authModalEmail').value.trim();
+  var p = document.getElementById('authModalPass').value;
+  var m = document.getElementById('authModalLoginMsg');
+  if (!e || !p) { m.textContent = 'メールとパスワードを入力してください'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseLogin(e, p); m.textContent = 'ログインしました'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 1000); }
+  catch (err) {
+    var messages = {
+      'auth/invalid-credential': 'メールアドレスまたはパスワードが正しくありません。Googleで登録された方は「Googleでログイン」をご利用ください。',
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/wrong-password': 'パスワードが正しくありません。',
+      'auth/too-many-requests': 'ログイン試行回数が多すぎます。しばらくしてからお試しください。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。'
+    };
+    m.textContent = messages[err.code] || 'ログイン失敗: ' + (err.message || ''); m.className = 'auth-msg error';
+  }
+}
+async function doModalRegister() {
+  var n = document.getElementById('regModalName').value.trim();
+  var c = document.getElementById('regModalCompany').value.trim();
+  var e = document.getElementById('regModalEmail').value.trim();
+  var p = document.getElementById('regModalPass').value;
+  var aff = document.getElementById('regModalAffiliation').value;
+  var jt = document.getElementById('regModalJobTitle').value;
+  var m = document.getElementById('authModalRegMsg');
+  if (!n || !e || !p) { m.textContent = '必須項目を入力してください'; m.className = 'auth-msg error'; return; }
+  if (!aff) { m.textContent = '所属種別を選択してください'; m.className = 'auth-msg error'; return; }
+  if (p.length < 8) { m.textContent = 'パスワードは8文字以上で設定してください。'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseRegister(e, p, n, c, aff, '', jt); m.innerHTML = '登録しました。確認メールをお送りしました。<br><span style="font-size:.68rem;">メールが届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:var(--green);text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>'; m.className = 'auth-msg success'; setTimeout(closeAuthModal, 3000); }
+  catch (err) { const msgs = {'auth/email-already-in-use':'このメールアドレスは既に登録されています。ログインしてください。','auth/weak-password':'パスワードは8文字以上で設定してください。','auth/invalid-email':'メールアドレスの形式が正しくありません。'}; m.textContent = msgs[err.code] || '登録に失敗しました。'; m.className = 'auth-msg error'; }
+}
+async function doModalReset() {
+  var e = document.getElementById('authModalResetEmail').value.trim();
+  var m = document.getElementById('authModalResetMsg');
+  if (!e) { m.textContent = 'メールアドレスを入力してください'; m.className = 'auth-msg error'; return; }
+  try { await window.firebaseResetPassword(e); m.textContent = 'リセット用メールを送信しました。'; m.className = 'auth-msg success'; }
+  catch (err) {
+    var messages = {
+      'auth/user-not-found': 'このメールアドレスは登録されていません。',
+      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
+      'auth/too-many-requests': '送信回数が多すぎます。しばらくしてからお試しください。'
+    };
+    m.textContent = messages[err.code || ''] || 'エラー: ' + err.message; m.className = 'auth-msg error';
+  }
+}
+
+// Google ログイン
+async function doModalGoogleLogin(context) {
+  var m = document.getElementById(context === 'register' ? 'authModalRegMsg' : 'authModalLoginMsg');
+  try {
+    var result = await window.firebaseGoogleLogin();
+    closeAuthModal();
+    if (result && result.needsProfile) {
+      openCompleteProfile();
+    }
+  } catch (err) {
+    if (err.code === 'auth/popup-closed-by-user') return;
+    var messages = {
+      'auth/account-exists-with-different-credential': 'このメールアドレスは別の方法で登録されています。メールアドレスでログインしてください。',
+      'auth/popup-blocked': 'ポップアップがブロックされました。ブラウザの設定を確認してください。'
+    };
+    m.textContent = messages[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
+    m.className = 'auth-msg error';
+  }
+}
+
+// プロフィール補完モーダル
+function openCompleteProfile() {
+  document.getElementById('completeProfileOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeCompleteProfile() {
+  document.getElementById('completeProfileOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+async function doCompleteProfile() {
+  var aff = document.getElementById('cpModalAffiliation').value;
+  var jt = document.getElementById('cpModalJobTitle').value;
+  var comp = document.getElementById('cpModalCompany').value.trim();
+  var m = document.getElementById('completeProfileMsg');
+  if (!aff || !jt || !comp) { m.textContent = '全ての項目を入力してください'; m.className = 'auth-msg error'; return; }
+  try {
+    var user = window.currentUser;
+    if (!user) throw new Error('ログインされていません');
+    await window.firebaseUpdateProfile(user.uid, { affiliation: aff, jobTitle: jt, company: comp });
+    m.textContent = '登録しました'; m.className = 'auth-msg success';
+    setTimeout(closeCompleteProfile, 1000);
+  } catch (err) {
+    m.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || ''); m.className = 'auth-msg error';
+  }
+}
+
+// scrollToAuthをモーダル版にオーバーライド
+scrollToAuth = function(mode) { openAuthModal(mode); };
+</script>
+</body>
+</html>
