@@ -504,7 +504,7 @@
     /* ===== MEMBER CARDS ===== */
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
     .member-card {
@@ -700,11 +700,12 @@
     @media (max-width: 960px) {
       .rep-card { grid-template-columns: 1fr; gap: 36px; }
       .rep-photo { aspect-ratio: 3/4; max-width: 240px; margin: 0 auto; }
-      .members-grid { grid-template-columns: 1fr; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
       .advisors-grid { grid-template-columns: 1fr; }
       .rep-skills { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
+      .members-grid { grid-template-columns: 1fr; }
       .page-hero-watermark { display: none; }
       .page-hero-inner { padding: 60px 20px 50px; }
       .intro-inner, .team-inner, .footer-inner { padding: 0 20px; }
