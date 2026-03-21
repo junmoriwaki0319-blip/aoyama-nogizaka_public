@@ -209,7 +209,37 @@
     .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
     .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
     @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
-    @media (max-width: 900px) { .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; } .chart-row, .chart-row.tri { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } .header-right { gap: 10px; } .cross-nav { display: none; } .nav-auth-btns { gap: 6px; } .btn-login, .btn-register { font-size: 0.65rem; padding: 5px 10px; } }
+    @media (max-width: 900px) {
+      .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 20px; padding-right: 20px; }
+      .chart-row, .chart-row.tri { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .header-right { gap: 10px; }
+      .cross-nav { display: none; }
+      .nav-auth-btns { gap: 6px; }
+      .btn-login, .btn-register { font-size: 0.72rem; padding: 8px 14px; min-height: 36px; }
+      .report-cover::after { left: 20px; right: 20px; }
+    }
+    @media (max-width: 768px) {
+      .report-title { font-size: 1.4rem; }
+      .chart-area { height: 260px; }
+      .chart-area.tall { height: 340px; }
+      .chart-panel { padding: 18px 16px; }
+      .commentary { padding: 16px 18px; }
+      .modal { padding: 32px 24px; }
+      .modal .form-group input, .modal .form-group select { min-height: 44px; font-size: 14px; }
+      .btn-submit, .btn-google { min-height: 44px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .report-cover::after { left: 16px; right: 16px; }
+      .report-title { font-size: 1.2rem; }
+      .report-subtitle { font-size: 0.8rem; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .kpi-value { font-size: 1.1rem; }
+      .chart-area { height: 220px; }
+      .chart-area.tall { height: 280px; }
+    }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
@@ -613,12 +643,17 @@ let companies = [];
     const topMC=topN(companies,'marketCap',3), topGrowth=topN(companies,'arrGrowth',3), topR40=topN(companies,'ruleOf40',3);
     const above=companies.filter(c=>c.relativeReturn>0).length;
     const hasARR=hasData(companies,'arr'), hasR40=hasData(companies,'ruleOf40');
+    // SaaSインデックス・TOPIX値を動的に算出
+    const saasIdx=SAAS_INDEX_MONTHLY&&SAAS_INDEX_MONTHLY.length?SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1].toFixed(1):'—';
+    const topixIdx=TOPIX_MONTHLY&&TOPIX_MONTHLY.length?TOPIX_MONTHLY[TOPIX_MONTHLY.length-1].toFixed(1):'—';
+    const idxDiff=SAAS_INDEX_MONTHLY&&TOPIX_MONTHLY?(SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1]-TOPIX_MONTHLY[TOPIX_MONTHLY.length-1]).toFixed(1):null;
+    const idxDiffStr=idxDiff?(Number(idxDiff)<0?'▲'+Math.abs(Number(idxDiff)).toFixed(1):('+'+idxDiff)):'—';
 
     el.innerHTML=`
       ${secH('01','Executive Summary','国内SaaS セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (2026年3月基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}</strong>。
-        SaaSインデックスは直近15ヶ月(2025年1月起点)で<strong>110.9pt</strong>(TOPIX:129.8pt)と<strong>▲18.9pt</strong>のアンダーパフォーム。
+        SaaSインデックスは直近15ヶ月(2025年1月起点)で<strong>${saasIdx}pt</strong>(TOPIX:${topixIdx}pt)と<strong>${idxDiffStr}pt</strong>のアンダーパフォーム。
         TOPIX超過は${above}/${companies.length}社。平均営業利益率${aOP}%、平均ROE${aROE}%。
         <strong>株価の低迷にもかかわらず、業績ファンダメンタルズは堅調</strong>であり、AI代替懸念による過度なディスカウントが示唆される。<br><br>
         <strong>足元のリスク要因:</strong>
@@ -630,12 +665,19 @@ let companies = [];
         <strong>株価は▲9.1%急落(117.9→107.2pt)、しかし業績は+8.3%成長</strong> ― この対比がSaaSセクターの本質を物語る。
         FY25下半期で<strong>全${companies.length}社が増収</strong>、営業利益率も21.5%→22.4%へ改善。
         AI関連の売り圧力が最も強かったCX領域でもAppier(OPM+0.6pt)、プレイド(OPM+2.7pt)と利益率が拡大しており、
-        国内SaaS企業の多くはAI機能を<strong>自社プロダクトに統合する側</strong>であり、脅威よりも付加価値向上の機会として活用している。<br>
-        <strong>企業選別の提言:</strong>
-        AIディスカウントが過度な現状は<strong>バリュエーション面での投資妙味</strong>が高まっていることを意味する。
-        (1) <strong>ストック型収益の厚さ</strong> ― Gross Margin80%超かつ高い売上高成長を維持する企業(ラクス、freee等)、
-        (2) <strong>AI活用側に回る適応力</strong> ― 自社プロダクトへのAI統合で顧客単価を引き上げられる企業(Appier、プレイド等)、
-        (3) <strong>バーティカルSaaSの参入障壁</strong> ― 業界特化データとドメイン知識により代替困難な地位を築いている企業(エス・エム・エス、EMシステムズ等) の3軸を重視。
+        国内SaaS企業の多くはAI機能を<strong>自社プロダクトに統合する側</strong>であり、脅威よりも付加価値向上の機会として活用している。<br><br>
+        <strong>経営企画への5つの提言 ― 株価低迷を打破するアクションプラン:</strong><br>
+        <strong>(1) AIカニバリゼーションへの先制的ポジショニング:</strong>
+        Anthropicショック後、ラクス▲13.5%、Sansan▲12.5%、freee▲9.0%の急落が示す通り、投資家は「SaaSのUI/UX層がAIエージェントに置換される」リスクを織り込んでいる。
+        しかし業界固有のワークフロー・規制対応・データネットワーク効果を持つSaaSは代替困難。自社プロダクトの「AI代替可能層」と「代替困難層」を分解し、後者への投資集中とAI統合戦略をIRで明示することがバリュエーション回復の起点となる。<br>
+        <strong>(2) 「Rule of 40超」を目指す利益構造転換:</strong>
+        freee・マネーフォワードの黒字化達成は「成長一辺倒」から「成長+収益性」への転換を象徴。Rule of 40を社内KPIとして採用し、成長率と利益率のバランスを四半期ごとに取締役会レベルで議論すべき。Gross Margin80%超の企業は販管費効率化だけで大幅改善が可能。<br>
+        <strong>(3) NRR・チャーンの「見える化」による不透明性ディスカウント解消:</strong>
+        NRR・チャーンレート開示企業は限定的。米国ではNRR120%超の企業がPSR10倍以上で評価される一方、非開示企業はPSR3〜5倍。NRR・チャーン・LTV/CACの四半期開示が機関投資家のカバレッジ取得と適正バリュエーション獲得の最短経路。<br>
+        <strong>(4) 「SaaSの死」後のM&A好機:</strong>
+        PER/PSR圧縮は補完的プロダクト・データアセットの割安取得機会。サイバーセキュリティクラウドのDataSign連結(売上+33%)やマネーフォワードのスマートキャンプ売却(利益60億改善)がポートフォリオ最適化の好事例。<br>
+        <strong>(5) IR戦略のリデザイン:</strong>
+        決算説明資料へのAI戦略セクション新設、SaaS KPIダッシュボード充実(ARR/NRR/Churn/LTV全開示)、Rule of 40のセクター内ベンチマーク提示、機関投資家向け「AI×SaaS」テーマIR Day開催を推奨。
       </div>
       <div class="kpi-grid">
         ${kpi('対象企業数',companies.length+'社','','c-navy')}
@@ -645,7 +687,7 @@ let companies = [];
         ${kpi('平均ROE',aROE+'%','','c-navy')}
         ${kpi('平均Gross Margin',avg(companies,'grossMargin')+'%','','c-green')}
         ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-navy')}
-        ${kpi('vs TOPIX (1Y)','▲18.9pt','SaaSインデックス','c-red')}
+        ${kpi('vs TOPIX (1Y)',idxDiffStr+'pt','SaaSインデックス','c-red')}
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">SaaS Index vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (25/01=100) / TOPIX実績値・SaaS指数は30社加重平均推計</div><div class="chart-area tall"><canvas id="exIdx"></canvas></div></div>
@@ -682,12 +724,18 @@ let companies = [];
     const el=g('sec-market');
     const sorted=[...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
     const above=companies.filter(c=>c.relativeReturn>0).length;
+    const saasIdx2=SAAS_INDEX_MONTHLY&&SAAS_INDEX_MONTHLY.length?SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1].toFixed(1):'—';
+    const topixIdx2=TOPIX_MONTHLY&&TOPIX_MONTHLY.length?TOPIX_MONTHLY[TOPIX_MONTHLY.length-1].toFixed(1):'—';
+    const idxDiff2=SAAS_INDEX_MONTHLY&&TOPIX_MONTHLY?(SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1]-TOPIX_MONTHLY[TOPIX_MONTHLY.length-1]).toFixed(1):null;
+    const idxDiffStr2=idxDiff2?(Number(idxDiff2)<0?'▲'+Math.abs(Number(idxDiff2)).toFixed(1):('+'+idxDiff2)):'—';
+    const top3=sorted.slice(0,3).map(c=>shortName(c.name)+'('+pn(c.stockReturn1Y,'%')+')').join('、');
+    const bot3=sorted.slice(-3).reverse().map(c=>shortName(c.name)+'('+pn(c.stockReturn1Y,'%')+')').join('、');
     el.innerHTML=`
       ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と銘柄別騰落率')}
       <div class="commentary">
-        <strong>市場動向 (2025年1月〜2026年3月):</strong> SaaSインデックスは<strong>110.9pt</strong>(TOPIX:129.8pt)で<strong>▲18.9pt</strong>のアンダーパフォーム。
-        TOPIX超過は${above}/${companies.length}社。Appier(+55.0%)、SREホールディングス(+48.5%)、ラクス(+42.5%)が牽引。
-        一方、kubell(-30.0%)、アステリア(-25.0%)等は大幅下落。<strong>業績堅調にもかかわらず株価は低迷</strong>しており、AI代替懸念によるディスカウントが続く。<br><br>
+        <strong>市場動向 (2025年1月〜2026年3月):</strong> SaaSインデックスは<strong>${saasIdx2}pt</strong>(TOPIX:${topixIdx2}pt)で<strong>${idxDiffStr2}pt</strong>のアンダーパフォーム。
+        TOPIX超過は${above}/${companies.length}社。${top3}が牽引。
+        一方、${bot3}等は大幅下落。<strong>業績堅調にもかかわらず株価は低迷</strong>しており、AI代替懸念によるディスカウントが続く。<br><br>
         <strong>主要イベントと株価への影響:</strong>
         2025年1月末の<strong>DeepSeekショック</strong>でSaaS指数は84.5pt(▲15.5%)まで急落。「生成AIがSaaSを代替する」との懸念が急速に広まった。
         各社の四半期決算は売上高成長を継続していたが、<strong>回復は緩やかで86.7pt(25/03)に留まった</strong>。
@@ -702,14 +750,14 @@ let companies = [];
         <strong>「株価の調整幅」と「業績の成長幅」の乖離は、市場が生成AIのSaaS代替リスクを過大評価している</strong>ことを示唆する。
       </div>
       <div class="kpi-grid">
-        ${kpi('SaaSインデックス','110.9pt','直近15ヶ月','c-navy')}
-        ${kpi('TOPIX','129.8pt','同期間','c-navy')}
-        ${kpi('vs TOPIX','▲18.9pt','アンダーパフォーム','c-red')}
+        ${kpi('SaaSインデックス',saasIdx2+'pt','直近15ヶ月','c-navy')}
+        ${kpi('TOPIX',topixIdx2+'pt','同期間','c-navy')}
+        ${kpi('vs TOPIX',idxDiffStr2+'pt','アンダーパフォーム','c-red')}
         ${kpi('TOPIX超過銘柄',above+'/'+companies.length+'社','','c-gold')}
         ${kpi('Anthropic後 株価','▲9.1%','SaaS指数 26/02','c-red')}
         ${kpi('Anthropic後 業績','+8.3%','H2売上成長','c-green')}
         ${kpi('H2営業利益率','22.4%','H1: 21.5%','c-gold')}
-        ${kpi('H2全社増収','${companies.length}/${companies.length}社','','c-green')}
+        ${kpi('FY25下期 増収企業',companies.length+'/'+companies.length+'社','全社増収','c-green')}
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">SaaS Index vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (25/01=100) / TOPIX実績値・SaaS指数は30社加重平均推計</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
@@ -820,6 +868,10 @@ let companies = [];
   function rMatrix(){
     const el=g('sec-matrix');
     const sorted=[...companies].sort((a,b)=>b.revenue-a.revenue);
+    const hasR40m=hasData(companies,'ruleOf40');
+    const hasChurnm=hasData(companies,'grossChurn');
+    const r40Top3=hasR40m?topN(companies,'ruleOf40',3):[];
+    const churnTop3=hasChurnm?[...companies].filter(c=>c.grossChurn!=null).sort((a,b)=>a.grossChurn-b.grossChurn).slice(0,3):[];
     el.innerHTML=`
       ${secH('06','SaaS KPIマトリクス','ARR・NRR・Churn・Rule of 40の横断比較')}
       <div class="commentary">
@@ -827,8 +879,8 @@ let companies = [];
         NRR開示は<strong>${companies.filter(c=>c.nrr!=null).length}社</strong>、Churn開示は<strong>${companies.filter(c=>c.grossChurn!=null).length}社</strong>。
         ${hasData(companies,'arr')?`ARR合計<strong>${fmtB(companies.filter(c=>c.arr!=null).reduce((s,c)=>s+c.arr,0))}</strong>。`:''}
         非開示企業は売上高・営業利益率等の公開財務データで代替表示。<br><br>
-        <strong>Rule of 40:</strong> ARR成長率+営業利益率で算出。トヨクモ(93.5)、サイバーセキュリティクラウド(52.7)、サイボウズ(44.5)が40超え。
-        <strong>Churn Rate:</strong> Sansan(0.46%)、スマレジ(0.5%)、HENNGE(0.54%)が低水準で安定。
+        <strong>Rule of 40:</strong> ARR成長率+営業利益率で算出。${hasR40m?r40Top3.map(c=>shortName(c.name)+'('+c.ruleOf40.toFixed(1)+')').join('、')+'が40超え':'データ開示企業のみ表示'}。
+        <strong>Churn Rate:</strong> ${hasChurnm?churnTop3.map(c=>shortName(c.name)+'('+c.grossChurn.toFixed(2)+'%)').join('、')+'が低水準で安定':'データ開示企業のみ表示'}。
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="mtRev"></canvas></div></div>
@@ -859,7 +911,7 @@ let companies = [];
         <strong>Unit Economics:</strong> LTV/CAC・Payback Period・S&M/R&D/G&A比率等のUnit Economics指標は、各社が個別にIR資料で開示しているもの以外は外部から算出困難なため、現在データ未取得です。<br>
         代替として、Gross Margin・営業利益率等の公開データを用いた収益構造分析を掲載します。<br><br>
         <strong>参考:</strong> Gross Margin平均<strong>${avg(companies,'grossMargin')}%</strong>、営業利益率平均<strong>${avg(companies,'opMargin')}%</strong>。
-        高Gross Margin企業(手間いらず88%、ユーザーローカル88%、HENNGE85%)はSaaSモデルの典型。
+        高Gross Margin企業(${topN(companies,'grossMargin',3).map(c=>shortName(c.name)+c.grossMargin.toFixed(0)+'%').join('、')})はSaaSモデルの典型。
       </div>
       <div class="kpi-grid">
         ${kpi('平均Gross Margin',avg(companies,'grossMargin')+'%','','c-green')}
@@ -929,7 +981,7 @@ let companies = [];
         <strong>データソース:</strong> 各社の決算短信・決算説明会資料・有価証券報告書から取得。株価データはYahoo Finance Japan準拠。<br>
         <strong>更新頻度:</strong> 四半期決算発表後に順次更新(目安: 決算発表後2週間以内)。<br>
         <strong>注意事項:</strong> 株価・時価総額・売上高・営業利益・純利益等の基本財務データはkabutan.jpの実績値を使用。
-        ARR・NRR・Churn等のSaaS固有KPIは各社決算説明資料から取得(マネーフォワード・freee・Sansan・HENNGE・サイボウズ・サイバーセキュリティクラウド・スマレジ・トヨクモ等)。非開示企業はnull表示。<br>
+        ARR・NRR・Churn等のSaaS固有KPIは各社決算説明資料から取得(マネーフォワード・freee・Sansan・HENNGE・サイボウズ・サイバーセキュリティクラウド・スマレジ・トヨクモ等)。<strong>非開示企業は「-」(null)表示</strong>。推計値は一切含まれておらず、各社IR開示値のみ使用。<br>
         <strong>※四半期データについて:</strong> 四半期売上高・四半期営業利益率は、通期実績値を基に四半期按分・季節性調整を行った<strong>推計値</strong>です。
         各社が個別に開示する四半期決算短信の実績値とは異なる場合があります。投資判断にあたっては、各社IRの一次情報をご確認ください。<br>
         <strong>※SaaSインデックスについて:</strong> 対象30社の時価総額加重平均株価騰落率を月次配分して算出した推計指数です。
