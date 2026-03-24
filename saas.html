@@ -74,7 +74,13 @@
     .report-meta { display: flex; gap: 36px; flex-wrap: wrap; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
     .report-meta strong { color: rgba(255,255,255,0.7); }
     .nav-bar { background: var(--bg-alt); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 48px; }
-    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; overflow-x: auto; }
+    .nav-wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; position: relative; }
+    .nav-inner { display: flex; overflow-x: auto; flex: 1; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-scroll-btn { background: linear-gradient(90deg, var(--bg-alt) 60%, transparent); border: none; color: var(--text-muted); cursor: pointer; padding: 10px 6px; font-size: 1rem; z-index: 2; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-scroll-btn:hover { color: var(--navy); }
+    .nav-scroll-btn.right { background: linear-gradient(270deg, var(--bg-alt) 60%, transparent); }
+    .nav-scroll-btn.hidden { opacity: 0; pointer-events: none; }
     .nav-item { padding: 13px 22px; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.3px; }
     .nav-item:hover { color: var(--text); }
     .nav-item.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
@@ -117,6 +123,8 @@
     thead th { background: var(--bg-warm); color: var(--text-muted); font-weight: 600; text-align: right; padding: 9px 10px; white-space: nowrap; border-bottom: 2px solid var(--border); font-size: 0.7rem; letter-spacing: 0.2px; cursor: pointer; user-select: none; }
     thead th:first-child, thead th:nth-child(2) { text-align: left; }
     thead th:hover { color: var(--navy); }
+    thead th.sort-asc::after { content: ' ▲'; font-size: 0.55rem; color: var(--gold); }
+    thead th.sort-desc::after { content: ' ▼'; font-size: 0.55rem; color: var(--gold); }
     td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); text-align: right; white-space: nowrap; }
     td:first-child, td:nth-child(2) { text-align: left; }
     tr:hover td { background: rgba(155,139,110,0.04); }
@@ -239,6 +247,9 @@
       .kpi-value { font-size: 1.1rem; }
       .chart-area { height: 220px; }
       .chart-area.tall { height: 280px; }
+      .heatmap-table td:first-child { min-width: 90px; }
+      .heatmap-table td { min-width: 40px; }
+      .modal .form-group input { min-height: 44px; }
     }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -279,7 +290,7 @@
     <div class="report-title">国内SaaS セクター分析 KPIダッシュボード</div>
     <div class="report-subtitle">上場SaaS企業30社のARR・Unit Economics・バリュエーション横断分析</div>
     <div class="report-meta">
-      <span>データ基準日: <strong>2026年3月19日</strong></span>
+      <span>株価基準日: <strong>2026年3月19日終値</strong></span>
       <span>対象: <strong id="companyCount">30</strong>社</span>
       <span>分析指標: <strong>50+項目</strong></span>
       <span>出所: 各社IR・決算説明会資料</span>
@@ -298,16 +309,20 @@
 </div>
 
 <nav class="nav-bar">
-  <div class="nav-inner" id="mainNav">
-    <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
-    <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
-    <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
-    <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
-    <div class="nav-item" data-tab="invest"><span class="nav-num">05</span>投資指標・資本効率</div>
-    <div class="nav-item" data-tab="matrix"><span class="nav-num">06</span>SaaS KPIマトリクス</div>
-    <div class="nav-item" data-tab="unit"><span class="nav-num">07</span>Unit Economics</div>
-    <div class="nav-item" data-tab="detail"><span class="nav-num">08</span>個別企業分析</div>
-    <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
+  <div class="nav-wrap">
+    <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
+    <div class="nav-inner" id="mainNav">
+      <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+      <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
+      <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
+      <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
+      <div class="nav-item" data-tab="invest"><span class="nav-num">05</span>投資指標・資本効率</div>
+      <div class="nav-item" data-tab="matrix"><span class="nav-num">06</span>SaaS KPIマトリクス</div>
+      <div class="nav-item" data-tab="unit"><span class="nav-num">07</span>Unit Economics</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">08</span>個別企業分析</div>
+      <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
+    </div>
+    <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
   </div>
 </nav>
 
@@ -534,6 +549,11 @@ function avg(arr,key){const v=arr.filter(c=>c[key]!=null);return v.length?(v.red
 function topN(arr,key,n){return[...arr].filter(c=>c[key]!=null).sort((a,b)=>b[key]-a[key]).slice(0,n);}
 function nv(v,suf='',fmt){if(v==null)return'-';if(fmt==='loc')return v.toLocaleString()+suf;if(fmt==='f1')return v.toFixed(1)+suf;if(fmt==='f2')return v.toFixed(2)+suf;return v+suf;}
 function hasData(arr,key){return arr.some(c=>c[key]!=null);}
+const DATA_AS_OF = {
+  stockPrice: '2026年3月19日終値',
+  financials: '各社直近本決算(kabutan.jp)',
+  saasKPI: '各社直近決算説明資料',
+};
 </script>
 
 <!-- Data -->
@@ -603,12 +623,31 @@ let companies = [];
   initNav();
 
   function initNav(){
+    const navInner=document.getElementById('mainNav');
+    const btnL=document.getElementById('navScrollLeft');
+    const btnR=document.getElementById('navScrollRight');
+    // スクロールボタンの表示制御
+    function updateScrollBtns(){
+      if(!navInner||!btnL||!btnR)return;
+      btnL.classList.toggle('hidden',navInner.scrollLeft<=4);
+      btnR.classList.toggle('hidden',navInner.scrollLeft+navInner.clientWidth>=navInner.scrollWidth-4);
+    }
+    if(navInner){
+      navInner.addEventListener('scroll',updateScrollBtns);
+      window.addEventListener('resize',updateScrollBtns);
+      setTimeout(updateScrollBtns,100);
+    }
+    if(btnL)btnL.addEventListener('click',()=>{navInner.scrollBy({left:-200,behavior:'smooth'});});
+    if(btnR)btnR.addEventListener('click',()=>{navInner.scrollBy({left:200,behavior:'smooth'});});
+    // タブクリック
     document.querySelectorAll('.nav-item').forEach(n=>n.addEventListener('click',()=>{
       document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
       n.classList.add('active');
       tab=n.dataset.tab;
       document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
       document.getElementById('sec-'+tab).classList.add('active');
+      // アクティブタブを表示領域にスクロール
+      n.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
       render();
     }));
   }
@@ -632,6 +671,34 @@ let companies = [];
   function rankCard(t,items,fn){return`<div class="ranking-card"><div class="ranking-title">${t}</div>${items.map((c,i)=>`<div class="ranking-row"><span><span class="ranking-num">${i+1}</span>${shortName(c.name)}</span><span style="font-weight:600">${fn(c)}</span></div>`).join('')}</div>`;}
   function bindRows(el){el.querySelectorAll('.clickable-row').forEach(tr=>tr.addEventListener('click',()=>{selComp=companies.find(c=>c.code===tr.dataset.code);document.querySelector('.nav-item[data-tab="detail"]').click();}));}
   function pn(v,suf=''){return`<span class="${v>=0?'pos':'neg'}">${v>0?'+':''}${typeof v==='number'?v.toFixed(1):v}${suf}</span>`;}
+
+  // ============ TABLE SORT ============
+  function enableTableSort(tableEl, dataArr, colDefs, renderRow, onAfter){
+    // colDefs: [{key, type:'num'|'str'},...] matching th order
+    // renderRow: (item) => '<tr>...</tr>'
+    let sortKey=null, sortDir='desc';
+    const ths=tableEl.querySelectorAll('thead th');
+    ths.forEach((th,i)=>{
+      if(i>=colDefs.length||!colDefs[i])return;
+      th.addEventListener('click',()=>{
+        const def=colDefs[i];
+        if(sortKey===def.key){sortDir=sortDir==='desc'?'asc':'desc';}
+        else{sortKey=def.key;sortDir='desc';}
+        ths.forEach(h=>{h.classList.remove('sort-asc','sort-desc');});
+        th.classList.add(sortDir==='asc'?'sort-asc':'sort-desc');
+        const sorted=[...dataArr].sort((a,b)=>{
+          let va=typeof def.key==='function'?def.key(a):a[def.key];
+          let vb=typeof def.key==='function'?def.key(b):b[def.key];
+          if(va==null)va=def.type==='num'?-Infinity:'';
+          if(vb==null)vb=def.type==='num'?-Infinity:'';
+          if(def.type==='num')return sortDir==='desc'?vb-va:va-vb;
+          return sortDir==='desc'?String(vb).localeCompare(String(va)):String(va).localeCompare(String(vb));
+        });
+        tableEl.querySelector('tbody').innerHTML=sorted.map(renderRow).join('');
+        if(onAfter)onAfter(tableEl);
+      });
+    });
+  }
 
   // ============ 01 EXECUTIVE SUMMARY ============
   function rExec(){
@@ -672,12 +739,13 @@ let companies = [];
         しかし業界固有のワークフロー・規制対応・データネットワーク効果を持つSaaSは代替困難。自社プロダクトの「AI代替可能層」と「代替困難層」を分解し、後者への投資集中とAI統合戦略をIRで明示することがバリュエーション回復の起点となる。<br>
         <strong>(2) 「Rule of 40超」を目指す利益構造転換:</strong>
         freee・マネーフォワードの黒字化達成は「成長一辺倒」から「成長+収益性」への転換を象徴。Rule of 40を社内KPIとして採用し、成長率と利益率のバランスを四半期ごとに取締役会レベルで議論すべき。Gross Margin80%超の企業は販管費効率化だけで大幅改善が可能。<br>
-        <strong>(3) NRR・チャーンの「見える化」による不透明性ディスカウント解消:</strong>
-        NRR・チャーンレート開示企業は限定的。米国ではNRR120%超の企業がPSR10倍以上で評価される一方、非開示企業はPSR3〜5倍。NRR・チャーン・LTV/CACの四半期開示が機関投資家のカバレッジ取得と適正バリュエーション獲得の最短経路。<br>
-        <strong>(4) 「SaaSの死」後のM&A好機:</strong>
-        PER/PSR圧縮は補完的プロダクト・データアセットの割安取得機会。サイバーセキュリティクラウドのDataSign連結(売上+33%)やマネーフォワードのスマートキャンプ売却(利益60億改善)がポートフォリオ最適化の好事例。<br>
+        <strong>(3) ARR・アカウント数・成長率の開示徹底による不透明性ディスカウント解消:</strong>
+        国内SaaS30社のうちARR開示は${companies.filter(c=>c.arr!=null).length}社に留まる。ARR・有料顧客数・ARR成長率は国際的にSaaS企業評価の標準指標であり、これらの四半期開示が機関投資家カバレッジ取得と適正バリュエーション獲得への最短経路。NRR・チャーンレートは補足指標として有用だが、プロダクト特性や季節要因による変動が大きく、単体での開示は「SaaSの死」シナリオの補強材料に利用されるリスクもあるため、開示戦略には慎重な設計が求められる。<br>
+        <strong>(4) キャッシュの戦略的配分 ― M&Aと成長投資の好機:</strong>
+        黒字化とバリュエーション圧縮が同時に進行する現在、潤沢な手元資金の投資先が問われている。金利上昇局面では資金調達コストが漸増するため、<strong>今のうちにキャッシュを成長に振り向ける</strong>経営判断の巧拙が中期的な企業価値を左右する。
+        マネーフォワードの事例が示唆的 ― (a) スマートキャンプ(SaaS比較サイト「BOXIL」)を傘下で売上10億→40億円へ成長させた後、丸の内キャピタル(PEファンド)へ売却し特別利益63億円を計上。非中核事業のバリューアップ→売却というPE的手法でポートフォリオを最適化。(b) 一方で2026年2月にソニービズネットワークスからクラウド勤怠管理「AKASHI」を吸収分割で取得。中堅・エンタープライズ向け実績を持つバーティカルSaaSを割安に取得し、クラウド勤怠Plusとしてプロダクト統合を進める。サイバーセキュリティクラウドのDataSign連結(売上+33%)やSansanの非中核事業(EventHub)売却→Bill One集中も同様の「選択と集中」型M&A。<br>
         <strong>(5) IR戦略のリデザイン:</strong>
-        決算説明資料へのAI戦略セクション新設、SaaS KPIダッシュボード充実(ARR/NRR/Churn/LTV全開示)、Rule of 40のセクター内ベンチマーク提示、機関投資家向け「AI×SaaS」テーマIR Day開催を推奨。
+        決算説明資料へのAI戦略セクション新設、SaaS KPIダッシュボード充実(ARR・顧客数・成長率の標準開示)、Rule of 40のセクター内ベンチマーク提示、機関投資家向け「AI×SaaS」テーマIR Day開催を推奨。
       </div>
       <div class="kpi-grid">
         ${kpi('対象企業数',companies.length+'社','','c-navy')}
@@ -716,7 +784,7 @@ let companies = [];
     const segMC={};companies.forEach(c=>{segMC[c.segment]=(segMC[c.segment]||0)+c.marketCap;});
     mc('exPie','doughnut',{labels:Object.keys(segMC).map(k=>SEGMENTS[k]),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(k=>SC[k]),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:(v,ctx)=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return(v/t*100).toFixed(1)+'%';}}}});
     const mx=Math.max(...companies.map(c=>c.marketCap));
-    mc('exBub','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*30),name:c.name})),backgroundColor:SC[seg]+'88',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}}}});
+    mc('exBub','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*30),name:c.name})),backgroundColor:SC[seg]+'88',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}},annotation:{annotations:{opm15:{type:'line',yMin:15,yMax:15,borderColor:'rgba(155,139,110,0.4)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:'OPM 15%',position:'end',backgroundColor:'rgba(155,139,110,0.6)',color:'#fff',font:{size:9}}}}}}});
   }
 
   // ============ 02 STOCK MARKET PERFORMANCE ============
@@ -724,6 +792,7 @@ let companies = [];
     const el=g('sec-market');
     const sorted=[...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
     const above=companies.filter(c=>c.relativeReturn>0).length;
+    const mkRow=c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y.toFixed(1)}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td></tr>`;
     const saasIdx2=SAAS_INDEX_MONTHLY&&SAAS_INDEX_MONTHLY.length?SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1].toFixed(1):'—';
     const topixIdx2=TOPIX_MONTHLY&&TOPIX_MONTHLY.length?TOPIX_MONTHLY[TOPIX_MONTHLY.length-1].toFixed(1):'—';
     const idxDiff2=SAAS_INDEX_MONTHLY&&TOPIX_MONTHLY?(SAAS_INDEX_MONTHLY[SAAS_INDEX_MONTHLY.length-1]-TOPIX_MONTHLY[TOPIX_MONTHLY.length-1]).toFixed(1):null;
@@ -763,11 +832,21 @@ let companies = [];
         <div class="chart-panel"><div class="chart-panel-title">SaaS Index vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (25/01=100) / TOPIX実績値・SaaS指数は30社加重平均推計</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">銘柄別 株価騰落率 (1年)</div><div class="chart-panel-sub">赤線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">銘柄別パフォーマンス一覧</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">株価: ${DATA_AS_OF.stockPrice} / PER・PBR・ROE: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table id="tblMarket">
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>セグメント</th><th>株価</th><th>時価総額(億)</th><th>1Y騰落率</th><th>vs TOPIX</th><th>PER</th><th>PBR</th><th>PSR</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td><td>${c.stockPrice.toLocaleString()}</td><td>${c.marketCap.toLocaleString()}</td><td class="${c.stockReturn1Y>=0?'pos':'neg'}">${c.stockReturn1Y>0?'+':''}${c.stockReturn1Y.toFixed(1)}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}" style="font-weight:600">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td></tr>`).join('')}</tbody>
+        <tbody>${sorted.map(c=>mkRow(c)).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['mkIdx','mkStocks']);
+    // テーブルソート有効化
+    const mkColDefs=[
+      {key:'code',type:'str'},{key:'name',type:'str'},{key:'segment',type:'str'},
+      {key:'stockPrice',type:'num'},{key:'marketCap',type:'num'},
+      {key:'stockReturn1Y',type:'num'},{key:'relativeReturn',type:'num'},
+      {key:'per',type:'num'},{key:'pbr',type:'num'},{key:'psr',type:'num'}
+    ];
+    enableTableSort(g('tblMarket'),companies,mkColDefs,mkRow,t=>bindRows(el));
+    // 初期ソート状態のインジケータ（vs TOPIX降順）
+    g('tblMarket').querySelectorAll('thead th')[6].classList.add('sort-desc');
     const mkAnnot={};
     SAAS_EVENTS.forEach((ev,i)=>{mkAnnot['ev'+i]={type:'line',xMin:ev.idx,xMax:ev.idx,borderColor:'rgba(181,58,58,0.5)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:ev.label,position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9,weight:600},padding:{x:4,y:2}}};});
     mc('mkIdx','line',{labels:INDEX_MONTHS,datasets:[{label:'SaaS Index',data:SAAS_INDEX_MONTHLY,borderColor:'#1a2d4f',backgroundColor:'rgba(26,45,79,0.08)',fill:true,tension:0.3,pointRadius:4,borderWidth:2},{label:'TOPIX',data:TOPIX_MONTHLY,borderColor:'#9b8b6e',borderDash:[5,3],fill:false,tension:0.3,pointRadius:3,borderWidth:2}]},{plugins:{annotation:{annotations:mkAnnot}}});
@@ -781,19 +860,19 @@ let companies = [];
     el.innerHTML=`
       ${secH('03','財務指標・バリュエーション','売上高・利益率・PER/PBR/PSRの横断比較')}
       <div class="commentary">
-        <strong>バリュエーション分析:</strong> セクター平均PERは${avg(companies,'per')}倍、PBRは${avg(companies,'pbr')}倍、PSRは${avg(companies,'psr')}倍。
+        <strong>バリュエーション分析 (${DATA_AS_OF.stockPrice}基準):</strong> セクター平均PERは${avg(companies,'per')}倍、PBRは${avg(companies,'pbr')}倍、PSRは${avg(companies,'psr')}倍。
         SaaS企業は高PSR・高PBRのグロース評価が主流。PBR-ROE間の正の相関が確認され、<strong>ROE改善が株価評価に直結</strong>する構造。
         赤字企業はPSR(売上高倍率)での評価が適切。
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益</div><div class="chart-panel-sub">TOP15 / 百万円</div><div class="chart-area tall"><canvas id="fnRP"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="fnPSR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 右上=大型高評価 左下=小型割安</div><div class="chart-area tall"><canvas id="fnPSR"></canvas></div></div>
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area"><canvas id="fnPBR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">純利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 右上=高収益×高資本効率の優良企業</div><div class="chart-area"><canvas id="fnPBR"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="fnHist"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">財務指標一覧 (売上高順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials} / 株価: ${DATA_AS_OF.stockPrice}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>営業利益(百万)</th><th>営業利益率</th><th>純利益率</th><th>PER</th><th>PBR</th><th>PSR</th><th>ROE</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td>${c.psr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
@@ -823,14 +902,14 @@ let companies = [];
         <div class="chart-panel"><div class="chart-panel-title">ROE vs 純利益率</div><div class="chart-panel-sub">ROE順</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">純利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益性指標一覧 (ROE順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益性指標一覧 (ROE順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>ROE</th><th>純利益率</th><th>営業利益率</th><th>Gross Margin</th><th>PBR</th><th>PER</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td class="${c.roe>=15?'pos':''}" style="font-weight:700">${c.roe.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td>${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td><td>${c.pbr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['dpBar','dpScatter']);
     mc('dpBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:sorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'営業利益率(%)',data:sorted.map(c=>c.opMargin),backgroundColor:'#9b8b6e'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
     const maxMC=Math.max(...companies.map(c=>c.marketCap));
-    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg&&c.roe>0).map(c=>({x:c.netMargin,y:c.roe,r:Math.max(4,Math.sqrt(c.marketCap/maxMC)*30),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'ROE (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / ROE${x.raw.y}%`}}}});
+    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg&&c.roe>0).map(c=>({x:c.netMargin,y:c.roe,r:Math.max(4,Math.sqrt(c.marketCap/maxMC)*30),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'ROE (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / ROE${x.raw.y}%`}},annotation:{annotations:{roe15:{type:'line',yMin:15,yMax:15,borderColor:'rgba(45,122,79,0.4)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:'ROE 15%',position:'end',backgroundColor:'rgba(45,122,79,0.7)',color:'#fff',font:{size:9}}}}}}});
   }
 
   // ============ 05 INVESTMENT METRICS ============
@@ -840,7 +919,7 @@ let companies = [];
     el.innerHTML=`
       ${secH('05','投資指標・バリュエーション','PSR・PER・PBR・ROE等の投資判断指標')}
       <div class="commentary">
-        <strong>バリュエーション分析:</strong> SaaS企業は配当・株主優待が少ないため、<strong>PSR・PBR・PER</strong>が主要なバリュエーション指標。
+        <strong>バリュエーション分析 (${DATA_AS_OF.stockPrice}基準):</strong> SaaS企業は配当・株主優待が少ないため、<strong>PSR・PBR・PER</strong>が主要なバリュエーション指標。
         平均PSRは${avg(companies,'psr')}倍、平均PERは${avg(companies,'per')}倍、平均PBRは${avg(companies,'pbr')}倍。<br>
         <em>※ EV/ARR・FCF利回り・ROIC・キャッシュポジション等の詳細投資指標は現在データ未取得のため非表示です。各社IR開示データの拡充に合わせて順次追加予定。</em>
       </div>
@@ -851,17 +930,17 @@ let companies = [];
         ${kpi('平均ROE',avg(companies,'roe')+'%','','c-navy')}
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="ivPSR"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">PBR vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="ivPBR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PSR vs 売上高成長率</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 高成長×高PSR=市場の期待が大きい銘柄</div><div class="chart-area tall"><canvas id="ivPSR"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">PER vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 右上=高収益で高評価 左上=割高リスク</div><div class="chart-area tall"><canvas id="ivPER"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧 (PSR順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧 (PSR順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">株価: ${DATA_AS_OF.stockPrice} / 財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>時価総額(億)</th><th>売上高(百万)</th><th>PSR</th><th>PER</th><th>PBR</th><th>ROE</th><th>営業利益率</th><th>vs TOPIX</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.marketCap.toLocaleString()}</td><td>${c.revenue.toLocaleString()}</td><td style="font-weight:700">${c.psr.toFixed(1)}</td><td>${c.per.toFixed(1)}</td><td>${c.pbr.toFixed(1)}</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td class="${c.relativeReturn>=0?'pos':'neg'}">${c.relativeReturn>0?'+':''}${c.relativeReturn.toFixed(1)}%</td></tr>`).join('')}</tbody>
       </table></div></div>`;
-    bindRows(el);dc(['ivPSR','ivPBR']);
+    bindRows(el);dc(['ivPSR','ivPER']);
     const mx=Math.max(...companies.map(c=>c.marketCap));
-    mc('ivPSR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.psr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'PSR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / PSR${x.raw.y}倍`}}}});
-    mc('ivPBR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: ROE${x.raw.x}% / PBR${x.raw.y}倍`}}}});
+    mc('ivPSR','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg&&c.stockReturn1Y!=null).map(c=>({x:c.stockReturn1Y,y:c.psr,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'株価騰落率 1Y (%)'}},y:{title:{display:true,text:'PSR (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 騰落率${x.raw.x}% / PSR${x.raw.y}倍`}}}});
+    mc('ivPER','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg&&c.per>0&&c.per<200).map(c=>({x:c.opMargin,y:c.per,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'営業利益率 (%)'}},y:{title:{display:true,text:'PER (倍)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: OPM${x.raw.x}% / PER${x.raw.y}倍`}}}});
   }
 
   // ============ 06 SaaS KPI MATRIX ============
@@ -873,29 +952,29 @@ let companies = [];
     const r40Top3=hasR40m?topN(companies,'ruleOf40',3):[];
     const churnTop3=hasChurnm?[...companies].filter(c=>c.grossChurn!=null).sort((a,b)=>a.grossChurn-b.grossChurn).slice(0,3):[];
     el.innerHTML=`
-      ${secH('06','SaaS KPIマトリクス','ARR・NRR・Churn・Rule of 40の横断比較')}
+      ${secH('06','SaaS KPIマトリクス','ARR・成長率・Rule of 40の横断比較')}
       <div class="commentary">
-        <strong>KPIマトリクス:</strong> 各社決算説明資料からSaaS固有KPIを取得。ARR開示は<strong>${companies.filter(c=>c.arr!=null).length}社</strong>、
-        NRR開示は<strong>${companies.filter(c=>c.nrr!=null).length}社</strong>、Churn開示は<strong>${companies.filter(c=>c.grossChurn!=null).length}社</strong>。
-        ${hasData(companies,'arr')?`ARR合計<strong>${fmtB(companies.filter(c=>c.arr!=null).reduce((s,c)=>s+c.arr,0))}</strong>。`:''}
+        <strong>KPIマトリクス:</strong> 各社決算説明資料からSaaS固有KPIを取得。ARR開示は<strong>${companies.filter(c=>c.arr!=null).length}/${companies.length}社</strong>。
+        ${hasData(companies,'arr')?`ARR開示企業の合計は<strong>${fmtB(companies.filter(c=>c.arr!=null).reduce((s,c)=>s+c.arr,0))}</strong>。`:''}
+        ARR・有料アカウント数・ARR成長率はSaaS企業の健全性を測る標準指標であり、ほぼすべての上場SaaS企業がIRで開示している。
         非開示企業は売上高・営業利益率等の公開財務データで代替表示。<br><br>
-        <strong>Rule of 40:</strong> ARR成長率+営業利益率で算出。${hasR40m?r40Top3.map(c=>shortName(c.name)+'('+c.ruleOf40.toFixed(1)+')').join('、')+'が40超え':'データ開示企業のみ表示'}。
-        <strong>Churn Rate:</strong> ${hasChurnm?churnTop3.map(c=>shortName(c.name)+'('+c.grossChurn.toFixed(2)+'%)').join('、')+'が低水準で安定':'データ開示企業のみ表示'}。
+        <strong>Rule of 40:</strong> ARR成長率+営業利益率で算出。${hasR40m?r40Top3.map(c=>shortName(c.name)+'('+c.ruleOf40.toFixed(1)+')').join('、')+'が40超え':'データ開示企業のみ表示'}。<br>
+        <em>※ Churn Rate・NRRは補足指標として各社開示値を収録(Churn開示${companies.filter(c=>c.grossChurn!=null).length}社、NRR開示${companies.filter(c=>c.nrr!=null).length}社)。ただしプロダクト特性・季節要因・算出基準の差異が大きいため、企業間の単純比較には注意が必要。</em>
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="mtRev"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">Gross Margin vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額</div><div class="chart-area tall"><canvas id="mtGM"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">売上高 vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 右上=規模と収益性を両立する企業</div><div class="chart-area tall"><canvas id="mtRev"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">Gross Margin vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=時価総額 / 対角線から離れるほど販管費が重い</div><div class="chart-area tall"><canvas id="mtGM"></canvas></div></div>
       </div>
       <div class="chart-row single">
         <div class="chart-panel"><div class="chart-panel-title">四半期売上高推移 (TOP10)</div><div class="chart-panel-sub">※四半期データは通期実績からの推計値です</div><div class="chart-area tall"><canvas id="mtQRev"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">SaaS KPI一覧 (売上高順)</div></div><div class="table-scroll"><table>
-        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>ARR(百万)</th><th>ARR成長率</th><th>Churn(%)</th><th>NRR(%)</th><th>Rule of 40</th><th>営業利益率</th><th>Gross Margin</th></tr></thead>
-        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${nv(c.arr,'','loc')}</td><td>${nv(c.arrGrowth,'%','f1')}</td><td>${nv(c.grossChurn,'%','f2')}</td><td>${nv(c.nrr,'%','f1')}</td><td class="${c.ruleOf40!=null&&c.ruleOf40>=40?'pos':''}">${nv(c.ruleOf40,'','f1')}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td></tr>`).join('')}</tbody>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">SaaS KPI一覧 (売上高順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">SaaS KPI: ${DATA_AS_OF.saasKPI} / 財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
+        <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>売上高(百万)</th><th>ARR(百万)</th><th>ARR成長率</th><th>Rule of 40</th><th>営業利益率</th><th>Gross Margin</th><th style="color:#999">Churn※</th><th style="color:#999">NRR※</th></tr></thead>
+        <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td>${c.revenue.toLocaleString()}</td><td>${nv(c.arr,'','loc')}</td><td>${nv(c.arrGrowth,'%','f1')}</td><td class="${c.ruleOf40!=null&&c.ruleOf40>=40?'pos':''}">${nv(c.ruleOf40,'','f1')}</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.grossMargin.toFixed(1)}%</td><td style="color:#999">${nv(c.grossChurn,'%','f2')}</td><td style="color:#999">${nv(c.nrr,'%','f1')}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el);dc(['mtRev','mtGM','mtQRev']);
     const mx=Math.max(...companies.map(c=>c.marketCap));
-    mc('mtRev','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}}}});
+    mc('mtRev','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.revenue/1000,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高 (十億円)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 売上${(x.raw.x*1000).toLocaleString()}百万 / OPM${x.raw.y}%`}},annotation:{annotations:{opm15:{type:'line',yMin:15,yMax:15,borderColor:'rgba(155,139,110,0.5)',borderWidth:1.5,borderDash:[4,3],label:{display:true,content:'営業利益率15%',position:'end',backgroundColor:'rgba(155,139,110,0.7)',color:'#fff',font:{size:9}}}}}}});
     mc('mtGM','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.grossMargin,y:c.opMargin,r:Math.max(4,Math.sqrt(c.marketCap/mx)*25),name:c.name})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'Gross Margin (%)'}},y:{title:{display:true,text:'営業利益率 (%)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: GM${x.raw.x}% / OPM${x.raw.y}%`}}}});
     const top10=sorted.slice(0,10);
     mc('mtQRev','line',{labels:QUARTERS,datasets:top10.map((c,i)=>({label:shortName(c.name),data:c.quarterlyRevenue,borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}))},{});
@@ -923,7 +1002,7 @@ let companies = [];
         <div class="chart-panel"><div class="chart-panel-title">Gross Margin vs 営業利益率</div><div class="chart-panel-sub">バブルサイズ=売上高</div><div class="chart-area tall"><canvas id="utGM"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">Gross Margin ランキング</div><div class="chart-panel-sub">セグメント別</div><div class="chart-area tall"><canvas id="utGMBar"></canvas></div></div>
       </div>
-      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益構造一覧 (Gross Margin順)</div></div><div class="table-scroll"><table>
+      <div class="table-panel"><div class="table-header"><div class="table-header-title">収益構造一覧 (Gross Margin順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>Gross Margin</th><th>営業利益率</th><th>純利益率</th><th>ROE</th><th>売上高(百万)</th><th>営業利益(百万)</th><th>セグメント</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-weight:700">${c.grossMargin.toFixed(1)}%</td><td class="${c.opMargin>=15?'pos':c.opMargin<0?'neg':''}">${c.opMargin.toFixed(1)}%</td><td>${c.netMargin.toFixed(1)}%</td><td class="${c.roe>=15?'pos':''}">${c.roe.toFixed(1)}%</td><td>${c.revenue.toLocaleString()}</td><td>${c.opProfit.toLocaleString()}</td><td><span class="badge ${SEG_BADGE[c.segment]||''}">${SEGMENTS[c.segment]}</span></td></tr>`).join('')}</tbody>
       </table></div></div>`;
@@ -1056,5 +1135,15 @@ let companies = [];
 
 })();
 </script>
+<div style="background:var(--bg-alt,#f8f7f5);border-top:1px solid #e0ddd6;padding:24px 20px;margin-top:40px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="min-width:0;">
+      <div style="font-size:0.72rem;color:#9b8b6e;letter-spacing:2px;margin-bottom:4px;">OTHER SECTOR REPORT</div>
+      <div style="font-size:0.95rem;font-weight:600;color:#1a2d4f;">外食産業 セクター分析レポート</div>
+      <div style="font-size:0.78rem;color:#777;margin-top:2px;">外食主要企業の月次KPI・株主還元・バリュエーションを横断分析</div>
+    </div>
+    <a href="/food-service.html" style="background:#1a2d4f;color:#fff;text-decoration:none;padding:10px 28px;font-size:0.8rem;letter-spacing:0.5px;transition:opacity 0.2s;white-space:nowrap;">外食レポートを見る →</a>
+  </div>
+</div>
 </body>
 </html>

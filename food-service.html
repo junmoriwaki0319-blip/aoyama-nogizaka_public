@@ -151,12 +151,20 @@
       position: sticky; top: 0; z-index: 100;
       padding: 0 48px;
     }
+    .nav-wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; position: relative; }
     .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
       overflow-x: auto;
+      flex: 1;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
     }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-scroll-btn { background: linear-gradient(90deg, var(--bg-alt) 60%, transparent); border: none; color: var(--text-muted); cursor: pointer; padding: 10px 6px; font-size: 1rem; z-index: 2; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-scroll-btn:hover { color: var(--navy); }
+    .nav-scroll-btn.right { background: linear-gradient(270deg, var(--bg-alt) 60%, transparent); }
+    .nav-scroll-btn.hidden { opacity: 0; pointer-events: none; }
     .nav-item {
       padding: 13px 22px;
       font-size: 0.78rem;
@@ -466,6 +474,9 @@
       .chart-area.tall { height: 280px; }
       .login-wall { padding: 80px 16px 40px; }
       .login-wall h3 { font-size: 1.1rem; }
+      .heatmap-table td:first-child { min-width: 90px; }
+      .heatmap-table td { min-width: 40px; }
+      .modal .form-group input { min-height: 44px; }
     }
 
     /* === Scrollbar === */
@@ -534,15 +545,19 @@
 
 <!-- Navigation -->
 <nav class="nav-bar">
-  <div class="nav-inner" id="mainNav">
-    <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
-    <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
-    <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
-    <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
-    <div class="nav-item" data-tab="shareholder"><span class="nav-num">05</span>株主還元・投資指標</div>
-    <div class="nav-item" data-tab="monthly"><span class="nav-num">06</span>月次KPI横断比較</div>
-    <div class="nav-item" data-tab="detail"><span class="nav-num">07</span>個別企業分析</div>
-    <div class="nav-item" data-tab="macro"><span class="nav-num">A</span>マクロ指標付録</div>
+  <div class="nav-wrap">
+    <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
+    <div class="nav-inner" id="mainNav">
+      <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+      <div class="nav-item" data-tab="market"><span class="nav-num">02</span>株式市場パフォーマンス</div>
+      <div class="nav-item" data-tab="financial"><span class="nav-num">03</span>財務指標・バリュエーション</div>
+      <div class="nav-item" data-tab="dupont"><span class="nav-num">04</span>DuPont分解</div>
+      <div class="nav-item" data-tab="shareholder"><span class="nav-num">05</span>株主還元・投資指標</div>
+      <div class="nav-item" data-tab="monthly"><span class="nav-num">06</span>月次KPI横断比較</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">07</span>個別企業分析</div>
+      <div class="nav-item" data-tab="macro"><span class="nav-num">A</span>マクロ指標付録</div>
+    </div>
+    <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
   </div>
 </nav>
 
@@ -1287,12 +1302,28 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
   initNav();
 
   function initNav() {
+    const navInner=document.getElementById('mainNav');
+    const btnL=document.getElementById('navScrollLeft');
+    const btnR=document.getElementById('navScrollRight');
+    function updateScrollBtns(){
+      if(!navInner||!btnL||!btnR)return;
+      btnL.classList.toggle('hidden',navInner.scrollLeft<=4);
+      btnR.classList.toggle('hidden',navInner.scrollLeft+navInner.clientWidth>=navInner.scrollWidth-4);
+    }
+    if(navInner){
+      navInner.addEventListener('scroll',updateScrollBtns);
+      window.addEventListener('resize',updateScrollBtns);
+      setTimeout(updateScrollBtns,100);
+    }
+    if(btnL)btnL.addEventListener('click',()=>{navInner.scrollBy({left:-200,behavior:'smooth'});});
+    if(btnR)btnR.addEventListener('click',()=>{navInner.scrollBy({left:200,behavior:'smooth'});});
     document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
       document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
       n.classList.add('active');
       tab = n.dataset.tab;
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById('sec-'+tab).classList.add('active');
+      n.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
       render();
     }));
   }
@@ -1768,5 +1799,15 @@ function topN(arr, key, n) { return [...arr].sort((a,b) => b[key]-a[key]).slice(
 })();
 
 </script>
+<div style="background:var(--bg-alt,#f8f7f5);border-top:1px solid #e0ddd6;padding:24px 20px;margin-top:40px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="min-width:0;">
+      <div style="font-size:0.72rem;color:#9b8b6e;letter-spacing:2px;margin-bottom:4px;">OTHER SECTOR REPORT</div>
+      <div style="font-size:0.95rem;font-weight:600;color:#1a2d4f;">国内SaaS セクター分析レポート</div>
+      <div style="font-size:0.78rem;color:#777;margin-top:2px;">SaaS主要企業のKPI・バリュエーション・成長性を横断分析</div>
+    </div>
+    <a href="/saas.html" style="background:#1a2d4f;color:#fff;text-decoration:none;padding:10px 28px;font-size:0.8rem;letter-spacing:0.5px;transition:opacity 0.2s;white-space:nowrap;">SaaSレポートを見る →</a>
+  </div>
+</div>
 </body>
 </html>

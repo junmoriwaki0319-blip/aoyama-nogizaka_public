@@ -589,16 +589,31 @@
       color: var(--text-mid);
       letter-spacing: 0.04em;
     }
-    .google-form-wrap {
+    .contact-form {
       background: var(--white);
       border: 1px solid var(--mid-gray);
-      overflow: hidden;
+      padding: 36px 32px;
     }
-    .google-form-wrap iframe {
-      display: block;
-      width: 100%;
-      border: none;
+    .contact-form .form-group { margin-bottom: 20px; }
+    .contact-form label { display: block; font-size: 12px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+    .contact-form label .req { color: #b53a3a; font-size: 10px; margin-left: 4px; }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--mid-gray); background: var(--white);
+      font-family: inherit; font-size: 13px; color: var(--navy); outline: none; transition: border-color 0.2s;
+      box-sizing: border-box;
     }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: var(--gold); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .contact-form button {
+      width: 100%; padding: 14px; background: var(--navy); color: var(--white); border: none;
+      font-family: inherit; font-size: 13px; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s;
+    }
+    .contact-form button:hover { background: #2a4470; }
+    .contact-form button:disabled { background: #999; cursor: not-allowed; }
+    .contact-form .form-status { text-align: center; padding: 12px; margin-top: 12px; font-size: 13px; border-radius: 4px; display: none; }
+    .contact-form .form-status.success { display: block; background: #d1fae5; color: #065f46; }
+    .contact-form .form-status.error { display: block; background: #fee2e2; color: #991b1b; }
     .privacy-note {
       font-size: 12px;
       color: var(--text-light);
@@ -690,6 +705,47 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
+    /* ===== DATA & AI SECTIONS ===== */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .data-card {
+      text-decoration: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 36px 32px;
+      transition: all 0.3s;
+      display: block;
+    }
+    .data-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .ai-card {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      padding: 32px 28px;
+    }
+    .ai-evidence {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -704,6 +760,10 @@
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
       .section-inner { padding: 0 24px; }
       .footer-inner { padding: 0 20px; }
+      /* Data & AI sections responsive */
+      .data-grid { grid-template-columns: 1fr; }
+      .ai-grid { grid-template-columns: 1fr; }
+      .ai-evidence { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 768px) {
       .section-inner { padding: 0 20px; }
@@ -713,12 +773,25 @@
       .service-card, .value-card { padding: 28px 20px; }
       .contact-form input, .contact-form textarea, .contact-form select { min-height: 44px; font-size: 14px; }
       .contact-form button { min-height: 48px; }
+      /* Data & AI sections mobile padding */
+      #data { padding: 60px 0 !important; }
+      .data-card { padding: 28px 20px; }
+      #ai-consulting { padding: 60px 0 !important; }
+      .ai-card { padding: 24px 20px; }
+      .ai-evidence { padding: 24px 20px; }
+      .ai-evidence a { width: 100%; text-align: center; }
     }
     @media (max-width: 480px) {
       section { padding: 60px 0; }
       .hero-title { font-size: 24px; }
       .section-inner { padding: 0 16px; }
       .footer-inner { padding: 0 16px; }
+      /* Data & AI sections small mobile */
+      #data { padding: 48px 0 !important; }
+      #ai-consulting { padding: 48px 0 !important; }
+      .data-grid { gap: 20px; }
+      .ai-grid { gap: 16px; }
+      .nav-inner { padding: 0 16px; }
     }
   </style>
 </head>
@@ -760,6 +833,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#philosophy" onclick="toggleMenu()">企業理念</a>
     <a href="#services" onclick="toggleMenu()">提供サービス</a>
+    <a href="#ai-consulting" onclick="toggleMenu()">AI × コンサルティング</a>
     <a href="#about" onclick="toggleMenu()">会社概要</a>
     <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
     <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
@@ -792,7 +866,7 @@
           企業の変革に伴走します。
         </p>
         <a href="#contact" class="hero-cta reveal reveal-delay-3">
-          お問い合わせはこちら
+          まずはお気軽にご相談ください
           <span class="hero-cta-arrow">→</span>
         </a>
       </div>
@@ -881,38 +955,101 @@
           <div class="service-num">01</div>
           <h3 class="service-title">伴走型支援</h3>
           <p class="service-en">Hands-on Partnership</p>
-          <p class="service-desc">提言に留まらず、企業価値の顕在化まで粘り強くハンズオンで伴走。高度な専門人材による実行支援と、経営改善ノウハウを融合させたプロフェッショナルサービスを提供します。</p>
+          <p class="service-desc">提言で終わらせず、経営の現場に入り込んで共に結果を出します。KPI設計からモニタリング体制の構築、月次での進捗レビューまで、成果が出るまで粘り強く伴走します。</p>
         </div>
         <div class="service-card reveal reveal-delay-2">
           <div class="service-num">02</div>
           <h3 class="service-title">経営戦略・バリューアップ</h3>
           <p class="service-en">Strategy & Value Enhancement</p>
-          <p class="service-desc">M&A推進・事業開発・中期経営計画の策定から、オペレーション改善・資本政策の設計まで、企業の成長ステージに応じた包括的な経営支援を行います。</p>
+          <p class="service-desc">中期経営計画の策定・事業ポートフォリオの最適化・オペレーション改善など、企業の成長ステージに応じた戦略を立案し、実行フェーズまで一貫して支援します。</p>
         </div>
         <div class="service-card reveal reveal-delay-3">
           <div class="service-num">03</div>
           <h3 class="service-title">IR支援・資本市場対応</h3>
           <p class="service-en">Capital Market Advisory</p>
-          <p class="service-desc">上場前後のIR戦略・エクイティストーリーの構築、投資家対応や開示資料の高度化をはじめ、PBR改善施策の立案・実行支援など、資本市場との対話強化に向けた一貫したサポートを提供します。</p>
+          <p class="service-desc">エクイティストーリーの構築、投資家との対話設計、開示資料の高度化、PBR改善施策の立案など、資本市場からの評価向上に直結する施策を一貫してサポートします。</p>
         </div>
         <div class="service-card reveal reveal-delay-1">
           <div class="service-num">04</div>
           <h3 class="service-title">組織・人材マネジメント</h3>
           <p class="service-en">Organization & Talent</p>
-          <p class="service-desc">経営人材の採用・報酬制度の設計・経営管理機能の強化など、企業の持続的成長を支える組織基盤の構築をご支援します。</p>
+          <p class="service-desc">経営人材の採用・評価制度の設計・経営管理機能の強化など、戦略を実行できる組織基盤の構築を支援します。PMI局面での組織統合にも対応します。</p>
         </div>
         <div class="service-card reveal reveal-delay-2">
           <div class="service-num">05</div>
           <h3 class="service-title">M&A・事業承継</h3>
           <p class="service-en">M&A & Business Succession</p>
-          <p class="service-desc">買収・売却・合併・事業承継など、企業の非連続成長を実現するM&Aトランザクション全般において、戦略立案からクロージング後の統合支援（PMI）まで一気通貫で対応します。</p>
+          <p class="service-desc">ソーシング・デューデリジェンス・バリュエーションからクロージング、PMIまで一気通貫で対応。買収後の計数管理体制の早期立ち上げも含めた実行力が強みです。</p>
         </div>
         <div class="service-card reveal reveal-delay-3">
           <div class="service-num">06</div>
           <h3 class="service-title">財務・資金調達</h3>
           <p class="service-en">Finance & Capital Raising</p>
-          <p class="service-desc">資本コストを意識した経営の推進をサポートします。必要に応じたエクイティ性の機動的な資本・資金調達に関するアドバイスも提供。財務基盤の再構築と成長投資の両立を支援します。</p>
+          <p class="service-desc">資本コストを意識した経営の推進をサポート。成長投資と財務規律の両立に向けた資本政策の設計・資金調達アドバイスを提供します。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA SHOWCASE -->
+  <section style="background:var(--navy);padding:80px 0;" id="data">
+    <div class="section-inner">
+      <p class="section-label reveal" style="color:var(--gold-light);">Data & Insights</p>
+      <h2 class="section-title-jp reveal reveal-delay-1" style="color:var(--white);">独自の分析プラットフォーム</h2>
+      <p style="text-align:center;color:rgba(255,255,255,0.6);font-size:14px;line-height:2;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto;" class="reveal reveal-delay-2">
+        セクター分析レポートやKPIダッシュボードを自社で構築・運用。<br>
+        同様の分析基盤を、お客様の事業・投資先に合わせて迅速に立ち上げます。
+      </p>
+      <div class="data-grid reveal reveal-delay-2">
+        <a href="/food-service.html" class="data-card">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
+          <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">外食産業 セクター分析</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">主要35社の月次KPI・株価パフォーマンス・バリュエーションを横断分析。既存店売上高の3年推移も追跡。</div>
+          <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
+        </a>
+        <a href="/saas.html" class="data-card">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
+          <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">国内SaaS セクター分析</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">SaaS主要企業のARR成長率・チャーンレート・Rule of 40等の重要KPIをダッシュボード形式で提供。</div>
+          <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
+        </a>
+      </div>
+      <p style="text-align:center;margin-top:24px;font-size:0.75rem;color:rgba(255,255,255,0.35);" class="reveal reveal-delay-3">※ 詳細データは会員登録（無料）後にご覧いただけます</p>
+    </div>
+  </section>
+
+  <!-- AI × CONSULTING -->
+  <section style="background:var(--off-white);padding:80px 0;" id="ai-consulting">
+    <div class="section-inner">
+      <p class="section-label reveal">AI × Consulting</p>
+      <h2 class="section-title-jp reveal reveal-delay-1">生成AI活用で、支援のスピードとコストを変える</h2>
+      <p style="text-align:center;color:var(--text-mid);font-size:14px;line-height:2;margin-bottom:48px;max-width:720px;margin-left:auto;margin-right:auto;" class="reveal reveal-delay-2">
+        従来のコンサルティングに生成AIを掛け合わせることで、<br>分析・構築・レポーティングの速度を飛躍的に高めます。
+      </p>
+      <div class="ai-grid">
+        <div class="ai-card" class="reveal reveal-delay-1">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);margin-bottom:12px;">01</div>
+          <h3 style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px;">PMI・計数管理の即時立ち上げ</h3>
+          <p style="font-size:0.82rem;color:var(--text-mid);line-height:1.9;">M&A後のモニタリング体制・KPIダッシュボードを、従来の数ヶ月ではなく短期間で構築。買収直後から数値に基づく意思決定を可能にします。</p>
+        </div>
+        <div class="ai-card" class="reveal reveal-delay-2">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);margin-bottom:12px;">02</div>
+          <h3 style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px;">データ駆動の経営高度化</h3>
+          <p style="font-size:0.82rem;color:var(--text-mid);line-height:1.9;">投資先・事業部門の散在するデータを統合し、経営判断に直結する分析基盤をコンサルタント自身が設計・実装。外注コストと時間を大幅に削減します。</p>
+        </div>
+        <div class="ai-card" class="reveal reveal-delay-3">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);margin-bottom:12px;">03</div>
+          <h3 style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px;">業務DX・自動化支援</h3>
+          <p style="font-size:0.82rem;color:var(--text-mid);line-height:1.9;">定型レポートの自動生成、データ収集・整形の効率化、社内ナレッジの構造化など、プロフェッショナルファームを含む組織の生産性向上を支援します。</p>
+        </div>
+      </div>
+      <div class="ai-evidence reveal reveal-delay-3">
+        <div style="flex:1;min-width:280px;">
+          <p style="font-size:0.82rem;color:var(--text-mid);line-height:1.9;">
+            <strong style="color:var(--navy);">実績:</strong> 当サイトのセクター分析レポート・ダッシュボード群（35社超のKPI横断分析・月次データ追跡・インタラクティブチャート）は、すべて代表一人が約1週間で構築しました。
+          </p>
+        </div>
+        <a href="/food-service.html" style="background:var(--navy);color:var(--white);text-decoration:none;padding:12px 28px;font-size:0.8rem;letter-spacing:0.5px;white-space:nowrap;transition:opacity 0.2s;">実例を見る →</a>
       </div>
     </div>
   </section>
@@ -958,7 +1095,7 @@
       <p class="section-label reveal">Contact</p>
       <h2 class="section-title-jp reveal reveal-delay-1">お問い合わせ</h2>
       <p class="contact-intro reveal reveal-delay-2">
-        企業価値向上に関するご相談、サービスに関するお問い合わせはこちらからお気軽にご連絡ください。
+        経営課題・企業価値向上に関するご相談は、まずは30分の壁打ちから。お気軽にご連絡ください。
       </p>
       <div class="contact-layout">
         <div class="contact-info">
@@ -978,12 +1115,51 @@
           </div>
         </div>
         <div>
-          <div class="google-form-wrap reveal reveal-delay-2">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfn6GtZ4u43SW04m48nSUwy4wgs-KTBmeGCbbEZAJisBjbSpQ/viewform?embedded=true" width="640" height="900" frameborder="0" marginheight="0" marginwidth="0" sandbox="allow-scripts allow-forms allow-popups allow-same-origin">読み込んでいます…</iframe>
-          </div>
-          <p class="privacy-note">
-            送信前に<a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a>をご確認ください。送信をもって同意いただいたものとみなします。
-          </p>
+          <form class="contact-form reveal reveal-delay-2" id="contactForm" onsubmit="return submitContactForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>貴社名<span class="req">*</span></label>
+                <input type="text" name="company" required placeholder="個人の方は「個人」とご記入ください">
+              </div>
+              <div class="form-group">
+                <label>部署・役職<span class="req">*</span></label>
+                <input type="text" name="department" required placeholder="なければN/A">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>お名前<span class="req">*</span></label>
+                <input type="text" name="name" required placeholder="姓 名">
+              </div>
+              <div class="form-group">
+                <label>フリガナ</label>
+                <input type="text" name="furigana" placeholder="セイ メイ">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>メールアドレス<span class="req">*</span></label>
+              <input type="email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label>お問い合わせ内容<span class="req">*</span></label>
+              <textarea name="message" required placeholder="ご相談内容をお書きください"></textarea>
+            </div>
+            <div class="form-group">
+              <label>当サイトをどちらでお知りになりましたか？</label>
+              <select name="referral">
+                <option value="">選択してください</option>
+                <option value="検索エンジン">検索エンジン（Google、Yahoo!など）</option>
+                <option value="SNS">SNS（Facebook、X、LinkedInなど）</option>
+                <option value="知人の紹介">知人の紹介</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            <p class="privacy-note" style="margin-bottom:16px;">
+              送信前に<a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a>をご確認ください。送信をもって同意いただいたものとみなします。
+            </p>
+            <button type="submit" id="contactSubmitBtn">送信する</button>
+            <div class="form-status" id="contactStatus"></div>
+          </form>
         </div>
       </div>
     </div>
@@ -1000,6 +1176,7 @@
         <ul class="footer-nav">
           <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
           <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+          <li><a href="https://aoyama-nogizaka.com/#ai-consulting">AI × コンサルティング</a></li>
           <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
           <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
           <li><a href="/news/">ニュース・論考</a></li>
@@ -1043,5 +1220,27 @@
       });
     });
   </script>
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
+async function submitContactForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const btn = document.getElementById('contactSubmitBtn');
+  const status = document.getElementById('contactStatus');
+  const fd = new FormData(form);
+  const data = { _formType: 'contact' };
+  fd.forEach((v, k) => { data[k] = v; });
+  btn.disabled = true; btn.textContent = '送信中...';
+  status.className = 'form-status'; status.style.display = 'none';
+  try {
+    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
+    status.className = 'form-status success'; status.textContent = 'お問い合わせを受け付けました。確認メールをお送りしましたのでご確認ください。';
+    form.reset();
+  } catch (err) {
+    status.className = 'form-status error'; status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+  } finally { btn.disabled = false; btn.textContent = '送信する'; }
+  return false;
+}
+</script>
 </body>
 </html>
