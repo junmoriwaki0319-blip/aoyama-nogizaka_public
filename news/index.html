@@ -375,7 +375,7 @@
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" class="active">ニュース・論考</a></li>
       <li class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
+        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
         <ul class="nav-dropdown-menu">
           <li class="nav-dropdown-cat">アクティビスト分析</li>
           <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
@@ -399,11 +399,11 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" class="active">ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
   <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
@@ -458,7 +458,7 @@
   <div class="articles-section">
     <div class="articles-header">
       <h2>すべての記事</h2>
-      <span class="count" id="article-count">4件</span>
+      <span class="count" id="article-count">5件</span>
     </div>
     <div class="articles-grid" id="articles-grid">
 
@@ -528,14 +528,27 @@
         </div>
       </a>
 
+      <!-- Article: 代表コラム LinkedIn -->
+      <div class="article-card" data-category="insight" style="cursor:default;">
+        <div class="article-card-body">
+          <div class="ac-tags">
+            <span class="ac-tag type-insight">代表コラム</span>
+            <span class="ac-tag">生成AI</span>
+            <span class="ac-tag">DX</span>
+          </div>
+          <div class="ac-title">生成AIで、一人コンサルの限界値が変わってきている話</div>
+          <div class="ac-excerpt">現在公開しているWebサイト（論考・セクターレポート・分析ツール含む）は、すべて私一人で、約1週間で構築しました。生成AIの活用で個人のアウトプットの質・量が劇的に変わってきていると実感しています。従来のコンサルティングに生成AIを掛け合わせることで、スピードとコストの両面で新しい価値を出せると考えています。</div>
+          <div class="ac-footer">
+            <span class="ac-date">March 2026</span>
+            <span class="ac-arrow" style="font-size:0.75rem;color:var(--gold);">LinkedIn転載</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Placeholder: coming soon -->
       <div class="article-card coming-soon" data-category="placeholder">
         <div style="font-size:1.5rem;color:var(--gray);">＋</div>
         <p>次回論考を準備中です</p>
-      </div>
-      <div class="article-card coming-soon" data-category="placeholder">
-        <div style="font-size:1.5rem;color:var(--gray);">＋</div>
-        <p>プレスリリースを準備中です</p>
       </div>
 
     </div>
@@ -550,9 +563,11 @@
       <h3>論考・お知らせを受け取る</h3>
       <p>新しい論考・プレスリリース発行時にメールでお知らせします。</p>
     </div>
-    <div style="width:100%;max-width:640px;overflow:hidden;background:#fff;border-radius:4px;">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdNi8x2svtoajJ-IiBsJDLsq3i70Tt6r28rq8Jmj1YneOsjFw/viewform?embedded=true" width="100%" height="377" frameborder="0" marginheight="0" marginwidth="0" style="border:none;display:block;" sandbox="allow-scripts allow-forms allow-popups allow-same-origin">読み込んでいます…</iframe>
-    </div>
+    <form class="newsletter-form" id="newsletterForm" onsubmit="return submitNewsletter(event)" style="width:100%;max-width:480px;">
+      <input type="email" name="email" required placeholder="メールアドレス">
+      <button type="submit" id="nlSubmitBtn">登録</button>
+    </form>
+    <div id="nlStatus" style="font-size:13px;min-height:20px;"></div>
   </div>
 </section>
 
@@ -618,6 +633,28 @@ function filterArticles(category, btn) {
 }
 
 
+</script>
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
+async function submitNewsletter(e) {
+  e.preventDefault();
+  const form = document.getElementById('newsletterForm');
+  const btn = document.getElementById('nlSubmitBtn');
+  const status = document.getElementById('nlStatus');
+  const email = form.querySelector('input[name="email"]').value;
+  btn.disabled = true; btn.textContent = '登録中...';
+  status.textContent = ''; status.style.color = '';
+  try {
+    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ _formType: 'newsletter', email }), mode: 'no-cors' });
+    status.textContent = '登録が完了しました。確認メールをお送りしました。';
+    status.style.color = '#a3e4a3';
+    form.reset();
+  } catch (err) {
+    status.textContent = '登録に失敗しました。再度お試しください。';
+    status.style.color = '#ff9999';
+  } finally { btn.disabled = false; btn.textContent = '登録'; }
+  return false;
+}
 </script>
 </body>
 </html>

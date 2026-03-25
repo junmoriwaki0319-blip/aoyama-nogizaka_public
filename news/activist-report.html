@@ -502,7 +502,7 @@
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/" class="active">ニュース・論考</a></li>
       <li class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
+        <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
         <ul class="nav-dropdown-menu">
           <li class="nav-dropdown-cat">アクティビスト分析</li>
           <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
@@ -526,11 +526,11 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
   <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
@@ -981,8 +981,43 @@
         </div>
       </div>
 
-      <div style="width:100%;overflow:hidden;">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkZ2kleW8PII1AEE3ntd96SmKFIh6B6ef9PF-wmiccQHeQ4g/viewform?embedded=true" width="100%" height="1247" frameborder="0" marginheight="0" marginwidth="0" style="min-height:1247px;border:none;" sandbox="allow-scripts allow-forms allow-popups allow-same-origin">読み込んでいます…</iframe>
+      <div style="width:100%;">
+        <form class="consult-form" id="consultForm" onsubmit="return submitConsultForm(event)" style="background:#fff;padding:32px 28px;border:1px solid #e0dcd5;">
+          <div style="margin-bottom:18px;">
+            <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">氏名<span style="color:#b53a3a;font-size:10px;margin-left:4px;">*</span></label>
+            <input type="text" name="name" required placeholder="山田 太郎" style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+            <div>
+              <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">会社名<span style="color:#b53a3a;font-size:10px;margin-left:4px;">*</span></label>
+              <input type="text" name="company" required style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">部署・役職<span style="color:#b53a3a;font-size:10px;margin-left:4px;">*</span></label>
+              <input type="text" name="department" required style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
+            </div>
+          </div>
+          <div style="margin-bottom:18px;">
+            <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">メールアドレス<span style="color:#b53a3a;font-size:10px;margin-left:4px;">*</span></label>
+            <input type="email" name="email" required placeholder="example@company.com" style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
+          </div>
+          <div style="margin-bottom:18px;">
+            <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">ご相談内容</label>
+            <textarea name="message" placeholder="ご相談内容をお書きください" style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;resize:vertical;min-height:120px;box-sizing:border-box;"></textarea>
+          </div>
+          <div style="margin-bottom:18px;">
+            <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">当サイトをどちらでお知りになりましたか？</label>
+            <select name="referral" style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
+              <option value="">選択してください</option>
+              <option value="検索エンジン">検索エンジン（Google、Yahoo!など）</option>
+              <option value="SNS">SNS（Facebook、X、LinkedInなど）</option>
+              <option value="知人の紹介">知人の紹介</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <button type="submit" id="consultSubmitBtn" style="width:100%;padding:14px;background:#1a2d4f;color:#fff;border:none;font-family:inherit;font-size:13px;letter-spacing:.1em;cursor:pointer;">送信する</button>
+          <div id="consultStatus" style="text-align:center;padding:12px;margin-top:12px;font-size:13px;border-radius:4px;display:none;"></div>
+        </form>
       </div>
     </div>
   </div>
@@ -1228,6 +1263,30 @@ new Chart(document.getElementById('scatterChart'), {
     }
   }
 });
+</script>
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
+async function submitConsultForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('consultForm');
+  const btn = document.getElementById('consultSubmitBtn');
+  const status = document.getElementById('consultStatus');
+  const fd = new FormData(form);
+  const data = { _formType: 'consultation' };
+  fd.forEach((v, k) => { data[k] = v; });
+  btn.disabled = true; btn.textContent = '送信中...';
+  status.style.display = 'none';
+  try {
+    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
+    status.style.display = 'block'; status.style.background = '#d1fae5'; status.style.color = '#065f46';
+    status.textContent = 'ご相談を受け付けました。確認メールをお送りしましたのでご確認ください。';
+    form.reset();
+  } catch (err) {
+    status.style.display = 'block'; status.style.background = '#fee2e2'; status.style.color = '#991b1b';
+    status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+  } finally { btn.disabled = false; btn.textContent = '送信する'; }
+  return false;
+}
 </script>
 </body>
 </html>

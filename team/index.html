@@ -504,7 +504,7 @@
     /* ===== MEMBER CARDS ===== */
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
     .member-card {
@@ -700,11 +700,12 @@
     @media (max-width: 960px) {
       .rep-card { grid-template-columns: 1fr; gap: 36px; }
       .rep-photo { aspect-ratio: 3/4; max-width: 240px; margin: 0 auto; }
-      .members-grid { grid-template-columns: 1fr; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
       .advisors-grid { grid-template-columns: 1fr; }
       .rep-skills { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
+      .members-grid { grid-template-columns: 1fr; }
       .page-hero-watermark { display: none; }
       .page-hero-inner { padding: 60px 20px 50px; }
       .intro-inner, .team-inner, .footer-inner { padding: 0 20px; }
@@ -742,7 +743,7 @@
         <li><a href="https://aoyama-nogizaka.com/team" class="active">チーム</a></li>
         <li><a href="/news/">ニュース・論考</a></li>
         <li class="nav-dropdown">
-          <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:9px;">▼</span></a>
+          <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
           <ul class="nav-dropdown-menu">
             <li class="nav-dropdown-cat">アクティビスト分析</li>
             <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
@@ -766,11 +767,11 @@
     <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
     <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()" class="active">チーム</a>
     <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
-    <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
     <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
     <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
     <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-    <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
     <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
     <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
     <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
@@ -817,8 +818,9 @@
           <h3 class="rep-name-jp">森脇 潤</h3>
           <p class="rep-name-en">Jun Moriwaki</p>
           <p class="rep-bio">
-            早稲田大学卒業後、アクセンチュア戦略コンサルティング本部、アーサー・ディ・リトル（ADL）にて経営コンサルティングに従事。SIer・通信・自動車・エンタメ等の業界を中心に、成長戦略・新規事業立案からPEファンド向けBDD・PMIまで幅広くリード。<br><br>
-            その後アドバンテッジパートナーズにて上場企業向けエンゲージメント投資に従事し、投資実行からバリューアップ・Exitまでを一気通貫で担当（担当6社）。2025年に青山乃木坂パートナーズを設立。
+            早稲田大学卒業後、アクセンチュア戦略コンサルティング本部、アーサー・ディ・リトル（ADL）にて経営コンサルティングに従事。ADLではコンサルタントトレーニングチームにも参画。SIer・通信・自動車・エンタメ等の業界を中心に、成長戦略・新規事業立案からPEファンド向けBDD・PMIまで幅広くリード。<br><br>
+            その後アドバンテッジパートナーズにて上場企業向けエンゲージメント投資に従事し、投資実行からバリューアップ・Exitまでを一気通貫で担当（担当6社）。同社では生成AIイニシアチブの推進にも参画し、ファンド投資先のDX・業務効率化を主導。<br><br>
+            2025年に青山乃木坂パートナーズを設立。戦略コンサルティングの知見と生成AI活用を掛け合わせ、経営課題の解決からデータ基盤構築・プロフェッショナルファームの業務効率化支援まで、従来にないスピードとコストで提供する。
           </p>
 
 
@@ -851,7 +853,36 @@
             </p>
           </div>
         </div>
-      </div>
+        <div class="member-card reveal reveal-delay-2">
+          <div class="member-avatar">
+            <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="12" r="9" fill="rgba(200,185,154,0.5)"/>
+              <path d="M2 38c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="rgba(200,185,154,0.5)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="member-info">
+            <p class="member-role">Consultant</p>
+            <h3 class="member-name"></h3>
+            <p class="member-bio">
+              アクセンチュア戦略コンサルティング本部、日系戦略ファームのマネージャーを経験。スポーツ・エンターテインメント領域を中心に、複数の新規事業において戦略検討から立ち上げ支援・ローンチまでを一貫して推進。データ分析に基づく顧客インサイト抽出やマーケティング戦略立案を得意とする。
+            </p>
+          </div>
+        </div>
+        <div class="member-card reveal reveal-delay-3">
+          <div class="member-avatar">
+            <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="12" r="9" fill="rgba(200,185,154,0.5)"/>
+              <path d="M2 38c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="rgba(200,185,154,0.5)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="member-info">
+            <p class="member-role">Consultant</p>
+            <h3 class="member-name"></h3>
+            <p class="member-bio">
+              アクセンチュア戦略コンサルティング本部にて新規事業立ち上げ・DX推進・海外進出戦略等に従事。その後リクルートにて人材・教育系事業の新規事業開発を担当。現在はPEファンド・コンサルティングファーム向けのプロフェッショナル人材採用支援を行う会社を創業し、経営コンサルティングも提供。
+            </p>
+          </div>
+        </div>
     </div>
   </section>
 
@@ -864,12 +895,32 @@
       </div>
       <div class="advisors-grid">
         <div class="advisor-card reveal reveal-delay-1">
-          <div class="advisor-avatar"><span>Coming<br>Soon</span></div>
+          <div class="advisor-avatar">
+            <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="12" r="9" fill="rgba(200,185,154,0.5)"/>
+              <path d="M2 38c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="rgba(200,185,154,0.5)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
           <div class="advisor-info">
             <p class="advisor-role">Advisor</p>
-            <p class="advisor-name">— Coming Soon —</p>
+            <h3 class="advisor-name">座間味 卓臣</h3>
             <p class="advisor-bio">
-              メガベンチャーでのIPOを経営企画として実現した後、ヘッジファンド勤務を経験。資本市場・成長戦略の両面でアドバイスを提供予定。
+              外資系コンサルティングファームにてビッグデータ分析・業務改革・グローバルPMO等のプロジェクトに従事。その後、大手国内IT企業にてAIやデータサイエンス部門の管理職、データ統括ディレクター、部門の部長までを最短で歴任（エンジニア組織のマネジメントに精通）。現在はLayerXにてBizOps部の部長を務める。また、AWSサミット登壇等の実績多数あり。
+            </p>
+          </div>
+        </div>
+        <div class="advisor-card reveal reveal-delay-2">
+          <div class="advisor-avatar">
+            <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="12" r="9" fill="rgba(200,185,154,0.5)"/>
+              <path d="M2 38c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="rgba(200,185,154,0.5)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="advisor-info">
+            <p class="advisor-role">Advisor</p>
+            <h3 class="advisor-name"></h3>
+            <p class="advisor-bio">
+              メガベンチャーでのIPOを経営企画として実現した後、ヘッジファンド勤務を経験。資本市場・成長戦略の両面でアドバイスを提供。
             </p>
           </div>
         </div>

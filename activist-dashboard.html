@@ -526,7 +526,7 @@
       <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
       <li><a href="/news/">ニュース・論考</a></li>
       <li class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:9px;">▼</span></a>
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:11px;">▼</span></a>
         <ul class="nav-dropdown-menu">
           <li class="nav-dropdown-cat">アクティビスト分析</li>
           <li><a href="/activist-dashboard.html" class="active">大量保有報告ダッシュボード</a></li>
@@ -557,11 +557,11 @@
   <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
   <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
   <a href="/activist-dashboard.html" onclick="toggleMenu()" class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
   <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
   <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
-  <div style="padding:4px 0 2px 0; font-size:0.7rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
+  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
   <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <div class="m-auth" id="mobileAuthBtns">
@@ -652,10 +652,10 @@
       <h3>注目投資家 活動ランキング</h3>
       <input type="text" id="rankingSearch" placeholder="投資家名で絞り込み..." oninput="filterRanking()" style="width:100%;padding:6px 10px;margin-bottom:8px;border:1px solid var(--light-gray);border-radius:4px;font-size:12px;box-sizing:border-box;">
       <div style="display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;">
-        <button onclick="setRankingFilter('all')" class="ranking-filter-btn active" data-filter="all" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:var(--navy);color:#fff;cursor:pointer;">すべて</button>
-        <button onclick="setRankingFilter('activist')" class="ranking-filter-btn" data-filter="activist" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">ACT</button>
-        <button onclick="setRankingFilter('notable_holder')" class="ranking-filter-btn" data-filter="notable_holder" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">注目</button>
-        <button onclick="setRankingFilter('individual_investor')" class="ranking-filter-btn" data-filter="individual_investor" style="font-size:10px;padding:2px 8px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">個人</button>
+        <button onclick="setRankingFilter('all')" class="ranking-filter-btn active" data-filter="all" style="font-size:12px;padding:6px 12px;border:1px solid var(--light-gray);border-radius:12px;background:var(--navy);color:#fff;cursor:pointer;">すべて</button>
+        <button onclick="setRankingFilter('activist')" class="ranking-filter-btn" data-filter="activist" style="font-size:12px;padding:6px 12px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">ACT</button>
+        <button onclick="setRankingFilter('notable_holder')" class="ranking-filter-btn" data-filter="notable_holder" style="font-size:12px;padding:6px 12px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">注目</button>
+        <button onclick="setRankingFilter('individual_investor')" class="ranking-filter-btn" data-filter="individual_investor" style="font-size:12px;padding:6px 12px;border:1px solid var(--light-gray);border-radius:12px;background:#fff;color:var(--text-mid);cursor:pointer;">個人</button>
       </div>
       <div class="ac-stock-list" id="activistRankingList" style="max-height:600px;overflow-y:auto;">
         <div class="loading-spinner">読み込み中...</div>
@@ -1009,7 +1009,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 40px}
 .footer-top{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
 .footer-brand{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
-.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.7rem;letter-spacing:0.12em;color:var(--gold)}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.75rem;letter-spacing:0.12em;color:var(--gold)}
 .footer-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 24px;list-style:none;align-items:center}
 .footer-nav a{text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;transition:color .2s}
 .footer-nav a:hover{color:var(--white)}
@@ -1414,14 +1414,14 @@ function filterRanking() {
   }
 
   container.innerHTML = sorted.map((a, idx) => {
-    const typeTag = a.type === 'activist' ? '<span class="activist-type type-activist" style="font-size:9px;padding:1px 4px;margin-left:4px;">ACT</span>'
-      : a.type === 'individual_investor' ? '<span class="activist-type" style="font-size:9px;padding:1px 4px;margin-left:4px;background:#f0e6ff;color:#7c3aed;border-radius:4px;">個人</span>'
-      : a.type === 'notable_holder' ? '<span class="activist-type type-notable" style="font-size:9px;padding:1px 4px;margin-left:4px;">注目</span>'
+    const typeTag = a.type === 'activist' ? '<span class="activist-type type-activist" style="font-size:11px;padding:1px 4px;margin-left:4px;">ACT</span>'
+      : a.type === 'individual_investor' ? '<span class="activist-type" style="font-size:11px;padding:1px 4px;margin-left:4px;background:#f0e6ff;color:#7c3aed;border-radius:4px;">個人</span>'
+      : a.type === 'notable_holder' ? '<span class="activist-type type-notable" style="font-size:11px;padding:1px 4px;margin-left:4px;">注目</span>'
       : '';
     const rank = idx + 1;
     const rankStyle = rank <= 3 ? 'font-weight:bold;color:var(--gold);' : 'color:var(--text-light);';
     const isGroup = a.member_ids && a.member_ids.length;
-    const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:9px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
+    const groupIcon = isGroup ? '<span title="グループ名寄せ" style="font-size:11px;color:var(--text-light);margin-left:2px;">&#9679;</span>' : '';
     return `<div class="ac-stock-item" style="cursor:pointer;display:flex;align-items:center;" onclick="openInvestorDetail('${escapeJs(a.id)}')">
       <span style="min-width:22px;${rankStyle}">${rank}</span>
       <span style="flex:1;">${escapeHtml(a.name)}${groupIcon}${typeTag}</span>
@@ -2027,8 +2027,8 @@ function exportPDF() {
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Noto Sans JP',sans-serif; font-size:10px; color:#1a2d4f; padding:15mm; }
   h1 { font-size:16px; margin-bottom:4px; }
-  .meta { font-size:9px; color:#666; margin-bottom:10px; }
-  table { width:100%; border-collapse:collapse; font-size:9px; }
+  .meta { font-size:11px; color:#666; margin-bottom:10px; }
+  table { width:100%; border-collapse:collapse; font-size:11px; }
   th { background:#1a2d4f; color:#fff; padding:4px 6px; text-align:left; font-weight:700; white-space:nowrap; }
   td { padding:3px 6px; border-bottom:1px solid #e0ddd8; }
   tr:nth-child(even) { background:#f8f7f5; }
