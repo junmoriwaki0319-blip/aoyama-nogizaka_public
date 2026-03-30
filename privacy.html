@@ -142,6 +142,8 @@
       flex-direction: column;
       padding: 36px 28px;
       gap: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
@@ -573,26 +575,26 @@
         </li>
         <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
-    <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
-    <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
-    <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
-    <a href="/news/" onclick="toggleMenu()">ニュース・論考</a>
+    <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+    <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
+    <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
+    <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
+    <a href="/news/" data-nav-link>ニュース・論考</a>
     <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
-    <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
-    <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
-    <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+    <a href="/activist-dashboard.html" data-nav-link style="padding-left:16px;">大量保有報告ダッシュボード</a>
+    <a href="/risk-assessment.html" data-nav-link style="padding-left:16px;">アクティビスト対象機会評価</a>
+    <a href="/activist-screener.html" data-nav-link style="padding-left:16px;">スクリーニング・ランキング</a>
     <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
-    <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
-    <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
-    <a href="https://aoyama-nogizaka.com/privacy" onclick="toggleMenu()" class="active">個人情報保護方針</a>
-    <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+    <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
+    <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
+    <a href="https://aoyama-nogizaka.com/privacy" data-nav-link class="active">個人情報保護方針</a>
+    <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
   </div>
 
   <!-- PAGE HERO -->
@@ -765,10 +767,6 @@
 
   <script>
     // Mobile menu
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -785,5 +783,6 @@
       });
     });
   </script>
+  <script src="/js/nav-handler.js"></script>
 </body>
 </html>
