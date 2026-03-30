@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
 
     // 時価総額（発行済全数での概算、自己株式控除はフロントエンド側）
     let marketCapOku = null;
-    if (price && sharesIssuedNum) {
+    if (price != null && sharesIssuedNum != null) {
       marketCapOku = Math.round(price * sharesIssuedNum / 100000000);
     }
 
@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
     let payoutRatio = null;
     const dpsNum = dps ? parseFloat(dps.replace(/,/g, '')) : null;
     const epsNum = eps ? parseFloat(eps.replace(/,/g, '')) : null;
-    if (dpsNum && epsNum && epsNum > 0) {
+    if (dpsNum != null && epsNum != null && epsNum > 0) {
       payoutRatio = Math.round(dpsNum / epsNum * 10000) / 100;
     }
 

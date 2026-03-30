@@ -12,6 +12,7 @@ function fetchGooglePublicKeys() {
   return new Promise((resolve, reject) => {
     if (cachedKeys && Date.now() < cacheExpiry) return resolve(cachedKeys);
     https.get('https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com', (res) => {
+      if (res.statusCode !== 200) { res.resume(); return reject(new Error('Google keys fetch failed: ' + res.statusCode)); }
       let data = '';
       res.on('data', c => data += c);
       res.on('end', () => {

@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C5D57P05PM');
-  </script>
+  <script src="/js/gtag.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ニュース・論考 | 青山乃木坂パートナーズ</title>
@@ -589,8 +584,8 @@
         <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
         <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
         <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
-        <li><a href="/food-service.html">外食セクター分析</a></li>
-        <li><a href="/saas.html">SaaSセクター分析</a></li>
+        <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
+        <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
         <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
       </ul>
@@ -604,68 +599,7 @@
   </div>
 </footer>
 
-<script>
-
-/* ── Filter (event delegation) ── */
-function filterArticles(category, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const cards = document.querySelectorAll('#articles-grid .article-card:not(.coming-soon)');
-  const featured = document.querySelector('.featured-wrap');
-  let visible = 0;
-
-  cards.forEach(card => {
-    const match = category === 'all' || card.dataset.category === category;
-    card.style.display = match ? '' : 'none';
-    if (match) visible++;
-  });
-
-  if (featured) {
-    const fMatch = category === 'all' || featured.dataset.category === category;
-    featured.style.display = fMatch ? '' : 'none';
-  }
-
-  document.getElementById('article-count').textContent = visible + '件';
-}
-
-/* ── Event Delegation ── */
-document.addEventListener('click', function(e) {
-  const filterBtn = e.target.closest('[data-filter]');
-  if (filterBtn) {
-    filterArticles(filterBtn.dataset.filter, filterBtn);
-  }
-});
-document.addEventListener('submit', function(e) {
-  const form = e.target.closest('[data-form-action]');
-  if (form && form.dataset.formAction === 'submitNewsletter') {
-    submitNewsletter(e);
-  }
-});
-
-</script>
+<script src="/js/news-page.js"></script>
 <script src="/js/nav-handler.js"></script>
-<script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
-async function submitNewsletter(e) {
-  e.preventDefault();
-  const form = document.getElementById('newsletterForm');
-  const btn = document.getElementById('nlSubmitBtn');
-  const status = document.getElementById('nlStatus');
-  const email = form.querySelector('input[name="email"]').value;
-  btn.disabled = true; btn.textContent = '登録中...';
-  status.textContent = ''; status.style.color = '';
-  try {
-    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ _formType: 'newsletter', email }), mode: 'no-cors' });
-    status.textContent = '登録が完了しました。確認メールをお送りしました。';
-    status.style.color = '#a3e4a3';
-    form.reset();
-  } catch (err) {
-    status.textContent = '登録に失敗しました。再度お試しください。';
-    status.style.color = '#ff9999';
-  } finally { btn.disabled = false; btn.textContent = '登録'; }
-  return false;
-}
-</script>
 </body>
 </html>

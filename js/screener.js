@@ -93,7 +93,7 @@ async function handleResendVerify(){var m=document.getElementById("myPageMsg");t
 /* CSV Export (Member Only) */
 function exportCSV(){
   if(!window.currentUser){alert("CSV出力は会員限定機能です。ログインしてください。");return}
-  if(rankResults.length===0){alert("データがありません");return}
+  if(!rankResults||rankResults.length===0){alert("データがありません");return}
   var hd=["順位","コード","銘柄名","スコア","PBR","PER","ROE(%)","配当利回り(%)","配当性向(%)","自己資本比率(%)","時価総額(億円)","市場","セクター","NC/時価総額(%)","実質NC/時価総額(%)","含み資産NC/時価総額(%)","EV/EBITDA","土地簿価(百万円)","推定土地含み益(百万円)","有価証券含み益(百万円)","投資不動産含み益(百万円)","含み益合計(百万円)"];
   var sr=rankResults.slice().sort(function(a,b){return(b.score||0)-(a.score||0)});
   var rows=sr.map(function(d,i){var tg=(d.estimatedLandGain||0)+(d.securitiesGain||0)+(d.investmentPropertyGain||0);return[i+1,d.code,d.companyName||"",d.score||"",d.pbr!=null?d.pbr.toFixed(2):"",d.per!=null?d.per.toFixed(1):"",d.roe!=null?d.roe.toFixed(1):"",d.dividendYield!=null?d.dividendYield.toFixed(2):"",d.payoutRatio!=null?d.payoutRatio.toFixed(1):"",d.equityRatio!=null?d.equityRatio.toFixed(1):"",d.marketCapOku!=null?d.marketCapOku:"",d.market||"",d.sector||"",d.ncRatio!=null?d.ncRatio.toFixed(1):"",d.adjNcRatio!=null?d.adjNcRatio.toFixed(1):"",d.fullNcRatio!=null?d.fullNcRatio.toFixed(1):"",d.evEbitda!=null?d.evEbitda.toFixed(1):"",d.land!=null?d.land:"",d.estimatedLandGain!=null?d.estimatedLandGain:"",d.securitiesGain!=null?d.securitiesGain:"",d.investmentPropertyGain!=null?d.investmentPropertyGain:"",d.hasEdinetData?tg:""]});
@@ -168,14 +168,16 @@ async function fetchIndividual() {
       loadingText.textContent = 'EDINET書類検索中...';
       const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
       const sRes = await fetch(API_BASE+'/api/edinet/search/' + searchCode + apiParam);
+      if (!sRes.ok) throw new Error('EDINET検索エラー');
       const sData = await sRes.json();
-      if (sData.success && sData.documents.length > 0) {
+      if (sData.success && sData.documents && sData.documents.length > 0) {
         // 証券コードで検索した場合、EDINETコードを自動セット
         if (!edinetCode && sData.documents[0].edinetCode) {
           document.getElementById('indEdinet').value = sData.documents[0].edinetCode;
         }
         loadingText.textContent = 'XBRL財務データ解析中...';
         const xRes = await fetch(API_BASE+'/api/edinet/xbrl/' + sData.documents[0].docID + apiParam);
+        if (!xRes.ok) throw new Error('XBRLデータ取得エラー');
         const xData = await xRes.json();
         if (xData.success && xData.data) {
           indData.edinet = xData.data;
@@ -197,7 +199,7 @@ async function fetchIndividual() {
     document.getElementById('indResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   } catch (err) {
-    alert('エラー: ' + err.message);
+    alert('データ取得中にエラーが発生しました。しばらくしてから再度お試しください。');
   } finally {
     btn.disabled = false;
     loading.classList.remove('active');
@@ -225,10 +227,12 @@ async function runAutoAnalysis() {
     tasks.push((async () => {
       try {
         const sRes = await fetch(API_BASE + '/api/edinet/search/' + searchCode + apiParam);
+        if (!sRes.ok) throw new Error('EDINET検索エラー');
         const sData = await sRes.json();
         if (sData.success && sData.documents && sData.documents.length > 0) {
           const docID = sData.documents[0].docID;
           const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + apiParam);
+          if (!lRes.ok) throw new Error('土地明細取得エラー');
           const lData = await lRes.json();
           if (lData.success && lData.data) {
             landParcelsData = lData.data;
@@ -265,6 +269,7 @@ async function runAutoAnalysis() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ holdings: e.policyHoldingsTop })
         });
+        if (!resp.ok) throw new Error('株価取得エラー');
         const data = await resp.json();
         if (data.success && data.results) {
           phPriceData = data.results;
@@ -703,6 +708,7 @@ async function fetchLandParcels() {
     const apiParam = apiKey ? '?apiKey=' + encodeURIComponent(apiKey) : '';
     loadingText.textContent = 'EDINET書類検索中...';
     const sRes = await fetch(API_BASE + '/api/edinet/search/' + searchCode + apiParam);
+    if (!sRes.ok) { alert('EDINET検索に失敗しました'); return; }
     const sData = await sRes.json();
     if (!sData.success || !sData.documents || sData.documents.length === 0) {
       alert('有価証券報告書が見つかりません');
@@ -713,6 +719,7 @@ async function fetchLandParcels() {
     // 土地明細分析API呼び出し
     loadingText.textContent = '土地明細を解析中（固定資産明細表 + 地価公示データ照合）...';
     const lRes = await fetch(API_BASE + '/api/edinet/land-parcels/' + docID + apiParam);
+    if (!lRes.ok) { alert('土地明細の取得に失敗しました'); return; }
     const lData = await lRes.json();
 
     if (!lData.success) {
@@ -724,7 +731,7 @@ async function fetchLandParcels() {
     displayLandParcels(lData.data);
 
   } catch (err) {
-    alert('エラー: ' + err.message);
+    alert('データ取得中にエラーが発生しました。しばらくしてから再度お試しください。');
   } finally {
     btn.disabled = false;
     loading.classList.remove('active');

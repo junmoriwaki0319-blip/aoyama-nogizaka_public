@@ -225,6 +225,7 @@ function fetchJSON(url) {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
       timeout: 10000,
     }, resp => {
+      if (resp.statusCode !== 200) { resp.resume(); return resolve({}); }
       let data = ''; let size = 0;
       resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => {
@@ -247,6 +248,7 @@ function fetchText(url) {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
       timeout: 10000,
     }, resp => {
+      if (resp.statusCode !== 200) { resp.resume(); return resolve(''); }
       let data = ''; let size = 0;
       resp.on('data', chunk => { size += chunk.length; if (size > MAX_RESPONSE_SIZE) { resp.destroy(); return reject(new Error('Response too large')); } data += chunk; });
       resp.on('end', () => resolve(data));
