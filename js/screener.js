@@ -1,5 +1,4 @@
-/* Mobile Nav */
-function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open")}
+/* Mobile Nav — handled by nav-handler.js */
 
 /* API BASE */
 var API_BASE=(function(){var h=window.location.hostname;
