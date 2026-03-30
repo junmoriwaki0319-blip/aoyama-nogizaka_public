@@ -18,5 +18,7 @@
     "url": "https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public/issues"
   },
   "homepage": "https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public#readme",
-  "dependencies": {}
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
 }
