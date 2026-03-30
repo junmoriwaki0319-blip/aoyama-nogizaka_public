@@ -539,12 +539,12 @@
       </li>
     </ul>
     <div class="nav-auth-btns" id="navAuthBtns">
-      <button class="btn-login" onclick="openModal('login')">ログイン</button>
-      <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+      <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+      <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
     </div>
     <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
-      <a onclick="openMyPage()" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
-      <button class="btn-login" onclick="handleLogout()">ログアウト</button>
+      <a data-auth-action="openMyPage" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
+      <button class="btn-login" data-auth-action="handleLogout">ログアウト</button>
     </div>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -565,12 +565,12 @@
   <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <div class="m-auth" id="mobileAuthBtns">
-    <button class="btn-login" onclick="openModal('login')">ログイン</button>
-    <button class="btn-register" onclick="openModal('register')">無料会員登録</button>
+    <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+    <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
   </div>
   <div class="m-auth" id="mobileUserInfo" style="display:none;">
     <span style="font-size:0.85rem; color:rgba(255,255,255,0.7);" id="mobileUserName"></span>
-    <button class="btn-login" onclick="handleLogout()">ログアウト</button>
+    <button class="btn-login" data-auth-action="handleLogout">ログアウト</button>
   </div>
 </div>
 
@@ -804,8 +804,8 @@
                 <li>新規報告のリアルタイムアラート</li>
               </ul>
             </div>
-            <button class="btn-cta-register" onclick="openModal('register')">無料会員登録</button>
-            <a class="btn-cta-login" onclick="openModal('login')">すでに会員の方はログイン</a>
+            <button class="btn-cta-register" data-auth-action="openModal:register">無料会員登録</button>
+            <a class="btn-cta-login" data-auth-action="openModal:login">すでに会員の方はログイン</a>
           </div>
         </div>
       </div>
@@ -817,41 +817,41 @@
 <!-- LOGIN MODAL -->
 <div class="modal-overlay" id="loginModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('login')">&times;</button>
+    <button class="modal-close" data-auth-action="closeModal:login">&times;</button>
     <h2>ログイン</h2>
     <div id="loginError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
-    <button onclick="handleGoogleLogin('login')" class="btn-google" type="button">
+    <button data-auth-action="handleGoogleLogin:login" class="btn-google" type="button">
       <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       Googleでログイン
     </button>
     <div style="display:flex; align-items:center; gap:12px; margin:16px 0;"><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"><span style="font-size:12px; color:var(--text-light);">または</span><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"></div>
-    <form onsubmit="handleLogin(event)">
+    <form data-auth-submit="handleLogin">
       <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required placeholder="example@company.co.jp"></div>
       <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required placeholder="パスワード"></div>
       <button type="submit" class="btn-submit" id="loginBtn">メールアドレスでログイン</button>
     </form>
-    <div style="text-align:center; margin-top:12px;"><a onclick="openModal('resetPassword')" style="font-size:12px; color:var(--gold); cursor:pointer;">パスワードをお忘れの方</a></div>
-    <div class="modal-footer"><p>アカウントをお持ちでない方は <a onclick="switchModal('register')">新規登録</a></p></div>
+    <div style="text-align:center; margin-top:12px;"><a data-auth-action="openModal:resetPassword" style="font-size:12px; color:var(--gold); cursor:pointer;">パスワードをお忘れの方</a></div>
+    <div class="modal-footer"><p>アカウントをお持ちでない方は <a data-auth-action="switchModal:register">新規登録</a></p></div>
   </div>
 </div>
 
 <!-- REGISTER MODAL -->
 <div class="modal-overlay" id="registerModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('register')">&times;</button>
+    <button class="modal-close" data-auth-action="closeModal:register">&times;</button>
     <h2>無料会員登録</h2>
     <div id="registerError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
     <div id="registerSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
-    <button onclick="handleGoogleLogin('register')" class="btn-google" type="button">
+    <button data-auth-action="handleGoogleLogin:register" class="btn-google" type="button">
       <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       Googleで登録
     </button>
     <div style="display:flex; align-items:center; gap:12px; margin:16px 0;"><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"><span style="font-size:12px; color:var(--text-light);">または</span><hr style="flex:1; border:none; border-top:1px solid var(--mid-gray);"></div>
-    <form onsubmit="handleRegister(event)">
+    <form data-auth-submit="handleRegister">
       <div class="form-group"><label>お名前 <span style="color:var(--red);">*</span></label><input type="text" id="regName" required placeholder="山田 太郎"></div>
       <div class="form-group">
         <label>所属種別 <span style="color:var(--red);">*</span></label>
-        <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="regAffiliation" required data-auth-change="toggleAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="listed_company">上場企業</option>
           <option value="institutional_investor">機関投資家</option>
@@ -892,23 +892,23 @@
       登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>
       ※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。
     </p>
-    <div class="modal-footer"><p>すでにアカウントをお持ちの方は <a onclick="switchModal('login')">ログイン</a></p></div>
+    <div class="modal-footer"><p>すでにアカウントをお持ちの方は <a data-auth-action="switchModal:login">ログイン</a></p></div>
   </div>
 </div>
 
 <!-- PASSWORD RESET MODAL -->
 <div class="modal-overlay" id="resetPasswordModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('resetPassword')">&times;</button>
+    <button class="modal-close" data-auth-action="closeModal:resetPassword">&times;</button>
     <h2>パスワードリセット</h2>
     <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">登録済みのメールアドレスを入力してください。<br>パスワードリセット用のリンクをお送りします。</p>
     <div id="resetError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
     <div id="resetSuccess" style="display:none; background:#d1fae5; color:#065f46; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
-    <form onsubmit="handleResetPassword(event)">
+    <form data-auth-submit="handleResetPassword">
       <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required placeholder="example@company.co.jp"></div>
       <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
     </form>
-    <div class="modal-footer"><p><a onclick="switchToLogin()" style="cursor:pointer;">ログインに戻る</a></p></div>
+    <div class="modal-footer"><p><a data-auth-action="switchToLogin" style="cursor:pointer;">ログインに戻る</a></p></div>
   </div>
 </div>
 
@@ -918,10 +918,10 @@
     <h2>プロフィール登録</h2>
     <p style="font-size:13px; color:var(--text-mid); margin-bottom:20px; text-align:center; line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
     <div id="completeProfileError" style="display:none; background:#fee2e2; color:#991b1b; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
-    <form onsubmit="handleCompleteProfile(event)">
+    <form data-auth-submit="handleCompleteProfile">
       <div class="form-group">
         <label>所属種別 <span style="color:var(--red);">*</span></label>
-        <select id="cpAffiliation" required onchange="document.getElementById('cpAffiliationCodeGroup').style.display = this.value === 'listed_company' ? '' : 'none'" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="cpAffiliation" required data-auth-change="toggleCpAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="listed_company">上場企業</option>
           <option value="institutional_investor">機関投資家</option>
@@ -962,7 +962,7 @@
 <!-- MY PAGE MODAL -->
 <div class="modal-overlay" id="myPageModal">
   <div class="modal" style="max-width:500px;">
-    <button class="modal-close" onclick="closeModal('myPage')">&times;</button>
+    <button class="modal-close" data-auth-action="closeModal:myPage">&times;</button>
     <h2>アカウント情報</h2>
     <div id="myPageContent" style="font-size:14px; color:var(--text-mid);">
       <table style="width:100%; border-collapse:collapse;">
@@ -976,28 +976,28 @@
       </table>
     </div>
     <div style="display:flex; gap:12px; margin-top:24px; justify-content:center; flex-wrap:wrap;">
-      <button onclick="handleMyPageResetPassword()" class="btn-submit" id="btnChangePassword" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
-      <button onclick="showSetPasswordForm()" class="btn-submit" id="btnSetPassword" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">パスワードを設定</button>
-      <button onclick="handleResendVerification()" class="btn-submit" id="btnResendVerify" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">認証メールを再送</button>
+      <button data-auth-action="handleMyPageResetPassword" class="btn-submit" id="btnChangePassword" style="background:var(--navy); flex:none; padding:10px 24px; font-size:13px;">パスワードを変更</button>
+      <button data-auth-action="showSetPasswordForm" class="btn-submit" id="btnSetPassword" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">パスワードを設定</button>
+      <button data-auth-action="handleResendVerification" class="btn-submit" id="btnResendVerify" style="background:var(--gold); flex:none; padding:10px 24px; font-size:13px; display:none;">認証メールを再送</button>
     </div>
     <div id="setPasswordForm" style="display:none; margin-top:16px; text-align:center;">
       <p style="font-size:12px; color:var(--text-mid); margin-bottom:10px;">メールアドレスでもログインできるようパスワードを設定します。</p>
       <div style="display:flex; flex-direction:column; gap:8px; max-width:300px; margin:0 auto;">
         <input type="password" id="setPasswordInput" placeholder="新しいパスワード（8文字以上）" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
         <input type="password" id="setPasswordConfirm" placeholder="パスワード確認" style="padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px;">
-        <button onclick="handleSetPassword()" class="btn-submit" style="padding:10px 24px; font-size:13px;">パスワードを設定する</button>
+        <button data-auth-action="handleSetPassword" class="btn-submit" style="padding:10px 24px; font-size:13px;">パスワードを設定する</button>
       </div>
     </div>
     <div id="myPageMsg" style="display:none; text-align:center; padding:10px 14px; border-radius:4px; font-size:13px; margin-top:16px;"></div>
     <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--mid-gray);">
     <div id="deleteAccountSection" style="text-align:center;">
-      <button onclick="handleDeleteAccount()" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+      <button data-auth-action="handleDeleteAccount" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
     </div>
     <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;text-align:center;">
       <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
       <div style="display:flex;gap:8px;justify-content:center;">
-        <button onclick="confirmDeleteAccount()" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
-        <button onclick="cancelDeleteAccount()" style="background:#f5f5f5;color:#444;border:1px solid var(--mid-gray);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+        <button data-auth-action="confirmDeleteAccount" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button data-auth-action="cancelDeleteAccount" style="background:#f5f5f5;color:#444;border:1px solid var(--mid-gray);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
       </div>
     </div>
   </div>
@@ -1077,6 +1077,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:60px 0 40px}
 </div>
 
 <script src="/js/nav-handler.js"></script>
+<script src="/js/auth.js"></script>
 <script>
 // ===== GLOBAL DATA =====
 let reportData = { reports: [], activists: {} };
@@ -1357,7 +1358,7 @@ function renderActivistCards() {
     if (isPremium && count === 4) {
       html += `<div class="premium-content">
         <div class="premium-blur">${cardHtml}</div>
-        <div class="premium-overlay"><div class="premium-badge"><p>この先は会員限定コンテンツです</p><button onclick="openModal('register')">無料会員登録して続きを見る</button></div></div>
+        <div class="premium-overlay"><div class="premium-badge"><p>この先は会員限定コンテンツです</p><button data-auth-action="openModal:register">無料会員登録して続きを見る</button></div></div>
       </div>`;
       break;
     } else {
@@ -1626,301 +1627,7 @@ function switchTab(tab, btn) {
   if (tab === 'chart') setTimeout(initCharts, 100);
 }
 
-// ===== MODAL =====
-function openModal(type) { document.getElementById(type + 'Modal').classList.add('show'); document.body.style.overflow = 'hidden'; }
-function closeModal(type) { document.getElementById(type + 'Modal').classList.remove('show'); document.body.style.overflow = ''; }
-function switchModal(type) { closeModal(type === 'login' ? 'register' : 'login'); openModal(type); }
-document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('show'); document.body.style.overflow = ''; } }));
-
-// ===== FIREBASE AUTH HANDLERS =====
-async function handleGoogleLogin(modalType) {
-  const errEl = document.getElementById(modalType === 'login' ? 'loginError' : 'registerError');
-  errEl.style.display = 'none';
-  try {
-    const result = await window.firebaseGoogleLogin();
-    closeModal(modalType);
-    if (result && result.needsProfile) {
-      openModal('completeProfile');
-      return;
-    }
-  } catch (err) {
-    if (err.code === 'auth/popup-closed-by-user') return;
-    const messages = {
-      'auth/account-exists-with-different-credential': 'このメールアドレスは別の方法で登録されています。メールアドレスでログインしてください。',
-      'auth/popup-blocked': 'ポップアップがブロックされました。ブラウザの設定を確認してください。',
-    };
-    errEl.textContent = messages[err.code] || 'Googleログインに失敗しました: ' + (err.message || '');
-    errEl.style.display = 'block';
-  }
-}
-
-async function handleCompleteProfile(e) {
-  e.preventDefault();
-  const errEl = document.getElementById('completeProfileError');
-  const btn = document.getElementById('completeProfileBtn');
-  errEl.style.display = 'none';
-  btn.textContent = '保存中...';
-  btn.disabled = true;
-  try {
-    const user = window.currentUser;
-    if (!user) throw new Error('ログインされていません');
-    const affiliation = document.getElementById('cpAffiliation').value;
-    const affiliationCode = document.getElementById('cpAffiliationCode') ? document.getElementById('cpAffiliationCode').value : '';
-    const jobTitle = document.getElementById('cpJobTitle').value;
-    const company = document.getElementById('cpCompany').value;
-    await window.firebaseUpdateProfile(user.uid, { affiliation, affiliationCode, jobTitle, company });
-    closeModal('completeProfile');
-  } catch (err) {
-    errEl.textContent = 'プロフィールの保存に失敗しました: ' + (err.message || '');
-    errEl.style.display = 'block';
-  } finally {
-    btn.textContent = '登録して利用開始';
-    btn.disabled = false;
-  }
-}
-
-async function handleLogin(e) {
-  e.preventDefault();
-  const errEl = document.getElementById('loginError');
-  const btn = document.getElementById('loginBtn');
-  errEl.style.display = 'none';
-  btn.textContent = 'ログイン中...';
-  btn.disabled = true;
-
-  try {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    await window.firebaseLogin(email, password);
-    closeModal('login');
-    document.getElementById('loginEmail').value = '';
-    document.getElementById('loginPassword').value = '';
-  } catch (err) {
-    const messages = {
-      'auth/user-not-found': 'このメールアドレスは登録されていません。',
-      'auth/wrong-password': 'パスワードが正しくありません。',
-      'auth/invalid-credential': 'メールアドレスまたはパスワードが正しくありません。Googleで登録された方は「Googleでログイン」をご利用ください。',
-      'auth/too-many-requests': 'ログイン試行回数が多すぎます。しばらくしてからお試しください。',
-      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
-    };
-    const code = err.code || '';
-    errEl.textContent = messages[code] || 'ログインに失敗しました: ' + (err.message || '');
-    errEl.style.display = 'block';
-  } finally {
-    btn.textContent = 'ログイン';
-    btn.disabled = false;
-  }
-}
-
-// 所属種別で証券コード欄の表示切替
-function toggleAffiliationCode() {
-  const v = document.getElementById('regAffiliation').value;
-  document.getElementById('affiliationCodeGroup').style.display = v === 'listed_company' ? '' : 'none';
-}
-
-async function handleRegister(e) {
-  e.preventDefault();
-  const errEl = document.getElementById('registerError');
-  const successEl = document.getElementById('registerSuccess');
-  const btn = document.getElementById('registerBtn');
-  errEl.style.display = 'none';
-  successEl.style.display = 'none';
-  btn.textContent = '登録中...';
-  btn.disabled = true;
-
-  try {
-    const name = document.getElementById('regName').value;
-    const company = document.getElementById('regCompany').value;
-    const email = document.getElementById('regEmail').value;
-    const password = document.getElementById('regPassword').value;
-    const affiliation = document.getElementById('regAffiliation').value;
-    const affiliationCode = document.getElementById('regAffiliationCode') ? document.getElementById('regAffiliationCode').value : '';
-    const jobTitle = document.getElementById('regJobTitle').value;
-    await window.firebaseRegister(email, password, name, company, affiliation, affiliationCode, jobTitle);
-    successEl.innerHTML = '登録が完了しました。確認メールをお送りしましたのでご確認ください。<br><span style="font-size:12px;color:#065f46;">メールが届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
-    successEl.style.display = 'block';
-    setTimeout(() => {
-      closeModal('register');
-      successEl.style.display = 'none';
-    }, 2500);
-  } catch (err) {
-    const messages = {
-      'auth/email-already-in-use': 'このメールアドレスは既に登録されています。ログインしてください。',
-      'auth/weak-password': 'パスワードは8文字以上で設定してください。',
-      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
-    };
-    const code = err.code || '';
-    errEl.textContent = messages[code] || '登録に失敗しました: ' + (err.message || '');
-    errEl.style.display = 'block';
-  } finally {
-    btn.textContent = '無料で登録する';
-    btn.disabled = false;
-  }
-}
-
-// パスワードリセット
-async function handleResetPassword(e) {
-  e.preventDefault();
-  const errEl = document.getElementById('resetError');
-  const successEl = document.getElementById('resetSuccess');
-  const btn = document.getElementById('resetBtn');
-  errEl.style.display = 'none';
-  successEl.style.display = 'none';
-  btn.textContent = '送信中...';
-  btn.disabled = true;
-  try {
-    const email = document.getElementById('resetEmail').value;
-    await window.firebaseResetPassword(email);
-    successEl.textContent = 'リセット用メールを送信しました。メールをご確認ください。';
-    successEl.style.display = 'block';
-  } catch (err) {
-    const messages = {
-      'auth/user-not-found': 'このメールアドレスは登録されていません。',
-      'auth/invalid-email': 'メールアドレスの形式が正しくありません。',
-      'auth/too-many-requests': '送信回数が多すぎます。しばらくしてからお試しください。',
-    };
-    errEl.textContent = messages[err.code || ''] || 'エラーが発生しました: ' + (err.message || '');
-    errEl.style.display = 'block';
-  } finally {
-    btn.textContent = 'リセットメールを送信';
-    btn.disabled = false;
-  }
-}
-
-function switchToLogin() { closeModal('resetPassword'); openModal('login'); }
-
-// マイページ
-const AFFILIATION_LABELS = { listed_company:'上場企業', institutional_investor:'機関投資家', individual_investor:'個人投資家', consulting:'コンサルティングファーム', legal:'法律事務所・弁護士', media:'メディア・報道機関', academic:'学術・研究機関', other:'その他' };
-const JOBTITLE_LABELS = { executive:'経営者・役員', department_head:'部長・本部長', manager:'課長・マネージャー', ir_officer:'IR担当', legal_compliance:'法務・コンプライアンス', finance:'経理・財務', analyst:'アナリスト・ファンドマネージャー', consultant:'コンサルタント・アドバイザー', individual:'個人', other:'その他' };
-
-async function openMyPage() {
-  openModal('myPage');
-  const user = window.currentUser;
-  if (!user) return;
-  document.getElementById('myName').textContent = user.displayName || '-';
-  document.getElementById('myEmail').textContent = user.email || '-';
-  const verified = user.emailVerified;
-  const verifiedEl = document.getElementById('myEmailVerified');
-  verifiedEl.innerHTML = verified ? '<span style="color:#27ae60;">認証済み ✓</span>' : '<span style="color:#c0392b;">未認証</span>';
-  document.getElementById('btnResendVerify').style.display = verified ? 'none' : '';
-  const hasPassword = user.providerData && user.providerData.some(p => p.providerId === 'password');
-  document.getElementById('btnChangePassword').style.display = hasPassword ? '' : 'none';
-  document.getElementById('btnSetPassword').style.display = hasPassword ? 'none' : '';
-  document.getElementById('setPasswordForm').style.display = 'none';
-  document.getElementById('myPageMsg').style.display = 'none';
-  try {
-    const profile = await window.firebaseGetProfile(user.uid);
-    if (profile) {
-      document.getElementById('myAffiliation').textContent = AFFILIATION_LABELS[profile.affiliation] || profile.affiliation || '-';
-      document.getElementById('myJobTitle').textContent = JOBTITLE_LABELS[profile.jobTitle] || profile.jobTitle || '-';
-      document.getElementById('myCompany').textContent = profile.company || '-';
-      document.getElementById('myCreatedAt').textContent = profile.createdAt ? new Date(profile.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '-';
-    }
-  } catch (e) { console.error('Profile fetch error:', e); }
-}
-
-async function handleMyPageResetPassword() {
-  const msg = document.getElementById('myPageMsg');
-  const user = window.currentUser;
-  try {
-    await window.firebaseResetPassword(user.email);
-    msg.textContent = 'パスワードリセット用メールを送信しました。';
-    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-  } catch (e) {
-    msg.textContent = 'エラーが発生しました: ' + (e.message || '');
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-  }
-}
-
-function showSetPasswordForm() {
-  document.getElementById('setPasswordForm').style.display = '';
-  document.getElementById('myPageMsg').style.display = 'none';
-  document.getElementById('setPasswordInput').value = '';
-  document.getElementById('setPasswordConfirm').value = '';
-  document.getElementById('setPasswordInput').focus();
-}
-
-async function handleSetPassword() {
-  const msg = document.getElementById('myPageMsg');
-  const pw = document.getElementById('setPasswordInput').value;
-  const pw2 = document.getElementById('setPasswordConfirm').value;
-  msg.style.display = 'none';
-  if (!pw || pw.length < 8) {
-    msg.textContent = 'パスワードは8文字以上で設定してください。';
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    return;
-  }
-  if (pw !== pw2) {
-    msg.textContent = 'パスワードが一致しません。';
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    return;
-  }
-  try {
-    const user = window.currentUser;
-    await window.firebaseLinkPassword(user.email, pw);
-    msg.textContent = 'パスワードを設定しました。メールアドレスでもログインできます。';
-    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-    document.getElementById('setPasswordForm').style.display = 'none';
-    document.getElementById('btnSetPassword').style.display = 'none';
-    document.getElementById('btnChangePassword').style.display = '';
-  } catch (e) {
-    const messages = {
-      'auth/provider-already-linked': 'すでにパスワードが設定されています。「パスワードを変更」からリセットしてください。',
-      'auth/weak-password': 'パスワードが弱すぎます。8文字以上で設定してください。',
-      'auth/requires-recent-login': 'セキュリティのため再ログインが必要です。一度ログアウトしてGoogleで再ログインしてください。',
-    };
-    msg.textContent = messages[e.code] || 'エラーが発生しました。しばらくしてから再度お試しください。';
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-  }
-}
-
-async function handleResendVerification() {
-  const msg = document.getElementById('myPageMsg');
-  try {
-    const { sendEmailVerification } = await import("https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js");
-    await sendEmailVerification(window.currentUser);
-    msg.innerHTML = '認証メールを再送しました。メールをご確認ください。<br><span style="font-size:11px;">届かない場合は迷惑メールフォルダをご確認いただくか、<a href="https://aoyama-nogizaka.com/#contact" style="color:#047857;text-decoration:underline;">お問い合わせフォーム</a>よりご連絡ください。</span>';
-    msg.style.display = 'block'; msg.style.background = '#d1fae5'; msg.style.color = '#065f46';
-  } catch (e) {
-    msg.textContent = (e.code === 'auth/too-many-requests') ? '送信回数が多すぎます。しばらくしてからお試しください。' : 'エラー: ' + (e.message || '');
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-  }
-}
-
-function handleDeleteAccount() {
-  document.getElementById('deleteConfirm').style.display = '';
-  document.getElementById('deleteAccountSection').style.display = 'none';
-}
-
-function cancelDeleteAccount() {
-  document.getElementById('deleteConfirm').style.display = 'none';
-  document.getElementById('deleteAccountSection').style.display = '';
-}
-
-async function confirmDeleteAccount() {
-  const msg = document.getElementById('myPageMsg');
-  try {
-    await window.firebaseDeleteAccount();
-    closeModal('myPage');
-    window.location.reload();
-  } catch (e) {
-    if (e.code === 'auth/requires-recent-login') {
-      msg.textContent = 'セキュリティのため再ログインが必要です。一度ログアウトして再度ログインしてからお試しください。';
-    } else {
-      msg.textContent = '退会処理に失敗しました: ' + (e.message || '');
-    }
-    msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b';
-    document.getElementById('deleteConfirm').style.display = 'none';
-    document.getElementById('deleteAccountSection').style.display = '';
-  }
-}
-
-async function handleLogout() {
-  try {
-    await window.firebaseLogout();
-  } catch (err) {
-    console.error('Logout error:', err);
-  }
-}
+/* Auth modal/handler functions moved to auth.js */
 
 async function updateAuthUI(user) {
   const authBtns = document.getElementById('navAuthBtns');
