@@ -344,7 +344,7 @@
       <p>4桁の証券コード（英数字対応）を入力すると、kabutan・Yahoo!ファイナンス・EDINETから各指標を自動取得します。</p>
       <div class="stock-input-row">
         <input type="text" id="stockCode" maxlength="4" placeholder="例: 7203">
-        <button class="btn-fetch" id="btnFetch" onclick="fetchStockData()">データ取得</button>
+        <button class="btn-fetch" id="btnFetch" data-action="fetchStockData">データ取得</button>
       </div>
       <div class="stock-info" id="stockInfo"></div>
     </div>
@@ -426,8 +426,8 @@
           <div class="field-hint">廃止済みは狙われやすい（配点: 4点）</div>
         </div>
         <div class="risk-btn-area">
-          <button class="risk-btn" onclick="calculateRisk()">リスクを評価する</button>
-          <button class="risk-btn-clear" onclick="clearRisk()">クリア</button>
+          <button class="risk-btn" data-action="calculateRisk">リスクを評価する</button>
+          <button class="risk-btn-clear" data-action="clearRisk">クリア</button>
         </div>
       </div>
     </div>
@@ -844,6 +844,16 @@ function clearRisk() {
 // Enterキーで取得
 document.getElementById('stockCode').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') fetchStockData();
+});
+
+/* ── Event Delegation: data-action ── */
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  var action = btn.dataset.action;
+  if (action === 'fetchStockData') fetchStockData();
+  else if (action === 'calculateRisk') calculateRisk();
+  else if (action === 'clearRisk') clearRisk();
 });
 </script>
 </body>

@@ -405,12 +405,12 @@
       </li>
     </ul>
     <div id="navAuthBtns" style="display:flex;gap:10px;align-items:center;">
-      <button onclick="scrollToAuth('login')" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">ログイン</button>
-      <button onclick="scrollToAuth('register')" style="background:var(--gold);border:none;color:#fff;padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">無料会員登録</button>
+      <button data-action="scrollToAuth:login" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">ログイン</button>
+      <button data-action="scrollToAuth:register" style="background:var(--gold);border:none;color:#fff;padding:6px 14px;border-radius:4px;font-size:.72rem;cursor:pointer;letter-spacing:.04em;">無料会員登録</button>
     </div>
     <div id="navUserInfo" style="display:none;align-items:center;gap:10px;">
-      <a onclick="openMyPage()" id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;letter-spacing:.04em;text-decoration:underline;"></a>
-      <button onclick="doLogout()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:4px;font-size:.68rem;cursor:pointer;">ログアウト</button>
+      <a data-action="openMyPage" id="navUserName" style="font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;letter-spacing:.04em;text-decoration:underline;"></a>
+      <button data-action="doLogout" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:4px;font-size:.68rem;cursor:pointer;">ログアウト</button>
     </div>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -431,12 +431,12 @@
   <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <div class="m-auth" id="mobileAuthBtns" style="display:flex;gap:12px;margin-top:24px;">
-    <button class="btn-login" onclick="openAuthModal('login')" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">ログイン</button>
-    <button class="btn-register" onclick="openAuthModal('register')" data-nav-link style="background:var(--gold);border:none;color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">無料会員登録</button>
+    <button class="btn-login" data-action="openAuthModal:login" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">ログイン</button>
+    <button class="btn-register" data-action="openAuthModal:register" data-nav-link style="background:var(--gold);border:none;color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">無料会員登録</button>
   </div>
   <div class="m-auth" id="mobileUserInfo" style="display:none;gap:12px;margin-top:24px;align-items:center;">
     <span style="font-size:.85rem;color:rgba(255,255,255,.7);" id="mobileUserName"></span>
-    <button onclick="doLogout()" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:8px 16px;border-radius:4px;font-size:.78rem;cursor:pointer;">ログアウト</button>
+    <button data-action="doLogout" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:8px 16px;border-radius:4px;font-size:.78rem;cursor:pointer;">ログアウト</button>
   </div>
   <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
 </div>
@@ -455,8 +455,8 @@
 
   <!-- Tab Bar -->
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('individual')">個別銘柄分析</button>
-    <button class="tab-btn" onclick="switchTab('ranking')">ランキング・スクリーニング</button>
+    <button class="tab-btn active" data-action="switchTab:individual">個別銘柄分析</button>
+    <button class="tab-btn" data-action="switchTab:ranking">ランキング・スクリーニング</button>
   </div>
 
   <!-- TAB 1: 個別銘柄分析 -->
@@ -486,8 +486,8 @@
         </p>
       </details>
       <div class="btn-row">
-        <button class="btn-primary" id="btnIndFetch" onclick="fetchIndividual()">データ取得・分析</button>
-        <button class="btn-secondary" onclick="resetIndividual()">リセット</button>
+        <button class="btn-primary" id="btnIndFetch" data-action="fetchIndividual">データ取得・分析</button>
+        <button class="btn-secondary" data-action="resetIndividual">リセット</button>
       </div>
       <div class="loading" id="indLoading"><div class="spinner"></div><span id="indLoadingText">データ取得中...</span></div>
     </div>
@@ -562,14 +562,14 @@
           <div class="form-field"><label>土地含み益（百万円）</label><input type="number" id="manual_land_gain" placeholder="EDINET推定 or 手動入力"></div>
           <div class="form-field"><label>政策保有株式/純資産（%）</label><input type="number" id="manual_cross" step="0.1" placeholder="例: 12.0"></div>
         </div>
-        <div class="btn-row"><button class="btn-secondary" onclick="recalcIndividual()">再計算</button></div>
+        <div class="btn-row"><button class="btn-secondary" data-action="recalcIndividual">再計算</button></div>
       </div>
 
       <!-- 土地明細分析セクション -->
       <div class="s-card" id="landAnalysisSection" style="display:none;">
         <div class="s-card-title">土地明細分析 <span class="info-tip" data-tip="有価証券報告書の「主要な設備の状況」から土地の所在地・面積を抽出し、国土交通省の不動産取引価格情報で時価を推定します">?</span></div>
         <div class="btn-row" style="margin-bottom:12px;">
-          <button class="btn-primary" id="btnLandAnalysis" onclick="fetchLandParcels()" style="background:var(--gold);">
+          <button class="btn-primary" id="btnLandAnalysis" data-action="fetchLandParcels" style="background:var(--gold);">
             <span style="margin-right:6px;">&#x1f4cd;</span>土地明細分析を実行
           </button>
         </div>
@@ -601,12 +601,12 @@
           <div style="background:var(--bg-alt);border-radius:8px;padding:12px 16px;margin-bottom:12px;">
             <div style="font-size:.72rem;font-weight:600;color:var(--navy);margin-bottom:8px;">用途別調整係数（デフォルト）<span class="info-tip" data-tip="公示地価の全用途平均に対する調整係数。用途に応じて時価推定を補正します。各拠点で個別に変更も可能です。">?</span></div>
             <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.72rem;">
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">工場・倉庫 <input type="number" id="defRate_factory" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">オフィス <input type="number" id="defRate_office" value="0.9" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">商業施設 <input type="number" id="defRate_commercial" value="0.8" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">住宅・寮 <input type="number" id="defRate_residential" value="1.0" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">遊休地 <input type="number" id="defRate_idle" value="0.6" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
-              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">その他 <input type="number" id="defRate_other" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" onchange="recalcLandWithRates()"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">工場・倉庫 <input type="number" id="defRate_factory" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">オフィス <input type="number" id="defRate_office" value="0.9" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">商業施設 <input type="number" id="defRate_commercial" value="0.8" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">住宅・寮 <input type="number" id="defRate_residential" value="1.0" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">遊休地 <input type="number" id="defRate_idle" value="0.6" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
+              <label style="display:flex;align-items:center;gap:4px;color:var(--text-mid);">その他 <input type="number" id="defRate_other" value="0.5" step="0.05" min="0" max="3" style="width:52px;padding:2px 4px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.72rem;text-align:center;" data-change="recalcLandWithRates"></label>
             </div>
           </div>
 
@@ -631,7 +631,7 @@
             </table>
           </div>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn-secondary" onclick="applyLandGainEstimate()" style="font-size:.76rem;">この推定値を含み益に反映</button>
+            <button class="btn-secondary" data-action="applyLandGainEstimate" style="font-size:.76rem;">この推定値を含み益に反映</button>
           </div>
         </div>
       </div>
@@ -664,13 +664,13 @@
         <!-- 株価取得コントロール -->
         <div class="btn-row" style="margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
           <label style="font-size:.76rem;color:var(--text-light);">株価基準:</label>
-          <select id="phPriceBasis" onchange="if(phPriceData){var e=indData.edinet||{};renderPolicyHoldingsTable(e.policyHoldingsTop,phPriceData);updatePolicyHoldingsSummary(e.policyHoldingsTop,phPriceData);}" style="font-size:.76rem;padding:4px 8px;border:1px solid #ccc;border-radius:4px;">
+          <select id="phPriceBasis" data-change="recalcPolicyHoldings" style="font-size:.76rem;padding:4px 8px;border:1px solid #ccc;border-radius:4px;">
             <option value="lastClose">前日終値</option>
             <option value="avg3m">3ヶ月平均</option>
             <option value="avg6m">6ヶ月平均</option>
             <option value="avg12m">12ヶ月平均</option>
           </select>
-          <button class="btn-primary" id="btnFetchStockPrices" onclick="fetchPolicyHoldingsPrices()" style="background:var(--gold);font-size:.78rem;">
+          <button class="btn-primary" id="btnFetchStockPrices" data-action="fetchPolicyHoldingsPrices" style="background:var(--gold);font-size:.78rem;">
             株価取得・含み益計算
           </button>
         </div>
@@ -695,7 +695,7 @@
           </table>
         </div>
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn-secondary" onclick="applyPolicyHoldingsGain()" style="font-size:.76rem;">この推定値を有価証券含み益に反映</button>
+          <button class="btn-secondary" data-action="applyPolicyHoldingsGain" style="font-size:.76rem;">この推定値を有価証券含み益に反映</button>
         </div>
       </div>
 
@@ -765,8 +765,8 @@
             <li>複数銘柄の一括ランキング・CSV出力</li>
           </ul>
         </div>
-        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
-        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
+        <button class="btn-cta-register" data-action="scrollToAuth:register">無料会員登録</button>
+        <a class="btn-cta-login" data-action="scrollToAuth:login">すでに会員の方はログイン</a>
       </div>
     </div>
 
@@ -778,30 +778,30 @@
       <div class="s-card-title">銘柄コード入力（一括スキャン）</div>
       <p style="font-size:0.76rem; color:var(--text-light); margin-bottom:10px;">カンマ区切りまたは改行区切りで複数の証券コードを入力（最大100銘柄）</p>
       <div class="chip-row">
-        <span class="chip" onclick="loadPreset('nikkei225')">日経225（主要20社）</span>
-        <span class="chip" onclick="loadPreset('mega')">メガバンク・大手金融</span>
-        <span class="chip" onclick="loadPreset('lowpbr')">低PBR注目銘柄</span>
-        <span class="chip" onclick="loadPreset('auto')">自動車関連</span>
-        <span class="chip" onclick="loadPreset('trading')">総合商社</span>
-        <span class="chip" onclick="loadPreset('it')">IT・通信</span>
-        <span class="chip" onclick="loadPreset('conglomerate')">コングロマリット</span>
-        <span class="chip" onclick="loadPreset('realestate')">不動産</span>
-        <span class="chip" onclick="loadPreset('food')">食品・飲料</span>
-        <span class="chip" onclick="loadPreset('pharma')">医薬品・ヘルスケア</span>
-        <span class="chip" onclick="loadPreset('chemical')">素材・化学</span>
-        <span class="chip" onclick="loadPreset('steel')">鉄鋼・非鉄</span>
-        <span class="chip" onclick="loadPreset('construction')">建設</span>
-        <span class="chip" onclick="loadPreset('retail')">小売・流通</span>
-        <span class="chip" onclick="loadPreset('transport')">鉄道・運輸・海運</span>
-        <span class="chip" onclick="loadPreset('utility')">電力・ガス</span>
-        <span class="chip" onclick="loadPreset('machinery')">機械</span>
-        <span class="chip" onclick="loadPreset('electronics')">電機・精密</span>
+        <span class="chip" data-action="loadPreset:nikkei225">日経225（主要20社）</span>
+        <span class="chip" data-action="loadPreset:mega">メガバンク・大手金融</span>
+        <span class="chip" data-action="loadPreset:lowpbr">低PBR注目銘柄</span>
+        <span class="chip" data-action="loadPreset:auto">自動車関連</span>
+        <span class="chip" data-action="loadPreset:trading">総合商社</span>
+        <span class="chip" data-action="loadPreset:it">IT・通信</span>
+        <span class="chip" data-action="loadPreset:conglomerate">コングロマリット</span>
+        <span class="chip" data-action="loadPreset:realestate">不動産</span>
+        <span class="chip" data-action="loadPreset:food">食品・飲料</span>
+        <span class="chip" data-action="loadPreset:pharma">医薬品・ヘルスケア</span>
+        <span class="chip" data-action="loadPreset:chemical">素材・化学</span>
+        <span class="chip" data-action="loadPreset:steel">鉄鋼・非鉄</span>
+        <span class="chip" data-action="loadPreset:construction">建設</span>
+        <span class="chip" data-action="loadPreset:retail">小売・流通</span>
+        <span class="chip" data-action="loadPreset:transport">鉄道・運輸・海運</span>
+        <span class="chip" data-action="loadPreset:utility">電力・ガス</span>
+        <span class="chip" data-action="loadPreset:machinery">機械</span>
+        <span class="chip" data-action="loadPreset:electronics">電機・精密</span>
       </div>
       <div class="form-field"><textarea id="rankCodes" rows="4" placeholder="例: 7203, 6758, 9984, 8306, 4502&#10;または1行1コードで入力"></textarea></div>
       <div class="form-grid" style="margin-top:10px;">
         <div class="form-field">
           <label>時価総額フィルタ</label>
-          <select id="rankMcapFilter" onchange="filterAndDisplayRanking()">
+          <select id="rankMcapFilter" data-change="filterAndDisplayRanking">
             <option value="all">全て</option>
             <option value="nano">ナノキャップ（〜50億円）</option>
             <option value="micro">マイクロキャップ（50〜300億円）</option>
@@ -819,7 +819,7 @@
         </div>
         <div class="form-field">
           <label>ソート基準</label>
-          <select id="rankSortBy" onchange="filterAndDisplayRanking()">
+          <select id="rankSortBy" data-change="filterAndDisplayRanking">
             <option value="score">アクティビスト標的スコア</option>
             <option value="pbr">PBR（低い順）</option>
             <option value="roe">ROE（低い順）</option>
@@ -835,8 +835,8 @@
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn-primary" id="btnRankScan" onclick="startRankingScan()">スキャン開始</button>
-        <button class="btn-secondary" id="btnRankCancel" onclick="cancelScan()" style="display:none;">キャンセル</button>
+        <button class="btn-primary" id="btnRankScan" data-action="startRankingScan">スキャン開始</button>
+        <button class="btn-secondary" id="btnRankCancel" data-action="cancelScan" style="display:none;">キャンセル</button>
       </div>
       <div class="loading" id="rankLoading"><div class="spinner"></div><span id="rankLoadingText">スキャン中...</span></div>
       <div id="rankProgress" class="hidden">
@@ -850,17 +850,17 @@
       <div class="s-card">
         <div class="s-card-title" style="display:flex; align-items:center; justify-content:space-between;">
           <span>スクリーニング結果 <span style="font-size:0.76rem; color:var(--text-light); font-weight:400; margin-left:8px;" id="rankResultCount">0件</span></span>
-          <button class="btn-gold" id="btnCsvExport" onclick="exportCSV()" disabled>CSV出力</button>
+          <button class="btn-gold" id="btnCsvExport" data-action="exportCSV" disabled>CSV出力</button>
         </div>
 
         <!-- バフェットコード風カテゴリタブ -->
         <div class="rank-view-tabs" style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid var(--mid-gray); overflow-x:auto;">
-          <button class="rank-view-tab active" onclick="switchRankView('overview')">概要</button>
-          <button class="rank-view-tab" onclick="switchRankView('valuation')">バリュエーション</button>
-          <button class="rank-view-tab" onclick="switchRankView('dividend')">配当・還元</button>
-          <button class="rank-view-tab" onclick="switchRankView('financial')">財務健全性</button>
-          <button class="rank-view-tab" onclick="switchRankView('ncev')">NC・EV</button>
-          <button class="rank-view-tab" onclick="switchRankView('assets')">含み益・資産</button>
+          <button class="rank-view-tab active" data-action="switchRankView:overview">概要</button>
+          <button class="rank-view-tab" data-action="switchRankView:valuation">バリュエーション</button>
+          <button class="rank-view-tab" data-action="switchRankView:dividend">配当・還元</button>
+          <button class="rank-view-tab" data-action="switchRankView:financial">財務健全性</button>
+          <button class="rank-view-tab" data-action="switchRankView:ncev">NC・EV</button>
+          <button class="rank-view-tab" data-action="switchRankView:assets">含み益・資産</button>
         </div>
 
         <!-- 概要ビュー -->
@@ -868,18 +868,18 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('sector')">セクター</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('pbr')">PBR</th>
-                <th onclick="sortRanking('roe')">ROE</th>
-                <th onclick="sortRanking('per')">PER</th>
-                <th onclick="sortRanking('divyield')">配当利回り</th>
-                <th onclick="sortRanking('equity')">自己資本比率</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
-                <th onclick="sortRanking('mcapCat')">区分</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:sector">セクター</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:pbr">PBR</th>
+                <th data-action="sortRanking:roe">ROE</th>
+                <th data-action="sortRanking:per">PER</th>
+                <th data-action="sortRanking:divyield">配当利回り</th>
+                <th data-action="sortRanking:equity">自己資本比率</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
+                <th data-action="sortRanking:mcapCat">区分</th>
               </tr></thead>
               <tbody id="rankTableBody"></tbody>
             </table>
@@ -891,16 +891,16 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('pbr')">PBR</th>
-                <th onclick="sortRanking('per')">PER</th>
-                <th onclick="sortRanking('roe')">ROE</th>
-                <th onclick="sortRanking('eps')">EPS</th>
-                <th onclick="sortRanking('bps')">BPS</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:pbr">PBR</th>
+                <th data-action="sortRanking:per">PER</th>
+                <th data-action="sortRanking:roe">ROE</th>
+                <th data-action="sortRanking:eps">EPS</th>
+                <th data-action="sortRanking:bps">BPS</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
               </tr></thead>
               <tbody id="rankTableBody-valuation"></tbody>
             </table>
@@ -912,15 +912,15 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('divyield')">配当利回り</th>
-                <th onclick="sortRanking('payout')">配当性向</th>
-                <th onclick="sortRanking('dps')">1株配当</th>
-                <th onclick="sortRanking('pbr')">PBR</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:divyield">配当利回り</th>
+                <th data-action="sortRanking:payout">配当性向</th>
+                <th data-action="sortRanking:dps">1株配当</th>
+                <th data-action="sortRanking:pbr">PBR</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
               </tr></thead>
               <tbody id="rankTableBody-dividend"></tbody>
             </table>
@@ -932,16 +932,16 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('equity')">自己資本比率</th>
-                <th onclick="sortRanking('roe')">ROE</th>
-                <th onclick="sortRanking('per')">PER</th>
-                <th onclick="sortRanking('payout')">配当性向</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
-                <th onclick="sortRanking('mcapCat')">区分</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:equity">自己資本比率</th>
+                <th data-action="sortRanking:roe">ROE</th>
+                <th data-action="sortRanking:per">PER</th>
+                <th data-action="sortRanking:payout">配当性向</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
+                <th data-action="sortRanking:mcapCat">区分</th>
               </tr></thead>
               <tbody id="rankTableBody-financial"></tbody>
             </table>
@@ -954,15 +954,15 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('ncRatio')">NC/時価総額</th>
-                <th onclick="sortRanking('adjNcRatio')">実質NC/時価総額</th>
-                <th onclick="sortRanking('fullNcRatio')">含み資産NC/時価総額</th>
-                <th onclick="sortRanking('evEbitda')">EV/EBITDA</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:ncRatio">NC/時価総額</th>
+                <th data-action="sortRanking:adjNcRatio">実質NC/時価総額</th>
+                <th data-action="sortRanking:fullNcRatio">含み資産NC/時価総額</th>
+                <th data-action="sortRanking:evEbitda">EV/EBITDA</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
               </tr></thead>
               <tbody id="rankTableBody-ncev"></tbody>
             </table>
@@ -975,17 +975,17 @@
           <div class="ranking-table">
             <table>
               <thead><tr>
-                <th onclick="sortRanking('rank')">順位</th>
-                <th onclick="sortRanking('code')">コード</th>
-                <th onclick="sortRanking('name')">銘柄名</th>
-                <th onclick="sortRanking('score')">スコア</th>
-                <th onclick="sortRanking('pbr')">PBR</th>
-                <th onclick="sortRanking('land')">土地簿価</th>
-                <th onclick="sortRanking('landGain')">推定土地含み益</th>
-                <th onclick="sortRanking('secGain')">有価証券含み益</th>
-                <th onclick="sortRanking('ipGain')">投資不動産含み益</th>
-                <th onclick="sortRanking('totalGain')">含み益合計</th>
-                <th onclick="sortRanking('mcap')">時価総額</th>
+                <th data-action="sortRanking:rank">順位</th>
+                <th data-action="sortRanking:code">コード</th>
+                <th data-action="sortRanking:name">銘柄名</th>
+                <th data-action="sortRanking:score">スコア</th>
+                <th data-action="sortRanking:pbr">PBR</th>
+                <th data-action="sortRanking:land">土地簿価</th>
+                <th data-action="sortRanking:landGain">推定土地含み益</th>
+                <th data-action="sortRanking:secGain">有価証券含み益</th>
+                <th data-action="sortRanking:ipGain">投資不動産含み益</th>
+                <th data-action="sortRanking:totalGain">含み益合計</th>
+                <th data-action="sortRanking:mcap">時価総額</th>
               </tr></thead>
               <tbody id="rankTableBody-assets"></tbody>
             </table>
@@ -1009,8 +1009,8 @@
             <li>結果のCSVダウンロード</li>
           </ul>
         </div>
-        <button class="btn-cta-register" onclick="scrollToAuth('register')">無料会員登録</button>
-        <a class="btn-cta-login" onclick="scrollToAuth('login')">すでに会員の方はログイン</a>
+        <button class="btn-cta-register" data-action="scrollToAuth:register">無料会員登録</button>
+        <a class="btn-cta-login" data-action="scrollToAuth:login">すでに会員の方はログイン</a>
       </div>
     </div>
 
@@ -1025,33 +1025,33 @@
         <div class="auth-form">
           <input type="email" id="authEmail" placeholder="メールアドレス" style="flex:1; min-width:0;">
           <input type="password" id="authPass" placeholder="パスワード" style="min-width:0;">
-          <button class="btn-primary" onclick="doLogin()" style="padding:8px 20px;">ログイン</button>
+          <button class="btn-primary" data-action="doLogin" style="padding:8px 20px;">ログイン</button>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" onclick="showRegister(); return false;" style="color:var(--gold);">新規登録</a></p><a href="#" onclick="showResetPassword(); return false;" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
+        <div style="display:flex; justify-content:space-between; margin-top:8px;"><p style="font-size:0.72rem; color:var(--text-light);">アカウントをお持ちでない方は <a href="#" data-action="showRegister" style="color:var(--gold);">新規登録</a></p><a href="#" data-action="showResetPassword" style="font-size:0.72rem; color:var(--gold);">パスワードをお忘れの方</a></div>
         <div class="auth-msg" id="authLoginMsg"></div>
       </div>
-      <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" onclick="doResetPassword()" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
+      <div id="authResetForm" class="hidden"><p style="font-size:0.76rem; color:var(--text-mid); margin-bottom:12px;">登録済みメールアドレスにパスワードリセット用リンクを送信します。</p><div class="auth-form"><input type="email" id="resetEmail" placeholder="メールアドレス" style="flex:1; min-width:200px;"><button class="btn-primary" data-action="doResetPassword" style="padding:8px 20px;">送信</button></div><p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;"><a href="#" data-action="showLogin" style="color:var(--gold);">ログインに戻る</a></p><div class="auth-msg" id="authResetMsg"></div></div>
       <div id="authRegisterForm" class="hidden">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <input type="text" id="regName" placeholder="お名前 *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
           <input type="text" id="regCompany" placeholder="会社名・組織名（任意）" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
-          <select id="regAffiliation" required onchange="toggleAffiliationCode()" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
+          <select id="regAffiliation" required data-change="toggleAffiliationCode" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">所属種別 *</option><option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option><option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option><option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option><option value="academic">学術・研究機関</option><option value="other">その他</option></select>
           <input type="text" id="regAffiliationCode" placeholder="証券コード（例: 7203）" maxlength="4" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; display:none;">
           <select id="regJobTitle" style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem; background:var(--white);"><option value="">役職（任意）</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option></select>
           <input type="email" id="regEmail" placeholder="メールアドレス *" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
           <input type="password" id="regPass" placeholder="パスワード（8文字以上）*" required style="padding:8px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:0.82rem;">
         </div>
-        <button class="btn-primary" onclick="doRegister()" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
+        <button class="btn-primary" data-action="doRegister" style="padding:10px 24px; margin-top:12px; width:100%;">無料で登録する</button>
         <p style="font-size:0.68rem; color:var(--text-light); margin-top:10px; line-height:1.7; text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。<br>※競合企業に該当すると判断された場合、事前の通知なくアカウントを停止させていただく場合がございます。</p>
-        <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" onclick="showLogin(); return false;" style="color:var(--gold);">ログイン</a></p>
+        <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px; text-align:center;">既にアカウントをお持ちの方は <a href="#" data-action="showLogin" style="color:var(--gold);">ログイン</a></p>
         <div class="auth-msg" id="authRegMsg"></div>
       </div>
     </div>
     <div id="authLoggedIn" class="hidden">
       <div class="user-info">
-        <a class="name" id="authUserName" onclick="openMyPage()" style="cursor:pointer; text-decoration:underline;"></a>
+        <a class="name" id="authUserName" data-action="openMyPage" style="cursor:pointer; text-decoration:underline;"></a>
         <span style="color:var(--text-light);">でログイン中</span>
-        <button class="btn-secondary" onclick="doLogout()" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
+        <button class="btn-secondary" data-action="doLogout" style="padding:6px 16px; font-size:0.72rem;">ログアウト</button>
       </div>
     </div>
   </div>
@@ -1104,14 +1104,14 @@
 </footer>
 
 <!-- 認証モーダル -->
-<div class="auth-modal-overlay" id="authModalOverlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="authModalOverlay">
   <div class="auth-modal">
-    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <button class="auth-modal-close" data-action="closeAuthModal">&times;</button>
     <div id="authModalLoggedOut">
       <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">ログイン / 無料会員登録</h2>
       <p style="font-size:.76rem;color:var(--text-light);margin-bottom:16px;text-align:center;line-height:1.7;">スクリーニング結果の閲覧・CSV出力には<br>無料会員登録が必要です。</p>
       <div id="authModalLoginForm">
-        <button onclick="doModalGoogleLogin('login')" class="btn-google" type="button">
+        <button data-action="doModalGoogleLogin:login" class="btn-google" type="button">
           <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
           Googleでログイン
         </button>
@@ -1119,11 +1119,11 @@
         <div style="display:flex;flex-direction:column;gap:8px;">
           <input type="email" id="authModalEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
           <input type="password" id="authModalPass" placeholder="パスワード" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
-          <button class="btn-primary" onclick="doModalLogin()" style="padding:12px;font-size:.88rem;width:100%;">メールアドレスでログイン</button>
+          <button class="btn-primary" data-action="doModalLogin" style="padding:12px;font-size:.88rem;width:100%;">メールアドレスでログイン</button>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:10px;">
-          <a href="#" onclick="showModalRegister();return false;" style="font-size:.74rem;color:var(--gold);">新規登録はこちら</a>
-          <a href="#" onclick="showModalReset();return false;" style="font-size:.74rem;color:var(--gold);">パスワードをお忘れの方</a>
+          <a href="#" data-action="showModalRegister" style="font-size:.74rem;color:var(--gold);">新規登録はこちら</a>
+          <a href="#" data-action="showModalReset" style="font-size:.74rem;color:var(--gold);">パスワードをお忘れの方</a>
         </div>
         <div class="auth-msg" id="authModalLoginMsg"></div>
       </div>
@@ -1131,13 +1131,13 @@
         <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:12px;">登録済みメールアドレスにリセット用リンクを送信します。<br><span style="font-size:.7rem;color:var(--text-light);">※Googleアカウントでご登録の方はGoogleログインをご利用ください。</span></p>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <input type="email" id="authModalResetEmail" placeholder="メールアドレス" style="padding:10px 14px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
-          <button class="btn-primary" onclick="doModalReset()" style="padding:12px;width:100%;">送信</button>
+          <button class="btn-primary" data-action="doModalReset" style="padding:12px;width:100%;">送信</button>
         </div>
-        <p style="margin-top:10px;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <p style="margin-top:10px;"><a href="#" data-action="showModalLogin" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
         <div class="auth-msg" id="authModalResetMsg"></div>
       </div>
       <div id="authModalRegisterForm" class="hidden">
-        <button onclick="doModalGoogleLogin('register')" class="btn-google" type="button">
+        <button data-action="doModalGoogleLogin:register" class="btn-google" type="button">
           <svg width="18" height="18" viewBox="0 0 48 48" style="margin-right:8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
           Googleで登録
         </button>
@@ -1150,21 +1150,21 @@
           <input type="email" id="regModalEmail" placeholder="メールアドレス *" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
           <input type="password" id="regModalPass" placeholder="パスワード（8文字以上）*" style="padding:8px 12px;border:1px solid var(--mid-gray);border-radius:4px;font-size:.82rem;">
         </div>
-        <button class="btn-primary" onclick="doModalRegister()" style="padding:12px;margin-top:12px;width:100%;">無料で登録する</button>
+        <button class="btn-primary" data-action="doModalRegister" style="padding:12px;margin-top:12px;width:100%;">無料で登録する</button>
         <p style="font-size:.68rem;color:var(--text-light);margin-top:10px;line-height:1.7;text-align:center;">登録すると<a href="/privacy.html" style="color:var(--gold);">プライバシーポリシー</a>に同意したものとみなされます。</p>
-        <p style="margin-top:8px;text-align:center;"><a href="#" onclick="showModalLogin();return false;" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
+        <p style="margin-top:8px;text-align:center;"><a href="#" data-action="showModalLogin" style="font-size:.74rem;color:var(--gold);">ログインに戻る</a></p>
         <div class="auth-msg" id="authModalRegMsg"></div>
       </div>
     </div>
     <div id="authModalLoggedIn" class="hidden" style="text-align:center;">
       <p style="font-size:.88rem;color:var(--navy);margin-bottom:12px;">ログイン済みです</p>
-      <button class="btn-secondary" onclick="closeAuthModal()" style="padding:8px 20px;">閉じる</button>
+      <button class="btn-secondary" data-action="closeAuthModal" style="padding:8px 20px;">閉じる</button>
     </div>
   </div>
 </div>
 
 <!-- プロフィール補完モーダル（Google login） -->
-<div class="auth-modal-overlay" id="completeProfileOverlay" onclick="if(event.target===this)closeCompleteProfile()">
+<div class="auth-modal-overlay" id="completeProfileOverlay">
   <div class="auth-modal">
     <h2 style="font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--navy);margin-bottom:8px;text-align:center;">プロフィール登録</h2>
     <p style="font-size:.76rem;color:var(--text-mid);margin-bottom:16px;text-align:center;line-height:1.7;">ご利用いただくために、以下の情報をご登録ください。</p>
@@ -1177,7 +1177,7 @@
         <option value="">役職 *</option><option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option><option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option><option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option><option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option><option value="individual">個人</option><option value="other">その他</option>
       </select>
       <input type="text" id="cpModalCompany" placeholder="会社名・組織名 *" style="padding:10px 12px;border:1px solid var(--mid-gray);border-radius:6px;font-size:.84rem;">
-      <button class="btn-primary" onclick="doCompleteProfile()" style="padding:12px;width:100%;">登録して利用開始</button>
+      <button class="btn-primary" data-action="doCompleteProfile" style="padding:12px;width:100%;">登録して利用開始</button>
     </div>
   </div>
 </div>
@@ -1313,6 +1313,78 @@ async function doCompleteProfile() {
 
 // scrollToAuthをモーダル版にオーバーライド
 scrollToAuth = function(mode) { openAuthModal(mode); };
+
+/* ── Event Delegation ── */
+(function() {
+  // Click delegation
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-action]');
+    if (!el) return;
+    var parts = el.dataset.action.split(':');
+    var fn = parts[0], arg = parts[1] || null;
+
+    switch(fn) {
+      case 'scrollToAuth': scrollToAuth(arg); break;
+      case 'openMyPage': openMyPage(); break;
+      case 'doLogout': doLogout(); break;
+      case 'openAuthModal': openAuthModal(arg); break;
+      case 'switchTab': switchTab(arg); break;
+      case 'fetchIndividual': fetchIndividual(); break;
+      case 'resetIndividual': resetIndividual(); break;
+      case 'recalcIndividual': recalcIndividual(); break;
+      case 'fetchLandParcels': fetchLandParcels(); break;
+      case 'applyLandGainEstimate': applyLandGainEstimate(); break;
+      case 'fetchPolicyHoldingsPrices': fetchPolicyHoldingsPrices(); break;
+      case 'applyPolicyHoldingsGain': applyPolicyHoldingsGain(); break;
+      case 'loadPreset': loadPreset(arg); break;
+      case 'startRankingScan': startRankingScan(); break;
+      case 'cancelScan': cancelScan(); break;
+      case 'exportCSV': exportCSV(); break;
+      case 'switchRankView': switchRankView(arg); break;
+      case 'sortRanking': sortRanking(arg); break;
+      case 'doLogin': doLogin(); break;
+      case 'doRegister': doRegister(); break;
+      case 'doModalLogin': doModalLogin(); break;
+      case 'doModalRegister': doModalRegister(); break;
+      case 'doModalReset': doModalReset(); break;
+      case 'doModalGoogleLogin': doModalGoogleLogin(arg); break;
+      case 'showLogin': showLogin(); break;
+      case 'showRegister': showRegister(); break;
+      case 'showResetPassword': showResetPassword(); break;
+      case 'showModalLogin': showModalLogin(); break;
+      case 'showModalRegister': showModalRegister(); break;
+      case 'showModalReset': showModalReset(); break;
+      case 'closeAuthModal': closeAuthModal(); break;
+      case 'doCompleteProfile': doCompleteProfile(); break;
+      case 'closeCompleteProfile': closeCompleteProfile(); break;
+    }
+    // Prevent default for anchor tags
+    if (el.tagName === 'A') e.preventDefault();
+  });
+
+  // Change delegation
+  document.addEventListener('change', function(e) {
+    var el = e.target.closest('[data-change]');
+    if (!el) return;
+    var fn = el.dataset.change;
+    if (fn === 'recalcLandWithRates') recalcLandWithRates();
+    else if (fn === 'filterAndDisplayRanking') filterAndDisplayRanking();
+    else if (fn === 'recalcPolicyHoldings') {
+      if (typeof phPriceData !== 'undefined' && phPriceData) {
+        var ed = (typeof indData !== 'undefined' && indData.edinet) ? indData.edinet : {};
+        renderPolicyHoldingsTable(ed.policyHoldingsTop, phPriceData);
+        updatePolicyHoldingsSummary(ed.policyHoldingsTop, phPriceData);
+      }
+    }
+    else if (fn === 'toggleAffiliationCode') toggleAffiliationCode();
+  });
+
+  // Overlay click-to-close delegation
+  document.addEventListener('click', function(e) {
+    if (e.target.id === 'authModalOverlay') closeAuthModal();
+    if (e.target.id === 'completeProfileOverlay') closeCompleteProfile();
+  });
+})();
 </script>
 </body>
 </html>

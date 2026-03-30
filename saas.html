@@ -195,7 +195,7 @@
     .btn-google { width: 100%; padding: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-google:hover { background: var(--bg-alt); }
     .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
-    .modal-footer span[onclick] { color: var(--navy); font-weight: 600; text-decoration: underline; }
+    .modal-footer span[data-auth-action] { color: var(--navy); font-weight: 600; text-decoration: underline; }
     .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
     .login-wall { position: relative; margin-top: -80px; padding: 120px 48px 60px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
     .login-wall h3 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
@@ -297,11 +297,11 @@
       <span>出所: 各社IR・決算説明会資料</span>
     </div>
     <div class="dl-btns">
-      <button class="dl-btn" onclick="downloadPDF()">
+      <button class="dl-btn" data-action="downloadPDF">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
         PDFダウンロード
       </button>
-      <button class="dl-btn" onclick="downloadCSV()">
+      <button class="dl-btn" data-action="downloadCSV">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12z"/></svg>
         CSVダウンロード
       </button>
@@ -1116,6 +1116,15 @@ let companies = [];
   };
 
 })();
+
+/* ── Event Delegation: data-action ── */
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('[data-action]');
+  if (!el) return;
+  var fn = el.dataset.action;
+  if (fn === 'downloadPDF') downloadPDF();
+  else if (fn === 'downloadCSV') downloadCSV();
+});
 </script>
 <div style="background:var(--bg-alt,#f8f7f5);border-top:1px solid #e0ddd6;padding:24px 20px;margin-top:40px;">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">

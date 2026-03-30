@@ -423,11 +423,11 @@
 
   <!-- Filter Tabs -->
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterArticles('all', this)">すべて</button>
-    <button class="filter-btn" onclick="filterArticles('insight', this)">論考・分析</button>
-    <button class="filter-btn" onclick="filterArticles('press', this)">プレスリリース</button>
-    <button class="filter-btn" onclick="filterArticles('news', this)">お知らせ</button>
-    <button class="filter-btn" onclick="filterArticles('dashboard', this)">データ・ダッシュボード</button>
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="insight">論考・分析</button>
+    <button class="filter-btn" data-filter="press">プレスリリース</button>
+    <button class="filter-btn" data-filter="news">お知らせ</button>
+    <button class="filter-btn" data-filter="dashboard">データ・ダッシュボード</button>
   </div>
 
   <!-- Featured Article -->
@@ -564,7 +564,7 @@
       <h3>論考・お知らせを受け取る</h3>
       <p>新しい論考・プレスリリース発行時にメールでお知らせします。</p>
     </div>
-    <form class="newsletter-form" id="newsletterForm" onsubmit="return submitNewsletter(event)" style="width:100%;max-width:480px;">
+    <form class="newsletter-form" id="newsletterForm" data-form-action="submitNewsletter" style="width:100%;max-width:480px;">
       <input type="email" name="email" required placeholder="メールアドレス">
       <button type="submit" id="nlSubmitBtn">登録</button>
     </form>
@@ -606,7 +606,7 @@
 
 <script>
 
-/* ── Filter ── */
+/* ── Filter (event delegation) ── */
 function filterArticles(category, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -629,6 +629,19 @@ function filterArticles(category, btn) {
   document.getElementById('article-count').textContent = visible + '件';
 }
 
+/* ── Event Delegation ── */
+document.addEventListener('click', function(e) {
+  const filterBtn = e.target.closest('[data-filter]');
+  if (filterBtn) {
+    filterArticles(filterBtn.dataset.filter, filterBtn);
+  }
+});
+document.addEventListener('submit', function(e) {
+  const form = e.target.closest('[data-form-action]');
+  if (form && form.dataset.formAction === 'submitNewsletter') {
+    submitNewsletter(e);
+  }
+});
 
 </script>
 <script src="/js/nav-handler.js"></script>

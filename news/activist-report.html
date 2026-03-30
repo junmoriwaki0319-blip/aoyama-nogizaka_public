@@ -515,25 +515,25 @@
       </li>
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://aoyama-nogizaka.com/#philosophy" onclick="toggleMenu()">企業理念</a>
-  <a href="https://aoyama-nogizaka.com/#services" onclick="toggleMenu()">提供サービス</a>
-  <a href="https://aoyama-nogizaka.com/#about" onclick="toggleMenu()">会社概要</a>
-  <a href="https://aoyama-nogizaka.com/team" onclick="toggleMenu()">チーム</a>
-  <a href="/news/" onclick="toggleMenu()" style="color:var(--gold);">ニュース・論考</a>
+  <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+  <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
+  <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
+  <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
+  <a href="/news/" data-nav-link style="color:var(--gold);">ニュース・論考</a>
   <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
-  <a href="/activist-dashboard.html" onclick="toggleMenu()" style="padding-left:16px;">大量保有報告ダッシュボード</a>
-  <a href="/risk-assessment.html" onclick="toggleMenu()" style="padding-left:16px;">アクティビスト対象機会評価</a>
-  <a href="/activist-screener.html" onclick="toggleMenu()" style="padding-left:16px;">スクリーニング・ランキング</a>
+  <a href="/activist-dashboard.html" data-nav-link style="padding-left:16px;">大量保有報告ダッシュボード</a>
+  <a href="/risk-assessment.html" data-nav-link style="padding-left:16px;">アクティビスト対象機会評価</a>
+  <a href="/activist-screener.html" data-nav-link style="padding-left:16px;">スクリーニング・ランキング</a>
   <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
-  <a href="/food-service.html" onclick="toggleMenu()" style="padding-left:16px;">外食産業 KPIダッシュボード</a>
-  <a href="/saas.html" onclick="toggleMenu()" style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
-  <a href="https://aoyama-nogizaka.com/#contact" onclick="toggleMenu()" class="m-cta">お問い合わせ</a>
+  <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
+  <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
+  <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
 </div>
 
 <!-- Hero -->
@@ -982,7 +982,7 @@
       </div>
 
       <div style="width:100%;">
-        <form class="consult-form" id="consultForm" onsubmit="return submitConsultForm(event)" style="background:#fff;padding:32px 28px;border:1px solid #e0dcd5;">
+        <form class="consult-form" id="consultForm" data-form-action="submitConsultForm" style="background:#fff;padding:32px 28px;border:1px solid #e0dcd5;">
           <div style="margin-bottom:18px;">
             <label style="display:block;font-size:11px;color:#9b8b6e;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:500;">氏名<span style="color:#b53a3a;font-size:10px;margin-left:4px;">*</span></label>
             <input type="text" name="name" required placeholder="山田 太郎" style="width:100%;padding:10px 14px;border:1px solid #e0dcd5;font-family:inherit;font-size:13px;color:#1a2d4f;outline:none;box-sizing:border-box;">
@@ -1051,11 +1051,9 @@
   </div>
 </footer>
 
+<script src="/js/nav-handler.js"></script>
 <script>
-/* ─── Mobile Nav ─── */
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
+/* ─── Mobile Nav: handled by nav-handler.js ─── */
 
 /* ─── Progress Bar ─── */
 window.addEventListener('scroll', () => {
@@ -1287,6 +1285,14 @@ async function submitConsultForm(e) {
   } finally { btn.disabled = false; btn.textContent = '送信する'; }
   return false;
 }
+
+/* ── Event Delegation: form submit ── */
+document.addEventListener('submit', function(e) {
+  var form = e.target.closest('[data-form-action]');
+  if (form && form.dataset.formAction === 'submitConsultForm') {
+    submitConsultForm(e);
+  }
+});
 </script>
 </body>
 </html>
