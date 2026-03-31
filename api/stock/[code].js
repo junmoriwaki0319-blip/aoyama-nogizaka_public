@@ -50,6 +50,10 @@ module.exports = async (req, res) => {
     if (!result.marketCapOku && result.price && result.sharesIssued) {
       result.marketCapOku = Math.round(result.price * result.sharesIssued / 100000000);
     }
+    // データが全く取得できなかった場合はエラーとして返す
+    if (!result.companyName && result.price == null && result.pbr == null) {
+      return res.status(404).json({ success: false, error: '銘柄が見つかりません' });
+    }
     res.json({ success: true, data: result });
   } catch (err) {
     console.error('Stock fetch error:', err.message);
