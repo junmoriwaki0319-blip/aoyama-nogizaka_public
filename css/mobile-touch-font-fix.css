@@ -18,15 +18,64 @@
 
   /* テーブル内要素 */
   td, th {
-    font-size: 13px;
+    font-size: 13px !important;
     min-height: 44px;
     padding: 12px 10px;
   }
 
-  /* 汎用テキスト要素 */
-  p, li, span, a, label {
-    font-size: max(14px, inherit);
+  /* 汎用テキスト要素: !important で既存の詳細度の高いルールを上書き */
+  p, li, label {
+    font-size: 14px !important;
     line-height: 1.5;
+  }
+
+  /* ダッシュボード固有: 小フォントクラスの上書き */
+  .nav-logo-jp {
+    font-size: 13px !important;
+  }
+
+  .data-source,
+  .data-source span {
+    font-size: 12px !important;
+  }
+
+  .page-header-inner p,
+  .page-header-inner span {
+    font-size: 14px !important;
+    line-height: 1.5;
+  }
+
+  details p {
+    font-size: 14px !important;
+    line-height: 1.6;
+  }
+
+  /* アクティビスト一覧カード内 */
+  .ac-stock-item span,
+  .ac-stock-item a {
+    font-size: 13px !important;
+    line-height: 1.4;
+  }
+
+  .activist-type {
+    font-size: 11px !important;  /* バッジ: 小さめOK */
+  }
+
+  /* スクリーナー固有 */
+  .rank-view-tab {
+    font-size: 13px !important;
+  }
+
+  /* nav auth buttons */
+  .nav-auth-btns a {
+    font-size: 13px !important;
+  }
+
+  /* 10px以下の要素は絶対に12px以上に引き上げ */
+  [class*="icon"],
+  [class*="badge"],
+  [class*="tag"] {
+    font-size: 12px !important;
   }
 }
 
