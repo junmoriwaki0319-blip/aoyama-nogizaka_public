@@ -1,0 +1,261 @@
+/* =============================================================
+   aoyama-nogizaka.com モバイル最適化パッチ
+   日付: 2026-03-31
+   対象: 全ページ共通 + activist-dashboard + activist-screener
+
+   このファイルを各HTMLの既存CSSの後に追加読み込みする:
+   <link rel="stylesheet" href="/css/mobile-touch-font-fix.css">
+   ============================================================= */
+
+/* ---------------------------------------------------------
+   1. グローバル: モバイルフォントサイズ最低14px保証
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* テーブル内要素 */
+  td, th {
+    font-size: 13px;
+    min-height: 44px;
+    padding: 12px 10px;
+  }
+
+  /* 汎用テキスト要素 */
+  p, li, span, a, label {
+    font-size: max(14px, inherit);
+    line-height: 1.5;
+  }
+}
+
+/* ---------------------------------------------------------
+   2. グローバル: タッチターゲット44x44px最低保証
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* ボタン系: 全ボタンの最低サイズ保証 */
+  button,
+  .btn-filter,
+  .btn-reset,
+  .btn-primary,
+  .btn-secondary,
+  .export-btn,
+  .btn-cta-register,
+  .btn-gold {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* タブボタン */
+  .tab-btn,
+  .rank-view-tab,
+  .ranking-filter-btn {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* セレクトボックス */
+  select,
+  .filter-select,
+  .sort-select {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  /* インプット */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 16px; /* iOS zoom防止: 16px以上 */
+  }
+
+  /* テーブル内リンク: タップ領域拡大 */
+  table a,
+  .activist-table a {
+    display: inline-block;
+    padding: 8px 4px;
+    min-height: 44px;
+    min-width: 44px;
+    line-height: 28px;
+    text-align: center;
+  }
+
+  /* ウォッチリスト追加ボタン */
+  .watchlist-add-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px;
+  }
+
+  /* フッターリンク: タップ領域確保 */
+  footer a {
+    display: inline-block;
+    padding: 8px 4px;
+    min-height: 44px;
+    line-height: 28px;
+  }
+
+  /* ナビゲーションリンク（モバイルメニュー内） */
+  nav a {
+    display: block;
+    padding: 12px 16px;
+    min-height: 44px;
+  }
+}
+
+/* ---------------------------------------------------------
+   3. テーブル横スクロール統一 + ヒント表示
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* 全テーブル親要素にoverflow-x: auto統一 */
+  .ranking-table,
+  .idm-table-wrap,
+  .s-card,
+  table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  /* s-card（screener T3）修正: visible → auto */
+  .s-card {
+    overflow-x: auto !important;
+  }
+
+  /* テーブル最小幅でスクロール可能に */
+  .activist-table,
+  .idm-table {
+    min-width: 600px;
+  }
+
+  /* スクロールヒント: 右端にフェード表示 */
+  .ranking-table::after,
+  .idm-table-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+    pointer-events: none;
+  }
+
+  .ranking-table,
+  .idm-table-wrap {
+    position: relative;
+  }
+}
+
+/* ---------------------------------------------------------
+   4. チャート（Chart.js）のモバイル対応
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+
+  /* チャートコンテナがある場合 */
+  .chart-container,
+  .chart-wrapper,
+  [class*="chart"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ---------------------------------------------------------
+   5. フォーム（トップページお問い合わせ）のモバイル改善
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  form select {
+    min-height: 44px;
+    font-size: 16px; /* iOS zoom防止 */
+    padding: 10px 12px;
+  }
+
+  form button[type="submit"] {
+    min-height: 48px;
+    width: 100%;
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+}
+
+/* ---------------------------------------------------------
+   6. ビューポート固有の問題対応
+   --------------------------------------------------------- */
+
+/* 100vh問題: モバイルブラウザのアドレスバー対応 */
+.hero-section,
+[class*="hero"] {
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height */
+}
+
+/* Safe Area Inset（ノッチ対応） */
+@supports (padding: env(safe-area-inset-top)) {
+  nav,
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ---------------------------------------------------------
+   7. ハンバーガーメニュー改善
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  .nav-hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ---------------------------------------------------------
+   8. フィルターエリアのモバイルレイアウト
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* ダッシュボードフィルター: 縦積み */
+  .filter-area,
+  .filter-row,
+  [class*="filter-group"] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filter-area > *,
+  .filter-row > * {
+    width: 100%;
+  }
+
+  /* タブの横スクロール */
+  .tab-container,
+  [class*="tabs"] {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding-bottom: 4px;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
