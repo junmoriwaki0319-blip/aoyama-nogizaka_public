@@ -658,15 +658,8 @@
    --------------------------------------------------------- */
 
 /* 100vh問題: モバイルブラウザのアドレスバー対応 */
-/* NOTE: モバイルではセクション0-aで min-height: auto に上書きされるため
-   この100dvhはデスクトップ表示のみ有効 */
-@media (min-width: 769px) {
-  .hero-section,
-  [class*="hero"] {
-    min-height: 100vh;
-    min-height: 100dvh; /* dynamic viewport height */
-  }
-}
+/* NOTE: デスクトップでは各ページ固有のmin-heightを尊重するため上書きしない。
+   モバイルではセクション0-aで min-height: auto に上書き済み。 */
 
 /* Safe Area Inset（ノッチ対応） */
 @supports (padding: env(safe-area-inset-top)) {
