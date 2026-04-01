@@ -182,7 +182,7 @@
 
     /* ===== HERO ===== */
     .hero {
-      min-height: 100vh;
+      min-height: min(100vh, 760px);
       padding-top: 64px;
       display: flex;
       align-items: center;
@@ -209,10 +209,10 @@
     .hero-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 40px;
+      padding: 60px 40px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 48px;
       align-items: center;
       position: relative;
       z-index: 1;
@@ -274,7 +274,7 @@
     .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
     .hero-visual {
       position: relative;
-      height: 500px;
+      height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -324,7 +324,7 @@
     }
 
     /* ===== SECTION BASE ===== */
-    section { padding: 100px 0; }
+    section { padding: 72px 0; }
     .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
     .section-label {
       font-family: 'Cormorant Garamond', serif;
@@ -340,13 +340,13 @@
       font-weight: 300;
       color: var(--navy);
       letter-spacing: 0.05em;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
     .section-divider {
       width: 40px;
       height: 1px;
       background: var(--gold);
-      margin: 20px 0 50px;
+      margin: 16px 0 36px;
     }
 
     /* ===== PHILOSOPHY ===== */
@@ -356,7 +356,7 @@
     .philosophy-layout {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      gap: 80px;
+      gap: 48px;
       align-items: start;
     }
     .philosophy-left-text {
@@ -496,7 +496,7 @@
     .about-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 48px;
       align-items: start;
     }
     .about-table { width: 100%; border-collapse: collapse; }
@@ -567,7 +567,7 @@
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      gap: 60px;
+      gap: 40px;
     }
     .contact-info { padding-top: 8px; }
     .contact-info-item {
@@ -626,7 +626,7 @@
     footer {
       background: var(--navy);
       color: rgba(255,255,255,0.6);
-      padding: 60px 0 40px;
+      padding: 48px 0 32px;
     }
     .footer-inner {
       max-width: 1200px;
@@ -771,15 +771,15 @@
       .contact-form input, .contact-form textarea, .contact-form select { min-height: 44px; font-size: 14px; }
       .contact-form button { min-height: 48px; }
       /* Data & AI sections mobile padding */
-      #data { padding: 60px 0 !important; }
+      #data { padding: 48px 0 !important; }
       .data-card { padding: 28px 20px; }
-      #ai-consulting { padding: 60px 0 !important; }
+      #ai-consulting { padding: 48px 0 !important; }
       .ai-card { padding: 24px 20px; }
       .ai-evidence { padding: 24px 20px; }
       .ai-evidence a { width: 100%; text-align: center; }
     }
     @media (max-width: 480px) {
-      section { padding: 60px 0; }
+      section { padding: 48px 0; }
       .hero-title { font-size: 24px; }
       .section-inner { padding: 0 16px; }
       .footer-inner { padding: 0 16px; }
@@ -883,7 +883,7 @@
   </section>
 
   <!-- INTRO BAND -->
-  <div style="background:var(--navy);padding:60px 0;">
+  <div style="background:var(--navy);padding:44px 0;">
     <div class="section-inner">
       <p style="font-family:'Noto Serif JP',serif;font-size:clamp(15px,2vw,20px);font-weight:300;color:rgba(255,255,255,0.85);line-height:2.2;letter-spacing:0.06em;text-align:center;" class="reveal">
         現在の日本企業において、多くの企業が潜在的な成長力を有しながらも、<br>
@@ -991,7 +991,7 @@
   </section>
 
   <!-- DATA SHOWCASE -->
-  <section style="background:var(--navy);padding:80px 0;" id="data">
+  <section style="background:var(--navy);padding:56px 0;" id="data">
     <div class="section-inner">
       <p class="section-label reveal" style="color:var(--gold-light);">Data & Insights</p>
       <h2 class="section-title-jp reveal reveal-delay-1" style="color:var(--white);">独自の分析プラットフォーム</h2>
@@ -1018,7 +1018,7 @@
   </section>
 
   <!-- AI × CONSULTING -->
-  <section style="background:var(--off-white);padding:80px 0;" id="ai-consulting">
+  <section style="background:var(--off-white);padding:56px 0;" id="ai-consulting">
     <div class="section-inner">
       <p class="section-label reveal">AI × Consulting</p>
       <h2 class="section-title-jp reveal reveal-delay-1">生成AI活用で、支援のスピードとコストを変える</h2>
