@@ -20,40 +20,50 @@
       - ページヘッダーのコンパクト化
    ========================================================= */
 
-/* --- 0-a. トップページ: ヒーロー高さ制限 --- */
+/* --- 0-a. トップページ: モバイルヒーロー最適化 --- */
 @media (max-width: 768px) {
-  .hero,
-  .hero-section,
-  [class*="hero"] {
-    min-height: auto !important;   /* 100vh / 100dvh を無効化 */
-    min-height: unset !important;
-    padding-top: 64px;             /* nav高さ分 */
+  /* トップページ .hero: 1カラム化 + 高さ制限 */
+  .hero {
+    min-height: auto !important;
+    padding-top: 64px;
     padding-bottom: 0;
   }
 
   .hero-inner {
-    padding: 40px 20px 32px !important;
-    gap: 20px !important;
+    grid-template-columns: 1fr !important;
+    padding: 32px 20px 24px !important;
+    gap: 16px !important;
   }
 
+  /* ビジュアルはモバイルでは小さく、テキストの後に配置 */
   .hero-visual {
-    height: 180px !important;
+    height: 160px !important;
+    order: 2;
+  }
+
+  .hero-content {
+    order: 1;
+  }
+
+  .hero-label {
+    margin-bottom: 12px !important;
+    font-size: 10px !important;
   }
 
   .hero-title {
     font-size: clamp(22px, 6vw, 28px) !important;
-    line-height: 1.5 !important;
-    margin-bottom: 16px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 12px !important;
   }
 
   .hero-sub {
     font-size: 13px !important;
-    line-height: 1.7 !important;
-    margin-bottom: 24px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
   }
 
-  .hero-label {
-    margin-bottom: 16px !important;
+  .hero-sub br {
+    display: none;  /* モバイルでは改行を消して自然に流す */
   }
 
   .hero-cta {
@@ -62,24 +72,79 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* page-hero（risk-assessment, screener）: モバイル専用コンパクト化 */
+  .page-hero {
+    margin-top: 64px !important;
+    padding: 28px 20px 20px !important;
+  }
+
+  .page-hero h1 {
+    font-size: 1.15rem !important;
+    margin-bottom: 8px !important;
+    line-height: 1.4 !important;
+  }
+
+  .page-hero p {
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .page-hero p br {
+    display: none;  /* モバイルでは改行を消して自然に流す */
+  }
+
+  .page-hero-en {
+    font-size: 0.8rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-badge {
+    margin-top: 12px !important;
+    padding: 4px 14px !important;
+    font-size: 0.68rem !important;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-inner {
-    padding: 32px 16px 24px !important;
+    padding: 24px 16px 20px !important;
+    gap: 12px !important;
   }
 
   .hero-visual {
-    height: 150px !important;
+    height: 120px !important;
   }
 
   .hero-title {
-    font-size: 22px !important;
+    font-size: 21px !important;
+  }
+
+  .page-hero {
+    padding: 24px 16px 16px !important;
+  }
+
+  .page-hero h1 {
+    font-size: 1.05rem !important;
   }
 }
 
 /* --- 0-b. トップページ: セクション余白の圧縮 --- */
 @media (max-width: 768px) {
+  /* INTRO BAND: モバイルで余白圧縮 + 改行解除 */
+  .hero + div[style*="navy"] {
+    padding: 28px 0 !important;
+  }
+
+  .hero + div[style*="navy"] p {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  .hero + div[style*="navy"] p br {
+    display: none;
+  }
+
   section {
     padding: 48px 0 !important;
   }
