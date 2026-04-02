@@ -207,16 +207,21 @@ async function downloadAndParseXbrl(docId) {
       }
     }
 
-    // Securities code
+    // Securities code — XBRL属性パターンは生テキストで、テキストパターンはタグ除去済みで検索
+    const stripTags = s => s.replace(/<[^>]*>/g, '');
     const codePatterns = [
-      /(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})/,
-      /name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})/
+      { pat: /name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})/, src: text },
+      { pat: /(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})/, src: stripTags(text) }
     ];
-    for (const pat of codePatterns) {
-      const m = text.match(pat);
+    for (const { pat, src } of codePatterns) {
+      const m = src.match(pat);
       if (m) {
-        result.sec_code = m[1].trim();
-        break;
+        const code = m[1].trim();
+        // 数字を1つ以上含む4-5桁のみ有効（"span"等のHTMLタグ残骸を排除）
+        if (/\d/.test(code)) {
+          result.sec_code = code;
+          break;
+        }
       }
     }
 
