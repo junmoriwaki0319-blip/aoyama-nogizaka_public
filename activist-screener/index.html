@@ -127,13 +127,17 @@
     .metric-value.highlight{color:var(--red);font-size:.88rem}
     .metric-value.positive{color:var(--green)}.metric-value.negative{color:var(--red)}.metric-value.warning{color:var(--orange)}
     table{width:100%;border-collapse:collapse;font-size:.78rem}
-    th{background:var(--light-gray);color:var(--text-light);font-weight:600;font-size:.72rem;letter-spacing:.04em}
+    th{background:var(--light-gray);color:var(--text-light);font-weight:600;font-size:.72rem;letter-spacing:.04em;position:sticky;top:0;z-index:2}
     th,td{padding:8px 10px;text-align:left}td{border-top:1px solid var(--light-gray)}
     tbody tr:hover td{background:var(--off-white)}
     .bar-container{width:70px;height:5px;background:var(--light-gray);border-radius:3px;display:inline-block;vertical-align:middle}
     .bar-fill{height:100%;border-radius:3px}.bar-high{background:var(--red)}.bar-mid{background:var(--orange)}.bar-low{background:var(--green)}
-    .ranking-table{overflow-x:auto}.ranking-table table{min-width:900px}
-    .ranking-table th{cursor:pointer;user-select:none;white-space:nowrap}.ranking-table th:hover{background:var(--mid-gray)}
+    .ranking-table{overflow-x:auto;-webkit-overflow-scrolling:touch;position:relative}.ranking-table table{min-width:900px}
+    .ranking-table th{cursor:pointer;user-select:none;white-space:nowrap;position:sticky;top:0;z-index:2}.ranking-table th:hover{background:var(--mid-gray)}
+    .table-scroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;position:relative}
+    .table-scroll-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:24px;background:linear-gradient(to left,rgba(0,0,0,.06),transparent);pointer-events:none;opacity:1;transition:opacity .3s}
+    .table-scroll-wrap.scrolled-end::after{opacity:0}
+    .ranking-table::after{content:'';position:absolute;top:0;right:0;bottom:0;width:24px;background:linear-gradient(to left,rgba(0,0,0,.06),transparent);pointer-events:none}
     .ranking-table td{font-family:var(--deco);font-size:.78rem}.ranking-table td.name-cell{font-family:var(--sans)}
     .rank-badge{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;font-size:.68rem;font-weight:700;color:#fff}
     .rank-1{background:#c8a84e}.rank-2{background:#a0aec0}.rank-3{background:#b87333}.rank-other{background:var(--text-light)}
@@ -221,9 +225,12 @@
       .score-hero{padding:20px 16px}
       .score-number{font-size:2.6rem}
       .metric-card{padding:14px 12px}
+      table{font-size:14px}
+      th{font-size:12px}
       .ranking-table{margin:0 -14px}
-      .ranking-table table{font-size:.72rem}
+      .ranking-table table{font-size:13px}
       .ranking-table th,.ranking-table td{padding:8px 6px}
+      .table-scroll-wrap table{font-size:14px}
       .chip{padding:6px 14px;min-height:36px;display:inline-flex;align-items:center}
       .cta-card{padding:28px 20px}
       .cta-links{flex-direction:column}
@@ -488,7 +495,7 @@
           </div>
 
           <!-- 土地明細テーブル -->
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-wrap">
             <table style="font-size:.74rem;">
               <thead>
                 <tr>
@@ -554,7 +561,7 @@
         <div class="loading" id="phLoading" style="display:none;"><div class="spinner"></div><span id="phLoadingText">株価を取得中...</span></div>
 
         <!-- 明細テーブル -->
-        <div style="overflow-x:auto;">
+        <div class="table-scroll-wrap">
           <table style="font-size:.75rem;">
             <thead>
               <tr>
@@ -600,7 +607,7 @@
         <div id="shCategoryChart" style="margin-bottom:16px;"></div>
 
         <!-- 大株主一覧テーブル -->
-        <div style="overflow-x:auto;">
+        <div class="table-scroll-wrap">
           <table style="font-size:.75rem;">
             <thead>
               <tr>
@@ -618,10 +625,12 @@
 
       <div class="s-card">
         <div class="s-card-title">スコア詳細</div>
-        <table>
-          <thead><tr><th>評価項目</th><th>値</th><th style="text-align:right;">スコア</th><th style="text-align:right;">配点</th><th style="width:90px;">リスク度</th></tr></thead>
-          <tbody id="indDetailBody"></tbody>
-        </table>
+        <div class="table-scroll-wrap">
+          <table>
+            <thead><tr><th>評価項目</th><th>値</th><th style="text-align:right;">スコア</th><th style="text-align:right;">配点</th><th style="width:90px;">リスク度</th></tr></thead>
+            <tbody id="indDetailBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
