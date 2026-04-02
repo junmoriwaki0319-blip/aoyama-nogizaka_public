@@ -61,6 +61,17 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
 
+    /* DASHBOARD SUB-NAV */
+    .dash-subnav { background: var(--navy-light); border-bottom: 1px solid rgba(255,255,255,0.08); margin-top: 64px; padding: 0 40px; }
+    .dash-subnav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .dash-subnav-inner::-webkit-scrollbar { display: none; }
+    .dash-subnav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; white-space: nowrap; }
+    .dash-subnav-link { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 10px 12px; white-space: nowrap; transition: all 0.15s; border-bottom: 2px solid transparent; }
+    .dash-subnav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .dash-subnav-link.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+    .dash-subnav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.12); margin: 0 8px; flex-shrink: 0; }
+    @media (max-width: 768px) { .dash-subnav { padding: 0 16px; } .dash-subnav-link { font-size: 0.68rem; padding: 8px 10px; } }
+
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
@@ -89,7 +100,7 @@
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
 
     /* PAGE HEADER */
-    .page-header { margin-top: 64px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 44px 40px 36px; position: relative; overflow: hidden; }
+    .page-header { margin-top: 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 44px 40px 36px; position: relative; overflow: hidden; }
     .page-header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%); }
     .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .page-header-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
@@ -431,6 +442,20 @@
   <div class="m-auth" id="mobileUserInfo" style="display:none;">
     <span style="font-size:0.85rem; color:rgba(255,255,255,0.7);" id="mobileUserName"></span>
     <button class="btn-login" data-auth-action="handleLogout">ログアウト</button>
+  </div>
+</div>
+
+<!-- DASHBOARD SUB-NAV -->
+<div class="dash-subnav">
+  <div class="dash-subnav-inner">
+    <span class="dash-subnav-cat">アクティビスト</span>
+    <a href="/activist-dashboard.html" class="dash-subnav-link active">大量保有報告</a>
+    <a href="/risk-assessment.html" class="dash-subnav-link">機会評価</a>
+    <a href="/activist-screener.html" class="dash-subnav-link">スクリーニング</a>
+    <span class="dash-subnav-sep"></span>
+    <span class="dash-subnav-cat">セクター分析</span>
+    <a href="/food-service.html" class="dash-subnav-link">外食</a>
+    <a href="/saas.html" class="dash-subnav-link">SaaS</a>
   </div>
 </div>
 

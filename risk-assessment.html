@@ -94,9 +94,20 @@
       .nav-hamburger { display: flex; }
     }
 
+    /* DASHBOARD SUB-NAV */
+    .dash-subnav { background: #243b63; border-bottom: 1px solid rgba(255,255,255,0.08); margin-top: 64px; padding: 0 40px; }
+    .dash-subnav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .dash-subnav-inner::-webkit-scrollbar { display: none; }
+    .dash-subnav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; white-space: nowrap; }
+    .dash-subnav-link { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 10px 12px; white-space: nowrap; transition: all 0.15s; border-bottom: 2px solid transparent; }
+    .dash-subnav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .dash-subnav-link.active { color: var(--gold-light, #c8b99a); border-bottom-color: var(--gold, #9b8b6e); }
+    .dash-subnav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.12); margin: 0 8px; flex-shrink: 0; }
+    @media (max-width: 768px) { .dash-subnav { padding: 0 16px; } .dash-subnav-link { font-size: 0.68rem; padding: 8px 10px; } }
+
     /* HERO */
     .page-hero {
-      margin-top: 64px;
+      margin-top: 0;
       background: linear-gradient(160deg, var(--navy) 0%, #243b60 60%, #2a4570 100%);
       padding: 48px 40px 36px; position: relative; overflow: hidden;
     }
@@ -319,6 +330,20 @@
   <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
   <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
   <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
+</div>
+
+<!-- DASHBOARD SUB-NAV -->
+<div class="dash-subnav">
+  <div class="dash-subnav-inner">
+    <span class="dash-subnav-cat">アクティビスト</span>
+    <a href="/activist-dashboard.html" class="dash-subnav-link">大量保有報告</a>
+    <a href="/risk-assessment.html" class="dash-subnav-link active">機会評価</a>
+    <a href="/activist-screener.html" class="dash-subnav-link">スクリーニング</a>
+    <span class="dash-subnav-sep"></span>
+    <span class="dash-subnav-cat">セクター分析</span>
+    <a href="/food-service.html" class="dash-subnav-link">外食</a>
+    <a href="/saas.html" class="dash-subnav-link">SaaS</a>
+  </div>
 </div>
 
 <!-- Hero -->

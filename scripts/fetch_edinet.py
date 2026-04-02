@@ -214,7 +214,8 @@ def extract_sec_code(raw_code):
 def download_xbrl_and_extract(doc_id):
     """
     XBRL ZIP をダウンロードし、保有比率・保有目的を抽出する。
-    抽出できない場合は空の dict を返す。
+    全ファイルを走査し結果をマージする（早期breakしない）。
+    XBRL/iXBRL 本文ファイルを優先的に解析する。
     """
     if not API_KEY:
         return {}
@@ -237,14 +238,33 @@ def download_xbrl_and_extract(doc_id):
         result = {}
 
         with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-            for name in zf.namelist():
-                if name.endswith(".xbrl") or name.endswith(".htm") or name.endswith(".html"):
-                    try:
-                        text = zf.read(name).decode("utf-8", errors="ignore")
-                    except Exception:
-                        continue
+            # XBRL/iXBRL 本文ファイルを優先（honbun > header > その他）
+            all_files = [n for n in zf.namelist()
+                         if n.endswith(".xbrl") or n.endswith(".htm") or n.endswith(".html")]
 
-                    # 発行者名（対象企業名）の抽出
+            def file_priority(fname):
+                """XBRL本文を先に処理するためのソートキー"""
+                score = 0
+                if "XBRL/" in fname or "xbrl/" in fname:
+                    score -= 100  # XBRL ディレクトリ内を優先
+                if "honbun" in fname:
+                    score -= 50   # 本文を優先
+                if fname.endswith(".xbrl"):
+                    score -= 30   # .xbrl ファイルを優先
+                if "header" in fname:
+                    score += 10   # ヘッダーは後回し
+                return score
+
+            all_files.sort(key=file_priority)
+
+            for fname in all_files:
+                try:
+                    text = zf.read(fname).decode("utf-8", errors="ignore")
+                except Exception:
+                    continue
+
+                # 発行者名（対象企業名）の抽出
+                if "target_company" not in result:
                     issuer_patterns = [
                         # XBRL element for issuer name
                         r'name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer|IssuerNameJp)[^"]*"[^>]*>([^<]+)',
@@ -257,16 +277,16 @@ def download_xbrl_and_extract(doc_id):
                     for pattern in issuer_patterns:
                         m = re.search(pattern, text)
                         if m:
-                            name = m.group(1).strip()
-                            # Filter out generic text and filer's own name
-                            if (name and len(name) >= 2
-                                    and '報告書' not in name
-                                    and '提出者' not in name
-                                    and '代表取締役' not in name):
-                                result["target_company"] = name
+                            matched_name = m.group(1).strip()
+                            if (matched_name and len(matched_name) >= 2
+                                    and '報告書' not in matched_name
+                                    and '提出者' not in matched_name
+                                    and '代表取締役' not in matched_name):
+                                result["target_company"] = matched_name
                                 break
 
-                    # 証券コードの抽出（英字入りコード 220A 等にも対応）
+                # 証券コードの抽出（英字入りコード 220A 等にも対応）
+                if "sec_code" not in result:
                     code_patterns = [
                         r'(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})',
                         r'name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})',
@@ -277,10 +297,17 @@ def download_xbrl_and_extract(doc_id):
                             result["sec_code"] = m.group(1).strip()
                             break
 
-                    # 保有割合の抽出（複数パターン対応）
+                # 保有割合の抽出（複数パターン対応）
+                if "holding_ratio" not in result:
                     ratio_patterns = [
-                        r'(?:保有割合|所有割合)[^\d]{0,30}?([\d]+[\.．][\d]+)\s*[%％]',
+                        # iXBRL タグから直接抽出（最も信頼性が高い）
+                        r'name="[^"]*HoldingRatioOfShareCertificatesEtc[^"]*"[^>]*>([\d]+[\.．][\d]+)',
+                        # XBRL 要素タグから直接抽出（小数形式: 0.0614 = 6.14%）
+                        r'<[^>]*:HoldingRatioOfShareCertificatesEtc[^>]*>([\d]+[\.．][\d]+)</',
+                        # 一般的な iXBRL/XBRL name 属性パターン
                         r'name="[^"]*(?:HoldingRatio|OwnershipRatio)[^"]*"[^>]*>([\d]+[\.．][\d]+)',
+                        # テキスト内のパターン
+                        r'(?:保有割合|所有割合)[^\d]{0,30}?([\d]+[\.．][\d]+)\s*[%％]',
                         r'([\d]+[\.．][\d]+)\s*[%％]\s*(?:（.*?保有割合|を保有)',
                     ]
                     for pattern in ratio_patterns:
@@ -288,13 +315,23 @@ def download_xbrl_and_extract(doc_id):
                         if m:
                             ratio_str = m.group(1).replace("．", ".")
                             try:
-                                result["holding_ratio"] = float(ratio_str)
+                                ratio_val = float(ratio_str)
+                                # XBRL の小数形式（0.0614）を百分率（6.14）に変換
+                                if ratio_val < 1.0 and ratio_val > 0:
+                                    ratio_val = round(ratio_val * 100, 2)
+                                result["holding_ratio"] = ratio_val
                             except ValueError:
                                 pass
                             break
 
-                    # 保有目的の抽出
+                # 保有目的の抽出
+                if "purpose" not in result:
                     purpose_patterns = [
+                        # iXBRL タグから直接抽出（最も信頼性が高い）
+                        r'name="[^"]*PurposeOfHolding[^"]*"[^>]*>([\s\S]*?)</(?:ix:nonNumeric|jplvh)',
+                        # XBRL 要素タグから直接抽出
+                        r'<[^>]*:PurposeOfHolding[^>]*>([\s\S]*?)</',
+                        # テキスト内のパターン
                         r'保有目的[^\n]{0,5}[：:]\s*([^\n<]{2,60})',
                         r'(?:当該株券等の発行者の事業活動を|純投資|投資及び状況に応じて|政策投資|経営参加|株主提案)[^\n<]{0,80}',
                     ]
@@ -302,13 +339,17 @@ def download_xbrl_and_extract(doc_id):
                         m = re.search(pattern, text)
                         if m:
                             purpose_raw = m.group(1) if m.lastindex else m.group(0)
+                            # HTMLタグを除去
+                            purpose_raw = re.sub(r'<[^>]*>', '', purpose_raw)
                             purpose_raw = purpose_raw.strip()
-                            result["purpose"] = classify_purpose(purpose_raw)
-                            result["purpose_detail"] = purpose_raw[:100]
-                            break
+                            if purpose_raw and len(purpose_raw) >= 2:
+                                result["purpose"] = classify_purpose(purpose_raw)
+                                result["purpose_detail"] = purpose_raw[:100]
+                                break
 
-                    if result:
-                        break
+                # 全フィールド取得済みなら終了
+                if all(k in result for k in ("target_company", "sec_code", "holding_ratio", "purpose")):
+                    break
 
         return result
 
