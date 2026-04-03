@@ -179,9 +179,23 @@ async function downloadAndParseXbrl(docId) {
   const entries = parseZipEntries(buf);
   const result = {};
 
-  for (const entry of entries) {
-    if (!entry.name.endsWith('.xbrl') && !entry.name.endsWith('.htm') && !entry.name.endsWith('.html')) continue;
+  // XBRL本文ファイルを優先するソート（honbun > .xbrl > header、XBRL/ディレクトリ優先）
+  const relevantEntries = entries.filter(e =>
+    e.name.endsWith('.xbrl') || e.name.endsWith('.htm') || e.name.endsWith('.html')
+  );
+  relevantEntries.sort((a, b) => {
+    function score(fname) {
+      let s = 0;
+      if (/XBRL\//i.test(fname)) s -= 100;
+      if (/honbun/.test(fname)) s -= 50;
+      if (fname.endsWith('.xbrl')) s -= 30;
+      if (/header/.test(fname)) s += 10;
+      return s;
+    }
+    return score(a.name) - score(b.name);
+  });
 
+  for (const entry of relevantEntries) {
     let text;
     try {
       text = entry.data.toString('utf-8');
@@ -190,74 +204,103 @@ async function downloadAndParseXbrl(docId) {
     }
 
     // Target company name
-    const issuerPatterns = [
-      /name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer|IssuerNameJp)[^"]*"[^>]*>([^<]+)/,
-      /発行者の名称[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})/,
-      /発行者の名称.*?<[^>]*>\s*([^\n<]{2,40}?)\s*</,
-      /株券等の発行者[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})/
-    ];
-    for (const pat of issuerPatterns) {
-      const m = text.match(pat);
-      if (m) {
-        const name = m[1].trim();
-        if (name && name.length >= 2 && !name.includes('報告書') && !name.includes('提出者') && !name.includes('代表取締役')) {
-          result.target_company = name;
-          break;
+    if (!result.target_company) {
+      const issuerPatterns = [
+        /name="[^"]*(?:[Ii]ssuer[Nn]ame|NameOfIssuer|IssuerNameJp)[^"]*"[^>]*>([^<]+)/,
+        /発行者の名称[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})/,
+        /発行者の名称.*?<[^>]*>\s*([^\n<]{2,40}?)\s*</,
+        /株券等の発行者[^：:]*[：:]\s*([^\n<]{2,40}?)(?:\s*[（(]|$|\s{2})/
+      ];
+      for (const pat of issuerPatterns) {
+        const m = text.match(pat);
+        if (m) {
+          const name = m[1].trim();
+          if (name && name.length >= 2 && !name.includes('報告書') && !name.includes('提出者') && !name.includes('代表取締役')) {
+            result.target_company = name;
+            break;
+          }
         }
       }
     }
 
     // Securities code — XBRL属性パターンは生テキストで、テキストパターンはタグ除去済みで検索
-    const stripTags = s => s.replace(/<[^>]*>/g, '');
-    const codePatterns = [
-      { pat: /name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})/, src: text },
-      { pat: /(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})/, src: stripTags(text) }
-    ];
-    for (const { pat, src } of codePatterns) {
-      const m = src.match(pat);
-      if (m) {
-        const code = m[1].trim();
-        // 数字を1つ以上含む4-5桁のみ有効（"span"等のHTMLタグ残骸を排除）
-        if (/\d/.test(code)) {
-          result.sec_code = code;
-          break;
+    if (!result.sec_code) {
+      const stripTags = s => s.replace(/<[^>]*>/g, '');
+      const codePatterns = [
+        { pat: /name="[^"]*(?:[Ss]ecurity[Cc]ode|SecuritiesCode)[^"]*"[^>]*>([\dA-Za-z]{4,5})/, src: text },
+        { pat: /(?:証券コード|銘柄コード)[^\dA-Za-z]{0,10}([\dA-Za-z]{4,5})/, src: stripTags(text) }
+      ];
+      for (const { pat, src } of codePatterns) {
+        const m = src.match(pat);
+        if (m) {
+          const code = m[1].trim();
+          if (/\d/.test(code)) {
+            result.sec_code = code;
+            break;
+          }
         }
       }
     }
 
     // Holding ratio
-    const ratioPatterns = [
-      /(?:保有割合|所有割合)[^\d]{0,30}?([\d]+[\.．][\d]+)\s*[%％]/,
-      /name="[^"]*(?:HoldingRatio|OwnershipRatio)[^"]*"[^>]*>([\d]+[\.．][\d]+)/,
-      /([\d]+[\.．][\d]+)\s*[%％]\s*(?:（.*?保有割合|を保有)/
-    ];
-    for (const pat of ratioPatterns) {
-      const m = text.match(pat);
-      if (m) {
-        const ratioStr = m[1].replace('．', '.');
-        const val = parseFloat(ratioStr);
-        if (!isNaN(val)) {
-          result.holding_ratio = val;
+    if (result.holding_ratio === undefined) {
+      const ratioPatterns = [
+        // iXBRL タグから直接抽出（最も信頼性が高い）
+        /name="[^"]*HoldingRatioOfShareCertificatesEtc[^"]*"[^>]*>([\d]+[\.．][\d]+)/,
+        // XBRL 要素タグから直接抽出（小数形式: 0.0614 = 6.14%）
+        /<[^>]*:HoldingRatioOfShareCertificatesEtc[^>]*>([\d]+[\.．][\d]+)<\//,
+        // 一般的な iXBRL/XBRL name 属性パターン
+        /name="[^"]*(?:HoldingRatio|OwnershipRatio)[^"]*"[^>]*>([\d]+[\.．][\d]+)/,
+        // テキスト内のパターン
+        /(?:保有割合|所有割合)[^\d]{0,30}?([\d]+[\.．][\d]+)\s*[%％]/,
+        /([\d]+[\.．][\d]+)\s*[%％]\s*(?:（.*?保有割合|を保有)/
+      ];
+      for (const pat of ratioPatterns) {
+        const m = text.match(pat);
+        if (m) {
+          const ratioStr = m[1].replace('．', '.');
+          let val = parseFloat(ratioStr);
+          if (!isNaN(val)) {
+            // XBRL の小数形式（0.0614）を百分率（6.14）に変換
+            if (val < 1.0 && val > 0) {
+              val = Math.round(val * 10000) / 100;
+            }
+            result.holding_ratio = val;
+          }
+          break;
         }
-        break;
       }
     }
 
     // Purpose
-    const purposePatterns = [
-      /保有目的[^\n]{0,5}[：:]\s*([^\n<]{2,60})/
-    ];
-    for (const pat of purposePatterns) {
-      const m = text.match(pat);
-      if (m) {
-        const raw = m[1].trim();
-        result.purpose = classifyPurpose(raw);
-        result.purpose_detail = raw.slice(0, 100);
-        break;
+    if (!result.purpose) {
+      const purposePatterns = [
+        // iXBRL タグから直接抽出
+        /name="[^"]*PurposeOfHolding[^"]*"[^>]*>([\s\S]*?)<\/(?:ix:nonNumeric|jplvh)/,
+        // XBRL 要素タグから直接抽出
+        /<[^>]*:PurposeOfHolding[^>]*>([\s\S]*?)<\//,
+        // テキスト内のパターン
+        /保有目的[^\n]{0,5}[：:]\s*([^\n<]{2,60})/,
+        /(?:当該株券等の発行者の事業活動を|純投資|投資及び状況に応じて|政策投資|経営参加|株主提案)[^\n<]{0,80}/
+      ];
+      for (const pat of purposePatterns) {
+        const m = text.match(pat);
+        if (m) {
+          let raw = m[1] ? m[1] : m[0];
+          raw = raw.replace(/<[^>]*>/g, '').trim();
+          if (raw && raw.length >= 2) {
+            result.purpose = classifyPurpose(raw);
+            result.purpose_detail = raw.slice(0, 100);
+            break;
+          }
+        }
       }
     }
 
-    if (Object.keys(result).length > 0) break;
+    // 全フィールド取得済みなら終了
+    if (result.target_company && result.sec_code && result.holding_ratio !== undefined && result.purpose) {
+      break;
+    }
   }
 
   return result;
