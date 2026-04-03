@@ -44,7 +44,9 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g" crossorigin="anonymous"></script>
   <!-- Firebase SDK -->
   <script type="module" src="/js/firebase-auth-dashboard.js"></script>
@@ -59,7 +61,7 @@
       --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
+    body { font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
 
     /* DASHBOARD SUB-NAV */
     .dash-subnav { background: var(--navy-light); border-bottom: 1px solid rgba(255,255,255,0.08); margin-top: 64px; padding: 0 40px; }
@@ -76,8 +78,8 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
-    .nav-logo-jp { font-family: 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
-    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-logo-jp { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--mid-gray); font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
@@ -92,9 +94,9 @@
     .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.06); }
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
-    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--mid-gray); padding: 6px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; }
     .btn-login:hover { border-color: var(--gold); color: var(--gold); }
-    .btn-register { background: var(--gold); border: none; color: var(--white); padding: 7px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s; }
+    .btn-register { background: var(--gold); border: none; color: var(--white); padding: 7px 16px; font-size: 0.72rem; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s; }
     .btn-register:hover { opacity: 0.85; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
@@ -103,8 +105,8 @@
     .page-header { margin-top: 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 44px 40px 36px; position: relative; overflow: hidden; }
     .page-header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,139,110,0.1) 0%, transparent 70%); }
     .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-    .page-header-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
-    .page-header h1 { font-family: 'Noto Serif JP', serif; font-weight: 300; color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.5; margin-bottom: 8px; }
+    .page-header-label { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 12px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-weight: 300; color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.5; margin-bottom: 8px; }
     .page-header p { color: rgba(255,255,255,0.6); font-size: 14px; letter-spacing: 0.04em; }
     .page-header .data-source { margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.35); }
     .page-header .data-source span { color: var(--gold-light); }
@@ -114,7 +116,7 @@
     .stats-bar-inner { background: var(--white); border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); display: grid; grid-template-columns: repeat(4, 1fr); padding: 28px 0; }
     .stat-item { text-align: center; border-right: 1px solid var(--light-gray); }
     .stat-item:last-child { border-right: none; }
-    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--navy); line-height: 1.2; }
+    .stat-number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32px; font-weight: 500; color: var(--navy); line-height: 1.2; }
     .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-top: 4px; }
 
     /* MAIN LAYOUT */
@@ -127,14 +129,14 @@
     .filter-group { margin-bottom: 16px; }
     .filter-group:last-child { margin-bottom: 0; }
     .filter-label { font-size: 12px; color: var(--text-light); margin-bottom: 6px; display: block; }
-    .filter-select, .filter-input { width: 100%; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); background: var(--white); transition: border-color 0.2s; }
+    .filter-select, .filter-input { width: 100%; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-dark); background: var(--white); transition: border-color 0.2s; }
     .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--gold); }
     .filter-checkbox-group { display: flex; flex-direction: column; gap: 8px; }
     .filter-checkbox { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-mid); cursor: pointer; }
     .filter-checkbox input[type="checkbox"] { accent-color: var(--navy); width: 16px; height: 16px; }
-    .btn-filter { width: 100%; padding: 10px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    .btn-filter { width: 100%; padding: 10px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
     .btn-filter:hover { background: var(--navy-light); }
-    .btn-reset { width: 100%; padding: 8px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 6px; }
+    .btn-reset { width: 100%; padding: 8px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 6px; }
     .btn-reset:hover { border-color: var(--text-light); color: var(--text-mid); }
     .category-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .category-tag { padding: 4px 10px; background: var(--light-gray); border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; transition: all 0.2s; border: none; }
@@ -143,14 +145,14 @@
     /* MAIN CONTENT */
     .main-content { display: flex; flex-direction: column; gap: 24px; }
     .tab-nav { display: flex; gap: 0; border-bottom: 2px solid var(--light-gray); flex-wrap: wrap; }
-    .tab-btn { padding: 12px 20px; background: none; border: none; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-light); cursor: pointer; letter-spacing: 0.06em; position: relative; transition: color 0.2s; white-space: nowrap; }
+    .tab-btn { padding: 12px 20px; background: none; border: none; font-size: 13px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-light); cursor: pointer; letter-spacing: 0.06em; position: relative; transition: color 0.2s; white-space: nowrap; }
     .tab-btn:hover { color: var(--text-mid); }
     .tab-btn.active { color: var(--navy); font-weight: 500; }
     .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold); }
     .content-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow: hidden; }
     .card-header { padding: 20px 24px; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .card-header h2 { font-size: 15px; font-weight: 500; color: var(--navy); letter-spacing: 0.04em; }
-    .sort-select { padding: 6px 10px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); background: var(--white); }
+    .sort-select { padding: 6px 10px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-mid); background: var(--white); }
 
     /* TABLE */
     .activist-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -167,7 +169,7 @@
     .activist-table tbody tr { transition: background 0.15s; cursor: pointer; }
     .activist-table tbody tr:hover { background: rgba(155,139,110,0.04); }
     .activist-name { font-weight: 500; color: var(--navy); }
-    .sec-code { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--gold); font-weight: 500; margin-right: 6px; }
+    .sec-code { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 14px; color: var(--gold); font-weight: 500; margin-right: 6px; }
     .activist-type { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
     .type-activist { background: #fef3c7; color: #92400e; }
     .type-fund { background: #dbeafe; color: #1e40af; }
@@ -212,9 +214,9 @@
     .login-wall { position: relative; margin-top: -40px; padding-top: 72px; padding-bottom: 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--off-white) 30%, var(--off-white) 100%); }
     .login-wall-inner { max-width: 480px; margin: 0 auto; background: var(--white); border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: 48px 40px; }
     .login-wall-icon { width: 60px; height: 60px; background: var(--light-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; }
-    .login-wall h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 12px; }
+    .login-wall h2 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 12px; }
     .login-wall p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; line-height: 1.8; }
-    .btn-cta-register { display: inline-block; background: var(--navy); color: var(--white); padding: 14px 40px; border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s; margin-bottom: 12px; }
+    .btn-cta-register { display: inline-block; background: var(--navy); color: var(--white); padding: 14px 40px; border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s; margin-bottom: 12px; }
     .btn-cta-register:hover { background: var(--navy-light); }
     .btn-cta-login { display: block; color: var(--gold); font-size: 13px; text-decoration: none; cursor: pointer; }
     .plan-features { text-align: left; margin: 24px 0; padding: 20px; background: var(--off-white); border-radius: 6px; }
@@ -228,21 +230,21 @@
     .premium-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 10; }
     .premium-badge { background: var(--white); border: 1px solid var(--mid-gray); border-radius: 8px; padding: 20px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
     .premium-badge p { font-size: 13px; color: var(--text-mid); margin-bottom: 10px; }
-    .premium-badge button { background: var(--gold); color: var(--white); border: none; padding: 8px 20px; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
+    .premium-badge button { background: var(--gold); color: var(--white); border: none; padding: 8px 20px; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; cursor: pointer; }
 
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
     .modal { background: var(--white); border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; }
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-light); }
-    .modal h2 { font-family: 'Noto Serif JP', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; }
+    .modal h2 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-weight: 400; font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 6px; letter-spacing: 0.06em; }
-    .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; transition: border-color 0.2s; }
+    .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; transition: border-color 0.2s; }
     .form-group input:focus { outline: none; border-color: var(--navy); }
-    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.06em; cursor: pointer; }
     .btn-submit:hover { background: var(--navy-light); }
-    .btn-google { width: 100%; padding: 12px; background: var(--white); color: var(--text-dark); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, box-shadow 0.2s; }
+    .btn-google { width: 100%; padding: 12px; background: var(--white); color: var(--text-dark); border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 14px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; letter-spacing: 0.04em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, box-shadow 0.2s; }
     .btn-google:hover { background: #f8f8f8; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
     .modal-footer { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-light); }
     .modal-footer a { color: var(--gold); text-decoration: none; cursor: pointer; }
@@ -319,7 +321,7 @@
     .investor-detail-overlay.show { display: flex; }
     .investor-detail-modal { background: var(--white); border-radius: 12px; max-width: 900px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
     .idm-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 28px 32px 20px; border-bottom: 1px solid var(--light-gray); }
-    .idm-header h2 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 400; color: var(--navy); margin: 0 0 4px; }
+    .idm-header h2 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 18px; font-weight: 400; color: var(--navy); margin: 0 0 4px; }
     .idm-header .idm-meta { font-size: 12px; color: var(--text-light); }
     .idm-close { background: none; border: none; font-size: 22px; color: var(--text-light); cursor: pointer; padding: 4px 8px; }
     .idm-close:hover { color: var(--navy); }
@@ -345,7 +347,7 @@
 
     /* EXPORT BUTTONS */
     .export-bar { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid var(--light-gray); background: var(--off-white); }
-    .export-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--mid-gray); border-radius: 4px; background: var(--white); font-size: 12px; font-family: 'Noto Sans JP', sans-serif; color: var(--text-mid); cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+    .export-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid var(--mid-gray); border-radius: 4px; background: var(--white); font-size: 12px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-mid); cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
     .export-btn:hover { border-color: var(--navy); color: var(--navy); }
     .export-btn svg { width: 14px; height: 14px; }
     .export-btn.locked { opacity: 0.5; cursor: not-allowed; }
@@ -364,16 +366,16 @@
     .watchlist-item-name { font-size: 14px; font-weight: 500; color: var(--navy); }
     .watchlist-item-meta { font-size: 12px; color: var(--text-light); margin-top: 2px; }
     .watchlist-item-actions { display: flex; gap: 8px; }
-    .watchlist-btn-remove { background: none; border: 1px solid var(--mid-gray); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-light); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-btn-remove { background: none; border: 1px solid var(--mid-gray); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-light); cursor: pointer; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; transition: all 0.2s; }
     .watchlist-btn-remove:hover { border-color: var(--red); color: var(--red); }
     .watchlist-add-form { display: flex; gap: 8px; margin-bottom: 16px; }
-    .watchlist-add-form input { flex: 1; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; }
+    .watchlist-add-form input { flex: 1; padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 4px; font-size: 13px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
     .watchlist-add-form input:focus { outline: none; border-color: var(--gold); }
-    .watchlist-add-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; white-space: nowrap; }
+    .watchlist-add-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 4px; font-size: 12px; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; cursor: pointer; white-space: nowrap; }
     .watchlist-add-btn:hover { background: var(--navy-light); }
     .watchlist-empty { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 13px; }
     .watchlist-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .watchlist-preset-btn { padding: 4px 10px; background: var(--light-gray); border: none; border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all 0.2s; }
+    .watchlist-preset-btn { padding: 4px 10px; background: var(--light-gray); border: none; border-radius: 20px; font-size: 11px; color: var(--text-mid); cursor: pointer; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; transition: all 0.2s; }
     .watchlist-preset-btn:hover { background: var(--navy); color: var(--white); }
     .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
   </style>
@@ -736,7 +738,7 @@
       <div class="form-group"><label>お名前 <span style="color:var(--red);">*</span></label><input type="text" id="regName" required placeholder="山田 太郎"></div>
       <div class="form-group">
         <label>所属種別 <span style="color:var(--red);">*</span></label>
-        <select id="regAffiliation" required data-auth-change="toggleAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="regAffiliation" required data-auth-change="toggleAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="listed_company">上場企業</option>
           <option value="institutional_investor">機関投資家</option>
@@ -754,7 +756,7 @@
       </div>
       <div class="form-group">
         <label>役職 <span style="color:var(--red);">*</span></label>
-        <select id="regJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="regJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="executive">経営者・役員</option>
           <option value="department_head">部長・本部長</option>
@@ -806,7 +808,7 @@
     <form data-auth-submit="handleCompleteProfile">
       <div class="form-group">
         <label>所属種別 <span style="color:var(--red);">*</span></label>
-        <select id="cpAffiliation" required data-auth-change="toggleCpAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="cpAffiliation" required data-auth-change="toggleCpAffiliationCode" style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="listed_company">上場企業</option>
           <option value="institutional_investor">機関投資家</option>
@@ -824,7 +826,7 @@
       </div>
       <div class="form-group">
         <label>役職 <span style="color:var(--red);">*</span></label>
-        <select id="cpJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP',sans-serif; background:var(--white);">
+        <select id="cpJobTitle" required style="width:100%; padding:10px 12px; border:1px solid var(--mid-gray); border-radius:4px; font-size:14px; font-family:'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background:var(--white);">
           <option value="">選択してください</option>
           <option value="executive">経営者・役員</option>
           <option value="department_head">部長・本部長</option>
@@ -893,8 +895,8 @@
 footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:48px 0 32px}
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 40px}
 .footer-top{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.footer-brand{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
-.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:0.75rem;letter-spacing:0.12em;color:var(--gold)}
+.footer-brand{font-family:'Noto Serif JP', 'Hiragino Mincho ProN', serif;font-size:16px;font-weight:300;color:var(--white);letter-spacing:0.06em;margin-bottom:10px}
+.footer-tagline{font-family:'Cormorant Garamond', Georgia, serif;font-size:0.75rem;letter-spacing:0.12em;color:var(--gold)}
 .footer-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 24px;list-style:none;align-items:center}
 .footer-nav a{text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.06em;transition:color .2s}
 .footer-nav a:hover{color:var(--white)}

@@ -39,9 +39,11 @@
     }
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
     
     .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
@@ -62,9 +64,9 @@
       --cream: #f8f7f5;
       --mid: #6b7280;
       --text: #2c2c2c;
-      --serif: 'Noto Serif JP', serif;
-      --sans: 'Noto Sans JP', sans-serif;
-      --deco: 'Cormorant Garamond', serif;
+      --serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      --sans: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
+      --deco: 'Cormorant Garamond', Georgia, serif;
     }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { font-family: var(--sans); background: var(--cream); color: var(--text); line-height: 1.8; }
@@ -307,7 +309,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .footer-brand {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 16px;
       font-weight: 300;
       color: var(--white);
@@ -315,7 +317,7 @@
       margin-bottom: 10px;
     }
     .footer-tagline {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       color: var(--gold);

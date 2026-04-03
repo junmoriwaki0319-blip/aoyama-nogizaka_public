@@ -14,7 +14,9 @@
   <script src="/js/redirect.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --navy: #1a2d4f;
@@ -27,7 +29,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
       color: var(--text);
       background: var(--cream);
       min-height: 100vh;
@@ -44,8 +46,8 @@
       width: 100%; display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
-    .nav-logo-jp { font-family: 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
-    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-logo-jp { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
     main {
       flex: 1; display: flex; align-items: center; justify-content: center;
       padding: 120px 40px 80px;
@@ -53,13 +55,13 @@
     }
     .error-container { max-width: 560px; }
     .error-code {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 6rem; font-weight: 300;
       color: var(--gold); line-height: 1;
       margin-bottom: 16px;
     }
     .error-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 1.5rem; font-weight: 400;
       margin-bottom: 16px; color: var(--navy);
     }

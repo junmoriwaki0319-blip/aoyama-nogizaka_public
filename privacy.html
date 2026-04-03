@@ -26,7 +26,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
     
     .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
@@ -46,7 +48,7 @@
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
       color: var(--text-dark);
       background: var(--white);
       overflow-x: hidden;
@@ -78,13 +80,13 @@
       gap: 1px;
     }
     .nav-logo-jp {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 0.75rem;
       color: var(--mid-gray);
       letter-spacing: 0.1em;
     }
     .nav-logo-en {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1rem;
       color: var(--white);
       letter-spacing: 0.08em;
@@ -120,7 +122,7 @@
       cursor: pointer;
       padding: 8px 20px;
       font-size: 0.78rem;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
       letter-spacing: 0.06em;
       transition: opacity 0.2s;
       text-decoration: none;
@@ -194,7 +196,7 @@
       right: 40px;
       top: 50%;
       transform: translateY(-50%);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(60px, 10vw, 120px);
       font-weight: 300;
       font-style: italic;
@@ -206,7 +208,7 @@
       pointer-events: none;
     }
     .section-label {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 11px;
       letter-spacing: 0.35em;
       color: var(--gold);
@@ -224,7 +226,7 @@
       background: var(--gold);
     }
     .page-hero-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: clamp(26px, 4vw, 42px);
       font-weight: 300;
       color: var(--navy);
@@ -272,7 +274,7 @@
       background: var(--gold-light);
     }
     .intro-lead {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: clamp(14px, 2vw, 17px);
       font-weight: 300;
       line-height: 2.2;
@@ -304,7 +306,7 @@
       padding-top: 4px;
     }
     .article-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 64px;
       font-weight: 300;
       line-height: 1;
@@ -313,7 +315,7 @@
       margin-bottom: 8px;
     }
     .article-label-en {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 10px;
       letter-spacing: 0.3em;
       color: var(--gold);
@@ -324,7 +326,7 @@
       padding-left: 32px;
     }
     .article-body h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 18px;
       font-weight: 400;
       color: var(--navy);
@@ -388,7 +390,7 @@
       background: var(--navy);
     }
     .contact-card-label {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 11px;
       letter-spacing: 0.3em;
       color: var(--gold);
@@ -396,7 +398,7 @@
       margin-bottom: 14px;
     }
     .contact-card h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 22px;
       font-weight: 300;
       color: var(--navy);
@@ -440,7 +442,7 @@
       border-top: 1px solid var(--mid-gray);
     }
     .policy-date {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 14px;
       letter-spacing: 0.15em;
       color: var(--text-light);
@@ -467,7 +469,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .footer-brand {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 16px;
       font-weight: 300;
       color: var(--white);
@@ -475,7 +477,7 @@
       margin-bottom: 10px;
     }
     .footer-tagline {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       color: var(--gold);

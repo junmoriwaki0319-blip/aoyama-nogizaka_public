@@ -47,7 +47,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js" integrity="sha384-3N9GHhCtN3CQef6tNfqgZlv7sQLYIkcChN+uaTZ7xVdzKYp/SjBNPxa92+hM7EAY" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
     
     .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
@@ -94,13 +96,13 @@
       justify-content: space-between;
     }
     .site-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       color: #fff;
       font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 1px;
     }
-    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
 
     /* === Report Header === */
     .report-cover {
@@ -117,7 +119,7 @@
     }
     .report-cover-inner { max-width: 1200px; margin: 0 auto; }
     .report-label {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.75rem;
       letter-spacing: 4px;
       text-transform: uppercase;
@@ -125,7 +127,7 @@
       margin-bottom: 12px;
     }
     .report-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 1.8rem;
       font-weight: 700;
       color: #fff;
@@ -183,7 +185,7 @@
       font-weight: 600;
     }
     .nav-item .nav-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.65rem;
       color: var(--gold);
       margin-right: 6px;
@@ -198,7 +200,7 @@
     /* === Section Headers === */
     .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
     .sec-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.68rem;
       letter-spacing: 3px;
       color: var(--gold);
@@ -206,7 +208,7 @@
       margin-bottom: 4px;
     }
     .sec-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--navy);
@@ -385,7 +387,7 @@
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
     .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
-    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', serif; }
+    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; }
     .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
     .modal .form-group { margin-bottom: 16px; }
     .modal .form-group label { display: block; font-size: 0.78rem; color: var(--text-mid); margin-bottom: 4px; font-weight: 500; }
@@ -401,7 +403,7 @@
     /* === Premium / Login Wall === */
     .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
     .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
-    .login-wall h3 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall h3 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
     .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
     .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
     .login-wall .btn-cta:hover { background: var(--gold-dim); }
@@ -415,7 +417,7 @@
       font-size: 0.72rem;
     }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold-light); font-size: 0.9rem; }
+    .footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold-light); font-size: 0.9rem; }
 
     /* === Download Buttons === */
     .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
