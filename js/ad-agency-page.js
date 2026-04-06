@@ -31,6 +31,30 @@ function kpi(l,v,s,cls){return'<div class="kpi-card '+cls+'"><div class="kpi-lab
 function rankCard(t,items,fn){return'<div class="ranking-card"><div class="ranking-title">'+t+'</div>'+items.map(function(c,i){return'<div class="ranking-row"><span><span class="ranking-num">'+(i+1)+'</span>'+shortName(c.name)+'</span><span style="font-weight:600">'+fn(c)+'</span></div>';}).join('')+'</div>';}
 function byTier(t){return companies.filter(function(c){return c.tier===t;});}
 
+
+function enableTableSort(tbl,data,cols,rowFn,cb){
+  var sortK=null,sortD='desc';
+  var ths=tbl.querySelectorAll('thead th');
+  ths.forEach(function(th,i){
+    if(i>=cols.length||!cols[i])return;
+    th.addEventListener('click',function(){
+      var def=cols[i];
+      if(sortK===def.key){sortD=sortD==='desc'?'asc':'desc';}else{sortK=def.key;sortD='desc';}
+      ths.forEach(function(h){h.classList.remove('sort-asc','sort-desc');});
+      th.classList.add(sortD==='asc'?'sort-asc':'sort-desc');
+      var sorted=[].concat(data).sort(function(a,b){
+        var va=a[def.key],vb=b[def.key];
+        if(va==null)va=def.type==='num'?-Infinity:'';
+        if(vb==null)vb=def.type==='num'?-Infinity:'';
+        if(def.type==='num')return sortD==='desc'?vb-va:va-vb;
+        return sortD==='desc'?String(vb).localeCompare(String(va)):String(va).localeCompare(String(vb));
+      });
+      tbl.querySelector('tbody').innerHTML=sorted.map(rowFn).join('');
+      if(cb)cb(tbl);
+    });
+  });
+}
+
 /* ── rExec ── */
 function rExec(){
   var el=g('sec-exec');
@@ -70,6 +94,7 @@ function rExec(){
       '一方でAViC(9554)のADKとの合弁やAnyMind Groupのアジア特化など、<strong>ニッチ×テクノロジー型の海外展開</strong>は成果を上げている。'+
       '海外戦略は「全方位展開」から「強みのある領域×地域への集中」へ転換すべき。'+
     '</div>'+
+    (companyNotes[c.ticker]?'<div class="commentary" style="margin-bottom:16px;font-size:0.82rem;">'+companyNotes[c.ticker]+'</div>':'')+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','Tier1:'+t1+' / Tier2:'+t2+' / Tier3:'+t3,'c-navy')+
       kpi('時価総額合計',fmtM(tm),'','c-navy')+
@@ -121,7 +146,7 @@ function rValuation(){
       '<div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="vlHist"></canvas></div></div>'+
       '<div class="chart-panel"><div class="chart-panel-title">ROEランキング TOP15</div><div class="chart-area"><canvas id="vlROE"></canvas></div></div>'+
     '</div>'+
-    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table>'+
+    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table id="tblVal">'+
       '<thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>Tier</th><th>市場</th><th>時価総額(億)</th><th>営業利益率</th><th>ROE</th><th>PER</th><th>PBR</th><th>株価</th></tr></thead>'+
       '<tbody>'+sorted.map(function(c){
         return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td>'+
@@ -130,7 +155,7 @@ function rValuation(){
           '<td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';
       }).join('')+'</tbody></table></div></div>';
 
-  bindRows(el);dc(['vlPBR','vlPER','vlHist','vlROE']);
+  bindRows(el);var tblVal=g("tblVal");if(tblVal)enableTableSort(tblVal,sorted,[{key:'ticker',type:'str'},{key:'name',type:'str'},{key:'tier',type:'str'},{key:'market',type:'str'},{key:'marketCap',type:'num'},{key:'operatingMargin',type:'num'},{key:'roe',type:'num'},{key:'per',type:'num'},{key:'pbr',type:'num'},{key:'price',type:'num'}],function(c){return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td><td>'+nv(c.tier)+'</td><td>'+nv(c.market)+'</td><td>'+nv(c.marketCap,'','loc')+'</td><td>'+nv(c.operatingMargin,'%','f1')+'</td><td>'+nv(c.roe,'%','f1')+'</td><td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';},function(t){bindRows(el);});dc(["vlPBR",'vlPER','vlHist','vlROE']);
   var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
   mc('vlPBR','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.roe!=null&&c.pbr!=null;}).map(function(c){return{x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*25),name:c.name};}),backgroundColor:TC[tier]+'77',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'}}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': ROE'+x.raw.x+'% / PBR'+x.raw.y+'倍';}}}}});
   mc('vlPER','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.per!=null&&c.operatingMargin!=null;}).map(function(c){return{x:c.operatingMargin,y:c.per,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*25),name:c.name};}),backgroundColor:TC[tier]+'77',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'}},y:{title:{display:true,text:'PER (倍)'},max:80}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / PER'+x.raw.y+'倍';}}}}});
@@ -250,6 +275,7 @@ function rGrowth(){
     '</div>';
 }
 
+var companyNotes={"2433":"デジタルHD完全子会社化（約270億円）でHakuhodo DY ONE設立。親子上場解消の成功モデル。PBR 1.0倍近辺で割安感。","4324":"2025年12月期最終赤字3,276億円。海外事業で約3,000億円の減損損失。「国内回帰」路線で国内事業OPM20%台半ばと堅調。セプテーニHD・電通総研の親子上場解消が次のカタリスト。","4676":"ダルトン取締役12名選任提案→否決も不動産スピンオフ議論継続。お台場エリアの不動産含み益が時価総額を上回る可能性。","4689":"売上収益1.5兆円。検索広告-13.2%もLINE OA広告が成長。コマース4兆円超。PBR 0.91倍で割安。","4751":"Cygames（ウマ娘）+ ABEMA黒字化 + AIクリエイティブ生成の3本柱。広告代理店・ゲーム・メディアの3セクターにまたがるユニークポジション。","5032":"営業利益率37.2%、ROE 67.2%。にじさんじ運営。グロース→プライム昇格。VTuber市場の成長プレミアム。","6758":"※コングロマリット。G&NS事業（PlayStation）の営業利益は約3,500億円でゲーム業界最大級。Bungie買収36億ドルでライブサービス強化。","7832":"ドラゴンボール・ガンダム等のIP多角化先進企業。DL版ゲーム収益が任天堂を上回る。サウジAyyal取得。","7911":"印刷→DX転換。IoTパッケージング・デジタルコンテンツ基盤。PBR 0.94倍でバリュートラップ懸念。","7912":"印刷→DX転換。デジタル教科書・半導体フォトマスク・honto運営。PBR 1.08倍。","7974":"Switch 2で1,900万台販売見込み。マリオ映画13億ドル超の成功でIP多角化を実証。ValueAct保有。","8136":"営業利益率41.8%。キャラクターIPライセンスモデルで高収益。ROE 44.8%はセクターTOP。","9401":"配信広告+45.4%増（82.4億円）、有料配信+36.5%（121.5億円）。放送→配信シフトの成功モデル。","9468":"出版+アニメ+ゲーム（フロム・ソフトウェア/エルデンリング）のIP総合企業。ソニー出資。SOZO社子会社化で海外展開加速。","9697":"モンハンワイルズ発売後即1,000万本突破。海外売上80%超。OPM 43.8%はセクター最高水準。サウジAyyal取得。"};
 /* ── rDetail ── */
 function rDetail(){
   var el=g('sec-detail');

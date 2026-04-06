@@ -31,6 +31,30 @@ function rankCard(t,items,fn){return'<div class="ranking-card"><div class="ranki
 function catOf(c){return CATEGORIES[c.category]||c.category;}
 function byCat(cat){return companies.filter(function(c){return c.category===cat;});}
 
+
+function enableTableSort(tbl,data,cols,rowFn,cb){
+  var sortK=null,sortD='desc';
+  var ths=tbl.querySelectorAll('thead th');
+  ths.forEach(function(th,i){
+    if(i>=cols.length||!cols[i])return;
+    th.addEventListener('click',function(){
+      var def=cols[i];
+      if(sortK===def.key){sortD=sortD==='desc'?'asc':'desc';}else{sortK=def.key;sortD='desc';}
+      ths.forEach(function(h){h.classList.remove('sort-asc','sort-desc');});
+      th.classList.add(sortD==='asc'?'sort-asc':'sort-desc');
+      var sorted=[].concat(data).sort(function(a,b){
+        var va=a[def.key],vb=b[def.key];
+        if(va==null)va=def.type==='num'?-Infinity:'';
+        if(vb==null)vb=def.type==='num'?-Infinity:'';
+        if(def.type==='num')return sortD==='desc'?vb-va:va-vb;
+        return sortD==='desc'?String(vb).localeCompare(String(va)):String(va).localeCompare(String(vb));
+      });
+      tbl.querySelector('tbody').innerHTML=sorted.map(rowFn).join('');
+      if(cb)cb(tbl);
+    });
+  });
+}
+
 /* ── rExec ── */
 function rExec(){
   var el=g('sec-exec');
@@ -67,6 +91,7 @@ function rExec(){
       'ANYCOLOR（営業利益率37.2%）やカバーの急成長は、従来のゲーム企業が取り込めていなかった「コンテンツ消費のソーシャル化」を体現。'+
       'ゲーム×VTuberのコラボマーケティングを超え、<strong>IPの共創・ファンコミュニティの資産化</strong>まで踏み込んだパートナーシップ設計が中期的な競争優位となる。'+
     '</div>'+
+    (companyNotes[c.ticker]?'<div class="commentary" style="margin-bottom:16px;font-size:0.82rem;">'+companyNotes[c.ticker]+'</div>':'')+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','5カテゴリ','c-navy')+
       kpi('時価総額合計',fmtM(tm),'','c-navy')+
@@ -114,9 +139,11 @@ function rSubsector(){
   el.innerHTML=
     secH('02','サブセクター分析','5カテゴリ別の市場構成と財務指標比較')+
     '<div class="commentary">'+
-      '<strong>カテゴリ別概況:</strong> コンソール・PCパブリッシャーが時価総額の大半を占めるが、'+
-      'VTuber・配信は高い営業利益率（ANYCOLOR 37.2%）と成長率を誇る新興カテゴリ。'+
-      'モバイルゲームはIAPモデルの成熟化に伴い選別が進行中。アニメ・IP企業は映像化・テーマパーク展開によるIP多角化が評価指標。'+
+      '<strong>カテゴリ別概況 — 4つの構造的示唆:</strong><br>'+
+      '<strong>(1) VTuber・配信の収益性突出:</strong> 平均OPM 28.5%はコンソール（15.5%）の約2倍。資本効率もROE 49.5%と際立つ。ハードウェア・開発投資不要のIPプロデュースモデルの優位性。<br>'+
+      '<strong>(2) モバイルゲームのPBR二極化:</strong> モバイル16社中5社がPBR 1.0倍割れ。IAPモデルの成熟に伴い、大型タイトル依存型は市場から「衰退産業」評価を受けている。一方DeNA（ポケポケ）のように新規IPで復活する事例も。<br>'+
+      '<strong>(3) アニメ・IP企業の「隠れた価値」:</strong> 東映アニメーション（OPM 36.9%）やサンリオ（OPM 41.8%）はIPロイヤリティが高利益率の源泉。サウジAyyalの一斉取得はこの「隠れたIP価値」への国際的な評価。<br>'+
+      '<strong>(4) コンソール大型株の寡占:</strong> 12社で時価総額40兆円（セクターの78%）を占める寡占構造。任天堂・ソニーのプラットフォーム戦略とカプコン・バンナムのIP戦略で業界構造が規定される。'+
     '</div>'+
     '<div class="kpi-grid">'+
       catStats.map(function(s){return kpi(s.label,s.count+'社','時価総額計 '+fmtM(s.totalMcap),'c-navy');}).join('')+
@@ -179,7 +206,7 @@ function rValuation(){
       '<div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="vlHist"></canvas></div></div>'+
       '<div class="chart-panel"><div class="chart-panel-title">ROEランキング TOP15</div><div class="chart-area"><canvas id="vlROE"></canvas></div></div>'+
     '</div>'+
-    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table>'+
+    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table id="tblVal">'+
       '<thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>カテゴリ</th><th>時価総額(億)</th><th>営業利益率</th><th>ROE</th><th>PER</th><th>PBR</th><th>株価</th></tr></thead>'+
       '<tbody>'+sorted.map(function(c){
         return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td>'+
@@ -188,7 +215,7 @@ function rValuation(){
           '<td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';
       }).join('')+'</tbody></table></div></div>';
 
-  bindRows(el);dc(['vlPBR','vlPER','vlHist','vlROE']);
+  bindRows(el);var tblVal=g("tblVal");if(tblVal)enableTableSort(tblVal,sorted,[{key:'ticker',type:'str'},{key:'name',type:'str'},{key:'category',type:'str'},{key:'marketCap',type:'num'},{key:'operatingMargin',type:'num'},{key:'roe',type:'num'},{key:'per',type:'num'},{key:'pbr',type:'num'},{key:'price',type:'num'}],function(c){return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td><td><span class="badge ">'+(CATEGORIES[c.category]||c.category)+'</span></td><td>'+nv(c.marketCap,'','loc')+'</td><td>'+nv(c.operatingMargin,'%','f1')+'</td><td>'+nv(c.roe,'%','f1')+'</td><td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';},function(t){bindRows(el);});dc(["vlPBR",'vlPER','vlHist','vlROE']);
   var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
 
   mc('vlPBR','bubble',{datasets:Object.keys(CATEGORIES).map(function(cat){return{label:CATEGORIES[cat],data:byCat(cat).filter(function(c){return c.roe!=null&&c.pbr!=null&&c.roe>-50&&c.roe<100&&c.pbr>0&&c.pbr<20;}).map(function(c){return{x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*25),name:c.name};}),backgroundColor:CC[cat]+'77',borderColor:CC[cat],borderWidth:1};})},{scales:{x:{title:{display:true,text:'ROE (%)'},min:-50,max:100},y:{title:{display:true,text:'PBR (倍)'},min:0,max:20}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': ROE'+x.raw.x+'% / PBR'+x.raw.y+'倍';}}}}});
@@ -263,6 +290,7 @@ function rGrowth(){
     '</div>';
 }
 
+var companyNotes={"2433":"デジタルHD完全子会社化（約270億円）でHakuhodo DY ONE設立。親子上場解消の成功モデル。PBR 1.0倍近辺で割安感。","4324":"2025年12月期最終赤字3,276億円。海外事業で約3,000億円の減損損失。「国内回帰」路線で国内事業OPM20%台半ばと堅調。セプテーニHD・電通総研の親子上場解消が次のカタリスト。","4676":"ダルトン取締役12名選任提案→否決も不動産スピンオフ議論継続。お台場エリアの不動産含み益が時価総額を上回る可能性。","4689":"売上収益1.5兆円。検索広告-13.2%もLINE OA広告が成長。コマース4兆円超。PBR 0.91倍で割安。","4751":"Cygames（ウマ娘）+ ABEMA黒字化 + AIクリエイティブ生成の3本柱。広告代理店・ゲーム・メディアの3セクターにまたがるユニークポジション。","5032":"営業利益率37.2%、ROE 67.2%。にじさんじ運営。グロース→プライム昇格。VTuber市場の成長プレミアム。","6758":"※コングロマリット。G&NS事業（PlayStation）の営業利益は約3,500億円でゲーム業界最大級。Bungie買収36億ドルでライブサービス強化。","7832":"ドラゴンボール・ガンダム等のIP多角化先進企業。DL版ゲーム収益が任天堂を上回る。サウジAyyal取得。","7911":"印刷→DX転換。IoTパッケージング・デジタルコンテンツ基盤。PBR 0.94倍でバリュートラップ懸念。","7912":"印刷→DX転換。デジタル教科書・半導体フォトマスク・honto運営。PBR 1.08倍。","7974":"Switch 2で1,900万台販売見込み。マリオ映画13億ドル超の成功でIP多角化を実証。ValueAct保有。","8136":"営業利益率41.8%。キャラクターIPライセンスモデルで高収益。ROE 44.8%はセクターTOP。","9401":"配信広告+45.4%増（82.4億円）、有料配信+36.5%（121.5億円）。放送→配信シフトの成功モデル。","9468":"出版+アニメ+ゲーム（フロム・ソフトウェア/エルデンリング）のIP総合企業。ソニー出資。SOZO社子会社化で海外展開加速。","9697":"モンハンワイルズ発売後即1,000万本突破。海外売上80%超。OPM 43.8%はセクター最高水準。サウジAyyal取得。"};
 /* ── rDetail ── */
 function rDetail(){
   var el=g('sec-detail');
