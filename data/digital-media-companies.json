@@ -374,83 +374,6 @@
     "pbr": 0.87
   },
   {
-    "name": "セレンディップHD",
-    "ticker": "7318",
-    "category": "news",
-    "price": 1678,
-    "marketCap": 305,
-    "operatingMargin": 5.9,
-    "roe": 28.9,
-    "per": 6.2,
-    "pbr": 2.45
-  },
-  {
-    "name": "フリークアウトHD",
-    "ticker": "6094",
-    "category": "adtech",
-    "price": 695,
-    "marketCap": 121,
-    "operatingMargin": 4.1,
-    "roe": 5.4,
-    "per": 44,
-    "pbr": 1.01
-  },
-  {
-    "name": "ログリー",
-    "ticker": "6579",
-    "category": "adtech",
-    "price": 304,
-    "marketCap": 12,
-    "operatingMargin": 5.6,
-    "roe": 3.3,
-    "per": null,
-    "pbr": 2.84
-  },
-  {
-    "name": "Macbee Planet",
-    "ticker": "7095",
-    "category": "adtech",
-    "price": 1313,
-    "marketCap": 183,
-    "operatingMargin": 7.5,
-    "roe": 20.4,
-    "per": 6.5,
-    "pbr": 1.31
-  },
-  {
-    "name": "SMN",
-    "ticker": "6185",
-    "category": "adtech",
-    "price": 391,
-    "marketCap": 57,
-    "operatingMargin": 2.9,
-    "roe": 12,
-    "per": 12.1,
-    "pbr": 1.37
-  },
-  {
-    "name": "Speee",
-    "ticker": "4499",
-    "category": "adtech",
-    "price": 2775,
-    "marketCap": 320,
-    "operatingMargin": -6.3,
-    "roe": -19.3,
-    "per": null,
-    "pbr": 4.57
-  },
-  {
-    "name": "バリューコマース",
-    "ticker": "2491",
-    "category": "adtech",
-    "price": 450,
-    "marketCap": 98,
-    "operatingMargin": -10.5,
-    "roe": 3.9,
-    "per": 20,
-    "pbr": 0.8
-  },
-  {
     "name": "FRONTEO",
     "ticker": "2158",
     "category": "adtech",
@@ -506,17 +429,6 @@
     "pbr": 1.29
   },
   {
-    "name": "レントラックス",
-    "ticker": "6045",
-    "category": "adtech",
-    "price": 1632,
-    "marketCap": 128,
-    "operatingMargin": 18.4,
-    "roe": 17.3,
-    "per": 19.4,
-    "pbr": 3.31
-  },
-  {
     "name": "イトクロ",
     "ticker": "6049",
     "category": "adtech",
@@ -526,17 +438,6 @@
     "roe": 84.4,
     "per": 32.5,
     "pbr": 0.69
-  },
-  {
-    "name": "ネットイヤーグループ",
-    "ticker": "3622",
-    "category": "adtech",
-    "price": 566,
-    "marketCap": 40,
-    "operatingMargin": 20.2,
-    "roe": 10.4,
-    "per": 25.5,
-    "pbr": 1.97
   },
   {
     "name": "アステリア",
@@ -616,28 +517,6 @@
     "pbr": 1.19
   },
   {
-    "name": "ケイブ",
-    "ticker": "3760",
-    "category": "video",
-    "price": 662,
-    "marketCap": 40,
-    "operatingMargin": -20.6,
-    "roe": -78.7,
-    "per": null,
-    "pbr": 1.27
-  },
-  {
-    "name": "シリコンスタジオ",
-    "ticker": "3907",
-    "category": "video",
-    "price": 685,
-    "marketCap": 19,
-    "operatingMargin": 11.9,
-    "roe": 5,
-    "per": 9.1,
-    "pbr": 1.08
-  },
-  {
     "name": "タカラトミー",
     "ticker": "7867",
     "category": "publishing",
@@ -660,39 +539,6 @@
     "pbr": 1.47
   },
   {
-    "name": "テイクアンドギヴ・ニーズ",
-    "ticker": "4331",
-    "category": "video",
-    "price": 712,
-    "marketCap": 104,
-    "operatingMargin": 14.5,
-    "roe": 10.7,
-    "per": 4,
-    "pbr": 0.59
-  },
-  {
-    "name": "sMedio",
-    "ticker": "3913",
-    "category": "adtech",
-    "price": 1046,
-    "marketCap": 21,
-    "operatingMargin": 12.8,
-    "roe": 15.7,
-    "per": 12,
-    "pbr": 1.75
-  },
-  {
-    "name": "サン電子",
-    "ticker": "6736",
-    "category": "adtech",
-    "price": 8330,
-    "marketCap": 1792,
-    "operatingMargin": 0.3,
-    "roe": 16.8,
-    "per": 8.7,
-    "pbr": 3.99
-  },
-  {
     "name": "くふうカンパニー",
     "ticker": "4376",
     "category": "platform",
@@ -702,5 +548,115 @@
     "per": 41.5,
     "pbr": 2.22,
     "price": 434
+  },
+  {
+    "name": "LIFULL",
+    "ticker": "2120",
+    "category": "platform",
+    "marketCap": 254,
+    "operatingMargin": 9.9,
+    "roe": 10.5,
+    "per": 10.2,
+    "pbr": 1.28,
+    "price": 198
+  },
+  {
+    "name": "ITメディア",
+    "ticker": "2148",
+    "category": "platform",
+    "marketCap": 300,
+    "operatingMargin": 18.5,
+    "roe": 15.3,
+    "per": 21.7,
+    "pbr": 3.64,
+    "price": 1544
+  },
+  {
+    "name": "駅探",
+    "ticker": "3646",
+    "category": "platform",
+    "marketCap": 17,
+    "operatingMargin": -0.3,
+    "roe": -3.8,
+    "per": null,
+    "pbr": 1.13,
+    "price": 354
+  },
+  {
+    "name": "まぐまぐ",
+    "ticker": "4059",
+    "category": "platform",
+    "marketCap": 14,
+    "operatingMargin": -1.6,
+    "roe": 1.8,
+    "per": 95,
+    "pbr": 1.59,
+    "price": 472
+  },
+  {
+    "name": "ZUU",
+    "ticker": "4387",
+    "category": "platform",
+    "marketCap": 29,
+    "operatingMargin": 0.5,
+    "roe": 4.1,
+    "per": 427.7,
+    "pbr": 2.21,
+    "price": 603
+  },
+  {
+    "name": "ミンカブ・ジ・インフォノイド",
+    "ticker": "4436",
+    "category": "platform",
+    "marketCap": 63,
+    "operatingMargin": 8.4,
+    "roe": -142.6,
+    "per": null,
+    "pbr": 5.72,
+    "price": 412
+  },
+  {
+    "name": "エキサイト",
+    "ticker": "5571",
+    "category": "platform",
+    "marketCap": 52,
+    "operatingMargin": 3.2,
+    "roe": 1.2,
+    "per": null,
+    "pbr": 1.56,
+    "price": 1090
+  },
+  {
+    "name": "GMOメディア",
+    "ticker": "6180",
+    "category": "platform",
+    "marketCap": 76,
+    "operatingMargin": 5.8,
+    "roe": -4.7,
+    "per": 11.8,
+    "pbr": 2.4,
+    "price": 4180
+  },
+  {
+    "name": "Retty",
+    "ticker": "7356",
+    "category": "platform",
+    "marketCap": 22,
+    "operatingMargin": 2.8,
+    "roe": 6.4,
+    "per": 185.9,
+    "pbr": 6.27,
+    "price": 145
+  },
+  {
+    "name": "ベビーカレンダー",
+    "ticker": "7363",
+    "category": "platform",
+    "marketCap": 11,
+    "operatingMargin": 10.1,
+    "roe": 9.7,
+    "per": 23,
+    "pbr": 1.44,
+    "price": 1285
   }
 ]
