@@ -6,21 +6,21 @@
   <script src="/js/gtag.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ</title>
-  <meta name="description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <title>ゲーム・コンテンツセクター分析レポート | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="日本上場ゲーム・コンテンツ企業の財務指標・バリュエーション・アクティビスト動向を網羅的に分析。">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <!-- OGP / SNS共有 -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="青山乃木坂パートナーズ">
-  <meta property="og:title" content="エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ">
-  <meta property="og:description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <meta property="og:title" content="ゲーム・コンテンツセクター分析レポート | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="日本上場ゲーム・コンテンツ企業の財務指標・バリュエーション・アクティビスト動向を網羅的に分析。">
   <meta property="og:url" content="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
   <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ">
-  <meta name="twitter:description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <meta name="twitter:title" content="ゲーム・コンテンツセクター分析レポート | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="日本上場ゲーム・コンテンツ企業の財務指標・バリュエーション・アクティビスト動向を網羅的に分析。">
   <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
   <link rel="canonical" href="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
   <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
@@ -29,8 +29,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "エンターテインメント・ゲームセクター分析レポート",
-    "description": "日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。",
+    "name": "ゲーム・コンテンツセクター分析レポート",
+    "description": "日本上場ゲーム・コンテンツ企業の財務指標・バリュエーション・アクティビスト動向を網羅的に分析。",
     "url": "https://aoyama-nogizaka.com/entertainment-sector-dashboard",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
@@ -319,12 +319,12 @@
 <div class="report-cover">
   <div class="report-cover-inner">
     <div class="report-label">Sector Analysis Report</div>
-    <div class="report-title">エンターテインメント・ゲームセクター分析</div>
+    <div class="report-title">ゲーム・コンテンツセクター分析</div>
     <div class="report-subtitle">大量保有報告に基づくセクター分析 — ゲーム開発・モバイル・アニメIP・VTuber</div>
     <div class="report-meta">
-      <span>対象: <strong>100社</strong></span>
+      <span>対象: <strong id="companyCount">53</strong>社</span>
       <span>国内ゲーム市場規模: <strong>2.6兆円</strong></span>
-      <span>サブセクター: <strong>6区分</strong></span>
+      <span>サブセクター: <strong>5区分</strong></span>
       <span>出所: 各社IR・大量保有報告書(EDINET)</span>
     </div>
   </div>
@@ -335,214 +335,30 @@
     <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
     <div class="nav-inner" id="mainNav">
       <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
-      <div class="nav-item" data-tab="companies"><span class="nav-num">02</span>主要企業一覧</div>
+      <div class="nav-item" data-tab="subsector"><span class="nav-num">02</span>サブセクター分析</div>
+      <div class="nav-item" data-tab="valuation"><span class="nav-num">03</span>財務指標・バリュエーション</div>
+      <div class="nav-item" data-tab="activist"><span class="nav-num">04</span>アクティビスト動向</div>
+      <div class="nav-item" data-tab="growth"><span class="nav-num">05</span>成長ドライバーとリスク</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">06</span>個別企業分析</div>
+      <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
   </div>
 </nav>
 
 <div class="main premium-blur" id="dashboardContent">
-
-  <!-- ===== Section 01: Executive Summary ===== -->
-  <div class="section active" id="sec-exec">
-    <div class="sec-header">
-      <div class="sec-num">SECTION 01</div>
-      <div class="sec-title">Executive Summary</div>
-      <div class="sec-desc">エンターテインメント・ゲームセクターの全体像</div>
-    </div>
-
-    <div class="kpi-grid">
-      <div class="kpi-card c-navy">
-        <div class="kpi-label">対象企業数</div>
-        <div class="kpi-value">100<span class="kpi-unit">社</span></div>
-      </div>
-      <div class="kpi-card c-gold">
-        <div class="kpi-label">国内ゲーム市場規模</div>
-        <div class="kpi-value">2.6<span class="kpi-unit">兆円</span></div>
-      </div>
-      <div class="kpi-card c-green">
-        <div class="kpi-label">サブセクター</div>
-        <div class="kpi-value">6<span class="kpi-unit">区分</span></div>
-      </div>
-    </div>
-
-    <!-- 1. セクター概況 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">01</span>
-        セクター概況 — 2.6兆円市場、モバイル収益が牽引
-      </h3>
-      <div class="commentary-body">
-        <p>日本ゲーム市場は2025年で234億ドル超（約2.6兆円、ファミ通ゲーム白書2025）。モバイルゲームのIAP（アプリ内購入）収益が1.6兆円超と市場の中核を占める。ユーザー人口は延べ約8,700万人（モバイル4,278万人、PC 1,452万人、家庭用2,951万人、重複含む）、ユニークユーザーは推定5,000万人超で、グローバルiOS収益ではアジア2位。コンソール市場はSwitch 2の発売を控え成長期待が高い一方、モバイルのダウンロード数は前年比1.8%減と成熟化の兆候も見られる。</p>
-      </div>
-    </div>
-
-    <!-- 2. プラットフォーム競争 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">02</span>
-        プラットフォーム競争 — Switch 2 vs PS5後継、クラウドの台頭
-      </h3>
-      <div class="commentary-body">
-        <p>任天堂のSwitch 2は2026年3月期で1,900万台販売見込み（任天堂IR資料、上方修正）だが、AI半導体需要による部品コスト上昇で一部赤字化の可能性も報じられている。ソニーのPS5は安定した収益基盤を維持しつつ、ゲームパス型サブスクモデルへの対応を加速。Microsoft、Apple、Googleのクラウドゲーミング参入により、プラットフォーム競争は従来の「ハード販売台数」から「エコシステム囲い込み」へ構造転換が進む。日本の中小デベロッパーにとってはマルチプラットフォーム対応の重要性が一層増している。</p>
-      </div>
-    </div>
-
-    <!-- 3. IP多角化 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">03</span>
-        IP多角化戦略 — ゲーム→映画→アニメ→テーマパークの収益連鎖
-      </h3>
-      <div class="commentary-body">
-        <p>マリオ映画の大成功（全世界興行収入13億ドル超）を皮切りに、ゲームIPの映像化・テーマパーク展開が業界標準戦略となった。バンダイナムコはドラゴンボール・ワンピース等のIP多角化で2025年3月期にDL版ゲーム収益が任天堂を上回る規模に成長。ポケモンはゲーム・アニメ・映画・カードゲーム・テーマパークの全方位展開で年間100億ドル超のIP収益を維持。カプコンの「モンスターハンターワイルズ」は発売後即1,000万本超を突破し、シリーズ初の実写映画化に続くIP拡張が期待される。IP保有企業の「資産価値」が改めて注目される局面にある。</p>
-      </div>
-    </div>
-
-    <!-- 4. M&A・業界再編 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">04</span>
-        M&amp;A・業界再編 — グローバル大型買収と日本市場への波及
-      </h3>
-      <div class="commentary-body">
-        <p>MicrosoftによるActivision Blizzard買収（690億ドル、2023年完了）は業界史上最大のM&amp;Aとなり、ゲーム業界の再編を加速させた。ソニーはBungie買収（36億ドル、2022年）でライブサービス型ゲーム強化を図る。日本市場では、ブシロードがフロントウイング全株式をグッドスマイルカンパニーグループへ譲渡（2024年9月）するなど、IP軸の再編が進行。メテオライズ×VisiolionではAI技術のゲーム開発応用を狙った提携が成立（2025年1月）。中小ゲーム企業のM&amp;Aターゲット化が進んでおり、独自IPを持つ企業のバリュエーション上昇が見込まれる。</p>
-      </div>
-    </div>
-
-    <!-- 5. アクティビスト・株主提案 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">05</span>
-        アクティビスト動向 — 株主提案の急増、ゲーム企業への介入が本格化
-      </h3>
-      <div class="commentary-body">
-        <p>2025年6月総会では全体で111社に株主提案が行われ、過去最多を更新。エンタメ・ゲームセクターでも具体的な経営改善要求が相次いでいる。<strong>3D Investment Partners</strong>（シンガポール）はスクウェア・エニックスHD株を14.36%まで買い増し、2025年12月に100ページ超の経営課題プレゼンテーションを公表。売上成長の停滞、利益率低下、中期経営計画の曖昧さを指摘し、株主との共闘を呼びかけた（<a href="https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf" target="_blank" rel="noopener">プレゼン資料PDF</a>）。<strong>ストラテジックキャピタル</strong>（SC）はガンホー株5.4%を保有し、CEO報酬の業績連動化（固定300万→150万、ROE連動へ）、自己株式の全数消却、タイトル別売上開示等を提案。特設サイト（<a href="https://stracap.jp/3765-GUNGHO/" target="_blank" rel="noopener">ガンホー再起の処方箋</a>）を開設し、営業利益69%減の中でCEO報酬が120百万→340百万円に増加した問題を可視化した。</p>
-        <p>加えて、<strong>ValueAct Capital</strong>は任天堂株を1.1億ドル以上構築し、デジタル化・事業多角化を推進する「フレンドリーアクティビスト」として関与を継続。<strong>サウジAyyal First Investment</strong>はカプコン、スクエニHD、バンナムHD、ネクソン、東映、コーエーテクモHDを一斉大量取得し、ソブリンウェルスファンドのゲームセクターへの戦略的関心を示した。日本のゲーム企業群は豊富なIP資産と安定CFを持ちながらPBR1倍割れ銘柄も存在し、経営規律強化圧力はさらに高まっている。</p>
-      </div>
-      <!-- 株主提案リンク集 -->
-      <div class="proposal-links">
-        <h4 class="proposal-links-title">主要株主提案・資料リンク</h4>
-        <ul class="proposal-list">
-          <li>
-            <span class="proposal-company">スクエニHD (9684)</span>
-            <span class="proposal-activist">3D Investment Partners</span>
-            <a href="https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf" target="_blank" rel="noopener" class="proposal-link">経営課題プレゼン (110P超)</a>
-          </li>
-          <li>
-            <span class="proposal-company">ガンホー (3765)</span>
-            <span class="proposal-activist">ストラテジックキャピタル</span>
-            <a href="https://stracap.jp/3765-GUNGHO/" target="_blank" rel="noopener" class="proposal-link">特設サイト「再起の処方箋」</a>
-          </li>
-          <li>
-            <span class="proposal-company">サッポロHD (2501)</span>
-            <span class="proposal-activist">3D Investment Partners</span>
-            <a href="https://www.compoundsapporo.com/presentation" target="_blank" rel="noopener" class="proposal-link">不動産スピンオフ提案資料</a>
-          </li>
-          <li>
-            <span class="proposal-company">富士ソフト (9749)</span>
-            <span class="proposal-activist">3D Investment Partners</span>
-            <a href="https://www.3dipartners.com/wp-content/uploads/fujisoft-presentation-on-shareholderproposal-jp-202402.pdf" target="_blank" rel="noopener" class="proposal-link">企業価値最大化プレゼン</a>
-          </li>
-          <li>
-            <span class="proposal-company">フジメディアHD (4676)</span>
-            <span class="proposal-activist">ダルトン・インベストメンツ</span>
-            <a href="https://www.daltoninvestments.co.jp/en/news/20250416" target="_blank" rel="noopener" class="proposal-link">取締役12名選任提案</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 6. VTuber・メタバース -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">06</span>
-        VTuber・メタバース新興 — ANYCOLOR/カバーの急成長と市場形成
-      </h3>
-      <div class="commentary-body">
-        <p>VTuber市場は日本発のユニークなエンターテインメント領域として急成長中。ANYCOLOR（にじさんじ運営）は2022年6月上場後、グロース→プライムへ市場昇格（2023年6月）を果たし、時価総額は1,600〜2,000億円規模に拡大。カバー（ホロライブ運営）は2023年3月に初値が公開価格の430%上昇という圧巻のIPO。メタバース事業「ホロアース」やライブイベント・グッズ販売でのIP収益化モデルを構築中。ゲーム企業との協業（にじさんじ×各種ゲームタイトルのコラボ等）も活発で、新しいIP創出・消費の形として投資対象としての注目が高まっている。</p>
-      </div>
-    </div>
-
-    <!-- 7. 成長ドライバー -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">07</span>
-        成長ドライバー — AI活用、海外展開、モバイル高収益化
-      </h3>
-      <div class="commentary-body">
-        <p>生成AIのゲーム開発への活用は業界全体の効率化を促進。NPC会話の自動生成、テクスチャ・3Dモデルの自動作成、QAテストの自動化により、開発コスト20〜30%削減の試算も出ている。海外売上比率はカプコン80%超、バンダイナムコ50%超、コナミ40%超と、大手は既にグローバル企業化。モバイルゲームではIAP（アプリ内購入）モデルの高度化により、「ウマ娘」「モンスト」「ポケポケ」等の大型タイトルが月次数十億円規模の安定収益を創出。DeNAは「ポケポケ」効果で2025年4-6月の営業利益が前年比1,061%増を記録した。</p>
-      </div>
-    </div>
-
-    <!-- 8. リスク要因 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">08</span>
-        リスク要因 — ガチャ規制、中国市場、開発費高騰
-      </h3>
-      <div class="commentary-body">
-        <p>モバイルゲームの生命線であるガチャ（有料ランダム型アイテム販売）に対する規制議論は国内外で継続中。景表法改正の動きは直接的な業績リスク。中国市場では2023年12月の突然のゲーム規制案でテンセント等の時価総額が11兆円超消失した前例があり、日本企業の中国依存度は重要な監視項目。AAA級ゲームの開発費は1タイトル100〜300億円規模（一部大作は500億円超）に達し、ヒット確率の低下と開発期間の長期化が中小企業の存続リスクを高めている。半導体価格上昇によるゲーム機採算悪化、円高転換時の海外収益目減りも注意が必要。</p>
-      </div>
-    </div>
-
-    <!-- 9. 投資機会の提言 -->
-    <div class="commentary-block">
-      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
-        <span class="commentary-number">09</span>
-        投資機会の提言 — IP価値×海外比率×M&amp;A余地の3軸で選別
-      </h3>
-      <div class="commentary-body">
-        <p>エンタメ・ゲームセクターへの投資は、(1) IP資産の価値と多角化可能性、(2) 海外売上比率と成長余地、(3) M&amp;Aによるバリューアップ余地の3軸で評価すべき。大型株ではカプコン（IP×海外80%超×モンハン映画化）、バンダイナムコ（IP多角化の最先端）が最も高い総合評価。中型株ではサイバーエージェント（Cygames価値の再評価）、ANYCOLOR/カバー（VTuber市場の成長プレミアム）が注目。小型株ではアカツキ（IP×グローバル）、ドリコム（小型IP活用）がM&amp;Aターゲットとしても注目される。ガンホー（パズドラ減速後の再建余地）、GREE（非ゲーム転換後の資産価値）は逆張り候補として監視リストに入れておきたい。</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Section 02: 主要企業一覧 ===== -->
-  <div class="section" id="sec-companies">
-    <div class="sec-header">
-      <div class="sec-num">SECTION 02</div>
-      <div class="sec-title">主要企業一覧</div>
-      <div class="sec-desc">日本市場上場のエンターテインメント・ゲーム関連企業。時価総額は概算。</div>
-    </div>
-
-    <!-- カテゴリフィルター -->
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">全て (100)</button>
-      <button class="filter-btn" data-filter="game-publisher">ゲーム開発・パブリッシャー</button>
-      <button class="filter-btn" data-filter="mobile-game">モバイルゲーム</button>
-      <button class="filter-btn" data-filter="anime-ip">アニメ・IP</button>
-      <button class="filter-btn" data-filter="vtuber-meta">VTuber・メタバース</button>
-      <button class="filter-btn" data-filter="esports-peripheral">eスポーツ・周辺</button>
-      <button class="filter-btn" data-filter="dev-tools">開発ツール・受託</button>
-    </div>
-
-    <!-- テーブル -->
-    <div class="table-panel">
-      <div class="table-scroll">
-        <table id="companyTable">
-          <thead>
-            <tr>
-              <th>証券コード</th>
-              <th>企業名</th>
-              <th>カテゴリ</th>
-              <th style="text-align:right;">時価総額</th>
-              <th>営業利益率</th>
-              <th>ROE</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
+  <div class="section active" id="sec-exec"></div>
+  <div class="section" id="sec-subsector"></div>
+  <div class="section" id="sec-valuation"></div>
+  <div class="section" id="sec-activist"></div>
+  <div class="section" id="sec-growth"></div>
+  <div class="section" id="sec-detail"></div>
+  <div class="section" id="sec-source"></div>
 </div>
 
 <div id="loginWall" class="login-wall">
   <h3>会員限定コンテンツ</h3>
-  <p>エンターテインメント・ゲームセクター分析レポートの全データをご覧いただくには、無料会員登録が必要です。</p>
+  <p>ゲーム・コンテンツセクター分析レポートの全データをご覧いただくには、無料会員登録が必要です。</p>
   <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
   <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
 </div>
