@@ -333,7 +333,7 @@ function rSource(){
 /* ── navigation & routing ── */
 function render(){
   var fns={exec:rExec,valuation:rValuation,tier:rTier,mna:rMna,growth:rGrowth,detail:rDetail,source:rSource};
-  if(fns[tab])fns[tab]();
+  if(fns[tab]){try{fns[tab]();}catch(e){console.error('[RENDER ERROR] tab='+tab,e);}}
 }
 
 function bindRows(el){
