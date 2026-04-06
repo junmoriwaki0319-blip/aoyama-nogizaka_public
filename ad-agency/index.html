@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
 
@@ -266,6 +266,7 @@
     .kpi-change.negative { color: var(--red); }
   </style>
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.css">
+  <script src="/js/css-loader.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -305,7 +306,7 @@
     <div class="report-subtitle">日本の広告代理店120社超の時価総額・財務指標・業界動向を網羅的に分析</div>
     <div class="report-meta">
       <span>データ基準日: <strong>2026年3月31日</strong></span>
-      <span>対象: <strong>120社超</strong></span>
+      <span>対象: <strong id="companyCount">129</strong>社</span>
       <span>分析指標: <strong>時価総額・営業利益率・ROE</strong></span>
     </div>
     <div class="dl-btns">
@@ -345,16 +346,20 @@
 
     <div class="kpi-grid">
       <div class="kpi-card c-navy"><div class="kpi-label">対象企業数</div><div class="kpi-value">120<span class="kpi-unit">社超</span></div></div>
-      <div class="kpi-card c-gold"><div class="kpi-label">時価総額合計</div><div class="kpi-value">12.8<span class="kpi-unit">兆円</span></div><div class="kpi-sub">推計値</div></div>
-      <div class="kpi-card c-green"><div class="kpi-label">平均営業利益率</div><div class="kpi-value">8.2<span class="kpi-unit">%</span></div><div class="kpi-sub">推計値</div></div>
-      <div class="kpi-card c-navy"><div class="kpi-label">平均ROE</div><div class="kpi-value">9.8<span class="kpi-unit">%</span></div><div class="kpi-sub">推計値</div></div>
+      <div class="kpi-card c-gold"><div class="kpi-label">時価総額合計</div><div class="kpi-value"><span id="kpiTotalMcap">—</span><span class="kpi-unit">兆円</span></div><div class="kpi-sub">対象企業合計（連結ベース）</div></div>
+      <div class="kpi-card c-green"><div class="kpi-label">平均営業利益率</div><div class="kpi-value"><span id="kpiAvgMargin">—</span><span class="kpi-unit">%</span></div><div class="kpi-sub">単純平均</div></div>
+      <div class="kpi-card c-navy"><div class="kpi-label">平均ROE</div><div class="kpi-value"><span id="kpiAvgRoe">—</span><span class="kpi-unit">%</span></div><div class="kpi-sub">単純平均</div></div>
       <div class="kpi-card c-gold"><div class="kpi-label">デジタル広告比率</div><div class="kpi-value">48<span class="kpi-unit">%</span></div><div class="kpi-sub">総広告費中</div></div>
-      <div class="kpi-card c-red"><div class="kpi-label">vs TOPIX (1Y)</div><div class="kpi-value v-red">-3.2<span class="kpi-unit">pt</span></div><div class="kpi-change negative">↓ アンダーパフォーム</div></div>
+      <div class="kpi-card c-red">
+        <div class="kpi-label">グロース市場比率</div>
+        <div class="kpi-value">55<span class="kpi-unit">%</span></div>
+        <div class="kpi-sub">時価総額100億円未満多数</div>
+      </div>
     </div>
 
     <div class="commentary">
       <div class="commentary-title">セクター概況 (2026年3月31日基準)</div>
-      <p>対象120社超の時価総額合計は約12.8兆円(※推計値。電通G・博報堂DY・サイバーエージェント等は広告事業以外も含む連結時価総額)。日本の広告市場は2025年に約7.7兆円(電通「日本の広告費」)に達し、インターネット広告が全体の約48%を占めるまでに成長。従来型マス広告からデジタルへのシフトが不可逆的に進行する中、業界構造そのものが大きく変容している。</p>
+      <p>対象129社の時価総額合計は約4.6兆円(※本ダッシュボード掲載企業の単純合算。電通G・博報堂DY等は広告以外の事業を含む連結時価総額)。日本の広告市場は2025年に約7.7兆円(電通「日本の広告費」)に達し、インターネット広告が全体の約48%を占めるまでに成長。従来型マス広告からデジタルへのシフトが不可逆的に進行する中、業界構造そのものが大きく変容している。</p>
     </div>
 
     <div class="commentary info">

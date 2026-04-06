@@ -167,7 +167,7 @@
       data: {
         labels: topCompanies.map(c => c.name),
         datasets: [{
-          label: 'Market Cap (Billions JPY)',
+          label: '時価総額 (億円)',
           data: topCompanies.map(c => c.marketCap),
           backgroundColor: 'var(--navy)',
           borderColor: 'var(--gold)',
@@ -227,6 +227,24 @@
 
   // Initialize - called by auth module after login, or immediately for table structure
   window.loadPremiumData = function() {
+    // Update company count
+    var countEl = document.getElementById('companyCount');
+    if (countEl) countEl.textContent = companies.length;
+
+    // Compute and update KPI values
+    var totalMcap = 0, sumMargin = 0, sumRoe = 0, cntMargin = 0, cntRoe = 0;
+    companies.forEach(function(c) {
+      totalMcap += c.marketCap;
+      if (c.operatingMargin != null) { sumMargin += c.operatingMargin; cntMargin++; }
+      if (c.roe != null) { sumRoe += c.roe; cntRoe++; }
+    });
+    var kpiMcap = document.getElementById('kpiTotalMcap');
+    var kpiMargin = document.getElementById('kpiAvgMargin');
+    var kpiRoe = document.getElementById('kpiAvgRoe');
+    if (kpiMcap) kpiMcap.textContent = (totalMcap / 10000).toFixed(1);
+    if (kpiMargin) kpiMargin.textContent = (sumMargin / cntMargin).toFixed(1);
+    if (kpiRoe) kpiRoe.textContent = (sumRoe / cntRoe).toFixed(1);
+
     populateTable();
     createMarketCapChart();
     setupNavigation();
