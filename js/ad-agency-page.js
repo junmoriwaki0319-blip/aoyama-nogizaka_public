@@ -388,13 +388,12 @@ window.loadPremiumData=async function(){console.log("[DEBUG] loadPremiumData cal
 var dlCSV=document.querySelector('[data-action="downloadCSV"]');
 if(dlCSV)dlCSV.addEventListener('click',function(){
   if(!companies.length)return;
-  var tierOrCat=companies[0].tier?'Tier':'カテゴリ';
-  var csv='﻿'+'コード,企業名,'+tierOrCat+',時価総額(億円),営業利益率(%),ROE(%),PER,PBR,株価
-';
-  companies.forEach(function(c){csv+=c.ticker+','+c.name+','+(c.tier||c.category)+','+(c.marketCap||'')+','+(c.operatingMargin||'')+','+(c.roe||'')+','+(c.per||'')+','+(c.pbr||'')+','+(c.price||'')+'
-';});
-  var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sector-data.csv';a.click();
+  var t=companies[0].tier?'Tier':'Category';
+  var NL=String.fromCharCode(10);
+  var h=String.fromCharCode(0xFEFF)+'Code,Name,'+t+',MarketCap,OPM,ROE,PER,PBR,Price'+NL;
+  companies.forEach(function(c){h+=c.ticker+','+c.name+','+(c.tier||c.category)+','+(c.marketCap||'')+','+(c.operatingMargin||'')+','+(c.roe||'')+','+(c.per||'')+','+(c.pbr||'')+','+(c.price||'')+NL;});
+  var b=new Blob([h],{type:'text/csv;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sector-data.csv';a.click();
 });
 var dlPDF=document.querySelector('[data-action="downloadPDF"]');
 if(dlPDF)dlPDF.addEventListener('click',function(){window.print();});
