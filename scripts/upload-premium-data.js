@@ -217,6 +217,21 @@ async function main() {
     console.log('  ⚠ data/entertainment-companies.json が見つかりません（スキップ）');
   }
 
+  // === デジタルメディアセクター ダッシュボード ===
+  console.log('\n=== デジタルメディアセクターダッシュボードデータをアップロード中... ===');
+  const mediaJsonPath = path.join(basePath, 'data', 'digital-media-companies.json');
+  if (fs.existsSync(mediaJsonPath)) {
+    const mediaCompanies = JSON.parse(fs.readFileSync(mediaJsonPath, 'utf8'));
+    await firestoreWrite(token, 'premiumContent', 'digital-media-companies', {
+      companies: mediaCompanies,
+      count: mediaCompanies.length,
+      updatedAt: new Date().toISOString(),
+    });
+    console.log(`  digital-media-companies: ${mediaCompanies.length}社のデータをアップロード`);
+  } else {
+    console.log('  ⚠ data/digital-media-companies.json が見つかりません（スキップ）');
+  }
+
   console.log('\n=== 全データのアップロードが完了しました ===');
 }
 
