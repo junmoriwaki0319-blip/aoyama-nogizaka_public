@@ -83,7 +83,7 @@ function rExec(){
   mc('exPie','doughnut',{labels:Object.keys(tierMC).map(function(k){return TIERS[k];}),datasets:[{data:Object.values(tierMC),backgroundColor:Object.keys(tierMC).map(function(k){return TC[k];}),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:function(v,ctx){var t=ctx.dataset.data.reduce(function(a,b){return a+b;},0);return(v/t*100).toFixed(1)+'%';}}}});
 
   var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
-  mc('exBub','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.operatingMargin!=null&&c.roe!=null;}).map(function(c){return{x:c.operatingMargin,y:c.roe,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*30),name:c.name};}),backgroundColor:TC[tier]+'88',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'}},y:{title:{display:true,text:'ROE (%)'}}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / ROE'+x.raw.y+'%';}}}}});
+  mc('exBub','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.operatingMargin!=null&&c.roe!=null&&c.operatingMargin>-50&&c.operatingMargin<50&&c.roe>-50&&c.roe<100;}).map(function(c){return{x:c.operatingMargin,y:c.roe,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*30),name:c.name};}),backgroundColor:TC[tier]+'88',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'},min:-50,max:50},y:{title:{display:true,text:'ROE (%)'},min:-50,max:100}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / ROE'+x.raw.y+'%';}}}}});
 }
 
 /* ── rValuation ── */
@@ -137,10 +137,16 @@ function rTier(){
   el.innerHTML=
     secH('03','Tier分析','大手総合・デジタル中堅・グロースの3階層比較')+
     '<div class="commentary">'+
+      '<strong>Tier定義:</strong><br>'+
+      '<strong>Tier1（大手総合）:</strong> 電通グループ・博報堂DYホールディングス・サイバーエージェントの3社。総合広告代理店として国内市場を寡占し、時価総額・売上規模ともに突出。<br>'+
+      '<strong>Tier2（デジタル中堅）:</strong> セプテーニHD、バリューコマース、デジタルガレージ、Appier Group等のデジタル広告専業・ネット広告中堅企業。時価総額概ね200億円超。<br>'+
+      '<strong>Tier3（グロース・スタンダード）:</strong> グロース市場・スタンダード市場上場の中小型株。時価総額100億円未満が多い。<br><br>'+
+      '<strong>※注意:</strong> Tier分類は本レポート独自の分類であり、各社の公式な区分ではありません。'+
+      'GMOインターネットグループ・トランスコスモス等は時価総額は大きいものの、主力事業が広告代理店ではないため（GMO: インターネットインフラ/金融、トランスコスモス: BPO/アウトソーシング）、Tier2に分類しています。<br><br>'+
       '<strong>Tier構成:</strong> '+
-      'Tier1（大手'+tierStats[0].count+'社）が時価総額の'+((tierStats[0].totalMcap/companies.reduce(function(s,c){return s+(c.marketCap||0);},0))*100).toFixed(0)+'%を占める寡占構造。'+
-      'Tier3（グロース'+tierStats[2].count+'社）は企業数で過半を占めるが、時価総額100億円未満が多く、'+
-      'グロース市場上場基準引き上げ（5年経過後に時価総額100億円以上）により約7割が基準未達リスク。<br>'+
+      'Tier1（'+tierStats[0].count+'社）が時価総額の'+((tierStats[0].totalMcap/companies.reduce(function(s,c){return s+(c.marketCap||0);},0))*100).toFixed(0)+'%を占める寡占構造。'+
+      'Tier3（'+tierStats[2].count+'社）は企業数で過半を占めるが、時価総額100億円未満が多く、'+
+      'グロース市場上場基準引き上げ（5年経過後に時価総額100億円以上）により約7割が基準未達リスク。'+
       'ロールアップ型M&A（Macbee Planet、ジーニー等）による業界再編が加速する見込み。'+
     '</div>'+
     '<div class="kpi-grid">'+
