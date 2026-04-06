@@ -148,6 +148,11 @@
     .badge-consumer { background: rgba(155,139,110,0.1); color: var(--gold-dim); }
     .badge-tech { background: rgba(45,122,79,0.08); color: var(--green); }
     .badge-media { background: rgba(181,58,58,0.08); color: var(--red); }
+    .badge-pharma { background: rgba(45,122,79,0.08); color: var(--green); }
+    .badge-energy { background: rgba(200,120,30,0.1); color: #9a6b20; }
+    .badge-retail { background: rgba(100,60,150,0.08); color: #6a3d9a; }
+    .badge-mfg { background: rgba(60,60,60,0.08); color: #555; }
+    .badge-auto { background: rgba(30,80,160,0.08); color: #1e50a0; }
 
     .case-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .case-tagline { font-size: 0.82rem; color: var(--gold); font-weight: 500; }
@@ -188,6 +193,19 @@
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold-light); font-size: 0.9rem; }
     .footer-disclaimer { font-size: 0.68rem; color: rgba(255,255,255,0.3); margin-top: 12px; max-width: 1200px; margin-left: auto; margin-right: auto; text-align: center; padding: 0 48px; }
+
+    /* ─── Activist Map Table ─── */
+    .activist-table-wrap { overflow-x: auto; margin-bottom: 24px; -webkit-overflow-scrolling: touch; }
+    .activist-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .activist-table th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.03em; white-space: nowrap; position: sticky; top: 0; }
+    .activist-table td { padding: 10px 14px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+    .activist-table tr:hover td { background: rgba(155,139,110,0.04); }
+    .activist-table .fund-name { font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .activist-table .target-list { line-height: 1.7; }
+    .result-win { display: inline-block; padding: 1px 8px; font-size: 0.65rem; font-weight: 600; border-radius: 3px; background: rgba(45,122,79,0.1); color: var(--green); }
+    .result-loss { display: inline-block; padding: 1px 8px; font-size: 0.65rem; font-weight: 600; border-radius: 3px; background: rgba(181,58,58,0.08); color: var(--red); }
+    .result-ongoing { display: inline-block; padding: 1px 8px; font-size: 0.65rem; font-weight: 600; border-radius: 3px; background: rgba(155,139,110,0.1); color: var(--gold-dim); }
+    .campaign-style { display: inline-block; padding: 1px 8px; font-size: 0.62rem; border-radius: 3px; background: var(--bg-alt); border: 1px solid var(--border-light); color: var(--text-mid); margin: 1px 2px; white-space: nowrap; }
 
     /* ─── Print ─── */
     @media print { .site-header, .site-footer { display: none !important; } }
@@ -268,7 +286,7 @@
         <span class="stat-label">2025年 株主提案総数（過去最多）</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-number">8件</span>
+        <span class="stat-number">16件</span>
         <span class="stat-label">本ページ掲載のリッチ提案</span>
       </div>
     </div>
@@ -490,6 +508,410 @@
         </div>
       </div>
     </article>
+    <!-- Case 7: Oasis × 花王 -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2024年4月〜2026年</span>
+          <span class="case-badge badge-consumer">消費財</span>
+        </div>
+        <h3 class="case-title">花王 (4452) × Oasis Management</h3>
+        <p class="case-tagline">「A Better Kao」— 特設サイト2本立て＋株主説明会＋臨時総会請求</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">Oasis Management Company Ltd.（香港）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">約12.5%（2026年3月、3%→5%→12.5%と段階的に増加）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">特設サイト2本（abetterkao.com / protectkao.com）+ 複数PDF + 株主説明会</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>社外取締役5名の選任、CEO報酬の固定:業績連動比率改革、報酬制度のTSR連動化を提案。2025年3月AGMでは全議案否決。2026年3月にはESG/サプライチェーン問題（パーム油・森林破壊）を根拠に臨時総会を請求し、「Protect Kao」キャンペーンを展開。オークラホテルでの株主説明会も開催。</p>
+          <h4>資料の特徴</h4>
+          <p>「A Better Kao」サイトにプレゼン資料（日英）、社外取締役候補紹介、株主向けレターを一元管理。2026年には「Protect Kao」として第2の特設サイトを開設し、ESG論点にフォーカスした新たなキャンペーンを展開。Oasisの日本市場における最大規模のキャンペーン。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://abetterkao.com/materials/" target="_blank" rel="noopener" class="link-primary">A Better Kao 資料一覧</a>
+          <a href="https://www.protectkao.com" target="_blank" rel="noopener" class="link-primary">Protect Kao 特設サイト</a>
+          <a href="https://abetterkao.com/wp-content/uploads/Oasis_Presentation_ABetterKao_20250226_JP-1.pdf" target="_blank" rel="noopener" class="link-secondary">プレゼン資料 2025年2月 (PDF)</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 8: Oasis × 京セラ -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年5月〜</span>
+          <span class="case-badge badge-mfg">電子部品</span>
+        </div>
+        <h3 class="case-title">京セラ (6971) × Oasis Management</h3>
+        <p class="case-tagline">「A Better Kyocera」— 10年越しの第2次キャンペーン、7項目の構造改革要求</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">Oasis Management Company Ltd.</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">主要論点</span>
+            <span class="detail-value">政策保有株式が純資産の53%、ROE 0.8%</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>非中核事業の売却（売上6,600億円超）、有機パッケージ事業撤退、KAVX子会社のリストラ、GaN・ミリ波事業の損失停止、中核セラミクス事業への集中、会長・社長の再任反対の7項目を提案。社長の承認率が96%（2015年）→65%（2023年）に低下していることを指摘。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://abetterkyocera.com" target="_blank" rel="noopener" class="link-primary">A Better Kyocera 特設サイト</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 9: Oasis × 太陽HD -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年5月〜2026年</span>
+          <span class="case-badge badge-tech">化学・IT</span>
+        </div>
+        <h3 class="case-title">太陽ホールディングス (4626) × Oasis Management</h3>
+        <p class="case-tagline">社長解任に実質成功 → KKRによる非公開化へ</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">約15.6%</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">結果</span>
+            <span class="detail-value">社長再任46%で否決（実質勝利）→ KKR非公開化</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>佐藤社長と高野取締役の解任を提案。2018年以降の医薬・製薬事業拡大でのリターン低迷を批判。2025年AGMで社長再任が46.09%と過半数割れで否決（Oasis提案は49.90%の賛成）。実質的に社長交代を実現し、その後KKRが非公開化に合意。Oasisのキャンペーンが企業再編に直結した希少事例。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.corpgovfortaiyo.com" target="_blank" rel="noopener" class="link-primary">Corp Gov for Taiyo 特設サイト</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 10: Oasis × 小林製薬 -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2024年8月〜2026年</span>
+          <span class="case-badge badge-pharma">医薬品</span>
+        </div>
+        <h3 class="case-title">小林製薬 (4967) × Oasis Management</h3>
+        <p class="case-tagline">紅麹問題を契機に — 臨時総会請求・株主代表訴訟・創業家支配への挑戦</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">約10.1%（第2位株主、機関投資家最大）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">株主代表訴訟 + 臨時総会請求 + プレスリリース</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>2024年3月の紅麹（ベニコウジ）健康被害事件を契機に、(1) 社外取締役の選任と独立調査人の設置、(2) 小林章浩氏の取締役再任反対を要求。2025年AGMでは非創業家株主の過半数がOasis提案に賛成したが、創業家の議決権で否決。2025年4月に取締役に対する株主代表訴訟を提起し、2026年AGM向け新提案も提出。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.businesswire.com/news/home/20250406404350/en/" target="_blank" rel="noopener" class="link-primary">株主代表訴訟プレスリリース</a>
+          <a href="https://www.businesswire.com/news/home/20260120992625/en/" target="_blank" rel="noopener" class="link-secondary">2026年AGM株主提案</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 11: Oasis × ツルハHD -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2023年6月</span>
+          <span class="case-badge badge-retail">小売・ドラッグストア</span>
+        </div>
+        <h3 class="case-title">ツルハHD (3391) × Oasis Management</h3>
+        <p class="case-tagline">「Tsuruha Corp Gov」— 創業家支配への独立取締役5名提案</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">約12.8%</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">結果</span>
+            <span class="detail-value">否決（ISS全面支持も創業家議決権で敗北）</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>独立社外取締役5名の選任を提案し、創業家（鶴羽・小川・村上家）による社長人事の縁故主義と独立監視機能の排除を批判。ISSが全面支持するもプロキシファイトに敗北。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.tsuruhacorpgov.com" target="_blank" rel="noopener" class="link-primary">Tsuruha Corp Gov 特設サイト</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 12: Oasis × KADOKAWA -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2026年3月〜</span>
+          <span class="case-badge badge-game">エンタメ・ゲーム</span>
+        </div>
+        <h3 class="case-title">KADOKAWA (9468) × Oasis Management</h3>
+        <p class="case-tagline">FromSoftware親会社の筆頭株主に — 13.76%を急速取得</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">13.76%（ソニーを抜き筆頭株主、2026年3月30日時点）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">取得目的</span>
+            <span class="detail-value">「ポートフォリオ投資および重要提案行為」</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>状況</h4>
+          <p>2026年3月19日に8.86%を開示後、わずか11日で13.76%まで買い増し。Elden Ringで世界的に注目されるFromSoftwareの親会社として、IP資産価値の適正評価が論点になる可能性。2026年6月AGMでの株主提案が注目される。投資額は推定5億ドル超。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://automaton-media.com/en/news/8-86-of-kadokawa-now-owned-by-international-activist-investor-oasis-management/" target="_blank" rel="noopener" class="link-primary">Automaton報道</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 13: Elliott × 東京ガス -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2024年11月〜</span>
+          <span class="case-badge badge-energy">エネルギー</span>
+        </div>
+        <h3 class="case-title">東京ガス (9531) × Elliott Management</h3>
+        <p class="case-tagline">1.5兆円の不動産売却要求 — パークハイアット東京含む75物件</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">Elliott Investment Management L.P.</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">5.03%</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>都市ガス最大手の東京ガスに対し、パークハイアット東京を含む75超の不動産・プロジェクト（推定1.5兆円＝約98億ドル）の売却による資本効率改善を要求。企業価値向上委員会の設置を支持し、自社株買いの拡大を促した。東京ガスは2025年2月に自社株買い拡大と米シェール資産売却を発表。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.prnewswire.com/news-releases/elliott-statement-on-tokyo-gas-co-ltd-302365935.html" target="_blank" rel="noopener" class="link-primary">Elliott声明</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 14: Elliott × 豊田自動織機 -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2026年1月</span>
+          <span class="case-badge badge-auto">自動車</span>
+        </div>
+        <h3 class="case-title">豊田自動織機 (6201) × Elliott Management</h3>
+        <p class="case-tagline">「豊田不動産のTOBは40%過小評価」— 独立株主への大型プレゼン</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">Elliott Investment Management L.P.（最大独立株主）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">elliottletters.com でプレゼンPDF公開</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>豊田不動産による改訂TOB価格（18,800円/株）に対し、純資産価値は26,000円超（約40%の乖離）と分析。TOBの取引ガバナンスプロセスの重大な欠陥を指摘し、独立運営（Standalone Plan）の優位性を主張。「TOBが成功すれば日本のコーポレートガバナンス改革にとって後退」と警告。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://elliottletters.com/wp-content/uploads/Elliotts-Perpectives-on-Toyota-Industries-EN.pdf" target="_blank" rel="noopener" class="link-primary">プレゼン資料 (PDF)</a>
+          <a href="https://www.prnewswire.com/news-releases/elliott-management-releases-presentation-on-toyota-industries-corporation-302670650.html" target="_blank" rel="noopener" class="link-secondary">プレスリリース</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 15: SC × 日産自動車 -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年4月</span>
+          <span class="case-badge badge-auto">自動車</span>
+        </div>
+        <h3 class="case-title">日産自動車 (7201) × ストラテジックキャピタル</h3>
+        <p class="case-tagline">PBR 0.2倍台 — 上場子会社の見直しを定款に盛り込む提案</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">ストラテジックキャピタル + INTERTRUST TRUSTEES (JAPAN-UP)</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">主要論点</span>
+            <span class="detail-value">PBR 0.2倍台、信用格付け投機的水準、営業利益率・ROE業界最下位</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>日産が保有する上場関係会社（日産車体等）の株式について、保有や売却の検討を年1回以上行い、結果を開示することを定款に盛り込むよう要求。抜本的な構造改革の必要性を訴える提案。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://stracap.jp/7201-NISSAN.pdf" target="_blank" rel="noopener" class="link-primary">提案背景・概要 (PDF)</a>
+          <a href="https://stracap.jp/proposal/2025_nissan" target="_blank" rel="noopener" class="link-secondary">SC 株主提案ページ</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 16: SC × 淀川製鋼所 -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年〜</span>
+          <span class="case-badge badge-mfg">鉄鋼</span>
+        </div>
+        <h3 class="case-title">淀川製鋼所 (5451) × ストラテジックキャピタル</h3>
+        <p class="case-tagline">「淀川製鋼所の株主価値向上に向けて」— 特設サイト型キャンペーン</p>
+      </div>
+      <div class="case-body">
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>淀川製鋼所の株主価値向上に向けた複数議案を提出。ストラテジックキャピタルの特設サイト型キャンペーンの典型例として、提案理由・データ分析・反論を一元管理するスタイルを展開。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://stracap.jp/5451-YODOGAWA/" target="_blank" rel="noopener" class="link-primary">特設サイト「株主価値向上に向けて」</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
+  <section class="article-section">
+    <h2 class="section-heading">アクティビスト・キャンペーンマップ — 誰が、どこで、何をしているか</h2>
+
+    <div class="intro-box">
+      <p>2023年以降にビジュアル資料・特設サイトを伴うキャンペーンを展開した主要アクティビストの一覧。<strong>日本市場ではOasis Management、3D Investment Partners、ストラテジックキャピタル、Elliott Management、ダルトン・インベストメンツの5ファンドがビジュアルキャンペーンの大半を占める。</strong></p>
+    </div>
+
+    <div class="activist-table-wrap">
+      <table class="activist-table">
+        <thead>
+          <tr>
+            <th>ファンド名</th>
+            <th>本拠</th>
+            <th>スタイル</th>
+            <th>主要対象企業（2023–2026）</th>
+            <th>勝敗</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fund-name">Oasis Management</td>
+            <td>香港</td>
+            <td><span class="campaign-style">特設サイト</span><span class="campaign-style">プレゼンPDF</span><span class="campaign-style">訴訟</span></td>
+            <td class="target-list">
+              花王 (4452) · 京セラ (6971) · 太陽HD (4626) · 小林製薬 (4967) · ツルハHD (3391) · KADOKAWA (9468) · 北越コーポ (3865) · アインHD (9627) · DIC (4631) · 堀場製作所 (6856) · ニデック (6594) · フジテック (6406)
+            </td>
+            <td>
+              <span class="result-win">勝利</span> フジテック・太陽HD<br>
+              <span class="result-ongoing">継続</span> 花王・小林製薬・京セラ・KADOKAWA
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">3D Investment Partners</td>
+            <td>SG</td>
+            <td><span class="campaign-style">特設サイト</span><span class="campaign-style">プレゼンPDF</span><span class="campaign-style">レター</span></td>
+            <td class="target-list">
+              スクエニHD (9684) · サッポロHD (2501) · 富士ソフト (9749) · NSソリューションズ
+            </td>
+            <td>
+              <span class="result-ongoing">継続</span> スクエニ・サッポロ
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">ストラテジックキャピタル</td>
+            <td>日本</td>
+            <td><span class="campaign-style">特設サイト</span><span class="campaign-style">プレゼンPDF</span><span class="campaign-style">反論書</span></td>
+            <td class="target-list">
+              ガンホー (3765) · 日産自動車 (7201) · 淀川製鋼所 (5451) · ワキタ (8125) · ダイドーリミテッド (3205) · 京阪神ビルディング (8818) · 天馬 (7958) · 世紀東急工業 (1898) · 極東開発工業 (7226) · 文化シヤッター (5930)
+            </td>
+            <td>
+              <span class="result-ongoing">継続</span> ガンホー・日産
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">Elliott Management</td>
+            <td>米国</td>
+            <td><span class="campaign-style">プレゼンPDF</span><span class="campaign-style">声明</span><span class="campaign-style">レター</span></td>
+            <td class="target-list">
+              東京ガス (9531) · 豊田自動織機 (6201) · 大日本印刷 (7912)
+            </td>
+            <td>
+              <span class="result-win">成果</span> 東京ガス（自社株買い拡大）<br>
+              <span class="result-ongoing">継続</span> 豊田自動織機
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">ダルトン・インベストメンツ</td>
+            <td>米国</td>
+            <td><span class="campaign-style">レター</span><span class="campaign-style">総入替提案</span></td>
+            <td class="target-list">
+              フジメディアHD (4676) + 他20社（2025年6月総会で計21社に提案）
+            </td>
+            <td>
+              <span class="result-loss">否決</span> フジメディア
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">旧村上系<br><small>City Index Eleventh / Reno</small></td>
+            <td>日本</td>
+            <td><span class="campaign-style">大量取得</span><span class="campaign-style">AGM提案</span></td>
+            <td class="target-list">
+              コスモエネルギー (5021) · その他多数の中小型株
+            </td>
+            <td>
+              <span class="result-ongoing">継続</span> コスモエネルギー
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- トレンド分析 -->
@@ -510,7 +932,15 @@
       </article>
       <article class="trend-card">
         <h3 class="trend-title">ゲーム・エンタメへの波及</h3>
-        <p>従来アクティビストが避けてきたゲーム・エンタメセクターへの介入が本格化。3D×スクエニ（14.36%保有、110P超資料）、SC×ガンホー（5.4%保有、特設サイト）は、IP資産の価値が適切に株価に反映されていない企業に対する具体的な経営改善要求として注目。サウジAyyal First Investmentによる日本ゲーム株一斉取得と合わせて、セクター全体への再評価圧力が高まっている。</p>
+        <p>従来アクティビストが避けてきたゲーム・エンタメセクターへの介入が本格化。3D×スクエニ（14.36%保有、110P超資料）、SC×ガンホー（5.4%保有、特設サイト）に加え、Oasis×KADOKAWA（13.76%、FromSoftware親会社の筆頭株主に）が2026年3月に浮上。IP資産価値の再評価がセクター全体のテーマに。</p>
+      </article>
+      <article class="trend-card">
+        <h3 class="trend-title">Oasisの「コーポレートガバナンス」ブランド</h3>
+        <p>Oasis Managementは対象企業ごとに「〇〇corpgov.com」「abetter〇〇.com」の特設サイトを開設する統一フォーマットを確立。花王では2本の特設サイト（abetterkao.com + protectkao.com）を運営し、太陽HDでは社長再任否決→KKR非公開化という成果を上げた。日本市場におけるビジュアルキャンペーンの最多展開者。</p>
+      </article>
+      <article class="trend-card">
+        <h3 class="trend-title">Elliottの日本本格参入</h3>
+        <p>世界最大級のアクティビストElliott Managementが、東京ガス（不動産1.5兆円売却要求）、豊田自動織機（TOB価格40%過小評価と指摘）で本格的なプレゼン資料を公開。elliottletters.comでの日本企業向け資料公開は、グローバル水準のキャンペーンが日本市場に持ち込まれたことを象徴。</p>
       </article>
     </div>
   </section>
@@ -530,6 +960,14 @@
       <li>
         <a href="https://www.daltoninvestments.co.jp/" target="_blank" rel="noopener">ダルトン・インベストメンツ — 日本語サイト</a>
         <span class="resource-desc">フジメディア等への提案資料</span>
+      </li>
+      <li>
+        <a href="https://abetterkao.com/materials/" target="_blank" rel="noopener">Oasis Management — A Better Kao 資料一覧</a>
+        <span class="resource-desc">花王向けキャンペーンの全プレゼン資料</span>
+      </li>
+      <li>
+        <a href="https://elliottletters.com" target="_blank" rel="noopener">Elliott Management — Elliott Letters</a>
+        <span class="resource-desc">豊田自動織機等の投資家向けプレゼン</span>
       </li>
       <li>
         <a href="https://activist-blog.com/2025/08/05/2025shareholdersproposal/" target="_blank" rel="noopener">2025年株主提案まとめ（アクティビストブログ）</a>
