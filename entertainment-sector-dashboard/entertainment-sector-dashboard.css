@@ -1,0 +1,614 @@
+/* ==========================================
+   エンターテインメント・ゲームセクター ダッシュボード
+   カラースキーム: ネイビー(#1a2d4f) + ゴールド(#9b8b6e)
+   統一デザインシステム（外食・SaaS・広告と共通）
+   ========================================== */
+
+/* === リセット & ベース === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #2c2c2c;
+  background: #fafafa;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === ヘッダー === */
+.site-header {
+  background: #1a2d4f;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(26, 45, 79, 0.15);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.15em;
+}
+
+.logo-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  color: #9b8b6e;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-list a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: color 0.2s;
+  padding: 8px 0;
+}
+
+.nav-list a:hover,
+.nav-list a.nav-active {
+  color: #9b8b6e;
+}
+
+/* === セクターサブナビ === */
+.sector-nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0;
+  position: sticky;
+  top: 60px;
+  z-index: 90;
+}
+
+.sector-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sector-tab {
+  display: inline-block;
+  padding: 14px 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  min-height: 48px;
+}
+
+.sector-tab:hover {
+  color: #1a2d4f;
+  background: rgba(26, 45, 79, 0.03);
+}
+
+.sector-tab.active {
+  color: #1a2d4f;
+  border-bottom-color: #9b8b6e;
+  font-weight: 700;
+}
+
+/* === ページヒーロー === */
+.page-hero {
+  background: linear-gradient(135deg, #1a2d4f 0%, #2a4a7f 100%);
+  padding: 64px 0 56px;
+  color: #fff;
+}
+
+.sector-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: #9b8b6e;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #9b8b6e;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
+}
+
+/* === エグゼクティブサマリー === */
+.executive-summary {
+  padding: 64px 0;
+  background: #fff;
+}
+
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a2d4f;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #9b8b6e;
+}
+
+.commentary-block {
+  margin-bottom: 32px;
+  padding: 28px 32px;
+  background: #fafafa;
+  border-left: 4px solid #9b8b6e;
+  border-radius: 0 8px 8px 0;
+  transition: box-shadow 0.2s;
+}
+
+.commentary-block:hover {
+  box-shadow: 0 4px 16px rgba(26, 45, 79, 0.08);
+}
+
+.commentary-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #1a2d4f;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.commentary-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #9b8b6e;
+  font-weight: 600;
+  min-width: 2ch;
+}
+
+.commentary-body p {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: #444;
+}
+
+/* === 株主提案リンク集 === */
+.proposal-links {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.proposal-links-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a2d4f;
+  margin-bottom: 12px;
+}
+
+.proposal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proposal-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.proposal-company {
+  font-weight: 600;
+  color: #1a2d4f;
+  min-width: 140px;
+}
+
+.proposal-activist {
+  color: #666;
+  min-width: 180px;
+}
+
+.proposal-link {
+  color: #9b8b6e;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+  padding: 4px 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.proposal-link:hover {
+  border-bottom-color: #9b8b6e;
+}
+
+@media (max-width: 768px) {
+  .proposal-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .proposal-company,
+  .proposal-activist {
+    min-width: auto;
+  }
+}
+
+/* === 企業一覧セクション === */
+.company-table-section {
+  padding: 64px 0 80px;
+  background: #fafafa;
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  color: #888;
+  margin-top: -32px;
+  margin-bottom: 24px;
+}
+
+/* フィルターバー */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #666;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.filter-btn:hover {
+  border-color: #1a2d4f;
+  color: #1a2d4f;
+}
+
+.filter-btn.active {
+  background: #1a2d4f;
+  color: #fff;
+  border-color: #1a2d4f;
+}
+
+/* テーブル */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.company-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 0.875rem;
+}
+
+.company-table thead {
+  background: #1a2d4f;
+  color: #fff;
+}
+
+.company-table th {
+  padding: 14px 16px;
+  font-weight: 500;
+  text-align: left;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.company-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+.company-table tbody tr:hover {
+  background: rgba(155, 139, 110, 0.04);
+}
+
+.company-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.company-name {
+  font-weight: 600;
+  color: #1a2d4f;
+  white-space: nowrap;
+}
+
+.cap {
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.th-code { width: 90px; }
+.th-name { width: 160px; }
+.th-category { width: 130px; }
+.th-cap { width: 110px; text-align: right; }
+.th-main { width: 250px; }
+.th-note { min-width: 200px; }
+
+/* バッジ */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.badge-publisher {
+  background: #e8edf5;
+  color: #1a2d4f;
+}
+
+.badge-mobile {
+  background: #f0e8d8;
+  color: #7a6a4e;
+}
+
+.badge-anime {
+  background: #e8f0e8;
+  color: #3a6a3a;
+}
+
+.badge-vtuber {
+  background: #f0e0f0;
+  color: #7a3a7a;
+}
+
+.badge-esports {
+  background: #e0f0f0;
+  color: #2a5a5a;
+}
+
+.badge-tools {
+  background: #f0f0e0;
+  color: #5a5a2a;
+}
+
+/* === フッター === */
+.site-footer {
+  background: #1a2d4f;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 48px 0 32px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  margin-top: 4px;
+  color: #9b8b6e;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #9b8b6e;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-disclaimer {
+  font-size: 0.6875rem;
+  text-align: center;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* === レスポンシブ === */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-list {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .commentary-block {
+    padding: 20px 20px;
+  }
+
+  .commentary-title {
+    font-size: 0.9375rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .filter-bar {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sector-nav-inner {
+    gap: 0;
+    padding: 0 12px;
+  }
+
+  .sector-tab {
+    padding: 12px 16px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero {
+    padding: 40px 0 36px;
+  }
+
+  .page-title {
+    font-size: 1.25rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+/* === 非表示行（フィルター用） === */
+.company-table tbody tr.hidden {
+  display: none;
+}
+
+/* === アクセシビリティ === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid #9b8b6e;
+  outline-offset: 2px;
+}

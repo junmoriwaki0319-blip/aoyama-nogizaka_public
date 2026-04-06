@@ -883,3 +883,329 @@
     padding: 8px !important;
   }
 }
+
+/* ---------------------------------------------------------
+   10. モバイルフォントサイズ14px保証 強化版
+       activist-dashboard / food-service / saas / ad-agency
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* ベースフォントサイズ引き上げ */
+  body {
+    font-size: 15px !important;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* 汎用テキスト要素 */
+  p, li, span, label, a {
+    font-size: max(14px, inherit) !important;
+    line-height: 1.5;
+  }
+
+  /* === activist-dashboard 固有 === */
+
+  /* サブナビゲーション */
+  .dash-subnav-cat {
+    font-size: 11px !important;
+  }
+
+  .dash-subnav-link {
+    font-size: 14px !important;
+    padding: 12px 14px !important;
+    min-height: 44px;
+  }
+
+  /* テーブルヘッダー: 11px → 13px */
+  .activist-table th,
+  th {
+    font-size: 13px !important;
+    padding: 12px 10px !important;
+  }
+
+  /* テーブルセル: 13px → 14px */
+  .activist-table td,
+  td {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    padding: 14px 10px !important;
+  }
+
+  /* 日付セル */
+  .date-cell {
+    font-size: 13px !important;
+  }
+
+  /* バッジ系（小さめOKだが最低12px） */
+  .activist-type {
+    font-size: 12px !important;
+    padding: 3px 10px !important;
+  }
+
+  .badge-new {
+    font-size: 11px !important;
+  }
+
+  /* カテゴリータグ */
+  .category-tag {
+    font-size: 13px !important;
+  }
+
+  /* タブボタン */
+  .tab-btn {
+    font-size: 14px !important;
+  }
+
+  /* フィルター系 */
+  .filter-label {
+    font-size: 13px !important;
+  }
+
+  .filter-select,
+  .filter-input,
+  .sort-select {
+    font-size: 16px !important; /* iOS Safariズーム防止 */
+  }
+
+  .filter-checkbox {
+    font-size: 14px !important;
+  }
+
+  .btn-filter {
+    font-size: 14px !important;
+  }
+
+  .btn-reset {
+    font-size: 13px !important;
+  }
+
+  /* サイドバーカード */
+  .sidebar-card h3 {
+    font-size: 13px !important;
+  }
+
+  /* ページヘッダー */
+  .page-header-label {
+    font-size: 12px !important;
+  }
+
+  .data-source,
+  .data-source span {
+    font-size: 12px !important;
+  }
+
+  /* 統計バー */
+  .stat-label {
+    font-size: 12px !important;
+  }
+
+  /* 投資家カード */
+  .ac-name {
+    font-size: 16px !important;
+  }
+
+  .ac-meta {
+    font-size: 13px !important;
+  }
+
+  .ac-section-title {
+    font-size: 12px !important;
+  }
+
+  .ac-stock-item,
+  .ac-stock-item span,
+  .ac-stock-item a {
+    font-size: 14px !important;
+  }
+
+  /* タイムライン */
+  .timeline-date {
+    font-size: 13px !important;
+  }
+
+  .timeline-title {
+    font-size: 15px !important;
+  }
+
+  .timeline-detail {
+    font-size: 14px !important;
+  }
+
+  .timeline-tag {
+    font-size: 12px !important;
+  }
+
+  /* EDINET原文リンク */
+  .edinet-link {
+    font-size: 14px !important;
+  }
+
+  /* ログインウォール */
+  .plan-features h4 {
+    font-size: 13px !important;
+  }
+
+  .plan-features li {
+    font-size: 14px !important;
+  }
+
+  .btn-cta-login {
+    font-size: 14px !important;
+  }
+
+  /* === food-service / saas / ad-agency (セクターレポート共通) === */
+
+  /* レポートセクション見出し */
+  .sec-title {
+    font-size: 1.1rem !important;
+  }
+
+  .sec-desc {
+    font-size: 14px !important;
+  }
+
+  .sec-num {
+    font-size: 11px !important;
+  }
+
+  /* チャートパネル */
+  .chart-panel-title {
+    font-size: 14px !important;
+  }
+
+  .chart-panel-sub {
+    font-size: 12px !important;
+  }
+
+  /* テーブルヘッダー/テーブルセル (レポート内) */
+  .table-header-title {
+    font-size: 14px !important;
+  }
+
+  table th {
+    font-size: 13px !important;
+  }
+
+  table td {
+    font-size: 14px !important;
+  }
+
+  /* KPIカード */
+  .kpi-label {
+    font-size: 12px !important;
+  }
+
+  .kpi-value {
+    font-size: 1.2rem !important;
+  }
+
+  .kpi-unit {
+    font-size: 11px !important;
+  }
+
+  .kpi-sub {
+    font-size: 12px !important;
+  }
+
+  /* コメンタリー */
+  .commentary {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+  }
+
+  /* ヒートマップ */
+  .heatmap-table td {
+    font-size: 12px !important;
+  }
+
+  /* クロスナビゲーション（セクター共通ヘッダー） */
+  .cross-nav-cat {
+    font-size: 11px !important;
+  }
+
+  .cross-nav-link {
+    font-size: 13px !important;
+  }
+
+  /* ナビ認証ボタン */
+  .btn-login,
+  .btn-register {
+    font-size: 13px !important;
+  }
+
+  /* レポートカバー */
+  .report-label {
+    font-size: 12px !important;
+  }
+
+  .report-meta {
+    font-size: 12px !important;
+  }
+
+  /* フッター */
+  .footer-brand {
+    font-size: 15px !important;
+  }
+
+  .footer-nav a {
+    font-size: 14px !important;
+  }
+
+  .footer-address {
+    font-size: 13px !important;
+  }
+
+  .footer-copy {
+    font-size: 13px !important;
+  }
+
+  /* モーダル内フォーム */
+  .modal .form-group label {
+    font-size: 14px !important;
+  }
+
+  .modal .form-group input,
+  .modal .form-group select {
+    font-size: 16px !important; /* iOS zoom防止 */
+  }
+
+  .modal-footer {
+    font-size: 14px !important;
+  }
+}
+
+/* iPhone SE (375px) 向け微調整 */
+@media (max-width: 375px) {
+  table td {
+    font-size: 13px !important;
+    padding: 10px 8px !important;
+  }
+
+  table th {
+    font-size: 12px !important;
+    padding: 10px 8px !important;
+  }
+
+  .activist-table td {
+    font-size: 13px !important;
+    padding: 12px 8px !important;
+  }
+
+  .activist-table th {
+    font-size: 12px !important;
+    padding: 10px 8px !important;
+  }
+
+  .dash-subnav-link {
+    font-size: 13px !important;
+    padding: 10px 10px !important;
+  }
+
+  .tab-btn {
+    font-size: 13px !important;
+    padding: 12px 12px !important;
+  }
+
+  .filter-select,
+  .filter-input {
+    font-size: 16px !important;
+  }
+}
