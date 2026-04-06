@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify-css": "npx lightningcss --minify css/mobile-touch-font-fix.css -o css/mobile-touch-font-fix.min.css && npx lightningcss --minify entertainment-sector-dashboard.css -o entertainment-sector-dashboard.min.css && npx lightningcss --minify news/activist-shareholder-proposals-japan.css -o news/activist-shareholder-proposals-japan.min.css"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/junmoriwaki0319-blip/aoyama-nogizaka_public#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.58.2",
+    "lightningcss-cli": "^1.32.0"
+  },
+  "dependencies": {
+    "yahoo-finance2": "^3.14.0"
   }
 }

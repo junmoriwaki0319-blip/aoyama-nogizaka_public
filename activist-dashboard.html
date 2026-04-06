@@ -2,8 +2,19 @@
 <html lang="ja">
 <head>
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
-  <script src="/js/gtag.js"></script>
+  <!-- Google Analytics: 3秒遅延読み込み -->
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
+        document.head.appendChild(s);
+        var g = document.createElement('script');
+        g.src = '/js/gtag.js';
+        document.head.appendChild(g);
+      }, 3000);
+    });
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>大量保有報告ダッシュボード | 青山乃木坂パートナーズ</title>
@@ -44,9 +55,11 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g" crossorigin="anonymous"></script>
   <!-- Firebase SDK -->
   <script type="module" src="/js/firebase-auth-dashboard.js"></script>
@@ -381,7 +394,7 @@
     .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
   </style>
   <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
-  <link rel="stylesheet" href="/css/mobile-touch-font-fix.css">
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.css"></noscript>
   <script src="/js/css-loader.js" defer></script>
 </head>
 <body>
@@ -974,7 +987,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:48px 0 32px}
   </div>
 </div>
 
-<script src="/js/nav-handler.js"></script>
+<script src="/js/nav-handler.js" defer></script>
 <script src="/js/auth.js"></script>
 <script src="/js/fix_target_company_sanitizer.js"></script>
 <script src="/js/activist-dashboard-page.js"></script>

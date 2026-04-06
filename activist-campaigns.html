@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics -->
+  <!-- Google Analytics: 3秒遅延読み込み -->
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
+        document.head.appendChild(s);
+        var g = document.createElement('script');
+        g.src = '/js/gtag.js';
+        document.head.appendChild(g);
+      }, 3000);
+    });
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクティビスト・キャンペーン一覧 | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="日本市場のアクティビスト株主提案・エンゲージメントキャンペーンを一覧で閲覧。投資家別・企業別にスクリーニング可能。プレゼン資料・特設サイトのアーカイブリンク付き。">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="アクティビスト・キャンペーン一覧 | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="日本市場のアクティビスト株主提案・エンゲージメントキャンペーンを一覧で閲覧。投資家別にスクリーニング可能。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/activist-campaigns">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/activist-campaigns">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "アクティビスト・キャンペーン一覧",
+    "description": "日本市場のアクティビスト株主提案・エンゲージメントキャンペーンを一覧で閲覧。",
+    "url": "https://aoyama-nogizaka.com/activist-campaigns",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "provider": { "@type": "Organization", "name": "青山乃木坂パートナーズ", "url": "https://aoyama-nogizaka.com" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
+  <script type="module" src="/js/firebase-auth-dashboard.js"></script>
+  <style>
+    :root {
+      --navy: #1a2d4f; --navy-light: #243b63; --gold: #9b8b6e; --gold-light: #c8b99a;
+      --white: #ffffff; --off-white: #f8f7f5; --light-gray: #f0eee9; --mid-gray: #e0dcd5;
+      --text-dark: #1a1a1a; --text-mid: #444444; --text-light: #888888;
+      --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background: var(--off-white); color: var(--text-dark); line-height: 1.6; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-jp { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
+    .nav-logo-en { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 6px; }
+    .nav-links a { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-decoration: none; padding: 8px 10px; transition: color 0.15s; letter-spacing: 0.05em; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { cursor: pointer; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--navy); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; min-width: 260px; padding: 8px 0; list-style: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 100; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu li a { display: block; padding: 8px 16px; font-size: 0.72rem; color: rgba(255,255,255,0.7); text-decoration: none; }
+    .nav-dropdown-menu li a:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .nav-dropdown-cat { padding: 10px 16px 4px; font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; }
+    .nav-auth-btns { display: flex; gap: 8px; align-items: center; }
+    .btn-login { padding: 5px 14px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; background: none; color: var(--white); font-size: 0.68rem; cursor: pointer; transition: all 0.15s; letter-spacing: 0.04em; }
+    .btn-login:hover { background: rgba(255,255,255,0.1); }
+    .btn-register { padding: 5px 14px; border: 1px solid var(--gold); border-radius: 4px; background: var(--gold); color: var(--white); font-size: 0.68rem; cursor: pointer; transition: all 0.15s; letter-spacing: 0.04em; }
+    .btn-register:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--white); margin: 4px 0; transition: 0.2s; }
+
+    /* DASH SUBNAV */
+    .dash-subnav { background: rgba(26,45,79,0.92); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 40px; position: sticky; top: 64px; z-index: 50; }
+    .dash-subnav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    .dash-subnav-inner::-webkit-scrollbar { display: none; }
+    .dash-subnav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; white-space: nowrap; }
+    .dash-subnav-link { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 10px 12px; white-space: nowrap; transition: all 0.15s; border-bottom: 2px solid transparent; }
+    .dash-subnav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .dash-subnav-link.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+    .dash-subnav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.12); margin: 0 8px; flex-shrink: 0; }
+
+    /* HEADER */
+    .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 80px 40px 48px; text-align: center; margin-top: 64px; }
+    .page-header h1 { font-family: 'Noto Serif JP', serif; font-size: 1.6rem; color: var(--white); margin-bottom: 8px; letter-spacing: 0.06em; }
+    .page-header p { font-size: 14px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+    .page-header-label { display: inline-block; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+
+    /* STATS */
+    .stats-bar { padding: 0 40px; margin-top: -24px; position: relative; z-index: 10; }
+    .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat-item { background: var(--white); border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .stat-value { font-size: 1.6rem; font-weight: 700; color: var(--navy); }
+
+    /* MAIN */
+    .main-content { max-width: 1200px; margin: 32px auto; padding: 0 40px; }
+
+    /* FILTER BAR */
+    .filter-bar { background: var(--white); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .filter-group { display: flex; align-items: center; gap: 8px; }
+    .filter-label { font-size: 12px; color: var(--text-light); white-space: nowrap; letter-spacing: 0.04em; }
+    .filter-select { padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; color: var(--text-mid); background: var(--white); min-width: 180px; }
+    .filter-input { padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; color: var(--text-mid); background: var(--white); min-width: 200px; }
+    .filter-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 6px; font-size: 13px; cursor: pointer; transition: background 0.2s; }
+    .filter-btn:hover { background: var(--navy-light); }
+    .filter-btn-reset { padding: 8px 16px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; cursor: pointer; }
+    .filter-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(26,45,79,0.08); border-radius: 12px; font-size: 12px; color: var(--navy); }
+    .filter-tag-remove { background: none; border: none; color: var(--text-light); cursor: pointer; font-size: 14px; line-height: 1; }
+    .result-count { font-size: 13px; color: var(--text-light); margin-left: auto; }
+
+    /* CAMPAIGN TYPE BADGES */
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; }
+    .badge-proposal { background: rgba(192,57,43,0.1); color: var(--red); }
+    .badge-engagement { background: rgba(39,174,96,0.1); color: var(--green); }
+    .badge-filing { background: rgba(136,136,136,0.1); color: var(--text-light); }
+    .badge-curated { background: rgba(155,139,110,0.12); color: var(--gold); }
+    .badge-website { background: rgba(41,128,185,0.1); color: var(--blue); }
+    .badge-presentation { background: rgba(230,126,34,0.1); color: var(--orange); }
+    .badge-proxy { background: rgba(192,57,43,0.15); color: var(--red); }
+
+    /* ACTIVIST SIDEBAR */
+    .layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .sidebar-card { background: var(--white); border-radius: 12px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .sidebar-card h3 { font-size: 13px; color: var(--text-light); letter-spacing: 0.06em; margin-bottom: 12px; font-weight: 500; }
+    .activist-list { list-style: none; display: flex; flex-direction: column; gap: 2px; max-height: 480px; overflow-y: auto; }
+    .activist-item { padding: 10px 12px; border-radius: 6px; cursor: pointer; transition: background 0.15s; display: flex; justify-content: space-between; align-items: center; }
+    .activist-item:hover { background: var(--light-gray); }
+    .activist-item.active { background: rgba(26,45,79,0.08); }
+    .activist-item-name { font-size: 13px; color: var(--text-dark); }
+    .activist-item-count { font-size: 12px; color: var(--text-light); background: var(--light-gray); padding: 2px 8px; border-radius: 10px; }
+    .activist-item.active .activist-item-count { background: var(--navy); color: var(--white); }
+
+    /* CAMPAIGN CARDS */
+    .campaign-list { display: flex; flex-direction: column; gap: 16px; }
+    .campaign-card { background: var(--white); border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }
+    .campaign-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .campaign-card.curated { border-left: 3px solid var(--gold); }
+    .campaign-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 12px; }
+    .campaign-card-title { font-size: 15px; font-weight: 700; color: var(--text-dark); line-height: 1.4; }
+    .campaign-card-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; flex-shrink: 0; }
+    .campaign-card-body { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--text-mid); margin-bottom: 12px; }
+    .campaign-detail { display: flex; flex-direction: column; gap: 2px; }
+    .campaign-detail-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.04em; }
+    .campaign-detail-value { font-size: 13px; color: var(--text-dark); }
+    .campaign-tagline { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 12px; }
+    .campaign-materials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .material-link { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 12px; color: var(--blue); text-decoration: none; transition: all 0.15s; }
+    .material-link:hover { border-color: var(--blue); background: rgba(41,128,185,0.04); }
+    .material-link-archive { color: var(--text-light); font-size: 11px; }
+    .campaign-filing-toggle { background: none; border: 1px solid var(--mid-gray); border-radius: 6px; padding: 6px 12px; font-size: 12px; color: var(--text-light); cursor: pointer; margin-top: 8px; }
+    .campaign-filing-toggle:hover { border-color: var(--text-light); }
+    .filing-history { display: none; margin-top: 12px; overflow-x: auto; }
+    .filing-history.open { display: block; }
+    .filing-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .filing-table th { background: var(--off-white); padding: 8px; text-align: left; font-size: 11px; color: var(--text-light); position: sticky; top: 0; }
+    .filing-table td { padding: 8px; border-bottom: 1px solid var(--light-gray); }
+    .filing-table a { color: var(--blue); text-decoration: none; }
+    .filing-table a:hover { text-decoration: underline; }
+
+    /* PAGINATION */
+    .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .page-btn { padding: 8px 14px; border: 1px solid var(--mid-gray); border-radius: 6px; background: var(--white); font-size: 13px; color: var(--text-mid); cursor: pointer; transition: all 0.15s; }
+    .page-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .page-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* EMPTY STATE */
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state-text { font-size: 14px; }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 60px 0 24px; margin-top: 60px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand { font-family: 'Noto Serif JP', serif; font-size: 0.9rem; color: var(--gold-light); margin-bottom: 4px; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    .footer-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; list-style: none; }
+    .footer-nav a { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-nav a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+    .footer-address { font-size: 0.68rem; color: rgba(255,255,255,0.3); }
+    .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.3); }
+
+    /* MOBILE MENU */
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 36px 28px; gap: 0; overflow-y: auto; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { flex-direction: row; overflow-x: auto; }
+      .sidebar-card { min-width: 280px; }
+      .activist-list { max-height: 200px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-inner { padding: 0 20px; }
+      .page-header { padding: 48px 20px 40px; }
+      .page-header h1 { font-size: 1.3rem; }
+      .main-content { padding: 0 12px; }
+      .stats-bar { padding: 0 16px; }
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .filter-bar { flex-direction: column; padding: 16px; }
+      .filter-select, .filter-input { width: 100%; min-width: auto; min-height: 44px; font-size: 16px; }
+      .filter-btn, .filter-btn-reset { width: 100%; min-height: 44px; }
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { flex-direction: column; }
+      .campaign-card { padding: 16px; }
+      .campaign-card-header { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .dash-subnav { padding: 0 16px; }
+      .dash-subnav-link { font-size: 0.68rem; padding: 8px 10px; }
+    }
+    @media (max-width: 480px) {
+      .stats-bar-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.css"></noscript>
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="メインナビゲーション">
+  <div class="nav-inner">
+    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
+      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
+      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+      <li><a href="/news/">ニュース・論考</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:11px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li class="nav-dropdown-cat">アクティビスト分析</li>
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+          <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+          <li class="nav-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
+          <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
+          <li><a href="/ad-agency.html">広告代理店 セクター分析</a></li>
+          <li><a href="/entertainment-sector-dashboard.html">エンタメ・ゲーム ダッシュボード</a></li>
+          <li class="nav-dropdown-cat">株主提案・エンゲージメント</li>
+          <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
+          <li><a href="/activist-campaigns.html" class="active">キャンペーン一覧</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+      <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+    </div>
+    <div class="nav-auth-btns" id="navUserInfo" style="display:none;">
+      <a data-auth-action="openMyPage" style="font-size:0.72rem; color:rgba(255,255,255,0.7); cursor:pointer; letter-spacing:0.04em; text-decoration:underline;" id="navUserName"></a>
+      <button class="btn-login" data-auth-action="handleLogout">ログアウト</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SUBNAV -->
+<div class="dash-subnav">
+  <div class="dash-subnav-inner">
+    <span class="dash-subnav-cat">分析:</span>
+    <a href="/activist-dashboard.html" class="dash-subnav-link">大量保有報告</a>
+    <a href="/risk-assessment.html" class="dash-subnav-link">リスク評価</a>
+    <a href="/activist-screener.html" class="dash-subnav-link">スクリーニング</a>
+    <span class="dash-subnav-sep"></span>
+    <span class="dash-subnav-cat">株主提案:</span>
+    <a href="/news/activist-shareholder-proposals-japan.html" class="dash-subnav-link">ビジュアルアーカイブ</a>
+    <a href="/activist-campaigns.html" class="dash-subnav-link active">キャンペーン一覧</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="page-header-label">ACTIVIST CAMPAIGNS</div>
+  <h1>アクティビスト・キャンペーン一覧</h1>
+  <p>株主提案・エンゲージメント活動を投資家別にスクリーニング — プレゼン資料・特設サイトのアーカイブ付き</p>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><div class="stat-label">総キャンペーン</div><div class="stat-value" id="statTotal">—</div></div>
+    <div class="stat-item"><div class="stat-label">キュレーション事例</div><div class="stat-value" id="statCurated">—</div></div>
+    <div class="stat-item"><div class="stat-label">アクティビスト数</div><div class="stat-value" id="statActivists">—</div></div>
+    <div class="stat-item"><div class="stat-label">株主提案</div><div class="stat-value" id="statProposals">—</div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="main" class="main-content">
+
+  <!-- FILTER -->
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-group">
+      <span class="filter-label">キャンペーン種別</span>
+      <select class="filter-select" id="filterType">
+        <option value="">すべて</option>
+        <option value="shareholder_proposal">株主提案</option>
+        <option value="engagement">経営関与</option>
+        <option value="presentation">プレゼン公開</option>
+        <option value="website">特設サイト</option>
+        <option value="proxy_fight">プロキシーファイト</option>
+        <option value="filing">EDINET報告のみ</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">検索</span>
+      <input type="text" class="filter-input" id="filterSearch" placeholder="企業名・証券コード・投資家名">
+    </div>
+    <div class="filter-group">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;color:var(--text-mid);">
+        <input type="checkbox" id="filterCuratedOnly"> キュレーション事例のみ
+      </label>
+    </div>
+    <button class="filter-btn-reset" id="filterReset">リセット</button>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    <!-- SIDEBAR: activist list -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>投資家で絞り込み</h3>
+        <ul class="activist-list" id="activistList"></ul>
+      </div>
+    </aside>
+
+    <!-- CAMPAIGN LIST -->
+    <div>
+      <div class="campaign-list" id="campaignList"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">青山乃木坂パートナーズ</div>
+        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        <li><a href="/news/">ニュース・論考</a></li>
+        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+        <li><a href="/activist-campaigns.html">キャンペーン一覧</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
+      <p class="footer-copy">&copy; 2026 Aoyama Nogizaka Partners All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/nav-handler.js" defer></script>
+<script src="/js/auth.js"></script>
+<script src="/js/activist-campaigns-page.js"></script>
+</body>
+</html>
