@@ -31,6 +31,30 @@ function rankCard(t,items,fn){return'<div class="ranking-card"><div class="ranki
 function catOf(c){return CATEGORIES[c.category]||c.category;}
 function byCat(cat){return companies.filter(function(c){return c.category===cat;});}
 
+
+function enableTableSort(tbl,data,cols,rowFn,cb){
+  var sortK=null,sortD='desc';
+  var ths=tbl.querySelectorAll('thead th');
+  ths.forEach(function(th,i){
+    if(i>=cols.length||!cols[i])return;
+    th.addEventListener('click',function(){
+      var def=cols[i];
+      if(sortK===def.key){sortD=sortD==='desc'?'asc':'desc';}else{sortK=def.key;sortD='desc';}
+      ths.forEach(function(h){h.classList.remove('sort-asc','sort-desc');});
+      th.classList.add(sortD==='asc'?'sort-asc':'sort-desc');
+      var sorted=[].concat(data).sort(function(a,b){
+        var va=a[def.key],vb=b[def.key];
+        if(va==null)va=def.type==='num'?-Infinity:'';
+        if(vb==null)vb=def.type==='num'?-Infinity:'';
+        if(def.type==='num')return sortD==='desc'?vb-va:va-vb;
+        return sortD==='desc'?String(vb).localeCompare(String(va)):String(va).localeCompare(String(vb));
+      });
+      tbl.querySelector('tbody').innerHTML=sorted.map(rowFn).join('');
+      if(cb)cb(tbl);
+    });
+  });
+}
+
 /* ── rExec ── */
 function rExec(){
   var el=g('sec-exec');
@@ -186,7 +210,7 @@ function rValuation(){
       '<div class="chart-panel"><div class="chart-panel-title">営業利益率分布</div><div class="chart-area"><canvas id="vlHist"></canvas></div></div>'+
       '<div class="chart-panel"><div class="chart-panel-title">ROEランキング TOP15</div><div class="chart-area"><canvas id="vlROE"></canvas></div></div>'+
     '</div>'+
-    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table>'+
+    '<div class="table-panel"><div class="table-header"><div class="table-header-title">バリュエーション一覧（時価総額順）</div></div><div class="table-scroll"><table id="tblVal">'+
       '<thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>カテゴリ</th><th>時価総額(億)</th><th>営業利益率</th><th>ROE</th><th>PER</th><th>PBR</th><th>株価</th></tr></thead>'+
       '<tbody>'+sorted.map(function(c){
         return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td>'+
@@ -195,7 +219,7 @@ function rValuation(){
           '<td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';
       }).join('')+'</tbody></table></div></div>';
 
-  bindRows(el);dc(['vlPBR','vlPER','vlHist','vlROE']);
+  bindRows(el);var tblVal=g("tblVal");if(tblVal)enableTableSort(tblVal,sorted,[{key:'ticker',type:'str'},{key:'name',type:'str'},{key:'category',type:'str'},{key:'marketCap',type:'num'},{key:'operatingMargin',type:'num'},{key:'roe',type:'num'},{key:'per',type:'num'},{key:'pbr',type:'num'},{key:'price',type:'num'}],function(c){return'<tr class="clickable-row" data-code="'+c.ticker+'"><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td><td><span class="badge ">'+(CATEGORIES[c.category]||c.category)+'</span></td><td>'+nv(c.marketCap,'','loc')+'</td><td>'+nv(c.operatingMargin,'%','f1')+'</td><td>'+nv(c.roe,'%','f1')+'</td><td>'+nv(c.per,'倍','f1')+'</td><td>'+nv(c.pbr,'倍','f2')+'</td><td>'+nv(c.price,'円','loc')+'</td></tr>';},function(t){bindRows(el);});dc(["vlPBR",'vlPER','vlHist','vlROE']);
   var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
 
   mc('vlPBR','bubble',{datasets:Object.keys(CATEGORIES).map(function(cat){return{label:CATEGORIES[cat],data:byCat(cat).filter(function(c){return c.roe!=null&&c.pbr!=null&&c.roe>-50&&c.roe<100&&c.pbr>0&&c.pbr<20;}).map(function(c){return{x:c.roe,y:c.pbr,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*25),name:c.name};}),backgroundColor:CC[cat]+'77',borderColor:CC[cat],borderWidth:1};})},{scales:{x:{title:{display:true,text:'ROE (%)'},min:-50,max:100},y:{title:{display:true,text:'PBR (倍)'},min:0,max:20}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': ROE'+x.raw.x+'% / PBR'+x.raw.y+'倍';}}}}});
