@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+    <script src="/js/gtag.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広告代理店 セクター分析レポート | 青山乃木坂パートナーズ</title>
+
+    <!-- OGP Meta Tags -->
+    <meta property="og:title" content="広告代理店 セクター分析レポート | 青山乃木坂パートナーズ">
+    <meta property="og:description" content="日本の広告代理店120社超を網羅したセクター分析。最新の市場データ、財務指標、業界KPIを可視化。M&A動向、海外展開、AI活用など業界再編を詳細分析。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aoyama-nogizaka.com/ad-agency">
+    <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+    <meta property="og:site_name" content="青山乃木坂パートナーズ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="広告代理店 セクター分析レポート | 青山乃木坂パートナーズ">
+    <meta name="twitter:description" content="日本の広告代理店120社超を網羅したセクター分析。最新の市場データ、財務指標、業界KPIを可視化。">
+    <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+
+    <!-- General Meta Tags -->
+    <meta name="description" content="日本の広告代理店120社超を網羅したセクター分析。最新の市場データ、財務指標、業界KPIを可視化。M&A動向、海外展開、AI活用など業界再編を詳細分析。">
+    <meta name="keywords" content="広告代理店, セクター分析, 時価総額, M&A, デジタル広告, 業界分析, 投資リサーチ">
+
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href="https://aoyama-nogizaka.com/ad-agency">
+    <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/ad-agency">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" integrity="sha384-y49Zu59jZHJL/PLKgZPv3k2WI9c0Yp3pWB76V8OBVCb0QBKS8l4Ff3YslzHVX76Y" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" integrity="sha384-y49Zu59jZHJL/PLKgZPv3k2WI9c0Yp3pWB76V8OBVCb0QBKS8l4Ff3YslzHVX76Y" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2d4f;
+            --navy-dark: #0f1a30;
+            --navy-light: #2a4470;
+            --gold: #9b8b6e;
+            --gold-light: #c8b99a;
+            --text-primary: #1a1a1a;
+            --text-secondary: #444;
+            --text-tertiary: #777;
+            --text-muted: #999;
+            --bg-white: #fff;
+            --bg-cream: #f8f7f5;
+            --border-light: #eae7e1;
+            --border-medium: #e0ddd6;
+            --success: #2d8a4e;
+            --danger: #d32f2f;
+            --info: #1976d2;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--info);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--navy);
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--gold);
+            color: var(--bg-white);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: var(--navy);
+            border-bottom: 1px solid var(--border-medium);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1.4;
+        }
+
+        .site-logo small {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Cross Navigation */
+        .cross-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .cross-nav-cat {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        .cross-nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.25rem 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .cross-nav-link:hover,
+        .cross-nav-link.active {
+            color: var(--gold-light);
+        }
+
+        .cross-nav-sep {
+            width: 1px;
+            height: 1em;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 0.5rem;
+        }
+
+        /* Header Buttons */
+        .nav-auth-btns {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-login, .btn-register {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--gold-light);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-login:hover {
+            color: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        .btn-register {
+            background: var(--gold);
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        .btn-register:hover {
+            background: var(--navy);
+            border-color: var(--gold);
+        }
+
+        /* Report Cover */
+        .report-cover {
+            background: linear-gradient(160deg, #0f1a30 0%, #1a2d4f 50%, #2a4470 100%);
+            border-bottom: 1px solid var(--border-medium);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(155, 139, 110, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .report-cover-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .report-label {
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .report-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .report-meta {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .report-meta span {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .report-meta strong {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .dl-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .dl-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dl-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .dl-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: var(--bg-cream);
+            border-bottom: 1px solid var(--border-medium);
+            position: sticky;
+            top: 60px;
+            z-index: 80;
+            overflow-x: auto;
+        }
+
+        .nav-items {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 1rem 1.5rem;
+            color: var(--navy);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item:hover {
+            color: var(--navy);
+            border-bottom-color: var(--gold);
+        }
+
+        .nav-item.active {
+            color: var(--navy);
+            border-bottom-color: var(--gold);
+            font-weight: 600;
+        }
+
+        .nav-num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Main Content */
+        #dashboardContent {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            transition: opacity 0.3s ease;
+        }
+
+        .section.hidden {
+            display: none;
+        }
+
+        .sec-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-medium);
+            padding-bottom: 1.5rem;
+        }
+
+        .sec-num {
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sec-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0.5rem 0;
+        }
+
+        .sec-desc {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Commentary */
+        .commentary {
+            background: var(--bg-cream);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .commentary.info {
+            border-left-color: var(--info);
+        }
+
+        .commentary.success {
+            border-left-color: var(--success);
+        }
+
+        .commentary.danger {
+            border-left-color: var(--danger);
+        }
+
+        .commentary.navy {
+            border-left-color: var(--navy);
+        }
+
+        .commentary-title {
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .commentary p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .commentary p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .kpi-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .kpi-value {
+            font-size: 2.16rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-unit {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .kpi-change {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .kpi-change.positive {
+            color: var(--success);
+        }
+
+        .kpi-change.negative {
+            color: var(--danger);
+        }
+
+        /* Chart Row */
+        .chart-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            background: var(--bg-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .chart-wrapper {
+            height: 400px;
+            position: relative;
+        }
+
+        /* Table Styles */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+
+        thead {
+            background: var(--bg-cream);
+            border-bottom: 2px solid var(--border-medium);
+        }
+
+        th {
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        tbody tr:hover {
+            background: #fafaf8;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--navy);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+
+        .site-footer a {
+            color: var(--gold-light);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-white);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .modal-content h2 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.75rem 2rem;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            background: var(--navy-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .report-meta {
+                grid-template-columns: auto auto;
+                gap: 1rem;
+            }
+
+            .nav-items {
+                padding: 0 1rem;
+            }
+
+            .nav-item {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .report-title {
+                font-size: 2rem;
+            }
+
+            .sec-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+        .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg-white) 30%, var(--bg-white) 100%); z-index: 50; }
+        .login-wall h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+        .login-wall p { font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: 4px; font-size: 0.9rem; cursor: pointer; font-weight: 600; letter-spacing: 0.5px; }
+        .login-wall .btn-cta:hover { background: #7a6d55; }
+        .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-tertiary); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
+
+        @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal, .dl-btns { display: none !important; } .section { display: block !important; } .premium-blur { filter: none; pointer-events: auto; } .hidden { display: block !important; } }
+    </style>
+    <link rel="stylesheet" href="/css/mobile-touch-font-fix.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="site-logo">
+            青山乃木坂<br><small>パートナーズ</small>
+        </div>
+        <div class="header-right">
+            <nav class="cross-nav" aria-label="メインナビゲーション">
+                <span class="cross-nav-cat">セクター分析</span>
+                <a href="/food-service.html" class="cross-nav-link">外食</a>
+                <a href="/saas.html" class="cross-nav-link">SaaS</a>
+                <a href="/ad-agency.html" class="cross-nav-link active">広告</a>
+                <span class="cross-nav-sep"></span>
+                <span class="cross-nav-cat">アクティビスト</span>
+                <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+                <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+            </nav>
+            <div class="nav-auth-btns">
+                <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+                <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+            </div>
+            <div id="navUserInfo" style="display:none; align-items:center; gap:12px;">
+                <span id="navUserName"></span>
+                <button data-auth-action="openMyPage">マイページ</button>
+                <button data-auth-action="handleLogout">ログアウト</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="report-cover">
+        <div class="report-cover-inner">
+            <div class="report-label">Sector Analysis Report</div>
+            <h1 class="report-title">広告代理店セクター分析</h1>
+            <p class="report-subtitle">日本の広告代理店120社超の時価総額、財務指標、業界動向を網羅的に分析。デジタルシフト、M&A再編、海外展開、AI活用など業界構造の変容を詳細解説。</p>
+            <div class="report-meta">
+                <div>
+                    <span>作成日:</span> <strong>2026年4月3日</strong>
+                </div>
+                <div>
+                    <span>対象企業:</span> <strong>120社超</strong>
+                </div>
+                <div>
+                    <span>時価総額:</span> <strong>12.8兆円</strong>
+                </div>
+                <div>
+                    <span>データ基準日:</span> <strong>2026年3月31日</strong>
+                </div>
+            </div>
+            <div class="dl-btns">
+                <button class="dl-btn" data-action="downloadPDF">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+                    PDFダウンロード
+                </button>
+                <button class="dl-btn" data-action="downloadCSV">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12z"/></svg>
+                    CSVダウンロード
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <nav class="nav-bar">
+        <div class="nav-items">
+            <div class="nav-item active" data-section="overview">
+                <span class="nav-num">1</span> Overview
+            </div>
+            <div class="nav-item" data-section="overview">
+                <span class="nav-num">2</span> Market Dynamics
+            </div>
+            <div class="nav-item" data-section="overview">
+                <span class="nav-num">3</span> Key Players
+            </div>
+            <div class="nav-item" data-section="overview">
+                <span class="nav-num">4</span> Growth Drivers
+            </div>
+            <div class="nav-item" data-section="overview">
+                <span class="nav-num">5</span> Risk Factors
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <div id="dashboardContent" class="premium-blur">
+            <!-- Section 1: Overview -->
+            <section class="section" id="section-overview">
+                <div class="sec-header">
+                    <div class="sec-num">Section 1</div>
+                    <h2 class="sec-title">業界概観</h2>
+                    <p class="sec-desc">日本の広告代理店セクター全体像 — 時価総額、企業数、市場規模</p>
+                </div>
+
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">対象企業数</div>
+                        <div class="kpi-value">120</div>
+                        <div class="kpi-unit">社超</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">時価総額合計</div>
+                        <div class="kpi-value">12.8</div>
+                        <div class="kpi-unit">兆円 (推計値)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">平均営業利益率</div>
+                        <div class="kpi-value">8.2%</div>
+                        <div class="kpi-unit">推計値</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">平均ROE</div>
+                        <div class="kpi-value">9.8%</div>
+                        <div class="kpi-unit">推計値</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">デジタル広告比率</div>
+                        <div class="kpi-value">48%</div>
+                        <div class="kpi-unit">総広告費中</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">vs TOPIX (1Y)</div>
+                        <div class="kpi-value">-3.2</div>
+                        <div class="kpi-unit">pt</div>
+                        <div class="kpi-change negative">↓ アンダーパフォーム</div>
+                    </div>
+                </div>
+
+                <!-- Commentary Block 1 -->
+                <div class="commentary">
+                    <h3 class="commentary-title">セクター概況 (2026年3月31日基準)</h3>
+                    <p>対象120社超の時価総額合計は約12.8兆円(※推計値。電通G・博報堂DY・サイバーエージェント等は広告事業以外も含む連結時価総額)。日本の広告市場は2025年に約7.7兆円(電通「日本の広告費」)に達し、インターネット広告が全体の約48%を占めるまでに成長。従来型マス広告からデジタルへのシフトが不可逆的に進行する中、業界構造そのものが大きく変容している。</p>
+                </div>
+
+                <!-- Commentary Block 2 -->
+                <div class="commentary info">
+                    <h3 class="commentary-title">M&Aによる業界再編の加速</h3>
+                    <p><strong>(1) 電通グループ(4324)</strong>は2025年12月期に最終赤字3,276億円(過去最大)を計上。2013年の英イージス買収(約4,000億円)以降の海外M&A戦略が裏目に出た形で、米州事業だけで約3,000億円の減損損失を計上。五十嵐社長が退任し、佐野傑氏が後任。海外事業の一部売却・撤退を検討中。約3,400人の削減で2027年12月期に約520億円のコスト削減目標。一方、国内事業(電通ジャパン)は営業利益率20%台半ばと絶好調で「国内回帰」色が鮮明。</p>
+                    <p><strong>(2) 博報堂DYホールディングス(2433)</strong>は2025年9月にデジタルホールディングス(オプト親会社)を約270億円でTOBし完全子会社化(2026年3月非上場化完了)。デジタルマーケティング領域でのNo.1ポジション獲得を目指す「テレビ×デジタル」統合提案の強化が狙い。</p>
+                    <p><strong>(3) NTTドコモ</strong>がCARTA HOLDINGS(電通グループ傘下)をTOBで子会社化(約249億円)。2026年1月にドコモの連結子会社化が完了し、CARTA HDは上場廃止。D2C(ドコモ・電通・NTTアド共同出資)もCARTA完全子会社に統合。通信×広告テクノロジーの融合を志向。</p>
+                    <p><strong>(4) ADKホールディングス</strong>は、2017年にベインキャピタルが約1,500億円で買収・非公開化した後、再上場は実現せず、2025年に韓国クラフトン(PUBG開発元)へ約750億円で売却。注目すべきは、クラフトンの狙いが単なる広告事業ではなく、ADKが300本超のアニメ製作委員会参加で蓄積したIP(知的財産)ビジネスのノウハウにある点。2026年Q4に第1弾共同IPのアニメ配信+ゲームリリースを世界同時展開予定。広告の枠を超えた「IP×コンテンツ」型の垂直統合として象徴的な案件。</p>
+                </div>
+
+                <!-- Commentary Block 3 -->
+                <div class="commentary gold" style="border-left-color: var(--gold);">
+                    <h3 class="commentary-title">垂直・水平統合 ― 広告の枠を超える動き</h3>
+                    <p>広告代理店のM&Aは同業間の統合にとどまらず、より上流(戦略コンサルティング)や隣接領域(IP・コンテンツ、通信、テクノロジー)への拡張が進む。</p>
+                    <p>・電通グループはドリームインキュベータ(4310)を持分法適用会社化(出資比率約24%)し、電通総研との業務提携を通じてBX(ビジネストランスフォーメーション)領域を強化。広告→戦略コンサルティングへの上流進出を図る。</p>
+                    <p>・前述のクラフトン×ADKは「ゲームIP×広告×アニメ」の垂直統合型。</p>
+                    <p>・NTTドコモ×CARTAは「通信×広告テクノロジー」の水平統合型。</p>
+                    <p>・博報堂DY×デジタルHDは「マス広告×デジタル専業」の同業統合型。</p>
+                </div>
+
+                <!-- Commentary Block 4 -->
+                <div class="commentary navy">
+                    <h3 class="commentary-title">グループ再編 ― 取り込みと切り離しの対照的な動き</h3>
+                    <p>電通グループ傘下のCARTA HOLDINGSがNTTドコモへの「切り離し」(連結子会社ではなく合弁化→ドコモ主導に)となった一方、博報堂DYのデジタルHD子会社化は典型的な「取り込み」。この対照的な動きは、大手グループがデジタル広告子会社の最適な保有形態を模索していることを示す。</p>
+                    <p><strong>博報堂DYの親子上場解消の先行事例：</strong>博報堂DYは業界に先駆けて積極的にグループ内の親子上場を整理してきた。D.A.コンソーシアムホールディングス(DAC+アイレップの持株会社)の完全子会社化(2018年)、ソウルドアウト(6553)のTOBによる完全子会社化(2022年、約107億円)、そして前述のデジタルホールディングスの完全子会社化(2025年、約270億円)と、段階的にデジタル広告子会社を取り込んできた。2024年4月にはDAC+アイレップを統合し新会社「Hakuhodo DY ONE」を設立、グループの「デジタルコア」として集約。一方、ユナイテッド(2497)については2025年5月に博報堂DYが親会社に該当しなくなる形で親子上場関係を解消しており、「取り込み」と「独立化」を戦略的に使い分けている。</p>
+                    <p><strong>電通グループ側の親子上場解消候補：</strong></p>
+                    <p>・セプテーニ・ホールディングス(4293/東S) ― 電通グループが筆頭株主。東証の親子上場解消要請やアクティビスト圧力を受け、TOBによる完全子会社化の可能性が取り沙汰される。業績好調なうちに取り込む判断も考えられる。</p>
+                    <p>・電通総研(4812/東P、旧ISID) ― 電通グループ傘下のIT/コンサルティング会社。連結売上高1,526億円、従業員4,413名。親子上場解消の有力候補。</p>
+                    <p>・ドリームインキュベータ(4310/東P) ― 現在は持分法適用(出資比率約24%)だが、出資比率引き上げ→完全子会社化の可能性も。</p>
+                    <p>博報堂DYが既に親子上場をほぼ整理済みであるのに対し、電通グループには上記の未解消案件が複数残る。2025～2026年にかけて電通側のアクションが注目される。</p>
+                </div>
+
+                <!-- Commentary Block 5 -->
+                <div class="commentary success">
+                    <h3 class="commentary-title">中小型株の注目動向 ― ロールアップ・成果報酬型の新興勢力</h3>
+                    <p>グロース市場に上場する中小型広告関連企業では、M&Aを成長ドライバーとするロールアップ型や、成果報酬モデルで差別化を図る企業が注目される。グロース市場の上場維持基準が時価総額100億円以上に引き上げられる中（5年経過後適用）、約7割の企業が基準未達のリスクを抱えており、業界内でのロールアップM&Aが加速する構造的な背景がある。</p>
+                    <p><strong>Macbee Planet(7095/東P):</strong> LTVマーケティングを軸とした成果報酬型モデルで急成長。2023年にネットマーケティング(Omiai事業分離後)を完全子会社化し「All Ads」に改称、2025年にはSNS運用のMOJAを買収。持株会社体制に移行し、数十億円規模のM&Aも視野に入れる。成果報酬型市場（現在約3,000億円→2030年に9,000億円へ成長見込み）のリーディングカンパニー。</p>
+                    <p><strong>ジーニー(6562/東G):</strong> SSP/DSPを軸に積極的なM&Aでグローバル展開。2023年に米国Zelto(SSP事業)を67億円で子会社化、2022年にはCATS(効果計測)を買収。2024年にはソーシャルワイヤーを子会社化しデジタルPRセグメントを新設。グロース市場上場企業としては異例の大型買収を実行し、海外売上比率を大幅に向上させた。マーケティングSaaS×広告プラットフォームのワンストップ提供を目指す。</p>
+                    <p><strong>AViC(9554/東G):</strong> 大手ネット専業代理店出身者が2018年に設立、2022年上場。FACTの株式交換による子会社化(2023年)に加え、ADK Marketing Solutionsとの合弁会社「ADK AViC Performance Design」を設立(2024年)。売上高26.8億円(前期比+38.6%)と急成長中。</p>
+                    <p><strong>その他の注目企業:</strong> デジタリフト(9244/東G、フリークアウトHD持分法適用)は運用型広告の独立系として成長中。AnyMind Group(5027/東G)はアジア13市場でインフルエンサー×広告×EC支援を展開。トリドリ(9337/東G)はインフルエンサーマーケティングプラットフォーム「toridori」で急成長。</p>
+                </div>
+
+                <!-- Commentary Block 6 -->
+                <div class="commentary danger">
+                    <h3 class="commentary-title">大手の海外展開は苦戦</h3>
+                    <p>電通の海外M&A失敗(イージス買収以降の減損累計5,000億円超)が象徴的。博報堂DYも海外19ヶ国・100超のオフィスを展開するもののトップライン成長は鈍化(上期5.5%減収)。グローバル広告市場ではWPP、Publicis、Omnicomなどの欧米メガエージェンシーが圧倒的で、日本勢の存在感は限定的。電通は「国内回帰」路線を鮮明にしており、海外事業の売却・縮小が2026年の焦点。</p>
+                </div>
+
+                <!-- Commentary Block 7 -->
+                <div class="commentary" style="border-left-color: var(--gold);">
+                    <h3 class="commentary-title">成長ドライバー</h3>
+                    <p><strong>(1) AI活用:</strong> 博報堂DYが広告プラン提案をAIで自動化(数日→数十分)。サイバーエージェントのAIクリエイティブ生成。Appier Group(4180)のAI広告最適化プラットフォーム。</p>
+                    <p><strong>(2) デジタルネイティブ企業:</strong> サイバーエージェントはABEMAの黒字化に成功、メディア&IP事業が大幅増益。</p>
+                    <p><strong>(3) 専門特化型の中小型株:</strong> インフルエンサーマーケティング(トリドリ, THECOO, サイバー・バズ)、リテールメディア(ウネリー)、位置情報広告(ジオロケーションテクノロジー)等が成長加速。</p>
+                </div>
+
+                <!-- Commentary Block 8 -->
+                <div class="commentary danger">
+                    <h3 class="commentary-title">リスク要因</h3>
+                    <p><strong>(1) AI Overviewsによる検索インターフェイスの変革:</strong> GoogleのAI Overviews(AIO)表示時、オーガニック検索のCTR(クリック率)が最大58%低下(Ahrefs調査)。リスティング広告のCTRも被引用なしで78.4%減少(2025年Q3)。検索連動型広告を主力とするネット代理店のビジネスモデルを根本から脅かす。AIO(AI最適化)やLLMO(大規模言語モデル最適化)への対応が急務。</p>
+                    <p><strong>(2) プラットフォーマー依存とMCP(Model Context Protocol)の影響:</strong> Google/Meta等のプラットフォーマーへの依存度が高い中、MCPのような技術により、個別媒体を「面」で抑える従来の代理店モデルの価値が薄れつつある。顧客データやテクノロジーを起点とした横断的なメディアプランニングへの転換が求められる。</p>
+                    <p><strong>(3) 広告主のインハウス化:</strong> 大手広告主がデジタル広告運用を内製化する動きが加速。代理店のバイイングパワーだけでは差別化が困難に。</p>
+                    <p><strong>(4) AI自動化による中小代理店の存在意義の希薄化:</strong> 広告クリエイティブの自動生成、運用の自動最適化が進むことで、「人手による運用」を付加価値としてきた中小代理店のビジネスモデルが脅かされる。</p>
+                </div>
+
+                <!-- Commentary Block 9 -->
+                <div class="commentary" style="border-left-color: var(--navy);">
+                    <h3 class="commentary-title" style="font-weight: 700;">企業選別の提言</h3>
+                    <p><strong>投資観点では、(1)M&A・グループ再編によるバリューアップ余地(親子上場解消候補含む)、(2)AI・テクノロジーを活用したビジネスモデル転換力、(3)プラットフォーマー依存脱却と独自データ資産の構築 の3軸を重視。特に時価総額100億円以下のグロース市場銘柄には、ロールアップ型M&Aのターゲットとなる可能性も含め、注目すべき企業が多い。</strong></p>
+                </div>
+            </section>
+
+            <!-- Section 2: Company Data -->
+            <section class="section" id="section-companies">
+                <div class="sec-header">
+                    <div class="sec-num">Section 2</div>
+                    <h2 class="sec-title">主要企業一覧</h2>
+                    <p class="sec-desc">120社超の広告関連企業 — 時価総額、営業利益率、ROE、成長率</p>
+                </div>
+
+                <div class="chart-row">
+                    <div class="chart-container" style="grid-column: 1/-1;">
+                        <h3 class="chart-title">Top 30 Advertising Companies by Market Cap</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="marketCapChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="companiesTable">
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th>企業名</th>
+                                <th>コード</th>
+                                <th>市場</th>
+                                <th>時価総額(億円)</th>
+                                <th>営業利益率(%)</th>
+                                <th>ROE(%)</th>
+                                <th>Tier</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companiesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>広告代理店セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
+  <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner" style="max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <span style="font-family:'Cormorant Garamond',Georgia,serif;color:#c8b99a;font-size:0.9rem;">Aoyama Nogizaka Partners</span>
+    <span>本レポートは各社IR開示情報に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
+  </div>
+</footer>
+
+<!-- Auth Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:login">&times;</button>
+    <h2>ログイン</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:login">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div id="loginError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleLogin">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer">
+      <span data-auth-action="switchModal:resetPassword" style="cursor:pointer;">パスワードをお忘れの方</span><br>
+      <span>アカウントをお持ちでない方は <span data-auth-action="switchModal:register" style="cursor:pointer;">新規登録</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:register">&times;</button>
+    <h2>無料会員登録</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:register">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div id="registerError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="registerSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleRegister">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required></div>
+      <div class="form-group"><label>所属種別</label>
+        <select id="regAffiliation" data-auth-change="toggleAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="regJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required></div>
+      <div class="form-group"><label>パスワード (8文字以上)</label><input type="password" id="regPassword" required minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <div class="modal-footer"><span>既にアカウントをお持ちの方は <span data-auth-action="switchModal:login" style="cursor:pointer;">ログイン</span></span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:resetPassword">&times;</button>
+    <h2>パスワードリセット</h2>
+    <div id="resetError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="resetSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleResetPassword">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><span data-auth-action="switchToLogin" style="cursor:pointer;">ログインに戻る</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px;">ご利用開始にあたり、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleCompleteProfile">
+      <div class="form-group"><label>所属種別</label>
+        <select id="cpAffiliation" data-auth-change="toggleCpAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="cpJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:myPage">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageMsg" style="display:none;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">お名前</label><div id="myName" style="font-weight:600;">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール</label><div id="myEmail">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">所属</label><div id="myAffiliation">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">役職</label><div id="myJobTitle">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">会社名</label><div id="myCompany">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">登録日</label><div id="myCreatedAt">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール認証</label><div id="myEmailVerified">-</div>
+      <button id="btnResendVerify" class="btn-submit" data-auth-action="handleResendVerification" style="display:none;margin-top:8px;padding:8px;font-size:0.78rem;">認証メールを再送</button>
+    </div>
+    <button id="btnChangePassword" class="btn-submit" data-auth-action="handleMyPageResetPassword" style="display:none;margin-top:8px;">パスワードを変更</button>
+    <button id="btnSetPassword" class="btn-submit" data-auth-action="showSetPasswordForm" style="display:none;margin-top:8px;">パスワードを設定</button>
+    <div id="setPasswordForm" style="display:none;margin:16px 0;padding:12px;background:var(--bg-alt);border-radius:4px;">
+      <input type="password" id="setPasswordInput" placeholder="新しいパスワード (8文字以上)" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <button type="button" data-auth-action="handleSetPassword" class="btn-submit">パスワード設定</button>
+    </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button data-auth-action="handleDeleteAccount" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button data-auth-action="confirmDeleteAccount" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button data-auth-action="cancelDeleteAccount" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<script type="module" src="/js/firebase-auth-ad-agency.js"></script>
+<script src="/js/ad-agency-page.js"></script>
+</body>
+</html>
