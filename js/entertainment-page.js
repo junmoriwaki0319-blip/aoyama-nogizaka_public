@@ -44,7 +44,8 @@ function rExec(){
       '<strong>セクター概況 (2026年4月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
       '日本ゲーム市場は2025年約2.6兆円（ファミ通ゲーム白書）、モバイルIAP収益が1.6兆円超と市場中核。'+
       'ユニークユーザー推定5,000万人超、グローバルiOS収益でアジア2位。'+
-      '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br><br>'+
+      '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br>'+
+      '<span style="font-size:0.78rem;color:var(--text-light);">※ソニーグループ・オリエンタルランド等のコングロマリット企業は、ゲーム・コンテンツ事業を中心に分析。時価総額・財務指標は連結ベース。</span><br><br>'+
       '<strong>マネジメントへの5つの提言 ― ゲーム・コンテンツ産業の次の10年を設計する:</strong><br><br>'+
       '<strong>(1) IP価値の「可視化」と資本市場への訴求:</strong> '+
       'ゲーム企業の株価は開発パイプラインの成否に大きく左右されるが、IP価値そのものが適切に評価されていないケースが多い。'+
@@ -274,7 +275,11 @@ function rDetail(){
       '<select id="dtSel">'+companies.map(function(x){return'<option value="'+x.ticker+'"'+(x.ticker===c.ticker?' selected':'')+'>'+x.ticker+' '+x.name+'</option>';}).join('')+'</select>'+
     '</div>'+
     '<div style="font-family:\'Noto Serif JP\',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:4px;">'+c.name+'</div>'+
-    '<div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;">'+c.ticker+' / '+catOf(c)+'</div>'+
+    '<div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:4px;">'+c.ticker+' / '+catOf(c)+'</div>'+
+    (c.ticker==='6758'?'<div style="font-size:0.75rem;color:var(--gold-dim);margin-bottom:12px;">※コングロマリット企業。本レポートではゲーム&ネットワークサービス事業（PlayStation）を中心に分析</div>':
+     c.ticker==='4661'?'<div style="font-size:0.75rem;color:var(--gold-dim);margin-bottom:12px;">※テーマパーク運営企業。IPの体験消費モデルとしてゲーム・コンテンツ産業との接点で分析</div>':
+     c.ticker==='8136'?'<div style="font-size:0.75rem;color:var(--gold-dim);margin-bottom:12px;">※キャラクターIPライセンス企業。ゲーム・アニメとのIP連携の観点で分析</div>':
+     '<div style="margin-bottom:12px;"></div>')+
     '<div class="kpi-grid">'+
       kpi('株価',nv(c.price,'円','loc'),'','c-navy')+
       kpi('時価総額',fmtM(c.marketCap),'','c-navy')+
@@ -304,6 +309,7 @@ function rSource(){
       '<strong>データソース:</strong> 株価・時価総額・営業利益率・ROE・PER・PBRはYahoo Finance (yahoo-finance2)から取得した実データ。'+
       '基準日: 2026年4月取得時点の直近終値。<br>'+
       '<strong>カテゴリ分類:</strong> 各社の主力事業に基づき5カテゴリに分類（コンソール・PC / モバイルゲーム / アニメ・映像・IP / VTuber・配信 / ゲーム支援）。<br>'+
+      '<strong>コングロマリット注記:</strong> ソニーグループ（G&NS事業）、オリエンタルランド（テーマパーク）、サンリオ（キャラクターIP）等の多角化企業は、ゲーム・コンテンツ事業との接点を中心に分析。時価総額・財務指標は連結ベースのため、セクター平均値に影響することに留意。<br>'+
       '<strong>更新頻度:</strong> 四半期ごとにyahoo-finance2でデータ更新 → Firestoreへアップロード。<br>'+
       '<strong>注意事項:</strong> 本レポートは情報提供を目的としたものであり、特定の金融商品の売買を推奨するものではありません。投資判断はご自身の責任においてお願いいたします。'+
     '</div>'+
