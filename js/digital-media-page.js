@@ -48,7 +48,30 @@ function rExec(){
       '<strong>(1) 放送→配信シフト:</strong> TBS HDの配信広告収入は前年比+45.4%増（82.4億円）、有料配信+36.5%（121.5億円）で高成長。一方で地上波広告収入は逓減傾向。在京キー局は放送外収入比率の拡大が経営課題。<br>'+
       '<strong>(2) 出版→デジタルコンテンツ:</strong> KADOKAWA（フロム・ソフトウェア保有）のようなIP総合企業化が進行。電子書籍市場は年率6%成長。DNP・凸版の印刷大手もDX転換を加速。<br>'+
       '<strong>(3) 検索広告の減速とAIシフト:</strong> LINEヤフーの検索広告は前年比-13.2%と減速。GoogleのAI Overviews拡大でオーガニック検索CTRが最大58%低下。クリエイターエコノミー（note等）やLINE公式アカウント広告が新たな成長軸。<br><br>'+
-      '<strong>投資機会の提言:</strong> (1) 配信転換力と放送外収入比率、(2) デジタルコンテンツ・IP資産の多角化可能性、(3) アクティビストによるガバナンス改善余地（フジメディアHDのダルトン提案等）の3軸で選別。'+
+      '<strong>マネジメントへの5つの提言 ― メディア産業の構造転換を乗り越える経営設計:</strong><br><br>'+
+      '<strong>(1) 放送外収入比率のKPI化と配信事業への経営資源シフト:</strong> '+
+      'TBS HDの配信広告+45.4%増は、地上波依存からの脱却が可能であることを実証した。'+
+      '各局は<strong>放送外収入比率を取締役会KPIに設定</strong>し、配信・EC・IP展開への投資配分を明確化すべき。'+
+      '3年後に放送外収入比率50%超を目指す中計の策定を推奨。<br>'+
+      '<strong>(2) 不動産含み益の戦略的活用 ― スピンオフ or 証券化:</strong> '+
+      'フジ・メディアHD（お台場）に限らず、在京キー局は都心一等地に本社・スタジオを保有。'+
+      'ダルトンの取締役12名選任提案は否決されたが、<strong>不動産事業分離の議論は継続</strong>する。'+
+      '不動産のREIT化・J-REIT組成による含み益の顕在化と放送事業への再投資は、PBR改善と成長投資を両立するシナリオ。'+
+      '「攻められる前に自ら動く」先手のアセットマネジメントが経営陣に求められる。<br>'+
+      '<strong>(3) AI時代の「メディア信頼性」のマネタイズ:</strong> '+
+      '生成AIの普及でフェイクニュース・コンテンツ汚染が加速する中、'+
+      '既存メディアの<strong>「取材力・編集力に裏付けられた信頼性」はむしろ希少資源</strong>となる。'+
+      'ユーザベース(NewsPicks)のような有料ビジネスメディアの成功、noteのクリエイターエコノミーの台頭は、'+
+      '「信頼×専門性」への課金モデルが成立することを示す。AIが代替できない領域への集中投資を。<br>'+
+      '<strong>(4) 印刷大手のDX転換を加速する「選択と集中」:</strong> '+
+      'DNP・凸版は売上10兆円規模の巨大企業だが、印刷市場の構造的縮小は不可逆。'+
+      'DNPのデジタル教科書・半導体フォトマスク、凸版のIoTパッケージング等の<strong>非印刷事業のカーブアウト・IPO</strong>も選択肢。'+
+      '「印刷会社」から「情報コミュニケーション企業」への名実ともの転換を取締役会が主導すべき。<br>'+
+      '<strong>(5) クロスボーダーIP展開の座組設計:</strong> '+
+      'KADOKAWAのシンガポールSOZO社子会社化、ソニー出資によるフロム・ソフトウェア間接保有は、'+
+      '日本のIP（アニメ・ゲーム・出版）のグローバル展開における資本連携の型を示す。'+
+      'メディア企業は<strong>「コンテンツを作る側」から「IP資産を運用する側」</strong>へポジションを転換し、'+
+      '海外パートナーとの共同製作・ライセンス・M&Aの座組を経営戦略の中核に据えるべき。'+
     '</div>'+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','8カテゴリ','c-navy')+
@@ -60,7 +83,7 @@ function rExec(){
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>'+
-      '<div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / カテゴリ色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>'+
+      '<div class="chart-panel"><div class="chart-panel-title">PBRランキング TOP20</div><div class="chart-panel-sub">赤線=PBR 1.0x（解散価値）/ 1.0x未満はアクティビスト注目領域</div><div class="chart-area tall"><canvas id="exPBR"></canvas></div></div>'+
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">カテゴリ別 時価総額構成比</div><div class="chart-area"><canvas id="exPie"></canvas></div></div>'+
@@ -72,15 +95,15 @@ function rExec(){
         '</div></div>'+
     '</div>';
 
-  dc(['exMC','exBub','exPie']);
+  dc(['exMC','exPBR','exPie']);
   var s15=[].concat(companies).sort(function(a,b){return(b.marketCap||0)-(a.marketCap||0);}).slice(0,15);
   mc('exMC','bar',{labels:s15.map(function(c){return shortName(c.name);}),datasets:[{data:s15.map(function(c){return c.marketCap;}),backgroundColor:s15.map(function(c){return CC[c.category]||'#777';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return fmtM(v);}}}});
 
   var segMC={};companies.forEach(function(c){segMC[c.category]=(segMC[c.category]||0)+(c.marketCap||0);});
   mc('exPie','doughnut',{labels:Object.keys(segMC).map(function(k){return CATEGORIES[k];}),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(function(k){return CC[k];}),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:function(v,ctx){var t=ctx.dataset.data.reduce(function(a,b){return a+b;},0);return(v/t*100).toFixed(1)+'%';}}}});
 
-  var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
-  mc('exBub','bubble',{datasets:Object.keys(CATEGORIES).map(function(cat){return{label:CATEGORIES[cat],data:byCat(cat).filter(function(c){return c.operatingMargin!=null&&c.roe!=null&&c.operatingMargin>-50&&c.operatingMargin<60&&c.roe>-50&&c.roe<100;}).map(function(c){return{x:c.operatingMargin,y:c.roe,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*30),name:c.name};}),backgroundColor:CC[cat]+'88',borderColor:CC[cat],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'},min:-50,max:60},y:{title:{display:true,text:'ROE (%)'},min:-50,max:100}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / ROE'+x.raw.y+'%';}}}}});
+  var pbrTop=[].concat(companies).filter(function(c){return c.pbr!=null&&c.pbr>0&&c.pbr<15;}).sort(function(a,b){return a.pbr-b.pbr;}).slice(0,20);
+  mc('exPBR','bar',{labels:pbrTop.map(function(c){return shortName(c.name);}),datasets:[{data:pbrTop.map(function(c){return c.pbr;}),backgroundColor:pbrTop.map(function(c){return c.pbr<1.0?'rgba(181,58,58,0.7)':'rgba(26,45,79,0.5)';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return v.toFixed(2)+'x';}},annotation:{annotations:{pbr1:{type:'line',xMin:1.0,xMax:1.0,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'PBR 1.0x',position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9}}}}}},scales:{x:{min:0,title:{display:true,text:'PBR (倍)'}}}});
 }
 
 /* ── rSubsector ── */

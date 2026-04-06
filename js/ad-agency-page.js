@@ -46,12 +46,29 @@ function rExec(){
       '日本の広告市場2025年7.7兆円、インターネット広告が約48%を占め、従来型マス広告からデジタルへの不可逆的シフトが続く。'+
       'Tier1（大手'+t1+'社）が時価総額の大半を占めるが、Tier3（グロース'+t3+'社）は企業数で過半。'+
       '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br><br>'+
-      '<strong>企業選別の提言 — 3軸で評価:</strong><br>'+
-      '<strong>(1) M&A・グループ再編によるバリューアップ余地:</strong> 博報堂DYのデジタルHD完全子会社化、NTTドコモのCARTA買収等、親子上場解消・事業統合が価値創造の起点。<br>'+
-      '<strong>(2) AI・テクノロジーを活用したビジネスモデル転換力:</strong> サイバーエージェントのAIクリエイティブ生成、Appier GroupのAI広告最適化等、テクノロジー主導の成長企業に注目。<br>'+
-      '<strong>(3) プラットフォーマー依存脱却と独自データ資産の構築:</strong> Google/Meta依存度の高い中小代理店はAI自動化による存在意義希薄化リスク。'+
-      '独自データ資産を持つ企業が中期的に優位。<br><br>'+
-      '特に<strong>時価総額100億円以下のグロース市場銘柄</strong>にロールアップ型M&Aターゲットとなるリスクおよびチャンスあり。'+
+      '<strong>マネジメントへの5つの提言 ― 広告業界の構造転換を先取りするアクションプラン:</strong><br><br>'+
+      '<strong>(1) AI Overviews時代のポジショニング再設計:</strong> '+
+      'GoogleのAI Overviews表示時にオーガニック検索CTRが最大58%低下、リスティング広告CTRも78.4%減少（2025年Q3実績）。'+
+      '検索広告依存型の収益モデルは構造的に毀損される。'+
+      '<strong>LLMO（Large Language Model Optimization）対応</strong>と<strong>ゼロクリック時代の新たなメディアプランニング手法</strong>の確立が急務。'+
+      '先行するAppier Group(4180)のAI広告最適化プラットフォームに示唆がある。<br>'+
+      '<strong>(2) 親子上場解消・グループ再編による資本効率の最大化:</strong> '+
+      '電通グループのセプテーニHD(4293)・電通総研(4812)・ドリームインキュベータ(4310)は親子上場が未解消。'+
+      '博報堂DYがDAC→ソウルドアウト→デジタルHDと段階的に統合し<strong>Hakuhodo DY ONE</strong>を設立した成功モデルは、'+
+      '「親子上場解消→統合シナジー→PBR改善」の型を示す。未解消企業は取締役会レベルでの統合戦略の策定と開示を推奨。<br>'+
+      '<strong>(3) ロールアップM&Aによる中小型株の再編加速:</strong> '+
+      'グロース市場上場基準が時価総額100億円以上に引き上げられ（5年経過後）、<strong>Tier3の約7割が基準未達リスク</strong>。'+
+      'Macbee Planet(7095)やジーニー(6562)のようなロールアップ型M&A（米国Zelto 67億円等）は、'+
+      '被買収側にとっては生存戦略、買収側にとってはARR積み上げの好機。'+
+      '経営陣は「独立維持のための成長投資」と「早期M&Aによるバリュー実現」の二択を明確にすべき局面。<br>'+
+      '<strong>(4) インハウス化への対抗戦略 ― データ・IP資産の構築:</strong> '+
+      '大手広告主のデジタル広告運用内製化が加速する中、単なる運用代行では付加価値を維持できない。'+
+      'サイバーエージェントのABEMA（自社メディアIP）やAppierの1stパーティデータ活用のように、'+
+      '<strong>代替困難な独自アセット</strong>を持つ企業のみが中期的にバリュエーションプレミアムを維持できる。<br>'+
+      '<strong>(5) 海外展開の「選択と集中」:</strong> '+
+      '電通グループの海外M&A失敗（イージス買収以降の減損累計5,000億円超）は、総合代理店モデルのグローバル展開の限界を示す。'+
+      '一方でAViC(9554)のADKとの合弁やAnyMind Groupのアジア特化など、<strong>ニッチ×テクノロジー型の海外展開</strong>は成果を上げている。'+
+      '海外戦略は「全方位展開」から「強みのある領域×地域への集中」へ転換すべき。'+
     '</div>'+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','Tier1:'+t1+' / Tier2:'+t2+' / Tier3:'+t3,'c-navy')+
@@ -63,7 +80,7 @@ function rExec(){
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>'+
-      '<div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / Tier色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>'+
+      '<div class="chart-panel"><div class="chart-panel-title">PBRランキング TOP20</div><div class="chart-panel-sub">赤線=PBR 1.0x（解散価値）/ 1.0x未満はアクティビスト注目領域</div><div class="chart-area tall"><canvas id="exPBR"></canvas></div></div>'+
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">Tier別 時価総額構成比</div><div class="chart-area"><canvas id="exPie"></canvas></div></div>'+
@@ -75,15 +92,15 @@ function rExec(){
         '</div></div>'+
     '</div>';
 
-  dc(['exMC','exBub','exPie']);
+  dc(['exMC','exPBR','exPie']);
   var s15=[].concat(companies).sort(function(a,b){return(b.marketCap||0)-(a.marketCap||0);}).slice(0,15);
   mc('exMC','bar',{labels:s15.map(function(c){return shortName(c.name);}),datasets:[{data:s15.map(function(c){return c.marketCap;}),backgroundColor:s15.map(function(c){return TC[c.tier]||'#777';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return fmtM(v);}}}});
 
   var tierMC={};companies.forEach(function(c){tierMC[c.tier]=(tierMC[c.tier]||0)+(c.marketCap||0);});
   mc('exPie','doughnut',{labels:Object.keys(tierMC).map(function(k){return TIERS[k];}),datasets:[{data:Object.values(tierMC),backgroundColor:Object.keys(tierMC).map(function(k){return TC[k];}),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:function(v,ctx){var t=ctx.dataset.data.reduce(function(a,b){return a+b;},0);return(v/t*100).toFixed(1)+'%';}}}});
 
-  var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
-  mc('exBub','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.operatingMargin!=null&&c.roe!=null&&c.operatingMargin>-50&&c.operatingMargin<50&&c.roe>-50&&c.roe<100;}).map(function(c){return{x:c.operatingMargin,y:c.roe,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*30),name:c.name};}),backgroundColor:TC[tier]+'88',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'},min:-50,max:50},y:{title:{display:true,text:'ROE (%)'},min:-50,max:100}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / ROE'+x.raw.y+'%';}}}}});
+  var pbrTop=[].concat(companies).filter(function(c){return c.pbr!=null&&c.pbr>0&&c.pbr<10;}).sort(function(a,b){return a.pbr-b.pbr;}).slice(0,20);
+  mc('exPBR','bar',{labels:pbrTop.map(function(c){return shortName(c.name);}),datasets:[{data:pbrTop.map(function(c){return c.pbr;}),backgroundColor:pbrTop.map(function(c){return c.pbr<1.0?'rgba(181,58,58,0.7)':'rgba(26,45,79,0.5)';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return v.toFixed(2)+'x';}},annotation:{annotations:{pbr1:{type:'line',xMin:1.0,xMax:1.0,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'PBR 1.0x',position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9}}}}}},scales:{x:{min:0,title:{display:true,text:'PBR (倍)'}}}});
 }
 
 /* ── rValuation ── */

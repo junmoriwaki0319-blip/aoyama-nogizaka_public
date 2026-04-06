@@ -231,6 +231,7 @@
       align-items: center;
       position: relative;
       z-index: 1;
+      min-height: 70vh;
     }
     .hero-label {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -320,7 +321,7 @@
       z-index: 1;
       text-align: center;
     }
-    .hero-visual-img { width: 220px; opacity: 0.18; }
+    .hero-visual-img { width: 220px; opacity: 0.18; aspect-ratio: 2000 / 1090; }
     .hero-visual-text {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 11px;
@@ -710,8 +711,13 @@
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.7s ease, transform 0.7s ease;
+      will-change: opacity, transform;
     }
     .reveal.visible { opacity: 1; transform: none; }
+    /* ヒーロー内revealはレイアウトシフト防止: translateYのみでサイズ変化なし */
+    .hero .reveal, .hero-inner .reveal {
+      transform: translateY(20px);
+    }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
@@ -806,9 +812,14 @@
       .nav-inner { padding: 0 16px; }
     }
   </style>
-  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print">
+  <noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
   <link rel="preload" as="image" href="tokyo-night-view-8_medium.webp" type="image/webp">
-  <script src="/js/css-loader.js" defer></script>
+  <script>
+  // css-loader: switch preloaded stylesheets from print to all
+  var links = document.querySelectorAll('link[rel="stylesheet"][media="print"]');
+  for (var i = 0; i < links.length; i++) links[i].media = 'all';
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -1230,8 +1241,63 @@
     </div>
   </footer>
 
-  <script src="/js/reveal.js" defer></script>
-<script src="/js/index-page.js" defer></script>
-<script src="js/nav-handler.js" defer></script>
+  <script>
+// === reveal.js (inlined) ===
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+window.addEventListener('load', () => {
+  const heroReveals = document.querySelectorAll('.page-hero .reveal, .hero .reveal');
+  heroReveals.forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 100 + i * 130);
+  });
+});
+
+// === index-page.js (inlined) ===
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
+async function submitContactForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const btn = document.getElementById('contactSubmitBtn');
+  const status = document.getElementById('contactStatus');
+  const fd = new FormData(form);
+  const data = { _formType: 'contact' };
+  fd.forEach((v, k) => { data[k] = v; });
+  btn.disabled = true; btn.textContent = '送信中...';
+  status.className = 'form-status'; status.style.display = 'none';
+  try {
+    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
+    status.className = 'form-status success'; status.textContent = 'お問い合わせを受け付けました。確認メールをお送りしましたのでご確認ください。';
+    form.reset();
+  } catch (err) {
+    status.className = 'form-status error'; status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+  } finally { btn.disabled = false; btn.textContent = '送信する'; }
+  return false;
+}
+document.addEventListener('submit', function(e) {
+  var form = e.target.closest('[data-form-action]');
+  if (form && form.dataset.formAction === 'submitContactForm') {
+    submitContactForm(e);
+  }
+});
+
+// === nav-handler.js (inlined) ===
+(function() {
+  'use strict';
+  var S = { navToggle: '[data-nav-toggle]', navLink: '[data-nav-link]', navMenu: '.mobile-menu', activeClass: 'open' };
+  var menuState = { isOpen: false };
+  function toggleMenu(m) { if (!m) return; menuState.isOpen = !menuState.isOpen; m.classList.toggle(S.activeClass); var b = document.querySelector(S.navToggle); if (b) b.setAttribute('aria-expanded', String(menuState.isOpen)); }
+  function closeMenu(m) { if (!m || !menuState.isOpen) return; menuState.isOpen = false; m.classList.remove(S.activeClass); var b = document.querySelector(S.navToggle); if (b) b.setAttribute('aria-expanded', 'false'); }
+  function init() { var m = document.querySelector(S.navMenu); var b = document.querySelector(S.navToggle); if (!m || !b) return; b.addEventListener('click', function(e) { toggleMenu(m); e.stopPropagation(); }, false); document.querySelectorAll(S.navLink).forEach(function(l) { l.addEventListener('click', function() { closeMenu(m); }, false); }); b.setAttribute('aria-expanded', 'false'); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, false); else init();
+})();
+</script>
 </body>
 </html>

@@ -45,11 +45,26 @@ function rExec(){
       '日本ゲーム市場は2025年約2.6兆円（ファミ通ゲーム白書）、モバイルIAP収益が1.6兆円超と市場中核。'+
       'ユニークユーザー推定5,000万人超、グローバルiOS収益でアジア2位。'+
       '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br><br>'+
-      '<strong>投資機会の提言 — IP価値×海外比率×M&A余地の3軸で選別:</strong><br>'+
-      '<strong>(1) IP資産の価値と多角化可能性:</strong> マリオ映画（全世界13億ドル超）、モンハンワイルズ（1,000万本即突破）に代表されるIP多角化が価値創造の中核。ゲーム→映画→アニメ→テーマパークの収益連鎖に注目。<br>'+
-      '<strong>(2) 海外売上比率と成長余地:</strong> カプコン80%超、バンダイナムコ50%超、コナミ40%超。海外比率の高い企業は円安メリットと市場成長の両面で優位。<br>'+
-      '<strong>(3) M&Aによるバリューアップ余地:</strong> サウジAyyalの一斉大量取得、3D Investment PartnersのスクエニHD14%取得等、アクティビストが豊富なIP資産×安定CFに注目。'+
-      'PBR1倍割れ銘柄は再評価余地大。'+
+      '<strong>マネジメントへの5つの提言 ― ゲーム・コンテンツ産業の次の10年を設計する:</strong><br><br>'+
+      '<strong>(1) IP価値の「可視化」と資本市場への訴求:</strong> '+
+      'ゲーム企業の株価は開発パイプラインの成否に大きく左右されるが、IP価値そのものが適切に評価されていないケースが多い。'+
+      'バンダイナムコのIP別売上開示（ドラゴンボール4,000億円超、ガンダム1,700億円超）は好事例。'+
+      '自社IP群の<strong>LTV（生涯価値）推計とロイヤリティ収入の中長期予測</strong>を開示し、「開発会社」ではなく「IP資産運用会社」としての再評価を促すべき。<br>'+
+      '<strong>(2) アクティビスト対応の先手設計:</strong> '+
+      '3D Investment Partners（スクエニHD 14.36%）、ストラテジックキャピタル（ガンホー 5.4%）、サウジAyyal（カプコン・バンナム・コナミ等一斉取得）の動きは、'+
+      '豊富なIP資産×安定CF×PBR割安の組み合わせがアクティビストの標的となることを示す。'+
+      '取締役会は<strong>「攻められる前に自ら変わる」プロアクティブなガバナンス改革</strong>（業績連動報酬、政策保有株の縮減、IR強化）を推進すべき。<br>'+
+      '<strong>(3) 海外売上比率50%超の戦略的目標設定:</strong> '+
+      'カプコン（海外80%超）の高バリュエーションは、グローバル展開力がプレミアムの源泉であることを証明している。'+
+      'モバイルゲーム企業（MIXI、DeNA等）は国内IAPモデルの成熟に直面しており、'+
+      '<strong>「ポケポケ」（DeNA/ポケモン社、海外DL比率70%超）</strong>のような海外先行型タイトル戦略への転換が生存条件。<br>'+
+      '<strong>(4) 開発費高騰への構造対応 ― AI活用とミドルタイトル戦略:</strong> '+
+      'AAA級ゲーム1タイトルの開発費が100〜300億円に達する中、全てを大作に賭けるモデルは持続困難。'+
+      '生成AIによる開発コスト20〜30%削減の試算を前提に、<strong>ミドルバジェット×高回転のポートフォリオ戦略</strong>と、'+
+      'AI活用による開発プロセスのリエンジニアリングを同時に推進すべき。<br>'+
+      '<strong>(5) VTuber・クリエイターエコノミーとの協業設計:</strong> '+
+      'ANYCOLOR（営業利益率37.2%）やカバーの急成長は、従来のゲーム企業が取り込めていなかった「コンテンツ消費のソーシャル化」を体現。'+
+      'ゲーム×VTuberのコラボマーケティングを超え、<strong>IPの共創・ファンコミュニティの資産化</strong>まで踏み込んだパートナーシップ設計が中期的な競争優位となる。'+
     '</div>'+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','5カテゴリ','c-navy')+
@@ -61,7 +76,7 @@ function rExec(){
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">時価総額ランキング TOP15</div><div class="chart-panel-sub">単位: 億円</div><div class="chart-area tall"><canvas id="exMC"></canvas></div></div>'+
-      '<div class="chart-panel"><div class="chart-panel-title">営業利益率 vs ROE</div><div class="chart-panel-sub">バブルサイズ=時価総額 / カテゴリ色分け</div><div class="chart-area tall"><canvas id="exBub"></canvas></div></div>'+
+      '<div class="chart-panel"><div class="chart-panel-title">PBRランキング TOP20</div><div class="chart-panel-sub">赤線=PBR 1.0x（解散価値）/ 1.0x未満はアクティビスト注目領域</div><div class="chart-area tall"><canvas id="exPBR"></canvas></div></div>'+
     '</div>'+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">カテゴリ別 時価総額構成比</div><div class="chart-area"><canvas id="exPie"></canvas></div></div>'+
@@ -73,15 +88,15 @@ function rExec(){
         '</div></div>'+
     '</div>';
 
-  dc(['exMC','exBub','exPie']);
+  dc(['exMC','exPBR','exPie']);
   var s15=[].concat(companies).sort(function(a,b){return(b.marketCap||0)-(a.marketCap||0);}).slice(0,15);
   mc('exMC','bar',{labels:s15.map(function(c){return shortName(c.name);}),datasets:[{data:s15.map(function(c){return c.marketCap;}),backgroundColor:s15.map(function(c){return CC[c.category]||'#777';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return fmtM(v);}}}});
 
   var segMC={};companies.forEach(function(c){segMC[c.category]=(segMC[c.category]||0)+(c.marketCap||0);});
   mc('exPie','doughnut',{labels:Object.keys(segMC).map(function(k){return CATEGORIES[k];}),datasets:[{data:Object.values(segMC),backgroundColor:Object.keys(segMC).map(function(k){return CC[k];}),borderWidth:0}]},{plugins:{legend:{position:'right'},datalabels:{display:true,color:'#fff',font:{size:10,weight:600},formatter:function(v,ctx){var t=ctx.dataset.data.reduce(function(a,b){return a+b;},0);return(v/t*100).toFixed(1)+'%';}}}});
 
-  var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
-  mc('exBub','bubble',{datasets:Object.keys(CATEGORIES).map(function(cat){return{label:CATEGORIES[cat],data:byCat(cat).filter(function(c){return c.operatingMargin!=null&&c.roe!=null&&c.operatingMargin>-50&&c.operatingMargin<60&&c.roe>-50&&c.roe<100;}).map(function(c){return{x:c.operatingMargin,y:c.roe,r:Math.max(4,Math.sqrt((c.marketCap||1)/mx)*30),name:c.name};}),backgroundColor:CC[cat]+'88',borderColor:CC[cat],borderWidth:1};})},{scales:{x:{title:{display:true,text:'営業利益率 (%)'},min:-50,max:60},y:{title:{display:true,text:'ROE (%)'},min:-50,max:100}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': OPM'+x.raw.x+'% / ROE'+x.raw.y+'%';}}}}});
+  var pbrTop=[].concat(companies).filter(function(c){return c.pbr!=null&&c.pbr>0&&c.pbr<15;}).sort(function(a,b){return a.pbr-b.pbr;}).slice(0,20);
+  mc('exPBR','bar',{labels:pbrTop.map(function(c){return shortName(c.name);}),datasets:[{data:pbrTop.map(function(c){return c.pbr;}),backgroundColor:pbrTop.map(function(c){return c.pbr<1.0?'rgba(181,58,58,0.7)':'rgba(26,45,79,0.5)';}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return v.toFixed(2)+'x';}},annotation:{annotations:{pbr1:{type:'line',xMin:1.0,xMax:1.0,borderColor:'#b53a3a',borderWidth:2,borderDash:[4,4],label:{display:true,content:'PBR 1.0x',position:'start',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:9}}}}}},scales:{x:{min:0,title:{display:true,text:'PBR (倍)'}}}});
 }
 
 /* ── rSubsector ── */
