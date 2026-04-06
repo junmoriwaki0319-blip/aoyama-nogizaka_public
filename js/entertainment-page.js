@@ -1,15 +1,64 @@
 /**
  * エンターテインメント・ゲームセクター ダッシュボード
- * Tab navigation + Category filter
+ * Firestoreからデータを動的取得 + Tab navigation + Category filter
  */
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
-    initTabs();
-    initCategoryFilter();
-    initNavScroll();
-  });
+  let companies = [];
+
+  const CATEGORY_LABELS = {
+    'game-publisher': 'パブリッシャー',
+    'mobile-game': 'モバイル',
+    'anime-ip': 'アニメ・IP',
+    'vtuber-meta': 'VTuber',
+    'esports-peripheral': 'eスポーツ',
+    'dev-tools': '開発ツール',
+  };
+  const BADGE_CLASS = {
+    'game-publisher': 'badge-publisher',
+    'mobile-game': 'badge-mobile',
+    'anime-ip': 'badge-anime',
+    'vtuber-meta': 'badge-vtuber',
+    'esports-peripheral': 'badge-esports',
+    'dev-tools': 'badge-tools',
+  };
+
+  function populateTable() {
+    var tbody = document.querySelector('#companyTable tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    companies.forEach(function (c) {
+      var tr = document.createElement('tr');
+      tr.setAttribute('data-category', c.category || '');
+      var cap = c.marketCap != null ? c.marketCap.toLocaleString() + '億円' : '—';
+      var label = CATEGORY_LABELS[c.category] || c.category;
+      var badge = BADGE_CLASS[c.category] || 'badge-publisher';
+      tr.innerHTML =
+        '<td>' + c.ticker + '</td>' +
+        '<td class="company-name">' + c.name + '</td>' +
+        '<td><span class="badge ' + badge + '">' + label + '</span></td>' +
+        '<td class="cap">' + cap + '</td>' +
+        '<td>' + (c.operatingMargin != null ? c.operatingMargin.toFixed(1) + '%' : '—') + '</td>' +
+        '<td>' + (c.roe != null ? c.roe.toFixed(1) + '%' : '—') + '</td>';
+      tbody.appendChild(tr);
+    });
+  }
+
+  function updateFilterCounts() {
+    var rows = document.querySelectorAll('#companyTable tbody tr');
+    var allBtn = document.querySelector('[data-filter="all"]');
+    if (allBtn) allBtn.textContent = '全て (' + rows.length + ')';
+    // Update per-category counts
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(function (btn) {
+      var f = btn.getAttribute('data-filter');
+      if (f === 'all') return;
+      var count = 0;
+      rows.forEach(function (r) { if (r.getAttribute('data-category') === f) count++; });
+      var label = CATEGORY_LABELS[f] || f;
+      btn.textContent = label + ' (' + count + ')';
+    });
+  }
 
   /* === Tab navigation === */
   function initTabs() {
@@ -49,37 +98,53 @@
   /* === Category filter === */
   function initCategoryFilter() {
     var filterButtons = document.querySelectorAll('.filter-btn');
-    var tableRows = document.querySelectorAll('#companyTable tbody tr');
-
-    if (!filterButtons.length || !tableRows.length) return;
+    if (!filterButtons.length) return;
 
     filterButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var filter = this.getAttribute('data-filter');
-
         filterButtons.forEach(function (b) { b.classList.remove('active'); });
         this.classList.add('active');
 
-        var visibleCount = 0;
+        var tableRows = document.querySelectorAll('#companyTable tbody tr');
         tableRows.forEach(function (row) {
           var category = row.getAttribute('data-category');
           if (filter === 'all' || category === filter) {
             row.classList.remove('hidden');
-            visibleCount++;
           } else {
             row.classList.add('hidden');
           }
         });
-
-        if (filter === 'all') {
-          this.textContent = '全て (' + tableRows.length + ')';
-        }
       });
     });
-
-    var allBtn = document.querySelector('[data-filter="all"]');
-    if (allBtn) {
-      allBtn.textContent = '全て (' + tableRows.length + ')';
-    }
   }
+
+  // Firestoreからプレミアムデータを取得してダッシュボード初期化
+  window.loadPremiumData = async function () {
+    if (!window.firebaseDb) return;
+    try {
+      var { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
+      var db = window.firebaseDb;
+      var compSnap = await getDoc(doc(db, 'premiumContent', 'entertainment-companies'));
+      if (compSnap.exists()) {
+        companies = compSnap.data().companies || [];
+      }
+    } catch (e) {
+      console.error('Premium data load failed:', e);
+      return;
+    }
+
+    // Update company count
+    var countEl = document.getElementById('companyCount');
+    if (countEl) countEl.textContent = companies.length;
+
+    populateTable();
+    updateFilterCounts();
+    initCategoryFilter();
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initTabs();
+    initNavScroll();
+  });
 })();

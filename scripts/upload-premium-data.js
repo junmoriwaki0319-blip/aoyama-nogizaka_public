@@ -187,6 +187,36 @@ async function main() {
     }
   }
 
+  // === 広告セクター ダッシュボード ===
+  console.log('\n=== 広告セクターダッシュボードデータをアップロード中... ===');
+  const adJsonPath = path.join(basePath, 'data', 'ad-agency-companies.json');
+  if (fs.existsSync(adJsonPath)) {
+    const adCompanies = JSON.parse(fs.readFileSync(adJsonPath, 'utf8'));
+    await firestoreWrite(token, 'premiumContent', 'ad-agency-companies', {
+      companies: adCompanies,
+      count: adCompanies.length,
+      updatedAt: new Date().toISOString(),
+    });
+    console.log(`  ad-agency-companies: ${adCompanies.length}社のデータをアップロード`);
+  } else {
+    console.log('  ⚠ data/ad-agency-companies.json が見つかりません（スキップ）');
+  }
+
+  // === エンタメセクター ダッシュボード ===
+  console.log('\n=== エンタメセクターダッシュボードデータをアップロード中... ===');
+  const entJsonPath = path.join(basePath, 'data', 'entertainment-companies.json');
+  if (fs.existsSync(entJsonPath)) {
+    const entCompanies = JSON.parse(fs.readFileSync(entJsonPath, 'utf8'));
+    await firestoreWrite(token, 'premiumContent', 'entertainment-companies', {
+      companies: entCompanies,
+      count: entCompanies.length,
+      updatedAt: new Date().toISOString(),
+    });
+    console.log(`  entertainment-companies: ${entCompanies.length}社のデータをアップロード`);
+  } else {
+    console.log('  ⚠ data/entertainment-companies.json が見つかりません（スキップ）');
+  }
+
   console.log('\n=== 全データのアップロードが完了しました ===');
 }
 
