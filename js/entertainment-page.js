@@ -9,7 +9,9 @@ const CATEGORIES={console:'コンソール・PC',mobile:'モバイルゲーム',
 const CC={console:'#1a2d4f',mobile:'#2d7a4f','anime-ip':'#b53a3a',vtuber:'#9b8b6e',support:'#5a7fa8'};
 const CB={console:'badge-publisher',mobile:'badge-mobile','anime-ip':'badge-anime',vtuber:'badge-vtuber',support:'badge-tools'};
 
-let companies=[],tab='exec',selComp=null;
+if(typeof companies==='undefined')window.companies=[];
+var companies=window.companies;
+var tab='exec',selComp=null;
 const CH={};
 
 /* ── helpers ── */
@@ -345,7 +347,7 @@ window.loadPremiumData=async function(){
     var m=await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
     var db=window.firebaseDb;
     var snap=await m.getDoc(m.doc(db,'premiumContent','entertainment-companies'));
-    if(snap.exists())companies=snap.data().companies||[];
+    if(snap.exists()){companies=snap.data().companies||[];window.companies=companies;}
   }catch(e){console.error('Premium data load failed:',e);return;}
   var countEl=document.getElementById('companyCount');
   if(countEl)countEl.textContent=companies.length;

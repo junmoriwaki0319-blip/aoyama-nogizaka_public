@@ -9,7 +9,10 @@ const TIERS={Tier1:'大手総合',Tier2:'デジタル中堅',Tier3:'グロース
 const TC={Tier1:'#1a2d4f',Tier2:'#2d7a4f',Tier3:'#9b8b6e'};
 const TB={Tier1:'badge-publisher',Tier2:'badge-mobile',Tier3:'badge-anime'};
 
-let companies=[],tab='exec',selComp=null;
+// companies をグローバルスコープに公開（firebase-auth-ad-agency.js が参照するため）
+if(typeof companies==='undefined')window.companies=[];
+var companies=window.companies;
+var tab='exec',selComp=null;
 const CH={};
 
 /* ── helpers ── */
@@ -323,7 +326,7 @@ window.loadPremiumData=async function(){
     var m=await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
     var db=window.firebaseDb;
     var snap=await m.getDoc(m.doc(db,'premiumContent','ad-agency-companies'));
-    if(snap.exists())companies=snap.data().companies||[];
+    if(snap.exists()){companies=snap.data().companies||[];window.companies=companies;}
   }catch(e){console.error('Premium data load failed:',e);return;}
   var countEl=document.getElementById('companyCount');
   if(countEl)countEl.textContent=companies.length;
