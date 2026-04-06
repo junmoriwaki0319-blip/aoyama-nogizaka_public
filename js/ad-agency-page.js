@@ -1,3 +1,4 @@
+let companies = [];
 /**
  * 広告代理店セクター ダッシュボード
  * 7タブ: Executive Summary / バリュエーション / Tier分析 / M&A・再編 / 成長とリスク / 個別企業 / データソース
@@ -375,7 +376,7 @@ window.loadPremiumData=async function(){
     var m=await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
     var db=window.firebaseDb;
     var snap=await m.getDoc(m.doc(db,'premiumContent','ad-agency-companies'));
-    if(snap.exists()){companies=snap.data().companies||[];window.companies=companies;}
+    if(snap.exists()){companies=snap.data().companies||[];}
   }catch(e){console.error('Premium data load failed:',e);return;}
   var countEl=document.getElementById('companyCount');
   if(countEl)countEl.textContent=companies.length;

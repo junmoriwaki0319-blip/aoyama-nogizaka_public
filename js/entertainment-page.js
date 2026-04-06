@@ -1,3 +1,4 @@
+let companies = [];
 /**
  * ゲーム・コンテンツセクター ダッシュボード
  * 7タブ: Executive Summary / サブセクター分析 / バリュエーション / アクティビスト / 成長とリスク / 個別企業 / データソース
@@ -396,7 +397,7 @@ window.loadPremiumData=async function(){
     var m=await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
     var db=window.firebaseDb;
     var snap=await m.getDoc(m.doc(db,'premiumContent','entertainment-companies'));
-    if(snap.exists()){companies=snap.data().companies||[];window.companies=companies;}
+    if(snap.exists()){companies=snap.data().companies||[];}
   }catch(e){console.error('Premium data load failed:',e);return;}
   var countEl=document.getElementById('companyCount');
   if(countEl)countEl.textContent=companies.length;
