@@ -1,0 +1,155 @@
+/**
+ * 印刷最適化スタイルシート
+ * A4縦向き・モノクロ対応・ページ分割制御
+ */
+@media print {
+  /* ===== 基本設定 ===== */
+  @page {
+    size: A4 portrait;
+    margin: 15mm 12mm 20mm 12mm;
+  }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { font-size: 10pt; line-height: 1.6; color: #1a1a1a; background: #fff; }
+
+  /* ===== 非表示要素 ===== */
+  .site-header,
+  .nav-bar,
+  .site-footer,
+  .login-wall,
+  .modal-overlay,
+  .dl-btns,
+  .nav-auth-btns,
+  .inline-filters,
+  .filter-bar,
+  .skip-link,
+  #navUserInfo { display: none !important; }
+
+  .premium-blur { filter: none !important; pointer-events: auto !important; user-select: auto !important; }
+
+  /* ===== レポートカバー ===== */
+  .report-cover {
+    background: #1a2d4f !important;
+    padding: 30mm 15mm 20mm !important;
+    page-break-after: always;
+  }
+  .report-cover::after { display: none; }
+  .report-title { font-size: 20pt !important; }
+  .report-subtitle { font-size: 10pt !important; }
+  .report-meta { font-size: 8pt !important; }
+
+  /* ===== コンテンツエリア ===== */
+  .main { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+  .section { display: block !important; page-break-before: always; }
+  .section:first-child { page-break-before: avoid; }
+
+  /* ===== セクションヘッダー ===== */
+  .sec-header {
+    margin-bottom: 12pt !important;
+    padding-bottom: 8pt !important;
+    page-break-after: avoid;
+  }
+  .sec-num { font-size: 7pt !important; }
+  .sec-title { font-size: 14pt !important; }
+  .sec-desc { font-size: 8pt !important; }
+
+  /* ===== コメンタリー ===== */
+  .commentary {
+    font-size: 9pt !important;
+    line-height: 1.7 !important;
+    padding: 10pt 14pt !important;
+    margin-bottom: 14pt !important;
+    page-break-inside: avoid;
+    border-left-width: 2pt !important;
+    background: #f8f7f5 !important;
+  }
+  .commentary-title { font-size: 10pt !important; }
+
+  /* ===== KPIカード ===== */
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8pt !important;
+    margin-bottom: 14pt !important;
+    page-break-inside: avoid;
+  }
+  .kpi-card {
+    padding: 8pt 10pt !important;
+    border: 0.5pt solid #ccc !important;
+  }
+  .kpi-label { font-size: 6.5pt !important; }
+  .kpi-value { font-size: 12pt !important; }
+  .kpi-sub { font-size: 6pt !important; }
+
+  /* ===== チャート ===== */
+  .chart-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12pt !important;
+    margin-bottom: 14pt !important;
+    page-break-inside: avoid;
+  }
+  .chart-panel {
+    padding: 10pt !important;
+    border: 0.5pt solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  .chart-panel-title { font-size: 9pt !important; }
+  .chart-panel-sub { font-size: 7pt !important; }
+  .chart-area { height: 200pt !important; }
+  .chart-area.tall { height: 260pt !important; }
+  .chart-area.short { height: 160pt !important; }
+
+  /* ===== テーブル ===== */
+  .table-panel {
+    margin-bottom: 14pt !important;
+    page-break-inside: auto;
+    border: 0.5pt solid #ccc !important;
+  }
+  .table-header {
+    padding: 6pt 10pt !important;
+    background: #f0eee9 !important;
+  }
+  .table-header-title { font-size: 9pt !important; }
+  .table-scroll { overflow: visible !important; }
+  table { font-size: 7pt !important; }
+  thead th {
+    font-size: 6.5pt !important;
+    padding: 4pt 5pt !important;
+    background: #f0eee9 !important;
+    border-bottom: 1pt solid #999 !important;
+  }
+  td {
+    padding: 3pt 5pt !important;
+    border-bottom: 0.25pt solid #ddd !important;
+  }
+  /* ソートインジケータ非表示 */
+  thead th::after { display: none !important; }
+  thead th.sort-asc::after, thead th.sort-desc::after { display: none !important; }
+  /* クリッカブル行のカーソル無効化 */
+  .clickable-row { cursor: default !important; }
+  tr:hover td { background: transparent !important; }
+
+  /* ===== ランキングカード ===== */
+  .ranking-card {
+    padding: 8pt !important;
+    border: 0.5pt solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  .ranking-title { font-size: 8pt !important; }
+  .ranking-row { font-size: 8pt !important; }
+
+  /* ===== バッジ ===== */
+  .badge { font-size: 6pt !important; padding: 1pt 4pt !important; }
+
+  /* ===== フッター：ページ番号 ===== */
+  .section::after {
+    content: '';
+    display: block;
+    height: 0;
+  }
+
+  /* ===== 印刷用ヘッダー/フッター ===== */
+  .report-cover .report-label::after {
+    content: ' — Confidential';
+    font-size: 7pt;
+    color: rgba(255,255,255,0.4);
+  }
+}
