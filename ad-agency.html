@@ -327,7 +327,11 @@
     <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
     <div class="nav-inner" id="mainNav">
       <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
-      <div class="nav-item" data-tab="companies"><span class="nav-num">02</span>主要企業一覧</div>
+      <div class="nav-item" data-tab="valuation"><span class="nav-num">02</span>財務指標・バリュエーション</div>
+      <div class="nav-item" data-tab="tier"><span class="nav-num">03</span>Tier分析</div>
+      <div class="nav-item" data-tab="mna"><span class="nav-num">04</span>M&amp;A・業界再編</div>
+      <div class="nav-item" data-tab="growth"><span class="nav-num">05</span>成長ドライバーとリスク</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">06</span>個別企業分析</div>
       <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
@@ -335,154 +339,13 @@
 </nav>
 
 <div class="main premium-blur" id="dashboardContent">
-
-  <!-- sec-exec -->
-  <div class="section active" id="sec-exec">
-    <div class="sec-header">
-      <div class="sec-num">SECTION 01</div>
-      <div class="sec-title">Executive Summary</div>
-      <div class="sec-desc">広告代理店セクターの全体像 — 時価総額、財務指標、業界動向</div>
-    </div>
-
-    <div class="kpi-grid">
-      <div class="kpi-card c-navy"><div class="kpi-label">対象企業数</div><div class="kpi-value">120<span class="kpi-unit">社超</span></div></div>
-      <div class="kpi-card c-gold"><div class="kpi-label">時価総額合計</div><div class="kpi-value"><span id="kpiTotalMcap">—</span><span class="kpi-unit">兆円</span></div><div class="kpi-sub">対象企業合計（連結ベース）</div></div>
-      <div class="kpi-card c-green"><div class="kpi-label">平均営業利益率</div><div class="kpi-value"><span id="kpiAvgMargin">—</span><span class="kpi-unit">%</span></div><div class="kpi-sub">単純平均</div></div>
-      <div class="kpi-card c-navy"><div class="kpi-label">平均ROE</div><div class="kpi-value"><span id="kpiAvgRoe">—</span><span class="kpi-unit">%</span></div><div class="kpi-sub">単純平均</div></div>
-      <div class="kpi-card c-gold"><div class="kpi-label">デジタル広告比率</div><div class="kpi-value">48<span class="kpi-unit">%</span></div><div class="kpi-sub">総広告費中</div></div>
-      <div class="kpi-card c-red">
-        <div class="kpi-label">グロース市場比率</div>
-        <div class="kpi-value">55<span class="kpi-unit">%</span></div>
-        <div class="kpi-sub">時価総額100億円未満多数</div>
-      </div>
-    </div>
-
-    <div class="commentary">
-      <div class="commentary-title">セクター概況 (2026年3月31日基準)</div>
-      <p>対象129社の時価総額合計は約4.6兆円(※本ダッシュボード掲載企業の単純合算。電通G・博報堂DY等は広告以外の事業を含む連結時価総額)。日本の広告市場は2025年に約7.7兆円(電通「日本の広告費」)に達し、インターネット広告が全体の約48%を占めるまでに成長。従来型マス広告からデジタルへのシフトが不可逆的に進行する中、業界構造そのものが大きく変容している。</p>
-    </div>
-
-    <div class="commentary info">
-      <div class="commentary-title">M&Aによる業界再編の加速</div>
-      <p><strong>(1) 電通グループ(4324)</strong>は2025年12月期に最終赤字3,276億円(過去最大)を計上。2013年の英イージス買収(約4,000億円)以降の海外M&A戦略が裏目に出た形で、米州事業だけで約3,000億円の減損損失を計上。五十嵐社長が退任し、佐野傑氏が後任。海外事業の一部売却・撤退を検討中。約3,400人の削減で2027年12月期に約520億円のコスト削減目標。一方、国内事業(電通ジャパン)は営業利益率20%台半ばと絶好調で「国内回帰」色が鮮明。</p>
-      <p><strong>(2) 博報堂DYホールディングス(2433)</strong>は2025年9月にデジタルホールディングス(オプト親会社)を約270億円でTOBし完全子会社化(2026年3月非上場化完了)。デジタルマーケティング領域でのNo.1ポジション獲得を目指す「テレビ×デジタル」統合提案の強化が狙い。</p>
-      <p><strong>(3) NTTドコモ</strong>がCARTA HOLDINGS(電通グループ傘下)をTOBで子会社化(約249億円)。2026年1月にドコモの連結子会社化が完了し、CARTA HDは上場廃止。D2C(ドコモ・電通・NTTアド共同出資)もCARTA完全子会社に統合。通信×広告テクノロジーの融合を志向。</p>
-      <p><strong>(4) ADKホールディングス</strong>は、2017年にベインキャピタルが約1,500億円で買収・非公開化した後、再上場は実現せず、2025年に韓国クラフトン(PUBG開発元)へ約750億円で売却。注目すべきは、クラフトンの狙いが単なる広告事業ではなく、ADKが300本超のアニメ製作委員会参加で蓄積したIP(知的財産)ビジネスのノウハウにある点。2026年Q4に第1弾共同IPのアニメ配信+ゲームリリースを世界同時展開予定。広告の枠を超えた「IP×コンテンツ」型の垂直統合として象徴的な案件。</p>
-    </div>
-
-    <div class="commentary" style="border-left-color: var(--gold);">
-      <div class="commentary-title">垂直・水平統合 ― 広告の枠を超える動き</div>
-      <p>広告代理店のM&Aは同業間の統合にとどまらず、より上流(戦略コンサルティング)や隣接領域(IP・コンテンツ、通信、テクノロジー)への拡張が進む。</p>
-      <p>・電通グループはドリームインキュベータ(4310)を持分法適用会社化(出資比率約24%)し、電通総研との業務提携を通じてBX(ビジネストランスフォーメーション)領域を強化。広告→戦略コンサルティングへの上流進出を図る。</p>
-      <p>・前述のクラフトン×ADKは「ゲームIP×広告×アニメ」の垂直統合型。</p>
-      <p>・NTTドコモ×CARTAは「通信×広告テクノロジー」の水平統合型。</p>
-      <p>・博報堂DY×デジタルHDは「マス広告×デジタル専業」の同業統合型。</p>
-    </div>
-
-    <div class="commentary navy">
-      <div class="commentary-title">グループ再編 ― 取り込みと切り離しの対照的な動き</div>
-      <p>電通グループ傘下のCARTA HOLDINGSがNTTドコモへの「切り離し」(連結子会社ではなく合弁化→ドコモ主導に)となった一方、博報堂DYのデジタルHD子会社化は典型的な「取り込み」。この対照的な動きは、大手グループがデジタル広告子会社の最適な保有形態を模索していることを示す。</p>
-      <p><strong>博報堂DYの親子上場解消の先行事例：</strong>博報堂DYは業界に先駆けて積極的にグループ内の親子上場を整理してきた。D.A.コンソーシアムホールディングス(DAC+アイレップの持株会社)の完全子会社化(2018年)、ソウルドアウト(6553)のTOBによる完全子会社化(2022年、約107億円)、そして前述のデジタルホールディングスの完全子会社化(2025年、約270億円)と、段階的にデジタル広告子会社を取り込んできた。2024年4月にはDAC+アイレップを統合し新会社「Hakuhodo DY ONE」を設立、グループの「デジタルコア」として集約。一方、ユナイテッド(2497)については2025年5月に博報堂DYが親会社に該当しなくなる形で親子上場関係を解消しており、「取り込み」と「独立化」を戦略的に使い分けている。</p>
-      <p><strong>電通グループ側の親子上場解消候補：</strong></p>
-      <p>・セプテーニ・ホールディングス(4293/東S) ― 電通グループが筆頭株主。東証の親子上場解消要請やアクティビスト圧力を受け、TOBによる完全子会社化の可能性が取り沙汰される。業績好調なうちに取り込む判断も考えられる。</p>
-      <p>・電通総研(4812/東P、旧ISID) ― 電通グループ傘下のIT/コンサルティング会社。連結売上高1,526億円、従業員4,413名。親子上場解消の有力候補。</p>
-      <p>・ドリームインキュベータ(4310/東P) ― 現在は持分法適用(出資比率約24%)だが、出資比率引き上げ→完全子会社化の可能性も。</p>
-      <p>博報堂DYが既に親子上場をほぼ整理済みであるのに対し、電通グループには上記の未解消案件が複数残る。2025～2026年にかけて電通側のアクションが注目される。</p>
-    </div>
-
-    <div class="commentary success">
-      <div class="commentary-title">中小型株の注目動向 ― ロールアップ・成果報酬型の新興勢力</div>
-      <p>グロース市場に上場する中小型広告関連企業では、M&Aを成長ドライバーとするロールアップ型や、成果報酬モデルで差別化を図る企業が注目される。グロース市場の上場維持基準が時価総額100億円以上に引き上げられる中（5年経過後適用）、約7割の企業が基準未達のリスクを抱えており、業界内でのロールアップM&Aが加速する構造的な背景がある。</p>
-      <p><strong>Macbee Planet(7095/東P):</strong> LTVマーケティングを軸とした成果報酬型モデルで急成長。2023年にネットマーケティング(Omiai事業分離後)を完全子会社化し「All Ads」に改称、2025年にはSNS運用のMOJAを買収。持株会社体制に移行し、数十億円規模のM&Aも視野に入れる。成果報酬型市場（現在約3,000億円→2030年に9,000億円へ成長見込み）のリーディングカンパニー。</p>
-      <p><strong>ジーニー(6562/東G):</strong> SSP/DSPを軸に積極的なM&Aでグローバル展開。2023年に米国Zelto(SSP事業)を67億円で子会社化、2022年にはCATS(効果計測)を買収。2024年にはソーシャルワイヤーを子会社化しデジタルPRセグメントを新設。グロース市場上場企業としては異例の大型買収を実行し、海外売上比率を大幅に向上させた。マーケティングSaaS×広告プラットフォームのワンストップ提供を目指す。</p>
-      <p><strong>AViC(9554/東G):</strong> 大手ネット専業代理店出身者が2018年に設立、2022年上場。FACTの株式交換による子会社化(2023年)に加え、ADK Marketing Solutionsとの合弁会社「ADK AViC Performance Design」を設立(2024年)。売上高26.8億円(前期比+38.6%)と急成長中。</p>
-      <p><strong>その他の注目企業:</strong> デジタリフト(9244/東G、フリークアウトHD持分法適用)は運用型広告の独立系として成長中。AnyMind Group(5027/東G)はアジア13市場でインフルエンサー×広告×EC支援を展開。トリドリ(9337/東G)はインフルエンサーマーケティングプラットフォーム「toridori」で急成長。</p>
-    </div>
-
-    <div class="commentary danger">
-      <div class="commentary-title">大手の海外展開は苦戦</div>
-      <p>電通の海外M&A失敗(イージス買収以降の減損累計5,000億円超)が象徴的。博報堂DYも海外19ヶ国・100超のオフィスを展開するもののトップライン成長は鈍化(上期5.5%減収)。グローバル広告市場ではWPP、Publicis、Omnicomなどの欧米メガエージェンシーが圧倒的で、日本勢の存在感は限定的。電通は「国内回帰」路線を鮮明にしており、海外事業の売却・縮小が2026年の焦点。</p>
-    </div>
-
-    <div class="commentary" style="border-left-color: var(--gold);">
-      <div class="commentary-title">成長ドライバー</div>
-      <p><strong>(1) AI活用:</strong> 博報堂DYが広告プラン提案をAIで自動化(数日→数十分)。サイバーエージェントのAIクリエイティブ生成。Appier Group(4180)のAI広告最適化プラットフォーム。</p>
-      <p><strong>(2) デジタルネイティブ企業:</strong> サイバーエージェントはABEMAの黒字化に成功、メディア&IP事業が大幅増益。</p>
-      <p><strong>(3) 専門特化型の中小型株:</strong> インフルエンサーマーケティング(トリドリ, THECOO, サイバー・バズ)、リテールメディア(ウネリー)、位置情報広告(ジオロケーションテクノロジー)等が成長加速。</p>
-    </div>
-
-    <div class="commentary danger">
-      <div class="commentary-title">リスク要因</div>
-      <p><strong>(1) AI Overviewsによる検索インターフェイスの変革:</strong> GoogleのAI Overviews(AIO)表示時、オーガニック検索のCTR(クリック率)が最大58%低下(Ahrefs調査)。リスティング広告のCTRも被引用なしで78.4%減少(2025年Q3)。検索連動型広告を主力とするネット代理店のビジネスモデルを根本から脅かす。AIO(AI最適化)やLLMO(大規模言語モデル最適化)への対応が急務。</p>
-      <p><strong>(2) プラットフォーマー依存とMCP(Model Context Protocol)の影響:</strong> Google/Meta等のプラットフォーマーへの依存度が高い中、MCPのような技術により、個別媒体を「面」で抑える従来の代理店モデルの価値が薄れつつある。顧客データやテクノロジーを起点とした横断的なメディアプランニングへの転換が求められる。</p>
-      <p><strong>(3) 広告主のインハウス化:</strong> 大手広告主がデジタル広告運用を内製化する動きが加速。代理店のバイイングパワーだけでは差別化が困難に。</p>
-      <p><strong>(4) AI自動化による中小代理店の存在意義の希薄化:</strong> 広告クリエイティブの自動生成、運用の自動最適化が進むことで、「人手による運用」を付加価値としてきた中小代理店のビジネスモデルが脅かされる。</p>
-    </div>
-
-    <div class="commentary" style="border-left-color: var(--navy);">
-      <div class="commentary-title" style="font-weight: 700;">企業選別の提言</div>
-      <p><strong>投資観点では、(1)M&A・グループ再編によるバリューアップ余地(親子上場解消候補含む)、(2)AI・テクノロジーを活用したビジネスモデル転換力、(3)プラットフォーマー依存脱却と独自データ資産の構築 の3軸を重視。特に時価総額100億円以下のグロース市場銘柄には、ロールアップ型M&Aのターゲットとなる可能性も含め、注目すべき企業が多い。</strong></p>
-    </div>
-  </div>
-
-  <!-- sec-companies -->
-  <div class="section" id="sec-companies">
-    <div class="sec-header">
-      <div class="sec-num">SECTION 02</div>
-      <div class="sec-title">主要企業一覧</div>
-      <div class="sec-desc">120社超の広告関連企業 — 時価総額、営業利益率、ROE、成長率</div>
-    </div>
-
-    <div class="chart-row single">
-      <div class="chart-panel">
-        <div class="chart-panel-title">時価総額ランキング Top 30</div>
-        <div class="chart-panel-sub">広告関連上場企業（連結時価総額、2026年3月31日基準）</div>
-        <div class="chart-area tall">
-          <canvas id="marketCapChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div class="table-panel">
-      <div class="table-header">
-        <div class="table-header-title">広告関連企業一覧</div>
-      </div>
-      <div class="table-scroll">
-        <table id="companiesTable">
-          <thead>
-            <tr>
-              <th>順位</th>
-              <th>企業名</th>
-              <th>コード</th>
-              <th>市場</th>
-              <th>時価総額(億円)</th>
-              <th>営業利益率(%)</th>
-              <th>ROE(%)</th>
-              <th>Tier</th>
-            </tr>
-          </thead>
-          <tbody id="companiesTableBody">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- sec-source -->
-  <div class="section" id="sec-source">
-    <div class="sec-header">
-      <div class="sec-num">APPENDIX</div>
-      <div class="sec-title">データソース</div>
-      <div class="sec-desc">本レポートで使用したデータの出所・基準日</div>
-    </div>
-
-    <div class="commentary">
-      <div class="commentary-title">データソース・免責事項</div>
-      <p>本レポートは各社IR開示情報（有価証券報告書・決算短信・決算説明会資料）、電通「日本の広告費」、各種報道等に基づき作成しています。時価総額は2026年3月31日終値基準。財務データは直近開示の通期決算に基づく推計値を含みます。</p>
-      <p>本レポートは情報提供を目的としたものであり、特定の金融商品の売買を推奨するものではありません。投資判断はご自身の責任においてお願いいたします。</p>
-    </div>
-  </div>
-
+  <div class="section active" id="sec-exec"></div>
+  <div class="section" id="sec-valuation"></div>
+  <div class="section" id="sec-tier"></div>
+  <div class="section" id="sec-mna"></div>
+  <div class="section" id="sec-growth"></div>
+  <div class="section" id="sec-detail"></div>
+  <div class="section" id="sec-source"></div>
 </div>
 
 <div id="loginWall" class="login-wall">
