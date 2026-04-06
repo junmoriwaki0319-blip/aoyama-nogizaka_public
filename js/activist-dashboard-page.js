@@ -40,6 +40,7 @@ async function loadData() {
   }
   // reports が空なら空配列を保証
   if (!reportData.reports) reportData.reports = [];
+  reportData.reports = sanitizeReports(reportData.reports);
   if (!reportData.activists) reportData.activists = {};
   // known_activists.json を読み込み
   try {
