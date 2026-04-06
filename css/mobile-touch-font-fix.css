@@ -1,10 +1,12 @@
 /* =============================================================
-   aoyama-nogizaka.com モバイル最適化パッチ v3
-   日付: 2026-04-02
+   aoyama-nogizaka.com モバイル最適化パッチ v4
+   日付: 2026-04-06
    対象: 全ページ共通 + activist-dashboard + activist-screener
          + food-service + saas + ad-agency + entertainment + risk-assessment
 
    変更履歴:
+   v4 (2026-04-06) - 14px未満フォント全面排除、375pxクエリのサイズダウン廃止、
+                      タッチターゲット全要素44px強制、セクション1/9/10の13px→14px一斉修正
    v3 (2026-04-02) - Chrome実機検証に基づくフォントサイズ・タッチターゲット修正、
                       overflow-x: visible問題修正、インラインCSS競合解消
    v2 (2026-04-01) - 間延び問題修正、セクション余白圧縮、
@@ -254,7 +256,7 @@
   }
 
   .stat-label {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 }
 
@@ -285,7 +287,7 @@
   }
 
   .card-header h2 {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .card-body,
@@ -499,9 +501,9 @@
 
   /* テーブル内要素 */
   td, th {
-    font-size: 13px !important;
+    font-size: 14px !important;
     min-height: 44px;
-    padding: 12px 10px;
+    padding: 12px 8px;
   }
 
   /* 汎用テキスト要素: !important で既存の詳細度の高いルールを上書き */
@@ -512,12 +514,12 @@
 
   /* ダッシュボード固有: 小フォントクラスの上書き */
   .nav-logo-jp {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .data-source,
   .data-source span {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .page-header-inner p,
@@ -534,29 +536,31 @@
   /* アクティビスト一覧カード内 */
   .ac-stock-item span,
   .ac-stock-item a {
-    font-size: 13px !important;
+    font-size: 14px !important;
     line-height: 1.4;
   }
 
   .activist-type {
-    font-size: 11px !important;  /* バッジ: 小さめOK */
+    font-size: 12px !important;  /* バッジ: 装飾的要素のため12px許容 */
   }
 
   /* スクリーナー固有 */
   .rank-view-tab {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* nav auth buttons */
   .nav-auth-btns a {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* 10px以下の要素は絶対に12px以上に引き上げ */
   [class*="icon"],
   [class*="badge"],
   [class*="tag"] {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 }
 
@@ -827,9 +831,9 @@
   .category-tag {
     min-height: 44px !important;
     padding: 10px 14px !important;
-    font-size: 13px !important;
-    display: inline-flex;
-    align-items: center;
+    font-size: 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   /* フィルター/リセットボタン */
@@ -844,21 +848,21 @@
   .sort-select {
     min-height: 44px !important;
     padding: 10px 12px !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   /* (2) タブ切替ボタン: padding拡大 */
   .tab-nav .tab-btn {
     padding: 14px 18px !important;
     min-height: 44px !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   /* (3) CSV/PDFボタン */
   .export-btn {
     min-height: 44px !important;
     padding: 10px 16px !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .export-btn svg {
@@ -868,13 +872,13 @@
 
   /* (4) 報告カードの「原文」リンク(edinet-link)のタップ領域拡大 */
   .edinet-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding: 8px !important;
     min-height: 44px !important;
     min-width: 44px !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
     text-align: center;
     border-radius: 4px;
     background: rgba(41, 128, 185, 0.08);
@@ -884,14 +888,14 @@
   .ranking-filter-btn {
     min-height: 44px !important;
     padding: 10px 16px !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
-  /* (4c) テーブル内リンク: 行高制約あり妥協36px */
+  /* (4c) テーブル内リンク: 44px保証 */
   td a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 36px;
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
     padding: 4px 2px;
   }
 
@@ -923,48 +927,48 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  /* 汎用テキスト要素 */
-  p, li, span, label, a {
+  /* 汎用テキスト要素 — 全テキストノード14px以上を保証 */
+  p, li, span, label, a, div, td, th, button, input, select, textarea {
     font-size: max(14px, inherit) !important;
     line-height: 1.5;
   }
 
   /* === activist-dashboard 固有 === */
 
-  /* サブナビゲーション */
+  /* サブナビゲーション — カテゴリラベルのみ12px許容 */
   .dash-subnav-cat {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 
   .dash-subnav-link {
     font-size: 14px !important;
     padding: 12px 14px !important;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
-  /* テーブルヘッダー: 11px → 13px */
+  /* テーブルヘッダー: 14px */
   .activist-table th,
   th {
-    font-size: 13px !important;
-    padding: 12px 10px !important;
+    font-size: 14px !important;
+    padding: 12px 8px !important;
   }
 
-  /* テーブルセル: 13px → 14px */
+  /* テーブルセル: 14px */
   .activist-table td,
   td {
     font-size: 14px !important;
     line-height: 1.5 !important;
-    padding: 14px 10px !important;
+    padding: 14px 8px !important;
   }
 
   /* 日付セル */
   .date-cell {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
-  /* バッジ系（小さめOKだが最低12px） */
+  /* バッジ系 — 最低12px（装飾的要素のため） */
   .activist-type {
     font-size: 12px !important;
     padding: 3px 10px !important;
@@ -974,57 +978,74 @@
     font-size: 11px !important;
   }
 
+  .member-badge {
+    font-size: 12px !important;
+  }
+
   /* カテゴリータグ */
   .category-tag {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   /* タブボタン */
   .tab-btn {
     font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* フィルター系 */
   .filter-label {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .filter-select,
   .filter-input,
   .sort-select {
     font-size: 16px !important; /* iOS Safariズーム防止 */
+    min-height: 44px !important;
   }
 
   .filter-checkbox {
     font-size: 14px !important;
+    min-height: 44px !important;
+  }
+
+  .filter-checkbox input[type="checkbox"] {
+    width: 22px !important;
+    height: 22px !important;
   }
 
   .btn-filter {
     font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   .btn-reset {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* サイドバーカード */
   .sidebar-card h3 {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   /* ページヘッダー */
   .page-header-label {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .data-source,
   .data-source span {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* 統計バー */
   .stat-label {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* 投資家カード */
@@ -1033,11 +1054,11 @@
   }
 
   .ac-meta {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .ac-section-title {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .ac-stock-item,
@@ -1048,7 +1069,7 @@
 
   /* タイムライン */
   .timeline-date {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .timeline-title {
@@ -1060,17 +1081,23 @@
   }
 
   .timeline-tag {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* EDINET原文リンク */
   .edinet-link {
     font-size: 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 8px !important;
   }
 
   /* ログインウォール */
   .plan-features h4 {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .plan-features li {
@@ -1079,6 +1106,7 @@
 
   .btn-cta-login {
     font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* === food-service / saas / ad-agency (セクターレポート共通) === */
@@ -1093,7 +1121,7 @@
   }
 
   .sec-num {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 
   /* チャートパネル */
@@ -1102,7 +1130,7 @@
   }
 
   .chart-panel-sub {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* テーブルヘッダー/テーブルセル (レポート内) */
@@ -1111,7 +1139,7 @@
   }
 
   table th {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   table td {
@@ -1120,7 +1148,7 @@
 
   /* KPIカード */
   .kpi-label {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .kpi-value {
@@ -1128,11 +1156,11 @@
   }
 
   .kpi-unit {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 
   .kpi-sub {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* コメンタリー */
@@ -1143,31 +1171,35 @@
 
   /* ヒートマップ */
   .heatmap-table td {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* クロスナビゲーション（セクター共通ヘッダー） */
   .cross-nav-cat {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 
   .cross-nav-link {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   /* ナビ認証ボタン */
   .btn-login,
   .btn-register {
-    font-size: 13px !important;
+    font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   /* レポートカバー */
   .report-label {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .report-meta {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   /* フッター */
@@ -1177,14 +1209,15 @@
 
   .footer-nav a {
     font-size: 14px !important;
+    min-height: 44px !important;
   }
 
   .footer-address {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   .footer-copy {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   /* モーダル内フォーム */
@@ -1202,40 +1235,56 @@
   }
 }
 
-/* iPhone SE (375px) 向け微調整 */
+/* iPhone SE (375px) 向け微調整 — パディング圧縮のみ、フォント14px以上を維持 */
 @media (max-width: 375px) {
   table td {
-    font-size: 13px !important;
-    padding: 10px 8px !important;
+    font-size: 14px !important;
+    padding: 10px 6px !important;
+    line-height: 1.4 !important;
   }
 
   table th {
-    font-size: 12px !important;
-    padding: 10px 8px !important;
+    font-size: 13px !important;
+    padding: 10px 6px !important;
   }
 
   .activist-table td {
-    font-size: 13px !important;
-    padding: 12px 8px !important;
+    font-size: 14px !important;
+    padding: 10px 6px !important;
   }
 
   .activist-table th {
-    font-size: 12px !important;
-    padding: 10px 8px !important;
+    font-size: 13px !important;
+    padding: 10px 6px !important;
   }
 
   .dash-subnav-link {
-    font-size: 13px !important;
+    font-size: 14px !important;
     padding: 10px 10px !important;
+    min-height: 44px !important;
   }
 
   .tab-btn {
-    font-size: 13px !important;
-    padding: 12px 12px !important;
+    font-size: 14px !important;
+    padding: 12px 10px !important;
+    min-height: 44px !important;
   }
 
   .filter-select,
   .filter-input {
     font-size: 16px !important;
+    min-height: 44px !important;
+  }
+
+  .sort-select {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+
+  .category-tag {
+    font-size: 14px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 }
