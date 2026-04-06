@@ -370,17 +370,17 @@ function initNav(){
 }
 
 /* ── Firestore integration ── */
-window.loadPremiumData=async function(){
+window.loadPremiumData=async function(){console.log("[DEBUG] loadPremiumData called, firebaseDb:",!!window.firebaseDb);
   if(!window.firebaseDb)return;
   try{
     var m=await import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js');
     var db=window.firebaseDb;
     var snap=await m.getDoc(m.doc(db,'premiumContent','ad-agency-companies'));
-    if(snap.exists()){companies=snap.data().companies||[];}
+    if(snap.exists()){companies=snap.data().companies||[];console.log("[DEBUG] companies loaded:",companies.length);}else{console.log("[DEBUG] snap does not exist");}
   }catch(e){console.error('Premium data load failed:',e);return;}
   var countEl=document.getElementById('companyCount');
   if(countEl)countEl.textContent=companies.length;
-  initNav();render();
+  console.log("[DEBUG] calling render, companies:",companies.length);initNav();render();
 };
 
 
