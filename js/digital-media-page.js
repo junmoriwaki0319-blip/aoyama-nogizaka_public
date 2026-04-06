@@ -98,7 +98,6 @@ function rExec(){
       'メディア企業は<strong>「コンテンツを作る側」から「IP資産を運用する側」</strong>へポジションを転換し、'+
       '海外パートナーとの共同製作・ライセンス・M&Aの座組を経営戦略の中核に据えるべき。'+
     '</div>'+
-    (companyNotes[c.ticker]?'<div class="commentary" style="margin-bottom:16px;font-size:0.82rem;">'+companyNotes[c.ticker]+'</div>':'')+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','8カテゴリ','c-navy')+
       kpi('時価総額合計',fmtM(tm),'','c-navy')+

@@ -92,7 +92,6 @@ function rExec(){
       'ANYCOLOR（営業利益率37.2%）やカバーの急成長は、従来のゲーム企業が取り込めていなかった「コンテンツ消費のソーシャル化」を体現。'+
       'ゲーム×VTuberのコラボマーケティングを超え、<strong>IPの共創・ファンコミュニティの資産化</strong>まで踏み込んだパートナーシップ設計が中期的な競争優位となる。'+
     '</div>'+
-    (companyNotes[c.ticker]?'<div class="commentary" style="margin-bottom:16px;font-size:0.82rem;">'+companyNotes[c.ticker]+'</div>':'')+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','5カテゴリ','c-navy')+
       kpi('時価総額合計',fmtM(tm),'','c-navy')+

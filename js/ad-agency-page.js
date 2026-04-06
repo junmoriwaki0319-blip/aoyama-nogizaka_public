@@ -95,7 +95,6 @@ function rExec(){
       '一方でAViC(9554)のADKとの合弁やAnyMind Groupのアジア特化など、<strong>ニッチ×テクノロジー型の海外展開</strong>は成果を上げている。'+
       '海外戦略は「全方位展開」から「強みのある領域×地域への集中」へ転換すべき。'+
     '</div>'+
-    (companyNotes[c.ticker]?'<div class="commentary" style="margin-bottom:16px;font-size:0.82rem;">'+companyNotes[c.ticker]+'</div>':'')+
     '<div class="kpi-grid">'+
       kpi('対象企業数',companies.length+'社','Tier1:'+t1+' / Tier2:'+t2+' / Tier3:'+t3,'c-navy')+
       kpi('時価総額合計',fmtM(tm),'','c-navy')+
