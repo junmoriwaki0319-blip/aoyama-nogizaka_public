@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"></script>
+  <script src="/js/gtag.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="エンターテインメント・ゲームセクター分析レポート | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
+  <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/entertainment-sector-dashboard">
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "エンターテインメント・ゲームセクター分析レポート",
+    "description": "日本上場エンターテインメント・ゲーム企業の大量保有報告分析。ゲーム開発、モバイルゲーム、アニメIP、VTuber等を網羅。",
+    "url": "https://aoyama-nogizaka.com/entertainment-sector-dashboard",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "provider": {
+      "@type": "Organization",
+      "name": "青山乃木坂パートナーズ",
+      "url": "https://aoyama-nogizaka.com"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
+    :root {
+      --navy: #1a2d4f; --navy-dark: #0f1a30; --navy-light: #2a4470;
+      --gold: #9b8b6e; --gold-light: #c8b99a; --gold-dim: #7a6d55;
+      --bg: #ffffff; --bg-alt: #f8f7f5; --bg-warm: #f0eee9;
+      --text: #1a1a1a; --text-mid: #444444; --text-muted: #777777; --text-light: #999999;
+      --border: #e0ddd6; --border-light: #eae7e1;
+      --green: #2d7a4f; --red: #b53a3a;
+      --radius: 4px; --radius-lg: 8px;
+    }
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 13.5px; }
+    .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
+    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
+    .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 40px 48px 32px; position: relative; }
+    .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
+    .report-label { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+    .report-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.4; }
+    .report-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+    .report-meta { display: flex; gap: 36px; flex-wrap: wrap; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+    .report-meta strong { color: rgba(255,255,255,0.7); }
+    .nav-bar { background: var(--bg-alt); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 48px; }
+    .nav-wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; position: relative; }
+    .nav-inner { display: flex; overflow-x: auto; flex: 1; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-scroll-btn { background: linear-gradient(90deg, var(--bg-alt) 60%, transparent); border: none; color: var(--text-muted); cursor: pointer; padding: 10px 6px; font-size: 1rem; z-index: 2; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-scroll-btn:hover { color: var(--navy); }
+    .nav-scroll-btn.right { background: linear-gradient(270deg, var(--bg-alt) 60%, transparent); }
+    .nav-scroll-btn.hidden { opacity: 0; pointer-events: none; }
+    .nav-item { padding: 13px 22px; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.3px; }
+    .nav-item:hover { color: var(--text); }
+    .nav-item.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
+    .nav-item .nav-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.65rem; color: var(--gold); margin-right: 6px; font-weight: 700; }
+    .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .sec-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.68rem; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+    .sec-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .sec-desc { font-size: 0.82rem; color: var(--text-muted); }
+    .commentary { background: var(--bg-alt); border-left: 3px solid var(--gold); padding: 18px 24px; margin-bottom: 32px; font-size: 0.85rem; color: var(--text-mid); line-height: 1.9; }
+    .commentary strong { color: var(--navy); font-weight: 600; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 32px; }
+    .kpi-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 16px 18px; position: relative; }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; }
+    .kpi-card.c-navy::before { background: var(--navy); }
+    .kpi-card.c-gold::before { background: var(--gold); }
+    .kpi-card.c-green::before { background: var(--green); }
+    .kpi-card.c-red::before { background: var(--red); }
+    .kpi-label { font-size: 0.68rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .kpi-value { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .kpi-unit { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
+    .kpi-sub { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; }
+    .v-green { color: var(--green); } .v-red { color: var(--red); } .v-gold { color: var(--gold-dim); } .v-navy { color: var(--navy); }
+    .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .chart-row.single { grid-template-columns: 1fr; }
+    .chart-row.tri { grid-template-columns: 1fr 1fr 1fr; }
+    .chart-panel { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px; }
+    .chart-panel-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .chart-panel-sub { font-size: 0.7rem; color: var(--text-light); margin-bottom: 16px; }
+    .chart-area { position: relative; height: 320px; }
+    .chart-area.tall { height: 420px; }
+    .chart-area.short { height: 260px; }
+    .table-panel { border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 32px; }
+    .table-header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--bg-alt); display: flex; justify-content: space-between; align-items: center; }
+    .table-header-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead th { background: var(--bg-warm); color: var(--text-muted); font-weight: 600; text-align: right; padding: 9px 10px; white-space: nowrap; border-bottom: 2px solid var(--border); font-size: 0.7rem; letter-spacing: 0.2px; cursor: pointer; user-select: none; }
+    thead th:first-child, thead th:nth-child(2) { text-align: left; }
+    thead th:hover { color: var(--navy); }
+    thead th.sort-asc::after { content: ' ▲'; font-size: 0.55rem; color: var(--gold); }
+    thead th.sort-desc::after { content: ' ▼'; font-size: 0.55rem; color: var(--gold); }
+    td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); text-align: right; white-space: nowrap; }
+    td:first-child, td:nth-child(2) { text-align: left; }
+    tr:hover td { background: rgba(155,139,110,0.04); }
+    .pos { color: var(--green); } .neg { color: var(--red); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 600; }
+    .badge-publisher { background: rgba(26,45,79,0.08); color: var(--navy); }
+    .badge-mobile { background: rgba(155,139,110,0.1); color: var(--gold-dim); }
+    .badge-anime { background: rgba(45,122,79,0.08); color: var(--green); }
+    .badge-vtuber { background: rgba(100,100,180,0.08); color: #5555aa; }
+    .badge-esports { background: rgba(181,58,58,0.08); color: var(--red); }
+    .badge-tools { background: rgba(100,100,100,0.08); color: #666; }
+    .ranking-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
+    .ranking-title { font-size: 0.72rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .ranking-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 3px 0; }
+    .ranking-num { display: inline-block; width: 20px; font-weight: 700; color: var(--gold); font-family: 'Cormorant Garamond', Georgia, serif; }
+    .row-hl td { background: rgba(155,139,110,0.08); }
+    .clickable-row { cursor: pointer; }
+    .chip-wrap { margin-bottom: 20px; }
+    .chip-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .chip-select { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500; background: var(--bg-alt); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all 0.15s; user-select: none; }
+    .chip:hover { border-color: var(--gold-light); color: var(--text); }
+    .chip.selected { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .inline-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+    .f-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+    select, input[type="text"] { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: var(--radius); font-size: 0.8rem; font-family: inherit; outline: none; }
+    select:focus, input:focus { border-color: var(--gold); }
+    .heatmap-table td { text-align: center; font-weight: 600; font-size: 0.72rem; padding: 7px 5px; min-width: 50px; }
+    .heatmap-table td:first-child { text-align: left; min-width: 130px; font-weight: 500; }
+    .kpi-tree { padding: 20px; }
+    .tree-container { text-align: center; }
+    .tree-level { display: flex; justify-content: center; gap: 16px; margin: 8px 0; flex-wrap: wrap; }
+    .tree-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+    .tree-branch { display: flex; flex-direction: column; align-items: center; min-width: 140px; }
+    .tree-h-line { height: 2px; background: var(--border); }
+    .kpi-tree-node { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px 16px; margin: 4px 0; display: inline-block; }
+    .kpi-tree-node.root { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .kpi-tree-node .node-label { font-size: 0.72rem; color: var(--text-light); }
+    .kpi-tree-node .node-value { font-size: 1.1rem; font-weight: 700; }
+    .kpi-tree-node.root .node-label { color: var(--gold-light); }
+    .kpi-tree-node.root .node-value { color: #fff; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .cross-nav { display: flex; align-items: center; gap: 6px; }
+    .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
+    .cross-nav-link { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: all 0.15s; }
+    .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
+    .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
+    .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius); font-family: inherit; }
+    .btn-login:hover { border-color: var(--gold-light); color: #fff; }
+    .btn-register { background: var(--gold); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius); font-family: inherit; transition: all 0.2s; }
+    .btn-register:hover { background: var(--gold-dim); }
+    #navUserInfo { color: #fff; font-size: 0.78rem; }
+    #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
+    #navUserInfo button:hover { color: #fff; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+    .modal .form-group { margin-bottom: 16px; }
+    .modal .form-group label { display: block; font-size: 0.78rem; color: var(--text-mid); margin-bottom: 4px; font-weight: 500; }
+    .modal .form-group input, .modal .form-group select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: inherit; }
+    .modal .form-group input:focus, .modal .form-group select:focus { border-color: var(--gold); outline: none; }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-top: 8px; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .btn-google { width: 100%; padding: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-google:hover { background: var(--bg-alt); }
+    .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
+    .modal-footer span[data-auth-action] { color: var(--navy); font-weight: 600; text-decoration: underline; }
+    .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+    .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
+    .login-wall h3 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
+    .login-wall .btn-cta:hover { background: var(--gold-dim); }
+    .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
+    .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold-light); font-size: 0.9rem; }
+    .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: 8px 18px; border-radius: var(--radius);
+      font-size: 0.75rem; font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
+    .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
+    /* Entertainment-specific styles */
+    .commentary-block { background: var(--bg-alt); border-left: 4px solid var(--gold); padding: 18px 24px; margin-bottom: 24px; border-radius: 0 var(--radius-lg) var(--radius-lg) 0; transition: box-shadow 0.2s; }
+    .commentary-block:hover { box-shadow: 0 4px 16px rgba(26,45,79,0.08); }
+    .commentary-number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem; color: var(--gold); font-weight: 600; min-width: 2ch; margin-right: 8px; }
+    .commentary-body p { font-size: 0.85rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 8px; }
+    .commentary-body p:last-child { margin-bottom: 0; }
+    .commentary-body a { color: var(--gold-dim); text-decoration: underline; }
+    .commentary-body a:hover { color: var(--navy); }
+    .proposal-links { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light); }
+    .proposal-links-title { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .proposal-list { list-style: none; padding: 0; margin: 0; }
+    .proposal-list li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.78rem; line-height: 1.6; padding: 4px 0; }
+    .proposal-company { font-weight: 600; color: var(--navy); min-width: 130px; }
+    .proposal-activist { color: var(--text-muted); min-width: 170px; }
+    .proposal-link { color: var(--gold-dim); text-decoration: none; font-weight: 500; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .proposal-link:hover { border-bottom-color: var(--gold); }
+    .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .filter-btn { padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500; background: var(--bg-alt); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all 0.15s; user-select: none; }
+    .filter-btn:hover { border-color: var(--gold-light); color: var(--text); }
+    .filter-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .company-name { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    .cap { font-weight: 500; white-space: nowrap; }
+    .commentary.info { border-left-color: #1976d2; }
+    .commentary.success { border-left-color: var(--green); }
+    .commentary.danger { border-left-color: var(--red); }
+    .commentary.navy { border-left-color: var(--navy); }
+    .commentary-title { font-weight: 700; color: var(--navy); margin-bottom: 8px; font-size: 0.95rem; }
+    @media print { .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
+    @media (max-width: 900px) {
+      .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 20px; padding-right: 20px; }
+      .chart-row, .chart-row.tri { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .header-right { gap: 10px; }
+      .cross-nav { display: none; }
+      .nav-auth-btns { gap: 6px; }
+      .btn-login, .btn-register { font-size: 0.72rem; padding: 8px 14px; min-height: 36px; }
+      .report-cover::after { left: 20px; right: 20px; }
+    }
+    @media (max-width: 768px) {
+      .report-title { font-size: 1.4rem; }
+      .chart-area { height: 260px; }
+      .chart-area.tall { height: 340px; }
+      .chart-panel { padding: 18px 16px; }
+      .commentary { padding: 16px 18px; }
+      .modal { padding: 32px 24px; }
+      .modal .form-group input, .modal .form-group select { min-height: 44px; font-size: 14px; }
+      .btn-submit, .btn-google { min-height: 44px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .proposal-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
+      .proposal-company, .proposal-activist { min-width: auto; }
+    }
+    @media (max-width: 480px) {
+      .site-header, .report-cover, .nav-bar, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
+      .report-cover::after { left: 16px; right: 16px; }
+      .report-title { font-size: 1.2rem; }
+      .report-subtitle { font-size: 0.8rem; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .kpi-value { font-size: 1.1rem; }
+      .chart-area { height: 220px; }
+      .chart-area.tall { height: 280px; }
+      .heatmap-table td:first-child { min-width: 90px; }
+      .heatmap-table td { min-width: 40px; }
+      .modal .form-group input { min-height: 44px; }
+      .tree-branch { min-width: auto; }
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+<header class="site-header">
+  <a href="https://aoyama-nogizaka.com/" style="text-decoration:none;">
+    <div class="site-logo"><small>AOYAMA NOGIZAKA PARTNERS</small>Industry Research</div>
+  </a>
+  <div class="header-right">
+    <nav class="cross-nav" aria-label="メインナビゲーション">
+      <span class="cross-nav-cat">セクター分析</span>
+      <a href="/food-service.html" class="cross-nav-link">外食</a>
+      <a href="/saas.html" class="cross-nav-link">SaaS</a>
+      <a href="/ad-agency.html" class="cross-nav-link">広告</a>
+      <a href="/entertainment-sector-dashboard.html" class="cross-nav-link active">エンタメ</a>
+      <span class="cross-nav-sep"></span>
+      <span class="cross-nav-cat">アクティビスト</span>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+    </nav>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+      <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+    </div>
+    <div id="navUserInfo" style="display:none; align-items:center; gap:12px;">
+      <span id="navUserName"></span>
+      <button data-auth-action="openMyPage">マイページ</button>
+      <button data-auth-action="handleLogout">ログアウト</button>
+    </div>
+  </div>
+</header>
+
+<div class="report-cover">
+  <div class="report-cover-inner">
+    <div class="report-label">Sector Analysis Report</div>
+    <div class="report-title">エンターテインメント・ゲームセクター分析</div>
+    <div class="report-subtitle">大量保有報告に基づくセクター分析 — ゲーム開発・モバイル・アニメIP・VTuber</div>
+    <div class="report-meta">
+      <span>対象: <strong>100社</strong></span>
+      <span>国内ゲーム市場規模: <strong>2.6兆円</strong></span>
+      <span>サブセクター: <strong>6区分</strong></span>
+      <span>出所: 各社IR・大量保有報告書(EDINET)</span>
+    </div>
+  </div>
+</div>
+
+<nav class="nav-bar">
+  <div class="nav-wrap">
+    <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
+    <div class="nav-inner" id="mainNav">
+      <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+      <div class="nav-item" data-tab="companies"><span class="nav-num">02</span>主要企業一覧</div>
+    </div>
+    <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
+  </div>
+</nav>
+
+<div class="main premium-blur" id="dashboardContent">
+
+  <!-- ===== Section 01: Executive Summary ===== -->
+  <div class="section active" id="sec-exec">
+    <div class="sec-header">
+      <div class="sec-num">SECTION 01</div>
+      <div class="sec-title">Executive Summary</div>
+      <div class="sec-desc">エンターテインメント・ゲームセクターの全体像</div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card c-navy">
+        <div class="kpi-label">対象企業数</div>
+        <div class="kpi-value">100<span class="kpi-unit">社</span></div>
+      </div>
+      <div class="kpi-card c-gold">
+        <div class="kpi-label">国内ゲーム市場規模</div>
+        <div class="kpi-value">2.6<span class="kpi-unit">兆円</span></div>
+      </div>
+      <div class="kpi-card c-green">
+        <div class="kpi-label">サブセクター</div>
+        <div class="kpi-value">6<span class="kpi-unit">区分</span></div>
+      </div>
+    </div>
+
+    <!-- 1. セクター概況 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">01</span>
+        セクター概況 — 2.6兆円市場、モバイル収益が牽引
+      </h3>
+      <div class="commentary-body">
+        <p>日本ゲーム市場は2025年で234億ドル超（約2.6兆円）。モバイルゲームのIAP（アプリ内購入）収益が1.6兆円超と市場の中核を占める。ユーザー人口は約5,000万人（モバイル4,278万人、PC 1,452万人、家庭用2,951万人）で、グローバルiOS収益ではアジア2位。コンソール市場はSwitch 2の発売を控え成長期待が高い一方、モバイルのダウンロード数は前年比1.8%減と成熟化の兆候も見られる。</p>
+      </div>
+    </div>
+
+    <!-- 2. プラットフォーム競争 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">02</span>
+        プラットフォーム競争 — Switch 2 vs PS5後継、クラウドの台頭
+      </h3>
+      <div class="commentary-body">
+        <p>任天堂のSwitch 2は2026年3月期で1,900万台販売見込み（上方修正）だが、AI半導体需要による部品コスト上昇で一部赤字化の可能性も報じられている。ソニーのPS5は安定した収益基盤を維持しつつ、ゲームパス型サブスクモデルへの対応を加速。Microsoft、Apple、Googleのクラウドゲーミング参入により、プラットフォーム競争は従来の「ハード販売台数」から「エコシステム囲い込み」へ構造転換が進む。日本の中小デベロッパーにとってはマルチプラットフォーム対応の重要性が一層増している。</p>
+      </div>
+    </div>
+
+    <!-- 3. IP多角化 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">03</span>
+        IP多角化戦略 — ゲーム→映画→アニメ→テーマパークの収益連鎖
+      </h3>
+      <div class="commentary-body">
+        <p>マリオ映画の大成功（全世界興行収入13億ドル超）を皮切りに、ゲームIPの映像化・テーマパーク展開が業界標準戦略となった。バンダイナムコはドラゴンボール・ワンピース等のIP多角化で2025年3月期にDL版ゲーム収益が任天堂を上回る規模に成長。ポケモンはゲーム・アニメ・映画・カードゲーム・テーマパークの全方位展開で年間100億ドル超のIP収益を維持。カプコンの「モンスターハンターワイルズ」は発売後即1,000万本超を突破し、シリーズ初の実写映画化に続くIP拡張が期待される。IP保有企業の「資産価値」が改めて注目される局面にある。</p>
+      </div>
+    </div>
+
+    <!-- 4. M&A・業界再編 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">04</span>
+        M&amp;A・業界再編 — グローバル大型買収と日本市場への波及
+      </h3>
+      <div class="commentary-body">
+        <p>MicrosoftによるActivision Blizzard買収（690億ドル、2023年完了）は業界史上最大のM&amp;Aとなり、ゲーム業界の再編を加速させた。ソニーはBungie買収（35億ドル、2022年）でライブサービス型ゲーム強化を図る。日本市場では、ブシロードがフロントウイング全株式をグッドスマイルカンパニーグループへ譲渡（2024年9月）するなど、IP軸の再編が進行。メテオライズ×VisiolionではAI技術のゲーム開発応用を狙った提携が成立（2025年1月）。中小ゲーム企業のM&amp;Aターゲット化が進んでおり、独自IPを持つ企業のバリュエーション上昇が見込まれる。</p>
+      </div>
+    </div>
+
+    <!-- 5. アクティビスト・株主提案 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">05</span>
+        アクティビスト動向 — 株主提案の急増、ゲーム企業への介入が本格化
+      </h3>
+      <div class="commentary-body">
+        <p>2025年6月総会では全体で111社に株主提案が行われ、過去最多を更新。エンタメ・ゲームセクターでも具体的な経営改善要求が相次いでいる。<strong>3D Investment Partners</strong>（シンガポール）はスクウェア・エニックスHD株を14.36%まで買い増し、2025年12月に100ページ超の経営課題プレゼンテーションを公表。売上成長の停滞、利益率低下、中期経営計画の曖昧さを指摘し、株主との共闘を呼びかけた（<a href="https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf" target="_blank" rel="noopener">プレゼン資料PDF</a>）。<strong>ストラテジックキャピタル</strong>（SC）はガンホー株5.4%を保有し、CEO報酬の業績連動化（固定300万→150万、ROE連動へ）、自己株式の全数消却、タイトル別売上開示等を提案。特設サイト（<a href="https://stracap.jp/3765-GUNGHO/" target="_blank" rel="noopener">ガンホー再起の処方箋</a>）を開設し、営業利益69%減の中でCEO報酬が120百万→340百万円に増加した問題を可視化した。</p>
+        <p>加えて、<strong>ValueAct Capital</strong>は任天堂株を1.1億ドル以上構築し、デジタル化・事業多角化を推進する「フレンドリーアクティビスト」として関与を継続。<strong>サウジAyyal First Investment</strong>はカプコン、スクエニHD、バンナムHD、ネクソン、東映、コーエーテクモHDを一斉大量取得し、ソブリンウェルスファンドのゲームセクターへの戦略的関心を示した。日本のゲーム企業群は豊富なIP資産と安定CFを持ちながらPBR1倍割れ銘柄も存在し、経営規律強化圧力はさらに高まっている。</p>
+      </div>
+      <!-- 株主提案リンク集 -->
+      <div class="proposal-links">
+        <h4 class="proposal-links-title">主要株主提案・資料リンク</h4>
+        <ul class="proposal-list">
+          <li>
+            <span class="proposal-company">スクエニHD (9684)</span>
+            <span class="proposal-activist">3D Investment Partners</span>
+            <a href="https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf" target="_blank" rel="noopener" class="proposal-link">経営課題プレゼン (110P超)</a>
+          </li>
+          <li>
+            <span class="proposal-company">ガンホー (3765)</span>
+            <span class="proposal-activist">ストラテジックキャピタル</span>
+            <a href="https://stracap.jp/3765-GUNGHO/" target="_blank" rel="noopener" class="proposal-link">特設サイト「再起の処方箋」</a>
+          </li>
+          <li>
+            <span class="proposal-company">サッポロHD (2501)</span>
+            <span class="proposal-activist">3D Investment Partners</span>
+            <a href="https://www.compoundsapporo.com/presentation" target="_blank" rel="noopener" class="proposal-link">不動産スピンオフ提案資料</a>
+          </li>
+          <li>
+            <span class="proposal-company">富士ソフト (9749)</span>
+            <span class="proposal-activist">3D Investment Partners</span>
+            <a href="https://www.3dipartners.com/wp-content/uploads/fujisoft-presentation-on-shareholderproposal-jp-202402.pdf" target="_blank" rel="noopener" class="proposal-link">企業価値最大化プレゼン</a>
+          </li>
+          <li>
+            <span class="proposal-company">フジメディアHD (4676)</span>
+            <span class="proposal-activist">ダルトン・インベストメンツ</span>
+            <a href="https://www.daltoninvestments.co.jp/en/news/20250416" target="_blank" rel="noopener" class="proposal-link">取締役12名選任提案</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. VTuber・メタバース -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">06</span>
+        VTuber・メタバース新興 — ANYCOLOR/カバーの急成長と市場形成
+      </h3>
+      <div class="commentary-body">
+        <p>VTuber市場は日本発のユニークなエンターテインメント領域として急成長中。ANYCOLOR（にじさんじ運営）は2022年6月上場後、グロース→プライムへ市場昇格（2023年6月）を果たし、時価総額は1,600〜2,000億円規模に拡大。カバー（ホロライブ運営）は2023年3月に初値が公開価格の430%上昇という圧巻のIPO。メタバース事業「ホロアース」やライブイベント・グッズ販売でのIP収益化モデルを構築中。ゲーム企業との協業（にじさんじ×各種ゲームタイトルのコラボ等）も活発で、新しいIP創出・消費の形として投資対象としての注目が高まっている。</p>
+      </div>
+    </div>
+
+    <!-- 7. 成長ドライバー -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">07</span>
+        成長ドライバー — AI活用、海外展開、モバイル高収益化
+      </h3>
+      <div class="commentary-body">
+        <p>生成AIのゲーム開発への活用は業界全体の効率化を促進。NPC会話の自動生成、テクスチャ・3Dモデルの自動作成、QAテストの自動化により、開発コスト20〜30%削減の試算も出ている。海外売上比率はカプコン80%超、バンダイナムコ50%超、コナミ40%超と、大手は既にグローバル企業化。モバイルゲームではIAP（アプリ内購入）モデルの高度化により、「ウマ娘」「モンスト」「ポケポケ」等の大型タイトルが月次数十億円規模の安定収益を創出。DeNAは「ポケポケ」効果で2025年4-6月の営業利益が前年比1,061%増を記録した。</p>
+      </div>
+    </div>
+
+    <!-- 8. リスク要因 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">08</span>
+        リスク要因 — ガチャ規制、中国市場、開発費高騰
+      </h3>
+      <div class="commentary-body">
+        <p>モバイルゲームの生命線であるガチャ（有料ランダム型アイテム販売）に対する規制議論は国内外で継続中。景表法改正の動きは直接的な業績リスク。中国市場では2023年12月の突然のゲーム規制案でテンセント等の時価総額が11兆円超消失した前例があり、日本企業の中国依存度は重要な監視項目。AAA級ゲームの開発費は1タイトル100〜500億円規模に達し、ヒット確率の低下と開発期間の長期化が中小企業の存続リスクを高めている。半導体価格上昇によるゲーム機採算悪化、円高転換時の海外収益目減りも注意が必要。</p>
+      </div>
+    </div>
+
+    <!-- 9. 投資機会の提言 -->
+    <div class="commentary-block">
+      <h3 class="commentary-title" style="display:flex;align-items:baseline;gap:8px;">
+        <span class="commentary-number">09</span>
+        投資機会の提言 — IP価値×海外比率×M&amp;A余地の3軸で選別
+      </h3>
+      <div class="commentary-body">
+        <p>エンタメ・ゲームセクターへの投資は、(1) IP資産の価値と多角化可能性、(2) 海外売上比率と成長余地、(3) M&amp;Aによるバリューアップ余地の3軸で評価すべき。大型株ではカプコン（IP×海外80%超×モンハン映画化）、バンダイナムコ（IP多角化の最先端）が最も高い総合評価。中型株ではサイバーエージェント（Cygames価値の再評価）、ANYCOLOR/カバー（VTuber市場の成長プレミアム）が注目。小型株ではアカツキ（IP×グローバル）、ドリコム（小型IP活用）がM&amp;Aターゲットとしても注目される。ガンホー（パズドラ減速後の再建余地）、GREE（非ゲーム転換後の資産価値）は逆張り候補として監視リストに入れておきたい。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Section 02: 主要企業一覧 ===== -->
+  <div class="section" id="sec-companies">
+    <div class="sec-header">
+      <div class="sec-num">SECTION 02</div>
+      <div class="sec-title">主要企業一覧</div>
+      <div class="sec-desc">日本市場上場のエンターテインメント・ゲーム関連企業。時価総額は概算。</div>
+    </div>
+
+    <!-- カテゴリフィルター -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全て (100)</button>
+      <button class="filter-btn" data-filter="game-publisher">ゲーム開発・パブリッシャー</button>
+      <button class="filter-btn" data-filter="mobile-game">モバイルゲーム</button>
+      <button class="filter-btn" data-filter="anime-ip">アニメ・IP</button>
+      <button class="filter-btn" data-filter="vtuber-meta">VTuber・メタバース</button>
+      <button class="filter-btn" data-filter="esports-peripheral">eスポーツ・周辺</button>
+      <button class="filter-btn" data-filter="dev-tools">開発ツール・受託</button>
+    </div>
+
+    <!-- テーブル -->
+    <div class="table-panel">
+      <div class="table-scroll">
+        <table id="companyTable">
+          <thead>
+            <tr>
+              <th>証券コード</th>
+              <th>企業名</th>
+              <th>カテゴリ</th>
+              <th style="text-align:right;">時価総額</th>
+              <th>主力事業・IP</th>
+              <th>注目ポイント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ===== ゲーム開発・パブリッシャー（大型） ===== -->
+            <tr data-category="game-publisher">
+              <td>7974</td>
+              <td class="company-name">任天堂</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">5.6兆円</td>
+              <td>Switch/Switch 2、マリオ、ゼルダ、ポケモン</td>
+              <td>ValueAct保有。Switch 2で1,900万台見込。マリオ映画成功</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6758</td>
+              <td class="company-name">ソニーグループ</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">15兆円</td>
+              <td>PlayStation 5、ゲーム&amp;ネットワーク事業</td>
+              <td>Bungie買収35億ドル。ゲーム部門営業利益堅調</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>7832</td>
+              <td class="company-name">バンダイナムコHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">2.77兆円</td>
+              <td>ドラゴンボール、ガンダム、鉄拳、テイルズ</td>
+              <td>IP多角化の先進事例。サウジAyyal大量取得。DL版でゲーム売上任天堂超え</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9766</td>
+              <td class="company-name">コナミグループ</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">2.84兆円</td>
+              <td>遊戯王、eFootball、メタルギア、パワプロ</td>
+              <td>遊戯王TCGが高収益。eスポーツ展開積極的</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9697</td>
+              <td class="company-name">カプコン</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">1.85兆円</td>
+              <td>モンスターハンター、バイオハザード、ストリートファイター</td>
+              <td>モンハンワイルズ1,000万本超。海外売上80%超。サウジAyyal取得</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9684</td>
+              <td class="company-name">スクウェア・エニックスHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">9,550億円</td>
+              <td>FF、ドラクエ、キングダムハーツ</td>
+              <td>FF・DQ二本柱。サウジAyyal取得。2025年3月期営業増益</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6460</td>
+              <td class="company-name">セガサミーHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">6,270億円</td>
+              <td>ペルソナ、ソニック、龍が如く</td>
+              <td>ゲーム+アミューズメント施設複合戦略。ソニック映画化成功</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9658</td>
+              <td class="company-name">コーエーテクモHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">5,500億円</td>
+              <td>三国志、信長の野望、仁王、無双</td>
+              <td>サウジAyyal取得。仁王3発売予定。歴史シミュレーションで独自ポジション</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3659</td>
+              <td class="company-name">ネクソン</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">2.2兆円</td>
+              <td>メイプルストーリー、アラド戦記、ブルーアーカイブ</td>
+              <td>韓国発・日本上場。PCオンラインの安定収益。サウジAyyal取得</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9602</td>
+              <td class="company-name">東宝</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">1.2兆円</td>
+              <td>ゴジラ、映画配給・制作、アニメ映画</td>
+              <td>ゴジラIP多角化。アニメ映画配給で成長</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9601</td>
+              <td class="company-name">松竹</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">1,400億円</td>
+              <td>映画配給・制作、歌舞伎、不動産</td>
+              <td>歌舞伎IPのデジタル展開可能性</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9605</td>
+              <td class="company-name">東映</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">4,200億円</td>
+              <td>仮面ライダー、スーパー戦隊、プリキュア</td>
+              <td>サウジAyyal取得。特撮IPのグローバル展開余地大</td>
+            </tr>
+
+            <!-- ===== モバイルゲーム ===== -->
+            <tr data-category="mobile-game">
+              <td>4751</td>
+              <td class="company-name">サイバーエージェント</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">3,000億円</td>
+              <td>Cygames（ウマ娘、グラブル、シャドバ）、ABEMA</td>
+              <td>Cygames69%保有。ウマ娘が利益の柱。ABEMA黒字化</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>2121</td>
+              <td class="company-name">MIXI</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">1,836億円</td>
+              <td>モンスターストライク</td>
+              <td>モンスト一強依存。新規タイトル不足が課題</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>2432</td>
+              <td class="company-name">DeNA</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">1,300億円</td>
+              <td>ポケポケ、モバゲー、ヘルスケア</td>
+              <td>ポケポケ大ヒットで営業利益1,061%増。事業多角化</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3765</td>
+              <td class="company-name">ガンホー・オンライン</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">450億円</td>
+              <td>パズル&amp;ドラゴンズ、ラグナロク</td>
+              <td>18年ぶり営業赤字。主力タイトル減速。再建待ち</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3632</td>
+              <td class="company-name">グリー</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">400億円</td>
+              <td>メタバース、投資事業（ゲーム撤退傾向）</td>
+              <td>ゲームから非ゲーム事業へ転換中。資産価値に注目</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3932</td>
+              <td class="company-name">アカツキ</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">300億円</td>
+              <td>ドッカンバトル、ロマサガRS</td>
+              <td>黒字転換で回復傾向。グローバルIPタイトル</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3656</td>
+              <td class="company-name">KLab</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">100億円</td>
+              <td>BLEACH Brave Souls、ラブライブ</td>
+              <td>アニメIPライセンス型ゲーム。海外展開</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3623</td>
+              <td class="company-name">ドリコム</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">150億円</td>
+              <td>ダービースタリオン、IPゲーム開発</td>
+              <td>小型IPベンチャー。M&amp;Aターゲット候補</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3911</td>
+              <td class="company-name">Aiming</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">60億円</td>
+              <td>ドラゴンクエストタクト等受託開発</td>
+              <td>受託型モバイルゲーム開発。DQ関連</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3928</td>
+              <td class="company-name">マイネット</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">50億円</td>
+              <td>ゲームサービス事業（既存タイトル運営受託）</td>
+              <td>ゲーム運営特化の独自ビジネスモデル</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3668</td>
+              <td class="company-name">コロプラ</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">350億円</td>
+              <td>白猫プロジェクト、ぷにぷに</td>
+              <td>VR/メタバース投資も。白猫シリーズ依存</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3903</td>
+              <td class="company-name">gumi</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">80億円</td>
+              <td>FFBE、ブロックチェーンゲーム</td>
+              <td>Web3/ブロックチェーンゲームへ注力</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3662</td>
+              <td class="company-name">エイチーム</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">100億円</td>
+              <td>ヴァルキリーコネクト、ライフスタイル事業</td>
+              <td>ゲーム+ライフスタイルの二本柱</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>6033</td>
+              <td class="company-name">エクストリーム</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">50億円</td>
+              <td>ゲーム受託開発、DX支援</td>
+              <td>ゲーム開発人材派遣にも強み</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3793</td>
+              <td class="company-name">ドリームインキュベータ</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">200億円</td>
+              <td>ゲーム・エンタメ投資、コンサルティング</td>
+              <td>電通G傘下。親子上場解消候補</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3667</td>
+              <td class="company-name">enish</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">30億円</td>
+              <td>ドラゴンタクティクス、Five Kingdoms</td>
+              <td>小型モバイルゲーム企業</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3930</td>
+              <td class="company-name">はてな</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">100億円</td>
+              <td>はてなブログ、ゲーム向けサーバー基盤</td>
+              <td>ゲーム企業向けBaaSプラットフォーム</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3664</td>
+              <td class="company-name">モブキャストHD</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">20億円</td>
+              <td>ブロックチェーンゲーム</td>
+              <td>Web3型ゲームに転換中</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3925</td>
+              <td class="company-name">ダブルスタンダード</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">50億円</td>
+              <td>データ分析、ゲーム事業</td>
+              <td>データ活用型のゲーム運営</td>
+            </tr>
+
+            <!-- ===== アニメ・IP ===== -->
+            <tr data-category="anime-ip">
+              <td>4816</td>
+              <td class="company-name">東映アニメーション</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">1,200億円</td>
+              <td>ワンピース、プリキュア、ドラゴンボール（アニメ）</td>
+              <td>IP許諾ロイヤリティが高収益。サウジAyyal取得対象</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3791</td>
+              <td class="company-name">IGポート</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">500億円</td>
+              <td>Production I.G（攻殻機動隊等）、WIT STUDIO</td>
+              <td>高品質アニメ制作。ゲームIP供給源</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>7860</td>
+              <td class="company-name">エイベックス</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">700億円</td>
+              <td>音楽、アニメ配信、ライブエンタメ</td>
+              <td>アニメ製作委員会参画。音楽×エンタメIP</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>4331</td>
+              <td class="company-name">テイクアンドギヴ・ニーズ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">200億円</td>
+              <td>ブライダル、エンタメ施設運営</td>
+              <td>エンタメ施設でのIPコラボ展開</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3686</td>
+              <td class="company-name">ディー・エル・イー</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">30億円</td>
+              <td>秘密結社鷹の爪、IPプロデュース</td>
+              <td>自社IPのマルチメディア展開</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>7844</td>
+              <td class="company-name">マーベラス</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">400億円</td>
+              <td>牧場物語、アニメ制作、舞台</td>
+              <td>ゲーム×アニメ×ライブの三位一体IP戦略</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3715</td>
+              <td class="company-name">ドワンゴ（カドカワ傘下）</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">—</td>
+              <td>ニコニコ動画、N高</td>
+              <td>カドカワ（9468）傘下。ニコニコはVTuber文化の発祥地</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>9468</td>
+              <td class="company-name">KADOKAWA</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">5,000億円</td>
+              <td>出版、アニメ制作（角川アニメ）、ゲーム（フロム・ソフトウェア）</td>
+              <td>フロム・ソフトウェア（エルデンリング）保有。ソニー出資。IP総合企業</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>9477</td>
+              <td class="company-name">KADOKAWA（角川ゲームス含む）</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">—</td>
+              <td>フロム・ソフトウェア（エルデンリング、アーマード・コア）</td>
+              <td>フロム作品のグローバル成功。世界累計2,500万本超（エルデンリング）</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>7867</td>
+              <td class="company-name">タカラトミー</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">3,000億円</td>
+              <td>トランスフォーマー、トミカ、デュエル・マスターズ</td>
+              <td>IP玩具×デジタルゲーム化。グローバルIP保有</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>4661</td>
+              <td class="company-name">オリエンタルランド</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">7.5兆円</td>
+              <td>東京ディズニーリゾート運営</td>
+              <td>テーマパーク×IPの究極モデル。ゲームIPの展開先としても注目</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>2767</td>
+              <td class="company-name">フィールズ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">200億円</td>
+              <td>遊技機IPコンテンツ、エンタメ事業</td>
+              <td>パチンコ・パチスロ向けIPコンテンツ供給</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>7552</td>
+              <td class="company-name">ハピネット</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">400億円</td>
+              <td>ゲーム・玩具卸売、映像コンテンツ配給</td>
+              <td>バンダイナムコ系。ゲーム・玩具の流通大手</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>7803</td>
+              <td class="company-name">ブシロード</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">500億円</td>
+              <td>バンドリ!、ヴァンガード、新日本プロレス</td>
+              <td>TCG×アニメ×ゲームの統合IP企業。フロントウイング譲渡</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>4763</td>
+              <td class="company-name">クリーク・アンド・リバー社</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">250億円</td>
+              <td>クリエイター派遣（ゲーム・アニメ）、VR/AR</td>
+              <td>ゲーム・アニメ業界向け人材派遣のリーディング企業</td>
+            </tr>
+
+            <!-- ===== VTuber・メタバース ===== -->
+            <tr data-category="vtuber-meta">
+              <td>5765</td>
+              <td class="company-name">ANYCOLOR</td>
+              <td><span class="badge badge-vtuber">VTuber</span></td>
+              <td class="cap">1,800億円</td>
+              <td>にじさんじ運営</td>
+              <td>グロース→プライム昇格。VTuber最大手。グッズ・ライブ収益化</td>
+            </tr>
+            <tr data-category="vtuber-meta">
+              <td>5253</td>
+              <td class="company-name">カバー</td>
+              <td><span class="badge badge-vtuber">VTuber</span></td>
+              <td class="cap">1,500億円</td>
+              <td>ホロライブ運営、ホロアース（メタバース）</td>
+              <td>IPO初値430%上昇。メタバース事業展開中。海外ファン急拡大</td>
+            </tr>
+            <tr data-category="vtuber-meta">
+              <td>3668</td>
+              <td class="company-name">コロプラ（VR部門）</td>
+              <td><span class="badge badge-vtuber">VTuber</span></td>
+              <td class="cap">350億円</td>
+              <td>白猫VR、SHINKA（VR開発）</td>
+              <td>VRゲーム開発にも注力。メタバース関連投資</td>
+            </tr>
+            <tr data-category="vtuber-meta">
+              <td>3990</td>
+              <td class="company-name">UUUM</td>
+              <td><span class="badge badge-vtuber">VTuber</span></td>
+              <td class="cap">40億円</td>
+              <td>YouTuberマネジメント、VTuber事業</td>
+              <td>クリエイターエコノミー。Freedom傘下で再建中</td>
+            </tr>
+
+            <!-- ===== eスポーツ・周辺 ===== -->
+            <tr data-category="esports-peripheral">
+              <td>9565</td>
+              <td class="company-name">GLOE（旧ウェルプレイド・ライゼスト）</td>
+              <td><span class="badge badge-esports">eスポーツ</span></td>
+              <td class="cap">50億円</td>
+              <td>eスポーツイベント企画・運営</td>
+              <td>eスポーツ専業で初上場。イベント+マネジメント</td>
+            </tr>
+            <tr data-category="esports-peripheral">
+              <td>7078</td>
+              <td class="company-name">INCLUSIVE</td>
+              <td><span class="badge badge-esports">eスポーツ</span></td>
+              <td class="cap">30億円</td>
+              <td>メディアDX、eスポーツ事業</td>
+              <td>eスポーツメディア運営</td>
+            </tr>
+            <tr data-category="esports-peripheral">
+              <td>6879</td>
+              <td class="company-name">IMAGICA GROUP</td>
+              <td><span class="badge badge-esports">eスポーツ</span></td>
+              <td class="cap">350億円</td>
+              <td>映像制作、ゲーム向けCG・VFX</td>
+              <td>ゲーム映像制作の大手。CG/VFX技術力</td>
+            </tr>
+            <tr data-category="esports-peripheral">
+              <td>3769</td>
+              <td class="company-name">GMOペイメントゲートウェイ</td>
+              <td><span class="badge badge-esports">eスポーツ</span></td>
+              <td class="cap">8,000億円</td>
+              <td>決済プラットフォーム（ゲーム課金基盤）</td>
+              <td>ゲーム課金決済インフラ。間接的だが重要プレイヤー</td>
+            </tr>
+
+            <!-- ===== 開発ツール・受託 ===== -->
+            <tr data-category="dev-tools">
+              <td>3907</td>
+              <td class="company-name">シリコンスタジオ</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">50億円</td>
+              <td>ゲーム開発ミドルウェア、人材紹介</td>
+              <td>B2B向けゲーム開発ツール。AI需要で注目</td>
+            </tr>
+            <tr data-category="dev-tools">
+              <td>3853</td>
+              <td class="company-name">アステリア（旧インフォテリア）</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">100億円</td>
+              <td>データ連携プラットフォーム、ブロックチェーン</td>
+              <td>ゲーム企業向けデータ連携・ブロックチェーン技術</td>
+            </tr>
+            <tr data-category="dev-tools">
+              <td>2330</td>
+              <td class="company-name">フォーサイド</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">20億円</td>
+              <td>コンテンツ配信、ゲーム受託</td>
+              <td>小型コンテンツ配信企業</td>
+            </tr>
+            <tr data-category="dev-tools">
+              <td>3689</td>
+              <td class="company-name">イグニス</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">40億円</td>
+              <td>VR/AR開発、ゲーム開発</td>
+              <td>VR技術とゲーム開発の融合</td>
+            </tr>
+            <tr data-category="dev-tools">
+              <td>6032</td>
+              <td class="company-name">インターワークス</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">30億円</td>
+              <td>ゲーム・IT人材紹介</td>
+              <td>ゲーム業界特化の人材サービス</td>
+            </tr>
+
+            <!-- ===== 追加企業群 ===== -->
+            <tr data-category="game-publisher">
+              <td>3635</td>
+              <td class="company-name">コーテクHD（※コーエーテクモ関連）</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">—</td>
+              <td>ゲーム開発受託</td>
+              <td>コーエーテクモグループ</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>7552</td>
+              <td class="company-name">ハピネット</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">400億円</td>
+              <td>ゲーム・玩具卸売</td>
+              <td>バンナム系ゲーム流通</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3672</td>
+              <td class="company-name">オルトプラス</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">20億円</td>
+              <td>ソーシャルゲーム開発</td>
+              <td>ブロックチェーンゲーム参入</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>6552</td>
+              <td class="company-name">GameWith</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">30億円</td>
+              <td>ゲーム攻略メディア、eスポーツ</td>
+              <td>ゲーム情報プラットフォーム</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3697</td>
+              <td class="company-name">SHIFT</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">2,500億円</td>
+              <td>ソフトウェアテスト、ゲームQA</td>
+              <td>ゲーム品質保証で最大手。M&amp;A積極的</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9715</td>
+              <td class="company-name">トランスコスモス</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">1,200億円</td>
+              <td>BPO、ゲーム運営支援</td>
+              <td>ゲーム企業向けカスタマーサポート大手</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>2706</td>
+              <td class="company-name">ブロッコリー</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">100億円</td>
+              <td>うたの☆プリンスさまっ♪、カードゲーム</td>
+              <td>女性向けIPコンテンツ。ゲーム×アニメ×グッズ</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3678</td>
+              <td class="company-name">メディアドゥ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">300億円</td>
+              <td>電子書籍取次、NFT・デジタルコンテンツ</td>
+              <td>マンガ・アニメIPのデジタル流通インフラ</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3760</td>
+              <td class="company-name">ケイブ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">30億円</td>
+              <td>シューティングゲーム（怒首領蜂等）、VTuber事業</td>
+              <td>レトロゲームIPの復刻・活用。VTuber参入</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3851</td>
+              <td class="company-name">日本一ソフトウェア</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">80億円</td>
+              <td>ディスガイア、魔界戦記シリーズ</td>
+              <td>ニッチRPGで独自ポジション。海外ファン層</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3747</td>
+              <td class="company-name">インタートレード</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">20億円</td>
+              <td>金融システム、ゲーム事業</td>
+              <td>小型多角化企業</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3904</td>
+              <td class="company-name">カヤック</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">80億円</td>
+              <td>ゲーム開発、クリエイティブ事業、まちづくり</td>
+              <td>ユニーク企業文化。ゲーム×地方創生</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3993</td>
+              <td class="company-name">PKSHA Technology</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">800億円</td>
+              <td>AI技術、自然言語処理</td>
+              <td>ゲームAI開発支援。NPC行動AI等</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>4728</td>
+              <td class="company-name">トーセ</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">100億円</td>
+              <td>ゲーム受託開発専業（黒子企業）</td>
+              <td>任天堂・スクエニ等大手の開発を受託。裏方の雄</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6736</td>
+              <td class="company-name">サン電子</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">60億円</td>
+              <td>遊技機、ゲーム</td>
+              <td>遊技機×ゲームIP活用</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>9414</td>
+              <td class="company-name">日本BS放送</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">150億円</td>
+              <td>BS11（アニメ枠充実のBS放送局）</td>
+              <td>アニメ放送枠で業界最多。アニメIPとの接点</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>2743</td>
+              <td class="company-name">ピクセルカンパニーズ</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">15億円</td>
+              <td>データセンター、ゲーム</td>
+              <td>データセンター×ゲーム配信インフラ</td>
+            </tr>
+            <tr data-category="esports-peripheral">
+              <td>9478</td>
+              <td class="company-name">SEホールディングス・アンド・インキュベーションズ</td>
+              <td><span class="badge badge-esports">eスポーツ</span></td>
+              <td class="cap">30億円</td>
+              <td>翻訳、ゲームローカライゼーション</td>
+              <td>ゲームの海外展開に不可欠なローカライズ大手</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3734</td>
+              <td class="company-name">インテア・ホールディングス</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">15億円</td>
+              <td>ゲーム・コンテンツ事業</td>
+              <td>小型コンテンツ企業</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>6177</td>
+              <td class="company-name">AppBank</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">10億円</td>
+              <td>ゲームメディア、EC</td>
+              <td>ゲーム情報メディア運営</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3624</td>
+              <td class="company-name">アクセルマーク</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">15億円</td>
+              <td>ゲーム運営、アドテク</td>
+              <td>小型モバイルゲーム+広告</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3658</td>
+              <td class="company-name">イーブックイニシアティブジャパン</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">300億円</td>
+              <td>電子書籍（ebookjapan、マンガ配信）</td>
+              <td>マンガIPのデジタル配信。ゲーム原作供給元</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3656</td>
+              <td class="company-name">バンク・オブ・イノベーション</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">100億円</td>
+              <td>メメントモリ、幻獣契約クリプトラクト</td>
+              <td>自社IPゲーム開発。メメントモリが世界展開中</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3612</td>
+              <td class="company-name">ワールドHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">40億円</td>
+              <td>IT人材、ゲーム開発</td>
+              <td>ゲーム開発人材供給</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>4777</td>
+              <td class="company-name">ガーラ</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">10億円</td>
+              <td>オンラインゲーム、ブロックチェーン</td>
+              <td>Web3参入中の小型ゲーム企業</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3639</td>
+              <td class="company-name">ボルテージ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">20億円</td>
+              <td>恋愛ドラマアプリ</td>
+              <td>女性向けストーリーゲームのパイオニア</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9629</td>
+              <td class="company-name">ピー・シー・エー</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">250億円</td>
+              <td>業務用ソフト（ゲーム開発スタジオ向け会計ソフト等）</td>
+              <td>ゲーム企業のバックオフィス支援</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6050</td>
+              <td class="company-name">イー・ガーディアン</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">200億円</td>
+              <td>ネット監視、ゲームカスタマーサポート</td>
+              <td>ゲーム企業向けモデレーション・CS</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>4293</td>
+              <td class="company-name">セプテーニHD</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">500億円</td>
+              <td>デジタルマーケティング（ゲーム広告運用）</td>
+              <td>電通G傘下。ゲーム企業向け広告最適化</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3656</td>
+              <td class="company-name">KLab</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">100億円</td>
+              <td>キャプテン翼DREAM TEAM、BLEACH</td>
+              <td>アニメIPゲーム専業。海外売上比率高い</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3676</td>
+              <td class="company-name">デジタルハーツHD</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">300億円</td>
+              <td>ゲームデバッグ、セキュリティ</td>
+              <td>ゲームQA最大級。SHIFT競合</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>7833</td>
+              <td class="company-name">アイフィスジャパン</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">50億円</td>
+              <td>IR支援（ゲーム企業含む）</td>
+              <td>ゲーム企業のIR・ディスクロージャー支援</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6027</td>
+              <td class="company-name">弁護士ドットコム</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">500億円</td>
+              <td>クラウドサイン（電子契約）</td>
+              <td>ゲーム業界のライセンス契約電子化</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>4829</td>
+              <td class="company-name">日本エンタープライズ</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">15億円</td>
+              <td>コンテンツ配信、FinTech</td>
+              <td>小型コンテンツ企業</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>9625</td>
+              <td class="company-name">セレスポ</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">30億円</td>
+              <td>イベント企画・運営</td>
+              <td>ゲームイベント・eスポーツイベント制作</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3696</td>
+              <td class="company-name">セレス</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">100億円</td>
+              <td>ポイントメディア、ブロックチェーン</td>
+              <td>ゲームリワード・Web3</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3917</td>
+              <td class="company-name">アイリッジ</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">30億円</td>
+              <td>位置情報マーケティング</td>
+              <td>位置情報×ゲーミフィケーション</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3937</td>
+              <td class="company-name">Ubicom HD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">30億円</td>
+              <td>ゲーム受託開発、オフショア</td>
+              <td>ベトナム拠点のゲーム開発受託</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3690</td>
+              <td class="company-name">イルグルム（旧ロックオン）</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">40億円</td>
+              <td>アドテク（広告効果測定）</td>
+              <td>ゲーム広告の効果測定ツール提供</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>4434</td>
+              <td class="company-name">サーバーワークス</td>
+              <td><span class="badge badge-tools">開発ツール</span></td>
+              <td class="cap">150億円</td>
+              <td>AWSクラウドインフラ構築</td>
+              <td>ゲーム企業のクラウドインフラ構築支援</td>
+            </tr>
+            <tr data-category="mobile-game">
+              <td>3691</td>
+              <td class="company-name">リアルワールド</td>
+              <td><span class="badge badge-mobile">モバイル</span></td>
+              <td class="cap">10億円</td>
+              <td>ポイントメディア、デジタルコンテンツ</td>
+              <td>ゲーミフィケーション×ポイント経済</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>3782</td>
+              <td class="company-name">ディー・ディー・エス</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">15億円</td>
+              <td>生体認証</td>
+              <td>ゲーム向け認証技術</td>
+            </tr>
+            <tr data-category="anime-ip">
+              <td>3913</td>
+              <td class="company-name">sMedio</td>
+              <td><span class="badge badge-anime">アニメ・IP</span></td>
+              <td class="cap">10億円</td>
+              <td>メディアプレーヤー、コンテンツ配信技術</td>
+              <td>ゲーム・動画再生技術</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>7047</td>
+              <td class="company-name">ポート</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">200億円</td>
+              <td>就活メディア、エナジー事業</td>
+              <td>ゲーム業界向け新卒採用支援</td>
+            </tr>
+            <tr data-category="game-publisher">
+              <td>6035</td>
+              <td class="company-name">アイ・アールジャパンHD</td>
+              <td><span class="badge badge-publisher">パブリッシャー</span></td>
+              <td class="cap">300億円</td>
+              <td>IR・SR支援、アクティビスト対策</td>
+              <td>ゲーム企業のアクティビスト対応を支援</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>エンターテインメント・ゲームセクター分析レポートの全データをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
+  <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>本レポートは各社IR開示情報に基づき作成。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners</span>
+  </div>
+</footer>
+
+<!-- Auth Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:login">&times;</button>
+    <h2>ログイン</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:login">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div id="loginError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleLogin">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer">
+      <span data-auth-action="switchModal:resetPassword" style="cursor:pointer;">パスワードをお忘れの方</span><br>
+      <span>アカウントをお持ちでない方は <span data-auth-action="switchModal:register" style="cursor:pointer;">新規登録</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:register">&times;</button>
+    <h2>無料会員登録</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:register">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div id="registerError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="registerSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleRegister">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required></div>
+      <div class="form-group"><label>所属種別</label>
+        <select id="regAffiliation" data-auth-change="toggleAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="regJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required></div>
+      <div class="form-group"><label>パスワード (8文字以上)</label><input type="password" id="regPassword" required minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <div class="modal-footer"><span>既にアカウントをお持ちの方は <span data-auth-action="switchModal:login" style="cursor:pointer;">ログイン</span></span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:resetPassword">&times;</button>
+    <h2>パスワードリセット</h2>
+    <div id="resetError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="resetSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleResetPassword">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><span data-auth-action="switchToLogin" style="cursor:pointer;">ログインに戻る</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px;">ご利用開始にあたり、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleCompleteProfile">
+      <div class="form-group"><label>所属種別</label>
+        <select id="cpAffiliation" data-auth-change="toggleCpAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="cpJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:myPage">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageMsg" style="display:none;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">お名前</label><div id="myName" style="font-weight:600;">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール</label><div id="myEmail">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">所属</label><div id="myAffiliation">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">役職</label><div id="myJobTitle">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">会社名</label><div id="myCompany">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">登録日</label><div id="myCreatedAt">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール認証</label><div id="myEmailVerified">-</div>
+      <button id="btnResendVerify" class="btn-submit" data-auth-action="handleResendVerification" style="display:none;margin-top:8px;padding:8px;font-size:0.78rem;">認証メールを再送</button>
+    </div>
+    <button id="btnChangePassword" class="btn-submit" data-auth-action="handleMyPageResetPassword" style="display:none;margin-top:8px;">パスワードを変更</button>
+    <button id="btnSetPassword" class="btn-submit" data-auth-action="showSetPasswordForm" style="display:none;margin-top:8px;">パスワードを設定</button>
+    <div id="setPasswordForm" style="display:none;margin:16px 0;padding:12px;background:var(--bg-alt);border-radius:4px;">
+      <input type="password" id="setPasswordInput" placeholder="新しいパスワード (8文字以上)" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <button type="button" data-auth-action="handleSetPassword" class="btn-submit">パスワード設定</button>
+    </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button data-auth-action="handleDeleteAccount" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button data-auth-action="confirmDeleteAccount" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button data-auth-action="cancelDeleteAccount" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<!-- Firebase Auth -->
+<script type="module" src="/js/firebase-auth-entertainment.js"></script>
+
+<!-- Entertainment page logic -->
+<script src="/js/entertainment-page.js"></script>
+
+</body>
+</html>
