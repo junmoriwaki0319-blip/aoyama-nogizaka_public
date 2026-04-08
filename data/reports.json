@@ -1,8 +1,935 @@
 {
-  "last_updated": "2026-04-08T08:32:43+09:00",
-  "total_reports": 24058,
-  "activist_reports": 1187,
+  "last_updated": "2026-04-08T17:17:43+09:00",
+  "total_reports": 24117,
+  "activist_reports": 1206,
   "reports": [
+    {
+      "doc_id": "S100XXJZ",
+      "date": "2026-04-08",
+      "filer_name": "シー・シックス・エイト株式会社",
+      "issuer_name": "E34487",
+      "sec_code": "7046",
+      "target_company": "ＴＤＳＥ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXJZ",
+      "holding_ratio": 17.27,
+      "purpose": "その他",
+      "purpose_detail": "2026年4月1日付の吸収合併に伴い、吸収合併消滅会社である旧株式会社テクノスジャパンが保有していたＴＤＳＥ株式会社の株式を承継（安定株主として保有）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXDY",
+      "date": "2026-04-08",
+      "filer_name": "グランサム、マヨ、ヴァン　オッテルロー　アンド　カンパニー　エルエルシー",
+      "issuer_name": "E27260",
+      "sec_code": "6098",
+      "target_company": "オイシックス・ラ・大地株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXDY",
+      "holding_ratio": 10.48,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこともありうる。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XX7M",
+      "date": "2026-04-08",
+      "filer_name": "グランサム、マヨ、ヴァン　オッテルロー　アンド　カンパニー　エルエルシー",
+      "issuer_name": "E01947",
+      "sec_code": "6810",
+      "target_company": "マクセル株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XX7M",
+      "holding_ratio": 9.15,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこともありうる。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXMK",
+      "date": "2026-04-08",
+      "filer_name": "日産証券グループ株式会社",
+      "issuer_name": "E03723",
+      "sec_code": "8705",
+      "target_company": "株式会社小林洋行",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXMK",
+      "holding_ratio": 6.06,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXJ6",
+      "date": "2026-04-08",
+      "filer_name": "大和アセットマネジメント株式会社",
+      "issuer_name": "E37153",
+      "sec_code": "9212",
+      "target_company": "Ｇｒｅｅｎ　Ｅａｒｔｈ　Ｉｎｓｔｉｔｕｔｅ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXJ6",
+      "holding_ratio": 9.23,
+      "purpose": "その他",
+      "purpose_detail": "証券投資信託の財産及び投資一任契約による顧客資金として保有",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "daiwa_am",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100XXMV",
+      "date": "2026-04-08",
+      "filer_name": "株式会社アーム",
+      "issuer_name": "E37304",
+      "sec_code": "3180",
+      "target_company": "株式会社セイファート",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXMV",
+      "holding_ratio": 19.4,
+      "purpose": "株主提案",
+      "purpose_detail": "主要株主として、経営陣との対話等を通じて経営改善提案等を行い、企業価値の向上を図ることを目的とする。発行者の現況（赤字業績予想等）に鑑み、早急な赤字幅の圧縮、早期の黒字転換、および当初予想を上回る収益",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XW5U",
+      "date": "2026-04-08",
+      "filer_name": "日本パーカライジング株式会社",
+      "issuer_name": "E02708",
+      "sec_code": "4095",
+      "target_company": "株式会社パーカーコーポレーション",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XW5U",
+      "holding_ratio": 22.61,
+      "purpose": "その他",
+      "purpose_detail": "資本提携の一環として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XWXG",
+      "date": "2026-04-08",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E04410",
+      "sec_code": "9404",
+      "target_company": "日本テレビホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XWXG",
+      "holding_ratio": 8.25,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXNR",
+      "date": "2026-04-08",
+      "filer_name": "東京中小企業投資育成株式会社",
+      "issuer_name": "E41485",
+      "sec_code": "548A",
+      "target_company": "株式会社システムエグゼ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXNR",
+      "holding_ratio": 19.11,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXFQ",
+      "date": "2026-04-08",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E01926",
+      "sec_code": "6997",
+      "target_company": "日本ケミコン（株）",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXFQ",
+      "holding_ratio": 8.22,
+      "purpose": "その他",
+      "purpose_detail": "ディーリング(短期売買)目的で保有するもの。顧客との売買取引等に基づき保有するもの。レンディングその他取引に基づく一時的保有。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XWVY",
+      "date": "2026-04-08",
+      "filer_name": "ジャパン・インダストリアル・ソリューションズ株式会社",
+      "issuer_name": "E01926",
+      "sec_code": "6997",
+      "target_company": "日本ケミコン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XWVY",
+      "holding_ratio": 7.17,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び重要提案行為等を行うこと。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XX2T",
+      "date": "2026-04-08",
+      "filer_name": "ダイムラー・トラック・アーゲー",
+      "issuer_name": "E41130",
+      "sec_code": "543A",
+      "target_company": "ＡＲＣＨＩＯＮ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XX2T",
+      "holding_ratio": 41.43,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXJW",
+      "date": "2026-04-08",
+      "filer_name": "ジーイエット株式会社",
+      "issuer_name": "E27280",
+      "sec_code": "7603",
+      "target_company": "株式会社オルトプラス",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXJW",
+      "holding_ratio": 25.54,
+      "purpose": "その他",
+      "purpose_detail": "発行者との資本業務提携",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXEB",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E39737",
+      "sec_code": "254A",
+      "target_company": "ＡＩフュージョンキャピタルグループ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXEB",
+      "holding_ratio": 7.84,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXHS",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E36129",
+      "sec_code": "4884",
+      "target_company": "クリングルファーマ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXHS",
+      "holding_ratio": 13.2,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXJC",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E24682",
+      "sec_code": "4582",
+      "target_company": "シンバイオ製薬株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXJC",
+      "holding_ratio": 31.52,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第１提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXLU",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E27280",
+      "sec_code": "3672",
+      "target_company": "株式会社オルトプラス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXLU",
+      "holding_ratio": 46.62,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XWVF",
+      "date": "2026-04-08",
+      "filer_name": "トヨタ自動車株式会社",
+      "issuer_name": "E41130",
+      "sec_code": "7203",
+      "target_company": "ARCHION株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XWVF",
+      "holding_ratio": 41.43,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資（取引関係の維持・発展）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XR8W",
+      "date": "2026-04-08",
+      "filer_name": "有田　泰志",
+      "issuer_name": "E01916",
+      "sec_code": "6982",
+      "target_company": "株式会社リード",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XR8W",
+      "holding_ratio": 8.45,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXOQ",
+      "date": "2026-04-08",
+      "filer_name": "株式会社川野商事",
+      "issuer_name": "E40736",
+      "sec_code": "417A",
+      "target_company": "株式会社ブルーゾーンホールディングス",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXOQ",
+      "holding_ratio": 18.33,
+      "purpose": "その他",
+      "purpose_detail": "共同保有により保有割合を高め、会社運営の安定を目的とする",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXEV",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E02978",
+      "sec_code": "3350",
+      "target_company": "株式会社メタプラネット",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXEV",
+      "holding_ratio": 21.14,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXGN",
+      "date": "2026-04-08",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E37457",
+      "sec_code": "7610",
+      "target_company": "株式会社TORICO",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXGN",
+      "holding_ratio": 39.24,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XTZP",
+      "date": "2026-04-08",
+      "filer_name": "住友林業株式会社",
+      "issuer_name": "E23288",
+      "sec_code": "1911",
+      "target_company": "ジオリーブグループ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XTZP",
+      "holding_ratio": 29.21,
+      "purpose": "政策投資",
+      "purpose_detail": "発行者との資本業務提携を目的とした政策投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXPQ",
+      "date": "2026-04-08",
+      "filer_name": "Ａｎｃｈｏｒ　Ｃａｐｉｔａｌ　Ｇｒｏｕｐ株式会社",
+      "issuer_name": "E02005",
+      "sec_code": "6867",
+      "target_company": "リーダー電子株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXPQ",
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資、取締役の派遣等による経営参加及び業務提携の実施",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXQI",
+      "date": "2026-04-08",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E04294",
+      "sec_code": "8604",
+      "target_company": "株式会社杉村倉庫",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXQI",
+      "holding_ratio": 4.43,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXO7",
+      "date": "2026-04-08",
+      "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+      "issuer_name": "E00913",
+      "sec_code": "4631",
+      "target_company": "太陽ホールディングス株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXO7",
+      "holding_ratio": 14.88,
+      "purpose": "その他",
+      "purpose_detail": "ポートフォリオ投資",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "oasis",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XXOA",
+      "date": "2026-04-08",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E00751",
+      "sec_code": "4004",
+      "target_company": "株式会社レゾナック・ホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXOA",
+      "holding_ratio": 4.11,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXNX",
+      "date": "2026-04-08",
+      "filer_name": "株式会社ＪＢＦアドバイザリー",
+      "issuer_name": "E05573",
+      "sec_code": "3803",
+      "target_company": "イメージ情報開発株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXNX",
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXO9",
+      "date": "2026-04-08",
+      "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+      "issuer_name": "E36190",
+      "sec_code": "4887",
+      "target_company": "サワイグループホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXO9",
+      "holding_ratio": 5.82,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者は、発行者に対して増配、自己株式の買入の頻度又は総量、金庫株消却その他資本政策の変更を要求することがある。また、(i)重要な資産の処分又は取得、(ii)借入又は転換社債の発行、(iii)取締役又",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "silchester",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XX8B",
+      "date": "2026-04-08",
+      "filer_name": "株式会社みみっく",
+      "issuer_name": "E01408",
+      "sec_code": "5905",
+      "target_company": "日本製罐株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XX8B",
+      "holding_ratio": 9.55,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXR3",
+      "date": "2026-04-08",
+      "filer_name": "伊藤忠商事株式会社",
+      "issuer_name": "E04031",
+      "sec_code": "8001",
+      "target_company": "サンフロンティア不動産株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXR3",
+      "holding_ratio": 9.58,
+      "purpose": "その他",
+      "purpose_detail": "発行者との資本業務提携",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XWHJ",
+      "date": "2026-04-08",
+      "filer_name": "清原　達郎",
+      "issuer_name": "E01459",
+      "sec_code": "7841",
+      "target_company": "株式会社遠藤製作所",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XWHJ",
+      "holding_ratio": 6.05,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "kiyohara_tatsuro",
+      "activist_type": "individual_investor"
+    },
+    {
+      "doc_id": "S100XJME",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E35791",
+      "sec_code": "4886",
+      "target_company": "あすか製薬ホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XJME",
+      "holding_ratio": 8.34,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XJMG",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E01413",
+      "sec_code": "5930",
+      "target_company": "文化シヤッター株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XJMG",
+      "holding_ratio": 3.46,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS0",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E02217",
+      "sec_code": "7292",
+      "target_company": "株式会社村上開明堂",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS0",
+      "holding_ratio": 5.94,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS1",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E01365",
+      "sec_code": "3420",
+      "target_company": "那須電機鉄工株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS1",
+      "holding_ratio": 7.25,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XW49",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E00961",
+      "sec_code": "4549",
+      "target_company": "栄研化学株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XW49",
+      "holding_ratio": 9.46,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS3",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E02544",
+      "sec_code": "8291",
+      "target_company": "日産東京販売ホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS3",
+      "holding_ratio": 4.17,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS4",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E02379",
+      "sec_code": "5943",
+      "target_company": "株式会社ノーリツ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS4",
+      "holding_ratio": 3.35,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKSF",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E00674",
+      "sec_code": "8306",
+      "target_company": "ザ・パック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKSF",
+      "holding_ratio": 4.03,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS6",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E01008",
+      "sec_code": "4212",
+      "target_company": "積水樹脂株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS6",
+      "holding_ratio": 4.77,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XJMN",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E02076",
+      "sec_code": "6927",
+      "target_company": "ヘリオス　テクノ　ホールディング株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XJMN",
+      "holding_ratio": 9.73,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XJMP",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E04328",
+      "sec_code": "9357",
+      "target_company": "名港海運株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XJMP",
+      "holding_ratio": 4.06,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XS4W",
+      "date": "2026-04-08",
+      "filer_name": "ひびき・パース・アドバイザーズ",
+      "issuer_name": "E01060",
+      "sec_code": "4973",
+      "target_company": "日本高純度化学株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XS4W",
+      "holding_ratio": 7.57,
+      "purpose": "株主提案",
+      "purpose_detail": "（３）【重要提案行為等】\n\n\n\n\n\n\n（４）【上記提出者の保有株券等の内訳】\n①【保有株券等の数】\n\n法第27条の23第3項本文法第27条の23第3項第1号法第27条の23第3項第2号\n株券又は投資証",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XJMQ",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E00161",
+      "sec_code": "1976",
+      "target_company": "明星工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XJMQ",
+      "holding_ratio": 7.49,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS7",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E00805",
+      "sec_code": "4109",
+      "target_company": "ステラケミファ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS7",
+      "holding_ratio": 4.24,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKS8",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E00559",
+      "sec_code": "3302",
+      "target_company": "帝国繊維株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKS8",
+      "holding_ratio": 6.07,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XKSB",
+      "date": "2026-04-08",
+      "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+      "issuer_name": "E01782",
+      "sec_code": "6763",
+      "target_company": "帝国通信工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XKSB",
+      "holding_ratio": 5.03,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び経営陣に対する経営の助言並びに状況に応じて重要提案行為等を行うこと。特に、ニッポン・アクティブ・バリュー・ファンドは、発行会社の財務的健全性及び市場での地位が株価に反映されていないと考えており",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "nippon_active_value",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100XXBG",
+      "date": "2026-04-08",
+      "filer_name": "株式会社ＤＯＥ５パーセント",
+      "issuer_name": "E00832",
+      "sec_code": "4620",
+      "target_company": "藤倉化成株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXBG",
+      "holding_ratio": 63.0,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び建設的な対話（エンゲージメント）を通じた中長期的な企業価値の向上（状況に応じて重要提案行為等を行うことを含む）",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "doe5percent",
+      "activist_type": "individual_investor"
+    },
+    {
+      "doc_id": "S100XXOJ",
+      "date": "2026-04-08",
+      "filer_name": "グロース・キャピタル株式会社",
+      "issuer_name": "E32989",
+      "sec_code": "4881",
+      "target_company": "株式会社ファンペップ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXOJ",
+      "holding_ratio": 13.84,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXNP",
+      "date": "2026-04-08",
+      "filer_name": "ソン　ユウ　ニン（Ｓｕｎ　Ｙｏｕ　Ｎｉｎｇ）",
+      "issuer_name": "E01362",
+      "sec_code": "5915",
+      "target_company": "株式会社駒井ハルテック",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXNP",
+      "holding_ratio": 5.02,
+      "purpose": "純投資",
+      "purpose_detail": "建設的な対話を通じて企業価値の向上を図ることを目的とした純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXPH",
+      "date": "2026-04-08",
+      "filer_name": "株式会社　東芝",
+      "issuer_name": "E33957",
+      "sec_code": "4432",
+      "target_company": "ウイングアーク１ｓｔ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXPH",
+      "holding_ratio": 13.15,
+      "purpose": "その他",
+      "purpose_detail": "提出者が2026年４月１日を効力発生日として吸収合併した東芝デジタルソリューションズ株式会社が、発行者との間において、2020年11月17日付で締結した戦略提携契約に基づく提携関係強化のため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXSF",
+      "date": "2026-04-08",
+      "filer_name": "Ａｐｒｉｃｕｓ　Ｐａｒｔｎｅｒｓ合同会社",
+      "issuer_name": "E01308",
+      "sec_code": "5707",
+      "target_company": "東邦亜鉛株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXSF",
+      "holding_ratio": 19.07,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXMU",
+      "date": "2026-04-08",
+      "filer_name": "合同会社ＨＯＮＪＩＮ",
+      "issuer_name": "E10737",
+      "sec_code": "8267",
+      "target_company": "株式会社クスリのアオキホールディングス",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXMU",
+      "holding_ratio": 3.82,
+      "purpose": "純投資",
+      "purpose_detail": "純投資を目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXN4",
+      "date": "2026-04-08",
+      "filer_name": "合同会社ＫＳ　Ａｖｉａｔｉｏｎ",
+      "issuer_name": "E10737",
+      "sec_code": "8267",
+      "target_company": "株式会社クスリのアオキホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXN4",
+      "holding_ratio": 3.83,
+      "purpose": "純投資",
+      "purpose_detail": "純投資を目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXR4",
+      "date": "2026-04-08",
+      "filer_name": "ＳＢＩノンバンクホールディングス株式会社",
+      "issuer_name": "E37986",
+      "sec_code": "5834",
+      "target_company": "ＳＢＩリーシングサービス株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXR4",
+      "holding_ratio": 62.25,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXM4",
+      "date": "2026-04-08",
+      "filer_name": "川口　英幸",
+      "issuer_name": "E05369",
+      "sec_code": "9435",
+      "target_company": "株式会社アプリックス",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXM4",
+      "holding_ratio": 20.32,
+      "purpose": "経営関与",
+      "purpose_detail": "発行者の経営に参加し、企業価値の向上を図ること",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXSQ",
+      "date": "2026-04-08",
+      "filer_name": "中野　剛人",
+      "issuer_name": "E37902",
+      "sec_code": "5038",
+      "target_company": "株式会社ｅＷｅＬＬ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXSQ",
+      "holding_ratio": 33.77,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100XXT8",
+      "date": "2026-04-08",
+      "filer_name": "光通信株式会社",
+      "issuer_name": "E05316",
+      "sec_code": "2341",
+      "target_company": "株式会社アルバイトタイムス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XXT8",
+      "holding_ratio": 6.9,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "hikari_tsushin",
+      "activist_type": "notable_holder"
+    },
     {
       "doc_id": "S100XW3P",
       "date": "2026-04-07",
@@ -80316,7 +81243,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA09",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 2.11,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100X9LN",
@@ -80328,7 +81258,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9LN",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 17.75,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。"
     },
     {
       "doc_id": "S100XAE6",
@@ -80340,7 +81273,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAE6",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.68,
+      "purpose": "その他",
+      "purpose_detail": "業務上の関係強化/発行者の企業価値向上を図ること。"
     },
     {
       "doc_id": "S100XAA8",
@@ -80352,7 +81288,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAA8",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 12.23,
+      "purpose": "その他",
+      "purpose_detail": "継続的かつ安定的な取引関係の維持"
     },
     {
       "doc_id": "S100XACN",
@@ -80364,7 +81303,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XACN",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 3.94,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XAG5",
@@ -80376,7 +81318,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAG5",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.69,
+      "purpose": "その他",
+      "purpose_detail": "業務上の関係強化/発行者の企業価値向上を図ること。"
     },
     {
       "doc_id": "S100XA0X",
@@ -80388,7 +81333,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA0X",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 22.29,
+      "purpose": "その他",
+      "purpose_detail": "証券業務及びその付随業務としての保有"
     },
     {
       "doc_id": "S100XAH3",
@@ -80400,7 +81348,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAH3",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 27.66,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者かつ代表取締役であり、安定株主として保有しております。"
     },
     {
       "doc_id": "S100XAHB",
@@ -80412,7 +81363,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAHB",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 27.68,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者かつ代表取締役であり、安定株主として保有しております。"
     },
     {
       "doc_id": "S100X9N9",
@@ -80424,7 +81378,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9N9",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.62,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として保有"
     },
     {
       "doc_id": "S100XAE1",
@@ -80436,7 +81393,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAE1",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 25.17,
+      "purpose": "その他",
+      "purpose_detail": "発行者の取締役である鉢嶺登氏が100％出資する会社であり、長期保有を目的とした安定株主として保有しております。ただし、株式会社博報堂ＤＹホールディングス（以下「公開買付者」といいます。）が、発行者の普"
     },
     {
       "doc_id": "S100XA03",
@@ -80448,7 +81408,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA03",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 34.82,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資"
     },
     {
       "doc_id": "S100X9AT",
@@ -80460,7 +81423,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9AT",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.05,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び状況に応じて経営陣への助言、重要提案行為を行うこと"
     },
     {
       "doc_id": "S100XAHJ",
@@ -80472,7 +81438,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAHJ",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.94,
+      "purpose": "その他",
+      "purpose_detail": "取引関係強化の為"
     },
     {
       "doc_id": "S100XAHO",
@@ -80484,7 +81453,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAHO",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 17.63,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）"
     },
     {
       "doc_id": "S100XABE",
@@ -80496,7 +81468,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XABE",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 30.1,
+      "purpose": "その他",
+      "purpose_detail": "発行者の主要株主としての長期保有目的。"
     },
     {
       "doc_id": "S100XAHT",
@@ -80521,7 +81496,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAF4",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.22,
+      "purpose": "株主提案",
+      "purpose_detail": "投資（投資一任契約に係る顧客資産の運用）を主な目的とするが、状況に応じて、運営及び資本の効率化に向けて、発行者の経営陣との意見交換や、重要提案行為等を行う場合がある。"
     },
     {
       "doc_id": "S100X9YK",
@@ -80533,7 +81511,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9YK",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.83,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100X82E",
@@ -80545,7 +81526,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X82E",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XAHZ",
@@ -80557,7 +81541,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAHZ",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 14.1,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）"
     },
     {
       "doc_id": "S100X9UA",
@@ -80569,7 +81556,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9UA",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 3.65,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）"
     },
     {
       "doc_id": "S100XAI4",
@@ -80598,7 +81588,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XABS",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 28.84,
+      "purpose": "株主提案",
+      "purpose_detail": "提出者は、発行者を提出者の完全子会社とすることを目的とした重要提案行為等を行うことを予定しております。具体的には、提出者は、会社法（平成17年法律第86号。その後の改正を含みます。）第180条に基づき"
     },
     {
       "doc_id": "S100XAAW",
@@ -80610,7 +81603,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAAW",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 44.86,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の役員として経営に参加するため、またその経営の安定化を図るために保有"
     },
     {
       "doc_id": "S100XAIG",
@@ -80663,7 +81659,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XACP",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.7,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XADJ",
@@ -80675,7 +81674,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XADJ",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.68,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XAE5",
@@ -80687,7 +81689,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAE5",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.68,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XAFH",
@@ -80699,7 +81704,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAFH",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.88,
+      "purpose": "純投資",
+      "purpose_detail": "当社が無限責任組合員となっているSBI4＆5投資事業有限責任組合及びSBI4＆5投資事業有限責任組合2号の保有目的は純投資です。"
     },
     {
       "doc_id": "S100XAGF",
@@ -80711,7 +81719,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAGF",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.68,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XAGT",
@@ -80723,7 +81734,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAGT",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.68,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XABU",
@@ -80735,7 +81749,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XABU",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.12,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XAGW",
@@ -80747,7 +81764,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XAGW",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XA3H",
@@ -80759,7 +81779,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA3H",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 18.81,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）"
     },
     {
       "doc_id": "S100X9WL",
@@ -80771,7 +81794,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9WL",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.0,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者と発行者との資本業務提携の一環としての政策投資"
     },
     {
       "doc_id": "S100XA0D",
@@ -80785,7 +81811,10 @@
       "is_activist": false,
       "is_notable": true,
       "activist_id": "jpmorgan_am",
-      "activist_type": "notable_holder"
+      "activist_type": "notable_holder",
+      "holding_ratio": 7.94,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約および投資信託による純投資を目的として保有している。"
     },
     {
       "doc_id": "S100X9I1",
@@ -80812,7 +81841,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9DI",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 4.96,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として長期保有することを目的としております。"
     },
     {
       "doc_id": "S100X9TM",
@@ -80824,7 +81856,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9TM",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.49,
+      "purpose": "その他",
+      "purpose_detail": "創業者及びその親族が所有する資産管理会社であり、安定株主として長期保有することを目的としています。"
     },
     {
       "doc_id": "S100X4UI",
@@ -80849,7 +81884,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9Y0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 2.06,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として長期保有を目的としております。"
     },
     {
       "doc_id": "S100X9T0",
@@ -80861,7 +81899,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9T0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 26.94,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。"
     },
     {
       "doc_id": "S100XA22",
@@ -80873,7 +81914,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA22",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.13,
+      "purpose": "純投資",
+      "purpose_detail": "純投資。必要に応じて適宜の助言、提案（重要提案行為等を含む）を行うこと。"
     },
     {
       "doc_id": "S100XA3T",
@@ -80885,7 +81929,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA3T",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 34.96,
+      "purpose": "その他",
+      "purpose_detail": "長期保有するため。"
     },
     {
       "doc_id": "S100X96A",
@@ -80897,7 +81944,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X96A",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 53.61,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役の資産管理会社であり、安定株主として保有しております。"
     },
     {
       "doc_id": "S100X7S0",
@@ -80909,7 +81959,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X7S0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 12.65,
+      "purpose": "株主提案",
+      "purpose_detail": "（３）【重要提案行為等】\n\n該当無"
     },
     {
       "doc_id": "S100XA4K",
@@ -80921,7 +81974,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA4K",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 12.65,
+      "purpose": "株主提案",
+      "purpose_detail": "（３）【重要提案行為等】\n\n該当無"
     },
     {
       "doc_id": "S100X9VY",
@@ -80933,7 +81989,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9VY",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 43.11,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第一提出者は発行者の経営陣に対して経営の助言を行う場合がある。"
     },
     {
       "doc_id": "S100X9VP",
@@ -80958,7 +82017,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X84H",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 9.06,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者一族から信託を受け、発行会社の株式を保有しており、安定株主として保有しております。"
     },
     {
       "doc_id": "S100X9SI",
@@ -80970,7 +82032,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9SI",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.67,
+      "purpose": "純投資",
+      "purpose_detail": "株式会社Ｏｌｙｍｐｉｃグループのグループ会社の取引先の純投資及び政策投資"
     },
     {
       "doc_id": "S100X8OR",
@@ -80982,7 +82047,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8OR",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.03,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X8P0",
@@ -80994,7 +82062,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8P0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.09,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X8P5",
@@ -81006,7 +82077,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8P5",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 7.06,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100XA78",
@@ -81018,7 +82092,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA78",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 34.43,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。"
     },
     {
       "doc_id": "S100X8P9",
@@ -81030,7 +82107,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8P9",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.01,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X8PD",
@@ -81042,7 +82122,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8PD",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 1.16,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100XA0K",
@@ -81054,7 +82137,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA0K",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 37.52,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の代表者として経営に参加するため、またその経営の安定化を図るために保有"
     },
     {
       "doc_id": "S100XA23",
@@ -81066,7 +82152,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA23",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 32.51,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の代表者として経営に参加するため、またその経営の安定化を図るために保有"
     },
     {
       "doc_id": "S100X8PJ",
@@ -81078,7 +82167,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8PJ",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100X9P4",
@@ -81090,7 +82182,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9P4",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.44,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創始者であり、安定株主として長期保有するため"
     },
     {
       "doc_id": "S100X8O4",
@@ -81102,7 +82197,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8O4",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 12.84,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創始者であり、安定株主として長期保有するため"
     },
     {
       "doc_id": "S100X9IB",
@@ -81114,7 +82212,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9IB",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.02,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び重要提案行為等を行うこと"
     },
     {
       "doc_id": "S100X8W9",
@@ -81128,7 +82229,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "maki_hiroyuki",
-      "activist_type": "individual_investor"
+      "activist_type": "individual_investor",
+      "holding_ratio": 5.16,
+      "purpose": "経営関与",
+      "purpose_detail": "提出者は、筆頭株主かつ創業社長である清水清人氏を経営者として尊敬しており、発行者の上場継続や非公開化に関わらず、友好的株主として長期保有することを原則とします。"
     },
     {
       "doc_id": "S100XA35",
@@ -81183,7 +82287,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9D0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.01,
+      "purpose": "その他",
+      "purpose_detail": "取引関係の強化"
     },
     {
       "doc_id": "S100XA8A",
@@ -81195,7 +82302,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA8A",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 7.04,
+      "purpose": "その他",
+      "purpose_detail": "株式会社上組と取引関係のある企業および個人が株式会社上組株式の取得により、相互の親睦関係の増進に寄与することを目的とする"
     },
     {
       "doc_id": "S100X9VB",
@@ -81207,7 +82317,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9VB",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 7.22,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100XA3V",
@@ -81219,7 +82332,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA3V",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 3.93,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役であり、安定株主として保有しております。"
     },
     {
       "doc_id": "S100X957",
@@ -81248,7 +82364,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA8F",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.03,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100XA2V",
@@ -81275,7 +82394,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA8V",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.09,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X8QH",
@@ -81287,7 +82409,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8QH",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 9.75,
+      "purpose": "その他",
+      "purpose_detail": "長期保有を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XA94",
@@ -81299,7 +82424,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA94",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 7.06,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100XA95",
@@ -81313,7 +82441,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "3d_investment",
-      "activist_type": "activist"
+      "activist_type": "activist",
+      "holding_ratio": 15.4,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて経営陣への助言、重要提案行為を行うこと。"
     },
     {
       "doc_id": "S100XA99",
@@ -81325,7 +82456,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA99",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.01,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X9FN",
@@ -81339,7 +82473,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "maki_hiroyuki",
-      "activist_type": "individual_investor"
+      "activist_type": "individual_investor",
+      "holding_ratio": 10.14,
+      "purpose": "株主提案",
+      "purpose_detail": "上場廃止後の経営参画を目標として保有します。経営参画とは、提出者が株主としての立場で重要提案行為等を行うものではなく、経営陣による経営に参画することで企業価値の向上を目指すことを言います。但し、経営支"
     },
     {
       "doc_id": "S100XA9E",
@@ -81351,7 +82488,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100XA9E",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 1.16,
+      "purpose": "その他",
+      "purpose_detail": "発行会社と会員との関係をより緊密にすることを目的とする。"
     },
     {
       "doc_id": "S100X9LD",
@@ -81376,7 +82516,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X8GI",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.6,
+      "purpose": "政策投資",
+      "purpose_detail": "資本業務提携を目的とした政策投資"
     },
     {
       "doc_id": "S100X86Q",
@@ -81401,7 +82544,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9IM",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 16.22,
+      "purpose": "経営関与",
+      "purpose_detail": "創業者として経営の安定化を図るため"
     },
     {
       "doc_id": "S100X9IX",
@@ -81413,7 +82559,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9IX",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 36.04,
+      "purpose": "その他",
+      "purpose_detail": "安定株主としての保有"
     },
     {
       "doc_id": "S100X9ZG",
@@ -81425,7 +82574,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9ZG",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.7,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役会長であり、経営参加を目的とした安定株主として保有しております。"
     },
     {
       "doc_id": "S100XA9K",
@@ -81452,7 +82604,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "elliott",
-      "activist_type": "activist"
+      "activist_type": "activist",
+      "holding_ratio": 5.01,
+      "purpose": "株主提案",
+      "purpose_detail": "投資。なお、状況等に応じ、発行会社及び／又はその関係会社との間で議論を行い、又はこれらに対して重要提案行為等を行うこと。"
     },
     {
       "doc_id": "S100X5CL",
@@ -81479,7 +82634,10 @@
       "is_activist": false,
       "is_notable": true,
       "activist_id": "jpmorgan_am",
-      "activist_type": "notable_holder"
+      "activist_type": "notable_holder",
+      "holding_ratio": 7.94,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約および投資信託による純投資を目的として保有している。"
     },
     {
       "doc_id": "S100X9K3",
@@ -81491,7 +82649,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9K3",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 66.79,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100X9KO",
@@ -81503,7 +82664,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9KO",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 15.28,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の役員として経営に参加するため、また、その経営の安定化を図るため。"
     },
     {
       "doc_id": "S100X9PI",
@@ -81515,7 +82679,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9PI",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 1.2,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者かつ取締役であり、経営参加を目的とした安定株主として保有しております。ただし、富士通株式会社（以下「公開買付者」といいます。）が、株式会社ブレインパッド普通株式（以下「発行会社株式」と"
     },
     {
       "doc_id": "S100X9PM",
@@ -81527,7 +82694,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9PM",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 8.75,
+      "purpose": "その他",
+      "purpose_detail": "創業者の資産管理会社であり、安定株主として長期保有することを目的としております。"
     },
     {
       "doc_id": "S100X9Q8",
@@ -81539,7 +82709,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9Q8",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 41.73,
+      "purpose": "純投資",
+      "purpose_detail": "純投資かつ中長期保有"
     },
     {
       "doc_id": "S100X9M1",
@@ -81551,7 +82724,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9M1",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 7.41,
+      "purpose": "株主提案",
+      "purpose_detail": "重要提案行為等を行うこと"
     },
     {
       "doc_id": "S100X9NE",
@@ -81563,7 +82739,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9NE",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 27.32,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の代表取締役であり、経営参加を目的とした安定株主として長期保有しております。"
     },
     {
       "doc_id": "S100X9QM",
@@ -81588,7 +82767,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X950",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 17.3,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として長期保有を目的としております。"
     },
     {
       "doc_id": "S100X9DC",
@@ -81600,7 +82782,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9DC",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 4.16,
+      "purpose": "政策投資",
+      "purpose_detail": "政策保有"
     },
     {
       "doc_id": "S100X9MF",
@@ -81625,7 +82810,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9R0",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.1,
+      "purpose": "株主提案",
+      "purpose_detail": "（３）【重要提案行為等】\n\n\n\n\n\n\n（４）【上記提出者の保有株券等の内訳】\n①【保有株券等の数】\n\n法第27条の23第3項本文法第27条の23第3項第1号法第27条の23第3項第2号\n株券又は投資証"
     },
     {
       "doc_id": "S100X9JP",
@@ -81637,7 +82825,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9JP",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 43.16,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第一提出者は発行者の経営陣に対して経営の助言を行う場合がある。"
     },
     {
       "doc_id": "S100X9SA",
@@ -81649,7 +82840,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9SA",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 61.47,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の事業活動を支配する目的、並びに中長期的な企業価値向上及び事業の発展に寄与する目的での保有"
     },
     {
       "doc_id": "S100X9T5",
@@ -81661,7 +82855,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9T5",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 11.39,
+      "purpose": "経営関与",
+      "purpose_detail": "経営参加"
     },
     {
       "doc_id": "S100X9TD",
@@ -81673,7 +82870,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9TD",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 6.1,
+      "purpose": "その他",
+      "purpose_detail": "投資目的"
     },
     {
       "doc_id": "S100X9SN",
@@ -81685,7 +82885,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9SN",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 29.84,
+      "purpose": "経営関与",
+      "purpose_detail": "当社の代表取締役会長兼CEOとして、当社の経営権の安定化及び事業承継の一環として、自己資金により長期保有する目的"
     },
     {
       "doc_id": "S100X9G3",
@@ -81697,7 +82900,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9G3",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 13.93,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。"
     },
     {
       "doc_id": "S100X9SW",
@@ -81722,7 +82928,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9RC",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 45.18,
+      "purpose": "その他",
+      "purpose_detail": "安定株主としての保有"
     },
     {
       "doc_id": "S100X5HI",
@@ -81734,7 +82943,10 @@
       "report_type": "新規報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X5HI",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 10.0,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者と発行者との資本業務提携の一環としての政策投資"
     },
     {
       "doc_id": "S100X958",
@@ -81748,7 +82960,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "dalton",
-      "activist_type": "activist"
+      "activist_type": "activist",
+      "holding_ratio": 7.1,
+      "purpose": "経営関与",
+      "purpose_detail": "提出者は、発行者の株価が過小評価されており魅力的な投資機会であると考えて、発行者の株式を取得し長期的に保有する。提出者は、発行者の財務状況、戦略的決定、取締役会の決定、株価水準、他の投資機会、投資ポー"
     },
     {
       "doc_id": "S100X9SH",
@@ -81760,7 +82975,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9SH",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 36.3,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）"
     },
     {
       "doc_id": "S100X9CW",
@@ -81830,7 +83048,10 @@
       "report_type": "訂正報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9JR",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 42.52,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の創業者及び代表取締役として経営に参画するため、また経営の安定化を図るため保有しています。"
     },
     {
       "doc_id": "S100X8V1",
@@ -81859,7 +83080,10 @@
       "report_type": "変更報告",
       "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100X9NT",
       "is_activist": false,
-      "is_notable": false
+      "is_notable": false,
+      "holding_ratio": 5.32,
+      "purpose": "純投資",
+      "purpose_detail": "純投資"
     },
     {
       "doc_id": "S100X9WE",
@@ -81873,7 +83097,10 @@
       "is_activist": true,
       "is_notable": false,
       "activist_id": "maki_hiroyuki",
-      "activist_type": "individual_investor"
+      "activist_type": "individual_investor",
+      "holding_ratio": 40.13,
+      "purpose": "株主提案",
+      "purpose_detail": "経営支配権の獲得と経営参画を目標に、筆頭株主として安定的に長期保有します。重要提案行為等（アート関連事業及び発行者が保有する現代美術作品の管理処分に関連するものを含みますが、これらに限られません。）に"
     },
     {
       "doc_id": "S100X9X0",
@@ -317105,6 +318332,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "2341",
+          "filer_name": "光通信株式会社",
+          "target_company": "株式会社アルバイトタイムス",
+          "date": "2026-04-08",
+          "holding_ratio": 6.9,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "9435",
           "filer_name": "株式会社光通信",
           "target_company": "株式会社エフティグループ",
@@ -317542,15 +318778,6 @@
           "target_company": "株式会社ブロードリーフ",
           "date": "2026-03-02",
           "holding_ratio": 6.78,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2341",
-          "filer_name": "光通信株式会社",
-          "target_company": "株式会社アルバイトタイムス",
-          "date": "2026-03-02",
-          "holding_ratio": 6.9,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -319094,8 +320321,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 879,
-      "latest_date": "2026-04-07",
+      "report_count": 880,
+      "latest_date": "2026-04-08",
       "member_ids": [
         "hikari_tsushin"
       ]
@@ -325662,6 +326889,239 @@
         "yoshiaki_murakami_personal"
       ]
     },
+    "nippon_active_value": {
+      "id": "nippon_active_value",
+      "name": "ニッポン・アクティブ・バリュー・ファンド",
+      "type": "activist",
+      "representative": "—",
+      "headquarters": "英国",
+      "description": "日本の割安な中小型株に集中投資し、株主提案を通じた企業価値向上を目指す英国上場ファンド。",
+      "focus_sectors": [
+        "製造業",
+        "小売",
+        "金融"
+      ],
+      "holdings": [
+        {
+          "sec_code": "4886",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "あすか製薬ホールディングス株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 8.34,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5930",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "文化シヤッター株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 3.46,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7292",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "株式会社村上開明堂",
+          "date": "2026-04-08",
+          "holding_ratio": 5.94,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3420",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "那須電機鉄工株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 7.25,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4549",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "栄研化学株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 9.46,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8291",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "日産東京販売ホールディングス株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 4.17,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5943",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "株式会社ノーリツ",
+          "date": "2026-04-08",
+          "holding_ratio": 3.35,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "ザ・パック株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 4.03,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4212",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "積水樹脂株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 4.77,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6927",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "ヘリオス　テクノ　ホールディング株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 9.73,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9357",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "名港海運株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 4.06,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1976",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "明星工業株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 7.49,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4109",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "ステラケミファ株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 4.24,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3302",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "帝国繊維株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 6.07,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6763",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "帝国通信工業株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 5.03,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3593",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "株式会社ホギメディカル",
+          "date": "2026-03-09",
+          "holding_ratio": 0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3407",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "センコーグループホールディングス株式会社",
+          "date": "2026-02-26",
+          "holding_ratio": 57,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8473",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "株式会社フジ・メディア・ホールディングス",
+          "date": "2026-02-13",
+          "holding_ratio": 23.0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4362",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "日本精化株式会社",
+          "date": "2025-11-14",
+          "holding_ratio": 2.72,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2206",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "江崎グリコ株式会社",
+          "date": "2025-08-22",
+          "holding_ratio": null,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4347",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "ブロードメディア株式会社",
+          "date": "2025-05-20",
+          "holding_ratio": null,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6328",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "荏原実業株式会社",
+          "date": "2025-01-10",
+          "holding_ratio": null,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9058",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "トランコム株式会社",
+          "date": "2024-11-08",
+          "holding_ratio": null,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4462",
+          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
+          "target_company": "石原ケミカル株式会社",
+          "date": "2024-10-07",
+          "holding_ratio": null,
+          "purpose": "",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 120,
+      "latest_date": "2026-04-08"
+    },
     "silchester": {
       "id": "silchester",
       "name": "シルチェスター・インターナショナル・インベスターズ",
@@ -325675,6 +327135,15 @@
         "消費財"
       ],
       "holdings": [
+        {
+          "sec_code": "4887",
+          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+          "target_company": "サワイグループホールディングス株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 5.82,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "5714",
           "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
@@ -325771,15 +327240,6 @@
           "target_company": "株式会社ニコン",
           "date": "2025-11-25",
           "holding_ratio": 8.1,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4887",
-          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
-          "target_company": "サワイグループホールディングス株式会社",
-          "date": "2025-11-18",
-          "holding_ratio": 6.83,
           "purpose": "",
           "report_type": "変更報告"
         },
@@ -325937,241 +327397,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 111,
-      "latest_date": "2026-04-02"
-    },
-    "nippon_active_value": {
-      "id": "nippon_active_value",
-      "name": "ニッポン・アクティブ・バリュー・ファンド",
-      "type": "activist",
-      "representative": "—",
-      "headquarters": "英国",
-      "description": "日本の割安な中小型株に集中投資し、株主提案を通じた企業価値向上を目指す英国上場ファンド。",
-      "focus_sectors": [
-        "製造業",
-        "小売",
-        "金融"
-      ],
-      "holdings": [
-        {
-          "sec_code": "8291",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "日産東京販売ホールディングス株式会社",
-          "date": "2026-03-16",
-          "holding_ratio": 4.01,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "ザ・パック株式会社",
-          "date": "2026-03-13",
-          "holding_ratio": 3.52,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3302",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "帝国繊維株式会社",
-          "date": "2026-03-10",
-          "holding_ratio": 5.82,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3593",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "株式会社ホギメディカル",
-          "date": "2026-03-09",
-          "holding_ratio": 0,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3407",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "センコーグループホールディングス株式会社",
-          "date": "2026-02-26",
-          "holding_ratio": 57,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8473",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "株式会社フジ・メディア・ホールディングス",
-          "date": "2026-02-13",
-          "holding_ratio": 23.0,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4549",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "栄研化学株式会社",
-          "date": "2025-11-21",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5943",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "株式会社ノーリツ",
-          "date": "2025-11-20",
-          "holding_ratio": 3.09,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1976",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "明星工業株式会社",
-          "date": "2025-11-18",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4362",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "日本精化株式会社",
-          "date": "2025-11-14",
-          "holding_ratio": 2.72,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6927",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "ヘリオス　テクノ　ホールディング株式会社",
-          "date": "2025-09-11",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2206",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "江崎グリコ株式会社",
-          "date": "2025-08-22",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4109",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "ステラケミファ株式会社",
-          "date": "2025-07-22",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3420",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "株式会社ケー・エフ・シー",
-          "date": "2025-07-22",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5930",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "文化シヤッター株式会社",
-          "date": "2025-06-17",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4347",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "ブロードメディア株式会社",
-          "date": "2025-05-20",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4886",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "あすか製薬ホールディングス株式会社",
-          "date": "2025-05-13",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6328",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "荏原実業株式会社",
-          "date": "2025-01-10",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9357",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "名港海運株式会社",
-          "date": "2025-01-10",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7292",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "株式会社村上開明堂",
-          "date": "2025-01-10",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4212",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "積水樹脂株式会社",
-          "date": "2025-01-10",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6763",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "帝国通信工業株式会社",
-          "date": "2025-01-10",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9058",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "トランコム株式会社",
-          "date": "2024-11-08",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4462",
-          "filer_name": "ＮＩＰＰＯＮ　ＡＣＴＩＶＥ　ＶＡＬＵＥ　ＦＵＮＤ　ＰＬＣ",
-          "target_company": "石原ケミカル株式会社",
-          "date": "2024-10-07",
-          "holding_ratio": null,
-          "purpose": "",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 105,
-      "latest_date": "2026-03-16"
+      "report_count": 112,
+      "latest_date": "2026-04-08"
     },
     "strategic_capital": {
       "id": "strategic_capital",
@@ -326370,8 +327597,8 @@
           "filer_name": "牧　寛之",
           "target_company": "株式会社歯愛メディカル",
           "date": "2025-12-12",
-          "holding_ratio": null,
-          "purpose": "",
+          "holding_ratio": 10.14,
+          "purpose": "株主提案",
           "report_type": "変更報告"
         },
         {
@@ -326379,8 +327606,8 @@
           "filer_name": "牧　寛之",
           "target_company": "アールビバン株式会社",
           "date": "2025-12-11",
-          "holding_ratio": null,
-          "purpose": "",
+          "holding_ratio": 40.13,
+          "purpose": "株主提案",
           "report_type": "訂正報告"
         },
         {
@@ -326673,10 +327900,10 @@
           "sec_code": "4631",
           "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
           "target_company": "太陽ホールディングス株式会社",
-          "date": "2026-04-07",
+          "date": "2026-04-08",
           "holding_ratio": 14.88,
           "purpose": "その他",
-          "report_type": "変更報告"
+          "report_type": "訂正報告"
         },
         {
           "sec_code": "5423",
@@ -326931,8 +328158,8 @@
           "report_type": "新規報告"
         }
       ],
-      "report_count": 77,
-      "latest_date": "2026-04-07"
+      "report_count": 78,
+      "latest_date": "2026-04-08"
     },
     "doe5_group": {
       "id": "doe5_group",
@@ -326943,6 +328170,15 @@
       "description": "植島幹九郎氏がDOE5パーセント（旧D&Iインベストメント）会長として、個人名義・法人名義の双方で大量保有報告を提出。元GS・モルスタ出身の個人注目投資家。",
       "focus_sectors": [],
       "holdings": [
+        {
+          "sec_code": "4620",
+          "filer_name": "株式会社ＤＯＥ５パーセント",
+          "target_company": "藤倉化成株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 63.0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "4112",
           "filer_name": "株式会社ＤＯＥ５パーセント",
@@ -326985,15 +328221,6 @@
           "target_company": "群栄化学工業株式会社",
           "date": "2026-04-03",
           "holding_ratio": 5.0,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4620",
-          "filer_name": "株式会社ＤＯＥ５パーセント",
-          "target_company": "藤倉化成株式会社",
-          "date": "2026-04-02",
-          "holding_ratio": 56.0,
           "purpose": "株主提案",
           "report_type": "変更報告"
         },
@@ -327052,8 +328279,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 74,
-      "latest_date": "2026-04-07",
+      "report_count": 75,
+      "latest_date": "2026-04-08",
       "member_ids": [
         "doe5percent",
         "ueshima_kankuro"
@@ -327068,6 +328295,15 @@
       "description": "大和証券グループの資産運用会社。インデックス・アクティブ運用で幅広い上場株を大量保有。",
       "focus_sectors": [],
       "holdings": [
+        {
+          "sec_code": "9212",
+          "filer_name": "大和アセットマネジメント株式会社",
+          "target_company": "Ｇｒｅｅｎ　Ｅａｒｔｈ　Ｉｎｓｔｉｔｕｔｅ株式会社",
+          "date": "2026-04-08",
+          "holding_ratio": 9.23,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "3086",
           "filer_name": "大和アセットマネジメント株式会社",
@@ -327420,8 +328656,8 @@
           "report_type": "新規報告"
         }
       ],
-      "report_count": 71,
-      "latest_date": "2026-04-06"
+      "report_count": 72,
+      "latest_date": "2026-04-08"
     },
     "fidelity": {
       "id": "fidelity",
@@ -329609,6 +330845,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "7841",
+          "filer_name": "清原　達郎",
+          "target_company": "株式会社遠藤製作所",
+          "date": "2026-04-08",
+          "holding_ratio": 6.05,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "9432",
           "filer_name": "清原　達郎",
           "target_company": "株式会社ACCESS",
@@ -329636,8 +330881,8 @@
           "report_type": "訂正報告"
         }
       ],
-      "report_count": 5,
-      "latest_date": "2026-03-27"
+      "report_count": 6,
+      "latest_date": "2026-04-08"
     },
     "harris_associates": {
       "id": "harris_associates",
