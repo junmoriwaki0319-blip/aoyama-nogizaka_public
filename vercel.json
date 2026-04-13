@@ -12,6 +12,10 @@
       "maxDuration": 30
     }
   },
+  "redirects": [
+    { "source": "/activist-report.html", "destination": "/news/activist-report", "statusCode": 301 },
+    { "source": "/activist-report", "destination": "/news/activist-report", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/team", "destination": "/team.html" },
     { "source": "/privacy", "destination": "/privacy.html" },

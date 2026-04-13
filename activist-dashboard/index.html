@@ -74,7 +74,7 @@
       --red: #c0392b; --green: #27ae60; --blue: #2980b9; --orange: #e67e22;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
+    body { font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; line-height: 1.6; }
 
     /* DASHBOARD SUB-NAV */
     .dash-subnav { background: var(--navy-light); border-bottom: 1px solid rgba(255,255,255,0.08); margin-top: 64px; padding: 0 40px; }
@@ -395,7 +395,7 @@
   </style>
   <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
-  <script src="/js/css-loader.js" defer></script>
+  <script src="/js/css-loader.js"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -988,7 +988,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.6);padding:48px 0 32px}
   </div>
 </div>
 
-<script src="/js/nav-handler.js" defer></script>
+<script src="/js/nav-handler.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/fix_target_company_sanitizer.js"></script>
 <script src="/js/activist-dashboard-page.js"></script>

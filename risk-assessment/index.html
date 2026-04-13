@@ -72,7 +72,7 @@
       --serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; --sans: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; --deco: 'Cormorant Garamond', Georgia, serif;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); color: var(--text-dark); background: var(--off-white); }
+    body { font-family: var(--sans); color: var(--text-dark); background: var(--off-white); line-height: 1.6; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
@@ -295,7 +295,7 @@
     }
   </style>
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
-  <script src="/js/css-loader.js" defer></script>
+  <script src="/js/css-loader.js"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -563,7 +563,7 @@
   </div>
 </footer>
 
-<script src="/js/nav-handler.js" defer></script>
+<script src="/js/nav-handler.js"></script>
 <script src="/js/risk-assessment-page.js"></script>
 </body>
 </html>
