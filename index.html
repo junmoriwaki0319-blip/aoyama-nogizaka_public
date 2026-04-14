@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Analytics -->
   <!-- Google Analytics: 3秒遅延読み込み -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
-        document.head.appendChild(s);
-        var g = document.createElement('script');
-        g.src = '/js/gtag.js';
-        document.head.appendChild(g);
-      }, 3000);
-    });
-  </script>
+  <script src="/js/ga-loader.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
@@ -62,7 +50,7 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -814,14 +802,10 @@
       .nav-inner { padding: 0 16px; }
     }
   </style>
-  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print">
   <noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
   <link rel="preload" as="image" href="tokyo-night-view-8_medium.webp" type="image/webp">
-  <script>
-  // css-loader: switch preloaded stylesheets from print to all
-  var links = document.querySelectorAll('link[rel="stylesheet"][media="print"]');
-  for (var i = 0; i < links.length; i++) links[i].media = 'all';
-  </script>
+  <script src="/js/css-loader.js"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -1246,63 +1230,8 @@
     </div>
   </footer>
 
-  <script>
-// === reveal.js (inlined) ===
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-reveals.forEach(el => observer.observe(el));
-window.addEventListener('load', () => {
-  const heroReveals = document.querySelectorAll('.page-hero .reveal, .hero .reveal');
-  heroReveals.forEach((el, i) => {
-    setTimeout(() => el.classList.add('visible'), 100 + i * 130);
-  });
-});
-
-// === index-page.js (inlined) ===
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwQby968Ts6rSFyzTZZFfblfFDYOogRPWYa7kYl5eHdXaemLIilu6FnOemvX5ygIBwt/exec';
-async function submitContactForm(e) {
-  e.preventDefault();
-  const form = document.getElementById('contactForm');
-  const btn = document.getElementById('contactSubmitBtn');
-  const status = document.getElementById('contactStatus');
-  const fd = new FormData(form);
-  const data = { _formType: 'contact' };
-  fd.forEach((v, k) => { data[k] = v; });
-  btn.disabled = true; btn.textContent = '送信中...';
-  status.className = 'form-status'; status.style.display = 'none';
-  try {
-    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
-    status.className = 'form-status success'; status.textContent = 'お問い合わせを受け付けました。確認メールをお送りしましたのでご確認ください。';
-    form.reset();
-  } catch (err) {
-    status.className = 'form-status error'; status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-  } finally { btn.disabled = false; btn.textContent = '送信する'; }
-  return false;
-}
-document.addEventListener('submit', function(e) {
-  var form = e.target.closest('[data-form-action]');
-  if (form && form.dataset.formAction === 'submitContactForm') {
-    submitContactForm(e);
-  }
-});
-
-// === nav-handler.js (inlined) ===
-(function() {
-  'use strict';
-  var S = { navToggle: '[data-nav-toggle]', navLink: '[data-nav-link]', navMenu: '.mobile-menu', activeClass: 'open' };
-  var menuState = { isOpen: false };
-  function toggleMenu(m) { if (!m) return; menuState.isOpen = !menuState.isOpen; m.classList.toggle(S.activeClass); var b = document.querySelector(S.navToggle); if (b) b.setAttribute('aria-expanded', String(menuState.isOpen)); }
-  function closeMenu(m) { if (!m || !menuState.isOpen) return; menuState.isOpen = false; m.classList.remove(S.activeClass); var b = document.querySelector(S.navToggle); if (b) b.setAttribute('aria-expanded', 'false'); }
-  function init() { var m = document.querySelector(S.navMenu); var b = document.querySelector(S.navToggle); if (!m || !b) return; b.addEventListener('click', function(e) { toggleMenu(m); e.stopPropagation(); }, false); document.querySelectorAll(S.navLink).forEach(function(l) { l.addEventListener('click', function() { closeMenu(m); }, false); }); b.setAttribute('aria-expanded', 'false'); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, false); else init();
-})();
-</script>
+  <script src="/js/reveal.js"></script>
+  <script src="/js/index-page.js"></script>
+  <script src="/js/nav-handler.js"></script>
 </body>
 </html>
