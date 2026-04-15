@@ -176,6 +176,16 @@
     .link-secondary { background: var(--bg-alt); color: var(--navy); border: 1px solid var(--border); }
     .link-secondary:hover { background: var(--bg-warm); border-color: var(--gold-light); }
 
+    /* ─── Filter Bar ─── */
+    .filter-bar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; padding: 16px 20px; background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); }
+    .filter-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; margin-right: 4px; }
+    .filter-select { font-family: inherit; font-size: 0.8rem; padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer; min-width: 160px; }
+    .filter-select:focus { border-color: var(--gold); outline: none; }
+    .filter-reset { font-family: inherit; font-size: 0.75rem; padding: 6px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; color: var(--text-mid); cursor: pointer; transition: all 0.15s; }
+    .filter-reset:hover { background: var(--bg-warm); border-color: var(--gold-light); }
+    .filter-count { font-size: 0.75rem; color: var(--text-light); margin-left: auto; }
+    .case-card.filter-hidden { display: none; }
+
     /* ─── Trend Cards ─── */
     .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .trend-card { padding: 24px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
@@ -228,6 +238,8 @@
       .case-summary { flex-direction: column; }
       .trend-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      .filter-count { margin-left: 0; margin-top: 4px; }
     }
     @media (max-width: 480px) {
       .site-header, .report-cover, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
@@ -292,7 +304,7 @@
         <span class="stat-label">同 議案数（三井住友信託銀行調べ・日経）</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-number">16件</span>
+        <span class="stat-number">19件</span>
         <span class="stat-label">本ページ掲載のリッチ提案</span>
       </div>
     </div>
@@ -318,6 +330,29 @@
   <!-- 事例一覧 -->
   <section class="article-section">
     <h2 class="section-heading">主要事例</h2>
+
+    <div class="filter-bar">
+      <span class="filter-label">絞り込み:</span>
+      <select id="filter-activist" class="filter-select" aria-label="アクティビストで絞り込み">
+        <option value="">すべてのアクティビスト</option>
+        <option value="3d">3D Investment Partners</option>
+        <option value="oasis">Oasis Management</option>
+        <option value="sc">ストラテジックキャピタル</option>
+        <option value="elliott">Elliott Management</option>
+        <option value="dalton">ダルトン・インベストメンツ</option>
+        <option value="hibiki">ひびき・パース・アドバイザーズ</option>
+        <option value="ges">Global ESG Strategy</option>
+      </select>
+      <select id="filter-year" class="filter-select" aria-label="時期で絞り込み">
+        <option value="">すべての時期</option>
+        <option value="2026">2026年</option>
+        <option value="2025">2025年</option>
+        <option value="2024">2024年</option>
+        <option value="2023">2023年</option>
+      </select>
+      <button id="filter-reset" class="filter-reset" type="button">リセット</button>
+      <span id="filter-count" class="filter-count"></span>
+    </div>
 
     <!-- Case 1: スクエニ × 3D -->
     <article class="case-card case-highlight">
@@ -826,6 +861,116 @@
       </div>
     </article>
 
+    <!-- Case 17: ひびき × 日本高純度化学 -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年5月〜</span>
+          <span class="case-badge badge-mfg">化学</span>
+        </div>
+        <h3 class="case-title">日本高純度化学 (4973) × ひびき・パース・アドバイザーズ</h3>
+        <p class="case-tagline">筆頭株主（18%保有）が7年越しの友好的提言から公開キャンペーンに転換</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">ひびき・パース・アドバイザーズ（シンガポール）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">約18%（筆頭株主、2025年3月末時点）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">公開キャンペーン + Hibiki Investment News</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>2018年より長期にわたる友好的かつ真摯な提言を行ってきたが、会社側が見解の相違を埋める努力を放棄したとして、2025年6月20日開催の第54期株主総会に向けた公開キャンペーンに転換。渡辺取締役相談役の再任反対、監査等委員会設置会社への移行反対、ROE向上に向けた株主還元強化（自己株式取得・配当強化）を提案。2024年9月には株式非公開化の検討を求める書簡も取締役会に送付。</p>
+          <h4>資料の特徴</h4>
+          <p>ひびき独自の情報発信プラットフォーム「Hibiki Investment News」で、投資先への提言内容・書簡・株主総会対応方針を時系列で公開。対話型エンゲージメントから公開キャンペーンへの移行プロセスが可視化されており、中小型株エンゲージメントの教科書的事例。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.businesswire.com/news/home/20250526855473/ja" target="_blank" rel="noopener" class="link-primary">公開キャンペーン発表</a>
+          <a href="https://hibiki-investment-news.com/category/4973/" target="_blank" rel="noopener" class="link-secondary">Hibiki Investment News</a>
+          <a href="https://www.businesswire.com/news/home/20241001958137/ja/" target="_blank" rel="noopener" class="link-secondary">非公開化検討要請書簡</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 18: ひびき × 河合楽器 -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2024年〜</span>
+          <span class="case-badge badge-consumer">楽器・消費財</span>
+        </div>
+        <h3 class="case-title">河合楽器製作所 (7952) × ひびき・パース・アドバイザーズ</h3>
+        <p class="case-tagline">エンゲージメント重視型 — Hibiki Investment Newsで対話プロセスを公開</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">ひびき・パース・アドバイザーズ（シンガポール）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">アプローチ</span>
+            <span class="detail-value">IR面談・取締役会レター・株主総会出席・動画コンテンツ</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>エンゲージメントの特徴</h4>
+          <p>清水雄也CIOが直接対話を主導。2024年5月にIR面談で事業面・財務面の意見交換を実施、同年6月の定時株主総会に株主として出席。取締役会へのレター送付やエンゲージメントの詳細を動画コンテンツで紹介するなど、透明性を重視した対話型アプローチを展開。Hibiki Investment Newsを通じて、投資先との対話プロセスをリアルタイムで発信。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://hibiki-investment-news.com/category/7952/" target="_blank" rel="noopener" class="link-primary">Hibiki Investment News — 河合楽器</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 19: 東京コスモス電機 × GES -->
+    <article class="case-card case-highlight">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2025年5月〜</span>
+          <span class="case-badge badge-mfg">電子部品</span>
+        </div>
+        <h3 class="case-title">東京コスモス電機 (6772) × Global ESG Strategy</h3>
+        <p class="case-tagline">アクティビストが社長に就任 — 取締役全員入れ替え、中小型での経営参画モデルケース</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">Global ESG Strategy（シンガポール）ほか複数ファンド（「群がり型」）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">結果</span>
+            <span class="detail-value">会社側取締役5名全員否決、アクティビスト側候補8名全員可決</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">新社長</span>
+            <span class="detail-value">門田泰人 氏（元外資系投資銀行、シンガポール拠点投資会社CIO）</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>経緯</h4>
+          <p>東京コスモス電機はFY23/3に過去最高の連結売上高107億円を達成したものの、その後は縮小均衡に陥り、第2次中期経営計画で掲げた設備投資目標も大幅に未達。2025年6月24日の株主総会で、会社側が提案した社長を含む取締役5名の選任議案が全て過半数割れで否決。一方、Global ESG Strategyが提案した取締役候補8名は全員可決され、監査等委員を除く取締役が丸ごと入れ替わる異例の事態に。</p>
+          <h4>新中期経営計画（2026–2030年度）</h4>
+          <p>アクティビスト出身の門田新社長は「アクティビストは経営できない、は的外れ」と明言。2026年度以降の5年間を成長投資フェーズと位置付け、アジアNo.1の可変抵抗器メーカー・スーパーTier2を目指す新中期経営計画を策定。中小型企業におけるアクティビストの直接経営参画モデルケースとして、今後の類似事例の増加が注目される。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://toyokeizai.net/articles/-/888350" target="_blank" rel="noopener" class="link-primary">東洋経済 — 新社長インタビュー</a>
+          <a href="https://toyokeizai.net/articles/-/888260" target="_blank" rel="noopener" class="link-secondary">東洋経済 — 全員退場の経緯</a>
+          <a href="https://www.tocos-j.co.jp/jp/ir/corporate/plan.pdf" target="_blank" rel="noopener" class="link-secondary">新中期経営計画 (PDF)</a>
+          <a href="https://prtimes.jp/main/html/rd/p/000000041.000135781.html" target="_blank" rel="noopener" class="link-secondary">GES株主提案プレスリリース</a>
+        </div>
+      </div>
+    </article>
+
   </section>
 
   <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
@@ -833,7 +978,7 @@
     <h2 class="section-heading">アクティビスト・キャンペーンマップ — 誰が、どこで、何をしているか</h2>
 
     <div class="intro-box">
-      <p>2023年以降にビジュアル資料・特設サイトを伴うキャンペーンを展開した主要アクティビストの一覧。<strong>日本市場ではOasis Management、3D Investment Partners、ストラテジックキャピタル、Elliott Management、ダルトン・インベストメンツの5ファンドがビジュアルキャンペーンの大半を占める。</strong></p>
+      <p>2023年以降にビジュアル資料・特設サイトを伴うキャンペーンを展開した主要アクティビストの一覧。<strong>日本市場ではOasis Management、3D Investment Partners、ストラテジックキャピタル、Elliott Management、ダルトン・インベストメンツの5ファンドがビジュアルキャンペーンの大半を占める。加えて、ひびき・パース・アドバイザーズ（→3D統合）やGlobal ESG Strategyなど、中小型株を対象としたアクティビズムも活発化している。</strong></p>
     </div>
 
     <div class="activist-table-wrap">
@@ -906,6 +1051,28 @@
             </td>
           </tr>
           <tr>
+            <td class="fund-name">ひびき・パース・アドバイザーズ<br><small>→ 2026年1月 3D Investment Partnersへ統合</small></td>
+            <td>SG</td>
+            <td><span class="campaign-style">レター</span><span class="campaign-style">エンゲージメント</span><span class="campaign-style">公開キャンペーン</span></td>
+            <td class="target-list">
+              日本高純度化学 (4973) · 河合楽器 (7952) · ほか中小型多数
+            </td>
+            <td>
+              <span class="result-ongoing">継続</span> 日本高純度化学
+            </td>
+          </tr>
+          <tr>
+            <td class="fund-name">Global ESG Strategy</td>
+            <td>SG</td>
+            <td><span class="campaign-style">株主提案</span><span class="campaign-style">経営参画</span></td>
+            <td class="target-list">
+              東京コスモス電機 (6772)
+            </td>
+            <td>
+              <span class="result-win">勝利</span> 経営権取得・全取締役入替
+            </td>
+          </tr>
+          <tr>
             <td class="fund-name">旧村上系<br><small>City Index Eleventh / Reno</small></td>
             <td>日本</td>
             <td><span class="campaign-style">大量取得</span><span class="campaign-style">AGM提案</span></td>
@@ -946,6 +1113,14 @@
         <p>Oasis Managementは対象企業ごとに「〇〇corpgov.com」「abetter〇〇.com」の特設サイトを開設する統一フォーマットを確立。花王では2本の特設サイト（abetterkao.com + protectkao.com）を運営し、太陽HDでは社長再任否決→KKR非公開化という成果を上げた。日本市場におけるビジュアルキャンペーンの最多展開者。</p>
       </article>
       <article class="trend-card">
+        <h3 class="trend-title">ひびき→3D統合：中小型株へのキャンペーン波及</h3>
+        <p>2025年11月、中小型株エンゲージメントで知られるひびき・パース・アドバイザーズが3D Investment Partnersへの事業統合を発表。清水雄也CIOが「3D Hibiki Path Aoba Strategy」のCIOとして運用を継続する。3Dの約1.3兆円の運用基盤とひびきの中小型株ノウハウが融合し、従来3Dが手薄だった時価総額1,000億円以下の企業にも、プレゼン資料・特設サイトを伴うキャンペーン水準のエンゲージメントが拡大する可能性がある。</p>
+      </article>
+      <article class="trend-card">
+        <h3 class="trend-title">中小型でのアクティビスト経営参画</h3>
+        <p>東京コスモス電機では、Global ESG Strategyを中心とした「群がり型」アクティビストが株主総会で全取締役を入れ替え、ファンド出身者が社長に就任する異例の事態が発生。新経営陣は5ヵ年の成長投資計画を策定し、「アクティビストは経営できない」という通念を覆す成果を示しつつある。ひびき→3D統合と合わせ、中小型市場における株主アクティビズムが「提案」から「経営」へと新段階に入ったことを示唆する。</p>
+      </article>
+      <article class="trend-card">
         <h3 class="trend-title">Elliottの日本本格参入</h3>
         <p>世界最大級のアクティビストElliott Managementが、東京ガス（不動産1.5兆円売却要求）、豊田自動織機（TOB価格40%過小評価と指摘）で本格的なプレゼン資料を公開。elliottletters.comでの日本企業向け資料公開は、グローバル水準のキャンペーンが日本市場に持ち込まれたことを象徴。</p>
       </article>
@@ -977,6 +1152,14 @@
         <span class="resource-desc">豊田自動織機等の投資家向けプレゼン</span>
       </li>
       <li>
+        <a href="https://www.hibiki-path-advisors.com/en/" target="_blank" rel="noopener">ひびき・パース・アドバイザーズ — 公式サイト</a>
+        <span class="resource-desc">エンゲージメント活動・投資哲学の一次ソース</span>
+      </li>
+      <li>
+        <a href="https://hibiki-investment-news.com/" target="_blank" rel="noopener">Hibiki Investment News</a>
+        <span class="resource-desc">投資先への提言・書簡・株主総会対応を時系列で公開</span>
+      </li>
+      <li>
         <a href="https://www.dir.co.jp/report/consulting/governance/20251031_025387.html" target="_blank" rel="noopener">大和総研 — 2025年6月株主総会シーズンの総括と示唆</a>
         <span class="resource-desc">吉川英徳ほか。アクティビスト投資家等による株主提案111社の包括分析</span>
       </li>
@@ -1001,5 +1184,61 @@
   <p class="footer-disclaimer">リンク先の資料の著作権は各発行元に帰属します。</p>
 </footer>
 
+<script>
+(function() {
+  var cards = document.querySelectorAll('.case-card');
+  var activistSel = document.getElementById('filter-activist');
+  var yearSel = document.getElementById('filter-year');
+  var resetBtn = document.getElementById('filter-reset');
+  var countEl = document.getElementById('filter-count');
+
+  function getActivist(card) {
+    var t = (card.querySelector('.case-title') || {}).textContent || '';
+    if (t.indexOf('3D') !== -1) return '3d';
+    if (t.indexOf('Oasis') !== -1) return 'oasis';
+    if (t.indexOf('ストラテジックキャピタル') !== -1) return 'sc';
+    if (t.indexOf('Elliott') !== -1) return 'elliott';
+    if (t.indexOf('ダルトン') !== -1) return 'dalton';
+    if (t.indexOf('ひびき') !== -1) return 'hibiki';
+    if (t.indexOf('Global ESG') !== -1) return 'ges';
+    return '';
+  }
+
+  function getYears(card) {
+    var d = (card.querySelector('.case-date') || {}).textContent || '';
+    var m = d.match(/20\d{2}/g);
+    return m ? m : [];
+  }
+
+  function applyFilters() {
+    var a = activistSel.value;
+    var y = yearSel.value;
+    var vis = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var ca = getActivist(cards[i]);
+      var cy = getYears(cards[i]);
+      var ma = !a || ca === a;
+      var my = !y || cy.indexOf(y) !== -1;
+      if (ma && my) {
+        cards[i].classList.remove('filter-hidden');
+        vis++;
+      } else {
+        cards[i].classList.add('filter-hidden');
+      }
+    }
+    countEl.textContent = vis + ' / ' + cards.length + '件 表示中';
+  }
+
+  activistSel.addEventListener('change', applyFilters);
+  yearSel.addEventListener('change', applyFilters);
+  resetBtn.addEventListener('click', function() {
+    activistSel.value = '';
+    yearSel.value = '';
+    applyFilters();
+  });
+
+  countEl.textContent = cards.length + ' / ' + cards.length + '件 表示中';
+})();
+</script>
 </body>
 </html>
