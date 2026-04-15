@@ -186,6 +186,18 @@
     .filter-count { font-size: 0.75rem; color: var(--text-light); margin-left: auto; }
     .case-card.filter-hidden { display: none; }
 
+    /* ─── Trend CTA Card ─── */
+    .trend-card-cta { grid-column: 1 / -1; padding: 32px; background: linear-gradient(135deg, var(--navy-dark), var(--navy)); border-left: 4px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+    .trend-card-cta .trend-title { color: var(--gold-light); }
+    .trend-card-cta p { color: rgba(255,255,255,0.75); }
+    .trend-card-cta strong { color: #fff; }
+    .cta-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .cta-link { display: inline-flex; align-items: center; padding: 8px 18px; font-size: 0.75rem; font-weight: 600; text-decoration: none; border-radius: var(--radius); transition: all 0.2s; }
+    .cta-link-gold { background: var(--gold); color: #fff; }
+    .cta-link-gold:hover { background: var(--gold-dim); }
+    .cta-link-outline { background: none; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+    .cta-link-outline:hover { border-color: var(--gold-light); color: #fff; }
+
     /* ─── Trend Cards ─── */
     .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .trend-card { padding: 24px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
@@ -1105,10 +1117,6 @@
         <p>2025年6月総会シーズンでは株主提案が過去最多の<a href="https://www.nikkei.com/article/DGXZQOUB141S60U5A610C2000000/" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">114社・399議案</a>に達した（三井住友信託銀行調べ・日経）。特筆すべきは、PBR1倍超・時価総額1,000億円以上の企業にも提案が拡大したこと（<a href="https://www.ey.com/ja_jp/newsroom/2025/09/ey-japan-news-release-2025-09-16" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">EY-Parthenon</a>）。「低PBR企業だけがターゲット」という従来の見方は通用しなくなった。NAVF（12件）・ダルトン（10件）連合が全体の約4割を占めるなど、量でも質でもアクティビスト活動は新段階に入っている（<a href="https://www.dir.co.jp/report/consulting/governance/20251031_025387.html" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">大和総研 2025年10月</a>）。</p>
       </article>
       <article class="trend-card">
-        <h3 class="trend-title">TMTセクター全域への波及 — ゲーム・メディア・広告</h3>
-        <p>従来アクティビストが避けてきたTMT（テクノロジー・メディア・テレコム）セクター全体への介入が本格化している。<strong>ゲーム：</strong>3D×スクエニ（14.36%保有、110P超資料）、SC×ガンホー（特設サイト）、Oasis×KADOKAWA（13.76%、FromSoftware親会社の筆頭株主）と、IP資産価値の再評価がセクター共通のテーマに。<strong>メディア：</strong>ダルトン×フジ・メディアHDでは、都市開発事業が営業利益の65%超を占める「実質不動産会社」の構造にメスを入れ、サンケイビルのスピンオフ・10%自社株買い・社外取締役刷新を要求。不動産を抱えるメディア企業のコングロマリット・ディスカウント解消が論点。<strong>広告・親子上場：</strong>電通グループでは2026年3月に旧村上ファンド系（C&I Holdings）が株主に浮上し思惑が拡大。CARTA HOLDINGSは2025年12月に上場廃止済み、セプテーニHDの完全子会社化も取り沙汰され（<a href="https://www.sentaku.co.jp/articles/view/25892" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">選択</a>）、グループ内の親子上場解消が焦点に。TMTセクターは「IP・不動産・子会社」の隠れた資産価値が大きく、バリュエーションギャップを突くアクティビストの主戦場となりつつある。</p>
-      </article>
-      <article class="trend-card">
         <h3 class="trend-title">Oasisの「コーポレートガバナンス」ブランド</h3>
         <p>Oasis Managementは対象企業ごとに「〇〇corpgov.com」「abetter〇〇.com」の特設サイトを開設する統一フォーマットを確立。花王では2本の特設サイト（abetterkao.com + protectkao.com）を運営し、太陽HDでは社長再任否決→KKR非公開化という成果を上げた。日本市場におけるビジュアルキャンペーンの最多展開者。</p>
       </article>
@@ -1123,6 +1131,16 @@
       <article class="trend-card">
         <h3 class="trend-title">Elliottの日本本格参入</h3>
         <p>世界最大級のアクティビストElliott Managementが、東京ガス（不動産1.5兆円売却要求）、豊田自動織機（TOB価格40%過小評価と指摘）で本格的なプレゼン資料を公開。elliottletters.comでの日本企業向け資料公開は、グローバル水準のキャンペーンが日本市場に持ち込まれたことを象徴。</p>
+      </article>
+      <article class="trend-card-cta">
+        <h3 class="trend-title">TMTセクター全域への波及 — ゲーム・メディア・広告</h3>
+        <p>従来アクティビストが避けてきたTMT（テクノロジー・メディア・テレコム）セクター全体への介入が本格化している。<strong>ゲーム：</strong>3D×スクエニ（14.36%保有、110P超資料）、SC×ガンホー（特設サイト）、Oasis×KADOKAWA（13.76%、FromSoftware親会社の筆頭株主）と、IP資産価値の再評価がセクター共通のテーマに。<strong>メディア：</strong>ダルトン×フジ・メディアHDでは、都市開発事業が営業利益の65%超を占める「実質不動産会社」の構造にメスを入れ、サンケイビルのスピンオフ・10%自社株買い・社外取締役刷新を要求。不動産を抱えるメディア企業のコングロマリット・ディスカウント解消が論点。<strong>広告・親子上場：</strong>電通グループでは2026年3月に旧村上ファンド系（C&I Holdings）が株主に浮上し思惑が拡大。CARTA HOLDINGSは2025年12月に上場廃止済み、セプテーニHDの完全子会社化も取り沙汰され（<a href="https://www.sentaku.co.jp/articles/view/25892" target="_blank" rel="noopener" style="color:var(--gold-light);text-decoration:underline;">選択</a>）、グループ内の親子上場解消が焦点に。TMTセクターは「IP・不動産・子会社」の隠れた資産価値が大きく、バリュエーションギャップを突くアクティビストの主戦場となりつつある。</p>
+        <p style="margin-top:12px;">青山乃木坂パートナーズは、代表の戦略コンサルティングファーム出身の経歴を軸に、<strong>TMTセクターにおける企業価値評価・アクティビスト対応の知見</strong>を豊富に有しています。SaaSダッシュボードではセクター横断のKPI分析を提供し、アクティビスト動向のモニタリングも常時更新しています。</p>
+        <div class="cta-links">
+          <a href="/saas.html" class="cta-link cta-link-gold">SaaSダッシュボードを見る</a>
+          <a href="https://aoyama-nogizaka.com/team" class="cta-link cta-link-outline">代表・チーム紹介</a>
+          <a href="https://aoyama-nogizaka.com/#contact" class="cta-link cta-link-outline">お問い合わせ</a>
+        </div>
       </article>
     </div>
   </section>
