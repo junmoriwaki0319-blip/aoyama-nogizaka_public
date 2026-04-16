@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-15T10:14:36+09:00",
+  "last_updated": "2026-04-16T10:14:59+09:00",
   "total_companies": 153,
   "companies": {
     "1801": {
@@ -180,26 +180,25 @@
       "investmentPropertyFairValue": 26322
     },
     "1928": {
-      "cashAndDeposits": 390559,
-      "investmentSecurities": 205632,
-      "land": 1374237,
-      "netAssets": 2018599,
-      "shareholdersEquity": 1689420,
-      "shortTermBorrowings": 477840,
-      "currentPortionLongTermDebt": 252793,
-      "currentPortionBonds": 8,
-      "longTermBorrowings": 252793,
-      "bondsPayable": 620121,
-      "operatingIncome": 331366,
-      "depreciationAndAmortization": 35235,
-      "estimatedLandGain": 392795,
-      "landGainMethod": "投資不動産比率準用（時価/簿価=1.41倍→保守的70%適用）",
-      "_docID": "S100VN43",
+      "cashAndDeposits": 435177,
+      "shortTermSecurities": -26826,
+      "investmentSecurities": 202295,
+      "land": 1507781,
+      "netAssets": 2188237,
+      "shareholdersEquity": 1829156,
+      "shortTermBorrowings": 414332,
+      "currentPortionLongTermDebt": 161032,
+      "currentPortionBonds": 20000,
+      "longTermBorrowings": 161032,
+      "bondsPayable": 738811,
+      "operatingIncome": 341402,
+      "depreciationAndAmortization": 42761,
+      "estimatedLandGain": null,
+      "landGainMethod": "推定データ不足",
+      "_docID": "S100XZ22",
       "_filerName": "積水ハウス株式会社",
-      "_periodEnd": "2025-01-31",
-      "_submitDateTime": "2025-04-22 10:47",
-      "investmentPropertyBookValue": 154705,
-      "investmentPropertyFairValue": 217875
+      "_periodEnd": "2026-01-31",
+      "_submitDateTime": "2026-04-16 13:41"
     },
     "1963": {
       "cashAndDeposits": 333701,

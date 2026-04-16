@@ -44,6 +44,7 @@
     "serviceType": ["経営コンサルティング", "M&Aアドバイザリー", "IR支援", "アクティビスト対策"]
   }
   </script>
+  <link rel="stylesheet" href="/css/mobile-nav.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,33 +153,8 @@
       text-decoration: none;
     }
     .nav-cta:hover { opacity: 0.85; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px; left: 0; right: 0; bottom: 0;
-      background: var(--navy);
-      z-index: 999;
-      flex-direction: column;
-      padding: 36px 28px;
-      gap: 0;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.8);
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-menu a.active { color: var(--gold); }
-    .mobile-menu a.m-cta { color: var(--gold); margin-top: 20px; border: 1px solid var(--gold); text-align: center; padding: 14px; }
     @media (max-width: 860px) {
       .nav-inner { padding: 0 20px; }
       .nav-links { display: none; }
@@ -780,14 +756,19 @@
       .hero-subtitle { font-size: 14px; }
       .service-card, .value-card { padding: 28px 20px; }
       .contact-form input, .contact-form textarea, .contact-form select { min-height: 44px; font-size: 14px; }
-      .contact-form button { min-height: 48px; }
+      .contact-form button { min-height: 48px; font-size: 16px; }
       /* Data & AI sections mobile padding */
       #data { padding: 48px 0 !important; }
       .data-card { padding: 28px 20px; }
       #ai-consulting { padding: 48px 0 !important; }
       .ai-card { padding: 24px 20px; }
       .ai-evidence { padding: 24px 20px; }
-      .ai-evidence a { width: 100%; text-align: center; }
+      .ai-evidence a { width: 100%; text-align: center; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+      /* タッチターゲット: ナビ・フッター */
+      .nav-links li a { min-height: 44px; padding: 12px 16px; display: inline-flex; align-items: center; font-size: 14px; }
+      .nav-dropdown-menu li a { min-height: 44px; padding: 12px 24px; display: flex; align-items: center; }
+      .footer-nav a { min-height: 44px; padding: 8px 4px; line-height: 28px; display: inline-flex; align-items: center; font-size: 14px; }
+      .footer-address, .footer-copy { font-size: 14px; }
     }
     @media (max-width: 480px) {
       section { padding: 48px 0; }
@@ -854,18 +835,23 @@
     <a href="#about" data-nav-link>会社概要</a>
     <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
     <a href="/news/" data-nav-link>ニュース・論考</a>
-    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
-    <a href="/activist-dashboard.html" data-nav-link style="padding-left:16px;">大量保有報告ダッシュボード</a>
-    <a href="/risk-assessment.html" data-nav-link style="padding-left:16px;">アクティビスト対象機会評価</a>
-    <a href="/activist-screener.html" data-nav-link style="padding-left:16px;">スクリーニング・ランキング</a>
-    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
-    <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
-    <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
-    <a href="/ad-agency.html" data-nav-link style="padding-left:16px;">広告代理店 セクター分析</a>
-    <a href="/digital-media.html" data-nav-link style="padding-left:16px;">デジタルメディア セクター分析</a>
-    <a href="/entertainment-sector-dashboard.html" data-nav-link style="padding-left:16px;">エンタメ・ゲーム ダッシュボード</a>
-    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">株主提案・エンゲージメント</div>
-    <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link style="padding-left:16px;">株主提案ビジュアルアーカイブ</a>
+    <div class="mobile-accordion" data-accordion>
+      <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
+      <div class="mobile-accordion-panel" data-accordion-panel>
+        <div class="mobile-cat">アクティビスト分析</div>
+        <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+        <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
+        <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
+        <div class="mobile-cat">セクター分析レポート</div>
+        <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業 KPIダッシュボード</a>
+        <a href="/saas.html" data-nav-link class="mobile-sub">SaaS企業 KPIダッシュボード</a>
+        <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店 セクター分析</a>
+        <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア セクター分析</a>
+        <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム ダッシュボード</a>
+        <div class="mobile-cat">株主提案・エンゲージメント</div>
+        <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+      </div>
+    </div>
     <a href="#contact" data-nav-link class="m-cta">お問い合わせ</a>
   </div>
 

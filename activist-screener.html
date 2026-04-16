@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Analytics -->
   <!-- Google Analytics: 3秒遅延読み込み -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
-        document.head.appendChild(s);
-        var g = document.createElement('script');
-        g.src = '/js/gtag.js';
-        document.head.appendChild(g);
-      }, 3000);
-    });
-  </script>
+  <script src="/js/ga-loader.js" defer></script>
+  <link rel="stylesheet" href="/css/mobile-nav.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
@@ -86,13 +75,8 @@
     .nav-dropdown:hover .nav-dropdown-menu{display:block}
     .nav-cta{background:var(--gold);color:var(--white)!important;border:none;cursor:pointer;padding:8px 20px;font-size:.78rem;font-family:var(--sans);letter-spacing:.06em;transition:opacity .2s;text-decoration:none}
     .nav-cta:hover{opacity:.85}
-    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
     .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s}
-    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;padding:36px 28px;gap:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{text-decoration:none;color:rgba(255,255,255,.8);font-size:1rem;letter-spacing:.06em;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:color .2s}
-    .mobile-menu a:hover{color:var(--gold)}.mobile-menu a.active{color:var(--gold)}
-    .mobile-menu a.m-cta{color:var(--gold);margin-top:20px;border:1px solid var(--gold);text-align:center;padding:14px}
     @media(max-width:860px){.nav-inner{padding:0 20px}.nav-links{display:none}.nav-hamburger{display:flex}}
     .dash-subnav{background:#243b63;border-bottom:1px solid rgba(255,255,255,0.08);margin-top:64px;padding:0 40px}
     .dash-subnav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
@@ -338,25 +322,30 @@
   <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
   <a href="/news/" data-nav-link>ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
-  <a href="/activist-dashboard.html" data-nav-link style="padding-left:16px;">大量保有報告ダッシュボード</a>
-  <a href="/risk-assessment.html" data-nav-link style="padding-left:16px;">アクティビスト対象機会評価</a>
-  <a href="/activist-screener.html" data-nav-link class="active" style="padding-left:16px;">スクリーニング・ランキング</a>
-  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
-  <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
-  <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
-    <a href="/ad-agency.html" data-nav-link style="padding-left:16px;">広告代理店 セクター分析</a>
-    <a href="/digital-media.html" data-nav-link style="padding-left:16px;">デジタルメディア セクター分析</a>
-    <a href="/entertainment-sector-dashboard.html" data-nav-link style="padding-left:16px;">エンタメ・ゲーム ダッシュボード</a>
-    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">株主提案・エンゲージメント</div>
-    <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link style="padding-left:16px;">株主提案ビジュアルアーカイブ</a>
-  <div class="m-auth" id="mobileAuthBtns" style="display:flex;gap:12px;margin-top:24px;">
-    <button class="btn-login" data-action="openAuthModal:login" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">ログイン</button>
-    <button class="btn-register" data-action="openAuthModal:register" data-nav-link style="background:var(--gold);border:none;color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;cursor:pointer;flex:1;">無料会員登録</button>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <div class="mobile-cat">アクティビスト分析</div>
+      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
+      <a href="/activist-screener.html" data-nav-link class="mobile-sub active">スクリーニング・ランキング</a>
+      <div class="mobile-cat">セクター分析レポート</div>
+      <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業 KPIダッシュボード</a>
+      <a href="/saas.html" data-nav-link class="mobile-sub">SaaS企業 KPIダッシュボード</a>
+      <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店 セクター分析</a>
+      <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア セクター分析</a>
+      <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム ダッシュボード</a>
+      <div class="mobile-cat">株主提案・エンゲージメント</div>
+      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+    </div>
   </div>
-  <div class="m-auth" id="mobileUserInfo" style="display:none;gap:12px;margin-top:24px;align-items:center;">
-    <span style="font-size:.85rem;color:rgba(255,255,255,.7);" id="mobileUserName"></span>
-    <button data-action="doLogout" data-nav-link style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6);padding:8px 16px;border-radius:4px;font-size:.78rem;cursor:pointer;">ログアウト</button>
+  <div class="m-auth" id="mobileAuthBtns">
+    <button class="btn-login" data-action="openAuthModal:login">ログイン</button>
+    <button class="btn-register" data-action="openAuthModal:register">無料会員登録</button>
+  </div>
+  <div class="m-auth" id="mobileUserInfo" style="display:none;">
+    <span id="mobileUserName"></span>
+    <button data-action="doLogout">ログアウト</button>
   </div>
   <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
 </div>

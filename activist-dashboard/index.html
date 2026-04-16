@@ -323,12 +323,6 @@
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 36px 28px; gap: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1rem; letter-spacing: 0.06em; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: color 0.2s; }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-menu a.active { color: var(--gold); }
-    .mobile-menu .m-auth { display: flex; gap: 12px; margin-top: 24px; }
     .loading-spinner { text-align: center; padding: 40px; color: var(--text-light); }
 
     /* INVESTOR DETAIL MODAL */
@@ -395,6 +389,7 @@
     .watchlist-preset-btn.added { background: var(--gold); color: var(--white); }
   </style>
   <!-- PDF export: ブラウザ印刷ベース（jsPDF不要） -->
+  <link rel="stylesheet" href="/css/mobile-nav.css">
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
   <script src="/js/css-loader.js"></script>
 </head>
@@ -451,18 +446,23 @@
   <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
   <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
   <a href="/news/" data-nav-link>ニュース・論考</a>
-  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">アクティビスト分析</div>
-  <a href="/activist-dashboard.html" data-nav-link class="active" style="padding-left:16px;">大量保有報告ダッシュボード</a>
-  <a href="/risk-assessment.html" data-nav-link style="padding-left:16px;">アクティビスト対象機会評価</a>
-  <a href="/activist-screener.html" data-nav-link style="padding-left:16px;">スクリーニング・ランキング</a>
-  <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">セクター分析レポート</div>
-  <a href="/food-service.html" data-nav-link style="padding-left:16px;">外食産業 KPIダッシュボード</a>
-  <a href="/saas.html" data-nav-link style="padding-left:16px;">SaaS企業 KPIダッシュボード</a>
-    <a href="/ad-agency.html" data-nav-link style="padding-left:16px;">広告代理店 セクター分析</a>
-    <a href="/digital-media.html" data-nav-link style="padding-left:16px;">デジタルメディア セクター分析</a>
-    <a href="/entertainment-sector-dashboard.html" data-nav-link style="padding-left:16px;">エンタメ・ゲーム ダッシュボード</a>
-    <div style="padding:4px 0 2px 0; font-size:0.75rem; color:var(--gold-light); letter-spacing:0.08em; font-weight:600;">株主提案・エンゲージメント</div>
-    <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link style="padding-left:16px;">株主提案ビジュアルアーカイブ</a>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <div class="mobile-cat">アクティビスト分析</div>
+      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub active">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
+      <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
+      <div class="mobile-cat">セクター分析レポート</div>
+      <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業 KPIダッシュボード</a>
+      <a href="/saas.html" data-nav-link class="mobile-sub">SaaS企業 KPIダッシュボード</a>
+      <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店 セクター分析</a>
+      <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア セクター分析</a>
+      <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム ダッシュボード</a>
+      <div class="mobile-cat">株主提案・エンゲージメント</div>
+      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+    </div>
+  </div>
   <div class="m-auth" id="mobileAuthBtns">
     <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
     <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
