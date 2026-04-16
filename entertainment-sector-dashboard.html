@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Analytics -->
   <!-- Google Analytics: 3秒遅延読み込み -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
-        document.head.appendChild(s);
-        var g = document.createElement('script');
-        g.src = '/js/gtag.js';
-        document.head.appendChild(g);
-      }, 3000);
-    });
-  </script>
+  <script src="/js/ga-loader.js" defer></script>
+  <link rel="stylesheet" href="/css/mobile-nav.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
@@ -75,7 +64,7 @@
       --green: #2d7a4f; --red: #b53a3a;
       --radius: 4px; --radius-lg: 8px;
     }
-    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 13.5px; }
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
     .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
     .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
     .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
@@ -195,6 +184,9 @@
     #navUserInfo { color: #fff; font-size: 0.78rem; }
     #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
     #navUserInfo button:hover { color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white, #fff); transition: all 0.3s; }
+    @media (max-width: 900px) { .nav-hamburger { display: flex; } }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
     .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
@@ -331,8 +323,35 @@
       <button data-auth-action="openMyPage">マイページ</button>
       <button data-auth-action="handleLogout">ログアウト</button>
     </div>
+    <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/" data-nav-link>トップページ</a>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">セクター分析 <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業 KPIダッシュボード</a>
+      <a href="/saas.html" data-nav-link class="mobile-sub">SaaS企業 KPIダッシュボード</a>
+      <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店 セクター分析</a>
+      <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア セクター分析</a>
+      <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub active">エンタメ・ゲーム ダッシュボード</a>
+    </div>
+  </div>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">アクティビスト <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
+    </div>
+  </div>
+  <div class="m-auth" id="mobileAuthBtns">
+    <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+    <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+  </div>
+</div>
 
 <div class="report-cover">
   <div class="report-cover-inner">
@@ -534,6 +553,7 @@
 </div>
 
 <script src="/js/auth.js"></script>
+<script src="/js/nav-handler.js"></script>
 <!-- Firebase Auth -->
 <script type="module" src="/js/firebase-auth-entertainment.js"></script>
 
