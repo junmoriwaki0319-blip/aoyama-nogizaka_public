@@ -95,6 +95,8 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
 }
 .mobile-accordion.is-open .mobile-accordion-panel {
   max-height: 800px;
@@ -102,16 +104,33 @@
 
 /* ===== カテゴリ見出し ===== */
 .mobile-cat {
-  padding: 4px 0 2px 0;
-  font-size: 0.75rem;
-  color: var(--gold-light);
-  letter-spacing: 0.08em;
+  padding: 14px 0 6px 8px;
+  font-size: 0.68rem;
+  color: var(--gold-light, #c8b99a);
+  letter-spacing: 0.1em;
   font-weight: 600;
+}
+.mobile-cat:not(:first-child) {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 4px;
+  padding-top: 14px;
 }
 
 /* ===== サブメニューリンク ===== */
 .mobile-menu a.mobile-sub {
-  padding-left: 16px;
+  display: block;
+  padding: 12px 0 12px 24px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mobile-menu a.mobile-sub:last-child {
+  border-bottom: none;
+  padding-bottom: 16px;
+}
+.mobile-menu a.mobile-sub:hover,
+.mobile-menu a.mobile-sub.active {
+  color: var(--gold, #9b8b6e);
 }
 
 /* ===== オーバーレイ背景 ===== */
