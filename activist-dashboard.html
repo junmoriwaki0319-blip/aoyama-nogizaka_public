@@ -271,33 +271,99 @@
       .nav-inner { padding: 0 20px; }
       .page-header { padding: 48px 20px 40px; }
       .page-header h1 { font-size: 1.3rem; }
-      .page-header p { font-size: 13px; }
+      .page-header p { font-size: 14px; }
+      .page-header .data-source { font-size: 14px; }
+      .page-header .data-source span { font-size: 14px; }
+      .page-header-label { font-size: 14px; }
       .stats-bar { padding: 0 16px; }
       .stats-bar-inner { grid-template-columns: 1fr 1fr; gap: 12px; }
       .stat-item { padding: 14px 12px; }
-      .stat-value { font-size: 1.3rem; }
+      .stat-number { font-size: 26px; }
+      .stat-label { font-size: 14px; }
       .dashboard-layout { padding: 0 12px; gap: 16px; }
       .card { border-radius: 10px; }
       .card-header { padding: 16px; }
-      .card-header h2 { font-size: 13px; }
+      .card-header h2 { font-size: 14px; }
       .chart-container { padding: 16px; }
       .chart-wrapper { height: 240px; }
       .tab-btn { padding: 14px 18px; font-size: 14px; min-height: 44px; }
       .export-bar { flex-direction: column; gap: 8px; }
-      .export-btn { width: 100%; justify-content: center; min-height: 44px; padding: 10px 16px; }
+      .export-btn { width: 100%; justify-content: center; min-height: 44px; padding: 10px 16px; font-size: 14px; }
       .form-group input, .form-group select { padding: 12px 14px; min-height: 44px; font-size: 16px; }
-      .activist-table { table-layout: auto; }
-      .activist-table th { padding: 12px 10px; font-size: 13px; }
+      .activist-table { table-layout: auto; min-width: 600px; }
+      .activist-table th { padding: 12px 10px; font-size: 14px; }
       .activist-table td { padding: 14px 10px; font-size: 14px; line-height: 1.5; }
       .activist-table .col-filer, .activist-table .col-target { max-width: 120px; }
+      .date-cell { font-size: 14px; }
+      .edinet-link { font-size: 14px; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 8px; }
+      .badge-new { font-size: 11px; }
+      .activist-type { font-size: 12px; padding: 3px 10px; }
       .watchlist-add-form { flex-direction: column; }
       .watchlist-add-btn { width: 100%; min-height: 44px; }
+      .watchlist-btn-remove { min-width: 44px; min-height: 44px; padding: 8px 12px; font-size: 14px; }
+      .watchlist-item-name { font-size: 14px; }
+      .watchlist-item-meta { font-size: 14px; }
+      .watchlist-empty { font-size: 14px; }
+      .watchlist-preset-btn { min-height: 44px; padding: 10px 14px; font-size: 14px; }
       .sidebar-card { padding: 16px; }
+      .sidebar-card h3 { font-size: 14px; }
+      .filter-label { font-size: 14px; }
+      .filter-select, .filter-input { min-height: 44px; font-size: 16px; padding: 10px 12px; }
+      .filter-checkbox { font-size: 14px; min-height: 44px; padding: 8px 4px; gap: 10px; }
+      .filter-checkbox input[type="checkbox"] { width: 22px; height: 22px; }
+      .btn-filter { min-height: 44px; font-size: 14px; padding: 12px 16px; }
+      .btn-reset { min-height: 44px; font-size: 14px; padding: 12px 16px; }
+      .category-tag { min-height: 44px; padding: 10px 14px; font-size: 14px; display: inline-flex; align-items: center; }
+      .sort-select { min-height: 44px; font-size: 16px; padding: 10px 12px; }
+      .no-data { font-size: 14px; }
+      .ac-name { font-size: 16px; }
+      .ac-meta { font-size: 14px; }
+      .ac-section-title { font-size: 14px; }
+      .ac-stock-item { font-size: 14px; }
+      .timeline-date { font-size: 14px; }
+      .timeline-title { font-size: 15px; }
+      .timeline-detail { font-size: 14px; }
+      .timeline-tag { font-size: 14px; padding: 4px 10px; }
+      .login-wall p { font-size: 14px; }
+      .btn-cta-register { min-height: 44px; font-size: 14px; padding: 14px 40px; }
+      .btn-cta-login { min-height: 44px; font-size: 14px; display: inline-flex; align-items: center; }
+      .plan-features li { font-size: 14px; }
+      .plan-features h4 { font-size: 14px; }
+      .premium-badge p { font-size: 14px; }
+      .premium-badge button { min-height: 44px; font-size: 14px; padding: 10px 20px; }
       .modal { width: 95%; padding: 28px 20px; }
+      .modal-close { min-width: 44px; min-height: 44px; font-size: 22px; display: flex; align-items: center; justify-content: center; }
+      .modal-footer { font-size: 14px; }
+      .modal-footer a { min-height: 44px; display: inline-flex; align-items: center; }
+      .btn-submit { min-height: 48px; font-size: 16px; }
+      .btn-google { min-height: 48px; font-size: 14px; }
+      .btn-login, .btn-register { min-height: 44px; font-size: 14px; }
+      .idm-header h2 { font-size: 16px; }
+      .idm-header .idm-meta { font-size: 14px; }
+      .idm-close { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .idm-stat-label { font-size: 14px; }
+      .idm-stat-value { font-size: 18px; }
+      .idm-section-title { font-size: 14px; }
+      .idm-table { font-size: 14px; min-width: 500px; }
+      .idm-table th { font-size: 14px; }
+      .idm-table td { font-size: 14px; }
+      .idm-table-wrap { -webkit-overflow-scrolling: touch; }
+      .member-badge { font-size: 12px; }
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 24px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-nav a { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-address, .footer-copy { font-size: 14px; }
+      /* テーブルラッパー横スクロール */
+      [style*="overflow-x"] { -webkit-overflow-scrolling: touch; }
+      /* details/summary要素 */
+      details { font-size: 14px !important; }
+      details summary { font-size: 14px !important; min-height: 44px; display: flex; align-items: center; }
+      details p { font-size: 14px !important; line-height: 1.6; }
+      /* ランキングセクションのインラインスタイル上書き */
+      #rankingSearch { min-height: 44px !important; font-size: 16px !important; padding: 10px 12px !important; }
+      .ranking-filter-btn { min-height: 44px !important; padding: 10px 16px !important; font-size: 14px !important; }
     }
     @media (max-width: 480px) {
       .stats-bar-inner { grid-template-columns: 1fr; }
@@ -305,9 +371,21 @@
       .page-header h1 { font-size: 1.1rem; }
       .dashboard-layout { padding: 0 8px; }
       .footer-inner { padding: 0 16px; }
-      .category-tag { padding: 6px 12px; font-size: 13px; min-height: 44px; }
+      .category-tag { padding: 6px 12px; font-size: 14px; min-height: 44px; }
       .btn-filter, .btn-reset { min-height: 44px; }
       .sort-select { min-height: 44px; font-size: 16px; }
+      .stat-number { font-size: 22px; }
+      .chart-wrapper { height: 200px; }
+      .activist-card { padding: 16px; }
+      .ac-grid { grid-template-columns: 1fr; }
+      .idm-header, .idm-body { padding-left: 12px; padding-right: 12px; }
+      .idm-summary { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 375px) {
+      .activist-table th { padding: 10px 6px; font-size: 13px; }
+      .activist-table td { padding: 10px 6px; font-size: 14px; }
+      .tab-btn { padding: 12px 10px; }
+      .dash-subnav-link { padding: 10px; }
     }
 
     .tab-content { display: none; }
@@ -341,6 +419,7 @@
       .investor-detail-modal { border-radius: 8px; }
       .idm-header, .idm-body { padding-left: 16px; padding-right: 16px; }
       .idm-summary { grid-template-columns: 1fr 1fr; }
+      .idm-table-wrap { -webkit-overflow-scrolling: touch; }
     }
 
     /* EXPORT BUTTONS */
@@ -599,7 +678,7 @@
             PDF レポート出力<span class="member-badge">会員限定</span>
           </button>
         </div>
-        <div style="overflow-x:auto;">
+        <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
           <table class="activist-table">
             <thead>
               <tr>
