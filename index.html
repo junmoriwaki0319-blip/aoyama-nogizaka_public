@@ -764,10 +764,10 @@
       .ai-card { padding: 24px 20px; }
       .ai-evidence { padding: 24px 20px; }
       .ai-evidence a { width: 100%; text-align: center; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-      /* タッチターゲット: ナビ・フッター */
-      .nav-links li a { min-height: 44px; padding: 12px 16px; display: inline-flex; align-items: center; font-size: 14px; }
-      .nav-dropdown-menu li a { min-height: 44px; padding: 12px 24px; display: flex; align-items: center; }
-      .footer-nav a { min-height: 44px; padding: 8px 4px; line-height: 28px; display: inline-flex; align-items: center; font-size: 14px; }
+      /* タッチターゲット: ナビ・フッター（!important で既存 display を確実に上書き） */
+      #navbar .nav-links a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 12px 16px; font-size: 14px; }
+      #navbar .nav-dropdown-menu li a { display: flex !important; align-items: center; min-height: 44px; padding: 12px 24px; font-size: 14px; }
+      .footer-nav a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 8px 12px; font-size: 14px; }
       .footer-address, .footer-copy { font-size: 14px; }
     }
     @media (max-width: 480px) {

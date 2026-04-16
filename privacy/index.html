@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Analytics -->
-  <!-- Google Analytics: 3秒遅延読み込み -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
-        document.head.appendChild(s);
-        var g = document.createElement('script');
-        g.src = '/js/gtag.js';
-        document.head.appendChild(g);
-      }, 3000);
-    });
-  </script>
+  <!-- Google Analytics: 3秒遅延読み込み（外部JS） -->
+  <script src="/js/ga-loader.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
