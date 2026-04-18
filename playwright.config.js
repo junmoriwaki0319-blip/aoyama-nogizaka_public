@@ -30,5 +30,11 @@ module.exports = defineConfig({
       dependencies: ['auth-setup'],
       use: { browserName: 'chromium' },
     },
+    // 4. Tap-targets 監査（モバイル ビューポート）
+    {
+      name: 'tap-targets',
+      testMatch: 'tap-targets-audit.spec.js',
+      use: { browserName: 'chromium' },
+    },
   ],
 });
