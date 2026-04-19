@@ -578,7 +578,7 @@
   .btn-cta-register,
   .btn-gold {
     min-height: 48px;
-    min-width: 44px;
+    min-width: 48px;
     padding: 12px 16px;
     font-size: 14px;
   }
@@ -624,7 +624,7 @@
   /* ウォッチリスト追加ボタン */
   .watchlist-add-btn {
     min-height: 48px;
-    min-width: 44px;
+    min-width: 48px;
     padding: 8px;
   }
 
@@ -759,7 +759,7 @@
    --------------------------------------------------------- */
 @media (max-width: 768px) {
   .nav-hamburger {
-    min-width: 44px;
+    min-width: 48px;
     min-height: 48px;
     display: flex;
     align-items: center;
@@ -877,7 +877,7 @@
     justify-content: center !important;
     padding: 8px !important;
     min-height: 48px !important;
-    min-width: 44px !important;
+    min-width: 48px !important;
     font-size: 14px !important;
     text-align: center;
     border-radius: 4px;
@@ -911,7 +911,7 @@
   .watchlist-remove-btn,
   .watchlist-toggle-btn {
     min-height: 48px !important;
-    min-width: 44px !important;
+    min-width: 48px !important;
     padding: 8px !important;
   }
 }
@@ -1090,7 +1090,7 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-width: 44px !important;
+    min-width: 48px !important;
     min-height: 48px !important;
     padding: 8px !important;
   }
