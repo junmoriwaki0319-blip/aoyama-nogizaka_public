@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Analytics -->
   <!-- Google Analytics: 3秒遅延読み込み -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM';
-        document.head.appendChild(s);
-        var g = document.createElement('script');
-        g.src = '/js/gtag.js';
-        document.head.appendChild(g);
-      }, 3000);
-    });
-  </script>
+  <script src="/js/ga-loader.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
@@ -49,7 +37,7 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
   <script type="module" src="/js/firebase-auth-dashboard.js"></script>
   <style>
@@ -235,7 +223,7 @@
       .stats-bar-inner { grid-template-columns: 1fr; }
     }
   </style>
-  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
 </head>
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
@@ -394,5 +382,6 @@
 <script src="/js/nav-handler.js" defer></script>
 <script src="/js/auth.js"></script>
 <script src="/js/activist-campaigns-page.js"></script>
+<script src="/js/css-loader.js"></script>
 </body>
 </html>
