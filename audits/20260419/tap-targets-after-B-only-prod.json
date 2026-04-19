@@ -12,10 +12,10 @@
     ],
     "selector": "a[href], button, input (non-hidden), select, textarea, [role=button|link], [onclick], [tabindex>=0]"
   },
-  "timestamp": "2026-04-19T02:01:57.894Z",
+  "timestamp": "2026-04-19T00:41:36.755Z",
   "summary": {
     "/": {
-      "count": 0,
+      "count": 1,
       "excluded": {
         "offscreen": 32,
         "inline": 0
@@ -23,7 +23,7 @@
       "error": null
     },
     "/team": {
-      "count": 0,
+      "count": 1,
       "excluded": {
         "offscreen": 11,
         "inline": 0
@@ -31,7 +31,7 @@
       "error": null
     },
     "/saas": {
-      "count": 0,
+      "count": 3,
       "excluded": {
         "offscreen": 2,
         "inline": 0
@@ -39,7 +39,7 @@
       "error": null
     },
     "/food-service": {
-      "count": 0,
+      "count": 3,
       "excluded": {
         "offscreen": 3,
         "inline": 0
@@ -47,7 +47,7 @@
       "error": null
     },
     "/ad-agency": {
-      "count": 0,
+      "count": 3,
       "excluded": {
         "offscreen": 2,
         "inline": 0
@@ -55,7 +55,7 @@
       "error": null
     },
     "/digital-media": {
-      "count": 0,
+      "count": 3,
       "excluded": {
         "offscreen": 2,
         "inline": 0
@@ -63,7 +63,7 @@
       "error": null
     },
     "/entertainment-sector-dashboard": {
-      "count": 0,
+      "count": 3,
       "excluded": {
         "offscreen": 2,
         "inline": 0
@@ -71,7 +71,7 @@
       "error": null
     },
     "/activist-dashboard": {
-      "count": 0,
+      "count": 1,
       "excluded": {
         "offscreen": 82,
         "inline": 0
@@ -79,7 +79,7 @@
       "error": null
     },
     "/activist-screener": {
-      "count": 0,
+      "count": 2,
       "excluded": {
         "offscreen": 17,
         "inline": 0
@@ -87,15 +87,15 @@
       "error": null
     },
     "/activist-campaigns": {
-      "count": 0,
+      "count": 1,
       "excluded": {
-        "offscreen": 64,
+        "offscreen": 63,
         "inline": 0
       },
       "error": null
     },
     "/risk-assessment": {
-      "count": 0,
+      "count": 1,
       "excluded": {
         "offscreen": 29,
         "inline": 0
@@ -103,7 +103,7 @@
       "error": null
     },
     "/privacy": {
-      "count": 0,
+      "count": 1,
       "excluded": {
         "offscreen": 11,
         "inline": 0
@@ -113,8 +113,18 @@
   },
   "pages": {
     "/": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 44,
+          "height": 48,
+          "top": 8,
+          "left": 300,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -346,8 +356,18 @@
       }
     },
     "/team": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 44,
+          "height": 48,
+          "top": 8,
+          "left": 296,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -432,8 +452,36 @@
       }
     },
     "/saas": {
-      "count": 0,
-      "items": [],
+      "count": 3,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 46,
+          "height": 48,
+          "top": 16,
+          "left": 290,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollLeft",
+          "label": "左へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 426,
+          "left": 24,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollRight",
+          "label": "右へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 426,
+          "left": 292,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -455,8 +503,36 @@
       }
     },
     "/food-service": {
-      "count": 0,
-      "items": [],
+      "count": 3,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 46,
+          "height": 48,
+          "top": 16,
+          "left": 290,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollLeft",
+          "label": "左へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 510,
+          "left": 24,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollRight",
+          "label": "右へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 510,
+          "left": 292,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -485,8 +561,36 @@
       }
     },
     "/ad-agency": {
-      "count": 0,
-      "items": [],
+      "count": 3,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 46,
+          "height": 48,
+          "top": 16,
+          "left": 290,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollLeft",
+          "label": "左へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 389,
+          "left": 24,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollRight",
+          "label": "右へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 389,
+          "left": 292,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -508,8 +612,36 @@
       }
     },
     "/digital-media": {
-      "count": 0,
-      "items": [],
+      "count": 3,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 46,
+          "height": 48,
+          "top": 16,
+          "left": 290,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollLeft",
+          "label": "左へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 410,
+          "left": 24,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollRight",
+          "label": "右へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 410,
+          "left": 292,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -531,8 +663,36 @@
       }
     },
     "/entertainment-sector-dashboard": {
-      "count": 0,
-      "items": [],
+      "count": 3,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 46,
+          "height": 48,
+          "top": 16,
+          "left": 290,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollLeft",
+          "label": "左へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 331,
+          "left": 24,
+          "href": null
+        },
+        {
+          "selector": "button#navScrollRight",
+          "label": "右へスクロール",
+          "width": 44,
+          "height": 48,
+          "top": 331,
+          "left": 292,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -554,8 +714,18 @@
       }
     },
     "/activist-dashboard": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 45,
+          "height": 48,
+          "top": 8,
+          "left": 295,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -576,7 +746,7 @@
             "selector": "input#searchKeyword",
             "label": "",
             "top": 1027,
-            "w": 688,
+            "w": 684,
             "h": 70
           },
           {
@@ -597,35 +767,35 @@
             "selector": "select#investorFilter",
             "label": "すべて表示 アクティビストのみ 注目投資家のみ（アクティビスト除く） アクティビスト＋注目投資家",
             "top": 1335,
-            "w": 662,
+            "w": 658,
             "h": 48
           },
           {
             "selector": "select#periodFilter",
             "label": "直近1週間 直近1ヶ月 直近3ヶ月 直近6ヶ月 直近9ヶ月 直近12ヶ月 直近15ヶ月 直近18ヶ月",
             "top": 1434,
-            "w": 662,
+            "w": 658,
             "h": 48
           },
           {
             "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-filter",
             "label": "フィルター適用",
             "top": 1506,
-            "w": 662,
+            "w": 658,
             "h": 48
           },
           {
             "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-reset",
             "label": "リセット",
             "top": 1560,
-            "w": 662,
+            "w": 658,
             "h": 48
           },
           {
             "selector": "input#rankingSearch",
             "label": "",
             "top": 1722,
-            "w": 662,
+            "w": 658,
             "h": 48
           },
           {
@@ -702,364 +872,364 @@
             "selector": "button#btnCsvExport",
             "label": "CSV ダウンロード会員限定",
             "top": 2632,
-            "w": 642,
+            "w": 638,
             "h": 48
           },
           {
             "selector": "button#btnPdfExport",
             "label": "PDF レポート出力会員限定",
             "top": 2690,
-            "w": 642,
+            "w": 638,
             "h": 48
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 2812,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 2911,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3010,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3109,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3208,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3307,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3406,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3505,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3604,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3703,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3802,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 3901,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4000,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4099,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4198,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4297,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4396,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4495,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4594,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4693,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4792,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4891,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 4990,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5089,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5188,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5287,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5386,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5485,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5584,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5683,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5782,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5881,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 5980,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6079,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6178,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6277,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6376,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6475,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6574,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6673,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6772,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6871,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 6970,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7069,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7168,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7267,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7366,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7465,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7564,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
             "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
             "label": "原文",
             "top": 7663,
-            "w": 64,
+            "w": 60,
             "h": 64
           },
           {
@@ -1137,126 +1307,145 @@
       }
     },
     "/activist-screener": {
-      "count": 0,
-      "items": [],
+      "count": 2,
+      "items": [
+        {
+          "selector": "a.skip-link",
+          "label": "メインコンテンツへスキップ",
+          "width": 195,
+          "height": 21,
+          "top": 1,
+          "left": 0,
+          "href": "#main"
+        },
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 44,
+          "height": 48,
+          "top": 8,
+          "left": 296,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
-            "selector": "a.skip-link",
-            "label": "メインコンテンツへスキップ",
-            "top": -100,
-            "w": 214,
-            "h": 37
+            "selector": "input#indCode",
+            "label": "",
+            "top": 646,
+            "w": 272,
+            "h": 48
           },
           {
             "selector": "input#indEdinet",
             "label": "",
-            "top": 710,
+            "top": 734,
             "w": 272,
             "h": 48
           },
           {
             "selector": "input#edinetApiKey",
             "label": "",
-            "top": 860,
+            "top": 884,
             "w": 272,
             "h": 48
           },
           {
             "selector": "div.s-card > details > p > a",
             "label": "EDINET",
-            "top": 935,
+            "top": 959,
             "w": 49,
             "h": 20
           },
           {
             "selector": "button#btnIndFetch",
             "label": "データ取得・分析",
-            "top": 821,
+            "top": 845,
             "w": 272,
             "h": 48
           },
           {
             "selector": "div#tab-individual > div.s-card > div.btn-row > button.btn-secondary",
             "label": "リセット",
-            "top": 881,
+            "top": 905,
             "w": 272,
             "h": 48
           },
           {
             "selector": "div#loginWallIndividual > div.login-wall-inner > button.btn-cta-register",
             "label": "無料会員登録",
-            "top": 1619,
+            "top": 1643,
             "w": 216,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "企業理念",
-            "top": 1923,
+            "top": 1947,
             "w": 67,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "提供サービス",
-            "top": 1923,
+            "top": 1947,
             "w": 97,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "会社概要",
-            "top": 1979,
+            "top": 2003,
             "w": 67,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "チーム",
-            "top": 1979,
+            "top": 2003,
             "w": 52,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "ニュース・論考",
-            "top": 2047,
+            "top": 2071,
             "w": 111,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "大量保有報告ダッシュボード",
-            "top": 2035,
+            "top": 2059,
             "w": 136,
             "h": 72
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "アクティビスト対象機会評価",
-            "top": 2115,
+            "top": 2139,
             "w": 136,
             "h": 72
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "スクリーニング・ランキング",
-            "top": 2115,
+            "top": 2139,
             "w": 136,
             "h": 72
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "お問い合わせ",
-            "top": 2195,
+            "top": 2219,
             "w": 97,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "個人情報保護方針",
-            "top": 2195,
+            "top": 2219,
             "w": 127,
             "h": 48
           }
@@ -1265,455 +1454,458 @@
       }
     },
     "/activist-campaigns": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "a.skip-link",
+          "label": "メインコンテンツへスキップ",
+          "width": 195,
+          "height": 21,
+          "top": 1,
+          "left": 0,
+          "href": "#main"
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
-            "selector": "a.skip-link",
-            "label": "メインコンテンツへスキップ",
-            "top": -100,
-            "w": 214,
-            "h": 37
-          },
-          {
             "selector": "select#filterType",
             "label": "すべて 株主提案 経営関与 プレゼン公開 特設サイト プロキシーファイト EDINET報告のみ",
-            "top": 678,
+            "top": 702,
             "w": 190,
             "h": 48
           },
           {
             "selector": "input#filterSearch",
             "label": "",
-            "top": 767,
+            "top": 791,
             "w": 221,
             "h": 48
           },
           {
             "selector": "input#filterCuratedOnly",
             "label": "",
-            "top": 831,
+            "top": 855,
             "w": 13,
             "h": 13
           },
           {
             "selector": "button#filterReset",
             "label": "リセット",
-            "top": 860,
+            "top": 884,
             "w": 304,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📄 プレゼン資料 (PDF)",
-            "top": 1529,
+            "top": 1553,
             "w": 150,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 1529,
+            "top": 1553,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📰 報道記事",
-            "top": 1569,
+            "top": 1593,
             "w": 93,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 1569,
+            "top": 1593,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📝 スクエニ側 大量保有対応",
-            "top": 1609,
+            "top": 1633,
             "w": 180,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 1609,
+            "top": 1633,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (13件) ▼",
-            "top": 1649,
+            "top": 1673,
             "w": 170,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📣 株主提案公表",
-            "top": 1964,
+            "top": 1988,
             "w": 117,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 1964,
+            "top": 1988,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "✉ 株主向けレター",
-            "top": 2004,
+            "top": 2028,
             "w": 125,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 2004,
+            "top": 2028,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📢 BusinessWire発表",
-            "top": 2279,
+            "top": 2303,
             "w": 143,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 2279,
+            "top": 2303,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (4件) ▼",
-            "top": 2319,
+            "top": 2343,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "🌐 特設サイト「再起の処方箋」",
-            "top": 2664,
+            "top": 2688,
             "w": 201,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 2664,
+            "top": 2688,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📄 SC反論書 (PDF)",
-            "top": 2704,
+            "top": 2728,
             "w": 129,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 2704,
+            "top": 2728,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📢 プレスリリース",
-            "top": 2744,
+            "top": 2768,
             "w": 129,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 2744,
+            "top": 2768,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (8件) ▼",
-            "top": 2784,
+            "top": 2808,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📄 プレゼン資料 (PDF)",
-            "top": 3075,
+            "top": 3099,
             "w": 150,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 3075,
+            "top": 3099,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "🌐 特設サイト",
-            "top": 3115,
+            "top": 3139,
             "w": 105,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 3115,
+            "top": 3139,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 3155,
+            "top": 3179,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "🌐 プレゼン資料ページ",
-            "top": 3467,
+            "top": 3491,
             "w": 153,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 3467,
+            "top": 3491,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
             "label": "📢 プレスリリース一覧",
-            "top": 3507,
+            "top": 3531,
             "w": 153,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
             "label": "💾 Archive",
-            "top": 3507,
+            "top": 3531,
             "w": 81,
             "h": 32
           },
           {
             "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (4件) ▼",
-            "top": 3547,
+            "top": 3571,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 3792,
+            "top": 3816,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 4037,
+            "top": 4061,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 4282,
+            "top": 4306,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 4527,
+            "top": 4551,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 4772,
+            "top": 4796,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 5017,
+            "top": 5041,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 5262,
+            "top": 5286,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 5561,
+            "top": 5585,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 5860,
+            "top": 5884,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 6105,
+            "top": 6129,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 6350,
+            "top": 6374,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 6595,
+            "top": 6619,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (1件) ▼",
-            "top": 6819,
+            "top": 6843,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
             "label": "EDINET報告履歴 (2件) ▼",
-            "top": 7064,
+            "top": 7088,
             "w": 163,
             "h": 48
           },
           {
             "selector": "div#pagination > button.page-btn.active",
             "label": "1",
-            "top": 7152,
-            "w": 48,
+            "top": 7176,
+            "w": 44,
             "h": 48
           },
           {
             "selector": "div#pagination > button.page-btn",
             "label": "2",
-            "top": 7152,
-            "w": 48,
+            "top": 7176,
+            "w": 44,
             "h": 48
           },
           {
             "selector": "div#pagination > button.page-btn",
             "label": "3",
-            "top": 7152,
-            "w": 48,
+            "top": 7176,
+            "w": 44,
             "h": 48
           },
           {
             "selector": "div#pagination > button.page-btn",
             "label": "4",
-            "top": 7152,
-            "w": 48,
+            "top": 7176,
+            "w": 44,
             "h": 48
           },
           {
             "selector": "div#pagination > button.page-btn",
             "label": "»",
-            "top": 7152,
-            "w": 48,
+            "top": 7176,
+            "w": 44,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "企業理念",
-            "top": 7356,
+            "top": 7380,
             "w": 64,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "提供サービス",
-            "top": 7356,
+            "top": 7380,
             "w": 92,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "会社概要",
-            "top": 7412,
+            "top": 7436,
             "w": 64,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "チーム",
-            "top": 7412,
+            "top": 7436,
             "w": 50,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "ニュース・論考",
-            "top": 7468,
+            "top": 7492,
             "w": 105,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "大量保有報告ダッシュボード",
-            "top": 7468,
+            "top": 7492,
             "w": 160,
             "h": 72
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "キャンペーン一覧",
-            "top": 7548,
+            "top": 7572,
             "w": 119,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "お問い合わせ",
-            "top": 7548,
+            "top": 7572,
             "w": 92,
             "h": 48
           },
           {
             "selector": "div.footer-top > ul.footer-nav > li > a",
             "label": "個人情報保護方針",
-            "top": 7604,
+            "top": 7628,
             "w": 120,
             "h": 48
           }
@@ -1722,8 +1914,18 @@
       }
     },
     "/risk-assessment": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 44,
+          "height": 48,
+          "top": 8,
+          "left": 296,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {
@@ -1934,8 +2136,18 @@
       }
     },
     "/privacy": {
-      "count": 0,
-      "items": [],
+      "count": 1,
+      "items": [
+        {
+          "selector": "button#hamburger",
+          "label": "メニューを開く",
+          "width": 44,
+          "height": 48,
+          "top": 8,
+          "left": 296,
+          "href": null
+        }
+      ],
       "excluded": {
         "offscreen": [
           {

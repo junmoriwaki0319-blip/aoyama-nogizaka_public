@@ -6,7 +6,8 @@ module.exports = defineConfig({
   timeout: 30000,
   retries: 0,
   use: {
-    baseURL: 'https://aoyama-nogizaka.com',
+    // AUDIT_BASE 環境変数で Preview URL 等に上書き可能（tap-targets など）
+    baseURL: process.env.AUDIT_BASE || 'https://aoyama-nogizaka.com',
     headless: true,
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
