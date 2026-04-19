@@ -6,7 +6,8 @@ module.exports = defineConfig({
   timeout: 30000,
   retries: 0,
   use: {
-    baseURL: 'https://aoyama-nogizaka.com',
+    // AUDIT_BASE 環境変数で Preview URL 等に上書き可能（tap-targets など）
+    baseURL: process.env.AUDIT_BASE || 'https://aoyama-nogizaka.com',
     headless: true,
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
@@ -28,6 +29,12 @@ module.exports = defineConfig({
       name: 'authenticated',
       testMatch: 'authenticated.spec.js',
       dependencies: ['auth-setup'],
+      use: { browserName: 'chromium' },
+    },
+    // 4. Tap-targets 監査（モバイル ビューポート）
+    {
+      name: 'tap-targets',
+      testMatch: 'tap-targets-audit.spec.js',
       use: { browserName: 'chromium' },
     },
   ],
