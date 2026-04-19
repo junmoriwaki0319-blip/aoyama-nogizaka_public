@@ -62,6 +62,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; background: var(--off-white); color: var(--text-dark); line-height: 1.6; }
 
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
+
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
