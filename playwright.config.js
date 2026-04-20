@@ -30,5 +30,11 @@ module.exports = defineConfig({
       dependencies: ['auth-setup'],
       use: { browserName: 'chromium' },
     },
+    // 4. a11y テスト (chromium project)
+    {
+      name: 'chromium',
+      testMatch: 'a11y/**/*.spec.ts',
+      use: { browserName: 'chromium' },
+    },
   ],
 });
