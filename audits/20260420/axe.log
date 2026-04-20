@@ -1,0 +1,844 @@
+[17:14:02] START axe home
+[17:14:02] SKIP axe home (already exists)
+[17:14:02] START axe team
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/team[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 4 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - section:nth-child(10) > div > p
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "empty-heading" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure headings have discernible text. Correct invalid elements at:
+     - .member-card.reveal-delay-1.reveal > .member-info > .member-name
+     - .member-card.reveal-delay-2.reveal > .member-info > .member-name
+     - .reveal-delay-3.member-card.reveal > .member-info > .member-name
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/empty-heading[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 15 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero-inner > .section-label.visible.reveal
+     - h1
+     - .page-hero-sub
+     - .intro-section
+     - .bg-white
+     - .bg-off > .team-inner > .team-section-header.reveal
+     - .member-card.reveal-delay-1.reveal > .member-info
+     - .member-card.reveal-delay-2.reveal > .member-info
+     - .reveal-delay-3.member-card.reveal > .member-info
+     - .bg-navy > .team-inner > .team-section-header.reveal
+     - .advisor-card.reveal-delay-1.reveal > .advisor-info
+     - .advisor-card.reveal-delay-2.reveal > .advisor-info
+     - .reveal-delay-3.advisor-card.reveal > .advisor-info
+     - section:nth-child(10)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m24 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-team.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:13] OK-ish axe team (rc=0, size=227174 bytes)
+[17:14:13] START axe news
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/news/[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 11 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .featured-label
+     - .article-card[href$="activist-dashboard.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[href$="risk-assessment.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[href$="activist-screener.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[data-category="dashboard"]:nth-child(5) > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[data-category="insight"]:nth-child(7) > .article-card-body > .ac-footer > .ac-arrow
+     - .coming-soon > p
+     - #nlSubmitBtn
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 6 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero
+     - .featured-wrap
+     - .articles-section
+     - .newsletter-inner > div:nth-child(1)
+     - input
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m19 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-news.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:21] OK-ish axe news (rc=0, size=333241 bytes)
+[17:14:21] START axe privacy
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/privacy[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 12 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero-inner > .section-label.visible.reveal
+     - h1
+     - .page-hero-sub
+     - .intro-section
+     - .bg-white.policy-section:nth-child(7)
+     - .bg-off.policy-section:nth-child(8)
+     - .bg-white.policy-section:nth-child(9)
+     - .bg-off.policy-section:nth-child(10)
+     - .bg-white.policy-section:nth-child(11)
+     - .contact-block-section
+     - .policy-date-section
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m17 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-privacy.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:29] OK-ish axe privacy (rc=0, size=201966 bytes)
+[17:14:29] START axe activist-dashboard
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/activist-dashboard.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 36 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="risk-assessment.html"]
+     - .dash-subnav-link[href$="activist-screener.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - .stat-item:nth-child(1) > .stat-label
+     - .stat-item:nth-child(2) > .stat-label
+     - .stat-item:nth-child(3) > .stat-label
+     - .stat-item:nth-child(4) > .stat-label
+     - .filter-group:nth-child(2) > .filter-label
+     - .filter-group:nth-child(3) > .filter-label
+     - .filter-group:nth-child(4) > .filter-label
+     - .filter-group:nth-child(5) > .filter-label
+     - .btn-reset
+     - :root
+     - button[data-action="switchTab:activists"]
+     - button[data-action="switchTab:watchlist"]
+     - button[data-action="switchTab:chart"]
+     - button[data-action="switchTab:timeline"]
+     - small
+     - #btnCsvExport > .member-badge
+     - #btnPdfExport > .member-badge
+     - thead > tr > .col-date
+     - thead > tr > .col-filer
+     - thead > tr > .col-type
+     - thead > tr > .col-code
+     - thead > tr > .col-target
+     - thead > tr > .col-ratio
+     - thead > tr > .col-purpose
+     - thead > tr > .col-edinet
+     - .no-data
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - .sidebar-card:nth-child(1) > h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "region" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - .stats-bar
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "select-name" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure select element has an accessible name. Correct invalid elements at:
+     - #investorFilter
+     - #periodFilter
+     - #sortSelect
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/select-name[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m44 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-activist-dashboard.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:39] OK-ish axe activist-dashboard (rc=0, size=387518 bytes)
+[17:14:39] START axe risk-assessment
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/risk-assessment.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 25 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="activist-dashboard.html"]
+     - .dash-subnav-link[href$="activist-screener.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - .stock-input-card > p
+     - .risk-field:nth-child(1) > .field-hint
+     - .risk-field:nth-child(2) > .field-hint
+     - .risk-field:nth-child(3) > .field-hint
+     - .risk-field:nth-child(4) > .field-hint
+     - .risk-field:nth-child(5) > .field-hint
+     - .risk-field:nth-child(6) > .field-hint
+     - .risk-field:nth-child(7) > .field-hint
+     - .risk-field:nth-child(8) > .field-hint
+     - .risk-field:nth-child(9) > .field-hint
+     - .risk-field:nth-child(10) > .field-hint
+     - #treasuryHint
+     - #marketcapHint
+     - .risk-field:nth-child(13) > .field-hint
+     - .risk-btn-clear
+     - .cta-primary
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 21 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - section
+     - .stock-input-card > h2
+     - .stock-input-card > p
+     - #stockCode
+     - .risk-section:nth-child(2) > .risk-card > h2
+     - .risk-field:nth-child(1)
+     - .risk-field:nth-child(2)
+     - .risk-field:nth-child(3)
+     - .risk-field:nth-child(4)
+     - .risk-field:nth-child(5)
+     - .risk-field:nth-child(6)
+     - .risk-field:nth-child(7)
+     - .risk-field:nth-child(8)
+     - .risk-field:nth-child(9)
+     - .risk-field:nth-child(10)
+     - .risk-field:nth-child(11)
+     - .risk-field:nth-child(12)
+     - .risk-field:nth-child(13)
+     - .cta-section
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "select-name" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure select element has an accessible name. Correct invalid elements at:
+     - #risk_defense
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/select-name[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m49 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-risk-assessment.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:45] OK-ish axe risk-assessment (rc=0, size=326619 bytes)
+[17:14:46] START axe activist-screener
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/activist-screener.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 15 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="activist-dashboard.html"]
+     - .dash-subnav-link[href$="risk-assessment.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - button[data-action="switchTab:ranking"]
+     - summary
+     - button[data-action="resetIndividual"]
+     - #loginWallIndividual > .login-wall-inner > p
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-register[data-action="scrollToAuth:register"]
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-login[data-action="scrollToAuth:login"]
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - #loginWallIndividual > .login-wall-inner > .plan-features > h4
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - section
+     - #tab-individual > .s-card > .s-card-title
+     - #tab-individual > .s-card > .form-grid
+     - #loginWallIndividual > .login-wall-inner > .login-wall-icon
+     - #loginWallIndividual > .login-wall-inner > h2
+     - #loginWallIndividual > .login-wall-inner > p
+     - #loginWallIndividual > .login-wall-inner > .plan-features
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-login[data-action="scrollToAuth:login"]
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+[31m[1m[22m[39m
+[31m[1m27 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-activist-screener.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:14:56] OK-ish axe activist-screener (rc=0, size=249764 bytes)
+[17:14:56] START axe food-service
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/food-service.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 11 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="market"]
+     - div[data-tab="market"] > .nav-num
+     - div[data-tab="financial"]
+     - div[data-tab="financial"] > .nav-num
+     - div[data-tab="dupont"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+     - div:nth-child(20) > div > div > div:nth-child(1)
+     - div:nth-child(20) > div > div > div:nth-child(3)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+     - div:nth-child(20)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m25 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-food-service.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:15:22] OK-ish axe food-service (rc=0, size=217224 bytes)
+[17:15:22] START axe saas
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/saas.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="market"]
+     - div[data-tab="market"] > .nav-num
+     - div[data-tab="financial"]
+     - div[data-tab="financial"] > .nav-num
+     - div[data-tab="dupont"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m22 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-saas.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:15:43] OK-ish axe saas (rc=0, size=201321 bytes)
+[17:15:43] START axe ad-agency
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/ad-agency.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="tier"]
+     - div[data-tab="tier"] > .nav-num
+     - div[data-tab="mna"]
+     - div[data-tab="mna"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m23 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-ad-agency.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:16:09] OK-ish axe ad-agency (rc=0, size=192640 bytes)
+[17:16:09] START axe digital-media
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/digital-media.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="subsector"]
+     - div[data-tab="subsector"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="activist"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m22 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-digital-media.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:16:42] OK-ish axe digital-media (rc=0, size=192800 bytes)
+[17:16:42] START axe entertainment-sector-dashboard
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/entertainment-sector-dashboard.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="subsector"]
+     - div[data-tab="subsector"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="activist"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 6 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-cover
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m19 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-entertainment-sector-dashboard.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:16:54] OK-ish axe entertainment-sector-dashboard (rc=0, size=181497 bytes)
+[17:16:54] START axe news-activist-shareholder-proposals-japan
+[1mRunning axe-core 4.11.3 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/news/activist-shareholder-proposals-japan.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 95 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .btn-register
+     - .report-meta > span:nth-child(3)
+     - .filter-label
+     - #filter-count
+     - .case-highlight.case-card:nth-child(3) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(3) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(4) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-card:nth-child(5) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(5) > .case-header > .case-tagline
+     - .case-card:nth-child(5) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(5) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(6) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(6) > .case-header > .case-tagline
+     - .case-card:nth-child(6) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(6) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(7) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(7) > .case-header > .case-tagline
+     - .case-card:nth-child(7) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(7) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(8) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(8) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(9) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(9) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-highlight.case-card:nth-child(10) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(10) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(10) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(10) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(11) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(11) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(11) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(11) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(12) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(12) > .case-header > .case-tagline
+     - .case-card:nth-child(12) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(12) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(13) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(13) > .case-header > .case-tagline
+     - .case-card:nth-child(13) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(13) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(14) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(14) > .case-header > .case-tagline
+     - .case-card:nth-child(14) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(14) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(15) > .case-header > .case-meta > .case-date
+     - .badge-energy
+     - .case-highlight.case-card:nth-child(15) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(15) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(15) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(16) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(16) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(16) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(16) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(17) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(17) > .case-header > .case-tagline
+     - .case-card:nth-child(17) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(17) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(18) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(18) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(19) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(19) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-card:nth-child(20) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(20) > .case-header > .case-tagline
+     - .case-card:nth-child(20) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(20) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(21) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .cta-link-gold
+     - li:nth-child(1) > .resource-desc
+     - li:nth-child(2) > .resource-desc
+     - li:nth-child(3) > .resource-desc
+     - li:nth-child(4) > .resource-desc
+     - li:nth-child(5) > .resource-desc
+     - li:nth-child(6) > .resource-desc
+     - li:nth-child(7) > .resource-desc
+     - li:nth-child(8) > .resource-desc
+     - li:nth-child(9) > .resource-desc
+     - li:nth-child(10) > .resource-desc
+     - .footer-inner > span:nth-child(2)
+     - .footer-disclaimer
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "page-has-heading-one" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure that the page, or at least one of its frames contains a level-one heading. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/page-has-heading-one[39m[24m
+
+[31m[1m  Violation of "region" with 29 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .report-cover
+     - section:nth-child(1)
+     - section:nth-child(2) > h2
+     - .filter-label
+     - #filter-activist
+     - #filter-year
+     - #filter-count
+     - .case-highlight.case-card:nth-child(3)
+     - .case-highlight.case-card:nth-child(4)
+     - .case-card:nth-child(5)
+     - .case-card:nth-child(6)
+     - .case-card:nth-child(7)
+     - .case-card:nth-child(8)
+     - .case-highlight.case-card:nth-child(9)
+     - .case-highlight.case-card:nth-child(10)
+     - .case-highlight.case-card:nth-child(11)
+     - .case-card:nth-child(12)
+     - .case-card:nth-child(13)
+     - .case-card:nth-child(14)
+     - .case-highlight.case-card:nth-child(15)
+     - .case-highlight.case-card:nth-child(16)
+     - .case-card:nth-child(17)
+     - .case-card:nth-child(18)
+     - .case-highlight.case-card:nth-child(19)
+     - .case-card:nth-child(20)
+     - .case-highlight.case-card:nth-child(21)
+     - section:nth-child(3)
+     - section:nth-child(4)
+     - section:nth-child(5)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+[31m[1m[22m[39m
+[31m[1m126 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260420\axe-news-activist-shareholder-proposals-japan.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[17:17:05] OK-ish axe news-activist-shareholder-proposals-japan (rc=0, size=1142207 bytes)
+[17:17:05] DONE axe
