@@ -212,4 +212,4 @@ T3 の結果から JS + ARIA の実装が必要。別 PR で対応推奨。
 - [x] Phase 3A: chore/audit-20260420-baseline 派生
 - [x] Phase 3B: 既知44px修正
 - [x] T1 / T2 / T3 / T4 / T5 / T6 全実施
-- [ ] chore/audit-20260420-baseline の push ← この handoff commit 後に実施
+- [x] chore/audit-20260420-baseline の push (2026-04-21 00:00 頃完了 / 全 8 commit upstream 反映済み)
