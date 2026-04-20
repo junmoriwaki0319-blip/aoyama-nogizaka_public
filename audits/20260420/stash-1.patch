@@ -1,0 +1,3529 @@
+diff --git a/css/mobile-touch-font-fix.css b/css/mobile-touch-font-fix.css
+index a0fef29..e7388c7 100644
+--- a/css/mobile-touch-font-fix.css
++++ b/css/mobile-touch-font-fix.css
+@@ -578,7 +578,7 @@
+   .btn-cta-register,
+   .btn-gold {
+     min-height: 48px;
+-    min-width: 44px;
++    min-width: 48px;
+     padding: 12px 16px;
+     font-size: 14px;
+   }
+@@ -624,7 +624,7 @@
+   /* ウォッチリスト追加ボタン */
+   .watchlist-add-btn {
+     min-height: 48px;
+-    min-width: 44px;
++    min-width: 48px;
+     padding: 8px;
+   }
+ 
+@@ -759,7 +759,7 @@
+    --------------------------------------------------------- */
+ @media (max-width: 768px) {
+   .nav-hamburger {
+-    min-width: 44px;
++    min-width: 48px;
+     min-height: 48px;
+     display: flex;
+     align-items: center;
+@@ -877,7 +877,7 @@
+     justify-content: center !important;
+     padding: 8px !important;
+     min-height: 48px !important;
+-    min-width: 44px !important;
++    min-width: 48px !important;
+     font-size: 14px !important;
+     text-align: center;
+     border-radius: 4px;
+@@ -911,7 +911,7 @@
+   .watchlist-remove-btn,
+   .watchlist-toggle-btn {
+     min-height: 48px !important;
+-    min-width: 44px !important;
++    min-width: 48px !important;
+     padding: 8px !important;
+   }
+ }
+@@ -1090,7 +1090,7 @@
+     display: inline-flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+-    min-width: 44px !important;
++    min-width: 48px !important;
+     min-height: 48px !important;
+     padding: 8px !important;
+   }
+diff --git a/css/mobile-touch-font-fix.min.css b/css/mobile-touch-font-fix.min.css
+index 37c37b2..d0082d6 100644
+--- a/css/mobile-touch-font-fix.min.css
++++ b/css/mobile-touch-font-fix.min.css
+@@ -1 +1 @@
+-@media (width<=768px){.hero{padding-top:64px;padding-bottom:0;min-height:auto!important}.hero-inner{grid-template-columns:1fr!important;gap:16px!important;padding:32px 20px 24px!important}.hero-visual{order:2;height:160px!important}.hero-content{order:1}.hero-label{margin-bottom:12px!important;font-size:10px!important}.hero-title{margin-bottom:12px!important;font-size:clamp(22px,6vw,28px)!important;line-height:1.45!important}.hero-sub{margin-bottom:20px!important;font-size:13px!important;line-height:1.6!important}.hero-sub br{display:none}.hero-cta{justify-content:center;width:100%;padding:14px 28px!important;font-size:13px!important}.page-hero{margin-top:64px!important;padding:28px 20px 20px!important}.page-hero h1{margin-bottom:8px!important;font-size:1.15rem!important;line-height:1.4!important}.page-hero p{font-size:.8rem!important;line-height:1.5!important}.page-hero p br{display:none}.page-hero-en{margin-bottom:6px!important;font-size:.8rem!important}.hero-badge{margin-top:12px!important;padding:4px 14px!important;font-size:.68rem!important}}@media (width<=480px){.hero-inner{gap:12px!important;padding:24px 16px 20px!important}.hero-visual{height:120px!important}.hero-title{font-size:21px!important}.page-hero{padding:24px 16px 16px!important}.page-hero h1{font-size:1.05rem!important}}@media (width<=768px){.hero+div[style*=navy]{padding:28px 0!important}.hero+div[style*=navy] p{font-size:14px!important;line-height:1.8!important}.hero+div[style*=navy] p br{display:none}section,#data,#ai-consulting,#philosophy,#services,#about,#contact{padding:48px 0!important}.section-inner{padding:0 20px!important}.section-label{margin-bottom:12px!important}.section-title,section h2{margin-bottom:20px!important}.section-desc,section h2+p{margin-bottom:24px!important}.intro-block,.hero+div,.hero+section{padding:36px 20px!important}}@media (width<=480px){section,#data,#ai-consulting,#philosophy,#services,#about,#contact{padding:36px 0!important}.section-inner{padding:0 16px!important}}@media (width<=768px){.page-header{margin-top:64px;padding:36px 20px 28px!important}.page-header h1{margin-bottom:8px!important;font-size:1.2rem!important}.page-header p{margin-bottom:0!important;font-size:13px!important;line-height:1.5!important}.page-header-inner{gap:8px!important}.dashboard-layout{gap:16px!important;margin:20px auto!important;padding:0 12px!important}.stats-bar{padding:0 12px!important}.stats-bar-inner{gap:8px!important}.stat-item{padding:12px 10px!important}.stat-value{font-size:1.2rem!important}.stat-label{font-size:14px!important}}@media (width<=480px){.page-header{padding:28px 16px 20px!important}.page-header h1{font-size:1.05rem!important}.dashboard-layout{margin:12px auto!important;padding:0 8px!important}}@media (width<=768px){.card{border-radius:10px!important;margin-bottom:12px!important}.card-header{padding:14px 16px!important}.card-header h2{font-size:14px!important}.card-body,.card-content{padding:16px!important}.chart-container{padding:12px!important}.chart-wrapper{height:220px!important}.service-card,.value-card,.data-card{padding:24px 18px!important}.ai-card,.ai-evidence{padding:20px 18px!important}.sidebar-card{padding:14px!important}footer{padding:36px 0 24px!important}.footer-inner{padding:0 20px!important}.footer-top{gap:20px!important;margin-bottom:20px!important}.footer-bottom{padding-top:16px!important}}@media (width<=480px){footer{padding:28px 0 20px!important}.footer-inner{padding:0 16px!important}}@media (width<=768px){.stock-input-section{padding:32px 0 0!important}.risk-section{padding:28px 0 0!important}.cta-section{padding:36px 0 0!important}.ranking-section{margin-bottom:16px!important}.s-card{margin-bottom:12px!important;padding:16px 12px!important}.articles-section{padding:32px 0 48px!important}.analysis-section,.form-section{padding:40px 0!important}.art-section{padding-top:40px!important}.report-cover{padding:36px 20px 28px!important}.report-title{margin-bottom:4px!important;font-size:1.3rem!important}.report-subtitle{margin-bottom:16px!important;font-size:.8rem!important}.report-meta{gap:16px!important}.main{padding-left:16px!important;padding-right:16px!important}.chart-panel{margin-bottom:12px!important;padding:16px 14px!important}.chart-area{height:240px!important}.chart-area.tall{height:300px!important}.commentary{padding:14px 16px!important;font-size:13px!important;line-height:1.6!important}.kpi-grid{gap:8px!important}.kpi-card{padding:14px 12px!important}.nav-bar{gap:8px!important;padding-left:16px!important;padding-right:16px!important}.login-wall{padding:80px 20px 40px!important}}@media (width<=480px){.report-cover{padding:28px 16px 20px!important}.report-title{font-size:1.1rem!important}.chart-area{height:200px!important}.chart-area.tall{height:260px!important}.login-wall{padding:72px 16px 36px!important}}@media (width<=768px){body{-webkit-text-size-adjust:100%;font-size:14px}td,th{min-height:48px;padding:12px 8px;font-size:14px!important}p,li,label{line-height:1.5;font-size:14px!important}.nav-logo-jp,.data-source,.data-source span{font-size:14px!important}.page-header-inner p,.page-header-inner span{line-height:1.5;font-size:14px!important}details p{line-height:1.6;font-size:14px!important}.ac-stock-item span,.ac-stock-item a{line-height:1.4;font-size:14px!important}.activist-type{font-size:12px!important}.rank-view-tab,.nav-auth-btns a{min-height:48px!important;font-size:14px!important}[class*=icon],[class*=badge],[class*=tag]{font-size:14px!important}button,.btn-filter,.btn-reset,.btn-primary,.btn-secondary,.export-btn,.btn-cta-register,.btn-gold{min-width:44px;min-height:48px;padding:12px 16px;font-size:14px}.tab-btn,.rank-view-tab,.ranking-filter-btn{min-height:48px;padding:12px 16px;font-size:14px}select,.filter-select,.sort-select{min-height:48px;padding:10px 12px;font-size:14px}input[type=text],input[type=email],textarea{min-height:48px;padding:10px 12px;font-size:16px}table a,.activist-table a{text-align:center;min-width:44px;min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}.watchlist-add-btn{min-width:44px;min-height:48px;padding:8px}footer a{min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}nav a{min-height:48px;padding:12px 16px;display:block}.ranking-table,.idm-table-wrap,.s-card,.card-body,.card-content,.chart-container,table{-webkit-overflow-scrolling:touch;max-width:100%;overflow-x:auto!important}.s-card{overflow-x:auto!important}[style*="overflow-x: visible"],[style*=overflow-x\:visible]{-webkit-overflow-scrolling:touch;overflow-x:auto!important}.activist-table,.idm-table{min-width:600px}.ranking-table:after,.idm-table-wrap:after{content:"";pointer-events:none;background:linear-gradient(90deg,#0000,#fffc);width:24px;height:100%;position:absolute;top:0;right:0}.ranking-table,.idm-table-wrap{position:relative}canvas{max-width:100%;height:auto!important}.chart-container,.chart-wrapper,[class*=chart]{-webkit-overflow-scrolling:touch;overflow-x:auto}form select{min-height:48px;padding:10px 12px;font-size:16px}form button[type=submit]{width:100%;min-height:48px;padding:14px 24px;font-size:16px}}@supports (padding:env(safe-area-inset-top)){nav,header{padding-top:env(safe-area-inset-top)}footer{padding-bottom:env(safe-area-inset-bottom)}}@media (width<=768px){.nav-hamburger{justify-content:center;align-items:center;min-width:44px;min-height:48px;display:flex}.filter-area,.filter-row,[class*=filter-group]{flex-direction:column;gap:8px;display:flex}.filter-area>*,.filter-row>*{width:100%}.tab-container,[class*=tabs]{-webkit-overflow-scrolling:touch;gap:4px;padding-bottom:4px;display:flex;overflow-x:auto}.tab-btn{white-space:nowrap;flex-shrink:0}.filter-checkbox{gap:10px!important;min-height:48px!important;padding:8px 4px!important;font-size:14px!important}.filter-checkbox input[type=checkbox]{flex-shrink:0;width:22px!important;height:22px!important}.filter-select,.filter-input{min-height:48px!important;padding:10px 12px!important;font-size:14px!important}.category-tag{align-items:center!important;min-height:48px!important;padding:10px 14px!important;font-size:14px!important;display:inline-flex!important}.btn-filter,.btn-reset{min-height:48px!important;padding:12px 16px!important;font-size:14px!important}.sort-select{min-height:48px!important;padding:10px 12px!important;font-size:16px!important}.tab-nav .tab-btn{min-height:48px!important;padding:14px 18px!important;font-size:14px!important}.export-btn{min-height:48px!important;padding:10px 16px!important;font-size:14px!important}.export-btn svg{width:16px!important;height:16px!important}.edinet-link{text-align:center;background:#2980b914;border-radius:4px;justify-content:center!important;align-items:center!important;min-width:44px!important;min-height:48px!important;padding:8px!important;font-size:14px!important;display:inline-flex!important}.ranking-filter-btn{min-height:48px!important;padding:10px 16px!important;font-size:14px!important}td a{padding:4px 2px;align-items:center!important;min-height:48px!important;display:inline-flex!important}.timeline-content a{min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}.watchlist-remove-btn,.watchlist-toggle-btn{min-width:44px!important;min-height:48px!important;padding:8px!important}body{-webkit-text-size-adjust:100%;font-size:15px!important}p,li,span,label,a,div,td,th,button,input,select,textarea{line-height:1.5;font-size:max(14px, inherit)!important}.dash-subnav-cat{font-size:12px!important}.dash-subnav-link{align-items:center!important;min-height:48px!important;padding:12px 14px!important;font-size:14px!important;display:inline-flex!important}.activist-table th,th{padding:12px 8px!important;font-size:14px!important}.activist-table td,td{padding:14px 8px!important;font-size:14px!important;line-height:1.5!important}.date-cell{font-size:14px!important}.activist-type{padding:3px 10px!important;font-size:12px!important}.badge-new{font-size:11px!important}.member-badge{font-size:12px!important}.category-tag{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}.tab-btn{min-height:48px!important;font-size:14px!important}.filter-label{font-size:14px!important}.filter-select,.filter-input,.sort-select{min-height:48px!important;font-size:16px!important}.filter-checkbox{min-height:48px!important;font-size:14px!important}.filter-checkbox input[type=checkbox]{width:22px!important;height:22px!important}.btn-filter,.btn-reset{min-height:48px!important;font-size:14px!important}.sidebar-card h3,.page-header-label,.data-source,.data-source span,.stat-label{font-size:14px!important}.ac-name{font-size:16px!important}.ac-meta,.ac-section-title,.ac-stock-item,.ac-stock-item span,.ac-stock-item a,.timeline-date{font-size:14px!important}.timeline-title{font-size:15px!important}.timeline-detail,.timeline-tag{font-size:14px!important}.edinet-link{justify-content:center!important;align-items:center!important;min-width:44px!important;min-height:48px!important;padding:8px!important;font-size:14px!important;display:inline-flex!important}.plan-features h4,.plan-features li{font-size:14px!important}.btn-cta-login{min-height:48px!important;font-size:14px!important}.sec-title{font-size:1.1rem!important}.sec-desc,.sec-num,.chart-panel-title,.chart-panel-sub,.table-header-title,table th,table td,.kpi-label{font-size:14px!important}.kpi-value{font-size:1.2rem!important}.kpi-unit,.kpi-sub{font-size:14px!important}.commentary{font-size:14px!important;line-height:1.7!important}.heatmap-table td,.cross-nav-cat{font-size:14px!important}.cross-nav-link{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}.btn-login,.btn-register{min-height:48px!important;font-size:14px!important}.report-label,.report-meta{font-size:14px!important}.footer-brand{font-size:15px!important}.footer-nav a{min-height:48px!important;font-size:14px!important}.footer-address,.footer-copy,.modal .form-group label{font-size:14px!important}.modal .form-group input,.modal .form-group select{font-size:16px!important}.modal-footer{font-size:14px!important}}@media (width<=375px){table td{padding:10px 6px!important;font-size:14px!important;line-height:1.4!important}table th{padding:10px 6px!important;font-size:13px!important}.activist-table td{padding:10px 6px!important;font-size:14px!important}.activist-table th{padding:10px 6px!important;font-size:13px!important}.dash-subnav-link{min-height:48px!important;padding:10px!important;font-size:14px!important}.tab-btn{min-height:48px!important;padding:12px 10px!important;font-size:14px!important}.filter-select,.filter-input,.sort-select{min-height:48px!important;font-size:16px!important}.category-tag{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}}
+\ No newline at end of file
++@media (width<=768px){.hero{padding-top:64px;padding-bottom:0;min-height:auto!important}.hero-inner{grid-template-columns:1fr!important;gap:16px!important;padding:32px 20px 24px!important}.hero-visual{order:2;height:160px!important}.hero-content{order:1}.hero-label{margin-bottom:12px!important;font-size:10px!important}.hero-title{margin-bottom:12px!important;font-size:clamp(22px,6vw,28px)!important;line-height:1.45!important}.hero-sub{margin-bottom:20px!important;font-size:13px!important;line-height:1.6!important}.hero-sub br{display:none}.hero-cta{justify-content:center;width:100%;padding:14px 28px!important;font-size:13px!important}.page-hero{margin-top:64px!important;padding:28px 20px 20px!important}.page-hero h1{margin-bottom:8px!important;font-size:1.15rem!important;line-height:1.4!important}.page-hero p{font-size:.8rem!important;line-height:1.5!important}.page-hero p br{display:none}.page-hero-en{margin-bottom:6px!important;font-size:.8rem!important}.hero-badge{margin-top:12px!important;padding:4px 14px!important;font-size:.68rem!important}}@media (width<=480px){.hero-inner{gap:12px!important;padding:24px 16px 20px!important}.hero-visual{height:120px!important}.hero-title{font-size:21px!important}.page-hero{padding:24px 16px 16px!important}.page-hero h1{font-size:1.05rem!important}}@media (width<=768px){.hero+div[style*=navy]{padding:28px 0!important}.hero+div[style*=navy] p{font-size:14px!important;line-height:1.8!important}.hero+div[style*=navy] p br{display:none}section,#data,#ai-consulting,#philosophy,#services,#about,#contact{padding:48px 0!important}.section-inner{padding:0 20px!important}.section-label{margin-bottom:12px!important}.section-title,section h2{margin-bottom:20px!important}.section-desc,section h2+p{margin-bottom:24px!important}.intro-block,.hero+div,.hero+section{padding:36px 20px!important}}@media (width<=480px){section,#data,#ai-consulting,#philosophy,#services,#about,#contact{padding:36px 0!important}.section-inner{padding:0 16px!important}}@media (width<=768px){.page-header{margin-top:64px;padding:36px 20px 28px!important}.page-header h1{margin-bottom:8px!important;font-size:1.2rem!important}.page-header p{margin-bottom:0!important;font-size:13px!important;line-height:1.5!important}.page-header-inner{gap:8px!important}.dashboard-layout{gap:16px!important;margin:20px auto!important;padding:0 12px!important}.stats-bar{padding:0 12px!important}.stats-bar-inner{gap:8px!important}.stat-item{padding:12px 10px!important}.stat-value{font-size:1.2rem!important}.stat-label{font-size:14px!important}}@media (width<=480px){.page-header{padding:28px 16px 20px!important}.page-header h1{font-size:1.05rem!important}.dashboard-layout{margin:12px auto!important;padding:0 8px!important}}@media (width<=768px){.card{border-radius:10px!important;margin-bottom:12px!important}.card-header{padding:14px 16px!important}.card-header h2{font-size:14px!important}.card-body,.card-content{padding:16px!important}.chart-container{padding:12px!important}.chart-wrapper{height:220px!important}.service-card,.value-card,.data-card{padding:24px 18px!important}.ai-card,.ai-evidence{padding:20px 18px!important}.sidebar-card{padding:14px!important}footer{padding:36px 0 24px!important}.footer-inner{padding:0 20px!important}.footer-top{gap:20px!important;margin-bottom:20px!important}.footer-bottom{padding-top:16px!important}}@media (width<=480px){footer{padding:28px 0 20px!important}.footer-inner{padding:0 16px!important}}@media (width<=768px){.stock-input-section{padding:32px 0 0!important}.risk-section{padding:28px 0 0!important}.cta-section{padding:36px 0 0!important}.ranking-section{margin-bottom:16px!important}.s-card{margin-bottom:12px!important;padding:16px 12px!important}.articles-section{padding:32px 0 48px!important}.analysis-section,.form-section{padding:40px 0!important}.art-section{padding-top:40px!important}.report-cover{padding:36px 20px 28px!important}.report-title{margin-bottom:4px!important;font-size:1.3rem!important}.report-subtitle{margin-bottom:16px!important;font-size:.8rem!important}.report-meta{gap:16px!important}.main{padding-left:16px!important;padding-right:16px!important}.chart-panel{margin-bottom:12px!important;padding:16px 14px!important}.chart-area{height:240px!important}.chart-area.tall{height:300px!important}.commentary{padding:14px 16px!important;font-size:13px!important;line-height:1.6!important}.kpi-grid{gap:8px!important}.kpi-card{padding:14px 12px!important}.nav-bar{gap:8px!important;padding-left:16px!important;padding-right:16px!important}.login-wall{padding:80px 20px 40px!important}}@media (width<=480px){.report-cover{padding:28px 16px 20px!important}.report-title{font-size:1.1rem!important}.chart-area{height:200px!important}.chart-area.tall{height:260px!important}.login-wall{padding:72px 16px 36px!important}}@media (width<=768px){body{-webkit-text-size-adjust:100%;font-size:14px}td,th{min-height:48px;padding:12px 8px;font-size:14px!important}p,li,label{line-height:1.5;font-size:14px!important}.nav-logo-jp,.data-source,.data-source span{font-size:14px!important}.page-header-inner p,.page-header-inner span{line-height:1.5;font-size:14px!important}details p{line-height:1.6;font-size:14px!important}.ac-stock-item span,.ac-stock-item a{line-height:1.4;font-size:14px!important}.activist-type{font-size:12px!important}.rank-view-tab,.nav-auth-btns a{min-height:48px!important;font-size:14px!important}[class*=icon],[class*=badge],[class*=tag]{font-size:14px!important}button,.btn-filter,.btn-reset,.btn-primary,.btn-secondary,.export-btn,.btn-cta-register,.btn-gold{min-width:48px;min-height:48px;padding:12px 16px;font-size:14px}.tab-btn,.rank-view-tab,.ranking-filter-btn{min-height:48px;padding:12px 16px;font-size:14px}select,.filter-select,.sort-select{min-height:48px;padding:10px 12px;font-size:14px}input[type=text],input[type=email],textarea{min-height:48px;padding:10px 12px;font-size:16px}table a,.activist-table a{text-align:center;min-width:44px;min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}.watchlist-add-btn{min-width:48px;min-height:48px;padding:8px}footer a{min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}nav a{min-height:48px;padding:12px 16px;display:block}.ranking-table,.idm-table-wrap,.s-card,.card-body,.card-content,.chart-container,table{-webkit-overflow-scrolling:touch;max-width:100%;overflow-x:auto!important}.s-card{overflow-x:auto!important}[style*="overflow-x: visible"],[style*=overflow-x\:visible]{-webkit-overflow-scrolling:touch;overflow-x:auto!important}.activist-table,.idm-table{min-width:600px}.ranking-table:after,.idm-table-wrap:after{content:"";pointer-events:none;background:linear-gradient(90deg,#0000,#fffc);width:24px;height:100%;position:absolute;top:0;right:0}.ranking-table,.idm-table-wrap{position:relative}canvas{max-width:100%;height:auto!important}.chart-container,.chart-wrapper,[class*=chart]{-webkit-overflow-scrolling:touch;overflow-x:auto}form select{min-height:48px;padding:10px 12px;font-size:16px}form button[type=submit]{width:100%;min-height:48px;padding:14px 24px;font-size:16px}}@supports (padding:env(safe-area-inset-top)){nav,header{padding-top:env(safe-area-inset-top)}footer{padding-bottom:env(safe-area-inset-bottom)}}@media (width<=768px){.nav-hamburger{justify-content:center;align-items:center;min-width:48px;min-height:48px;display:flex}.filter-area,.filter-row,[class*=filter-group]{flex-direction:column;gap:8px;display:flex}.filter-area>*,.filter-row>*{width:100%}.tab-container,[class*=tabs]{-webkit-overflow-scrolling:touch;gap:4px;padding-bottom:4px;display:flex;overflow-x:auto}.tab-btn{white-space:nowrap;flex-shrink:0}.filter-checkbox{gap:10px!important;min-height:48px!important;padding:8px 4px!important;font-size:14px!important}.filter-checkbox input[type=checkbox]{flex-shrink:0;width:22px!important;height:22px!important}.filter-select,.filter-input{min-height:48px!important;padding:10px 12px!important;font-size:14px!important}.category-tag{align-items:center!important;min-height:48px!important;padding:10px 14px!important;font-size:14px!important;display:inline-flex!important}.btn-filter,.btn-reset{min-height:48px!important;padding:12px 16px!important;font-size:14px!important}.sort-select{min-height:48px!important;padding:10px 12px!important;font-size:16px!important}.tab-nav .tab-btn{min-height:48px!important;padding:14px 18px!important;font-size:14px!important}.export-btn{min-height:48px!important;padding:10px 16px!important;font-size:14px!important}.export-btn svg{width:16px!important;height:16px!important}.edinet-link{text-align:center;background:#2980b914;border-radius:4px;justify-content:center!important;align-items:center!important;min-width:48px!important;min-height:48px!important;padding:8px!important;font-size:14px!important;display:inline-flex!important}.ranking-filter-btn{min-height:48px!important;padding:10px 16px!important;font-size:14px!important}td a{padding:4px 2px;align-items:center!important;min-height:48px!important;display:inline-flex!important}.timeline-content a{min-height:48px;padding:8px 4px;line-height:28px;display:inline-block}.watchlist-remove-btn,.watchlist-toggle-btn{min-width:48px!important;min-height:48px!important;padding:8px!important}body{-webkit-text-size-adjust:100%;font-size:15px!important}p,li,span,label,a,div,td,th,button,input,select,textarea{line-height:1.5;font-size:max(14px, inherit)!important}.dash-subnav-cat{font-size:12px!important}.dash-subnav-link{align-items:center!important;min-height:48px!important;padding:12px 14px!important;font-size:14px!important;display:inline-flex!important}.activist-table th,th{padding:12px 8px!important;font-size:14px!important}.activist-table td,td{padding:14px 8px!important;font-size:14px!important;line-height:1.5!important}.date-cell{font-size:14px!important}.activist-type{padding:3px 10px!important;font-size:12px!important}.badge-new{font-size:11px!important}.member-badge{font-size:12px!important}.category-tag{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}.tab-btn{min-height:48px!important;font-size:14px!important}.filter-label{font-size:14px!important}.filter-select,.filter-input,.sort-select{min-height:48px!important;font-size:16px!important}.filter-checkbox{min-height:48px!important;font-size:14px!important}.filter-checkbox input[type=checkbox]{width:22px!important;height:22px!important}.btn-filter,.btn-reset{min-height:48px!important;font-size:14px!important}.sidebar-card h3,.page-header-label,.data-source,.data-source span,.stat-label{font-size:14px!important}.ac-name{font-size:16px!important}.ac-meta,.ac-section-title,.ac-stock-item,.ac-stock-item span,.ac-stock-item a,.timeline-date{font-size:14px!important}.timeline-title{font-size:15px!important}.timeline-detail,.timeline-tag{font-size:14px!important}.edinet-link{justify-content:center!important;align-items:center!important;min-width:48px!important;min-height:48px!important;padding:8px!important;font-size:14px!important;display:inline-flex!important}.plan-features h4,.plan-features li{font-size:14px!important}.btn-cta-login{min-height:48px!important;font-size:14px!important}.sec-title{font-size:1.1rem!important}.sec-desc,.sec-num,.chart-panel-title,.chart-panel-sub,.table-header-title,table th,table td,.kpi-label{font-size:14px!important}.kpi-value{font-size:1.2rem!important}.kpi-unit,.kpi-sub{font-size:14px!important}.commentary{font-size:14px!important;line-height:1.7!important}.heatmap-table td,.cross-nav-cat{font-size:14px!important}.cross-nav-link{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}.btn-login,.btn-register{min-height:48px!important;font-size:14px!important}.report-label,.report-meta{font-size:14px!important}.footer-brand{font-size:15px!important}.footer-nav a{min-height:48px!important;font-size:14px!important}.footer-address,.footer-copy,.modal .form-group label{font-size:14px!important}.modal .form-group input,.modal .form-group select{font-size:16px!important}.modal-footer{font-size:14px!important}}@media (width<=375px){table td{padding:10px 6px!important;font-size:14px!important;line-height:1.4!important}table th{padding:10px 6px!important;font-size:13px!important}.activist-table td{padding:10px 6px!important;font-size:14px!important}.activist-table th{padding:10px 6px!important;font-size:13px!important}.dash-subnav-link{min-height:48px!important;padding:10px!important;font-size:14px!important}.tab-btn{min-height:48px!important;padding:12px 10px!important;font-size:14px!important}.filter-select,.filter-input,.sort-select{min-height:48px!important;font-size:16px!important}.category-tag{align-items:center!important;min-height:48px!important;font-size:14px!important;display:inline-flex!important}}
+\ No newline at end of file
+diff --git a/playwright.config.js b/playwright.config.js
+index c68ce5e..7059cc8 100644
+--- a/playwright.config.js
++++ b/playwright.config.js
+@@ -6,7 +6,8 @@ module.exports = defineConfig({
+   timeout: 30000,
+   retries: 0,
+   use: {
+-    baseURL: 'https://aoyama-nogizaka.com',
++    // AUDIT_BASE 環境変数で Preview URL 等に上書き可能（tap-targets など）
++    baseURL: process.env.AUDIT_BASE || 'https://aoyama-nogizaka.com',
+     headless: true,
+     screenshot: 'only-on-failure',
+     trace: 'on-first-retry',
+diff --git a/tests/tap-targets-report.json b/tests/tap-targets-report.json
+index e2bce34..78aed02 100644
+--- a/tests/tap-targets-report.json
++++ b/tests/tap-targets-report.json
+@@ -4,216 +4,462 @@
+     "height": 640
+   },
+   "minSize": 48,
+-  "timestamp": "2026-04-18T23:56:41.909Z",
++  "methodology": {
++    "threshold": "48x48 (Lighthouse default / Google Mobile)",
++    "filters": [
++      "offscreen (rect outside viewport or absolute top<-50)",
++      "inline text links in <p>/<li>/<details>"
++    ],
++    "selector": "a[href], button, input (non-hidden), select, textarea, [role=button|link], [onclick], [tabindex>=0]"
++  },
++  "timestamp": "2026-04-19T00:45:33.419Z",
++  "summary": {
++    "/": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 32,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/team": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 11,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/saas": {
++      "count": 3,
++      "excluded": {
++        "offscreen": 2,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/food-service": {
++      "count": 3,
++      "excluded": {
++        "offscreen": 3,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/ad-agency": {
++      "count": 3,
++      "excluded": {
++        "offscreen": 2,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/digital-media": {
++      "count": 3,
++      "excluded": {
++        "offscreen": 2,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/entertainment-sector-dashboard": {
++      "count": 3,
++      "excluded": {
++        "offscreen": 2,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/activist-dashboard": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 82,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/activist-screener": {
++      "count": 2,
++      "excluded": {
++        "offscreen": 17,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/activist-campaigns": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 63,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/risk-assessment": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 29,
++        "inline": 0
++      },
++      "error": null
++    },
++    "/privacy": {
++      "count": 1,
++      "excluded": {
++        "offscreen": 11,
++        "inline": 0
++      },
++      "error": null
++    }
++  },
+   "pages": {
+     "/": {
+-      "count": 18,
++      "count": 1,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 44,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 300,
+           "href": null
+-        },
+-        {
+-          "selector": "section#ai-consulting > div.section-inner > div.ai-evidence.reveal > a",
+-          "label": "実例を見る →",
+-          "width": 290,
+-          "height": 44,
+-          "top": 6728,
+-          "left": 35,
+-          "href": "/food-service.html"
+-        },
+-        {
+-          "selector": "div.contact-info > div.contact-info-item.reveal > p.contact-info-value > a",
+-          "label": "個人情報保護方針はこちら →",
+-          "width": 180,
+-          "height": 19,
+-          "top": 8157,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/privacy"
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-row > div.form-group > input",
+-          "label": "",
+-          "width": 123,
+-          "height": 46,
+-          "top": 8315,
+-          "left": 49,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-row > div.form-group > input",
+-          "label": "",
+-          "width": 123,
+-          "height": 46,
+-          "top": 8315,
+-          "left": 188,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-row > div.form-group > input",
+-          "label": "",
+-          "width": 123,
+-          "height": 46,
+-          "top": 8408,
+-          "left": 49,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-row > div.form-group > input",
+-          "label": "",
+-          "width": 123,
+-          "height": 46,
+-          "top": 8408,
+-          "left": 188,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-group > input",
+-          "label": "",
+-          "width": 262,
+-          "height": 46,
+-          "top": 8501,
+-          "left": 49,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > div.form-group > select",
+-          "label": "選択してください 検索エンジン（Google、Yahoo!など） SNS（Facebook、X、LinkedInなど） 知人の紹介 その他",
+-          "width": 262,
+-          "height": 46,
+-          "top": 8734,
+-          "left": 49,
+-          "href": null
+-        },
+-        {
+-          "selector": "form#contactForm > p.privacy-note > a",
+-          "label": "個人情報保護方針",
+-          "width": 116,
+-          "height": 20,
+-          "top": 8800,
+-          "left": 107,
+-          "href": "https://aoyama-nogizaka.com/privacy"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "企業理念",
+-          "width": 83,
+-          "height": 44,
+-          "top": 9077,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/#philosophy"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "提供サービス",
+-          "width": 113,
+-          "height": 44,
+-          "top": 9077,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/#services"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "会社概要",
+-          "width": 83,
+-          "height": 44,
+-          "top": 9143,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/#about"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "チーム",
+-          "width": 68,
+-          "height": 44,
+-          "top": 9209,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/team"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "ニュース・論考",
+-          "width": 127,
+-          "height": 44,
+-          "top": 9209,
+-          "left": 192,
+-          "href": "/news/"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "お問い合わせ",
+-          "width": 113,
+-          "height": 44,
+-          "top": 9595,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/#contact"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "個人情報保護方針",
+-          "width": 143,
+-          "height": 44,
+-          "top": 9661,
+-          "left": 16,
+-          "href": "/privacy"
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "section#data > div.section-inner > div.data-grid.reveal > a.data-card",
++            "label": "SECTOR REPORT 外食産業 セクター分析 主要35社の月次KPI・株価パフォーマンス・バリュエーションを横断分析。既存店売上高の3年推移も追跡。 レポ",
++            "top": 4701,
++            "w": 328,
++            "h": 217
++          },
++          {
++            "selector": "section#data > div.section-inner > div.data-grid.reveal > a.data-card",
++            "label": "SECTOR REPORT 国内SaaS セクター分析 SaaS主要企業のARR成長率・チャーンレート・Rule of 40等の重要KPIをダッシュボード形式で",
++            "top": 4938,
++            "w": 328,
++            "h": 217
++          },
++          {
++            "selector": "section#data > div.section-inner > div.data-grid.reveal > a.data-card",
++            "label": "SECTOR REPORT 広告代理店 セクター分析 広告代理店120社超の時価総額・財務指標・M&A動向を網羅。デジタルシフト・業界再編を詳細分析。 レポート",
++            "top": 5174,
++            "w": 328,
++            "h": 217
++          },
++          {
++            "selector": "section#ai-consulting > div.section-inner > div.ai-evidence.reveal > a",
++            "label": "実例を見る →",
++            "top": 6728,
++            "w": 290,
++            "h": 48
++          },
++          {
++            "selector": "div.contact-info > div.contact-info-item.reveal > p.contact-info-value > a",
++            "label": "個人情報保護方針はこちら →",
++            "top": 8161,
++            "w": 180,
++            "h": 19
++          },
++          {
++            "selector": "form#contactForm > div.form-row > div.form-group > input",
++            "label": "",
++            "top": 8319,
++            "w": 123,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > div.form-row > div.form-group > input",
++            "label": "",
++            "top": 8319,
++            "w": 123,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > div.form-row > div.form-group > input",
++            "label": "",
++            "top": 8414,
++            "w": 123,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > div.form-row > div.form-group > input",
++            "label": "",
++            "top": 8414,
++            "w": 123,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > div.form-group > input",
++            "label": "",
++            "top": 8509,
++            "w": 262,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > div.form-group > textarea",
++            "label": "",
++            "top": 8604,
++            "w": 262,
++            "h": 66
++          },
++          {
++            "selector": "form#contactForm > div.form-group > select",
++            "label": "選択してください 検索エンジン（Google、Yahoo!など） SNS（Facebook、X、LinkedInなど） 知人の紹介 その他",
++            "top": 8744,
++            "w": 262,
++            "h": 48
++          },
++          {
++            "selector": "form#contactForm > p.privacy-note > a",
++            "label": "個人情報保護方針",
++            "top": 8812,
++            "w": 116,
++            "h": 20
++          },
++          {
++            "selector": "button#contactSubmitBtn",
++            "label": "送信する",
++            "top": 8891,
++            "w": 262,
++            "h": 52
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 9089,
++            "w": 83,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 9089,
++            "w": 113,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "AI × コンサルティング",
++            "top": 9145,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 9157,
++            "w": 83,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 9225,
++            "w": 68,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 9225,
++            "w": 127,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 9281,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 9281,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 9361,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "外食産業 KPIダッシュボード",
++            "top": 9361,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "SaaS企業 KPIダッシュボード",
++            "top": 9441,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "広告代理店 セクター分析",
++            "top": 9441,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "デジタルメディア セクター分析",
++            "top": 9521,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "エンタメ・ゲーム ダッシュボード",
++            "top": 9521,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "株主提案ビジュアルアーカイブ",
++            "top": 9601,
++            "w": 152,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 9613,
++            "w": 113,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 9681,
++            "w": 143,
++            "h": 48
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/team": {
+-      "count": 2,
++      "count": 1,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 44,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 296,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 6217,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 6217,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 6289,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a.active",
++            "label": "チーム",
++            "top": 6289,
++            "w": 52,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 6365,
++            "w": 111,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 6361,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 6441,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 6441,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 6525,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 6521,
++            "w": 124,
++            "h": 72
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/saas": {
+-      "count": 4,
++      "count": 3,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 46,
+-          "height": 44,
+-          "top": 18,
++          "height": 48,
++          "top": 16,
+           "left": 290,
+           "href": null
+         },
+@@ -221,8 +467,8 @@
+           "selector": "button#navScrollLeft",
+           "label": "左へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 427,
++          "height": 48,
++          "top": 426,
+           "left": 24,
+           "href": null
+         },
+@@ -230,31 +476,41 @@
+           "selector": "button#navScrollRight",
+           "label": "右へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 427,
++          "height": 48,
++          "top": 426,
+           "left": 292,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div#loginWall > button.btn-cta",
++            "label": "無料会員登録",
++            "top": 740,
++            "w": 169,
++            "h": 50
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/food-service": {
+-      "count": 5,
++      "count": 3,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 46,
+-          "height": 44,
+-          "top": 18,
++          "height": 48,
++          "top": 16,
+           "left": 290,
+           "href": null
+         },
+@@ -262,8 +518,8 @@
+           "selector": "button#navScrollLeft",
+           "label": "左へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 511,
++          "height": 48,
++          "top": 510,
+           "left": 24,
+           "href": null
+         },
+@@ -271,40 +527,48 @@
+           "selector": "button#navScrollRight",
+           "label": "右へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 511,
++          "height": 48,
++          "top": 510,
+           "left": 292,
+           "href": null
+-        },
+-        {
+-          "selector": "div > div > a",
+-          "label": "SaaSレポートを見る →",
+-          "width": 197,
+-          "height": 39,
+-          "top": 1261,
+-          "left": 28,
+-          "href": "/saas.html"
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div#loginWall > button.btn-cta",
++            "label": "無料会員登録",
++            "top": 795,
++            "w": 169,
++            "h": 50
++          },
++          {
++            "selector": "div > div > a",
++            "label": "SaaSレポートを見る →",
++            "top": 1262,
++            "w": 197,
++            "h": 39
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/ad-agency": {
+-      "count": 4,
++      "count": 3,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 46,
+-          "height": 44,
+-          "top": 18,
++          "height": 48,
++          "top": 16,
+           "left": 290,
+           "href": null
+         },
+@@ -312,8 +576,8 @@
+           "selector": "button#navScrollLeft",
+           "label": "左へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 390,
++          "height": 48,
++          "top": 389,
+           "left": 24,
+           "href": null
+         },
+@@ -321,31 +585,41 @@
+           "selector": "button#navScrollRight",
+           "label": "右へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 390,
++          "height": 48,
++          "top": 389,
+           "left": 292,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div#loginWall > button.btn-cta",
++            "label": "無料会員登録",
++            "top": 703,
++            "w": 169,
++            "h": 50
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/digital-media": {
+-      "count": 4,
++      "count": 3,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 46,
+-          "height": 44,
+-          "top": 18,
++          "height": 48,
++          "top": 16,
+           "left": 290,
+           "href": null
+         },
+@@ -353,8 +627,8 @@
+           "selector": "button#navScrollLeft",
+           "label": "左へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 411,
++          "height": 48,
++          "top": 410,
+           "left": 24,
+           "href": null
+         },
+@@ -362,31 +636,41 @@
+           "selector": "button#navScrollRight",
+           "label": "右へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 411,
++          "height": 48,
++          "top": 410,
+           "left": 292,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div#loginWall > button.btn-cta",
++            "label": "無料会員登録",
++            "top": 724,
++            "w": 169,
++            "h": 50
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/entertainment-sector-dashboard": {
+-      "count": 4,
++      "count": 3,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 46,
+-          "height": 44,
+-          "top": 18,
++          "height": 48,
++          "top": 16,
+           "left": 290,
+           "href": null
+         },
+@@ -394,8 +678,8 @@
+           "selector": "button#navScrollLeft",
+           "label": "左へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 332,
++          "height": 48,
++          "top": 331,
+           "left": 24,
+           "href": null
+         },
+@@ -403,146 +687,627 @@
+           "selector": "button#navScrollRight",
+           "label": "右へスクロール",
+           "width": 44,
+-          "height": 44,
+-          "top": 332,
++          "height": 48,
++          "top": 331,
+           "left": 292,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div#loginWall > button.btn-cta",
++            "label": "無料会員登録",
++            "top": 645,
++            "w": 169,
++            "h": 50
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/activist-dashboard": {
+-      "count": 14,
++      "count": 1,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 45,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 295,
+           "href": null
+-        },
+-        {
+-          "selector": "div > details > p > a",
+-          "label": "アクティビストの定義｜アクティビストのことがわかるブログ",
+-          "width": 270,
+-          "height": 42,
+-          "top": 1148,
+-          "left": 45,
+-          "href": "https://activist-blog.com/definition/"
+-        },
+-        {
+-          "selector": "div.filter-group > div.filter-checkbox-group > label.filter-checkbox > input",
+-          "label": "",
+-          "width": 22,
+-          "height": 22,
+-          "top": 1155,
+-          "left": 38,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.filter-group > div.filter-checkbox-group > label.filter-checkbox > input",
+-          "label": "",
+-          "width": 22,
+-          "height": 22,
+-          "top": 1223,
+-          "left": 38,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-filter",
+-          "label": "フィルター適用",
+-          "width": 702,
+-          "height": 45,
+-          "top": 1486,
+-          "left": 30,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-reset",
+-          "label": "リセット",
+-          "width": 702,
+-          "height": 47,
+-          "top": 1537,
+-          "left": 30,
+-          "href": null
+-        },
+-        {
+-          "selector": "input#rankingSearch",
+-          "label": "",
+-          "width": 702,
+-          "height": 46,
+-          "top": 1698,
+-          "left": 30,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#activistRanking > div > button.ranking-filter-btn.active",
+-          "label": "すべて",
+-          "width": 76,
+-          "height": 44,
+-          "top": 1752,
+-          "left": 30,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#activistRanking > div > button.ranking-filter-btn",
+-          "label": "ACT",
+-          "width": 62,
+-          "height": 44,
+-          "top": 1752,
+-          "left": 110,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#activistRanking > div > button.ranking-filter-btn",
+-          "label": "注目",
+-          "width": 62,
+-          "height": 44,
+-          "top": 1752,
+-          "left": 176,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#activistRanking > div > button.ranking-filter-btn",
+-          "label": "個人",
+-          "width": 62,
+-          "height": 44,
+-          "top": 1752,
+-          "left": 242,
+-          "href": null
+-        },
+-        {
+-          "selector": "button#btnCsvExport",
+-          "label": "CSV ダウンロード会員限定",
+-          "width": 682,
+-          "height": 44,
+-          "top": 2602,
+-          "left": 40,
+-          "href": null
+-        },
+-        {
+-          "selector": "button#btnPdfExport",
+-          "label": "PDF レポート出力会員限定",
+-          "width": 682,
+-          "height": 44,
+-          "top": 2656,
+-          "left": 40,
+-          "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div > details > p > a",
++            "label": "アクティビストの定義｜アクティビストのことがわかるブログ",
++            "top": 1156,
++            "w": 270,
++            "h": 42
++          },
++          {
++            "selector": "input#searchKeyword",
++            "label": "",
++            "top": 1027,
++            "w": 684,
++            "h": 70
++          },
++          {
++            "selector": "div.filter-group > div.filter-checkbox-group > label.filter-checkbox > input",
++            "label": "",
++            "top": 1169,
++            "w": 22,
++            "h": 22
++          },
++          {
++            "selector": "div.filter-group > div.filter-checkbox-group > label.filter-checkbox > input",
++            "label": "",
++            "top": 1241,
++            "w": 22,
++            "h": 22
++          },
++          {
++            "selector": "select#investorFilter",
++            "label": "すべて表示 アクティビストのみ 注目投資家のみ（アクティビスト除く） アクティビスト＋注目投資家",
++            "top": 1335,
++            "w": 658,
++            "h": 48
++          },
++          {
++            "selector": "select#periodFilter",
++            "label": "直近1週間 直近1ヶ月 直近3ヶ月 直近6ヶ月 直近9ヶ月 直近12ヶ月 直近15ヶ月 直近18ヶ月",
++            "top": 1434,
++            "w": 658,
++            "h": 48
++          },
++          {
++            "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-filter",
++            "label": "フィルター適用",
++            "top": 1506,
++            "w": 658,
++            "h": 48
++          },
++          {
++            "selector": "div.dashboard-layout > aside.sidebar > div.sidebar-card > button.btn-reset",
++            "label": "リセット",
++            "top": 1560,
++            "w": 658,
++            "h": 48
++          },
++          {
++            "selector": "input#rankingSearch",
++            "label": "",
++            "top": 1722,
++            "w": 658,
++            "h": 48
++          },
++          {
++            "selector": "div#activistRanking > div > button.ranking-filter-btn.active",
++            "label": "すべて",
++            "top": 1778,
++            "w": 76,
++            "h": 48
++          },
++          {
++            "selector": "div#activistRanking > div > button.ranking-filter-btn",
++            "label": "ACT",
++            "top": 1778,
++            "w": 62,
++            "h": 48
++          },
++          {
++            "selector": "div#activistRanking > div > button.ranking-filter-btn",
++            "label": "注目",
++            "top": 1778,
++            "w": 62,
++            "h": 48
++          },
++          {
++            "selector": "div#activistRanking > div > button.ranking-filter-btn",
++            "label": "個人",
++            "top": 1778,
++            "w": 62,
++            "h": 48
++          },
++          {
++            "selector": "div.dashboard-layout > main.main-content > div.tab-nav > button.tab-btn.active",
++            "label": "報告一覧",
++            "top": 2464,
++            "w": 95,
++            "h": 49
++          },
++          {
++            "selector": "div.dashboard-layout > main.main-content > div.tab-nav > button.tab-btn",
++            "label": "投資家別",
++            "top": 2464,
++            "w": 95,
++            "h": 49
++          },
++          {
++            "selector": "div.dashboard-layout > main.main-content > div.tab-nav > button.tab-btn",
++            "label": "ウォッチリスト",
++            "top": 2464,
++            "w": 140,
++            "h": 49
++          },
++          {
++            "selector": "div.dashboard-layout > main.main-content > div.tab-nav > button.tab-btn",
++            "label": "トレンド分析",
++            "top": 2464,
++            "w": 125,
++            "h": 49
++          },
++          {
++            "selector": "div.dashboard-layout > main.main-content > div.tab-nav > button.tab-btn",
++            "label": "タイムライン",
++            "top": 2464,
++            "w": 124,
++            "h": 49
++          },
++          {
++            "selector": "select#sortSelect",
++            "label": "報告日（新しい順） 報告日（古い順） 保有比率（高い順） 保有比率（低い順） 比率変動（増加順） 比率変動（減少順）",
++            "top": 2553,
++            "w": 190,
++            "h": 48
++          },
++          {
++            "selector": "button#btnCsvExport",
++            "label": "CSV ダウンロード会員限定",
++            "top": 2632,
++            "w": 638,
++            "h": 48
++          },
++          {
++            "selector": "button#btnPdfExport",
++            "label": "PDF レポート出力会員限定",
++            "top": 2690,
++            "w": 638,
++            "h": 48
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 2812,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 2911,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3010,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3109,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3208,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3307,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3406,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3505,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3604,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3703,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3802,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 3901,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4000,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4099,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4198,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4297,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4396,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4495,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4594,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4693,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4792,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4891,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 4990,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5089,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5188,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5287,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5386,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5485,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5584,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5683,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5782,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5881,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 5980,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6079,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6178,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6277,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6376,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6475,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6574,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6673,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6772,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6871,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 6970,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7069,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7168,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7267,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7366,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7465,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7564,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "tbody#reportTableBody > tr > td.col-edinet > a.edinet-link",
++            "label": "原文",
++            "top": 7663,
++            "w": 60,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 7874,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 7874,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 7946,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 7946,
++            "w": 52,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 8022,
++            "w": 111,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 8018,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 8098,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 8098,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 8182,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 8178,
++            "w": 124,
++            "h": 72
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/activist-screener": {
+-      "count": 21,
++      "count": 2,
+       "items": [
+         {
+           "selector": "a.skip-link",
+@@ -557,186 +1322,139 @@
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 44,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 296,
+           "href": null
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "大量保有報告",
+-          "width": 104,
+-          "height": 44,
+-          "top": 88,
+-          "left": 111,
+-          "href": "/activist-dashboard.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "機会評価",
+-          "width": 76,
+-          "height": 44,
+-          "top": 88,
+-          "left": 219,
+-          "href": "/risk-assessment.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link.active",
+-          "label": "スクリーニング",
+-          "width": 118,
+-          "height": 44,
+-          "top": 88,
+-          "left": 299,
+-          "href": "/activist-screener.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "外食",
+-          "width": 48,
+-          "height": 44,
+-          "top": 88,
+-          "left": 526,
+-          "href": "/food-service.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "SaaS",
+-          "width": 52,
+-          "height": 44,
+-          "top": 88,
+-          "left": 578,
+-          "href": "/saas.html"
+-        },
+-        {
+-          "selector": "input#indCode",
+-          "label": "",
+-          "width": 272,
+-          "height": 46,
+-          "top": 642,
+-          "left": 44,
+-          "href": null
+-        },
+-        {
+-          "selector": "input#indEdinet",
+-          "label": "",
+-          "width": 272,
+-          "height": 46,
+-          "top": 728,
+-          "left": 44,
+-          "href": null
+-        },
+-        {
+-          "selector": "input#edinetApiKey",
+-          "label": "",
+-          "width": 272,
+-          "height": 46,
+-          "top": 876,
+-          "left": 44,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.s-card > details > p > a",
+-          "label": "EDINET",
+-          "width": 49,
+-          "height": 20,
+-          "top": 949,
+-          "left": 198,
+-          "href": "https://disclosure2.edinet-fsa.go.jp"
+-        },
+-        {
+-          "selector": "button#btnIndFetch",
+-          "label": "データ取得・分析",
+-          "width": 272,
+-          "height": 45,
+-          "top": 837,
+-          "left": 44,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#tab-individual > div.s-card > div.btn-row > button.btn-secondary",
+-          "label": "リセット",
+-          "width": 272,
+-          "height": 47,
+-          "top": 894,
+-          "left": 44,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#loginWallIndividual > div.login-wall-inner > button.btn-cta-register",
+-          "label": "無料会員登録",
+-          "width": 216,
+-          "height": 45,
+-          "top": 1631,
+-          "left": 72,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "企業理念",
+-          "width": 67,
+-          "height": 44,
+-          "top": 1928,
+-          "left": 32,
+-          "href": "https://aoyama-nogizaka.com/#philosophy"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "提供サービス",
+-          "width": 97,
+-          "height": 44,
+-          "top": 1928,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/#services"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "会社概要",
+-          "width": 67,
+-          "height": 44,
+-          "top": 1980,
+-          "left": 32,
+-          "href": "https://aoyama-nogizaka.com/#about"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "チーム",
+-          "width": 52,
+-          "height": 44,
+-          "top": 1980,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/team"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "ニュース・論考",
+-          "width": 111,
+-          "height": 44,
+-          "top": 2046,
+-          "left": 32,
+-          "href": "/news/"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "お問い合わせ",
+-          "width": 97,
+-          "height": 44,
+-          "top": 2192,
+-          "left": 32,
+-          "href": "https://aoyama-nogizaka.com/#contact"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "個人情報保護方針",
+-          "width": 127,
+-          "height": 44,
+-          "top": 2192,
+-          "left": 192,
+-          "href": "https://aoyama-nogizaka.com/privacy"
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "input#indCode",
++            "label": "",
++            "top": 646,
++            "w": 272,
++            "h": 48
++          },
++          {
++            "selector": "input#indEdinet",
++            "label": "",
++            "top": 734,
++            "w": 272,
++            "h": 48
++          },
++          {
++            "selector": "input#edinetApiKey",
++            "label": "",
++            "top": 884,
++            "w": 272,
++            "h": 48
++          },
++          {
++            "selector": "div.s-card > details > p > a",
++            "label": "EDINET",
++            "top": 959,
++            "w": 49,
++            "h": 20
++          },
++          {
++            "selector": "button#btnIndFetch",
++            "label": "データ取得・分析",
++            "top": 845,
++            "w": 272,
++            "h": 48
++          },
++          {
++            "selector": "div#tab-individual > div.s-card > div.btn-row > button.btn-secondary",
++            "label": "リセット",
++            "top": 905,
++            "w": 272,
++            "h": 48
++          },
++          {
++            "selector": "div#loginWallIndividual > div.login-wall-inner > button.btn-cta-register",
++            "label": "無料会員登録",
++            "top": 1643,
++            "w": 216,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 1947,
++            "w": 67,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 1947,
++            "w": 97,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 2003,
++            "w": 67,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 2003,
++            "w": 52,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 2071,
++            "w": 111,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 2059,
++            "w": 136,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 2139,
++            "w": 136,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 2139,
++            "w": 136,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 2219,
++            "w": 97,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 2219,
++            "w": 127,
++            "h": 48
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/activist-campaigns": {
+-      "count": 69,
++      "count": 1,
+       "items": [
+         {
+           "selector": "a.skip-link",
+@@ -746,684 +1464,772 @@
+           "top": 1,
+           "left": 0,
+           "href": "#main"
+-        },
+-        {
+-          "selector": "button#hamburger",
+-          "label": "メニューを開く",
+-          "width": 50,
+-          "height": 44,
+-          "top": 10,
+-          "left": 290,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "大量保有報告",
+-          "width": 104,
+-          "height": 44,
+-          "top": 64,
+-          "left": 53,
+-          "href": "/activist-dashboard.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "リスク評価",
+-          "width": 90,
+-          "height": 44,
+-          "top": 64,
+-          "left": 161,
+-          "href": "/risk-assessment.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "スクリーニング",
+-          "width": 118,
+-          "height": 44,
+-          "top": 64,
+-          "left": 255,
+-          "href": "/activist-screener.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link",
+-          "label": "ビジュアルアーカイブ",
+-          "width": 158,
+-          "height": 44,
+-          "top": 64,
+-          "left": 460,
+-          "href": "/news/activist-shareholder-proposals-japan.html"
+-        },
+-        {
+-          "selector": "div.dash-subnav > div.dash-subnav-inner > a.dash-subnav-link.active",
+-          "label": "キャンペーン一覧",
+-          "width": 131,
+-          "height": 44,
+-          "top": 64,
+-          "left": 622,
+-          "href": "/activist-campaigns.html"
+-        },
+-        {
+-          "selector": "select#filterType",
+-          "label": "すべて 株主提案 経営関与 プレゼン公開 特設サイト プロキシーファイト EDINET報告のみ",
+-          "width": 190,
+-          "height": 44,
+-          "top": 698,
+-          "left": 85,
+-          "href": null
+-        },
+-        {
+-          "selector": "input#filterSearch",
+-          "label": "",
+-          "width": 221,
+-          "height": 46,
+-          "top": 783,
+-          "left": 70,
+-          "href": null
+-        },
+-        {
+-          "selector": "input#filterCuratedOnly",
+-          "label": "",
+-          "width": 13,
+-          "height": 13,
+-          "top": 845,
+-          "left": 94,
+-          "href": null
+-        },
+-        {
+-          "selector": "button#filterReset",
+-          "label": "リセット",
+-          "width": 304,
+-          "height": 44,
+-          "top": 874,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📄 プレゼン資料 (PDF)",
+-          "width": 150,
+-          "height": 32,
+-          "top": 1539,
+-          "left": 31,
+-          "href": "https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 1539,
+-          "left": 189,
+-          "href": "https://web.archive.org/web/https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📰 報道記事",
+-          "width": 93,
+-          "height": 32,
+-          "top": 1579,
+-          "left": 31,
+-          "href": "https://gamestalk.net/square-enix-3d-investment-shareholder-proposal/"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 1579,
+-          "left": 132,
+-          "href": "https://web.archive.org/web/https://gamestalk.net/square-enix-3d-investment-shareholder-proposal/"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📝 スクエニ側 大量保有対応",
+-          "width": 180,
+-          "height": 32,
+-          "top": 1619,
+-          "left": 31,
+-          "href": "https://www.hd.square-enix.com/jpn/ir/pdf/20250616_01.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 1619,
+-          "left": 219,
+-          "href": "https://web.archive.org/web/https://www.hd.square-enix.com/jpn/ir/pdf/20250616_01.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (13件) ▼",
+-          "width": 170,
+-          "height": 44,
+-          "top": 1659,
+-          "left": 31,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📣 株主提案公表",
+-          "width": 117,
+-          "height": 32,
+-          "top": 1970,
+-          "left": 31,
+-          "href": "https://www.daltoninvestments.co.jp/en/news/20250416"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 1970,
+-          "left": 156,
+-          "href": "https://web.archive.org/web/https://www.daltoninvestments.co.jp/en/news/20250416"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "✉ 株主向けレター",
+-          "width": 125,
+-          "height": 32,
+-          "top": 2010,
+-          "left": 31,
+-          "href": "https://www.daltoninvestments.co.jp/en/news/20250601"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 2010,
+-          "left": 164,
+-          "href": "https://web.archive.org/web/https://www.daltoninvestments.co.jp/en/news/20250601"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📢 BusinessWire発表",
+-          "width": 143,
+-          "height": 32,
+-          "top": 2285,
+-          "left": 31,
+-          "href": "https://www.businesswire.com/news/home/20250328623776/en/3D-Investment-Partners-Releases-Investor-Presentation-Highlighting-Issues-Preventing-NS-Solutions-from-Maximizing-Corporate-Value"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 2285,
+-          "left": 182,
+-          "href": "https://web.archive.org/web/https://www.businesswire.com/news/home/20250328623776/en/3D-Investment-Partners-Releases-Investor-Presentation-Highlighting-Issues-Preventing-NS-Solutions-from-Maximizing-Corporate-Value"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (4件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 2325,
+-          "left": 31,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "🌐 特設サイト「再起の処方箋」",
+-          "width": 201,
+-          "height": 32,
+-          "top": 2666,
+-          "left": 31,
+-          "href": "https://stracap.jp/3765-GUNGHO/"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 2666,
+-          "left": 240,
+-          "href": "https://web.archive.org/web/https://stracap.jp/3765-GUNGHO/"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📄 SC反論書 (PDF)",
+-          "width": 129,
+-          "height": 32,
+-          "top": 2706,
+-          "left": 31,
+-          "href": "https://stracap.jp/3765-GUNGHO/Objection.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 2706,
+-          "left": 168,
+-          "href": "https://web.archive.org/web/https://stracap.jp/3765-GUNGHO/Objection.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📢 プレスリリース",
+-          "width": 129,
+-          "height": 32,
+-          "top": 2746,
+-          "left": 31,
+-          "href": "https://prtimes.jp/main/html/rd/p/000000088.000052343.html"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 2746,
+-          "left": 168,
+-          "href": "https://web.archive.org/web/https://prtimes.jp/main/html/rd/p/000000088.000052343.html"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (8件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 2786,
+-          "left": 31,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📄 プレゼン資料 (PDF)",
+-          "width": 150,
+-          "height": 32,
+-          "top": 3073,
+-          "left": 31,
+-          "href": "https://www.3dipartners.com/wp-content/uploads/fujisoft-presentation-on-shareholderproposal-jp-202402.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 3073,
+-          "left": 189,
+-          "href": "https://web.archive.org/web/https://www.3dipartners.com/wp-content/uploads/fujisoft-presentation-on-shareholderproposal-jp-202402.pdf"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "🌐 特設サイト",
+-          "width": 105,
+-          "height": 32,
+-          "top": 3113,
+-          "left": 31,
+-          "href": "https://www.compoundfujisoft.com/proposal"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 3113,
+-          "left": 144,
+-          "href": "https://web.archive.org/web/https://www.compoundfujisoft.com/proposal"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 3153,
+-          "left": 31,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "🌐 プレゼン資料ページ",
+-          "width": 153,
+-          "height": 32,
+-          "top": 3461,
+-          "left": 31,
+-          "href": "https://www.compoundsapporo.com/presentation"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 3461,
+-          "left": 192,
+-          "href": "https://web.archive.org/web/https://www.compoundsapporo.com/presentation"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
+-          "label": "📢 プレスリリース一覧",
+-          "width": 153,
+-          "height": 32,
+-          "top": 3501,
+-          "left": 31,
+-          "href": "https://www.compoundsapporo.com/press-release"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
+-          "label": "💾 Archive",
+-          "width": 81,
+-          "height": 32,
+-          "top": 3501,
+-          "left": 192,
+-          "href": "https://web.archive.org/web/https://www.compoundsapporo.com/press-release"
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (4件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 3541,
+-          "left": 31,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 3782,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 4023,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 4264,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 4505,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 4746,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 4987,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 5228,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 5523,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 5818,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 6059,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 6300,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 6541,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (1件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 6761,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
+-          "label": "EDINET報告履歴 (2件) ▼",
+-          "width": 163,
+-          "height": 44,
+-          "top": 7002,
+-          "left": 28,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#pagination > button.page-btn.active",
+-          "label": "1",
+-          "width": 44,
+-          "height": 44,
+-          "top": 7086,
+-          "left": 54,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#pagination > button.page-btn",
+-          "label": "2",
+-          "width": 44,
+-          "height": 44,
+-          "top": 7086,
+-          "left": 106,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#pagination > button.page-btn",
+-          "label": "3",
+-          "width": 44,
+-          "height": 44,
+-          "top": 7086,
+-          "left": 158,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#pagination > button.page-btn",
+-          "label": "4",
+-          "width": 44,
+-          "height": 44,
+-          "top": 7086,
+-          "left": 210,
+-          "href": null
+-        },
+-        {
+-          "selector": "div#pagination > button.page-btn",
+-          "label": "»",
+-          "width": 44,
+-          "height": 44,
+-          "top": 7086,
+-          "left": 262,
+-          "href": null
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "企業理念",
+-          "width": 64,
+-          "height": 44,
+-          "top": 7286,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/#philosophy"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "提供サービス",
+-          "width": 92,
+-          "height": 44,
+-          "top": 7286,
+-          "left": 184,
+-          "href": "https://aoyama-nogizaka.com/#services"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "会社概要",
+-          "width": 64,
+-          "height": 44,
+-          "top": 7338,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/#about"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "チーム",
+-          "width": 50,
+-          "height": 44,
+-          "top": 7338,
+-          "left": 184,
+-          "href": "https://aoyama-nogizaka.com/team"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "ニュース・論考",
+-          "width": 105,
+-          "height": 44,
+-          "top": 7390,
+-          "left": 16,
+-          "href": "/news/"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "キャンペーン一覧",
+-          "width": 119,
+-          "height": 44,
+-          "top": 7470,
+-          "left": 16,
+-          "href": "/activist-campaigns.html"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "お問い合わせ",
+-          "width": 92,
+-          "height": 44,
+-          "top": 7470,
+-          "left": 184,
+-          "href": "https://aoyama-nogizaka.com/#contact"
+-        },
+-        {
+-          "selector": "div.footer-top > ul.footer-nav > li > a",
+-          "label": "個人情報保護方針",
+-          "width": 120,
+-          "height": 44,
+-          "top": 7522,
+-          "left": 16,
+-          "href": "https://aoyama-nogizaka.com/privacy"
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "select#filterType",
++            "label": "すべて 株主提案 経営関与 プレゼン公開 特設サイト プロキシーファイト EDINET報告のみ",
++            "top": 702,
++            "w": 190,
++            "h": 48
++          },
++          {
++            "selector": "input#filterSearch",
++            "label": "",
++            "top": 791,
++            "w": 221,
++            "h": 48
++          },
++          {
++            "selector": "input#filterCuratedOnly",
++            "label": "",
++            "top": 855,
++            "w": 13,
++            "h": 13
++          },
++          {
++            "selector": "button#filterReset",
++            "label": "リセット",
++            "top": 884,
++            "w": 304,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📄 プレゼン資料 (PDF)",
++            "top": 1553,
++            "w": 150,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 1553,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📰 報道記事",
++            "top": 1593,
++            "w": 93,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 1593,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📝 スクエニ側 大量保有対応",
++            "top": 1633,
++            "w": 180,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 1633,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (13件) ▼",
++            "top": 1673,
++            "w": 170,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📣 株主提案公表",
++            "top": 1988,
++            "w": 117,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 1988,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "✉ 株主向けレター",
++            "top": 2028,
++            "w": 125,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 2028,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📢 BusinessWire発表",
++            "top": 2303,
++            "w": 143,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 2303,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (4件) ▼",
++            "top": 2343,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "🌐 特設サイト「再起の処方箋」",
++            "top": 2688,
++            "w": 201,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 2688,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📄 SC反論書 (PDF)",
++            "top": 2728,
++            "w": 129,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 2728,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📢 プレスリリース",
++            "top": 2768,
++            "w": 129,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 2768,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (8件) ▼",
++            "top": 2808,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📄 プレゼン資料 (PDF)",
++            "top": 3099,
++            "w": 150,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 3099,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "🌐 特設サイト",
++            "top": 3139,
++            "w": 105,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 3139,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 3179,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "🌐 プレゼン資料ページ",
++            "top": 3491,
++            "w": 153,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 3491,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link",
++            "label": "📢 プレスリリース一覧",
++            "top": 3531,
++            "w": 153,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > div.campaign-materials > a.material-link.material-link-archive",
++            "label": "💾 Archive",
++            "top": 3531,
++            "w": 81,
++            "h": 32
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card.curated > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (4件) ▼",
++            "top": 3571,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 3816,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 4061,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 4306,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 4551,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 4796,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 5041,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 5286,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 5585,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 5884,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 6129,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 6374,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 6619,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (1件) ▼",
++            "top": 6843,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#campaignList > article.campaign-card > button.campaign-filing-toggle",
++            "label": "EDINET報告履歴 (2件) ▼",
++            "top": 7088,
++            "w": 163,
++            "h": 48
++          },
++          {
++            "selector": "div#pagination > button.page-btn.active",
++            "label": "1",
++            "top": 7176,
++            "w": 44,
++            "h": 48
++          },
++          {
++            "selector": "div#pagination > button.page-btn",
++            "label": "2",
++            "top": 7176,
++            "w": 44,
++            "h": 48
++          },
++          {
++            "selector": "div#pagination > button.page-btn",
++            "label": "3",
++            "top": 7176,
++            "w": 44,
++            "h": 48
++          },
++          {
++            "selector": "div#pagination > button.page-btn",
++            "label": "4",
++            "top": 7176,
++            "w": 44,
++            "h": 48
++          },
++          {
++            "selector": "div#pagination > button.page-btn",
++            "label": "»",
++            "top": 7176,
++            "w": 44,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 7380,
++            "w": 64,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 7380,
++            "w": 92,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 7436,
++            "w": 64,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 7436,
++            "w": 50,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 7492,
++            "w": 105,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 7492,
++            "w": 160,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "キャンペーン一覧",
++            "top": 7572,
++            "w": 119,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 7572,
++            "w": 92,
++            "h": 48
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 7628,
++            "w": 120,
++            "h": 48
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/risk-assessment": {
+-      "count": 4,
++      "count": 1,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 44,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 296,
+           "href": null
+-        },
+-        {
+-          "selector": "div.cta-section > div.cta-card > div.cta-links > a.cta-primary",
+-          "label": "無料相談を申し込む",
+-          "width": 181,
+-          "height": 44,
+-          "top": 3058,
+-          "left": 89,
+-          "href": "https://aoyama-nogizaka.com/#contact"
+-        },
+-        {
+-          "selector": "div.cta-section > div.cta-card > div.cta-links > a.cta-secondary",
+-          "label": "スクリーニングで詳細分析",
+-          "width": 225,
+-          "height": 46,
+-          "top": 3118,
+-          "left": 68,
+-          "href": "/activist-screener.html"
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "button#btnFetch",
++            "label": "データ取得",
++            "top": 680,
++            "w": 280,
++            "h": 48
++          },
++          {
++            "selector": "input#risk_pbr",
++            "label": "",
++            "top": 932,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_roe",
++            "label": "",
++            "top": 1074,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_payout",
++            "label": "",
++            "top": 1217,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_cash",
++            "label": "",
++            "top": 1359,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_adj_nc",
++            "label": "",
++            "top": 1501,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_ev_ebitda",
++            "label": "",
++            "top": 1643,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_equity",
++            "label": "",
++            "top": 1786,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_foreign",
++            "label": "",
++            "top": 1928,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_crosshold",
++            "label": "",
++            "top": 2070,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_outside",
++            "label": "",
++            "top": 2213,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_treasury",
++            "label": "",
++            "top": 2355,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "input#risk_marketcap",
++            "label": "",
++            "top": 2497,
++            "w": 310,
++            "h": 74
++          },
++          {
++            "selector": "select#risk_defense",
++            "label": "選択してください なし 導入中 期限切れ / 廃止済み",
++            "top": 2639,
++            "w": 280,
++            "h": 48
++          },
++          {
++            "selector": "div#riskForm > div.risk-btn-area > button.risk-btn",
++            "label": "リスクを評価する",
++            "top": 2741,
++            "w": 178,
++            "h": 70
++          },
++          {
++            "selector": "div#riskForm > div.risk-btn-area > button.risk-btn-clear",
++            "label": "クリア",
++            "top": 2741,
++            "w": 90,
++            "h": 70
++          },
++          {
++            "selector": "div.cta-section > div.cta-card > div.cta-links > a.cta-primary",
++            "label": "無料相談を申し込む",
++            "top": 3114,
++            "w": 181,
++            "h": 44
++          },
++          {
++            "selector": "div.cta-section > div.cta-card > div.cta-links > a.cta-secondary",
++            "label": "スクリーニングで詳細分析",
++            "top": 3174,
++            "w": 225,
++            "h": 46
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 3364,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 3364,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 3436,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 3436,
++            "w": 52,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 3512,
++            "w": 111,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 3508,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 3588,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 3588,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 3672,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "個人情報保護方針",
++            "top": 3668,
++            "w": 124,
++            "h": 72
++          }
++        ],
++        "inline": []
++      }
+     },
+     "/privacy": {
+-      "count": 2,
++      "count": 1,
+       "items": [
+-        {
+-          "selector": "a.skip-link",
+-          "label": "メインコンテンツへスキップ",
+-          "width": 214,
+-          "height": 37,
+-          "top": -100,
+-          "left": 0,
+-          "href": "#main"
+-        },
+         {
+           "selector": "button#hamburger",
+           "label": "メニューを開く",
+           "width": 44,
+-          "height": 44,
+-          "top": 10,
++          "height": 48,
++          "top": 8,
+           "left": 296,
+           "href": null
+         }
+-      ]
++      ],
++      "excluded": {
++        "offscreen": [
++          {
++            "selector": "a.skip-link",
++            "label": "メインコンテンツへスキップ",
++            "top": -100,
++            "w": 214,
++            "h": 37
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "企業理念",
++            "top": 3189,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "提供サービス",
++            "top": 3189,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "会社概要",
++            "top": 3261,
++            "w": 67,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "チーム",
++            "top": 3261,
++            "w": 52,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "ニュース・論考",
++            "top": 3337,
++            "w": 111,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "大量保有報告ダッシュボード",
++            "top": 3333,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "アクティビスト対象機会評価",
++            "top": 3413,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "スクリーニング・ランキング",
++            "top": 3413,
++            "w": 124,
++            "h": 72
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a",
++            "label": "お問い合わせ",
++            "top": 3497,
++            "w": 97,
++            "h": 64
++          },
++          {
++            "selector": "div.footer-top > ul.footer-nav > li > a.active",
++            "label": "個人情報保護方針",
++            "top": 3493,
++            "w": 124,
++            "h": 72
++          }
++        ],
++        "inline": []
++      }
+     }
+   }
+ }
+\ No newline at end of file
