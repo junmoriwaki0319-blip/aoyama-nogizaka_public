@@ -8,3 +8,10 @@ __pycache__/
 tests/.auth/
 test-results/
 playwright-report/
+
+# Lighthouse raw outputs at repo root (must go under audits/YYYYMMDD/raw/)
+/lh-run-*.json
+/lighthouse-mobile*.json
+
+# minified css generated artifacts
+**/*.min.css
