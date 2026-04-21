@@ -1,0 +1,129 @@
+[10:15:54] START home -> https://aoyama-nogizaka.com/
+[10:16:14] OK-ish home (rc=0, size=595520 bytes)
+[10:16:14] START team -> https://aoyama-nogizaka.com/team
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48656538 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48656538'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48656538 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48656538'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:16:27] OK-ish team (rc=1, size=634243 bytes)
+[10:16:27] START news -> https://aoyama-nogizaka.com/news/
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91462958 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91462958'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91462958 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91462958'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:16:42] OK-ish news (rc=1, size=675837 bytes)
+[10:16:42] START privacy -> https://aoyama-nogizaka.com/privacy
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.88254883 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.88254883'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.88254883 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.88254883'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:16:57] OK-ish privacy (rc=1, size=535447 bytes)
+[10:16:57] START activist-dashboard -> https://aoyama-nogizaka.com/activist-dashboard.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17851068 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17851068'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17851068 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17851068'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:17:19] OK-ish activist-dashboard (rc=1, size=1225561 bytes)
+[10:17:19] START risk-assessment -> https://aoyama-nogizaka.com/risk-assessment.html
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75046436 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75046436'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75046436 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75046436'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:17:33] OK-ish risk-assessment (rc=1, size=674418 bytes)
+[10:17:33] START activist-screener -> https://aoyama-nogizaka.com/activist-screener.html
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83671282 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83671282'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83671282 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83671282'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:17:55] OK-ish activist-screener (rc=1, size=780560 bytes)
+[10:17:56] START food-service -> https://aoyama-nogizaka.com/food-service.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75280592 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75280592'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75280592 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.75280592'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:18:14] OK-ish food-service (rc=1, size=792282 bytes)
+[10:18:14] START saas -> https://aoyama-nogizaka.com/saas.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23136082 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23136082'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23136082 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23136082'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:18:31] OK-ish saas (rc=1, size=754083 bytes)
+[10:18:31] START ad-agency -> https://aoyama-nogizaka.com/ad-agency.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.51930078 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.51930078'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.51930078 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.51930078'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:18:46] OK-ish ad-agency (rc=1, size=761486 bytes)
+[10:18:46] START digital-media -> https://aoyama-nogizaka.com/digital-media.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.12934800 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.12934800'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.12934800 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.12934800'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:19:00] OK-ish digital-media (rc=1, size=723570 bytes)
+[10:19:00] START entertainment-sector-dashboard -> https://aoyama-nogizaka.com/entertainment-sector-dashboard.html
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.40384105 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.40384105'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.40384105 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.40384105'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:19:15] OK-ish entertainment-sector-dashboard (rc=1, size=740754 bytes)
+[10:19:15] START news-activist-shareholder-proposals-japan -> https://aoyama-nogizaka.com/news/activist-shareholder-proposals-japan.html
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41022038 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41022038'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41022038 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41022038'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[10:19:29] OK-ish news-activist-shareholder-proposals-japan (rc=1, size=1346245 bytes)
+[10:19:29] DONE lighthouse
