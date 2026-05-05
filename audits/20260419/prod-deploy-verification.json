@@ -1,0 +1,201 @@
+{
+  "verifiedAt": "2026-04-19T00:41:09.139Z",
+  "base": "https://aoyama-nogizaka.com",
+  "pages": [
+    {
+      "pathSeg": "/",
+      "finalUrl": "https://aoyama-nogizaka.com/",
+      "status": 200,
+      "gaHits": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"
+        },
+        {
+          "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-C5D57P05PM&gtm=45je64f1v9246443726za200zd9246443726&_p=1776559277415&gcd=13l3l3l3l1l1&npa=0&dma=0&are=1&cid=404008379.1776559277&frm=0&pscdl=noapi&"
+        }
+      ],
+      "firebaseInstallResponses": [],
+      "cspViolations": [
+        {
+          "type": "error",
+          "text": "The report-only Content Security Policy 'default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;' was delivered via a <meta> element, which is disallowed. The policy has been ignored."
+        }
+      ],
+      "otherConsoleErrors": [],
+      "cta": null
+    },
+    {
+      "pathSeg": "/risk-assessment",
+      "finalUrl": "https://aoyama-nogizaka.com/risk-assessment",
+      "status": 200,
+      "gaHits": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"
+        }
+      ],
+      "firebaseInstallResponses": [],
+      "cspViolations": [
+        {
+          "type": "error",
+          "text": "The report-only Content Security Policy 'default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;' was delivered via a <meta> element, which is disallowed. The policy has been ignored."
+        }
+      ],
+      "otherConsoleErrors": [],
+      "cta": {
+        "text": "無料相談を申し込む",
+        "width": 181.17,
+        "height": 43.69,
+        "border": "0px none rgb(255, 255, 255)",
+        "boxSizing": "content-box"
+      }
+    },
+    {
+      "pathSeg": "/activist-dashboard",
+      "finalUrl": "https://aoyama-nogizaka.com/activist-dashboard",
+      "status": 200,
+      "gaHits": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-Y1JYXRYHV9"
+        },
+        {
+          "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Y1JYXRYHV9&gtm=45je64f1v9246459021za200zd9246459021&_p=1776559288377&gcd=13l3l3l3l1l1&npa=0&dma=0&_fid=caT4dZUzy5bEncOH2_5Kis&are=1&cid=404008379.1"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"
+        }
+      ],
+      "firebaseInstallResponses": [
+        {
+          "url": "https://firebaseinstallations.googleapis.com/v1/projects/aoyama-nogizaka-activist/installations",
+          "status": 200
+        }
+      ],
+      "cspViolations": [
+        {
+          "type": "error",
+          "text": "The report-only Content Security Policy 'default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;' was delivered via a <meta> element, which is disallowed. The policy has been ignored."
+        }
+      ],
+      "otherConsoleErrors": [
+        "Failed to load resource: the server responded with a status of 403 ()"
+      ],
+      "cta": null
+    },
+    {
+      "pathSeg": "/saas",
+      "finalUrl": "https://aoyama-nogizaka.com/saas",
+      "status": 200,
+      "gaHits": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-Y1JYXRYHV9"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"
+        },
+        {
+          "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Y1JYXRYHV9&gtm=45je64f1v9246459021za200zd9246459021&_p=1776559296521&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&_fid=caT4dZUzy5bEncOH2_5Kis&are=1&cid"
+        }
+      ],
+      "firebaseInstallResponses": [],
+      "cspViolations": [
+        {
+          "type": "error",
+          "text": "The report-only Content Security Policy 'default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;' was delivered via a <meta> element, which is disallowed. The policy has been ignored."
+        }
+      ],
+      "otherConsoleErrors": [
+        "Failed to load resource: the server responded with a status of 403 ()"
+      ],
+      "cta": null
+    },
+    {
+      "pathSeg": "/food-service",
+      "finalUrl": "https://aoyama-nogizaka.com/food-service",
+      "status": 200,
+      "gaHits": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-Y1JYXRYHV9"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-C5D57P05PM"
+        },
+        {
+          "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Y1JYXRYHV9&gtm=45je64f1v9246459021za200zd9246459021&_p=1776559303923&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&_fid=caT4dZUzy5bEncOH2_5Kis&are=1&cid"
+        }
+      ],
+      "firebaseInstallResponses": [],
+      "cspViolations": [
+        {
+          "type": "error",
+          "text": "The report-only Content Security Policy 'default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;' was delivered via a <meta> element, which is disallowed. The policy has been ignored."
+        }
+      ],
+      "otherConsoleErrors": [
+        "Failed to load resource: the server responded with a status of 403 ()"
+      ],
+      "cta": null
+    }
+  ],
+  "evaluation": {
+    "ctaPrimaryPass": false,
+    "ctaPrimary": {
+      "text": "無料相談を申し込む",
+      "width": 181.17,
+      "height": 43.69,
+      "border": "0px none rgb(255, 255, 255)",
+      "boxSizing": "content-box"
+    },
+    "gaAllPagesPass": true,
+    "gaHitCounts": [
+      {
+        "page": "/",
+        "count": 2
+      },
+      {
+        "page": "/risk-assessment",
+        "count": 1
+      },
+      {
+        "page": "/activist-dashboard",
+        "count": 3
+      },
+      {
+        "page": "/saas",
+        "count": 3
+      },
+      {
+        "page": "/food-service",
+        "count": 3
+      }
+    ],
+    "firebaseAllPass": true,
+    "firebaseResults": [
+      {
+        "page": "/activist-dashboard",
+        "responseCount": 1,
+        "any200": true,
+        "anyNon200": false,
+        "statuses": [
+          200
+        ]
+      },
+      {
+        "page": "/saas",
+        "responseCount": 0,
+        "any200": false,
+        "anyNon200": false,
+        "statuses": []
+      },
+      {
+        "page": "/food-service",
+        "responseCount": 0,
+        "any200": false,
+        "anyNon200": false,
+        "statuses": []
+      }
+    ],
+    "cspNewViolationsZero": true,
+    "cspNewViolations": [],
+    "allPass": false
+  }
+}

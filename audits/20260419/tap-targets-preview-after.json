@@ -1,0 +1,51 @@
+{
+  "measuredAt": "2026-04-19T00:16:51.854Z",
+  "previewBase": "https://aoyama-nogizakapublic-1ahz7mv8s-junmoriwaki0319-blips-projects.vercel.app",
+  "pageUrl": "https://aoyama-nogizakapublic-1ahz7mv8s-junmoriwaki0319-blips-projects.vercel.app/risk-assessment",
+  "viewport": {
+    "width": 375,
+    "height": 667
+  },
+  "device": "iPhone SE (Playwright preset)",
+  "threshold": {
+    "width": 44,
+    "height": 44
+  },
+  "wcag": "2.5.5 Enhanced",
+  "ctaPrimary": {
+    "text": "無料相談を申し込む",
+    "className": "cta-primary",
+    "width": 183.17,
+    "height": 45.69,
+    "padding": "12px 28px",
+    "border": "1px solid rgb(155, 139, 110)",
+    "boxSizing": "content-box"
+  },
+  "ctaSecondary": {
+    "text": "スクリーニングで詳細分析",
+    "className": "cta-secondary",
+    "width": 224.89,
+    "height": 45.69,
+    "padding": "12px 28px",
+    "border": "1px solid rgba(255, 255, 255, 0.3)",
+    "boxSizing": "content-box"
+  },
+  "ctaPrimaryPass": true,
+  "pageViolations": [
+    {
+      "tag": "a",
+      "classes": "skip-link",
+      "text": "メインコンテンツへスキップ",
+      "w": 214,
+      "h": 37,
+      "deficit": {
+        "w": 0,
+        "h": 7
+      }
+    }
+  ],
+  "summary": {
+    "totalViolationsOnPage": 1,
+    "ctaPrimaryStillViolating": false
+  }
+}

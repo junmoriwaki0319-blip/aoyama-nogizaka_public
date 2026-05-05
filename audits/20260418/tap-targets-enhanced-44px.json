@@ -1,0 +1,443 @@
+[
+  {
+    "page": "https://aoyama-nogizaka.com/",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/team",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/privacy",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "button",
+    "id": "",
+    "classes": "filter-btn active",
+    "role": "",
+    "href": "",
+    "onclick": false,
+    "labelFor": "",
+    "text": "すべて",
+    "current": {
+      "w": 80.33,
+      "h": 40
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4
+    },
+    "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn.active:nth-of-type(1)",
+    "outerHTML": "<button class=\"filter-btn active\" data-filter=\"all\">すべて</button>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "button",
+    "id": "",
+    "classes": "filter-btn",
+    "role": "",
+    "href": "",
+    "onclick": false,
+    "labelFor": "",
+    "text": "論考・分析",
+    "current": {
+      "w": 108.16,
+      "h": 40
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4
+    },
+    "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(2)",
+    "outerHTML": "<button class=\"filter-btn\" data-filter=\"insight\">論考・分析</button>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "button",
+    "id": "",
+    "classes": "filter-btn",
+    "role": "",
+    "href": "",
+    "onclick": false,
+    "labelFor": "",
+    "text": "プレスリリース",
+    "current": {
+      "w": 133.98,
+      "h": 40
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4
+    },
+    "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(3)",
+    "outerHTML": "<button class=\"filter-btn\" data-filter=\"press\">プレスリリース</button>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "button",
+    "id": "",
+    "classes": "filter-btn",
+    "role": "",
+    "href": "",
+    "onclick": false,
+    "labelFor": "",
+    "text": "お知らせ",
+    "current": {
+      "w": 94.67,
+      "h": 40
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4
+    },
+    "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(4)",
+    "outerHTML": "<button class=\"filter-btn\" data-filter=\"news\">お知らせ</button>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/news/",
+    "tag": "button",
+    "id": "",
+    "classes": "filter-btn",
+    "role": "",
+    "href": "",
+    "onclick": false,
+    "labelFor": "",
+    "text": "データ・ダッシュボード",
+    "current": {
+      "w": 187.53,
+      "h": 40
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4
+    },
+    "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(5)",
+    "outerHTML": "<button class=\"filter-btn\" data-filter=\"dashboard\">データ・ダッシュボード</button>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/activist-dashboard.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/activist-dashboard.html",
+    "tag": "a",
+    "id": "",
+    "classes": "",
+    "role": "",
+    "href": "https://activist-blog.com/definition/",
+    "onclick": false,
+    "labelFor": "",
+    "text": "アクティビストの定義｜アクティビストのことがわかるブログ",
+    "current": {
+      "w": 283.95,
+      "h": 42.39
+    },
+    "deficit": {
+      "w": 0,
+      "h": 1.6099999999999994
+    },
+    "selector": "html > body > div:nth-of-type(5) > details > p:nth-of-type(3) > a",
+    "outerHTML": "<a href=\"https://activist-blog.com/definition/\" target=\"_blank\" rel=\"noopener\" style=\"color:#2b6cb0;\">アクティビストの定義｜アクティビストのことがわかるブログ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/risk-assessment.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/risk-assessment.html",
+    "tag": "a",
+    "id": "",
+    "classes": "cta-primary",
+    "role": "",
+    "href": "https://aoyama-nogizaka.com/#contact",
+    "onclick": false,
+    "labelFor": "",
+    "text": "無料相談を申し込む",
+    "current": {
+      "w": 181.17,
+      "h": 43.69
+    },
+    "deficit": {
+      "w": 0,
+      "h": 0.3100000000000023
+    },
+    "selector": "body > div.container:nth-of-type(4) > div.cta-section:nth-of-type(5) > div.cta-card > div.cta-links > a.cta-primary:nth-of-type(1)",
+    "outerHTML": "<a href=\"https://aoyama-nogizaka.com/#contact\" class=\"cta-primary\">無料相談を申し込む</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/activist-screener.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 195,
+      "h": 21
+    },
+    "deficit": {
+      "w": 0,
+      "h": 23
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/activist-screener.html",
+    "tag": "a",
+    "id": "",
+    "classes": "",
+    "role": "",
+    "href": "https://disclosure2.edinet-fsa.go.jp",
+    "onclick": false,
+    "labelFor": "",
+    "text": "EDINET",
+    "current": {
+      "w": 48.73,
+      "h": 20
+    },
+    "deficit": {
+      "w": 0,
+      "h": 24
+    },
+    "selector": "div#tab-individual > div.s-card:nth-of-type(1) > details > p > a",
+    "outerHTML": "<a href=\"https://disclosure2.edinet-fsa.go.jp\" target=\"_blank\" style=\"color:var(--gold);\">EDINET</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/food-service.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/food-service.html",
+    "tag": "a",
+    "id": "",
+    "classes": "",
+    "role": "",
+    "href": "/saas.html",
+    "onclick": false,
+    "labelFor": "",
+    "text": "SaaSレポートを見る →",
+    "current": {
+      "w": 197.44,
+      "h": 39.19
+    },
+    "deficit": {
+      "w": 0,
+      "h": 4.810000000000002
+    },
+    "selector": "html > body > div:nth-of-type(11) > div > a",
+    "outerHTML": "<a href=\"/saas.html\" style=\"background:#1a2d4f;color:#fff;text-decoration:none;padding:10px 28px;font-size:0.8rem;letter-spacing:0.5px;transition:opacity 0.2s;white-space:nowrap;\">SaaSレポートを見る →</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/saas.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/ad-agency.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/digital-media.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  },
+  {
+    "page": "https://aoyama-nogizaka.com/entertainment-sector-dashboard.html",
+    "tag": "a",
+    "id": "",
+    "classes": "skip-link",
+    "role": "",
+    "href": "#main",
+    "onclick": false,
+    "labelFor": "",
+    "text": "メインコンテンツへスキップ",
+    "current": {
+      "w": 214,
+      "h": 37
+    },
+    "deficit": {
+      "w": 0,
+      "h": 7
+    },
+    "selector": "html > body > a.skip-link",
+    "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+  }
+]
