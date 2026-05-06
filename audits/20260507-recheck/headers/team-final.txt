@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Age: 108
+Cache-Control: public, max-age=0, must-revalidate
+Content-Disposition: inline; filename="team"
+Content-Encoding: br
+Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://script.google.com https://*.firebaseio.com https://*.googleapis.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://aoyama-nogizakapublic.vercel.app https://disclosure2.edinet-fsa.go.jp; frame-src https://accounts.google.com https://*.firebaseapp.com; object-src 'none'; base-uri 'self'; form-action 'self' https://script.google.com
+Content-Type: text/html; charset=utf-8
+Date: Wed, 06 May 2026 19:10:29 GMT
+Etag: W/"cdbdd5b0429b71a2c42155109cc46ec8"
+Last-Modified: Wed, 06 May 2026 19:08:40 GMT
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+Referrer-Policy: strict-origin-when-cross-origin
+Server: Vercel
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Vercel-Cache: HIT
+X-Vercel-Id: hnd1::p9q7m-1778094629429-cbe0c528a74c
+

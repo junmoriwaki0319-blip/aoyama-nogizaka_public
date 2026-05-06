@@ -1,0 +1,10 @@
+HTTP/1.1 308 Permanent Redirect
+Cache-Control: public, max-age=0, must-revalidate
+Content-Type: text/plain
+Date: Wed, 06 May 2026 19:08:49 GMT
+Location: /activist-screener
+Refresh: 0;url=/activist-screener
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Id: hnd1::fg7dp-1778094529501-78fe1d9057ee
+

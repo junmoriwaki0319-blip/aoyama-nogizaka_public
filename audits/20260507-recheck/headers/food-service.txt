@@ -1,0 +1,10 @@
+HTTP/1.1 308 Permanent Redirect
+Cache-Control: public, max-age=0, must-revalidate
+Content-Type: text/plain
+Date: Wed, 06 May 2026 19:08:51 GMT
+Location: /food-service
+Refresh: 0;url=/food-service
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Id: hnd1::jnrjs-1778094531798-98e39f86f3a6
+

@@ -1,0 +1,10 @@
+HTTP/1.1 308 Permanent Redirect
+Cache-Control: public, max-age=0, must-revalidate
+Content-Type: text/plain
+Date: Wed, 06 May 2026 19:08:55 GMT
+Location: /digital-media
+Refresh: 0;url=/digital-media
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Id: hnd1::7mxd6-1778094535899-d913fabe6a09
+
