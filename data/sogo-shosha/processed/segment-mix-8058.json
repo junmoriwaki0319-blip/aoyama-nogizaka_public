@@ -13,7 +13,7 @@
   ],
   "segments": [
     {
-      "name": "天然ガス",
+      "name": "地球環境エネルギー",
       "is_resource": true,
       "operating_income_jpy_oku": [
         null,
@@ -24,18 +24,7 @@
       ]
     },
     {
-      "name": "総合素材",
-      "is_resource": false,
-      "operating_income_jpy_oku": [
-        null,
-        null,
-        null,
-        null,
-        null
-      ]
-    },
-    {
-      "name": "石油・化学ソリューション",
+      "name": "マテリアルソリューション",
       "is_resource": false,
       "operating_income_jpy_oku": [
         null,
@@ -57,7 +46,7 @@
       ]
     },
     {
-      "name": "産業インフラ",
+      "name": "社会インフラ",
       "is_resource": false,
       "operating_income_jpy_oku": [
         null,
@@ -68,7 +57,7 @@
       ]
     },
     {
-      "name": "自動車・モビリティ",
+      "name": "モビリティ",
       "is_resource": false,
       "operating_income_jpy_oku": [
         null,
@@ -110,17 +99,7 @@
         null,
         null
       ]
-    },
-    {
-      "name": "複合都市開発",
-      "is_resource": false,
-      "operating_income_jpy_oku": [
-        null,
-        null,
-        null,
-        null,
-        null
-      ]
     }
-  ]
+  ],
+  "_note": "2024 年度組織再編後の現行 8 セグメント。地球環境エネルギーは旧『天然ガス』『石油・化学ソリューション』を統合"
 }

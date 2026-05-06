@@ -13,8 +13,19 @@
   ],
   "segments": [
     {
-      "name": "金属",
-      "is_resource": true,
+      "name": "鉄鋼",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "自動車",
+      "is_resource": false,
       "operating_income_jpy_oku": [
         null,
         null,
@@ -35,7 +46,7 @@
       ]
     },
     {
-      "name": "インフラ",
+      "name": "都市総合開発",
       "is_resource": false,
       "operating_income_jpy_oku": [
         null,
@@ -57,7 +68,7 @@
       ]
     },
     {
-      "name": "生活・不動産",
+      "name": "ライフスタイル",
       "is_resource": false,
       "operating_income_jpy_oku": [
         null,
@@ -68,7 +79,7 @@
       ]
     },
     {
-      "name": "資源・化学品",
+      "name": "資源",
       "is_resource": true,
       "operating_income_jpy_oku": [
         null,
@@ -77,6 +88,29 @@
         null,
         null
       ]
+    },
+    {
+      "name": "化学品・エレクトロニクス・農業",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "エネルギートランスフォーメーション",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     }
-  ]
+  ],
+  "_note": "2024 年度組織再編後の現行 9 セグメント。エネルギートランスフォーメーションが脱炭素軸として独立"
 }
