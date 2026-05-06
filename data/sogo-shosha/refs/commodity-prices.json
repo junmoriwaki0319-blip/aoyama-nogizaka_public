@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "_status": "STUB - データ未取得。フェーズ2 で日経 NQN / 商用 API から取り込み予定",
+  "as_of": null,
+  "items": [
+    { "key": "iron_ore",     "label": "鉄鉱石 (62% Fe, CFR 中国)", "unit": "USD/t", "spot": null, "source": null },
+    { "key": "coking_coal",  "label": "原料炭 (FOB 豪州)",         "unit": "USD/t", "spot": null, "source": null },
+    { "key": "copper",       "label": "銅 (LME 3M)",               "unit": "USD/t", "spot": null, "source": null },
+    { "key": "lng",          "label": "LNG (JKM)",                 "unit": "USD/MMBtu", "spot": null, "source": null },
+    { "key": "crude_oil",    "label": "原油 (Brent)",              "unit": "USD/bbl", "spot": null, "source": null }
+  ]
+}

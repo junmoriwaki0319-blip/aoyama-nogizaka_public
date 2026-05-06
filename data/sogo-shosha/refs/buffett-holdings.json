@@ -1,0 +1,10 @@
+{
+  "schema_version": "0.1",
+  "_status": "STUB - データ未取得。SEC EDGAR 13F filings から 5 大商社のバークシャー保有株数推移を抽出予定 (フェーズ2)",
+  "_source_target": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F-HR",
+  "_targets": ["8058", "8031", "8001", "8053", "8002"],
+  "_excluded": ["2768", "8015"],
+  "_excluded_reason": "双日・豊田通商はバークシャー対象外",
+  "as_of": null,
+  "holdings": []
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1",
+  "ticker": "2768",
+  "name": "双日",
+  "_status": "STUB - 値未取得。各社決算説明会資料 (FY24) からセグメント別営業利益を抽出予定",
+  "_source_target": "決算説明会資料 (2025/3 期)",
+  "fiscal_years": [
+    "fy21",
+    "fy22",
+    "fy23",
+    "fy24",
+    "fy25"
+  ],
+  "segments": [
+    {
+      "name": "金属・資源",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "化学",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "自動車",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "インフラ・ヘルスケア",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "リテール・コンシューマーサービス",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "_note": "「資源 / 非資源」分解は IR で直接提示されない。本配列は決算説明会資料準拠"
+}

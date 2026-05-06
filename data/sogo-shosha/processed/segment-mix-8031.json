@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1",
+  "ticker": "8031",
+  "name": "三井物産",
+  "_status": "STUB - 値未取得。各社決算説明会資料 (FY24) からセグメント別営業利益を抽出予定",
+  "_source_target": "決算説明会資料 (2025/3 期)",
+  "fiscal_years": [
+    "fy21",
+    "fy22",
+    "fy23",
+    "fy24",
+    "fy25"
+  ],
+  "segments": [
+    {
+      "name": "金属資源",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "エネルギー",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "機械・インフラ",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "化学品",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "鉄鋼製品",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "生活産業",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "次世代・機能推進",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}

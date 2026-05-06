@@ -1,0 +1,125 @@
+{
+  "ticker": "8015",
+  "name": "豊田通商",
+  "tier": "mid",
+  "fetchedAt": "2026-05-06T17:16:12.853Z",
+  "currency": "JPY",
+  "marketCap_JPY": 7251076579328,
+  "lastFiscalYearEnd": "2026-03-31T00:00:00.000Z",
+  "kpis": {
+    "doe": {
+      "label": "DOE (株主資本配当率)",
+      "category": "A",
+      "unit": "%",
+      "value": 4.21
+    },
+    "total_payout_ratio": {
+      "label": "総還元性向",
+      "category": "A",
+      "unit": "%",
+      "value": null
+    },
+    "buyback_amount": {
+      "label": "自己株買い (12M, 億円)",
+      "category": "A",
+      "unit": "億円",
+      "value": null
+    },
+    "payout_ratio": {
+      "label": "配当性向",
+      "category": "A",
+      "unit": "%",
+      "value": 34.19
+    },
+    "crossheld_to_eq": {
+      "label": "政策保有 / 純資産",
+      "category": "A",
+      "unit": "%",
+      "value": null
+    },
+    "roe": {
+      "label": "ROE",
+      "category": "B",
+      "unit": "%",
+      "value": 13.2
+    },
+    "roic": {
+      "label": "ROIC (簡易: NI/IC)",
+      "category": "B",
+      "unit": "%",
+      "value": 6.96
+    },
+    "pbr": {
+      "label": "PBR",
+      "category": "B",
+      "unit": "倍",
+      "value": 2.3
+    },
+    "per": {
+      "label": "PER",
+      "category": "B",
+      "unit": "倍",
+      "value": 19.57
+    },
+    "ev_ebitda": {
+      "label": "EV/EBITDA",
+      "category": "B",
+      "unit": "倍",
+      "value": 11.1
+    },
+    "resource_ratio": {
+      "label": "資源 営業利益比率",
+      "category": "C",
+      "unit": "%",
+      "value": null
+    },
+    "overseas_revenue": {
+      "label": "海外売上高比率",
+      "category": "C",
+      "unit": "%",
+      "value": null
+    },
+    "segment_roic": {
+      "label": "セグメント別 ROIC 開示",
+      "category": "C",
+      "unit": "有/無",
+      "value": null
+    },
+    "net_debt_ebitda": {
+      "label": "ネット有利子負債/EBITDA",
+      "category": "D",
+      "unit": "倍",
+      "value": 0.94
+    },
+    "equity_ratio": {
+      "label": "自己資本比率",
+      "category": "D",
+      "unit": "%",
+      "value": null
+    },
+    "interest_coverage": {
+      "label": "インタレスト・カバレッジ",
+      "category": "D",
+      "unit": "倍",
+      "value": null
+    },
+    "cash_to_mcap": {
+      "label": "現預金 / 時価総額",
+      "category": "E",
+      "unit": "%",
+      "value": 20.49
+    },
+    "large_holder_count": {
+      "label": "大量保有報告件数 (12M)",
+      "category": "E",
+      "unit": "件",
+      "value": null
+    },
+    "crossheld_reduction": {
+      "label": "政策保有縮減率 (5期)",
+      "category": "E",
+      "unit": "%",
+      "value": null
+    }
+  }
+}
