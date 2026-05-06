@@ -158,6 +158,41 @@
     .partner-item:last-child { border-bottom: none; }
     .partner-item-title { font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
     .partner-item-summary { font-size: 0.74rem; color: var(--text-mid); line-height: 1.7; }
+    .narrative-card { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 30px; margin-bottom: 28px; }
+    .narrative-card-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+    .narrative-card-id { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold); font-size: 0.72rem; letter-spacing: 2px; }
+    .narrative-card-name { font-family: 'Noto Serif JP', serif; color: var(--navy); font-size: 1.2rem; font-weight: 700; margin-left: 10px; }
+    .narrative-card-meta { font-size: 0.74rem; color: var(--text-muted); }
+    .narrative-card-meta strong { color: var(--navy); }
+    .narrative-headline { font-size: 0.88rem; color: var(--navy); line-height: 1.8; padding: 14px 18px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 22px; font-family: 'Noto Serif JP', serif; }
+    .narrative-thesis { font-size: 0.82rem; color: var(--text-mid); line-height: 1.9; padding: 16px 22px; background: rgba(26,45,79,0.04); border-left: 3px solid var(--navy); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 22px; }
+    .narrative-thesis-label { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--navy); font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; display: block; margin-bottom: 6px; }
+    .narrative-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .narrative-block-title { font-size: 0.76rem; font-weight: 700; color: var(--navy); padding-bottom: 6px; border-bottom: 1px solid var(--border-light); margin-bottom: 10px; letter-spacing: 0.5px; }
+    .narrative-block-title.is-strength::before { content: '◇ '; color: var(--green); }
+    .narrative-block-title.is-challenge::before { content: '◇ '; color: var(--red); }
+    .narrative-block-title.is-recent::before { content: '◇ '; color: var(--gold); }
+    .narrative-bullet { font-size: 0.76rem; color: var(--text-mid); line-height: 1.7; padding: 6px 0; padding-left: 14px; position: relative; }
+    .narrative-bullet::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 1px; background: var(--gold); }
+    .deviation-section-title { font-size: 0.78rem; font-weight: 700; color: var(--navy); margin: 14px 0 10px; padding-top: 14px; border-top: 1px solid var(--border-light); letter-spacing: 0.5px; }
+    .deviation-row { display: grid; grid-template-columns: 160px 1fr 80px; gap: 10px; align-items: center; padding: 4px 0; font-size: 0.73rem; }
+    .deviation-label { color: var(--text-mid); }
+    .deviation-track { position: relative; height: 8px; background: var(--bg-warm); border-radius: 1px; }
+    .deviation-track::after { content: ''; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--text-light); }
+    .deviation-fill { position: absolute; top: 0; bottom: 0; border-radius: 1px; }
+    .deviation-fill.pos { background: var(--green); right: 50%; transform: translateX(0); }
+    .deviation-fill.neg { background: var(--red); left: 50%; }
+    .deviation-value { text-align: right; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+    .deviation-value.pos { color: var(--green); }
+    .deviation-value.neg { color: var(--red); }
+    .heat-cell { display: inline-block; width: 100%; padding: 5px 4px; font-size: 0.7rem; font-weight: 600; text-align: center; border-radius: 1px; font-variant-numeric: tabular-nums; }
+    .heat-best { background: rgba(45,122,79,0.18); color: var(--green); }
+    .heat-good { background: rgba(45,122,79,0.08); color: var(--text); }
+    .heat-mid { background: var(--bg-warm); color: var(--text-mid); }
+    .heat-weak { background: rgba(181,58,58,0.08); color: var(--text); }
+    .heat-worst { background: rgba(181,58,58,0.18); color: var(--red); }
+    .heat-na { background: transparent; color: var(--text-light); font-weight: 400; }
+    @media (max-width: 768px) { .narrative-grid { grid-template-columns: 1fr; } .deviation-row { grid-template-columns: 110px 1fr 60px; font-size: 0.7rem; } }
     .ranking-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
     .ranking-title { font-size: 0.72rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
     .ranking-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 3px 0; }
