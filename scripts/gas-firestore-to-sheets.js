@@ -43,7 +43,9 @@ function exportUsersToSheet() {
     '役職',
     'プラン',
     '登録日',
-    '最終更新日'
+    '最終更新日',
+    '登録ページ',
+    '参照元'
   ];
 
   // データ行を作成
@@ -60,7 +62,9 @@ function exportUsersToSheet() {
       formatJobTitle(d.jobTitle || ''),
       d.plan || 'free',
       formatTimestamp(d.createdAt),
-      formatTimestamp(d.updatedAt)
+      formatTimestamp(d.updatedAt),
+      d.registeredFrom || '',
+      d.referrer || ''
     ];
   });
 
