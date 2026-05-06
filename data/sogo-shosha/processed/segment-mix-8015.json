@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1",
+  "ticker": "8015",
+  "name": "豊田通商",
+  "_status": "STUB - 値未取得。各社決算説明会資料 (FY24) からセグメント別営業利益を抽出予定",
+  "_source_target": "決算説明会資料 (2025/3 期)",
+  "fiscal_years": [
+    "fy21",
+    "fy22",
+    "fy23",
+    "fy24",
+    "fy25"
+  ],
+  "segments": [
+    {
+      "name": "金属",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "グローバル部品 & ロジスティクス",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "自動車",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "機械・エネルギー・プラントプロジェクト",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "化学品 & エレクトロニクス",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "食料 & 消費財",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "アフリカ",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "_note": "自動車関連が約 50% で支配的。他商社と性格が異なる"
+}

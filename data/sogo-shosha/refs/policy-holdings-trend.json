@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1",
+  "_status": "STUB - データ未取得。各社統合報告書 (PDF) からの 5 期分手動抽出が必要 (フェーズ2)",
+  "_columns": ["fy21", "fy22", "fy23", "fy24", "fy25"],
+  "_unit": "億円 (BS 計上額)",
+  "as_of": null,
+  "companies": {
+    "8058": { "name": "三菱商事",   "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "8031": { "name": "三井物産",   "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "8001": { "name": "伊藤忠商事", "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "8053": { "name": "住友商事",   "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "8002": { "name": "丸紅",       "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "2768": { "name": "双日",       "trend": [null, null, null, null, null], "reduction_5y_pct": null },
+    "8015": { "name": "豊田通商",   "trend": [null, null, null, null, null], "reduction_5y_pct": null,
+              "_note": "自動車取引先株中心。戦略保有としての性格が他商社と異なる" }
+  }
+}

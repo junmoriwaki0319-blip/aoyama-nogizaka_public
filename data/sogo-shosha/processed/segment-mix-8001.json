@@ -1,0 +1,104 @@
+{
+  "schema_version": "0.1",
+  "ticker": "8001",
+  "name": "伊藤忠商事",
+  "_status": "STUB - 値未取得。各社決算説明会資料 (FY24) からセグメント別営業利益を抽出予定",
+  "_source_target": "決算説明会資料 (2025/3 期)",
+  "fiscal_years": [
+    "fy21",
+    "fy22",
+    "fy23",
+    "fy24",
+    "fy25"
+  ],
+  "segments": [
+    {
+      "name": "繊維",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "機械",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "金属",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "エネルギー・化学品",
+      "is_resource": true,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "食料",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "住生活",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "情報・金融",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "第8 (THE 8th)",
+      "is_resource": false,
+      "operating_income_jpy_oku": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}
