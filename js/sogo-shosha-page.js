@@ -82,7 +82,7 @@ function rExec(){
       '<strong>セクター概況 (2026年5月時点 / FY25 (2026/3 期) Yahoo TTM ベース):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtMcap(tm)+'</strong>。'+
       '5大商社（'+b5+'社）が時価総額の大半を占める一方、双日・豊田通商（'+m+'社）は事業ポートフォリオ構造が異なり「総合商社」というカテゴリ内でも比較軸の選択が重要。'+
       '平均ROE<strong>'+fmt(aROE,'%',1)+'</strong>、平均PBR<strong>'+fmt(aPBR,'倍',2)+'</strong>、平均DOE<strong>'+fmt(aDOE,'%',2)+'</strong>。'+
-      'バークシャー・ハサウェイの5大商社保有（2020年以降の継続的買い増し）により、海外投資家からのバリュエーション再評価が進行中。'+
+      'バークシャー・ハサウェイは 2026 年初時点で<strong>三菱 10.8% / 三井 10.4% / 伊藤忠 10.1%</strong> と 3 社で 10% を超え、当初の上限を突破。米国主要保有銘柄並みの長期コアホールディングへ位置づけが進化中。'+
     '</div>'+
     '<div class="commentary navy">'+
       '<div class="commentary-title">フェーズ1 の論点</div>'+
@@ -442,11 +442,24 @@ function rPartnership(){
     '</div>';
   }).join('');
 
+  var consolidationHtml=strategic.industry_consolidation?(function(){
+    var nameMap={'8058':'三菱商事','8031':'三井物産','8001':'伊藤忠商事','8053':'住友商事','8002':'丸紅','2768':'双日','8015':'豊田通商'};
+    var rows=strategic.industry_consolidation.items.map(function(it){
+      var members=it.members.map(function(t){return'<span class="badge badge-big5" style="margin-right:4px;">'+t+' '+nameMap[t]+'</span>';}).join(' + ');
+      return'<div style="padding:10px 0;border-bottom:1px dashed var(--border-light);"><div style="font-size:0.85rem;font-weight:700;color:var(--navy);margin-bottom:4px;">'+it.name+' <span style="font-weight:400;font-size:0.72rem;color:var(--text-muted);margin-left:6px;">('+it.field+')</span></div><div style="font-size:0.75rem;line-height:1.7;color:var(--text-mid);margin-bottom:4px;">'+members+'</div><div style="font-size:0.78rem;color:var(--text-mid);line-height:1.7;">'+it.summary+'</div></div>';
+    }).join('');
+    return'<div class="commentary navy" style="margin-bottom:24px;">'+
+      '<strong>業界再編 ― 商社間の合弁会社:</strong> 収益性の低い川下分野では商社同士が合弁に集約する形で再編が進んでおり、競合関係だけでは捉えきれない協業構造がある。'+
+      '<div style="margin-top:14px;">'+rows+'</div>'+
+    '</div>';
+  })():'';
+
   el.innerHTML=
     secH('06','戦略・提携動向','バフェット (Berkshire Hathaway) 保有推移と各社の DX / 戦略的提携を集約')+
     '<div class="commentary">'+
       '<strong>'+buffett.narrative.thesis+'</strong>'+
     '</div>'+
+    consolidationHtml+
     '<div class="chart-row">'+
       '<div class="chart-panel"><div class="chart-panel-title">バフェット (Berkshire Hathaway) 5大商社保有比率推移</div><div class="chart-panel-sub">単位: % / 双日・豊田通商は対象外 / 出典: Berkshire Annual Letter + 各社大量保有報告</div><div class="chart-area tall"><canvas id="ptBuffett"></canvas></div></div>'+
       '<div class="chart-panel"><div class="chart-panel-title">バフェット投資のマイルストーン</div><div class="chart-panel-sub">2020 年初開示 〜 直近の動き</div><div style="margin-top:8px;">'+milestoneHtml+'</div></div>'+
@@ -466,7 +479,7 @@ function rPartnership(){
     '<div class="chart-row tri" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;">'+partnerCardsHtml+'</div>';
 
   dc(['ptBuffett']);
-  mc('ptBuffett','line',{labels:cols,datasets:datasets},{plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},padding:14}},datalabels:{display:false},tooltip:{callbacks:{label:function(x){return x.dataset.label+': '+x.parsed.y.toFixed(1)+'%';}}}},scales:{y:{title:{display:true,text:'保有比率 (%)'},min:4,max:11},x:{title:{display:true,text:''}}}});
+  mc('ptBuffett','line',{labels:cols,datasets:datasets},{plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},padding:14}},datalabels:{display:false},tooltip:{callbacks:{label:function(x){return x.dataset.label+': '+x.parsed.y.toFixed(1)+'%';}}},annotation:{annotations:{cap:{type:'line',yMin:10,yMax:10,borderColor:'#b53a3a',borderWidth:1.5,borderDash:[4,4],label:{display:true,content:'当初上限 10%',position:'end',backgroundColor:'rgba(181,58,58,0.85)',color:'#fff',font:{size:10}}}}}},scales:{y:{title:{display:true,text:'保有比率 (%)'},min:4,max:12},x:{title:{display:true,text:''}}}});
 }
 
 /* ── rDetail ── */

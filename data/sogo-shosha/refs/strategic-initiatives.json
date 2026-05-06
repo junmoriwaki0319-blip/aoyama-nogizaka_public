@@ -10,34 +10,45 @@
     "脱炭素": "脱炭素・再エネ・水素・CCUS",
     "コンスーマー": "リテール・B2C・消費者接点"
   },
+  "industry_consolidation": {
+    "_note": "総合商社間で収益性の低い川下分野では合弁による業界再編が進んでいる。商社理解の重要事実として掲載",
+    "items": [
+      {"name": "伊藤忠丸紅鉄鋼",   "members": ["8001", "8002"],         "field": "鉄鋼製品",       "summary": "伊藤忠商事と丸紅の鉄鋼製品事業を統合 (50:50 合弁)"},
+      {"name": "メタルワン",       "members": ["8058", "2768"],         "field": "鉄鋼製品",       "summary": "三菱商事と双日の鉄鋼製品事業を統合 (60:40 合弁)"},
+      {"name": "SMB建材",          "members": ["8031", "8053", "8002"], "field": "建材",           "summary": "三井物産・住友商事・丸紅の建材事業を統合"}
+    ]
+  },
   "companies": {
     "8058": {
       "name": "三菱商事",
-      "headline": "再エネ・北米LNG・ローソン DX を 3 本柱に、複合都市開発と次世代エネルギーを並行投資",
+      "headline": "ローソン DX × 食品流通 (三菱食品 完全子会社化) × 水素・アンモニアで戦略を再構築。洋上風力撤退で GX 戦略は見直し局面",
       "items": [
-        {"category": "コンスーマー", "title": "ローソン共同経営 (KDDIと折半出資)",          "summary": "2024 年 KDDI と折半出資で TOB 完了。3,000 万人の Pontaポイント基盤と通信を統合した次世代コンビニ DX へ"},
-        {"category": "脱炭素",       "title": "ENEOS との水素・eメタン協業",                  "summary": "北米メタネーション事業 (e-methane) で ENEOS / 大阪ガスと連携。2030 年に向けたサプライチェーン構築"},
-        {"category": "海外",         "title": "ENEOS との Stronghold 北米 LNG 事業",          "summary": "テキサス Stronghold プロジェクト出資。長期 LNG 供給契約で日本のエネルギー安全保障に寄与"},
-        {"category": "DX",           "title": "三菱商事マシナリーの IoT 機械投資",            "summary": "産業機械分野で AI ベースの予知保全プラットフォームを展開"}
+        {"category": "コンスーマー", "title": "ローソン共同経営 (KDDIと折半出資)",          "summary": "KDDI と折半出資で TOB 完了。Pontaポイント基盤と通信を統合した次世代コンビニ DX を推進"},
+        {"category": "コンスーマー", "title": "三菱食品の完全子会社化 TOB (2025年5月)",      "summary": "親会社持分 50.11% から完全子会社化、買付総額 1,376 億円。国内食品流通事業を一段強化、上場廃止予定"},
+        {"category": "脱炭素",       "title": "国内洋上風力発電事業から撤退 (2025年8月)",   "summary": "秋田・千葉 3 海域から撤退、2024 年度 524 億円減損 + 違約金 200 億円。建設費が当初想定の約 2 倍に膨張した GX 領域のリスク事例"},
+        {"category": "脱炭素",       "title": "ExxonMobil クリーン水素・アンモニア参画検討", "summary": "洋上風力撤退の代替テーマとして米水素・アンモニアプロジェクトへの参画を検討中"},
+        {"category": "海外",         "title": "Cameron LNG (USA) 拡張 + 北米 LNG 投資継続",  "summary": "三井物産との共同出資 Cameron LNG プロジェクトを拡張。資源権益でのキャッシュ生成を維持"}
       ]
     },
     "8031": {
       "name": "三井物産",
-      "headline": "ヘルスケア (IHH) ・ Microsoft Azure / 生成 AI ・北米水素を軸に高付加価値領域へシフト",
+      "headline": "鉄鉱石・LNG (Cameron / Ruwais) × IHH ヘルスケア × アルティウスリンク BPO で 3 軸を強化",
       "items": [
-        {"category": "提携",         "title": "Microsoft との生成 AI / Azure 戦略提携",       "summary": "2024 年に包括提携を発表。社内 AI 基盤と顧客向けクラウド・ソリューションの共同開発"},
-        {"category": "海外",         "title": "IHH Healthcare 経営参画 (アジア最大級の病院グループ)", "summary": "シンガポール本社の IHH に 32% 出資。アジアのヘルスケア需要拡大を取り込む長期テーマ"},
-        {"category": "脱炭素",       "title": "ExxonMobil とのブルーアンモニア事業",         "summary": "テキサス州での ブルーアンモニア生産・輸出の枠組み構築。2027 年稼働目標"},
-        {"category": "DX",           "title": "三井物産デジタル・アセットマネジメント",      "summary": "不動産デジタル証券 (STO) 国内最大級の組成実績"}
+        {"category": "海外",         "title": "IHH Healthcare 経営参画 (アジア最大級の病院グループ)", "summary": "シンガポール本社の IHH に約 33% 出資。アジアのヘルスケア需要拡大を取り込む長期テーマ"},
+        {"category": "海外",         "title": "Ruwais LNG (UAE) プロジェクト出資 + Cameron LNG 拡張", "summary": "中東・北米双方で LNG 事業を強化。LNG は脱炭素移行期の橋渡し燃料として中長期で需要見通し堅調"},
+        {"category": "DX",           "title": "アルティウスリンク (りらいあ + KDDIエボルバ統合)", "summary": "KDDI と組んだ BPO 事業の経営統合で国内最大級。AI 活用でデジタル BPO への進化を狙う"},
+        {"category": "脱炭素",       "title": "Twelve Benefit (e-fuel 製造) 出資",            "summary": "米スタートアップへの出資で SAF (持続可能航空燃料) 等の合成燃料領域へ参入"},
+        {"category": "提携",         "title": "Microsoft との戦略連携 + 不動産 STO",          "summary": "Microsoft との戦略連携で社内 AI 基盤と顧客向けクラウドを推進。三井物産デジタル・アセットマネジメントが不動産 STO で国内有数のポジション"}
       ]
     },
     "8001": {
       "name": "伊藤忠商事",
-      "headline": "ファミマ DX × 小売金融データを核に、生活消費領域で他商社と一線を画す『個人接点』戦略",
+      "headline": "ファミマ DX × CTC 生成 AI × Protium グリーン水素で『個人接点 + 脱炭素』の二軸を強化",
       "items": [
         {"category": "コンスーマー", "title": "ファミリーマート完全子会社化後の DX 推進",     "summary": "無人決済・店舗データの ID 連携。Pontaから FamiPay へ顧客 ID を再構築し、伊藤忠経済圏を強化"},
-        {"category": "DX",           "title": "CTC (伊藤忠テクノソリューションズ) の AI 投資", "summary": "生成 AI / RAG 領域へ伊藤忠グループ全体で投資。2024 年に AI 統括組織を設立"},
-        {"category": "提携",         "title": "ANA・西武 HD との地域経済圏連携",              "summary": "観光・モビリティ領域で連携。地方経済圏への伊藤忠経済圏の延伸"},
+        {"category": "DX",           "title": "CTC (伊藤忠テクノソリューションズ) 完全子会社化 + 生成 AI 投資", "summary": "2023 年 8 月に CTC を完全子会社化、生成 AI / RAG 領域へ伊藤忠グループ全体で投資。2024 年に AI 統括組織を設立"},
+        {"category": "脱炭素",       "title": "Protium Green Solutions (グリーン水素) 出資",   "summary": "英国スタートアップへの出資でグリーン水素のサプライチェーン構築。脱炭素領域での先行投資"},
+        {"category": "提携",         "title": "ANA・西武 HD などとの地域経済圏連携",          "summary": "観光・モビリティ領域で連携、地方経済圏への伊藤忠経済圏の延伸"},
         {"category": "海外",         "title": "CITIC Pacific (中国・大手国有複合) への戦略出資", "summary": "中国市場の深掘りパートナーとして長期保有。日中商社の中で対中エクスポージャーが最大"}
       ]
     },
