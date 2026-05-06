@@ -24,7 +24,11 @@ data/sogo-shosha/
 │   ├── comparison-matrix.csv     ← 7 社 × 19 KPI (BOM 付 UTF-8 / タスク仕様 "17" との差は known-issues.md §0)
 │   ├── segment-mix-<ticker>.json (※ STUB。各社の実セグメント名のみ反映。値は未取得)
 │   └── benchmarks.json           ← 5大商社平均 + 7社平均
-└── refs/                         ← 補助レイヤー (Buffett 保有・コモディティ価格・政策保有推移)
+└── refs/                         ← 補助レイヤー
+    ├── buffett-holdings.json     ← 5大商社のバークシャー保有比率推移 (2020〜2025、手動キュレーション)
+    ├── strategic-initiatives.json ← 各社 DX/提携/海外戦略の代表施策 (手動キュレーション)
+    ├── commodity-prices.json     ← STUB (フェーズ2 で取込)
+    └── policy-holdings-trend.json ← STUB (フェーズ2 で取込)
 ```
 
 ## データソース
