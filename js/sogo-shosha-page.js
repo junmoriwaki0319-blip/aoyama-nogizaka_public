@@ -79,7 +79,7 @@ function rExec(){
   el.innerHTML=
     secH('01','Executive Summary','日本の総合商社7社（5大商社+双日・豊田通商）の株主還元・資本効率・財務健全性を19 KPIで横断分析')+
     '<div class="commentary">'+
-      '<strong>セクター概況 (2026年5月時点 / FY24 通期実績ベース):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtMcap(tm)+'</strong>。'+
+      '<strong>セクター概況 (2026年5月時点 / FY25 (2026/3 期) Yahoo TTM ベース):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtMcap(tm)+'</strong>。'+
       '5大商社（'+b5+'社）が時価総額の大半を占める一方、双日・豊田通商（'+m+'社）は事業ポートフォリオ構造が異なり「総合商社」というカテゴリ内でも比較軸の選択が重要。'+
       '平均ROE<strong>'+fmt(aROE,'%',1)+'</strong>、平均PBR<strong>'+fmt(aPBR,'倍',2)+'</strong>、平均DOE<strong>'+fmt(aDOE,'%',2)+'</strong>。'+
       'バークシャー・ハサウェイの5大商社保有（2020年以降の継続的買い増し）により、海外投資家からのバリュエーション再評価が進行中。'+
@@ -138,7 +138,7 @@ function rShareholder(){
     '<div class="commentary">'+
       '<strong>株主還元政策の俯瞰:</strong> 7社平均 DOE は<strong>'+fmt(aDOE,'%',2)+'</strong>、配当性向は<strong>'+fmt(aPay,'%',1)+'</strong>。'+
       'DOE が高い順に <strong>伊藤忠 → 丸紅 → 三菱 / 豊田通商 → 住友 → 三井 → 双日</strong>。'+
-      '配当性向だけ見ると三菱が突出 (60%水準) だが、これは FY24 一過性減益によるもの。'+
+      '配当性向だけ見ると三菱が突出 (60%水準) だが、これは直近期の一過性減益による分母縮小に起因する側面が大きい。'+
       'DOE の方が本質的な「株主資本に対するキャッシュ・リターン」を示す。'+
     '</div>'+
     '<div class="commentary danger">'+
@@ -320,7 +320,7 @@ function rFinancial(){
     secH('04','財務健全性','ネット有利子負債/EBITDA・自己資本比率・インタレスト・カバレッジ')+
     '<div class="commentary">'+
       '<strong>レバレッジの分散:</strong> 7社のネット有利子負債/EBITDA は'+fmt(Math.min.apply(null,companies.filter(function(c){return c.kpi('net_debt_ebitda')!=null;}).map(function(c){return c.kpi('net_debt_ebitda');})),'倍',2)+' (豊田通商) から '+fmt(Math.max.apply(null,companies.filter(function(c){return c.kpi('net_debt_ebitda')!=null;}).map(function(c){return c.kpi('net_debt_ebitda');})),'倍',2)+' (双日) まで広く分散。'+
-      '伊藤忠 (3.41) と豊田通商 (0.94) は財務余力が大きい。双日 (10.38) は 2025/3 期 M&A の影響と見られるため、決算説明会資料での確認が必要。'+
+      '伊藤忠 (3.41) と豊田通商 (0.94) は財務余力が大きい。双日 (10.38) は直近期の大型 M&A の影響を含むと推測されるが、IR 開示で実態確認が必要。'+
     '</div>'+
     '<div class="commentary danger">'+
       '<strong>データ取得不能項目:</strong> 本タブで未取得 ― ① 自己資本比率 (Yahoo に総資産フィールドなし)、② インタレスト・カバレッジ (Yahoo に支払利息なし)。EDINET XBRL の追加パースで取得可能 (フェーズ2 予定)。'+
@@ -482,7 +482,7 @@ function rDetail(){
   // KPI ハイライトの選定 (各社で目立つ数値 4 つ)
   function pickHighlights(c){
     return[
-      {label:'時価総額',value:fmtMcap(c.marketCap),sub:'FY24'},
+      {label:'時価総額',value:fmtMcap(c.marketCap),sub:'取得時点'},
       {label:'ROE',value:fmt(c.kpi('roe'),'%',1),sub:'5大商社平均 '+fmt(avgs.roe,'%',1)},
       {label:'PBR',value:fmt(c.kpi('pbr'),'倍',2),sub:'5大商社平均 '+fmt(avgs.pbr,'倍',2)},
       {label:c.tier==='big5'?'バフェット保有':'バフェット対象',value:c.tier==='big5'?(buffett?(buffett.holdings_pct[c.ticker].trend.slice(-1)[0].toFixed(1)+'%'):'—'):'対象外',sub:c.tier==='big5'?'2025/3 直近':'5大商社のみ'},
@@ -514,6 +514,15 @@ function rDetail(){
     var n=narratives&&narratives.companies?narratives.companies[c.ticker]:null;
     var hl=pickHighlights(c);
     var hlHtml=hl.map(function(h){return'<span style="margin-right:18px;font-size:0.78rem;color:var(--text-muted);"><strong style="color:var(--navy);font-size:0.95rem;font-weight:700;">'+h.value+'</strong> '+h.label+'<span style="color:var(--text-light);margin-left:6px;font-size:0.7rem;">('+h.sub+')</span></span>';}).join('');
+    var gapHtml=n&&n.portfolio_gap?(
+      '<div class="portfolio-gap">'+
+        '<span class="portfolio-gap-label">PORTFOLIO GAP — 事業ポートフォリオの空白</span>'+
+        '<div class="portfolio-gap-row"><span class="portfolio-gap-key">弱い領域</span><span class="portfolio-gap-val">'+n.portfolio_gap.weakness+'</span></div>'+
+        '<div class="portfolio-gap-row"><span class="portfolio-gap-key">他社対比</span><span class="portfolio-gap-val">'+n.portfolio_gap.vs_peers+'</span></div>'+
+        '<div class="portfolio-gap-row"><span class="portfolio-gap-key">提案</span><span class="portfolio-gap-val portfolio-gap-proposal">'+n.portfolio_gap.proposal+'</span></div>'+
+      '</div>'
+    ):'';
+
     var body=n?(
       '<div class="narrative-headline">'+n.headline+'</div>'+
       '<div class="narrative-thesis"><span class="narrative-thesis-label">INVESTMENT THESIS</span>'+n.thesis+'</div>'+
@@ -521,7 +530,8 @@ function rDetail(){
         '<div><div class="narrative-block-title is-strength">強み</div>'+bulletList(n.strengths)+'</div>'+
         '<div><div class="narrative-block-title is-challenge">課題・リスク</div>'+bulletList(n.challenges)+'</div>'+
         '<div><div class="narrative-block-title is-recent">直近トピック</div>'+bulletList(n.recent)+'</div>'+
-      '</div>'
+      '</div>'+
+      gapHtml
     ):'<div class="commentary danger" style="margin-bottom:14px;"><strong>ナラティブ未取得:</strong> data/sogo-shosha/refs/company-narratives.json を確認</div>';
 
     return'<div class="narrative-card">'+
@@ -555,7 +565,7 @@ function rSource(){
     '</div>'+
     '<div class="kpi-grid">'+
       kpi('取得日','2026-05-07','','c-navy')+
-      kpi('基準期','FY24 通期実績','TTM (2026/3 期末)','c-navy')+
+      kpi('基準期','FY25 (2026/3 期)','Yahoo TTM スナップショット','c-navy')+
       kpi('対象企業','7社','5大商社+双日+豊田通商','c-navy')+
       kpi('KPI 充足率','9/19','47.4% (KPI のみ)','c-gold')+
       kpi('補足レイヤー','2/3','Buffett + 戦略動向 取込済','c-green')+
