@@ -19,7 +19,9 @@ const TIERS={big5:'5大商社',mid:'準大手'};
 const TC={big5:'#1a2d4f',mid:'#9b8b6e'};
 const TB={big5:'badge-big5',mid:'badge-mid'};
 
-let companies=[];
+// companies をグローバルに公開 (firebase-auth-sogo-shosha.js が参照する)
+if(typeof window.companies==='undefined')window.companies=[];
+let companies=window.companies;
 let buffett=null;
 let strategic=null;
 let narratives=null;
@@ -663,7 +665,8 @@ function initNav(){
 }
 
 /* ── data loader (static JSON) ── */
-async function loadData(){
+window.loadPremiumData=async function(){
+  if(window.companies&&window.companies.length>0)return; // 二重ロード防止
   try{
     var fetches=TARGETS.map(function(t){
       return fetch('/data/sogo-shosha/processed/'+t.ticker+'-summary.json').then(function(r){
@@ -681,7 +684,7 @@ async function loadData(){
     buffett=refs[0];
     strategic=refs[1];
     narratives=refs[2];
-    companies=summaries.map(function(s,i){
+    var loaded=summaries.map(function(s,i){
       var t=TARGETS[i];
       return{
         ticker:t.ticker,name:s.name||t.name,tier:s.tier||t.tier,
@@ -690,18 +693,23 @@ async function loadData(){
         kpi:function(key){var k=s.kpis&&s.kpis[key];return k?k.value:null;},
       };
     });
+    // window.companies と local companies の両方を更新
+    loaded.forEach(function(c){window.companies.push(c);});
+    companies=window.companies;
     var countEl=document.getElementById('companyCount');
     if(countEl)countEl.textContent=companies.length;
-    initNav();render();
+    render();
   }catch(e){
     console.error('[sogo-shosha] data load failed:',e);
     var ex=document.getElementById('sec-exec');
-    if(ex)ex.innerHTML='<div class="commentary danger"><strong>データ読み込みエラー:</strong> '+e.message+'<br><br>このページは <code>/data/sogo-shosha/processed/&lt;ticker&gt;-summary.json</code> を fetch で読み込みます。<code>file://</code> プロトコルでは CORS エラーになるため、<strong>ローカルでは <code>npx serve</code> または <code>python -m http.server</code> 経由で開いて下さい</strong>。</div>';
+    if(ex)ex.innerHTML='<div class="commentary danger"><strong>データ読み込みエラー:</strong> '+e.message+'</div>';
   }
-}
+};
 
-/* ── CSV download ── */
+/* ── CSV download + nav init ── */
 document.addEventListener('DOMContentLoaded',function(){
+  initNav();
+
   var dlCSV=document.querySelector('[data-action="downloadCSV"]');
   if(dlCSV)dlCSV.addEventListener('click',function(){
     if(!companies.length)return;
@@ -719,7 +727,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   var dlPDF=document.querySelector('[data-action="downloadPDF"]');
   if(dlPDF)dlPDF.addEventListener('click',function(){window.print();});
-
-  loadData();
+  // データロードは firebase-auth-sogo-shosha.js の updateAuthUI から
+  // window.loadPremiumData() を呼び出して行う (会員限定)
 });
 })();

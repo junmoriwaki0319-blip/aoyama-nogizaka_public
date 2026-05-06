@@ -220,6 +220,31 @@
     .btn-login:hover { border-color: var(--gold-light); color: #fff; }
     .btn-register { background: var(--gold); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius); font-family: inherit; transition: all 0.2s; }
     .btn-register:hover { background: var(--gold-dim); }
+    #navUserInfo { color: #fff; font-size: 0.78rem; }
+    #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
+    #navUserInfo button:hover { color: #fff; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+    .modal .form-group { margin-bottom: 16px; }
+    .modal .form-group label { display: block; font-size: 0.78rem; color: var(--text-mid); margin-bottom: 4px; font-weight: 500; }
+    .modal .form-group input, .modal .form-group select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: inherit; }
+    .modal .form-group input:focus, .modal .form-group select:focus { border-color: var(--gold); outline: none; }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-top: 8px; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .btn-google { width: 100%; padding: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-google:hover { background: var(--bg-alt); }
+    .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
+    .modal-footer span[data-auth-action] { color: var(--navy); font-weight: 600; text-decoration: underline; }
+    .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+    .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
+    .login-wall h3 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .login-wall .btn-cta { display: inline-block; background: var(--gold); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
+    .login-wall .btn-cta:hover { background: var(--gold-dim); }
+    .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white, #fff); transition: all 0.3s; }
     @media (max-width: 900px) { .nav-hamburger { display: flex; } }
@@ -238,7 +263,7 @@
     .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
     .preview-banner { background: rgba(155,139,110,0.12); border-bottom: 1px solid rgba(155,139,110,0.3); color: var(--gold-dim); font-size: 0.72rem; padding: 8px 48px; text-align: center; letter-spacing: 0.3px; }
     .preview-banner strong { color: var(--navy); font-weight: 700; }
-    @media print { .site-header, .nav-bar, .site-footer, .dl-btns, .preview-banner { display: none !important; } .section { display: block !important; page-break-before: always; } }
+    @media print { .site-header, .nav-bar, .site-footer, .dl-btns, .preview-banner, .login-wall, .modal-overlay { display: none !important; } .section { display: block !important; page-break-before: always; } .premium-blur { filter: none; pointer-events: auto; } }
     @media (max-width: 900px) {
       .site-header, .report-cover, .nav-bar, .main, .site-footer, .preview-banner { padding-left: 20px; padding-right: 20px; }
       .chart-row, .chart-row.tri { grid-template-columns: 1fr; }
@@ -297,6 +322,15 @@
       <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
       <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
     </nav>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+      <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+    </div>
+    <div id="navUserInfo" style="display:none; align-items:center; gap:12px;">
+      <span id="navUserName"></span>
+      <button data-auth-action="openMyPage">マイページ</button>
+      <button data-auth-action="handleLogout">ログアウト</button>
+    </div>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -322,9 +356,11 @@
       <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
     </div>
   </div>
+  <div class="m-auth" id="mobileAuthBtns">
+    <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+    <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+  </div>
 </div>
-
-<div class="preview-banner"><strong>プレビュー版:</strong> フェーズ1 データ準備 (2026-05-07 取得 / 19 KPI 中 9 KPI 自動取得 / 詳細は「データソース」タブ)</div>
 
 <div class="report-cover">
   <div class="report-cover-inner">
@@ -368,7 +404,7 @@
   </div>
 </nav>
 
-<div class="main" id="dashboardContent">
+<div class="main premium-blur" id="dashboardContent">
   <div class="section active" id="sec-exec"></div>
   <div class="section" id="sec-shareholder"></div>
   <div class="section" id="sec-valuation"></div>
@@ -379,6 +415,13 @@
   <div class="section" id="sec-source"></div>
 </div>
 
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>総合商社セクター分析レポートの全データをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
+  <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-brand">Aoyama Nogizaka Partners</span>
@@ -386,7 +429,155 @@
   </div>
 </footer>
 
+<!-- Auth Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:login">&times;</button>
+    <h2>ログイン</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:login">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div id="loginError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleLogin">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer">
+      <span data-auth-action="switchModal:resetPassword" style="cursor:pointer;">パスワードをお忘れの方</span><br>
+      <span>アカウントをお持ちでない方は <span data-auth-action="switchModal:register" style="cursor:pointer;">新規登録</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:register">&times;</button>
+    <h2>無料会員登録</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:register">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div id="registerError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="registerSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleRegister">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required></div>
+      <div class="form-group"><label>所属種別</label>
+        <select id="regAffiliation" data-auth-change="toggleAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="regJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required></div>
+      <div class="form-group"><label>パスワード (8文字以上)</label><input type="password" id="regPassword" required minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <div class="modal-footer"><span>既にアカウントをお持ちの方は <span data-auth-action="switchModal:login" style="cursor:pointer;">ログイン</span></span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:resetPassword">&times;</button>
+    <h2>パスワードリセット</h2>
+    <div id="resetError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="resetSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleResetPassword">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><span data-auth-action="switchToLogin" style="cursor:pointer;">ログインに戻る</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px;">ご利用開始にあたり、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleCompleteProfile">
+      <div class="form-group"><label>所属種別</label>
+        <select id="cpAffiliation" data-auth-change="toggleCpAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option><option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option><option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option><option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="cpJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option><option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option><option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option><option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option><option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option><option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:myPage">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageMsg" style="display:none;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">お名前</label><div id="myName" style="font-weight:600;">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール</label><div id="myEmail">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">所属</label><div id="myAffiliation">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">役職</label><div id="myJobTitle">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">会社名</label><div id="myCompany">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">登録日</label><div id="myCreatedAt">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール認証</label><div id="myEmailVerified">-</div>
+      <button id="btnResendVerify" class="btn-submit" data-auth-action="handleResendVerification" style="display:none;margin-top:8px;padding:8px;font-size:0.78rem;">認証メールを再送</button>
+    </div>
+    <button id="btnChangePassword" class="btn-submit" data-auth-action="handleMyPageResetPassword" style="display:none;margin-top:8px;">パスワードを変更</button>
+    <button id="btnSetPassword" class="btn-submit" data-auth-action="showSetPasswordForm" style="display:none;margin-top:8px;">パスワードを設定</button>
+    <div id="setPasswordForm" style="display:none;margin:16px 0;padding:12px;background:var(--bg-alt);border-radius:4px;">
+      <input type="password" id="setPasswordInput" placeholder="新しいパスワード (8文字以上)" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <button type="button" data-auth-action="handleSetPassword" class="btn-submit">パスワード設定</button>
+    </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button data-auth-action="handleDeleteAccount" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button data-auth-action="confirmDeleteAccount" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button data-auth-action="cancelDeleteAccount" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
 <script src="/js/nav-handler.js"></script>
+<!-- Firebase Auth -->
+<script type="module" src="/js/firebase-auth-sogo-shosha.js"></script>
+<!-- Sogo Shosha page logic -->
 <script src="/js/sogo-shosha-page.js"></script>
 
 </body>
