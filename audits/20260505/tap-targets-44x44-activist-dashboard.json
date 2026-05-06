@@ -1,0 +1,52 @@
+{
+  "url": "https://aoyama-nogizaka.com/activist-dashboard.html",
+  "slug": "activist-dashboard",
+  "threshold": 44,
+  "viewport": "375x667",
+  "total": 2,
+  "errors": [],
+  "violations": [
+    {
+      "page": "https://aoyama-nogizaka.com/activist-dashboard.html",
+      "tag": "a",
+      "id": "",
+      "classes": "skip-link",
+      "role": "",
+      "href": "#main",
+      "onclick": false,
+      "labelFor": "",
+      "text": "メインコンテンツへスキップ",
+      "current": {
+        "w": 214,
+        "h": 37
+      },
+      "deficit": {
+        "w": 0,
+        "h": 7
+      },
+      "selector": "html > body > a.skip-link",
+      "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/activist-dashboard.html",
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": "",
+      "href": "https://activist-blog.com/definition/",
+      "onclick": false,
+      "labelFor": "",
+      "text": "アクティビストの定義｜アクティビストのことがわかるブログ",
+      "current": {
+        "w": 283.95,
+        "h": 42.39
+      },
+      "deficit": {
+        "w": 0,
+        "h": 1.6099999999999994
+      },
+      "selector": "html > body > div:nth-of-type(5) > details > p:nth-of-type(3) > a",
+      "outerHTML": "<a href=\"https://activist-blog.com/definition/\" target=\"_blank\" rel=\"noopener\" style=\"color:#2b6cb0;\">アクティビストの定義｜アクティビストのことがわかるブログ</a>"
+    }
+  ]
+}

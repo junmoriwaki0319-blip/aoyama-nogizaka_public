@@ -1,0 +1,52 @@
+{
+  "url": "https://aoyama-nogizaka.com/activist-screener.html",
+  "slug": "activist-screener",
+  "threshold": 44,
+  "viewport": "375x667",
+  "total": 2,
+  "errors": [],
+  "violations": [
+    {
+      "page": "https://aoyama-nogizaka.com/activist-screener.html",
+      "tag": "a",
+      "id": "",
+      "classes": "skip-link",
+      "role": "",
+      "href": "#main",
+      "onclick": false,
+      "labelFor": "",
+      "text": "メインコンテンツへスキップ",
+      "current": {
+        "w": 195,
+        "h": 21
+      },
+      "deficit": {
+        "w": 0,
+        "h": 23
+      },
+      "selector": "html > body > a.skip-link",
+      "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/activist-screener.html",
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": "",
+      "href": "https://disclosure2.edinet-fsa.go.jp",
+      "onclick": false,
+      "labelFor": "",
+      "text": "EDINET",
+      "current": {
+        "w": 48.73,
+        "h": 20
+      },
+      "deficit": {
+        "w": 0,
+        "h": 24
+      },
+      "selector": "div#tab-individual > div.s-card:nth-of-type(1) > details > p > a",
+      "outerHTML": "<a href=\"https://disclosure2.edinet-fsa.go.jp\" target=\"_blank\" style=\"color:var(--gold);\">EDINET</a>"
+    }
+  ]
+}

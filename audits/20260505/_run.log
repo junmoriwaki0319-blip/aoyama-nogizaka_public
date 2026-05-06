@@ -1,0 +1,1297 @@
+=== BATCH 1 START 11:38:35 ===
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.42233562 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.42233562'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.42233562 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.42233562'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:38:59] LH mobile team OK 616901B 23s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.18790742 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.18790742'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.18790742 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.18790742'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:39:16] LH desktop team OK 631866B 17s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.64220601 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.64220601'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.64220601 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.64220601'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:39:30] LH tap-targets team OK 137636B 14s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/team[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 4 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - section:nth-child(10) > div > p
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "empty-heading" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure headings have discernible text. Correct invalid elements at:
+     - .member-card.reveal-delay-1.reveal > .member-info > .member-name
+     - .member-card.reveal-delay-2.reveal > .member-info > .member-name
+     - .reveal-delay-3.member-card.reveal > .member-info > .member-name
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/empty-heading[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 15 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero-inner > .section-label.visible.reveal
+     - h1
+     - .page-hero-sub
+     - .intro-section
+     - .bg-white
+     - .bg-off > .team-inner > .team-section-header.reveal
+     - .member-card.reveal-delay-1.reveal > .member-info
+     - .member-card.reveal-delay-2.reveal > .member-info
+     - .reveal-delay-3.member-card.reveal > .member-info
+     - .bg-navy > .team-inner > .team-section-header.reveal
+     - .advisor-card.reveal-delay-1.reveal > .advisor-info
+     - .advisor-card.reveal-delay-2.reveal > .advisor-info
+     - .reveal-delay-3.advisor-card.reveal > .advisor-info
+     - section:nth-child(10)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m24 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-team.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[11:39:40] AXE team OK 227172B 10s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.71914507 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.71914507'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.71914507 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.71914507'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:39:58] LH mobile news OK 633878B 18s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41274612 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41274612'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41274612 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.41274612'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:40:18] LH desktop news OK 637489B 20s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.44319876 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.44319876'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.44319876 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.44319876'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:40:33] LH tap-targets news OK 126922B 15s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/news/[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 11 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .featured-label
+     - .article-card[href$="activist-dashboard.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[href$="risk-assessment.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[href$="activist-screener.html"][data-category="dashboard"] > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[data-category="dashboard"]:nth-child(5) > .article-card-body > .ac-tags > .type-dashboard.ac-tag
+     - .article-card[data-category="insight"]:nth-child(7) > .article-card-body > .ac-footer > .ac-arrow
+     - .coming-soon > p
+     - #nlSubmitBtn
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 6 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero
+     - .featured-wrap
+     - .articles-section
+     - .newsletter-inner > div:nth-child(1)
+     - input
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m19 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-news.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[11:40:41] AXE news OK 333241B 8s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.69583202 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.69583202'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.69583202 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.69583202'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:41:02] LH mobile privacy OK 510472B 20s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.56431281 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.56431281'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.56431281 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.56431281'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:41:20] LH desktop privacy OK 589467B 18s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.67142862 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.67142862'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.67142862 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.67142862'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:41:34] LH tap-targets privacy OK 81300B 14s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/privacy[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 12 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .page-hero-inner > .section-label.visible.reveal
+     - h1
+     - .page-hero-sub
+     - .intro-section
+     - .bg-white.policy-section:nth-child(7)
+     - .bg-off.policy-section:nth-child(8)
+     - .bg-white.policy-section:nth-child(9)
+     - .bg-off.policy-section:nth-child(10)
+     - .bg-white.policy-section:nth-child(11)
+     - .contact-block-section
+     - .policy-date-section
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m17 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-privacy.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[11:41:42] AXE privacy OK 201966B 8s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.73403124 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.73403124'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.73403124 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.73403124'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:42:06] LH mobile activist-dashboard OK 1197345B 24s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.66940908 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.66940908'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.66940908 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.66940908'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:42:30] LH desktop activist-dashboard OK 1325530B 24s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.35525128 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.35525128'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.35525128 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.35525128'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[11:42:49] LH tap-targets activist-dashboard OK 138925B 19s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/activist-dashboard.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 221 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="risk-assessment.html"]
+     - .dash-subnav-link[href$="activist-screener.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - .stat-item:nth-child(1) > .stat-label
+     - .stat-item:nth-child(2) > .stat-label
+     - .stat-item:nth-child(3) > .stat-label
+     - .stat-item:nth-child(4) > .stat-label
+     - .filter-group:nth-child(2) > .filter-label
+     - .filter-group:nth-child(3) > .filter-label
+     - .filter-group:nth-child(4) > .filter-label
+     - .filter-group:nth-child(5) > .filter-label
+     - .btn-reset
+     - .ac-stock-item[data-arg="effissimo"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - .ac-stock-item[data-arg="maki_hiroyuki"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - .ac-stock-item[data-arg="oasis"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - .ac-stock-item[data-arg="doe5_group"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - .ac-stock-item[data-arg="daiwa_am"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - .ac-stock-item[data-arg="fidelity"][data-action="openInvestorDetail"] > span:nth-child(1)
+     - button[data-action="switchTab:activists"]
+     - button[data-action="switchTab:watchlist"]
+     - button[data-action="switchTab:chart"]
+     - button[data-action="switchTab:timeline"]
+     - small
+     - #btnCsvExport > .member-badge
+     - #btnPdfExport > .member-badge
+     - .activist-table > thead > tr > th:nth-child(1)
+     - .activist-table > thead > tr > th:nth-child(2)
+     - .activist-table > thead > tr > th:nth-child(3)
+     - .activist-table > thead > tr > th:nth-child(4)
+     - .activist-table > thead > tr > th:nth-child(5)
+     - .activist-table > thead > tr > th:nth-child(6)
+     - .activist-table > thead > tr > th:nth-child(7)
+     - th:nth-child(8)
+     - tr[data-arg="3936"] > .date-cell.col-date
+     - tr[data-arg="3936"] > .col-code > .sec-code
+     - tr[data-arg="3936"] > .col-ratio > span
+     - tr[data-arg="3936"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(2) > .date-cell.col-date
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(2) > .col-code > .sec-code
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(2) > .col-ratio > span
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(2) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="5530"] > .date-cell.col-date
+     - tr[data-arg="5530"] > .col-code > .sec-code
+     - tr[data-arg="5530"] > .col-ratio > span
+     - tr[data-arg="5530"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="1892"] > .date-cell.col-date
+     - tr[data-arg="1892"] > .col-code > .sec-code
+     - tr[data-arg="1892"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(5) > .date-cell.col-date
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(5) > .col-code > .sec-code
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(5) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3350"] > .date-cell.col-date
+     - tr[data-arg="3350"] > .col-code > .sec-code
+     - tr[data-arg="3350"] > .col-ratio > span
+     - tr[data-arg="3350"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7273"] > .date-cell.col-date
+     - tr[data-arg="7273"] > .col-code > .sec-code
+     - tr[data-arg="7273"] > .col-ratio > span
+     - tr[data-arg="7273"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="8601"] > .date-cell.col-date
+     - tr[data-arg="8601"] > .col-code > .sec-code
+     - tr[data-arg="8601"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(9) > .date-cell.col-date
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(9) > .col-code > .sec-code
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(9) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4750"] > .date-cell.col-date
+     - tr[data-arg="4750"] > .col-code > .sec-code
+     - tr[data-arg="4750"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="9697"] > .date-cell.col-date
+     - tr[data-arg="9697"] > .col-code > .sec-code
+     - tr[data-arg="9697"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(12) > .date-cell.col-date
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(12) > .col-code > .sec-code
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(12) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(13) > .date-cell.col-date
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(13) > .col-code > .sec-code
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(13) > .col-ratio > span
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(13) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(14) > .date-cell.col-date
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(14) > .col-code > .sec-code
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(14) > .col-ratio > span
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(14) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(15) > .date-cell.col-date
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(15) > .col-code > .sec-code
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(15) > .col-ratio > span
+     - tr[data-arg="4883"][data-action="searchByCode"]:nth-child(15) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4596"] > .date-cell.col-date
+     - tr[data-arg="4596"] > .col-code > .sec-code
+     - tr[data-arg="4596"] > .col-ratio > span
+     - tr[data-arg="4596"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3667"] > .date-cell.col-date
+     - tr[data-arg="3667"] > .col-code > .sec-code
+     - tr[data-arg="3667"] > .col-ratio > span
+     - tr[data-arg="3667"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(18) > .date-cell.col-date
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(18) > .col-code > .sec-code
+     - tr[data-arg="559A"][data-action="searchByCode"]:nth-child(18) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(19) > .date-cell.col-date
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(19) > .col-code > .sec-code
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(19) > .col-ratio > span
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(19) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="2818"] > .date-cell.col-date
+     - tr[data-arg="2818"] > .col-code > .sec-code
+     - tr[data-arg="2818"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(21) > .date-cell.col-date
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(21) > .col-code > .sec-code
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(21) > .col-ratio > span
+     - tr[data-arg="353A"][data-action="searchByCode"]:nth-child(21) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3329"] > .date-cell.col-date
+     - tr[data-arg="3329"] > .col-code > .sec-code
+     - tr[data-arg="3329"] > .col-ratio > span
+     - tr[data-arg="3329"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3994"] > .date-cell.col-date
+     - tr[data-arg="3994"] > .col-code > .sec-code
+     - tr[data-arg="3994"] > .col-ratio > span
+     - tr[data-arg="3994"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="5951"] > .date-cell.col-date
+     - tr[data-arg="5951"] > .col-code > .sec-code
+     - tr[data-arg="5951"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(25) > .date-cell.col-date
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(25) > .col-code > .sec-code
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(25) > .col-ratio > span
+     - tr[data-arg="1435"][data-action="searchByCode"]:nth-child(25) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="5161"] > .date-cell.col-date
+     - tr[data-arg="5161"] > .col-code > .sec-code
+     - tr[data-arg="5161"] > .col-ratio > span
+     - tr[data-arg="5161"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(27) > .date-cell.col-date
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(27) > .col-code > .sec-code
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(27) > .col-ratio > span
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(27) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7095"] > .date-cell.col-date
+     - tr[data-arg="7095"] > .col-code > .sec-code
+     - tr[data-arg="7095"] > .col-ratio > span
+     - tr[data-arg="7095"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="2459"] > .date-cell.col-date
+     - tr[data-arg="2459"] > .col-code > .sec-code
+     - tr[data-arg="2459"] > .col-ratio > span
+     - tr[data-arg="2459"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(30) > .date-cell.col-date
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(30) > .col-code > .sec-code
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(30) > .col-ratio > span
+     - tr[data-arg="8306"][data-action="searchByCode"]:nth-child(30) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="5915"] > .date-cell.col-date
+     - tr[data-arg="5915"] > .col-code > .sec-code
+     - tr[data-arg="5915"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(32) > .date-cell.col-date
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(32) > .col-code > .sec-code
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(32) > .col-ratio > span
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(32) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(33) > .date-cell.col-date
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(33) > .col-code > .sec-code
+     - tr[data-arg="7034"][data-action="searchByCode"]:nth-child(33) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="1861"] > .date-cell.col-date
+     - tr[data-arg="1861"] > .col-code > .sec-code
+     - tr[data-arg="1861"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3031"] > .date-cell.col-date
+     - tr[data-arg="3031"] > .col-code > .sec-code
+     - tr[data-arg="3031"] > .col-ratio > span
+     - tr[data-arg="3031"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4071"] > .date-cell.col-date
+     - tr[data-arg="4071"] > .col-code > .sec-code
+     - tr[data-arg="4071"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7157"] > .date-cell.col-date
+     - tr[data-arg="7157"] > .col-code > .sec-code
+     - tr[data-arg="7157"] > .col-ratio > span
+     - tr[data-arg="7157"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4293"] > .date-cell.col-date
+     - tr[data-arg="4293"] > .col-code > .sec-code
+     - tr[data-arg="4293"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="6707"] > .date-cell.col-date
+     - tr[data-arg="6707"] > .col-code > .sec-code
+     - tr[data-arg="6707"] > .col-ratio > span
+     - tr[data-arg="6707"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="9503"] > .date-cell.col-date
+     - tr[data-arg="9503"] > .col-code > .sec-code
+     - tr[data-arg="9503"] > .col-ratio > span
+     - tr[data-arg="9503"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="2376"] > .date-cell.col-date
+     - tr[data-arg="2376"] > .col-code > .sec-code
+     - tr[data-arg="2376"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="6224"] > .date-cell.col-date
+     - tr[data-arg="6224"] > .col-code > .sec-code
+     - tr[data-arg="6224"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(43) > .date-cell.col-date
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(43) > .col-code > .sec-code
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(43) > .col-ratio > span
+     - tr[data-arg="9270"][data-action="searchByCode"]:nth-child(43) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="2588"] > .date-cell.col-date
+     - tr[data-arg="2588"] > .col-code > .sec-code
+     - tr[data-arg="2588"] > .col-ratio > span
+     - tr[data-arg="2588"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="8132"] > .date-cell.col-date
+     - tr[data-arg="8132"] > .col-code > .sec-code
+     - tr[data-arg="8132"] > .col-ratio > span
+     - tr[data-arg="8132"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(46) > .date-cell.col-date
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(46) > .col-code > .sec-code
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(46) > .col-ratio > span
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(46) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(47) > .date-cell.col-date
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(47) > .col-code > .sec-code
+     - tr[data-arg="3921"][data-action="searchByCode"]:nth-child(47) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="7352"] > .date-cell.col-date
+     - tr[data-arg="7352"] > .col-code > .sec-code
+     - tr[data-arg="7352"] > .col-ratio > span
+     - tr[data-arg="7352"] > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(49) > .date-cell.col-date
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(49) > .col-code > .sec-code
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(49) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(50) > .date-cell.col-date
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(50) > .col-code > .sec-code
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(50) > .col-ratio > span
+     - tr[data-arg="4840"][data-action="searchByCode"]:nth-child(50) > .col-edinet > .edinet-link[data-action="stopPropagation"][target="_blank"]
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - .sidebar-card:nth-child(1) > h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "region" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - .stats-bar
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #activistRankingList
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "select-name" with 3 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure select element has an accessible name. Correct invalid elements at:
+     - #investorFilter
+     - #periodFilter
+     - #sortSelect
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/select-name[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m230 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-activist-dashboard.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[11:43:03] AXE activist-dashboard OK 2611989B 14s
+=== BATCH 1 END 11:43:03 ===
+=== BATCH 2 START 16:13:25 ===
+[16:13:42] LH mobile risk-assessment OK 685972B 17s
+[16:13:56] LH desktop risk-assessment OK 670727B 14s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.14282658 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.14282658'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.14282658 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.14282658'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:14:06] LH tap-targets risk-assessment OK 87326B 10s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/risk-assessment.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 25 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="activist-dashboard.html"]
+     - .dash-subnav-link[href$="activist-screener.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - .stock-input-card > p
+     - .risk-field:nth-child(1) > .field-hint
+     - .risk-field:nth-child(2) > .field-hint
+     - .risk-field:nth-child(3) > .field-hint
+     - .risk-field:nth-child(4) > .field-hint
+     - .risk-field:nth-child(5) > .field-hint
+     - .risk-field:nth-child(6) > .field-hint
+     - .risk-field:nth-child(7) > .field-hint
+     - .risk-field:nth-child(8) > .field-hint
+     - .risk-field:nth-child(9) > .field-hint
+     - .risk-field:nth-child(10) > .field-hint
+     - #treasuryHint
+     - #marketcapHint
+     - .risk-field:nth-child(13) > .field-hint
+     - .risk-btn-clear
+     - .cta-primary
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 21 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - section
+     - .stock-input-card > h2
+     - .stock-input-card > p
+     - #stockCode
+     - .risk-section:nth-child(2) > .risk-card > h2
+     - .risk-field:nth-child(1)
+     - .risk-field:nth-child(2)
+     - .risk-field:nth-child(3)
+     - .risk-field:nth-child(4)
+     - .risk-field:nth-child(5)
+     - .risk-field:nth-child(6)
+     - .risk-field:nth-child(7)
+     - .risk-field:nth-child(8)
+     - .risk-field:nth-child(9)
+     - .risk-field:nth-child(10)
+     - .risk-field:nth-child(11)
+     - .risk-field:nth-child(12)
+     - .risk-field:nth-child(13)
+     - .cta-section
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "select-name" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure select element has an accessible name. Correct invalid elements at:
+     - #risk_defense
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/select-name[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m49 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-risk-assessment.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:14:11] AXE risk-assessment OK 326619B 4s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.62208640 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.62208640'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.62208640 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.62208640'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:14:26] LH mobile activist-screener OK 778538B 15s
+[16:14:42] LH desktop activist-screener OK 754545B 16s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.97249282 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.97249282'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.97249282 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.97249282'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:14:53] LH tap-targets activist-screener OK 62822B 11s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/activist-screener.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 15 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .dash-subnav-cat:nth-child(1)
+     - .dash-subnav-link[href$="activist-dashboard.html"]
+     - .dash-subnav-link[href$="risk-assessment.html"]
+     - .dash-subnav-cat:nth-child(6)
+     - .dash-subnav-link[href$="food-service.html"]
+     - .dash-subnav-link[href$="saas.html"]
+     - button[data-action="switchTab:ranking"]
+     - summary
+     - button[data-action="resetIndividual"]
+     - #loginWallIndividual > .login-wall-inner > p
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-register[data-action="scrollToAuth:register"]
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-login[data-action="scrollToAuth:login"]
+     - .footer-tagline
+     - address
+     - .footer-copy
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - #loginWallIndividual > .login-wall-inner > .plan-features > h4
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .dash-subnav
+     - section
+     - #tab-individual > .s-card > .s-card-title
+     - #tab-individual > .s-card > .form-grid
+     - #loginWallIndividual > .login-wall-inner > .login-wall-icon
+     - #loginWallIndividual > .login-wall-inner > h2
+     - #loginWallIndividual > .login-wall-inner > p
+     - #loginWallIndividual > .login-wall-inner > .plan-features
+     - #loginWallIndividual > .login-wall-inner > .btn-cta-login[data-action="scrollToAuth:login"]
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+[31m[1m[22m[39m
+[31m[1m27 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-activist-screener.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:14:57] AXE activist-screener OK 249764B 4s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23343040 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23343040'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23343040 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.23343040'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:15:11] LH mobile food-service OK 643975B 14s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91309453 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91309453'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91309453 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.91309453'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:15:25] LH desktop food-service OK 758786B 14s
+[16:15:38] LH tap-targets food-service OK 58713B 13s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/food-service.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 11 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="market"]
+     - div[data-tab="market"] > .nav-num
+     - div[data-tab="financial"]
+     - div[data-tab="financial"] > .nav-num
+     - div[data-tab="dupont"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+     - div:nth-child(20) > div > div > div:nth-child(1)
+     - div:nth-child(20) > div > div > div:nth-child(3)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+     - div:nth-child(20)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m25 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-food-service.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:15:43] AXE food-service OK 217224B 5s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.76868568 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.76868568'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.76868568 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.76868568'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:15:57] LH mobile saas OK 608423B 14s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48810083 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48810083'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48810083 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.48810083'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:16:12] LH desktop saas OK 701349B 15s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.25810081 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.25810081'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.25810081 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.25810081'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:16:23] LH tap-targets saas OK 46953B 11s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/saas.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="market"]
+     - div[data-tab="market"] > .nav-num
+     - div[data-tab="financial"]
+     - div[data-tab="financial"] > .nav-num
+     - div[data-tab="dupont"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m22 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-saas.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:16:27] AXE saas OK 201321B 4s
+=== BATCH 2 END 16:16:27 ===
+=== BATCH 3 START 16:42:08 ===
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+[16:42:30] LH mobile ad-agency OK 737692B 22s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17181536 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17181536'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17181536 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.17181536'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:42:45] LH desktop ad-agency OK 713926B 15s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83680423 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83680423'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83680423 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.83680423'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:43:02] LH tap-targets ad-agency OK 47596B 17s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/ad-agency.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 10 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="tier"]
+     - div[data-tab="tier"] > .nav-num
+     - div[data-tab="mna"]
+     - div[data-tab="mna"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m23 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-ad-agency.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:43:07] AXE ad-agency OK 192640B 5s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.34532436 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.34532436'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.34532436 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.34532436'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:43:24] LH mobile digital-media OK 619379B 17s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.93093865 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.93093865'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.93093865 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.93093865'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:43:39] LH desktop digital-media OK 717799B 15s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.63919294 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.63919294'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.63919294 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.63919294'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:43:53] LH tap-targets digital-media OK 48802B 13s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/digital-media.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="subsector"]
+     - div[data-tab="subsector"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="activist"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-label
+     - .report-title
+     - .report-subtitle
+     - .report-meta
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m22 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-digital-media.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:44:00] AXE digital-media OK 192800B 6s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.39084588 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.39084588'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.39084588 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.39084588'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:44:16] LH mobile entertainment-sector-dashboard OK 727946B 16s
+https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js.map mapping for column out of bounds: 7:442
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.36650812 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.36650812'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.36650812 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.36650812'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:44:39] LH desktop entertainment-sector-dashboard OK 711138B 23s
+[16:44:57] LH tap-targets entertainment-sector-dashboard OK 45517B 18s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/entertainment-sector-dashboard.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 9 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - #navAuthBtns > .btn-register[data-auth-action="openModal:register"]
+     - div[data-tab="exec"] > .nav-num
+     - div[data-tab="subsector"]
+     - div[data-tab="subsector"] > .nav-num
+     - div[data-tab="valuation"]
+     - div[data-tab="valuation"] > .nav-num
+     - div[data-tab="activist"] > .nav-num
+     - .btn-cta
+     - .footer-inner > span:nth-child(2)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "heading-order" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the order of headings is semantically correct. Correct invalid elements at:
+     - h3
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/heading-order[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "region" with 6 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .skip-link
+     - .report-cover
+     - h1
+     - h3
+     - #loginWall > p
+     - .btn-login-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+
+[31m[1m  Violation of "scrollable-region-focusable" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure elements that have scrollable content are accessible by keyboard in Safari. Correct invalid elements at:
+     - #mainNav
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable[39m[24m
+
+[31m[1m  Violation of "skip-link" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all skip links have a focusable target. Correct invalid elements at:
+     - .skip-link
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/skip-link[39m[24m
+[31m[1m[22m[39m
+[31m[1m19 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-entertainment-sector-dashboard.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:45:02] AXE entertainment-sector-dashboard OK 181497B 4s
+[16:45:17] LH mobile news-activist-shareholder-proposals-japan OK 1344837B 15s
+[16:45:38] LH desktop news-activist-shareholder-proposals-japan OK 1466619B 20s
+Runtime error encountered: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.38649167 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.38649167'
+Error: EPERM, Permission denied: \\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.38649167 '\\?\C:\Users\jun-m\AppData\Local\Temp\lighthouse.38649167'
+    at rmSync (node:fs:1221:18)
+    at Launcher.destroyTmp (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:367:9)
+    at Launcher.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:349:14)
+    at Object.kill (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/chrome-launcher/dist/chrome-launcher.js:39:18)
+    at runLighthouse (file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/run.js:217:21)
+    at async file:///C:/Users/jun-m/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/lighthouse/cli/index.js:10:1
+[16:45:54] LH tap-targets news-activist-shareholder-proposals-japan OK 533950B 16s
+[1mRunning axe-core 4.11.4 in chrome-headless[22m
+[1m[22m
+[1mTesting [4m[34mhttps://aoyama-nogizaka.com/news/activist-shareholder-proposals-japan.html[39m[24m[22m ... please wait, this may take a minute.
+
+[31m[1m  Violation of "color-contrast" with 95 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .btn-register
+     - .report-meta > span:nth-child(3)
+     - .filter-label
+     - #filter-count
+     - .case-highlight.case-card:nth-child(3) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(3) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(3) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(4) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(4) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-card:nth-child(5) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(5) > .case-header > .case-tagline
+     - .case-card:nth-child(5) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(5) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(6) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(6) > .case-header > .case-tagline
+     - .case-card:nth-child(6) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(6) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(7) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(7) > .case-header > .case-tagline
+     - .case-card:nth-child(7) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(7) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(8) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(8) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(9) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(9) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(9) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-highlight.case-card:nth-child(10) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(10) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(10) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(10) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(11) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(11) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(11) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(11) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(12) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(12) > .case-header > .case-tagline
+     - .case-card:nth-child(12) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(12) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(13) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(13) > .case-header > .case-tagline
+     - .case-card:nth-child(13) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(13) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(14) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(14) > .case-header > .case-tagline
+     - .case-card:nth-child(14) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(14) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(15) > .case-header > .case-meta > .case-date
+     - .badge-energy
+     - .case-highlight.case-card:nth-child(15) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(15) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(15) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(16) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(16) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(16) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(16) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(17) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(17) > .case-header > .case-tagline
+     - .case-card:nth-child(17) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(17) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-card:nth-child(18) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(18) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(19) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(19) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(19) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .case-card:nth-child(20) > .case-header > .case-meta > .case-date
+     - .case-card:nth-child(20) > .case-header > .case-tagline
+     - .case-card:nth-child(20) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-card:nth-child(20) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-header > .case-meta > .case-date
+     - .case-highlight.case-card:nth-child(21) > .case-header > .case-tagline
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(1) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(2) > .detail-label
+     - .case-highlight.case-card:nth-child(21) > .case-body > .case-summary > .case-detail:nth-child(3) > .detail-label
+     - .cta-link-gold
+     - li:nth-child(1) > .resource-desc
+     - li:nth-child(2) > .resource-desc
+     - li:nth-child(3) > .resource-desc
+     - li:nth-child(4) > .resource-desc
+     - li:nth-child(5) > .resource-desc
+     - li:nth-child(6) > .resource-desc
+     - li:nth-child(7) > .resource-desc
+     - li:nth-child(8) > .resource-desc
+     - li:nth-child(9) > .resource-desc
+     - li:nth-child(10) > .resource-desc
+     - .footer-inner > span:nth-child(2)
+     - .footer-disclaimer
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/color-contrast[39m[24m
+
+[31m[1m  Violation of "landmark-one-main" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure the document has a main landmark. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/landmark-one-main[39m[24m
+
+[31m[1m  Violation of "page-has-heading-one" with 1 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure that the page, or at least one of its frames contains a level-one heading. Correct invalid elements at:
+     - html
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/page-has-heading-one[39m[24m
+
+[31m[1m  Violation of "region" with 29 occurrences![22m[39m
+[31m[1m[22m[39m    Ensure all page content is contained by landmarks. Correct invalid elements at:
+     - .report-cover
+     - section:nth-child(1)
+     - section:nth-child(2) > h2
+     - .filter-label
+     - #filter-activist
+     - #filter-year
+     - #filter-count
+     - .case-highlight.case-card:nth-child(3)
+     - .case-highlight.case-card:nth-child(4)
+     - .case-card:nth-child(5)
+     - .case-card:nth-child(6)
+     - .case-card:nth-child(7)
+     - .case-card:nth-child(8)
+     - .case-highlight.case-card:nth-child(9)
+     - .case-highlight.case-card:nth-child(10)
+     - .case-highlight.case-card:nth-child(11)
+     - .case-card:nth-child(12)
+     - .case-card:nth-child(13)
+     - .case-card:nth-child(14)
+     - .case-highlight.case-card:nth-child(15)
+     - .case-highlight.case-card:nth-child(16)
+     - .case-card:nth-child(17)
+     - .case-card:nth-child(18)
+     - .case-highlight.case-card:nth-child(19)
+     - .case-card:nth-child(20)
+     - .case-highlight.case-card:nth-child(21)
+     - section:nth-child(3)
+     - section:nth-child(4)
+     - section:nth-child(5)
+    For details, see: [4m[34mhttps://dequeuniversity.com/rules/axe/4.11/region[39m[24m
+[31m[1m[22m[39m
+[31m[1m126 Accessibility issues detected.[22m[39m
+[1mTesting complete of 1 pages[22m
+[1m[22m
+Saved file at C:\Users\jun-m\aoyama-nogizaka_public\audits\20260505\axe-news-activist-shareholder-proposals-japan.json 
+
+[3mPlease note that only 20% to 50% of all accessibility issues can automatically be detected. [23m
+[3mManual testing is always required. For more information see:[23m
+[3m[4m[34mhttps://dequeuniversity.com/class/testing[39m[24m[23m
+[3m[23m
+[16:46:01] AXE news-activist-shareholder-proposals-japan OK 1142207B 7s
+=== BATCH 3 END 16:46:01 ===

@@ -1,0 +1,52 @@
+{
+  "url": "https://aoyama-nogizaka.com/food-service.html",
+  "slug": "food-service",
+  "threshold": 44,
+  "viewport": "375x667",
+  "total": 2,
+  "errors": [],
+  "violations": [
+    {
+      "page": "https://aoyama-nogizaka.com/food-service.html",
+      "tag": "a",
+      "id": "",
+      "classes": "skip-link",
+      "role": "",
+      "href": "#main",
+      "onclick": false,
+      "labelFor": "",
+      "text": "メインコンテンツへスキップ",
+      "current": {
+        "w": 214,
+        "h": 37
+      },
+      "deficit": {
+        "w": 0,
+        "h": 7
+      },
+      "selector": "html > body > a.skip-link",
+      "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/food-service.html",
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": "",
+      "href": "/saas.html",
+      "onclick": false,
+      "labelFor": "",
+      "text": "SaaSレポートを見る →",
+      "current": {
+        "w": 197.44,
+        "h": 39.19
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4.810000000000002
+      },
+      "selector": "html > body > div:nth-of-type(11) > div > a",
+      "outerHTML": "<a href=\"/saas.html\" style=\"background:#1a2d4f;color:#fff;text-decoration:none;padding:10px 28px;font-size:0.8rem;letter-spacing:0.5px;transition:opacity 0.2s;white-space:nowrap;\">SaaSレポートを見る →</a>"
+    }
+  ]
+}
