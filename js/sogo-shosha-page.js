@@ -22,6 +22,7 @@ const TB={big5:'badge-big5',mid:'badge-mid'};
 let companies=[];
 let buffett=null;
 let strategic=null;
+let narratives=null;
 let tab='exec';
 const CH={};
 
@@ -203,6 +204,18 @@ function rValuation(){
       '<div class="chart-panel"><div class="chart-panel-title">ROE / ROIC 比較</div><div class="chart-area tall"><canvas id="vlROE"></canvas></div></div>'+
       '<div class="chart-panel"><div class="chart-panel-title">PBR / PER ランキング</div><div class="chart-area tall"><canvas id="vlPBRBar"></canvas></div></div>'+
     '</div>'+
+    '<div class="chart-row single">'+
+      '<div class="chart-panel">'+
+        '<div class="chart-panel-title">7 社総合スコア レーダー</div>'+
+        '<div class="chart-panel-sub">5 軸 (ROE / ROIC / PBR / PER 反転 / EV·EBITDA 反転) を 0–100 に正規化。外側ほど高評価。同一軸内では最良値=100、最悪値=20 として線形配点</div>'+
+        '<div class="chart-area" style="height:520px;"><canvas id="vlRadar"></canvas></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="chart-panel" style="margin-bottom:32px;">'+
+      '<div class="chart-panel-title">19 KPI × 7 社 ヒートマップ</div>'+
+      '<div class="chart-panel-sub">取得済 KPI のみ色付け。各行 (KPI 軸) で最良 / 良い / 中位 / 悪い / 最悪の 5 段階。反転指標 (PER ・ EV/EBITDA ・ ネット負債/EBITDA) は低い順に色付け</div>'+
+      '<div class="table-scroll" style="margin-top:16px;"><table class="heatmap-table" id="tblHeat"><thead></thead><tbody></tbody></table></div>'+
+    '</div>'+
     '<div class="table-panel"><div class="table-header"><div class="table-header-title">資本効率・バリュエーション 一覧 (ROE 降順)</div></div><div class="table-scroll"><table id="tblVal">'+
       '<thead><tr><th>コード</th><th>企業</th><th>区分</th><th>ROE (%)</th><th>ROIC (%)</th><th>PBR (倍)</th><th>PER (倍)</th><th>EV/EBITDA (倍)</th></tr></thead>'+
       '<tbody>'+sorted.map(function(c){
@@ -213,7 +226,10 @@ function rValuation(){
           '<td>'+nv(c.kpi('ev_ebitda'),'倍','f1')+'</td></tr>';
       }).join('')+'</tbody></table></div></div>';
 
-  dc(['vlPBR','vlPER','vlROE','vlPBRBar']);
+  // ヒートマップ描画 (19 KPI × 7 社)
+  buildHeatmap('tblHeat');
+
+  dc(['vlPBR','vlPER','vlROE','vlPBRBar','vlRadar']);
   var mx=Math.max.apply(null,companies.map(function(c){return c.marketCap||1;}));
   mc('vlPBR','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.kpi('roe')!=null&&c.kpi('pbr')!=null;}).map(function(c){return{x:c.kpi('roe'),y:c.kpi('pbr'),r:Math.max(8,Math.sqrt((c.marketCap||1)/mx)*32),name:shortName(c.name)};}),backgroundColor:TC[tier]+'77',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'ROE (%)'}},y:{title:{display:true,text:'PBR (倍)'},min:0}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': ROE'+x.raw.x.toFixed(1)+'% / PBR'+x.raw.y.toFixed(2)+'倍';}}},datalabels:{display:true,color:'#444',font:{size:10,weight:600},formatter:function(v){return v.name;},align:'top',offset:4}}});
   mc('vlPER','bubble',{datasets:Object.keys(TIERS).map(function(tier){return{label:TIERS[tier],data:byTier(tier).filter(function(c){return c.kpi('per')!=null&&c.kpi('ev_ebitda')!=null;}).map(function(c){return{x:c.kpi('per'),y:c.kpi('ev_ebitda'),r:Math.max(8,Math.sqrt((c.marketCap||1)/mx)*32),name:shortName(c.name)};}),backgroundColor:TC[tier]+'77',borderColor:TC[tier],borderWidth:1};})},{scales:{x:{title:{display:true,text:'PER (倍)'}},y:{title:{display:true,text:'EV/EBITDA (倍)'}}},plugins:{tooltip:{callbacks:{label:function(x){return x.raw.name+': PER'+x.raw.x.toFixed(1)+' / EV·EBITDA'+x.raw.y.toFixed(1);}}},datalabels:{display:true,color:'#444',font:{size:10,weight:600},formatter:function(v){return v.name;},align:'top',offset:4}}});
@@ -223,6 +239,75 @@ function rValuation(){
 
   var pbrOrd=[].concat(companies).sort(function(a,b){return(b.kpi('pbr')||0)-(a.kpi('pbr')||0);});
   mc('vlPBRBar','bar',{labels:pbrOrd.map(function(c){return shortName(c.name);}),datasets:[{label:'PBR',data:pbrOrd.map(function(c){return c.kpi('pbr');}),backgroundColor:'rgba(26,45,79,0.7)',borderWidth:0,yAxisID:'y'},{label:'PER',data:pbrOrd.map(function(c){return c.kpi('per');}),backgroundColor:'rgba(155,139,110,0.7)',borderWidth:0,yAxisID:'y2'}]},{plugins:{legend:{display:true,position:'top'},datalabels:{display:false}},scales:{y:{title:{display:true,text:'PBR (倍)'},position:'left'},y2:{title:{display:true,text:'PER (倍)'},position:'right',grid:{display:false}}}});
+
+  // レーダーチャート: 5 軸を 0-100 に線形正規化。反転指標は反転後にスコア化
+  var radarKeys=[
+    {key:'roe',     label:'ROE',         invert:false},
+    {key:'roic',    label:'ROIC',        invert:false},
+    {key:'pbr',     label:'PBR',         invert:false},
+    {key:'per',     label:'PER (反転)',  invert:true},
+    {key:'ev_ebitda',label:'EV/EBITDA (反転)', invert:true},
+  ];
+  var ranges={};
+  radarKeys.forEach(function(rk){
+    var vals=companies.map(function(c){return c.kpi(rk.key);}).filter(function(v){return v!=null;});
+    ranges[rk.key]={min:Math.min.apply(null,vals),max:Math.max.apply(null,vals)};
+  });
+  function score(v,rk){
+    if(v==null)return 0;
+    var r=ranges[rk.key];
+    if(r.max===r.min)return 60;
+    var raw=(v-r.min)/(r.max-r.min); // 0..1
+    if(rk.invert)raw=1-raw;
+    return 20+raw*80; // 20..100
+  }
+  var radarColors=['#1a2d4f','#2a4470','#9b8b6e','#7a6d55','#2d7a4f','#b53a3a','#5555aa'];
+  var radarDatasets=companies.map(function(c,i){
+    return{
+      label:shortName(c.name),
+      data:radarKeys.map(function(rk){return score(c.kpi(rk.key),rk);}),
+      backgroundColor:radarColors[i]+'18',
+      borderColor:radarColors[i],
+      borderWidth:1.5,
+      pointBackgroundColor:radarColors[i],
+      pointRadius:3,
+    };
+  });
+  mc('vlRadar','radar',{labels:radarKeys.map(function(rk){return rk.label;}),datasets:radarDatasets},{plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},padding:14,boxWidth:14}},datalabels:{display:false},tooltip:{callbacks:{label:function(x){var c=companies[x.datasetIndex];var rk=radarKeys[x.dataIndex];var raw=c.kpi(rk.key);return c.name+' / '+rk.label+': '+(raw==null?'未取得':raw.toFixed(2))+(rk.key==='roe'||rk.key==='roic'?'%':'倍')+' (score '+x.parsed.r.toFixed(0)+')';}}}},scales:{r:{min:0,max:100,ticks:{stepSize:20,color:'#999',font:{size:9},backdropColor:'transparent'},pointLabels:{color:'#444',font:{size:11,weight:'600'}},grid:{color:'#eae7e1'},angleLines:{color:'#eae7e1'}}}});
+}
+
+/* ── ヒートマップ ヘルパー ── */
+function buildHeatmap(tblId){
+  var tbl=g(tblId);if(!tbl)return;
+  var inverted={per:true,ev_ebitda:true,net_debt_ebitda:true};
+  var allKeys=Object.keys(companies[0].summary.kpis);
+  var thead=tbl.querySelector('thead'),tbody=tbl.querySelector('tbody');
+  thead.innerHTML='<tr><th style="text-align:left;min-width:160px;">KPI</th>'+companies.map(function(c){return'<th style="text-align:center;min-width:80px;">'+c.ticker+'<br><span style="font-size:0.65rem;color:var(--text-light);font-weight:400;">'+shortName(c.name)+'</span></th>';}).join('')+'</tr>';
+  tbody.innerHTML=allKeys.map(function(k){
+    var meta=companies[0].summary.kpis[k];
+    var vals=companies.map(function(c){return c.kpi(k);});
+    var present=vals.filter(function(v){return v!=null;});
+    if(!present.length){
+      return'<tr><td>'+meta.label+'</td>'+vals.map(function(){return'<td><span class="heat-cell heat-na">—</span></td>';}).join('')+'</tr>';
+    }
+    // ランク付け (反転指標は昇順、それ以外は降順)
+    var sorted=present.slice().sort(function(a,b){return inverted[k]?a-b:b-a;});
+    function rank(v){if(v==null)return -1;return sorted.indexOf(v);}
+    function tierClass(v){
+      if(v==null)return'heat-na';
+      var r=rank(v),n=sorted.length;
+      if(n<=1)return'heat-mid';
+      var pct=r/(n-1); // 0=best, 1=worst
+      if(pct<=0.15)return'heat-best';
+      if(pct<=0.4)return'heat-good';
+      if(pct<=0.6)return'heat-mid';
+      if(pct<=0.85)return'heat-weak';
+      return'heat-worst';
+    }
+    function fmtVal(v){if(v==null)return'—';if(meta.unit==='%')return v.toFixed(1)+'%';if(meta.unit==='倍')return v.toFixed(2);return v.toString();}
+    return'<tr><td style="text-align:left;font-size:0.72rem;color:var(--text-mid);">'+meta.label+(inverted[k]?' <span style="color:var(--text-light);font-size:0.62rem;">↓良</span>':'')+'</td>'+
+      vals.map(function(v){return'<td><span class="heat-cell '+tierClass(v)+'">'+fmtVal(v)+'</span></td>';}).join('')+'</tr>';
+  }).join('');
 }
 
 /* ── rFinancial ── */
@@ -387,41 +472,76 @@ function rPartnership(){
 /* ── rDetail ── */
 function rDetail(){
   var el=g('sec-detail');
-  el.innerHTML=
-    secH('07','個別企業分析','7 社の 19 KPI 全項目を企業別に表示');
 
-  var cards=companies.map(function(c){
-    var k=c.summary.kpis;
-    var groups={
-      A:{label:'A. 株主還元・資本政策',keys:['doe','total_payout_ratio','buyback_amount','payout_ratio','crossheld_to_eq']},
-      B:{label:'B. 資本効率',         keys:['roe','roic','pbr','per','ev_ebitda']},
-      C:{label:'C. 事業ポートフォリオ',keys:['resource_ratio','overseas_revenue','segment_roic']},
-      D:{label:'D. 財務健全性',       keys:['net_debt_ebitda','equity_ratio','interest_coverage']},
-      E:{label:'E. アクティビスト・シグナル',keys:['cash_to_mcap','large_holder_count','crossheld_reduction']},
-    };
-    var groupHtml=Object.keys(groups).map(function(gKey){
-      var g=groups[gKey];
-      var rows=g.keys.map(function(kk){
-        var item=k[kk];
-        var v=item.value;
-        return'<tr><td style="font-size:0.7rem;color:var(--text-mid);text-align:left;">'+item.label+'</td><td style="text-align:right;font-weight:600;">'+
-          (v==null?'<span class="na-cell">—</span>':(item.unit==='%'?v.toFixed(2)+'%':item.unit==='倍'?v.toFixed(2)+'倍':v.toLocaleString()+(item.unit||'')))+
-          '</td></tr>';
-      }).join('');
-      return'<div style="margin-bottom:14px;"><div style="font-size:0.72rem;color:var(--gold-dim);font-weight:700;letter-spacing:1px;margin-bottom:6px;">'+g.label+'</div><table style="font-size:0.78rem;">'+rows+'</table></div>';
+  // 5大商社平均 (deviation bar 用) を事前計算
+  var big5=byTier('big5');
+  var devKeys=['doe','payout_ratio','roe','roic','pbr','per','ev_ebitda','net_debt_ebitda','cash_to_mcap'];
+  var avgs={};
+  devKeys.forEach(function(k){var vals=big5.map(function(c){return c.kpi(k);}).filter(function(v){return v!=null;});avgs[k]=vals.length?vals.reduce(function(s,v){return s+v;},0)/vals.length:null;});
+
+  // KPI ハイライトの選定 (各社で目立つ数値 4 つ)
+  function pickHighlights(c){
+    return[
+      {label:'時価総額',value:fmtMcap(c.marketCap),sub:'FY24'},
+      {label:'ROE',value:fmt(c.kpi('roe'),'%',1),sub:'5大商社平均 '+fmt(avgs.roe,'%',1)},
+      {label:'PBR',value:fmt(c.kpi('pbr'),'倍',2),sub:'5大商社平均 '+fmt(avgs.pbr,'倍',2)},
+      {label:c.tier==='big5'?'バフェット保有':'バフェット対象',value:c.tier==='big5'?(buffett?(buffett.holdings_pct[c.ticker].trend.slice(-1)[0].toFixed(1)+'%'):'—'):'対象外',sub:c.tier==='big5'?'2025/3 直近':'5大商社のみ'},
+    ];
+  }
+
+  function bulletList(arr){return arr.map(function(s){return'<div class="narrative-bullet">'+s+'</div>';}).join('');}
+
+  function deviationBars(c){
+    var labels={doe:'DOE',payout_ratio:'配当性向',roe:'ROE',roic:'ROIC (簡易)',pbr:'PBR',per:'PER',ev_ebitda:'EV/EBITDA',net_debt_ebitda:'ネット負債/EBITDA',cash_to_mcap:'現預金/時価総額'};
+    // ネット負債/EBITDA は低いほど良い指標 → 反転表示
+    var inverted={net_debt_ebitda:true,per:true,ev_ebitda:true};
+    var rows=devKeys.map(function(k){
+      var v=c.kpi(k),avg=avgs[k];
+      if(v==null||avg==null||avg===0)return'<div class="deviation-row"><span class="deviation-label">'+labels[k]+'</span><div class="deviation-track"></div><span class="deviation-value" style="color:var(--text-light);font-weight:400;">—</span></div>';
+      var rawDev=(v-avg)/Math.abs(avg)*100;
+      var dispDev=inverted[k]?-rawDev:rawDev;  // 反転指標: 低い方が "+"
+      var clamped=Math.max(-99,Math.min(99,dispDev));
+      var widthPct=Math.min(50,Math.abs(clamped)/2); // ±100% で trackの半分埋める
+      var sign=dispDev>=0?'pos':'neg';
+      var fillStyle=dispDev>=0?'left:50%;width:'+widthPct+'%;':'right:50%;width:'+widthPct+'%;';
+      var label=(dispDev>=0?'+':'')+dispDev.toFixed(0)+'%';
+      return'<div class="deviation-row"><span class="deviation-label">'+labels[k]+'</span><div class="deviation-track"><div class="deviation-fill '+sign+'" style="'+fillStyle+'"></div></div><span class="deviation-value '+sign+'">'+label+'</span></div>';
     }).join('');
+    return'<div class="deviation-section-title">5 大商社平均からの乖離 (反転指標: 低いほど評価良い指標は + 表示)</div>'+rows;
+  }
 
-    return'<div class="chart-panel" style="padding:20px;">'+
-      '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;border-bottom:1px solid var(--border-light);padding-bottom:10px;">'+
-        '<div><span style="font-family:Cormorant Garamond,Georgia,serif;color:var(--gold);font-size:0.7rem;letter-spacing:2px;">'+c.ticker+'</span> <strong style="color:var(--navy);font-family:Noto Serif JP,serif;font-size:1.05rem;">'+c.name+'</strong></div>'+
-        '<span class="badge '+TB[c.tier]+'">'+TIERS[c.tier]+'</span>'+
+  function narrativeCard(c){
+    var n=narratives&&narratives.companies?narratives.companies[c.ticker]:null;
+    var hl=pickHighlights(c);
+    var hlHtml=hl.map(function(h){return'<span style="margin-right:18px;font-size:0.78rem;color:var(--text-muted);"><strong style="color:var(--navy);font-size:0.95rem;font-weight:700;">'+h.value+'</strong> '+h.label+'<span style="color:var(--text-light);margin-left:6px;font-size:0.7rem;">('+h.sub+')</span></span>';}).join('');
+    var body=n?(
+      '<div class="narrative-headline">'+n.headline+'</div>'+
+      '<div class="narrative-thesis"><span class="narrative-thesis-label">INVESTMENT THESIS</span>'+n.thesis+'</div>'+
+      '<div class="narrative-grid">'+
+        '<div><div class="narrative-block-title is-strength">強み</div>'+bulletList(n.strengths)+'</div>'+
+        '<div><div class="narrative-block-title is-challenge">課題・リスク</div>'+bulletList(n.challenges)+'</div>'+
+        '<div><div class="narrative-block-title is-recent">直近トピック</div>'+bulletList(n.recent)+'</div>'+
+      '</div>'
+    ):'<div class="commentary danger" style="margin-bottom:14px;"><strong>ナラティブ未取得:</strong> data/sogo-shosha/refs/company-narratives.json を確認</div>';
+
+    return'<div class="narrative-card">'+
+      '<div class="narrative-card-header">'+
+        '<div><span class="narrative-card-id">'+c.ticker+'</span><span class="narrative-card-name">'+c.name+'</span> <span class="badge '+TB[c.tier]+'" style="margin-left:8px;">'+TIERS[c.tier]+'</span></div>'+
+        '<div class="narrative-card-meta">'+hlHtml+'</div>'+
       '</div>'+
-      '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:14px;">時価総額: <strong style="color:var(--navy);">'+fmtMcap(c.marketCap)+'</strong></div>'+
-      groupHtml+
+      body+
+      deviationBars(c)+
     '</div>';
-  }).join('');
+  }
 
-  el.innerHTML+='<div class="chart-row tri" style="grid-template-columns:repeat(auto-fit,minmax(330px,1fr));">'+cards+'</div>';
+  el.innerHTML=
+    secH('07','個別企業分析','各社のヘッドライン・投資テーゼ・5 大商社平均からの乖離を 1 枚で')+
+    '<div class="commentary">'+
+      '<strong>読み方:</strong> 各社のカードは「ヘッドライン → 投資テーゼ → 強み・課題・直近トピック → 5 大商社平均からの乖離バー」で構成。'+
+      '乖離バーは <span style="color:var(--green);font-weight:700;">緑 (+)</span> が「他 5 社平均より良い」、<span style="color:var(--red);font-weight:700;">赤 (−)</span> が「悪い」を示す。'+
+      'PER ・ EV/EBITDA ・ ネット負債/EBITDA は数値が低いほど評価が高い反転指標のため、表示上も反転して + / − を割当てている。'+
+    '</div>'+
+    companies.map(narrativeCard).join('');
 }
 
 /* ── rSource ── */
@@ -531,11 +651,13 @@ async function loadData(){
     var refsFetches=[
       fetch('/data/sogo-shosha/refs/buffett-holdings.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
       fetch('/data/sogo-shosha/refs/strategic-initiatives.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+      fetch('/data/sogo-shosha/refs/company-narratives.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
     ];
     var summaries=await Promise.all(fetches);
     var refs=await Promise.all(refsFetches);
     buffett=refs[0];
     strategic=refs[1];
+    narratives=refs[2];
     companies=summaries.map(function(s,i){
       var t=TARGETS[i];
       return{
