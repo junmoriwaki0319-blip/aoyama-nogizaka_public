@@ -20,6 +20,8 @@ const TC={big5:'#1a2d4f',mid:'#9b8b6e'};
 const TB={big5:'badge-big5',mid:'badge-mid'};
 
 let companies=[];
+let buffett=null;
+let strategic=null;
 let tab='exec';
 const CH={};
 
@@ -288,14 +290,15 @@ function rActivist(){
       kpi('大量保有報告件数','—','EDINET キー必要','c-red')+
       kpi('政策保有縮減率','—','データ未取得','c-red')+
     '</div>'+
-    '<div class="chart-row">'+
-      '<div class="chart-panel"><div class="chart-panel-title">現預金 / 時価総額 比率</div><div class="chart-panel-sub">単位: %</div><div class="chart-area tall"><canvas id="acCM"></canvas></div></div>'+
-      '<div class="chart-panel"><div class="chart-panel-title">バフェット保有 (Berkshire Hathaway)</div><div class="chart-panel-sub">フェーズ2 で 13F filings から取得予定</div><div class="chart-area tall" style="display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.85rem;text-align:center;line-height:2;">5大商社全社が保有対象<br>(双日・豊田通商は対象外)<br><br>過去 8 期分の保有株数推移は<br>フェーズ2 でロード予定</div></div>'+
+    '<div class="chart-row single">'+
+      '<div class="chart-panel"><div class="chart-panel-title">現預金 / 時価総額 比率</div><div class="chart-panel-sub">単位: % / 高いほどアクティビストにとっての資本配当余地が大</div><div class="chart-area tall"><canvas id="acCM"></canvas></div></div>'+
+    '</div>'+
+    '<div class="commentary">'+
+      '<strong>関連分析:</strong> バフェット (Berkshire Hathaway) の 5 大商社保有推移、各社の戦略的提携・DX 動向は <strong>「06 戦略・提携動向」タブ</strong> に集約しています。'+
     '</div>'+
     '<div class="table-panel"><div class="table-header"><div class="table-header-title">アクティビスト・シグナル 一覧 (現預金/時価総額 降順)</div></div><div class="table-scroll"><table>'+
       '<thead><tr><th>コード</th><th>企業</th><th>区分</th><th>現預金/時価総額 (%)</th><th>大量保有報告件数 (12M)</th><th>政策保有縮減率 (5期)</th><th>バフェット保有</th></tr></thead>'+
       '<tbody>'+sorted.map(function(c){
-        var buf=c.tier==='big5'?'対象 (FY2 で取込予定)':'対象外';
         return'<tr><td>'+c.ticker+'</td><td><strong>'+shortName(c.name)+'</strong></td>'+
           '<td><span class="badge '+TB[c.tier]+'">'+TIERS[c.tier]+'</span></td>'+
           '<td>'+nv(c.kpi('cash_to_mcap'),'%','f1')+'</td>'+
@@ -307,11 +310,85 @@ function rActivist(){
   mc('acCM','bar',{labels:sorted.map(function(c){return shortName(c.name);}),datasets:[{data:sorted.map(function(c){return c.kpi('cash_to_mcap');}),backgroundColor:sorted.map(function(c){return TC[c.tier];}),borderWidth:0}]},{indexAxis:'y',plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'right',color:'#999',font:{size:9},formatter:function(v){return v.toFixed(1)+'%';}}}});
 }
 
+/* ── rPartnership ── */
+function rPartnership(){
+  var el=g('sec-partnership');
+  if(!buffett||!strategic){
+    el.innerHTML=secH('06','戦略・提携動向','バフェット保有推移と各社の DX / 提携施策')+'<div class="commentary danger"><strong>データ未読込:</strong> refs/buffett-holdings.json または refs/strategic-initiatives.json の取得に失敗しました。</div>';
+    return;
+  }
+
+  var big5=['8058','8031','8001','8053','8002'];
+  var cols=buffett._columns;
+  var datasets=big5.map(function(t,i){
+    var trend=buffett.holdings_pct[t];
+    return{label:trend.name,data:trend.trend,borderColor:['#1a2d4f','#2d7a4f','#9b8b6e','#7a6d55','#b53a3a'][i],backgroundColor:['#1a2d4f','#2d7a4f','#9b8b6e','#7a6d55','#b53a3a'][i]+'15',fill:false,tension:0.25,pointRadius:4,pointHoverRadius:6,borderWidth:2};
+  });
+
+  var milestoneHtml=buffett.milestones.map(function(m){
+    var idx=m.indexOf(':');
+    var d=idx>0?m.slice(0,idx):'';
+    var t=idx>0?m.slice(idx+1).trim():m;
+    return'<div style="display:flex;gap:14px;padding:8px 0;border-bottom:1px dashed var(--border-light);font-size:0.78rem;line-height:1.7;"><span style="font-family:Cormorant Garamond,Georgia,serif;color:var(--gold);font-weight:700;letter-spacing:1px;min-width:90px;">'+d+'</span><span style="color:var(--text-mid);">'+t+'</span></div>';
+  }).join('');
+
+  var implHtml=buffett.narrative.implications.map(function(s,i){
+    return'<div style="display:flex;gap:10px;padding:6px 0;font-size:0.8rem;line-height:1.8;"><span style="font-family:Cormorant Garamond,Georgia,serif;color:var(--gold);font-weight:700;min-width:18px;">'+(i+1)+'.</span><span style="color:var(--text-mid);">'+s+'</span></div>';
+  }).join('');
+
+  var partnerCardsHtml=Object.keys(strategic.companies).map(function(t){
+    var c=strategic.companies[t];
+    var tierMeta=companies.find(function(x){return x.ticker===t;});
+    var tierLabel=tierMeta?TIERS[tierMeta.tier]:'';
+    var tierBadgeCls=tierMeta?TB[tierMeta.tier]:'badge-mid';
+    var items=c.items.map(function(item){
+      return'<div class="partner-item">'+
+        '<div class="partner-item-title"><span class="badge-cat badge-cat-'+item.category+'">'+item.category+'</span>'+item.title+'</div>'+
+        '<div class="partner-item-summary">'+item.summary+'</div>'+
+      '</div>';
+    }).join('');
+    return'<div class="partner-card">'+
+      '<div class="partner-card-header">'+
+        '<div><span class="partner-card-ticker">'+t+'</span><span class="partner-card-name">'+c.name+'</span></div>'+
+        '<span class="badge '+tierBadgeCls+'">'+tierLabel+'</span>'+
+      '</div>'+
+      '<div class="partner-card-headline">'+c.headline+'</div>'+
+      items+
+    '</div>';
+  }).join('');
+
+  el.innerHTML=
+    secH('06','戦略・提携動向','バフェット (Berkshire Hathaway) 保有推移と各社の DX / 戦略的提携を集約')+
+    '<div class="commentary">'+
+      '<strong>'+buffett.narrative.thesis+'</strong>'+
+    '</div>'+
+    '<div class="chart-row">'+
+      '<div class="chart-panel"><div class="chart-panel-title">バフェット (Berkshire Hathaway) 5大商社保有比率推移</div><div class="chart-panel-sub">単位: % / 双日・豊田通商は対象外 / 出典: Berkshire Annual Letter + 各社大量保有報告</div><div class="chart-area tall"><canvas id="ptBuffett"></canvas></div></div>'+
+      '<div class="chart-panel"><div class="chart-panel-title">バフェット投資のマイルストーン</div><div class="chart-panel-sub">2020 年初開示 〜 直近の動き</div><div style="margin-top:8px;">'+milestoneHtml+'</div></div>'+
+    '</div>'+
+    '<div class="chart-row single">'+
+      '<div class="chart-panel"><div class="chart-panel-title">投資テーゼの含意 (3 観点)</div><div class="chart-panel-sub">5 大商社の長期保有が日本商社セクター全体に与える構造的影響</div><div style="margin-top:12px;">'+implHtml+'</div></div>'+
+    '</div>'+
+    '<div class="sec-header" style="margin-top:24px;"><div class="sec-num">SECTION 06 — 戦略動向</div><div class="sec-title">各社の DX・戦略的提携</div><div class="sec-desc">公開情報ベースで主要施策を抽出。網羅性は意図せず、業界比較に資する象徴的な施策のみを掲載。</div></div>'+
+    '<div class="commentary navy">'+
+      '<strong>カテゴリ凡例:</strong>'+
+      ' <span class="badge-cat badge-cat-DX">DX</span>デジタル・データ・AI'+
+      ' <span class="badge-cat badge-cat-提携">提携</span>戦略的パートナーシップ・合弁'+
+      ' <span class="badge-cat badge-cat-海外">海外</span>地域・新興国戦略'+
+      ' <span class="badge-cat badge-cat-脱炭素">脱炭素</span>再エネ・水素・CCUS'+
+      ' <span class="badge-cat badge-cat-コンスーマー">コンスーマー</span>リテール・B2C・消費者接点'+
+    '</div>'+
+    '<div class="chart-row tri" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;">'+partnerCardsHtml+'</div>';
+
+  dc(['ptBuffett']);
+  mc('ptBuffett','line',{labels:cols,datasets:datasets},{plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},padding:14}},datalabels:{display:false},tooltip:{callbacks:{label:function(x){return x.dataset.label+': '+x.parsed.y.toFixed(1)+'%';}}}},scales:{y:{title:{display:true,text:'保有比率 (%)'},min:4,max:11},x:{title:{display:true,text:''}}}});
+}
+
 /* ── rDetail ── */
 function rDetail(){
   var el=g('sec-detail');
   el.innerHTML=
-    secH('06','個別企業分析','7 社の 19 KPI 全項目を企業別に表示');
+    secH('07','個別企業分析','7 社の 19 KPI 全項目を企業別に表示');
 
   var cards=companies.map(function(c){
     var k=c.summary.kpis;
@@ -360,7 +437,8 @@ function rSource(){
       kpi('取得日','2026-05-07','','c-navy')+
       kpi('基準期','FY24 通期実績','TTM (2026/3 期末)','c-navy')+
       kpi('対象企業','7社','5大商社+双日+豊田通商','c-navy')+
-      kpi('KPI 充足率','9/19','47.4%','c-gold')+
+      kpi('KPI 充足率','9/19','47.4% (KPI のみ)','c-gold')+
+      kpi('補足レイヤー','2/3','Buffett + 戦略動向 取込済','c-green')+
       kpi('未取得 KPI','10項目','known-issues.md §2','c-red')+
     '</div>'+
     '<div class="chart-row single">'+
@@ -411,6 +489,7 @@ function render(){
   else if(tab==='valuation')rValuation();
   else if(tab==='financial')rFinancial();
   else if(tab==='activist')rActivist();
+  else if(tab==='partnership')rPartnership();
   else if(tab==='detail')rDetail();
   else if(tab==='source')rSource();
 }
@@ -449,7 +528,14 @@ async function loadData(){
         return r.json();
       });
     });
+    var refsFetches=[
+      fetch('/data/sogo-shosha/refs/buffett-holdings.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+      fetch('/data/sogo-shosha/refs/strategic-initiatives.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+    ];
     var summaries=await Promise.all(fetches);
+    var refs=await Promise.all(refsFetches);
+    buffett=refs[0];
+    strategic=refs[1];
     companies=summaries.map(function(s,i){
       var t=TARGETS[i];
       return{

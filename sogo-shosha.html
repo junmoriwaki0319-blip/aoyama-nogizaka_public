@@ -143,6 +143,21 @@
     .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 600; }
     .badge-big5 { background: rgba(26,45,79,0.08); color: var(--navy); }
     .badge-mid { background: rgba(155,139,110,0.1); color: var(--gold-dim); }
+    .badge-cat { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.3px; margin-right: 8px; }
+    .badge-cat-DX { background: rgba(26,45,79,0.08); color: var(--navy); }
+    .badge-cat-提携 { background: rgba(155,139,110,0.12); color: var(--gold-dim); }
+    .badge-cat-海外 { background: rgba(45,122,79,0.08); color: var(--green); }
+    .badge-cat-脱炭素 { background: rgba(45,122,79,0.08); color: var(--green); }
+    .badge-cat-コンスーマー { background: rgba(181,58,58,0.08); color: var(--red); }
+    .partner-card { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 22px 24px; }
+    .partner-card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light); }
+    .partner-card-ticker { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; }
+    .partner-card-name { font-family: 'Noto Serif JP', serif; color: var(--navy); font-size: 1.05rem; font-weight: 700; margin-left: 8px; }
+    .partner-card-headline { font-size: 0.78rem; color: var(--text-mid); line-height: 1.7; margin: 14px 0 18px; padding: 12px 14px; background: var(--bg-alt); border-left: 2px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+    .partner-item { padding: 10px 0; border-bottom: 1px dashed var(--border-light); }
+    .partner-item:last-child { border-bottom: none; }
+    .partner-item-title { font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .partner-item-summary { font-size: 0.74rem; color: var(--text-mid); line-height: 1.7; }
     .ranking-card { background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
     .ranking-title { font-size: 0.72rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
     .ranking-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 3px 0; }
@@ -304,7 +319,8 @@
       <div class="nav-item" data-tab="valuation"><span class="nav-num">03</span>資本効率・バリュエーション</div>
       <div class="nav-item" data-tab="financial"><span class="nav-num">04</span>財務健全性</div>
       <div class="nav-item" data-tab="activist"><span class="nav-num">05</span>アクティビスト・シグナル</div>
-      <div class="nav-item" data-tab="detail"><span class="nav-num">06</span>個別企業分析</div>
+      <div class="nav-item" data-tab="partnership"><span class="nav-num">06</span>戦略・提携動向</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">07</span>個別企業分析</div>
       <div class="nav-item" data-tab="source"><span class="nav-num">A</span>データソース</div>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
@@ -317,6 +333,7 @@
   <div class="section" id="sec-valuation"></div>
   <div class="section" id="sec-financial"></div>
   <div class="section" id="sec-activist"></div>
+  <div class="section" id="sec-partnership"></div>
   <div class="section" id="sec-detail"></div>
   <div class="section" id="sec-source"></div>
 </div>
