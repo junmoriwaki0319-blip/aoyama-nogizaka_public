@@ -1,0 +1,13 @@
+# Step 4: bisect aborted before commit-by-commit measurement
+# Reason: single-run Lighthouse variance >= 30pp on the SAME deployment URL,
+# making bisect threshold-based discrimination impossible. See findings.md.
+#
+# Anchor measurements collected (3-run on simulated-throttling mobile / saas):
+#   BASE_421 preview (https://aoyama-nogizakapublic-3zdupoldr-...): [55, 57, 56] median=56
+#   main HEAD preview (https://aoyama-nogizakapublic-kub8zj8pc-...): [83(*), 52, 56, 54] median≈54
+#   production (aoyama-nogizaka.com) saas: [80] (1 run during multi-page sweep)
+#
+# (*) 83 was a single-run cold sample taken earlier in the same session.
+# After measuring 5+ pages in sequence, subsequent saas runs settled around 52-56.
+#
+# Therefore: no commit-based regression to bisect.
