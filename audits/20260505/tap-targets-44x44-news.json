@@ -1,0 +1,136 @@
+{
+  "url": "https://aoyama-nogizaka.com/news/",
+  "slug": "news",
+  "threshold": 44,
+  "viewport": "375x667",
+  "total": 6,
+  "errors": [],
+  "violations": [
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "a",
+      "id": "",
+      "classes": "skip-link",
+      "role": "",
+      "href": "#main",
+      "onclick": false,
+      "labelFor": "",
+      "text": "メインコンテンツへスキップ",
+      "current": {
+        "w": 214,
+        "h": 37
+      },
+      "deficit": {
+        "w": 0,
+        "h": 7
+      },
+      "selector": "html > body > a.skip-link",
+      "outerHTML": "<a href=\"#main\" class=\"skip-link\">メインコンテンツへスキップ</a>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "button",
+      "id": "",
+      "classes": "filter-btn active",
+      "role": "",
+      "href": "",
+      "onclick": false,
+      "labelFor": "",
+      "text": "すべて",
+      "current": {
+        "w": 80.33,
+        "h": 40
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4
+      },
+      "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn.active:nth-of-type(1)",
+      "outerHTML": "<button class=\"filter-btn active\" data-filter=\"all\">すべて</button>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "button",
+      "id": "",
+      "classes": "filter-btn",
+      "role": "",
+      "href": "",
+      "onclick": false,
+      "labelFor": "",
+      "text": "論考・分析",
+      "current": {
+        "w": 108.16,
+        "h": 40
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4
+      },
+      "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(2)",
+      "outerHTML": "<button class=\"filter-btn\" data-filter=\"insight\">論考・分析</button>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "button",
+      "id": "",
+      "classes": "filter-btn",
+      "role": "",
+      "href": "",
+      "onclick": false,
+      "labelFor": "",
+      "text": "プレスリリース",
+      "current": {
+        "w": 133.98,
+        "h": 40
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4
+      },
+      "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(3)",
+      "outerHTML": "<button class=\"filter-btn\" data-filter=\"press\">プレスリリース</button>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "button",
+      "id": "",
+      "classes": "filter-btn",
+      "role": "",
+      "href": "",
+      "onclick": false,
+      "labelFor": "",
+      "text": "お知らせ",
+      "current": {
+        "w": 94.67,
+        "h": 40
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4
+      },
+      "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(4)",
+      "outerHTML": "<button class=\"filter-btn\" data-filter=\"news\">お知らせ</button>"
+    },
+    {
+      "page": "https://aoyama-nogizaka.com/news/",
+      "tag": "button",
+      "id": "",
+      "classes": "filter-btn",
+      "role": "",
+      "href": "",
+      "onclick": false,
+      "labelFor": "",
+      "text": "データ・ダッシュボード",
+      "current": {
+        "w": 187.53,
+        "h": 40
+      },
+      "deficit": {
+        "w": 0,
+        "h": 4
+      },
+      "selector": "html > body > div.container:nth-of-type(3) > div.filter-bar:nth-of-type(1) > button.filter-btn:nth-of-type(5)",
+      "outerHTML": "<button class=\"filter-btn\" data-filter=\"dashboard\">データ・ダッシュボード</button>"
+    }
+  ]
+}
