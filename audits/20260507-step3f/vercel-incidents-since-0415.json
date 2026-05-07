@@ -1,0 +1,161 @@
+[
+  {
+    "name": "Failures to load data across multiple services on the Vercel dashboard, API, and CLI",
+    "created_at": "2026-05-05T15:15:40.677Z",
+    "components": [
+      "Dashboard",
+      "API",
+      "Speed Insights",
+      "Web Analytics",
+      "Observability"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Increased error rate in Workflows",
+    "created_at": "2026-05-05T23:30:08.000Z",
+    "components": [
+      "Workflow"
+    ],
+    "status": "resolved",
+    "impact": "major"
+  },
+  {
+    "name": "Request Failures in ICN1 (Seoul, South Korea)",
+    "created_at": "2026-05-04T21:30:00.000Z",
+    "components": [],
+    "status": "resolved",
+    "impact": "major"
+  },
+  {
+    "name": "Elevated Functions Invocation Errors in ICN1 (Seoul, South Korea) Region",
+    "created_at": "2026-05-01T11:30:44.384Z",
+    "components": [
+      "Edge Functions",
+      "Edge Middleware",
+      "Serverless Functions"
+    ],
+    "status": "resolved",
+    "impact": "none"
+  },
+  {
+    "name": "Elevated Build Errors",
+    "created_at": "2026-04-30T18:57:03.061Z",
+    "components": [
+      "Builds"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Elevated Build Errors for Secure Compute/Static IPs Projects",
+    "created_at": "2026-04-30T17:30:26.949Z",
+    "components": [
+      "Builds"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Elevated Domains Errors",
+    "created_at": "2026-04-29T15:28:00.839Z",
+    "components": [
+      "Dashboard",
+      "Domain Registration"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Errors Deploying Templates",
+    "created_at": "2026-04-28T15:46:22.195Z",
+    "components": [
+      "Builds"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Delayed Usage Data for Observability Events",
+    "created_at": "2026-04-28T09:00:00.000Z",
+    "components": [],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Errors Purchasing Domains, AI Gateway Credits",
+    "created_at": "2026-04-25T00:39:58.762Z",
+    "components": [
+      "Dashboard"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Delays Loading Logs",
+    "created_at": "2026-04-22T18:25:40.186Z",
+    "components": [
+      "Logs"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Partial Observability Outage Affecting Compute Telemetry",
+    "created_at": "2026-04-22T23:00:00.000Z",
+    "components": [],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Elevated errors on Vercel Dashboard",
+    "created_at": "2026-04-21T13:51:39.746Z",
+    "components": [
+      "Dashboard"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Observability Alerts degraded",
+    "created_at": "2026-04-20T09:38:32.000Z",
+    "components": [
+      "Observability"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Elevated errors on Vercel Dashboard and API endpoints",
+    "created_at": "2026-04-20T19:40:58.989Z",
+    "components": [
+      "Dashboard",
+      "Builds",
+      "API"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  },
+  {
+    "name": "Unaccessible runtime logs in the dashboard",
+    "created_at": "2026-04-20T10:10:28.869Z",
+    "components": [
+      "Logs"
+    ],
+    "status": "resolved",
+    "impact": "major"
+  },
+  {
+    "name": "Delays Loading Observability, Analytics and Speed Insights",
+    "created_at": "2026-04-19T20:43:03.000Z",
+    "components": [
+      "Dashboard",
+      "Logs",
+      "Speed Insights",
+      "Web Analytics"
+    ],
+    "status": "resolved",
+    "impact": "minor"
+  }
+]
