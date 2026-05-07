@@ -1,0 +1,89 @@
+e20ed4c Merge pull request #12 from junmoriwaki0319-blip/chore/launch-checklist-update-20260507
+bf6cdfa chore(launch-checklist): mark sogo-shosha 2026-05-07 deployment items completed
+cb22f4c Merge pull request #11 from junmoriwaki0319-blip/fix/index-nav-add-sogo-shosha
+70657bc fix(index): add /sogo-shosha.html to nav, mobile-menu, footer
+e54ea87 Merge pull request #10 from junmoriwaki0319-blip/chore/sitemap-202605
+a4dfab8 fix(sogo-shosha): apply fact-check-brief, status DRAFT -> REVIEWED
+e058de7 feat(sogo-shosha): member auth + cross-nav links + segment fact-check
+6d24af4 fact: incorporate Speeda 2025-09 + 2026 verified facts
+b0edb59 fix(sogo-shosha): fact-check pass + portfolio gap proposals
+cc3aa2d feat(sogo-shosha): deepen analysis with narratives, radar, heatmap
+29f751a feat(sogo-shosha): add 戦略・提携動向 tab (Buffett trend + DX/提携 cards)
+e9dec78 feat(sogo-shosha): add /sogo-shosha.html dashboard with 7 tabs
+877e706 data(sogo-shosha): record phase 1 §9 decisions (URL=/sogo-shosha.html, Tier2=defer)
+7e9dc08 data(sogo-shosha): phase 1 baseline for 7 companies
+1988fcc chore(sitemap): add 4 missing URLs and refresh lastmod 2026-05-07
+cf0320c data: update EDINET reports 2026-05-06T23:44:23Z
+722fbe7 Merge pull request #9 from junmoriwaki0319-blip/fix/tap-targets-44px-20260507
+362092b audit(tap-targets): post-fix measurement on preview (75 → 9, 66 fixed)
+1ea1d3c docs: tap-targets classification (audits/20260507/, 75件 → 6型 + KNOWN-ISSUE 8件)
+86f4cf2 fix: tap-targets Type F — food-service "SaaSレポートを見る" CTA 44px (1件)
+098245e fix: tap-targets Type E — .resource-list a 44px hit area (10件)
+bc8751b fix: tap-targets Type D — .filter-btn 40px → 44px (news index, 5件)
+be13f02 fix: tap-targets Types B+C — .link-primary/.link-secondary/.cta-link 44px (38件)
+426bb02 fix: tap-targets Type A — .skip-link 44px min-height (13/13 pages)
+5dfddcf Merge pull request #7 from junmoriwaki0319-blip/chore/vercelignore-audits
+e7b2eab chore: exclude audits/ from Vercel deploy
+ef2a686 data: update EDINET reports 2026-05-06T11:48:42Z
+06b716e data: update EDINET financials cache 2026-05-06T11:03:26Z
+f033e07 data: update EDINET reports 2026-05-06T09:25:17Z
+5633601 data: update EDINET reports 2026-05-05T23:43:35Z
+8b29945 data: update EDINET reports 2026-05-05T11:16:51Z
+eacb039 data: update EDINET financials cache 2026-05-05T10:34:08Z
+5b783b2 data: update EDINET reports 2026-05-05T09:10:03Z
+0b83ef4 data: update EDINET reports 2026-05-04T23:46:57Z
+fa383ee data: update EDINET reports 2026-05-04T11:48:00Z
+ee3ecfe data: update EDINET financials cache 2026-05-04T11:02:53Z
+34d07b0 data: update EDINET reports 2026-05-04T09:21:44Z
+f1b0ea0 data: update EDINET reports 2026-05-03T23:38:30Z
+aba7601 data: update EDINET reports 2026-05-03T10:54:09Z
+fe9bdee data: update EDINET financials cache 2026-05-03T10:04:05Z
+925b8c9 data: update EDINET reports 2026-05-03T08:49:02Z
+599e8c4 data: update EDINET reports 2026-05-02T23:37:28Z
+3009db7 data: update EDINET reports 2026-05-02T10:49:18Z
+965f055 data: update EDINET financials cache 2026-05-02T09:59:47Z
+7b6c9ed data: update EDINET reports 2026-05-02T08:23:47Z
+188dc2b data: update EDINET reports 2026-05-01T23:45:38Z
+baffc2f data: update EDINET reports 2026-05-01T11:07:06Z
+ba58084 data: update EDINET financials cache 2026-05-01T10:21:55Z
+a393d55 data: update EDINET reports 2026-05-01T09:04:45Z
+6850c8d data: update EDINET reports 2026-04-30T23:46:41Z
+6f3ef75 data: update EDINET reports 2026-04-30T11:28:30Z
+1ac3cfe data: update EDINET financials cache 2026-04-30T10:52:14Z
+902cf37 data: update EDINET reports 2026-04-30T09:14:58Z
+ecf549a data: update EDINET reports 2026-04-29T23:47:24Z
+aa92855 data: update EDINET reports 2026-04-29T11:29:11Z
+4c8870d data: update EDINET financials cache 2026-04-29T10:52:13Z
+7f927d5 data: update EDINET reports 2026-04-29T09:12:11Z
+b3a6f64 data: update EDINET reports 2026-04-28T23:48:08Z
+ac7eea8 data: update EDINET reports 2026-04-28T11:45:59Z
+9558a03 data: update EDINET financials cache 2026-04-28T11:00:15Z
+700fb25 data: update EDINET reports 2026-04-28T09:25:35Z
+be47827 data: update EDINET reports 2026-04-27T23:47:05Z
+2a39554 data: update EDINET reports 2026-04-27T11:45:19Z
+0c3e3a6 data: update EDINET financials cache 2026-04-27T10:59:22Z
+c9bf0cd data: update EDINET reports 2026-04-27T09:21:14Z
+609b721 data: update EDINET reports 2026-04-26T23:33:57Z
+99d03c5 data: update EDINET reports 2026-04-26T10:44:35Z
+68f83d1 data: update EDINET financials cache 2026-04-26T09:49:40Z
+2f35382 data: update EDINET reports 2026-04-26T08:18:08Z
+4334b09 data: update EDINET reports 2026-04-25T23:32:38Z
+4784d2f data: update EDINET reports 2026-04-25T10:42:00Z
+fcf159e data: update EDINET financials cache 2026-04-25T09:48:27Z
+5ab6ae8 data: update EDINET reports 2026-04-25T08:08:10Z
+9f82cb7 data: update EDINET reports 2026-04-24T23:35:52Z
+7b652fc data: update EDINET reports 2026-04-24T11:05:53Z
+e31d374 data: update EDINET financials cache 2026-04-24T10:19:55Z
+b9ecf8d data: update EDINET reports 2026-04-24T09:03:50Z
+533a516 data: update EDINET reports 2026-04-23T23:39:52Z
+8342d09 data: update EDINET reports 2026-04-23T11:07:14Z
+ac05721 data: update EDINET financials cache 2026-04-23T10:24:58Z
+7f3c5e2 data: update EDINET reports 2026-04-23T08:57:10Z
+eb0ccfd data: update EDINET reports 2026-04-22T23:42:28Z
+348e788 data: update EDINET reports 2026-04-22T11:04:06Z
+62a9b37 data: update EDINET financials cache 2026-04-22T10:18:42Z
+69aa95c data: update EDINET reports 2026-04-22T08:55:33Z
+6f99087 data: update EDINET reports 2026-04-21T23:31:28Z
+7740b89 data: update EDINET reports 2026-04-21T11:05:43Z
+04a30b0 data: update EDINET financials cache 2026-04-21T10:18:47Z
+fef1621 data: update EDINET reports 2026-04-21T08:58:09Z

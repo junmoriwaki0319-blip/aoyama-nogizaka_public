@@ -1,0 +1,58 @@
+=== 70657bc fix(index): add /sogo-shosha.html to nav, mobile-menu, footer
+index.html
+
+=== e058de7 feat(sogo-shosha): member auth + cross-nav links + segment fact-check
+ad-agency.html
+digital-media.html
+entertainment-sector-dashboard.html
+food-service.html
+saas.html
+sogo-shosha.html
+
+=== b0edb59 fix(sogo-shosha): fact-check pass + portfolio gap proposals
+sogo-shosha.html
+
+=== cc3aa2d feat(sogo-shosha): deepen analysis with narratives, radar, heatmap
+sogo-shosha.html
+
+=== 29f751a feat(sogo-shosha): add 戦略・提携動向 tab (Buffett trend + DX/提携 cards)
+sogo-shosha.html
+
+=== e9dec78 feat(sogo-shosha): add /sogo-shosha.html dashboard with 7 tabs
+sogo-shosha.html
+
+=== 86f4cf2 fix: tap-targets Type F — food-service "SaaSレポートを見る" CTA 44px (1件)
+food-service.html
+food-service/index.html
+
+=== 098245e fix: tap-targets Type E — .resource-list a 44px hit area (10件)
+news/activist-shareholder-proposals-japan.html
+
+=== bc8751b fix: tap-targets Type D — .filter-btn 40px → 44px (news index, 5件)
+news/index.html
+
+=== be13f02 fix: tap-targets Types B+C — .link-primary/.link-secondary/.cta-link 44px (38件)
+news/activist-shareholder-proposals-japan.html
+
+=== 426bb02 fix: tap-targets Type A — .skip-link 44px min-height (13/13 pages)
+activist-dashboard.html
+activist-dashboard/index.html
+ad-agency.html
+ad-agency/index.html
+digital-media.html
+entertainment-sector-dashboard.html
+entertainment-sector-dashboard/index.html
+food-service.html
+food-service/index.html
+index.html
+news/activist-report.html
+news/activist-shareholder-proposals-japan.html
+news/index.html
+privacy.html
+privacy/index.html
+risk-assessment.html
+risk-assessment/index.html
+saas.html
+saas/index.html
+team.html
+team/index.html
