@@ -2,8 +2,8 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1345,
-    "curated_campaigns": 14,
+    "total_campaigns": 1346,
+    "curated_campaigns": 15,
     "auto_detected": 1331,
     "unique_activists": 41,
     "archive_urls": 0
@@ -7170,12 +7170,17 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 1,
-      "curated_count": 1,
+      "campaign_count": 2,
+      "curated_count": 2,
       "target_companies": [
         {
           "sec_code": "6960",
           "name": "フクダ電子株式会社",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "2664",
+          "name": "株式会社カワチ薬品",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -7487,6 +7492,44 @@
       "filing_history": [],
       "purposes": [
         "株主提案"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "kawachi_kaname_2026",
+      "activist_id": "kaname_capital",
+      "activist_name": "Kaname Capital",
+      "target_company": "カワチ薬品",
+      "sec_code": "2664",
+      "category": "小売・ドラッグストア",
+      "date_start": "2026-04",
+      "date_end": "2026-06",
+      "tagline": "婿養子社長24年で時価240億円消失・創業家へ158億円還流 — 河内伸二社長と渡辺林治社外取の解任を株主提案、100ページ白書公表",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "announcement",
+          "label": "Kaname Capital プレスリリース (2026-05-26、解任要求・100p白書公表)",
+          "url": "https://www.businesswire.com/news/home/20260526427229/ja",
+          "backup_url": "data/activist-materials/kawachi_kaname_2026/20260526_kaname_release.md"
+        },
+        {
+          "type": "pdf",
+          "label": "Kaname 投資家向けホワイト・ペーパー 100ページ (2026-05-26、5.8MB)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_951fe4597f6e40ef8303688365c76bcc.pdf",
+          "backup_url": "data/activist-materials/kawachi_kaname_2026/20260526_kaname_white_paper_100p.pdf"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "取締役解任",
+        "独立戦略検討委員会設置要求",
+        "関連当事者取引検証要求"
       ],
       "activist_type": "activist",
       "group_id": null,
