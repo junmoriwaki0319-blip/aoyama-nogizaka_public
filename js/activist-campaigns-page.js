@@ -174,6 +174,10 @@ function renderCampaignCard(c, idx) {
         getMaterialIcon(m.type) + ' ' + escHtml(m.label) + '</a>';
       // Wayback Machine archive link
       html += '<a href="https://web.archive.org/web/' + escHtml(m.url) + '" target="_blank" rel="noopener" class="material-link material-link-archive" title="Wayback Machine アーカイブ">&#x1F4BE; Archive</a>';
+      // Local backup (for link-rot protection of activist materials)
+      if (m.backup_url) {
+        html += '<a href="' + escHtml(m.backup_url) + '" target="_blank" rel="noopener" class="material-link material-link-archive" title="ローカルバックアップ">&#x1F5C2;&#xFE0F; Local</a>';
+      }
     }
     html += '</div>';
   }
