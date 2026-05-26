@@ -2,10 +2,10 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1346,
-    "curated_campaigns": 15,
+    "total_campaigns": 1354,
+    "curated_campaigns": 23,
     "auto_detected": 1331,
-    "unique_activists": 41,
+    "unique_activists": 43,
     "archive_urls": 0
   },
   "activists": [
@@ -5597,12 +5597,12 @@
     },
     {
       "id": "nippon_active_value",
-      "name": "ニッポン・アクティブ・バリュー・ファンド",
+      "name": "ニッポン・アクティブ・バリュー・ファンド (AVI)",
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 24,
-      "curated_count": 0,
+      "campaign_count": 26,
+      "curated_count": 2,
       "target_companies": [
         {
           "sec_code": "3407",
@@ -5687,7 +5687,7 @@
         {
           "sec_code": "4549",
           "name": "栄研化学株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "6927",
@@ -5723,6 +5723,11 @@
           "sec_code": "5930",
           "name": "文化シヤッター株式会社",
           "campaign_type": "filing"
+        },
+        {
+          "sec_code": "6727",
+          "name": "株式会社ワコム",
+          "campaign_type": "shareholder_proposal"
         }
       ]
     },
@@ -6171,8 +6176,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 14,
-      "curated_count": 1,
+      "campaign_count": 15,
+      "curated_count": 2,
       "target_companies": [
         {
           "sec_code": "3765",
@@ -6197,7 +6202,7 @@
         {
           "sec_code": "5331",
           "name": "ノリタケ株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "8818",
@@ -6328,8 +6333,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 12,
-      "curated_count": 5,
+      "campaign_count": 14,
+      "curated_count": 7,
       "target_companies": [
         {
           "sec_code": "9684",
@@ -7170,8 +7175,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 2,
-      "curated_count": 2,
+      "campaign_count": 3,
+      "curated_count": 3,
       "target_companies": [
         {
           "sec_code": "6960",
@@ -7181,6 +7186,43 @@
         {
           "sec_code": "2664",
           "name": "株式会社カワチ薬品",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "4298",
+          "name": "株式会社プロトコーポレーション",
+          "campaign_type": "tob_opposition"
+        }
+      ]
+    },
+    {
+      "id": "palliser",
+      "name": "パリサー・キャピタル",
+      "type": "activist",
+      "group_id": null,
+      "group_name": null,
+      "campaign_count": 1,
+      "curated_count": 1,
+      "target_companies": [
+        {
+          "sec_code": "9009",
+          "name": "京成電鉄株式会社",
+          "campaign_type": "shareholder_proposal"
+        }
+      ]
+    },
+    {
+      "id": "catalyst_monex",
+      "name": "カタリスト投資顧問 (Japan Catalyst / Monex Activist)",
+      "type": "activist",
+      "group_id": null,
+      "group_name": null,
+      "campaign_count": 1,
+      "curated_count": 1,
+      "target_companies": [
+        {
+          "sec_code": "7912",
+          "name": "大日本印刷株式会社",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -7329,27 +7371,66 @@
       "target_company": "フジ・メディアHD",
       "sec_code": "4676",
       "category": "メディア",
-      "date_start": "2025-04",
+      "date_start": "2025-01",
       "date_end": "2025-06",
-      "tagline": "取締役12名「総入れ替え」提案 — 北尾吉孝氏を含む候補者リスト",
+      "tagline": "取締役12名「総入れ替え」提案 — 第84回AGMでDalton12名全員否決 (最高:北尾吉孝27%)、会社側11名は全員80%超で可決",
       "campaign_type": "proxy_fight",
       "materials": [
         {
           "type": "announcement",
-          "label": "株主提案公表",
+          "label": "Dalton 株主提案公表 (2025-04-16)",
           "url": "https://www.daltoninvestments.co.jp/en/news/20250416"
         },
         {
           "type": "letter",
-          "label": "株主向けレター",
+          "label": "Dalton 株主向けレター (2025-06-01)",
           "url": "https://www.daltoninvestments.co.jp/en/news/20250601"
+        },
+        {
+          "type": "pdf",
+          "label": "Dalton 1月 特別独立委員会宛て書簡",
+          "url": "https://www.daltoninvestments.com/wp-content/uploads/2025/01/FMH-Special-Independent-Committee-second-letter-final-004.pdf",
+          "backup_url": "data/activist-materials/fujimedia_dalton_2025/20250100_dalton_fmh_special_committee_letter.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Dalton FMH パケット 株主向け (2025-06、英語)",
+          "url": "https://www.daltoninvestments.com/wp-content/uploads/2025/06/FMH-Packet-English.pdf",
+          "backup_url": "data/activist-materials/fujimedia_dalton_2025/20250600_dalton_fmh_packet_en.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 総会出席について (2025-06-24)",
+          "url": "https://www.daltoninvestments.co.jp/en/news/20250625"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 総会の結果について (2025-06-25)",
+          "url": "https://www.daltoninvestments.co.jp/en/news/20250625-2"
+        },
+        {
+          "type": "press",
+          "label": "フジメディア 臨時報告書 決議結果 (2025-06-26、日経DIGITAL)",
+          "url": "https://www.nikkei.com/nkd/disclosure/ednr/20250626S100W6QE/"
+        },
+        {
+          "type": "press",
+          "label": "日経ビジネス フジ株主総会記事",
+          "url": "https://business.nikkei.com/atcl/gen/19/00304/062600201/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン・議決結果 (ローカル README)",
+          "url": "data/activist-materials/fujimedia_dalton_2025/README.md"
         }
       ],
       "is_curated": true,
       "report_count": 0,
       "filing_history": [],
       "purposes": [
-        "株主提案"
+        "株主提案",
+        "プロキシーファイト",
+        "取締役総入れ替え"
       ],
       "activist_type": "activist",
       "group_id": null,
@@ -7530,6 +7611,548 @@
         "取締役解任",
         "独立戦略検討委員会設置要求",
         "関連当事者取引検証要求"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "proto_kaname_2025",
+      "activist_id": "kaname_capital",
+      "activist_name": "Kaname Capital",
+      "target_company": "プロトコーポレーション",
+      "sec_code": "4298",
+      "category": "情報サービス",
+      "date_start": "2025-02",
+      "date_end": "2025-04",
+      "tagline": "創業家MBO 2,100円に反対 — Kaname 本源価値 3,778円主張も成立、上場廃止",
+      "campaign_type": "tob_opposition",
+      "materials": [
+        {
+          "type": "press",
+          "label": "Kaname 公開質問状 (2025-02-18)",
+          "url": "https://www.businesswire.com/news/home/20250218446063/ja"
+        },
+        {
+          "type": "press",
+          "label": "Kaname 反対声明+元従業員声明書 (2025-03-08)",
+          "url": "https://www.businesswire.com/news/home/20250307586215/ja"
+        },
+        {
+          "type": "press",
+          "label": "Kaname エンゲージメント方針 (2025-03-23)",
+          "url": "https://www.businesswire.com/news/home/20250323172797/ja"
+        },
+        {
+          "type": "pdf",
+          "label": "プロト 意見表明報告書 (EDINET S100V6S0、2025-02-05)",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100V6S0.pdf",
+          "backup_url": "data/activist-materials/proto_kaname_2025/20250205_proto_opinion_statement.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "プロト 公開買付け開始のお知らせ (2025-02-04)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250204/20250204562517.pdf",
+          "backup_url": "data/activist-materials/proto_kaname_2025/20250204_proto_tob_announce.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "プロト TOB期間延長のお知らせ (2025-03-21)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250321/20250321598107.pdf",
+          "backup_url": "data/activist-materials/proto_kaname_2025/20250321_proto_tob_extension.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "プロト TOB結果のお知らせ (2025-04-05)",
+          "url": "https://www.proto-g.co.jp/upload/file/news_release/6051/94e23e5c0fd2c2d5f9aa170e3941cc00.pdf",
+          "backup_url": "data/activist-materials/proto_kaname_2025/20250405_proto_tob_result.pdf"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/proto_kaname_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "MBO反対",
+        "公開質問状",
+        "差止め仮処分検討"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "sqex_3d_2025_phase2",
+      "activist_id": "3d_investment",
+      "activist_name": "3D Investment Partners",
+      "target_company": "スクウェア・エニックスHD",
+      "sec_code": "9684",
+      "category": "エンタメ・ゲーム",
+      "date_start": "2025-09",
+      "date_end": "2026-02",
+      "tagline": "保有16.48%・100ページプレゼンで経営課題提示、CEO短文回答に株主意見募集",
+      "campaign_type": "presentation",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "3D SQEX プレゼン日本語 (2025-12-07、6.5MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-jp-202512.pdf",
+          "backup_url": "data/activist-materials/sqex_3d_2025_phase2/20251207_3d_sqex_presentation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D SQEX プレゼン英語 (2025-12-07、4.8MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/square-enix-presentation-material-en-202512.pdf",
+          "backup_url": "data/activist-materials/sqex_3d_2025_phase2/20251207_3d_sqex_presentation_en.pdf"
+        },
+        {
+          "type": "press",
+          "label": "3D SQEX BusinessWire 日本語 (2025-12-07)",
+          "url": "https://www.businesswire.com/news/home/20251207424177/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D SQEX BusinessWire 英語 (2025-12-07)",
+          "url": "https://www.businesswire.com/news/home/20251207089743/en/3D-Investment-Releases-a-Presentation-Highlighting-Management-Issues-at-SQEX-Holdings-and-Seeks-Shareholder-Views"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/sqex_3d_2025_phase2/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "プレゼン公開",
+        "経営課題指摘",
+        "株主意見募集"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "nssol_3d_2026",
+      "activist_id": "3d_investment",
+      "activist_name": "3D Investment Partners",
+      "target_company": "NSソリューションズ",
+      "sec_code": "2327",
+      "category": "IT",
+      "date_start": "2026-04",
+      "date_end": "2026-06",
+      "tagline": "親会社CMSへの預け金禁止を定款変更で要求 — 純資産40%・1.1兆円が日鉄CMSに集中",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "NSSOL 取締役会反対意見 (TDnet 2026-05-11、1.3MB)",
+          "url": "https://www.release.tdnet.info/inbs/140120260511522652.pdf",
+          "backup_url": "data/activist-materials/nssol_3d_2026/20260511_nssol_board_opinion.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D NSSOL 2026年5月プレゼン 日本語 (5.7MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/nssol-presentation-material-jp-202605.pdf",
+          "backup_url": "data/activist-materials/nssol_3d_2026/20260519_3d_nssol_presentation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D NSSOL 2025年3月初回プレゼン 日本語 (7.8MB、参考)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/nssol-presentation-jp-202503.pdf",
+          "backup_url": "data/activist-materials/nssol_3d_2026/20250300_3d_nssol_presentation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D NSSOL 価値向上策 日本語 (9.9MB、参考)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/nssol-value-enhancement-plan-jp-202503.pdf",
+          "backup_url": "data/activist-materials/nssol_3d_2026/20250300_3d_nssol_value_enhancement_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D NSSOL 株主等意見聴取 日本語 (1.7MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/nssol-perception-study-jp-202506.pdf",
+          "backup_url": "data/activist-materials/nssol_3d_2026/20250600_3d_nssol_perception_study_jp.pdf"
+        },
+        {
+          "type": "press",
+          "label": "3D NSSOL BusinessWire 日本語 (2026-05-18)",
+          "url": "https://www.businesswire.com/news/home/20260518243914/ja"
+        },
+        {
+          "type": "press",
+          "label": "日経 NSSOL記事 (2026-05-11)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC116WZ0R10C26A5000000/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/nssol_3d_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "定款変更",
+        "親会社預け金禁止"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "eiken_avi_dalton_2025",
+      "activist_id": "nippon_active_value",
+      "activist_name": "Asset Value Investors (NAVF) + Dalton 共同",
+      "target_company": "栄研化学",
+      "sec_code": "4549",
+      "category": "医薬品・診断薬",
+      "date_start": "2025-01",
+      "date_end": "2025-06",
+      "tagline": "AVI定款変更が73.11%賛成で異例の可決 — Dalton6名提案は2名取込で取下げ、合算32.79%保有",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "栄研化学 取締役会意見 株主提案受領+意見 (TDnet 2025-05-13)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250513/20250513546027.pdf",
+          "backup_url": "data/activist-materials/eiken_avi_dalton_2025/20250513_eiken_board_opinion.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "AVI AJOT 議決権行使サマリ 2025年6月",
+          "url": "https://www.assetvalueinvestors.com/content/uploads/2025/10/AJOT-Voting-Summary-JUN-2025.pdf",
+          "backup_url": "data/activist-materials/eiken_avi_dalton_2025/20251000_avi_ajot_voting_summary_2025jun.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "NAVF/Dalton 変更報告書 No.22",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100WD0H.pdf",
+          "backup_url": "data/activist-materials/eiken_avi_dalton_2025/20250000_navf_dalton_change_report_no22.pdf"
+        },
+        {
+          "type": "press",
+          "label": "日経 結果 2025-06-25",
+          "url": "https://www.nikkei.com/article/DGXZQOUC258CH0V20C25A6000000/"
+        },
+        {
+          "type": "press",
+          "label": "Bloomberg Dalton 取締役推薦 2025-03-24",
+          "url": "https://www.bloomberg.co.jp/news/articles/2025-03-24/STM906DWX2PS00"
+        },
+        {
+          "type": "press",
+          "label": "商事法務 解説",
+          "url": "https://wp.shojihomu.co.jp/archives/142610"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/eiken_avi_dalton_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "定款変更可決",
+        "取締役選任",
+        "マルチアクティビスト共同"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "noritake_strategic_capital_2026",
+      "activist_id": "strategic_capital",
+      "activist_name": "ストラテジックキャピタル",
+      "target_company": "ノリタケカンパニーリミテド",
+      "sec_code": "5331",
+      "category": "ガラス・セラミック",
+      "date_start": "2025-07",
+      "date_end": "2026-06",
+      "tagline": "9.22%保有でDOE8%・配当性向100%・政策保有株2029年3月末全売却の定款変更を6提案",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "website",
+          "label": "Strategic Capital 特設サイト「5331-NORITAKE」",
+          "url": "https://stracap.jp/5331-NORITAKE/"
+        },
+        {
+          "type": "website",
+          "label": "Strategic Capital 提案ページ",
+          "url": "https://stracap.jp/proposal/2026_noritake"
+        },
+        {
+          "type": "press",
+          "label": "PRTimes 公式リリース",
+          "url": "https://prtimes.jp/main/html/rd/p/000000117.000052343.html"
+        },
+        {
+          "type": "press",
+          "label": "M&A Online マール 反対決議報道",
+          "url": "https://www.marr.jp/mainfo/news/entry/69474"
+        },
+        {
+          "type": "press",
+          "label": "日経 「不採算なら祖業でも撤退」",
+          "url": "https://www.nikkei.com/article/DGXZQOFD235OC0T20C26A4000000/"
+        },
+        {
+          "type": "press",
+          "label": "TradingView 9.22% 報告",
+          "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_L6N4170H6:0-strategic-capital-raises-stake-in-noritake-to-9-22-from-8-20-filing-shows/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/noritake_strategic_capital_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "DOE8%",
+        "配当性向100%",
+        "政策保有株売却",
+        "不採算事業撤退"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "wacom_avi_2025_2026",
+      "activist_id": "nippon_active_value",
+      "activist_name": "Asset Value Investors (AVI) + Kaname Capital 共同",
+      "target_company": "ワコム",
+      "sec_code": "6727",
+      "category": "電子機器",
+      "date_start": "2025-05",
+      "date_end": "2026-05",
+      "tagline": "「Draw Wacom's Future」最大株主AVI約10%が社外取・50億自社株買い・社長解任要求、5議案全否決後も継続",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "AVI Wacom プレゼン 2025年5月 日本語 (8.2MB)",
+          "url": "https://www.assetvalueinvestors.com/content/uploads/2026/05/Wacom_May-2025_JPN_vF.pdf",
+          "backup_url": "data/activist-materials/wacom_avi_2025_2026/20250507_avi_wacom_presentation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "AVI Wacom プレゼン 2026年5月 更新版 日本語 (7.4MB、社長解任要求含む)",
+          "url": "https://www.assetvalueinvestors.com/content/uploads/2026/05/Wacom_May-2026_JPN_vF2.pdf",
+          "backup_url": "data/activist-materials/wacom_avi_2025_2026/20260514_avi_wacom_presentation_jp_v2.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "AVI Wacom プレゼン 2026年5月 更新版 英語",
+          "url": "https://www.assetvalueinvestors.com/content/uploads/2026/05/Wacom_May-2026_ENG_vF2.pdf",
+          "backup_url": "data/activist-materials/wacom_avi_2025_2026/20260514_avi_wacom_presentation_en_v2.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "ワコム 取締役会反対意見 日本語 (TDnet 2025-05-16)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250516/20250515555529.pdf",
+          "backup_url": "data/activist-materials/wacom_avi_2025_2026/20250516_wacom_board_opinion_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "ワコム 第42回招集通知 (2025-05-30)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250530/20250529573158.pdf",
+          "backup_url": "data/activist-materials/wacom_avi_2025_2026/20250530_wacom_agm_notice.pdf"
+        },
+        {
+          "type": "website",
+          "label": "AVI 専用キャンペーンサイト Draw Wacom's Future",
+          "url": "https://www.assetvalueinvestors.com/campaign/draw-wacoms-future/"
+        },
+        {
+          "type": "press",
+          "label": "BusinessWire 2025-05-07",
+          "url": "https://www.businesswire.com/news/home/20250507551606/en/AVI-Urges-Wacom-To-Make-Governance-Changes"
+        },
+        {
+          "type": "press",
+          "label": "日経 否決報道 2025-06-26",
+          "url": "https://www.nikkei.com/article/DGXZQOUC264E40W5A620C2000000/"
+        },
+        {
+          "type": "press",
+          "label": "ITmedia 私物化指摘に反論",
+          "url": "https://www.itmedia.co.jp/news/articles/2605/18/news120.html"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/wacom_avi_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "社外取締役選任",
+        "自己株式取得",
+        "取締役解任",
+        "事業構造変革監督委員会"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "keisei_palliser_2024",
+      "activist_id": "palliser",
+      "activist_name": "Palliser Capital (UK)",
+      "target_company": "京成電鉄",
+      "sec_code": "9009",
+      "category": "陸運",
+      "date_start": "2023-10",
+      "date_end": "2024-06",
+      "tagline": "Palliser 1.98%保有でOLC株20→15%未満要求 — ISS/Glass Lewis両社賛成も30%弱で否決",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Palliser AGM提案プレゼン 英語版 (2024-06-04、1.7MB)",
+          "url": "https://keisei100.com/_src/19750/20240604%20keisei%20electric%20railway%20%E2%80%93%20palliser%E2%80%99s%20agm%20proposal.pdf",
+          "backup_url": "data/activist-materials/keisei_palliser_2024/20240604_palliser_keisei_agm_proposal_en.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Palliser キャンペーンサイト keisei100.com",
+          "url": "https://keisei100.com/"
+        },
+        {
+          "type": "website",
+          "label": "Palliser キャンペーンサイト 日本語",
+          "url": "http://keisei100.com/jp/"
+        },
+        {
+          "type": "press",
+          "label": "BW 法的拘束力ある再提案 (2024-04-29 JP)",
+          "url": "https://www.businesswire.com/news/home/20240429699717/ja"
+        },
+        {
+          "type": "press",
+          "label": "BW キャンペーンサイト公開 (2024-06-03 JP)",
+          "url": "https://www.businesswire.com/news/home/20240603245872/ja"
+        },
+        {
+          "type": "press",
+          "label": "BW ISS支持 (2024-06-11)",
+          "url": "https://www.businesswire.com/news/home/20240611808646/ja/"
+        },
+        {
+          "type": "press",
+          "label": "BW AGM結果 (2024-06-26 JP)",
+          "url": "https://www.businesswire.com/news/home/20240626582486/ja/"
+        },
+        {
+          "type": "press",
+          "label": "Bloomberg JP 4/29",
+          "url": "https://www.bloomberg.co.jp/news/articles/2024-04-29/SCQ9OQT1UM0W00"
+        },
+        {
+          "type": "press",
+          "label": "東洋経済 賛成30%弱",
+          "url": "https://toyokeizai.net/articles/-/768470"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README) — 注: 13D/招集通知/決議結果PDFは取得失敗",
+          "url": "data/activist-materials/keisei_palliser_2024/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "資本配分ポリシー策定",
+        "政策保有株削減"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "dnp_catalyst_2025",
+      "activist_id": "catalyst_monex",
+      "activist_name": "カタリスト投資顧問 (Monex Activist)",
+      "target_company": "大日本印刷",
+      "sec_code": "7912",
+      "category": "印刷・半導体材料",
+      "date_start": "2025-05",
+      "date_end": "2025-06",
+      "tagline": "Elliott撤退後の継続提案 — 半導体エンジニア兼アナリストの木下氏を社外取候補に",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "カタリスト DNP株主提案 (2025-05-14)",
+          "url": "https://www.japancatalyst.com/pdf/JCI_DNP_20250514.pdf",
+          "backup_url": "data/activist-materials/dnp_catalyst_2025/20250514_catalyst_dnp_proposal.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "カタリスト DNP株主提案 (2024-04-18、前年版・参考)",
+          "url": "https://www.japancatalyst.com/pdf/JCI_DNP_20240418.pdf",
+          "backup_url": "data/activist-materials/dnp_catalyst_2025/20240418_catalyst_dnp_proposal.pdf"
+        },
+        {
+          "type": "website",
+          "label": "カタリスト DNP専用LP",
+          "url": "https://www.japancatalyst.com/dnp7912.html"
+        },
+        {
+          "type": "press",
+          "label": "PRTimes (2025-05-15)",
+          "url": "https://prtimes.jp/main/html/rd/p/000000030.000075293.html"
+        },
+        {
+          "type": "press",
+          "label": "DNP IR 取締役会意見書ページ",
+          "url": "https://www.dnp.co.jp/news/detail/20176689_1587.html"
+        },
+        {
+          "type": "press",
+          "label": "Bloomberg Elliott DNP参戦 (2023-01)",
+          "url": "https://www.bloomberg.co.jp/news/articles/2023-01-24/ROZ9JQDWLU6I01"
+        },
+        {
+          "type": "press",
+          "label": "Bloomberg Elliott保有売却 (2024-11)",
+          "url": "https://www.bloomberg.co.jp/news/articles/2024-11-25/SNG5GPT1UM0W00"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/dnp_catalyst_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "社外取締役選任",
+        "半導体事業ガバナンス強化"
       ],
       "activist_type": "activist",
       "group_id": null,
