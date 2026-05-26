@@ -2,8 +2,8 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1340,
-    "curated_campaigns": 9,
+    "total_campaigns": 1345,
+    "curated_campaigns": 14,
     "auto_detected": 1331,
     "unique_activists": 41,
     "archive_urls": 0
@@ -4826,8 +4826,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 29,
-      "curated_count": 0,
+      "campaign_count": 32,
+      "curated_count": 3,
       "target_companies": [
         {
           "sec_code": "5423",
@@ -4973,6 +4973,21 @@
           "sec_code": "4631",
           "name": "ＤＩＣ株式会社",
           "campaign_type": "filing"
+        },
+        {
+          "sec_code": "9119",
+          "name": "飯野海運株式会社",
+          "campaign_type": "engagement"
+        },
+        {
+          "sec_code": "4452",
+          "name": "花王株式会社",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "4967",
+          "name": "小林製薬株式会社",
+          "campaign_type": "shareholder_proposal"
         }
       ]
     },
@@ -6313,8 +6328,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 11,
-      "curated_count": 4,
+      "campaign_count": 12,
+      "curated_count": 5,
       "target_companies": [
         {
           "sec_code": "9684",
@@ -6369,7 +6384,7 @@
         {
           "sec_code": "8129",
           "name": "東邦ホールディングス株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "defense_opposition"
         }
       ]
     },
@@ -7049,18 +7064,23 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 2,
-      "curated_count": 0,
+      "campaign_count": 3,
+      "curated_count": 1,
       "target_companies": [
         {
           "sec_code": "7203",
-          "name": "株式会社豊田自動織機",
-          "campaign_type": "shareholder_proposal"
+          "name": "トヨタ自動車株式会社",
+          "campaign_type": "filing"
         },
         {
           "sec_code": "9531",
           "name": "東京瓦斯株式会社",
           "campaign_type": "filing"
+        },
+        {
+          "sec_code": "6201",
+          "name": "株式会社豊田自動織機",
+          "campaign_type": "tob_opposition"
         }
       ]
     },
@@ -7467,6 +7487,326 @@
       "filing_history": [],
       "purposes": [
         "株主提案"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "kobayashi_oasis_2025_2026",
+      "activist_id": "oasis",
+      "activist_name": "Oasis Management",
+      "target_company": "小林製薬",
+      "sec_code": "4967",
+      "category": "医薬品・日用品",
+      "date_start": "2024-12",
+      "date_end": "2026-03",
+      "tagline": "紅麹問題契機にOasisが13.74%まで買い増し筆頭株主化 — 創業家除く一般株主の40%超賛成、2026年3月AGMで監査等委員会移行に反対",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Oasis 2026年AGM 提案メイン (3.2MB)",
+          "url": "https://www.kobayashicorpgov.com/s/KobayashiCampaign_J_2026_vFinal.pdf",
+          "backup_url": "data/activist-materials/kobayashi_oasis_2025_2026/20260100_oasis_kobayashi_2026agm_proposal.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 2026年AGM 補足プレゼン",
+          "url": "https://www.kobayashicorpgov.com/s/KobayashiCampaign_J_2026_vF_addl.pdf",
+          "backup_url": "data/activist-materials/kobayashi_oasis_2025_2026/20260100_oasis_kobayashi_2026agm_additional.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 2025年6月AGM 提案資料",
+          "url": "https://www.kobayashicorpgov.com/s/KobayashiCampaign_AGM_vF_J.pdf",
+          "backup_url": "data/activist-materials/kobayashi_oasis_2025_2026/20250600_oasis_kobayashi_2025agm_proposal.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 2025年2月臨時AGM 提案メイン",
+          "url": "https://www.kobayashicorpgov.com/s/KobayashiCampaign_J_vF_2025_vF.pdf",
+          "backup_url": "data/activist-materials/kobayashi_oasis_2025_2026/20250200_oasis_kobayashi_campaign_main.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 会社反論への再反論",
+          "url": "https://www.kobayashicorpgov.com/s/KobayashiCampaign_J_vF_2025_vFF_Response.pdf",
+          "backup_url": "data/activist-materials/kobayashi_oasis_2025_2026/20250200_oasis_kobayashi_response.pdf"
+        },
+        {
+          "type": "website",
+          "label": "特設サイト Kobayashi Pharma – Mold Grows In A Culture",
+          "url": "https://www.kobayashicorpgov.com/"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 6月AGM 一般株主過半が小林章浩氏に反対 (2025-06-10)",
+          "url": "https://www.businesswire.com/news/home/20250610933068/ja"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 6月AGM 反対要請 (2025-03-10)",
+          "url": "https://www.businesswire.com/news/home/20250310169034/ja"
+        },
+        {
+          "type": "press",
+          "label": "議決権行使助言会社がOasis提案を支持 (2025-02-17)",
+          "url": "https://www.businesswire.com/news/home/20250217887482/ja/"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 筆頭株主化 (13.74%、日経 2025-12-26)",
+          "url": "https://www.nikkei.com/article/DGXZQOUF268OT0W5A221C2000000/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/kobayashi_oasis_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "社外取締役選任",
+        "監査等委員会移行反対",
+        "株主代表訴訟",
+        "筆頭株主化"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "kao_oasis_2025",
+      "activist_id": "oasis",
+      "activist_name": "Oasis Management",
+      "target_company": "花王",
+      "sec_code": "4452",
+      "category": "化学・トイレタリー",
+      "date_start": "2024-12",
+      "date_end": "2025-03",
+      "tagline": "「A Better Kao」— 5名社外取締役+報酬改革を株主提案、賛成3割未満で否決もOasis継続表明",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Oasis「より強い花王 (A Better Kao)」プレゼン (2025-02-25、6.1MB)",
+          "url": "https://abetterkao.com/wp-content/uploads/Oasis-A-Better-Kao-Presentation-JPN.pdf",
+          "backup_url": "data/activist-materials/kao_oasis_2025/20250225_oasis_a_better_kao_presentation.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "花王 取締役会反対意見書 60ページ (2025-02-14)",
+          "url": "https://www.kao.com/content/dam/sites/kao/www-kao-com/jp/ja/corporate/investor-relations/pdf/shareholders-proposals_2025_002.pdf",
+          "backup_url": "data/activist-materials/kao_oasis_2025/20250214_kao_board_opinion_60p.pdf"
+        },
+        {
+          "type": "website",
+          "label": "特設サイト「A Better Kao」",
+          "url": "https://abetterkao.com/"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 5名候補公表リリース (2025-02-25)",
+          "url": "https://www.businesswire.com/news/home/20250225092498/ja"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 株主提案FAQ (2025-03-04)",
+          "url": "https://www.businesswire.com/news/home/20250304179778/ja"
+        },
+        {
+          "type": "press",
+          "label": "Oasis 5%超開示・社外取締役指名予告 (2024-12-10)",
+          "url": "https://www.businesswire.com/news/home/20241210188016/ja"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/kao_oasis_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "社外取締役選任",
+        "報酬制度変更"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "toho_hd_3d_2025_2026",
+      "activist_id": "3d_investment",
+      "activist_name": "3D Investment Partners",
+      "target_company": "東邦HD",
+      "sec_code": "8129",
+      "category": "医薬品卸",
+      "date_start": "2025-06",
+      "date_end": "2026-04",
+      "tagline": "保有17.44%→30%上限誓約も会社側拒否 — 24%閾値の買収防衛策発動、3D「深い失望」",
+      "campaign_type": "defense_opposition",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "東邦HD 買収防衛策補足説明 (2025-11-06、3Dを名指し)",
+          "url": "https://www.tohohd.co.jp/assets/data/251106.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20251106_toho_hd_defense_announcement.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "東邦HD 追加補足説明 (2025-11-14)",
+          "url": "https://ir.tohohd.co.jp/ja/index/main/04/teaserItems1/00/linkList/0/link/251114sm.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20251114_toho_hd_supplement.pdf"
+        },
+        {
+          "type": "press",
+          "label": "3D 防衛策発動への「深い失望」声明 (2026-04-27)",
+          "url": "https://www.businesswire.com/news/home/20260427851362/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D 「不公正なプロセス」懸念表明 (2026-02-02)",
+          "url": "https://www.businesswire.com/news/home/20260202129593/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D 大規模買付行為等説明書＋ガバナンス体制整備提言 (2026-01-15)",
+          "url": "https://www.businesswire.com/news/home/20260115397913/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D 提訴請求・第三者委員会調査の実効性確保論点 (2025-12-16)",
+          "url": "https://www.businesswire.com/news/home/20251216862639/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D 第三者委員会設立・ガバナンス是正最終要請 (2025-12-02)",
+          "url": "https://www.businesswire.com/news/home/20251202564085/ja"
+        },
+        {
+          "type": "press",
+          "label": "3D 追加プレゼン (会社側反論への論理矛盾指摘、2025-06-05)",
+          "url": "https://www.businesswire.com/news/home/20250605142059/ja"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/toho_hd_3d_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "防衛策反対",
+        "公開書簡",
+        "ガバナンス体制整備提言",
+        "提訴請求"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "toyota_industries_elliott_2025_2026",
+      "activist_id": "elliott",
+      "activist_name": "Elliott Management",
+      "target_company": "豊田自動織機",
+      "sec_code": "6201",
+      "category": "産業機械・自動車部品",
+      "date_start": "2025-09",
+      "date_end": "2026-03",
+      "tagline": "TOB価格 16,300円→20,600円へ引き上げ — 約4,000億円の追加価値創出、日本最大級5.9兆円取引",
+      "campaign_type": "tob_opposition",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Elliott プレゼン「豊田自動織機に関するエリオットの見解」(2026-01-27、5.1MB)",
+          "url": "https://elliottletters.com/wp-content/uploads/Elliotts-Perpectives-on-Toyota-Industries-JP.pdf",
+          "backup_url": "data/activist-materials/toyota_industries_elliott_2025_2026/20260127_elliott_perspectives.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Elliott TOB受諾声明 (2026-03-02、共同通信PRワイヤー)",
+          "url": "https://kyodonewsprwire.jp/release/202603024802",
+          "backup_url": "data/activist-materials/toyota_industries_elliott_2025_2026/20260302_elliott_acceptance_statement.html"
+        },
+        {
+          "type": "press",
+          "label": "Elliott Opposes Revised Tender Offer (PR Newswire, 2026-01-27 英文)",
+          "url": "https://www.prnewswire.com/news-releases/elliott-opposes-toyota-fudosans-revised-tender-offer-for-toyota-industries-corporation-302664094.html"
+        },
+        {
+          "type": "press",
+          "label": "トヨタ不動産 News 26030201 (応募契約締結公表)",
+          "url": "https://www.toyotafudosan.com/news/26030201/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/toyota_industries_elliott_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "TOB反対",
+        "公開書簡",
+        "プレゼン",
+        "応募契約締結"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "iino_kaiun_engagement_2025",
+      "activist_id": "oasis",
+      "activist_name": "Oasis Management (+ 3D Investment Partners)",
+      "target_company": "飯野海運",
+      "sec_code": "9119",
+      "category": "海運",
+      "date_start": "2024-07",
+      "date_end": "2025-07",
+      "tagline": "Oasis/3D が海運再編・不動産戦略狙いで接触 — 飯野は事前警告型買収防衛策で応戦",
+      "campaign_type": "engagement",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "飯野海運 買収防衛策 TDnet開示 (2025-05-08)",
+          "url": "https://contents.xj-storage.jp/xcontents/AS00371/1df83b94/4a30/4f5d/a982/f103e780abdf/140120250508533725.pdf",
+          "backup_url": "data/activist-materials/iino_kaiun_engagement_2025/20250508_iino_defense_measures.pdf"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・1次ソース検証ステータス (ローカル README)",
+          "url": "data/activist-materials/iino_kaiun_engagement_2025/README.md"
+        },
+        {
+          "type": "press",
+          "label": "FACTA 2025年9月号「物言う株主が狙う海運・医薬品卸」(有料、Oasis 大谷社長面談記事)",
+          "url": "https://facta.co.jp/article/202509006.html"
+        },
+        {
+          "type": "press",
+          "label": "X.com @maron_fine post (3D 関与示唆)",
+          "url": "https://x.com/maron_fine/status/2059062488692629903"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "エンゲージメント",
+        "メディア観測"
       ],
       "activist_type": "activist",
       "group_id": null,
