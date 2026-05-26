@@ -2,10 +2,10 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1338,
-    "curated_campaigns": 7,
+    "total_campaigns": 1340,
+    "curated_campaigns": 9,
     "auto_detected": 1331,
-    "unique_activists": 40,
+    "unique_activists": 41,
     "archive_urls": 0
   },
   "activists": [
@@ -6822,8 +6822,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 5,
-      "curated_count": 0,
+      "campaign_count": 6,
+      "curated_count": 1,
       "target_companies": [
         {
           "sec_code": "9308",
@@ -6849,6 +6849,11 @@
           "sec_code": "6327",
           "name": "北川精機株式会社",
           "campaign_type": "filing"
+        },
+        {
+          "sec_code": "1827",
+          "name": "株式会社ナカノフドー建設",
+          "campaign_type": "shareholder_proposal"
         }
       ]
     },
@@ -7138,6 +7143,22 @@
           "campaign_type": "filing"
         }
       ]
+    },
+    {
+      "id": "kaname_capital",
+      "name": "カナメ・キャピタル",
+      "type": "activist",
+      "group_id": null,
+      "group_name": null,
+      "campaign_count": 1,
+      "curated_count": 1,
+      "target_companies": [
+        {
+          "sec_code": "6960",
+          "name": "フクダ電子株式会社",
+          "campaign_type": "shareholder_proposal"
+        }
+      ]
     }
   ],
   "campaigns": [
@@ -7332,6 +7353,114 @@
           "label": "株主提案スライド資料 (PDF)",
           "url": "https://0f150b20-1256-4ec7-bae7-55db80a2a0d7.usrfiles.com/ugd/5612ae_bbeb3ff74cd5489ca855cbc4e946a995.pdf",
           "backup_url": "data/activist-materials/bunka_shutter_dalton_2026/20260525_dalton_presentation.pdf"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "fukuda_denshi_kaname_2025_2026",
+      "activist_id": "kaname_capital",
+      "activist_name": "カナメ・キャピタル",
+      "target_company": "フクダ電子",
+      "sec_code": "6960",
+      "category": "医療機器",
+      "date_start": "2023-06",
+      "date_end": "2026-06",
+      "tagline": "会長私物化追及 — 株主代表訴訟＋経費1.5億円不正＋第79回AGMで再任反対宣告",
+      "campaign_type": "proxy_fight",
+      "materials": [
+        {
+          "type": "announcement",
+          "label": "カナメ 5/22 公開レター発出リリース",
+          "url": "https://www.businesswire.com/news/home/20260521764880/ja",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260522_kaname_release.md"
+        },
+        {
+          "type": "pdf",
+          "label": "公開レター (2026-05-22 再要求)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_123a4fa985b5471ba9542440466b8cae.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260522_kaname_followup_letter.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "フクダ電子 回答書 (2026-05-21)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_49de46f8a1f4477d98cb01fc29488de9.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260521_fukuda_company_response.pdf"
+        },
+        {
+          "type": "announcement",
+          "label": "カナメ 5/18 第三者委員会再調査要求リリース",
+          "url": "https://www.businesswire.com/news/home/20260518814558/ja",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260518_kaname_release.md"
+        },
+        {
+          "type": "letter",
+          "label": "公開レター (2026-05-18 第三者委員会設置要求)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_3475f89e0e2d4bc1b009532f07e9ef5d.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260518_kaname_open_letter.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "カナメ 調査結果報告書 (2026-04-07、黒塗版)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_e4ef46da215647618113640320942440.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20260518_kaname_investigation_report.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "フクダ電子 株主提案反対意見書 (2025-05-15)",
+          "url": "https://f.irbank.net/pdf/20250515/140120250514551455.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20250515_company_board_opinion.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "株主代表訴訟 訴状 (2024-07-30)",
+          "url": "https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_ae1c0a8feba24d2191c32604a4fd9e36.pdf",
+          "backup_url": "data/activist-materials/fukuda_denshi_kaname_2025_2026/20240730_kaname_derivative_suit_complaint.pdf"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "株主代表訴訟",
+        "第三者委員会設置要求"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "nakano_fudou_lim_2025",
+      "activist_id": "lim_advisors",
+      "activist_name": "LIM Japan Event Master Fund",
+      "target_company": "ナカノフドー建設",
+      "sec_code": "1827",
+      "category": "建設",
+      "date_start": "2025-04",
+      "date_end": "2025-06",
+      "tagline": "創業家・五番町ナカノビル利益供与疑念 — 定款6議題で名誉会長関連取引の開示・廃止を要求",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "TDnet 株主提案＋会社側反対意見 (2025-05-14、別紙にLIM提案理由全文)",
+          "url": "https://www.wave-nakano.co.jp/uploads/pdf/592/0514kabunushi.pdf",
+          "backup_url": "data/activist-materials/nakano_fudou_lim_2025/20250514_board_opinion_with_proposal_attached.pdf"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/nakano_fudou_lim_2025/README.md",
+          "backup_url": "data/activist-materials/nakano_fudou_lim_2025/README.md"
         }
       ],
       "is_curated": true,
