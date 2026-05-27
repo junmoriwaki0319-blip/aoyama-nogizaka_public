@@ -92,7 +92,19 @@
     .nav-item.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
     .nav-item .nav-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.65rem; color: var(--gold); margin-right: 6px; font-weight: 700; }
     .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
-    .section { display: block; margin-bottom: 56px; scroll-margin-top: 70px; }
+    .section { display: none; margin-bottom: 56px; scroll-margin-top: 70px; }
+    .section.active { display: block; }
+    /* Download buttons (cover) */
+    .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.75); padding: 8px 18px; border-radius: var(--radius);
+      font-size: 0.75rem; font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
+    .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
     .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
     .sec-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.68rem; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
     .sec-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
@@ -277,6 +289,16 @@
       <span>分析時点: <strong>2026年5月</strong></span>
       <span>出所: <strong>各社決算短信 / IR Bank / 松井証券</strong></span>
     </div>
+    <div class="dl-btns">
+      <button class="dl-btn" id="btnDownloadPDF" type="button" aria-label="PDFダウンロード">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+        PDFダウンロード
+      </button>
+      <button class="dl-btn" id="btnPrintAll" type="button" aria-label="全セクション表示" title="全セクションを連続表示（PDF印刷向き）">
+        <svg viewBox="0 0 24 24"><path d="M3 5h18v2H3V5zm0 4h18v2H3V9zm0 4h18v2H3v-2zm0 4h12v2H3v-2z"/></svg>
+        全セクション表示
+      </button>
+    </div>
   </div>
 </div>
 
@@ -301,7 +323,7 @@
 <div class="main" id="main">
 
   <!-- Section 01: Executive Summary -->
-  <section class="section" id="sec-exec">
+  <section class="section active" id="sec-exec">
     <div class="sec-header">
       <div class="sec-num">01 &middot; EXECUTIVE SUMMARY</div>
       <div class="sec-title">セクター・サマリー</div>
@@ -812,7 +834,7 @@
 </footer>
 
 <script>
-  // ===== Nav: smooth scroll to sections + active state on scroll =====
+  // ===== Nav: tab switching (sogo-shosha と同様、1ページ1セクション) =====
   (function () {
     var tabToSection = {
       exec: 'sec-exec', industry: 'sec-industry', universe: 'sec-universe',
@@ -820,40 +842,112 @@
       cyclicality: 'sec-cyclicality', issues: 'sec-issues'
     };
     var navItems = document.querySelectorAll('.nav-item');
+    var allSections = document.querySelectorAll('.section');
+
+    function activateTab(tab) {
+      var sectionId = tabToSection[tab];
+      if (!sectionId) return;
+      // セクション表示切替
+      allSections.forEach(function (sec) {
+        sec.classList.toggle('active', sec.id === sectionId);
+      });
+      // ナビ active 切替
+      navItems.forEach(function (item) {
+        item.classList.toggle('active', item.getAttribute('data-tab') === tab);
+      });
+      // ナビバー直下までスクロール（コンテンツ先頭を見やすく）
+      var navBar = document.querySelector('.nav-bar');
+      if (navBar) {
+        var navBottom = navBar.getBoundingClientRect().bottom + window.scrollY;
+        if (window.scrollY > navBottom - 10) {
+          window.scrollTo({ top: navBottom - 10, behavior: 'smooth' });
+        }
+      }
+      // URL hash 同期（リロード時に最後のタブに戻れる）
+      if (history.replaceState) {
+        history.replaceState(null, '', '#' + tab);
+      }
+    }
+
     navItems.forEach(function (item) {
       item.addEventListener('click', function () {
         var tab = item.getAttribute('data-tab');
-        var sectionId = tabToSection[tab];
-        var target = document.getElementById(sectionId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        activateTab(tab);
       });
     });
 
-    // Highlight active nav-item based on scroll position
-    var sections = Object.values(tabToSection).map(function (id) {
-      return document.getElementById(id);
-    }).filter(Boolean);
-    var sectionToTab = {};
-    Object.keys(tabToSection).forEach(function (t) { sectionToTab[tabToSection[t]] = t; });
+    // 初期表示: URLハッシュがあればそのタブを開く
+    var initTab = (location.hash || '').replace('#', '');
+    if (initTab && tabToSection[initTab]) {
+      activateTab(initTab);
+    }
+  })();
 
-    function onScroll() {
-      var scrollPos = window.scrollY + 120;
-      var current = sections[0];
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].offsetTop <= scrollPos) {
-          current = sections[i];
-        }
-      }
-      if (!current) return;
-      var activeTab = sectionToTab[current.id];
-      navItems.forEach(function (item) {
-        item.classList.toggle('active', item.getAttribute('data-tab') === activeTab);
+  // ===== PDFダウンロード（全セクション表示 → ブラウザ印刷ダイアログ） =====
+  (function () {
+    var btnPDF = document.getElementById('btnDownloadPDF');
+    var btnAll = document.getElementById('btnPrintAll');
+    var allSections = document.querySelectorAll('.section');
+
+    function showAllSections() {
+      allSections.forEach(function (sec) { sec.classList.add('active'); });
+    }
+    function restoreSingleSection() {
+      // 現アクティブナビに合わせて単一表示に戻す
+      var activeNav = document.querySelector('.nav-item.active');
+      var activeTab = activeNav ? activeNav.getAttribute('data-tab') : 'exec';
+      var tabToSection = {
+        exec: 'sec-exec', industry: 'sec-industry', universe: 'sec-universe',
+        framework: 'sec-framework', peer: 'sec-peer', outlook: 'sec-outlook',
+        cyclicality: 'sec-cyclicality', issues: 'sec-issues'
+      };
+      var targetId = tabToSection[activeTab];
+      allSections.forEach(function (sec) {
+        sec.classList.toggle('active', sec.id === targetId);
       });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    if (btnPDF) {
+      btnPDF.addEventListener('click', function () {
+        // 全セクション表示 → 印刷ダイアログ（OS標準のPDF保存）→ 単一に戻す
+        showAllSections();
+        // 描画完了を待つ
+        setTimeout(function () {
+          window.print();
+          // 印刷ダイアログを閉じた後の復元（afterprint）
+          var restored = false;
+          var onAfter = function () {
+            if (restored) return;
+            restored = true;
+            restoreSingleSection();
+            window.removeEventListener('afterprint', onAfter);
+          };
+          window.addEventListener('afterprint', onAfter);
+          // フォールバック: 5秒後に強制復元
+          setTimeout(onAfter, 5000);
+        }, 100);
+      });
+    }
+
+    if (btnAll) {
+      btnAll.addEventListener('click', function () {
+        // 全セクション表示トグル（PDF印刷向きの一覧モード）
+        var anyHidden = Array.prototype.some.call(allSections, function (s) {
+          return !s.classList.contains('active');
+        });
+        if (anyHidden) {
+          showAllSections();
+          btnAll.textContent = '';
+          btnAll.insertAdjacentHTML('beforeend',
+            '<svg viewBox="0 0 24 24"><path d="M5 11h14v2H5z"/></svg>単一セクション表示に戻す');
+        } else {
+          restoreSingleSection();
+          btnAll.textContent = '';
+          btnAll.insertAdjacentHTML('beforeend',
+            '<svg viewBox="0 0 24 24"><path d="M3 5h18v2H3V5zm0 4h18v2H3V9zm0 4h18v2H3v-2zm0 4h12v2H3v-2z"/></svg>全セクション表示');
+        }
+      });
+    }
   })();
 
   // ===== Nav horizontal scroll buttons =====
