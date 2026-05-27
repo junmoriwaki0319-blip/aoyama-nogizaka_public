@@ -7445,8 +7445,14 @@
           "url": "https://www.daltoninvestments.co.jp/en/news/20250625-2"
         },
         {
+          "type": "pdf",
+          "label": "フジメディアHD 第84回 議決結果 臨時報告書 (EDINET S100W6QE、2025-06-26、22KB)",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100W6QE.pdf",
+          "backup_url": "data/activist-materials/fujimedia_dalton_2025/20250626_fmh_84_resolution_edinet.pdf"
+        },
+        {
           "type": "press",
-          "label": "フジメディア 臨時報告書 決議結果 (2025-06-26、日経DIGITAL)",
+          "label": "フジメディア 臨時報告書 決議結果 (日経DIGITAL索引)",
           "url": "https://www.nikkei.com/nkd/disclosure/ednr/20250626S100W6QE/"
         },
         {
@@ -7846,15 +7852,21 @@
     {
       "id": "eiken_avi_dalton_2025",
       "activist_id": "nippon_active_value",
-      "activist_name": "Asset Value Investors (NAVF) + Dalton 共同",
+      "activist_name": "Asset Value Investors (NAVF/AJOT) + Dalton 共同",
       "target_company": "栄研化学",
       "sec_code": "4549",
       "category": "医薬品・診断薬",
       "date_start": "2025-01",
       "date_end": "2025-06",
-      "tagline": "AVI定款変更が73.11%賛成で異例の可決 — Dalton6名提案は2名取込で取下げ、合算32.79%保有",
+      "tagline": "AVI定款変更が73.11%賛成で異例の可決 — 第87期AGM(2025-06-24)、Dalton6名提案は2名取込で取下げ、合算32.79%保有",
       "campaign_type": "shareholder_proposal",
       "materials": [
+        {
+          "type": "pdf",
+          "label": "栄研化学 第87期招集通知 (Yahoo 2025-06-02、2.7MB)",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20250602/20250530574710.pdf",
+          "backup_url": "data/activist-materials/eiken_avi_dalton_2025/20250602_eiken_87_meeting_notice.pdf"
+        },
         {
           "type": "pdf",
           "label": "栄研化学 取締役会意見 株主提案受領+意見 (TDnet 2025-05-13)",
@@ -8065,10 +8077,22 @@
       "sec_code": "9009",
       "category": "陸運",
       "date_start": "2023-10",
-      "date_end": "2024-06",
-      "tagline": "Palliser 1.98%保有でOLC株20→15%未満要求 — ISS/Glass Lewis両社賛成も30%弱で否決",
+      "date_end": "2025-06",
+      "tagline": "Palliser 1.98%→4.4%でOLC株20→15%未満要求 — ISS/Glass Lewis両社賛成も30%弱で否決、2025年も継続提案",
       "campaign_type": "shareholder_proposal",
       "materials": [
+        {
+          "type": "pdf",
+          "label": "Palliser Public Deck 日本語版 (2025-04、D2プラン批判、4.1MB)",
+          "url": "https://keisei100.com/_src/19757/2.%20KER%20-%20Public%20Deck%20(April%202025)%20(Japanese%20Version).pdf?v=1745457028020",
+          "backup_url": "data/activist-materials/keisei_palliser_2024/20250400_palliser_keisei_public_deck_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "京成電鉄 第181期 議決結果 臨時報告書 (EDINET S100TZGP、2024-07-03、18KB)",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100TZGP.pdf",
+          "backup_url": "data/activist-materials/keisei_palliser_2024/20240703_keisei_181_resolution_edinet.pdf"
+        },
         {
           "type": "pdf",
           "label": "Palliser AGM提案プレゼン 英語版 (2024-06-04、1.7MB)",
@@ -8723,6 +8747,18 @@
       "materials": [
         {
           "type": "pdf",
+          "label": "DNP 第131期招集通知 (2025-05-27、1.4MB)",
+          "url": "https://www.dnp.co.jp/ir/library/soukai/pdf/2506_131st_meeting_2.pdf",
+          "backup_url": "data/activist-materials/dnp_catalyst_2025/20250527_dnp_131_meeting_notice.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "DNP 第131期有価証券報告書 (EDINET S100W0RF、2025-06-24、1.7MB)",
+          "url": "https://azcms.ir-service.net/DATA/7912/ir/S100W0RF.pdf",
+          "backup_url": "data/activist-materials/dnp_catalyst_2025/20250624_dnp_131_yuho.pdf"
+        },
+        {
+          "type": "pdf",
           "label": "カタリスト DNP株主提案 (2025-05-14)",
           "url": "https://www.japancatalyst.com/pdf/JCI_DNP_20250514.pdf",
           "backup_url": "data/activist-materials/dnp_catalyst_2025/20250514_catalyst_dnp_proposal.pdf"
@@ -8939,9 +8975,51 @@
       "materials": [
         {
           "type": "pdf",
+          "label": "3D 企業価値最大化提言 日本語 (2025-05-27、3.8MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/toho-maximizing-corporate-value-jp-202505.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20250527_3d_toho_maximizing_value_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D 「企業価値を蝕む病理」プレゼン 日本語 (2025-12、3.7MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/toho-presentation-material-jp-202512.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20251200_3d_toho_pathology_presentation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D 大規模買付行為等説明書プレゼン 日本語 (2026-01-19、6.2MB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/toho-presentation-material-jp-202601.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20260119_3d_toho_large_acquisition_explanation_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D 情報提供要請 回答書 英語 (2026-02、963KB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/toho-answer-sheet-en-202602.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20260200_3d_toho_answer_sheet_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "3D 情報提供要請 回答書 日本語 (2026-04、629KB)",
+          "url": "https://www.3dipartners.com/wp-content/uploads/toho-answer-sheet-jp-202604.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20260400_3d_toho_answer_sheet_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "東邦HD 中期経営計画 2026-2028 (2026-04-28、3.2MB)",
+          "url": "https://www.tohohd.co.jp/assets/data/260428mtp.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20260428_toho_mid_term_plan_2026_2028.pdf"
+        },
+        {
+          "type": "pdf",
           "label": "東邦HD 買収防衛策補足説明 (2025-11-06、3Dを名指し)",
           "url": "https://www.tohohd.co.jp/assets/data/251106.pdf",
           "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20251106_toho_hd_defense_announcement.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "東邦HD 大規模買付対応方針 英語版 (2025-10-31、570KB)",
+          "url": "https://www.tohohd.co.jp/en/assets/data/20251031-1_E.pdf",
+          "backup_url": "data/activist-materials/toho_hd_3d_2025_2026/20251031_toho_defense_measures_en.pdf"
         },
         {
           "type": "pdf",
