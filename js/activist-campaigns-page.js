@@ -151,8 +151,10 @@ function renderCampaignCard(c, idx) {
 
   // Header
   html += '<div class="campaign-card-header">';
-  html += '<div class="campaign-card-title">' + escHtml(c.target_company || '—') + ' (' + escHtml(c.sec_code || '') + ')' +
-    ' &times; ' + escHtml(c.activist_name || '—') + '</div>';
+  const targetNorm = (c.target_company || '—').normalize('NFKC');
+  const activistNorm = (c.activist_name || '—').normalize('NFKC');
+  html += '<div class="campaign-card-title">' + escHtml(targetNorm) + ' (' + escHtml(c.sec_code || '') + ')' +
+    ' &times; ' + escHtml(activistNorm) + '</div>';
   html += '<div class="campaign-card-meta">';
   if (c.is_curated) html += '<span class="badge badge-curated">CURATED</span>';
   html += '<span class="badge ' + typeBadgeClass + '">' + typeLabel + '</span>';
@@ -188,8 +190,31 @@ function renderCampaignCard(c, idx) {
     const FOLD_THRESHOLD = 5;
     const renderMaterial = (m) => {
       const iconLabel = getMaterialIcon(m.type);
+      // NFKC normalize the label to avoid full-width Latin (Ｎ Ｉ Ｐ Ｐ Ｏ Ｎ) display issues
+      const labelNorm = (m.label || '').normalize('NFKC');
+      // EDINET metadata badges (holding ratio + purpose)
+      let metaHtml = '';
+      const md = m.edinet_metadata;
+      if (md) {
+        if (md.holding_ratio_pct != null) {
+          let ratioTxt = md.holding_ratio_pct.toFixed(2) + '%';
+          if (md.prev_ratio_pct != null && md.prev_ratio_pct !== md.holding_ratio_pct) {
+            const delta = md.holding_ratio_pct - md.prev_ratio_pct;
+            const arrow = delta > 0 ? '▲' : '▼';
+            ratioTxt += ' <span style="font-size:10px;opacity:0.7;">(' + arrow + Math.abs(delta).toFixed(2) + 'pt)</span>';
+          }
+          metaHtml += '<span class="material-ratio-badge">' + ratioTxt + '</span>';
+        }
+        if (md.purpose_short) {
+          const cls = (md.purpose_short === '重要提案行為') ? 'material-purpose-badge important'
+                    : (md.purpose_short === '経営参画') ? 'material-purpose-badge engagement'
+                    : (md.purpose_short === '純投資') ? 'material-purpose-badge passive'
+                    : 'material-purpose-badge default';
+          metaHtml += '<span class="' + cls + '">' + escHtml(md.purpose_short) + '</span>';
+        }
+      }
       let s = '<a href="' + escHtml(m.url) + '" target="_blank" rel="noopener" class="material-link">' +
-        '<span aria-hidden="true">' + iconLabel + '</span> ' + escHtml(m.label) + '</a>';
+        '<span aria-hidden="true">' + iconLabel + '</span> ' + escHtml(labelNorm) + metaHtml + '</a>';
       // Wayback archive link
       s += '<a href="https://web.archive.org/web/' + escHtml(m.url) + '" target="_blank" rel="noopener" ' +
         'class="material-link material-link-archive" aria-label="Wayback Machine アーカイブを開く" ' +
