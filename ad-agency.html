@@ -70,7 +70,8 @@
     }
     body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
     .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
+    .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px;
+      white-space: nowrap; }
     .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
     .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 40px 48px 32px; position: relative; }
     .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
@@ -181,9 +182,9 @@
     .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
     .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
     .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
-    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius); font-family: inherit; }
+    .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius); font-family: inherit; white-space: nowrap; }
     .btn-login:hover { border-color: var(--gold-light); color: #fff; }
-    .btn-register { background: var(--gold); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius); font-family: inherit; transition: all 0.2s; }
+    .btn-register { background: var(--gold); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
     .btn-register:hover { background: var(--gold-dim); }
     #navUserInfo { color: #fff; font-size: 0.78rem; }
     #navUserInfo button { background: none; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
@@ -296,7 +297,7 @@
       <a href="/semiconductor-trading.html" class="cross-nav-link">半導体商社</a>
       <span class="cross-nav-sep"></span>
       <span class="cross-nav-cat">アクティビスト</span>
-      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/activist-dashboard" class="cross-nav-link">大量保有</a>
       <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
     </nav>
     <div class="nav-auth-btns" id="navAuthBtns">
@@ -330,7 +331,7 @@
   <div class="mobile-accordion" data-accordion>
     <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">アクティビスト <span class="mobile-accordion-arrow">▼</span></button>
     <div class="mobile-accordion-panel" data-accordion-panel>
-      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/activist-dashboard" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
       <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
     </div>
   </div>
