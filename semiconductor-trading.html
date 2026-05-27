@@ -208,6 +208,10 @@
       .commentary { padding: 16px 18px; }
       .footer-inner { flex-direction: column; text-align: center; }
     }
+    @media (max-width: 600px) {
+      .dl-btns { flex-direction: column; gap: 8px; }
+      .dl-btn { width: 100%; justify-content: center; padding: 10px 14px; }
+    }
     @media (max-width: 480px) {
       .site-header, .report-cover, .nav-bar, .main, .site-footer, .preview-banner { padding-left: 16px; padding-right: 16px; }
       .report-cover::after { left: 16px; right: 16px; }
