@@ -192,6 +192,7 @@
     .preview-banner strong { color: var(--navy); font-weight: 700; }
     @media print { .site-header, .nav-bar, .site-footer, .preview-banner { display: none !important; } .section { display: block !important; page-break-before: always; } }
     @media (max-width: 900px) {
+      .nav-auth-btns .btn-register { display: none; }
       .site-header, .report-cover, .nav-bar, .main, .site-footer, .preview-banner { padding-left: 20px; padding-right: 20px; }
       .chart-row, .chart-row.tri { grid-template-columns: 1fr; }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
@@ -226,6 +227,7 @@
   </style>
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
   <script src="/js/css-loader.js" defer></script>
+  <script src="/js/nav-handler.js" defer></script>
   <link rel="stylesheet" href="/css/print.css" media="print">
 </head>
 <body>
