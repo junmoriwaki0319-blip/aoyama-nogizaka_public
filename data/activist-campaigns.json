@@ -2,8 +2,8 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1369,
-    "curated_campaigns": 38,
+    "total_campaigns": 1374,
+    "curated_campaigns": 43,
     "auto_detected": 1331,
     "unique_activists": 44,
     "archive_urls": 0
@@ -4635,8 +4635,8 @@
       "type": "activist",
       "group_id": "murakami_group",
       "group_name": "旧村上ファンド系（村上世彰グループ）",
-      "campaign_count": 37,
-      "curated_count": 2,
+      "campaign_count": 38,
+      "curated_count": 3,
       "target_companies": [
         {
           "sec_code": "8306",
@@ -4831,8 +4831,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 32,
-      "curated_count": 3,
+      "campaign_count": 33,
+      "curated_count": 4,
       "target_companies": [
         {
           "sec_code": "5423",
@@ -4992,6 +4992,11 @@
         {
           "sec_code": "4967",
           "name": "小林製薬株式会社",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "6971",
+          "name": "京セラ株式会社",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -5747,8 +5752,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 25,
-      "curated_count": 2,
+      "campaign_count": 27,
+      "curated_count": 4,
       "target_companies": [
         {
           "sec_code": "5449",
@@ -6475,8 +6480,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 14,
-      "curated_count": 5,
+      "campaign_count": 15,
+      "curated_count": 6,
       "target_companies": [
         {
           "sec_code": "4676",
@@ -6541,6 +6546,11 @@
         {
           "sec_code": "3593",
           "name": "株式会社ホギメディカル",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "2267",
+          "name": "株式会社ヤクルト本社",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -8158,6 +8168,292 @@
         "資本配分ポリシー策定",
         "政策保有株削減"
       ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "kyocera_oasis_2025_2026",
+      "activist_id": "oasis",
+      "activist_name": "Oasis Management",
+      "target_company": "京セラ",
+      "sec_code": "6971",
+      "category": "電子部品",
+      "date_start": "2025-05",
+      "date_end": "2026-06",
+      "tagline": "10年越し再挑戦 — 7戦略提言 (6,600億円ノンコア撤退・1兆円自社株買い・会長解任) で過剰多角化に挑む、賛成率63.84%",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Oasis 2026 AGM 完全版プレゼン (2026-05、4.7MB)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2026/05/2026-Kyocera-AGM-vFinal-ENG.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20260500_oasis_kyocera_2026_agm_final_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 2026 第3次プレスリリース (2026-05、最終版)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2026/05/Kyocera_Press_Release_May_2026_ENG-vFinal.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20260500_oasis_kyocera_2026_press_release_final_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 完全版プレゼン 2025年7月 (2.9MB、7戦略提言詳細)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2025/07/6971_A-Better-Kyocera_E.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20250700_oasis_kyocera_full_presentation_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 4Q決算電話会議資料 (2025-06、3.6MB)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2025/06/6971-Kyocera-on-4Q-Earnings-Call-ENG.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20250600_oasis_kyocera_4q_earnings_call_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 山口会長解任要求 (2025-06-12)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2025/06/Kyocera_Press_Release_June_12_2025_ENG.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20250612_oasis_kyocera_director_opposition_en.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 第2次キャンペーン開始 日本語版 (2025-05-14)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2025/05/Kyocera_Press_Release_May_14_2025_J.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20250514_oasis_kyocera_press_release_jp.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "Oasis 第2次キャンペーン開始 英語版 (2025-05-14)",
+          "url": "https://abetterkyocera.com/wp-content/uploads/2025/05/Kyocera_Press_Release_May_14_2025_E.pdf",
+          "backup_url": "data/activist-materials/kyocera_oasis_2025_2026/20250514_oasis_kyocera_press_release_en.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Oasis キャンペーンサイト abetterkyocera.com",
+          "url": "https://abetterkyocera.com/"
+        },
+        {
+          "type": "press",
+          "label": "Bloomberg 賛成率 63.84% (2025-06-30)",
+          "url": "https://www.bloomberg.co.jp/news/articles/2025-06-30/SYNPRNT1UM0W00"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/kyocera_oasis_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "経営トップ解任要求", "ノンコア事業撤退", "大型自社株買い", "政策保有株削減"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "sanken_effissimo_2024_2025",
+      "activist_id": "effissimo",
+      "activist_name": "エフィッシモ・キャピタル・マネジメント",
+      "target_company": "サンケン電気",
+      "sec_code": "6707",
+      "category": "半導体・パワー",
+      "date_start": "2024-07",
+      "date_end": "2025-09",
+      "tagline": "Allegro売却後の28.65%拒否権 — PMI監視局面、Oasisと二重圧力で300億円自社株買い実現",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "JCR 格付分析 (2024-09、Effissimo圧力含む、207KB)",
+          "url": "https://www.jcr.co.jp/download/6086ee08233ab7192219668b126185bab127728c0f9e78e552/24d0570.pdf",
+          "backup_url": "data/activist-materials/sanken_effissimo_2024_2025/20240900_jcr_sanken_rating.pdf"
+        },
+        {
+          "type": "press",
+          "label": "日経 Effissimo 28.65% (2024-09-27)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC2798B0X20C24A9000000/"
+        },
+        {
+          "type": "press",
+          "label": "日経 Allegro 20%売却 (2024-07)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC246SH0U4A720C2000000/"
+        },
+        {
+          "type": "press",
+          "label": "日経 300億円自社株買い (2024-11-29)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC297MU0Z21C24A1000000/"
+        },
+        {
+          "type": "website",
+          "label": "Oasis A Better Sanken サイト (Effissimoと並走)",
+          "url": "https://www.abettersanken.com/jp-sankens-issues"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/sanken_effissimo_2024_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "重要提案行為", "拒否権確保", "PMI監視"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "konica_minolta_effissimo_2024_2025",
+      "activist_id": "effissimo",
+      "activist_name": "エフィッシモ・キャピタル・マネジメント",
+      "target_company": "コニカミノルタ",
+      "sec_code": "4902",
+      "category": "電機・複合機",
+      "date_start": "2024-10",
+      "date_end": "2025-08",
+      "tagline": "5.81%→9.16%純投資装い、3週間で株価4割高 — Effissimoはリコー19.5%も保有、業界再編期待",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "press",
+          "label": "日経 9.16% (2025-08-07)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC07B3Y0X00C25A8000000/"
+        },
+        {
+          "type": "press",
+          "label": "日経 初回5.81% (2024-10-22)",
+          "url": "https://www.nikkei.com/article/DGXZQOUC228510S4A021C2000000/"
+        },
+        {
+          "type": "press",
+          "label": "maonline S100UJH8 (初回)",
+          "url": "https://maonline.jp/kabuhoyu/sh-s100ujh8"
+        },
+        {
+          "type": "press",
+          "label": "maonline S100WG4Q (変更No.2 9.16%)",
+          "url": "https://maonline.jp/db/shareholding_reports/S100WG4Q"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/konica_minolta_effissimo_2024_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "純投資", "業界再編期待"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "ferrotec_city_index_2025",
+      "activist_id": "city_index_elevens",
+      "activist_name": "シティインデックスイレブンス (旧村上系) + 野村絢",
+      "target_company": "フェローテックHD",
+      "sec_code": "6890",
+      "category": "半導体材料",
+      "date_start": "2025-03",
+      "date_end": "2025-11",
+      "tagline": "AI需要×親子未満上場 — 5.32%→8.17%→6.08%→5.31%の段階買増サイクル、共同保有者は野村絢",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "press",
+          "label": "株探 初回5.32% (2025-03-14)",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202503140907"
+        },
+        {
+          "type": "press",
+          "label": "株探 11月変更 (2025-11-05)",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202511051135"
+        },
+        {
+          "type": "press",
+          "label": "QUICK MoneyWorld 10月再買い 5.31%",
+          "url": "https://moneyworld.jp/news/PPV7897_ainews"
+        },
+        {
+          "type": "press",
+          "label": "maonline S100VE1G (初回)",
+          "url": "https://maonline.jp/db/shareholding_reports/S100VE1G"
+        },
+        {
+          "type": "press",
+          "label": "maonline S100WWWV (10月再買い)",
+          "url": "https://maonline.jp/kabuhoyu/sh-s100wwwv"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/ferrotec_city_index_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "重要提案行為", "親子未満上場価値解放"],
+      "activist_type": "activist",
+      "group_id": "murakami_group",
+      "group_name": "村上系"
+    },
+    {
+      "id": "yakult_dalton_2026",
+      "activist_id": "dalton",
+      "activist_name": "ダルトン・インベストメンツ (Rosenwald CIO) + Rising Sun Management",
+      "target_company": "ヤクルト本社",
+      "sec_code": "2267",
+      "category": "食品・乳酸菌",
+      "date_start": "2026-03",
+      "date_end": "2026-06",
+      "tagline": "James B. Rosenwald III + Isogai 取締役候補 — 国内新工場過剰投資+中国遊休資本+不動産政策保有資本コスト不十分の3軸",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "Dalton Yakult White Paper 英語版 (2026-04、1.0MB、提案核心)",
+          "url": "https://www.daltoninvestments.com/wp-content/uploads/2026/04/Yakult-White-Paper-E-202604.pdf",
+          "backup_url": "data/activist-materials/yakult_dalton_2026/20260400_dalton_yakult_white_paper_en.pdf"
+        },
+        {
+          "type": "letter",
+          "label": "RSM 取締役会宛書簡 2026-03 英語 (414KB)",
+          "url": "https://www.daltoninvestments.com/wp-content/uploads/2026/04/RSM-letter-to-Yakult-202603-E.pdf",
+          "backup_url": "data/activist-materials/yakult_dalton_2026/20260300_rsm_letter_to_yakult_en.pdf"
+        },
+        {
+          "type": "letter",
+          "label": "RSM 取締役会宛書簡 2026-04 英語 (222KB)",
+          "url": "https://www.daltoninvestments.com/wp-content/uploads/2026/04/RSM-letter-to-Yakult-202604-E.pdf",
+          "backup_url": "data/activist-materials/yakult_dalton_2026/20260400_rsm_letter_to_yakult_en.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2026-04-21 日本語",
+          "url": "https://www.daltoninvestments.co.jp/news/20260421"
+        },
+        {
+          "type": "press",
+          "label": "Dalton US explanatory materials ページ",
+          "url": "https://www.daltoninvestments.com/proposal-to-yakult-publication-of-explanatory-materials/"
+        },
+        {
+          "type": "press",
+          "label": "日経 報道",
+          "url": "https://www.nikkei.com/article/DGXZQOUC23CSK0T20C26A4000000/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/yakult_dalton_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "取締役選任", "譲渡制限付株式報酬", "定款変更"],
       "activist_type": "activist",
       "group_id": null,
       "group_name": null
