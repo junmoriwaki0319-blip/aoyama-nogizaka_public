@@ -108,7 +108,8 @@
     .filter-input { padding: 8px 12px; border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; color: var(--text-mid); background: var(--white); min-width: 200px; }
     .filter-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 6px; font-size: 13px; cursor: pointer; transition: background 0.2s; }
     .filter-btn:hover { background: var(--navy-light); }
-    .filter-btn-reset { padding: 8px 16px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; cursor: pointer; }
+    .filter-btn-reset { padding: 8px 16px; background: none; color: var(--text-light); border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
+    .filter-btn-reset:hover { border-color: var(--text-mid); color: var(--text-mid); }
     .filter-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(26,45,79,0.08); border-radius: 12px; font-size: 12px; color: var(--navy); }
     .filter-tag-remove { background: none; border: none; color: var(--text-light); cursor: pointer; font-size: 14px; line-height: 1; }
     .result-count { font-size: 13px; color: var(--text-light); margin-left: auto; }
@@ -148,13 +149,13 @@
     .campaign-detail { display: flex; flex-direction: column; gap: 2px; }
     .campaign-detail-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.04em; }
     .campaign-detail-value { font-size: 13px; color: var(--text-dark); }
-    .campaign-tagline { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 12px; }
+    .campaign-tagline { font-size: 13px; color: var(--text-mid); font-weight: 500; border-left: 2px solid var(--gold); padding-left: 10px; margin-bottom: 12px; }
     .campaign-materials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
     .material-link { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1px solid var(--mid-gray); border-radius: 6px; font-size: 12px; color: var(--blue); text-decoration: none; transition: all 0.15s; }
     .material-link:hover { border-color: var(--blue); background: rgba(41,128,185,0.04); }
     .material-link-archive { color: var(--text-light); font-size: 11px; }
-    .material-link-local { color: #2e7d32; font-size: 11px; border-color: rgba(46,125,50,0.3); }
-    .material-link-local:hover { border-color: #2e7d32; background: rgba(46,125,50,0.05); }
+    .material-link-local { color: var(--gold); font-size: 11px; border-color: rgba(155,139,110,0.35); background: rgba(155,139,110,0.04); }
+    .material-link-local:hover { border-color: var(--gold); background: rgba(155,139,110,0.08); }
     .campaign-materials-more { margin-top: 8px; }
     .campaign-materials-more > summary { cursor: pointer; padding: 6px 12px; border: 1px dashed var(--mid-gray); border-radius: 6px; font-size: 12px; color: var(--text-light); list-style: none; display: inline-block; }
     .campaign-materials-more > summary::-webkit-details-marker { display: none; }
@@ -178,7 +179,7 @@
 
     /* EMPTY STATE */
     .empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
-    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
     .empty-state-text { font-size: 14px; }
 
     /* FOOTER */
@@ -202,7 +203,7 @@
       .layout { grid-template-columns: 1fr; }
       .sidebar { flex-direction: row; overflow-x: auto; }
       .sidebar-card { min-width: 280px; }
-      .activist-list { max-height: 200px; }
+      .activist-list { max-height: 320px; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
