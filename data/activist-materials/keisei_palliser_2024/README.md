@@ -11,7 +11,7 @@ verification_status: fully-verified (Palliser公式PDF・京成IR・BW複数・I
 
 | 日付 | 出来事 | ソース |
 |---|---|---|
-| 2023-10-17 | **Palliser、13D Active-Passive Investor Summit で初公開プレゼン** (初の出資公表) | [Palliser 13D PDF](./20231017_palliser_keisei_13d_presentation.pdf) |
+| 2023-10-17 | **Palliser、13D Active-Passive Investor Summit で初公開プレゼン** (初の出資公表、日本語版20p「京成電鉄 — 真の価値を解き放ち、成長に向け歩みだす機会」) | [BusinessWire 配信 JP](https://mms.businesswire.com/media/20231017140528/ja/1918095/1/20231017_-_Palliser_Capital_-_13D.pdf?download=1) |
 | 2024-03-07 | Palliser、京成によるOLC株の初回譲渡 (0.5%売却) を評価する声明 | Palliser |
 | 2024-04-29 | **Palliser、第181回定時株主総会向けに法的拘束力ある株主提案を再提出** | [Bloomberg JP](https://www.bloomberg.co.jp/news/articles/2024-04-29/SCQ9OQT1UM0W00), [BW 20240429](https://www.businesswire.com/news/home/20240429699717/ja) |
 | 2024-05-20 | 京成電鉄、株主提案への取締役会反対意見をTDnet開示 | TDnet |
