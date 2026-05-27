@@ -42,11 +42,19 @@ verification_status: partially-verified (TDnet索引・PRTimes・日経・中部
 - [日経 「不採算なら祖業でも撤退」](https://www.nikkei.com/article/DGXZQOFD235OC0T20C26A4000000/)
 - [note 業界解説](https://note.com/kabuya66/n/n701bba9d54c0)
 
-## 1次ソースで未取得の項目
+## ローカル保存資料
 
-- SC プレゼン PDF の直URL (stracap.jp/5331-NORITAKE/ サイト内に存在見込み)
-- ノリタケ 取締役会反対意見書 PDF の Yahoo配信直URL
+- **[20260421_sc_noritake_site_slides_consolidated.pdf](./20260421_sc_noritake_site_slides_consolidated.pdf)** (1.85MB、15スライド統合)
+  - Strategic Capital 特設サイトの全画像 (img_01〜img_15) を PDF に結合
+  - 主要スライドの代表例: 森村グループ (上場4社) の沿革 — ノリタケが「長男」位置づけ、TOTO/NGK/Niterra と並ぶ
+- [_site_snapshot.html](./_site_snapshot.html) (46KB、サイトHTML原本スナップショット)
+- [images/](./images/) (17PNG、個別画像)
+
+## 1次ソースで未取得の項目 (補足情報)
+
+- ノリタケ 取締役会反対意見書 PDF の Yahoo配信直URL (TDnet索引のみ確認)
 - 株主総会 開催日 (2026年6月予定)
+- ノリタケ側公式の反論プレゼン (報道経由でのみ確認)
 
 ## 評価
 

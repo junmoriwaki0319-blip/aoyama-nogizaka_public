@@ -52,6 +52,12 @@ verification_status: fully-verified (SC公式取下げPDF + 特設サイト)
 ## 主資料 (ローカル保存)
 
 - [20260522_sc_sanyo_denki_proposal_withdrawal.pdf](./20260522_sc_sanyo_denki_proposal_withdrawal.pdf) (144KB、SC公式 提案取下げ告知)
+- **[20260421_sc_sanyo_denki_site_slides_consolidated.pdf](./20260421_sc_sanyo_denki_site_slides_consolidated.pdf)** (1.07MB、特設サイト10スライド統合)
+  - San Ace 製品リリース履歴 (2025年に「業界トップの高静圧/低消費電力」5本)
+  - 価格帯別サーバー出荷台数推移 (高価格AIサーバー需要爆発)
+  - PBR/EV比較チャート (Delta/Nidec)
+- [_site_snapshot.html](./_site_snapshot.html) (42KB、サイトHTML原本スナップショット)
+- [images/](./images/) (13PNG、個別画像 — `867s_frame.png` 含む大型バナー1枚 3.4MB)
 
 ## 関連リンク
 
