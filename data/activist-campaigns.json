@@ -2,8 +2,8 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1354,
-    "curated_campaigns": 23,
+    "total_campaigns": 1356,
+    "curated_campaigns": 25,
     "auto_detected": 1331,
     "unique_activists": 43,
     "archive_urls": 0
@@ -6176,8 +6176,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 15,
-      "curated_count": 2,
+      "campaign_count": 17,
+      "curated_count": 4,
       "target_companies": [
         {
           "sec_code": "3765",
@@ -6222,7 +6222,7 @@
         {
           "sec_code": "9882",
           "name": "株式会社イエローハット",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "5449",
@@ -6247,7 +6247,7 @@
         {
           "sec_code": "6516",
           "name": "山洋電気株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         }
       ]
     },
@@ -8091,6 +8091,97 @@
         "株主提案",
         "資本配分ポリシー策定",
         "政策保有株削減"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "yellowhat_strategic_capital_2025_2026",
+      "activist_id": "strategic_capital",
+      "activist_name": "ストラテジックキャピタル",
+      "target_company": "イエローハット",
+      "sec_code": "9882",
+      "category": "小売・カー用品",
+      "date_start": "2025-03",
+      "date_end": "2026-06",
+      "tagline": "14%保有でPBR 1.1倍からのTOPIX水準復帰要求 — 2025年議事要旨+2026年報酬改定議案",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "イエローハット第65回株主総会 SC×木村社長 Q&A議事要旨 (2025-06-20)",
+          "url": "https://stracap.jp/wp2/wp-content/uploads/2025/06/27ed25e8e8a421735168d795235fe1e4.pdf",
+          "backup_url": "data/activist-materials/yellowhat_strategic_capital_2025_2026/20250620_yellowhat_sc_agm_qa.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "SC 株主提案理由の修正 (2026-05-15、約14%保有確認)",
+          "url": "https://stracap.jp/wp2/wp-content/uploads/2026/04/f7aa9bf85d75c637e4df85eebb7a8a4d.pdf",
+          "backup_url": "data/activist-materials/yellowhat_strategic_capital_2025_2026/20260515_sc_yellowhat_proposal_amendment.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Strategic Capital 全資料 all_yellowhat",
+          "url": "https://stracap.jp/all_yellowhat"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン (ローカル README)",
+          "url": "data/activist-materials/yellowhat_strategic_capital_2025_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "PBR向上要求",
+        "報酬改定",
+        "多年度エンゲージメント"
+      ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "sanyo_denki_strategic_capital_2026",
+      "activist_id": "strategic_capital",
+      "activist_name": "ストラテジックキャピタル",
+      "target_company": "山洋電気",
+      "sec_code": "6516",
+      "category": "電子部品・冷却ファン",
+      "date_start": "2024-01",
+      "date_end": "2026-05",
+      "tagline": "AIサーバー冷却業界トップ「San Ace」のPBR/EV評価ギャップを18か月対話 — 会社の指名委員会自主設置で全6議案取下げ",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "SC 株主提案取下げ告知 (2026-05-22)",
+          "url": "https://stracap.jp/wp2/wp-content/uploads/2026/05/7aa6a436c8ac887cd4b4f0143721f1ed.pdf",
+          "backup_url": "data/activist-materials/sanyo_denki_strategic_capital_2026/20260522_sc_sanyo_denki_proposal_withdrawal.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Strategic Capital 特設サイト 6516-SANYODENKI (画像多数掲載、PDFの代替)",
+          "url": "https://stracap.jp/6516-SANYODENKI/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ・タイムライン・取下げ経緯 (ローカル README)",
+          "url": "data/activist-materials/sanyo_denki_strategic_capital_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": [
+        "株主提案",
+        "取締役選任",
+        "指名委員会設置",
+        "株式分割",
+        "取下げ決着"
       ],
       "activist_type": "activist",
       "group_id": null,
