@@ -2,8 +2,8 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1364,
-    "curated_campaigns": 33,
+    "total_campaigns": 1369,
+    "curated_campaigns": 38,
     "auto_detected": 1331,
     "unique_activists": 44,
     "archive_urls": 0
@@ -4635,8 +4635,8 @@
       "type": "activist",
       "group_id": "murakami_group",
       "group_name": "旧村上ファンド系（村上世彰グループ）",
-      "campaign_count": 36,
-      "curated_count": 0,
+      "campaign_count": 37,
+      "curated_count": 2,
       "target_companies": [
         {
           "sec_code": "8306",
@@ -4817,6 +4817,11 @@
           "sec_code": "5482",
           "name": "愛知製鋼株式会社",
           "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "5021",
+          "name": "コスモエネルギーホールディングス株式会社",
+          "campaign_type": "tob"
         }
       ]
     },
@@ -5742,8 +5747,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 23,
-      "curated_count": 0,
+      "campaign_count": 25,
+      "curated_count": 2,
       "target_companies": [
         {
           "sec_code": "5449",
@@ -6470,8 +6475,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 13,
-      "curated_count": 4,
+      "campaign_count": 14,
+      "curated_count": 5,
       "target_companies": [
         {
           "sec_code": "4676",
@@ -6531,6 +6536,11 @@
         {
           "sec_code": "7309",
           "name": "株式会社シマノ",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "3593",
+          "name": "株式会社ホギメディカル",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -8127,6 +8137,178 @@
       "activist_type": "activist",
       "group_id": null,
       "group_name": null
+    },
+    {
+      "id": "hogi_medical_dalton_2025",
+      "activist_id": "dalton",
+      "activist_name": "ダルトン・インベストメンツ (James B. Rosenwald III CIO)",
+      "target_company": "ホギメディカル",
+      "sec_code": "3593",
+      "category": "医療機器・滅菌包装",
+      "date_start": "2025-04",
+      "date_end": "2025-06",
+      "tagline": "Rosenwald CIO 賛成 52.1% で社外取選任 — 会社反対案がAGMで可決された希少な実例",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "ホギメディカル 議決結果 臨時報告書 (EDINET S100W1MK、2025-06-23、15KB)",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100W1MK.pdf",
+          "backup_url": "data/activist-materials/hogi_medical_dalton_2025/20250623_hogi_medical_resolution_edinet.pdf"
+        },
+        {
+          "type": "press",
+          "label": "日経 社外取に Dalton CIO 選任",
+          "url": "https://www.nikkei.com/article/DGXZQOUC207Q80Q5A620C2000000/"
+        },
+        {
+          "type": "press",
+          "label": "株探 議案可決 2025-06-23",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202506230600"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "取締役選任", "可決事例"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "taiheiyo_kogyo_effissimo_2025",
+      "activist_id": "effissimo",
+      "activist_name": "エフィッシモ・キャピタル・マネジメント",
+      "target_company": "太平洋工業",
+      "sec_code": "7250",
+      "category": "自動車部品",
+      "date_start": "2025-09",
+      "date_end": "2025-11",
+      "tagline": "サイレント基調Effissimoが2か月で5.54%→16.37%へ電撃買い増し — 第7回変更報告で異例の急増",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "press",
+          "label": "株探 5.54%初回 2025-09-03",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202509030851"
+        },
+        {
+          "type": "press",
+          "label": "株探 16.37% 変更No.7 2025-11-06",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202511061156"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "急速買い増し"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "uacj_effissimo_2025",
+      "activist_id": "effissimo",
+      "activist_name": "エフィッシモ・キャピタル・マネジメント",
+      "target_company": "UACJ",
+      "sec_code": "5741",
+      "category": "アルミ・非鉄金属",
+      "date_start": "2025-02",
+      "date_end": "2025-12",
+      "tagline": "Effissimo 24.28%で筆頭株主交代 — 古河電工を抜きトップ、アルミ最大手のガバナンス変動",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "press",
+          "label": "日経 Effissimo筆頭株主に 2025-02",
+          "url": "https://www.nikkei.com/article/DGXZQOUC133RF0T10C25A2000000/"
+        },
+        {
+          "type": "press",
+          "label": "QUICK 23.29%保有",
+          "url": "https://moneyworld.jp/news/PJX2060_ainews"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "筆頭株主交代"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "keikyu_city_index_2025",
+      "activist_id": "city_index_elevens",
+      "activist_name": "シティインデックスイレブンス (旧村上ファンド系)",
+      "target_company": "京浜急行電鉄",
+      "sec_code": "9006",
+      "category": "陸運・私鉄",
+      "date_start": "2025-02",
+      "date_end": "2025-11",
+      "tagline": "5.11%→7.08% 段階買い増し — 品川GOOSE再開発・含み資産テーマで旧村上系が私鉄に着目",
+      "campaign_type": "filing",
+      "materials": [
+        {
+          "type": "press",
+          "label": "株探 5.11%大量保有 2025-02-20",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202502200992"
+        },
+        {
+          "type": "press",
+          "label": "株探 7.08% 変更No.2 2025-11-05",
+          "url": "https://kabutan.jp/news/marketnews/?b=n202511051137"
+        },
+        {
+          "type": "press",
+          "label": "日経 旧村上が京急/京成株買い増し",
+          "url": "https://www.nikkei.com/article/DGXZQOUC254T00V21C24A1000000/"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["大量保有報告", "重要提案行為"],
+      "activist_type": "activist",
+      "group_id": "murakami_group",
+      "group_name": "村上系"
+    },
+    {
+      "id": "cosmo_energy_city_index_2022_2023",
+      "activist_id": "city_index_elevens",
+      "activist_name": "シティインデックスイレブンス (旧村上ファンド系)",
+      "target_company": "コスモエネルギーHD",
+      "sec_code": "5021",
+      "category": "石油・エネルギー",
+      "date_start": "2022-04",
+      "date_end": "2023-12",
+      "tagline": "TOB/防衛策(MoM承認)応酬の歴史的決着 — 2023-12 岩谷産業が19.86%を1,053億円で買取、水素連合形成",
+      "campaign_type": "tob",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "岩谷産業 コスモエネ 1,053億円取得発表 (2023-12-01、296KB)",
+          "url": "https://www.iwatani.co.jp/jpn/ir/news/files/2023/20231201_oshirase.pdf",
+          "backup_url": "data/activist-materials/cosmo_energy_city_index_2022_2023/20231201_iwatani_cosmo_acquisition.pdf"
+        },
+        {
+          "type": "press",
+          "label": "日経 岩谷産業20%取得",
+          "url": "https://www.nikkei.com/article/DGXZQOUF0212L0S3A201C2000000/"
+        },
+        {
+          "type": "press",
+          "label": "東洋経済 救世主か",
+          "url": "https://toyokeizai.net/articles/-/721414"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["TOB", "買収防衛策", "MoM承認", "水素連合"],
+      "activist_type": "activist",
+      "group_id": "murakami_group",
+      "group_name": "村上系"
     },
     {
       "id": "osaka_steel_strategic_capital_2025",
