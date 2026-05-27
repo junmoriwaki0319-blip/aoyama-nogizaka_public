@@ -2,10 +2,10 @@
   "_generated": "2026-04-06T03:59:33.349Z",
   "_description": "アクティビスト・キャンペーンデータ（自動検出 + キュレーション）",
   "stats": {
-    "total_campaigns": 1356,
-    "curated_campaigns": 25,
+    "total_campaigns": 1364,
+    "curated_campaigns": 33,
     "auto_detected": 1331,
-    "unique_activists": 43,
+    "unique_activists": 44,
     "archive_urls": 0
   },
   "activists": [
@@ -5597,12 +5597,12 @@
     },
     {
       "id": "nippon_active_value",
-      "name": "ニッポン・アクティブ・バリュー・ファンド (AVI)",
+      "name": "ニッポン・アクティブ・バリュー・ファンド (AVI/NAVF)",
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 26,
-      "curated_count": 2,
+      "campaign_count": 30,
+      "curated_count": 6,
       "target_companies": [
         {
           "sec_code": "3407",
@@ -5632,7 +5632,7 @@
         {
           "sec_code": "5943",
           "name": "株式会社ノーリツ",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "1976",
@@ -5667,7 +5667,7 @@
         {
           "sec_code": "6328",
           "name": "荏原実業株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "6763",
@@ -5727,6 +5727,11 @@
         {
           "sec_code": "6727",
           "name": "株式会社ワコム",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "7976",
+          "name": "三菱鉛筆株式会社",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -6176,8 +6181,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 17,
-      "curated_count": 4,
+      "campaign_count": 19,
+      "curated_count": 6,
       "target_companies": [
         {
           "sec_code": "3765",
@@ -6207,7 +6212,7 @@
         {
           "sec_code": "8818",
           "name": "京阪神ビルディング株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "8125",
@@ -6227,7 +6232,7 @@
         {
           "sec_code": "5449",
           "name": "大阪製鐵株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "8871",
@@ -6465,8 +6470,8 @@
       "type": "activist",
       "group_id": null,
       "group_name": null,
-      "campaign_count": 11,
-      "curated_count": 2,
+      "campaign_count": 13,
+      "curated_count": 4,
       "target_companies": [
         {
           "sec_code": "4676",
@@ -6516,11 +6521,16 @@
         {
           "sec_code": "2206",
           "name": "江崎グリコ株式会社",
-          "campaign_type": "filing"
+          "campaign_type": "shareholder_proposal"
         },
         {
           "sec_code": "5930",
           "name": "文化シヤッター株式会社",
+          "campaign_type": "shareholder_proposal"
+        },
+        {
+          "sec_code": "7309",
+          "name": "株式会社シマノ",
           "campaign_type": "shareholder_proposal"
         }
       ]
@@ -7208,6 +7218,22 @@
           "sec_code": "9009",
           "name": "京成電鉄株式会社",
           "campaign_type": "shareholder_proposal"
+        }
+      ]
+    },
+    {
+      "id": "asia_investment_fund_kk",
+      "name": "アジアインベストメントファンド株式会社",
+      "type": "activist",
+      "group_id": null,
+      "group_name": null,
+      "campaign_count": 1,
+      "curated_count": 0,
+      "target_companies": [
+        {
+          "sec_code": "6335",
+          "name": "株式会社東京機械製作所",
+          "campaign_type": "filing"
         }
       ]
     },
@@ -8098,6 +8124,308 @@
         "資本配分ポリシー策定",
         "政策保有株削減"
       ],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "osaka_steel_strategic_capital_2025",
+      "activist_id": "strategic_capital",
+      "activist_name": "ストラテジックキャピタル",
+      "target_company": "大阪製鐵",
+      "sec_code": "5449",
+      "category": "鉄鋼・親子上場",
+      "date_start": "2025-04",
+      "date_end": "2025-06",
+      "tagline": "PBR 2008年以降1倍超なし・日本製鉄上場子会社の利益相反 — DOE8% + 非公開化検討委員会設立を要求",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "SC 株主提案公表 (2025-04-17、349KB)",
+          "url": "https://stracap.jp/wp2/wp-content/uploads/2025/04/277da53ea8da1b00a71b49af0355ca4b.pdf",
+          "backup_url": "data/activist-materials/osaka_steel_strategic_capital_2025/20250417_sc_osaka_steel_proposal.pdf"
+        },
+        {
+          "type": "pdf",
+          "label": "SC 特設サイト全13スライド統合PDF (3.0MB、PBR/親子上場分析)",
+          "url": "https://stracap.jp/5449-OSAKASTEEL/",
+          "backup_url": "data/activist-materials/osaka_steel_strategic_capital_2025/20250417_sc_osaka_steel_site_slides_consolidated.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Strategic Capital 特設サイト 5449-OSAKASTEEL",
+          "url": "https://stracap.jp/5449-OSAKASTEEL/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/osaka_steel_strategic_capital_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "DOE8%", "非公開化検討委員会設立", "社外取過半"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "keihanshin_strategic_capital_2026",
+      "activist_id": "strategic_capital",
+      "activist_name": "ストラテジックキャピタル",
+      "target_company": "京阪神ビルディング",
+      "sec_code": "8818",
+      "category": "不動産",
+      "date_start": "2025-12",
+      "date_end": "2026-06",
+      "tagline": "賃貸不動産含み益937億円が時価未反映 — 修正自己資本3,048円vs実際1,935円で37%ディスカウント",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "SC 特設サイト全9スライド統合PDF (3.5MB、株主価値毀損waterfall)",
+          "url": "https://stracap.jp/8818-KEIHANSHIN/",
+          "backup_url": "data/activist-materials/keihanshin_strategic_capital_2026/20250500_sc_keihanshin_site_slides_consolidated.pdf"
+        },
+        {
+          "type": "website",
+          "label": "Strategic Capital 特設サイト 8818-KEIHANSHIN (画像ベース、左記PDFは統合版)",
+          "url": "https://stracap.jp/8818-KEIHANSHIN/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/keihanshin_strategic_capital_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "不動産含み益反映", "株主価値毀損是正"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "shimano_dalton_2026",
+      "activist_id": "dalton",
+      "activist_name": "ダルトン・インベストメンツ (LONGCHAMP SICAV代理)",
+      "target_company": "シマノ",
+      "sec_code": "7309",
+      "category": "自転車部品",
+      "date_start": "2026-02",
+      "date_end": "2026-03",
+      "tagline": "Dalton代理のLONGCHAMP SICAVが第119期定時総会(3/24)で自己株式取得等を提案 — 会社側反対",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "シマノ 取締役会反対意見書 (TDnet 2026-02-27、301KB)",
+          "url": "https://contents.xj-storage.jp/xcontents/AS02673/8977cb6d/bb69/4966/9c82/9657cef1b3d4/140120260227571927.pdf",
+          "backup_url": "data/activist-materials/shimano_dalton_2026/20260227_shimano_board_opinion.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2026-03-31",
+          "url": "https://www.daltoninvestments.co.jp/news/20260331"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/shimano_dalton_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "自己株式取得"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "glico_dalton_2026",
+      "activist_id": "dalton",
+      "activist_name": "ダルトン・インベストメンツ",
+      "target_company": "江崎グリコ",
+      "sec_code": "2206",
+      "category": "食品・菓子",
+      "date_start": "2026-03",
+      "date_end": "2026-06",
+      "tagline": "Dalton共同創業者James B. Rosenwald IIIが直接取締役候補 — 4議案 (取締役選任+自社株+譲渡制限報酬+定款変更)",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "EDINET 臨時報告書 株主提案受領通知 (2026-03-26、18KB)",
+          "url": "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/pdf/S100XTYL.pdf",
+          "backup_url": "data/activist-materials/glico_dalton_2026/20260326_glico_edinet_shareholder_proposal.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2026-03-27",
+          "url": "https://www.daltoninvestments.co.jp/news/20260327"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/glico_dalton_2026/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "取締役選任", "自己株式取得", "譲渡制限付株式報酬", "定款変更"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "noritz_navf_2025",
+      "activist_id": "nippon_active_value",
+      "activist_name": "NIPPON ACTIVE VALUE FUND PLC (NAVF)",
+      "target_company": "ノーリツ",
+      "sec_code": "5943",
+      "category": "住宅設備・給湯器",
+      "date_start": "2025-01",
+      "date_end": "2025-03",
+      "tagline": "NAVF保有3.23%で第75回AGM(3/27)に3点セット (剰余金処分・自社株取得・社外取定款変更) 提案",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "ノーリツ 取締役会反対意見書 (TDnet 2025-02-12、462KB)",
+          "url": "https://contents.xj-storage.jp/xcontents/AS70667/faa07157/4cfa/4b2f/848b/e344c05b9110/140120250212571055.pdf",
+          "backup_url": "data/activist-materials/noritz_navf_2025/20250212_noritz_board_opinion.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2025-02-21 (NAVF 5社提案を解説)",
+          "url": "https://www.daltoninvestments.co.jp/news/20250221"
+        },
+        {
+          "type": "press",
+          "label": "日経記事",
+          "url": "https://www.nikkei.com/article/DGXZQOUF205B00Q5A120C2000000/"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/noritz_navf_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "剰余金処分", "自己株式取得", "社外取締役定款変更"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "mitsubishi_pencil_navf_2025",
+      "activist_id": "nippon_active_value",
+      "activist_name": "NIPPON ACTIVE VALUE FUND PLC (NAVF)",
+      "target_company": "三菱鉛筆",
+      "sec_code": "7976",
+      "category": "事務用品・筆記具",
+      "date_start": "2025-01",
+      "date_end": "2025-03",
+      "tagline": "NAVFが第150回AGM(3/27)向けに資本効率3点セット提案 — 創業家経営+PBR低位の典型ターゲット",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "三菱鉛筆 取締役会反対意見書 (会社IR 2025-02-13、426KB)",
+          "url": "https://www.mpuni.co.jp/news/images/news/20250213iken.pdf",
+          "backup_url": "data/activist-materials/mitsubishi_pencil_navf_2025/20250213_mitsubishi_pencil_board_opinion.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2025-02-21 (NAVF 5社提案を解説)",
+          "url": "https://www.daltoninvestments.co.jp/news/20250221"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/mitsubishi_pencil_navf_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "剰余金処分", "自己株式取得", "社外取締役定款変更"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "teikoku_sen_i_navf_2025",
+      "activist_id": "nippon_active_value",
+      "activist_name": "NIPPON ACTIVE VALUE FUND PLC (NAVF)",
+      "target_company": "帝国繊維",
+      "sec_code": "3302",
+      "category": "繊維・消防ホース",
+      "date_start": "2025-01",
+      "date_end": "2025-03",
+      "tagline": "NAVFが第99回AGM(3/28)向けに資本効率改善議案を提案 — PBR低位の伝統的繊維素材メーカー",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "帝国繊維 取締役会反対意見書 (TDnet 2025-02-14、197KB)",
+          "url": "https://contents.xj-storage.jp/xcontents/AS04273/61868fa3/731a/4a7b/8919/b9c05489f766/140120250213573542.pdf",
+          "backup_url": "data/activist-materials/teikoku_sen_i_navf_2025/20250213_teikoku_sen_i_board_opinion.pdf"
+        },
+        {
+          "type": "press",
+          "label": "Dalton 公式リリース 2025-02-21 (NAVF 5社提案を解説)",
+          "url": "https://www.daltoninvestments.co.jp/news/20250221"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/teikoku_sen_i_navf_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "資本効率改善"],
+      "activist_type": "activist",
+      "group_id": null,
+      "group_name": null
+    },
+    {
+      "id": "ebara_jitsugyo_navf_2025",
+      "activist_id": "nippon_active_value",
+      "activist_name": "NIPPON ACTIVE VALUE FUND PLC (NAVF)",
+      "target_company": "荏原実業",
+      "sec_code": "6328",
+      "category": "機械商社",
+      "date_start": "2025-01",
+      "date_end": "2025-03",
+      "tagline": "NAVFが第86回AGM(3/27)向けに資本効率3点セット提案 — 荏原系・現預金潤沢のクラシックなターゲット",
+      "campaign_type": "shareholder_proposal",
+      "materials": [
+        {
+          "type": "pdf",
+          "label": "荏原実業 取締役会反対意見書 (TDnet 2025-02-18、666KB)",
+          "url": "https://ssl4.eir-parts.net/doc/6328/tdnet/2570712/00.pdf",
+          "backup_url": "data/activist-materials/ebara_jitsugyo_navf_2025/ebara_jitsugyo_tdnet.pdf"
+        },
+        {
+          "type": "announcement",
+          "label": "資料サマリ (ローカル README)",
+          "url": "data/activist-materials/ebara_jitsugyo_navf_2025/README.md"
+        }
+      ],
+      "is_curated": true,
+      "report_count": 0,
+      "filing_history": [],
+      "purposes": ["株主提案", "資本効率改善"],
       "activist_type": "activist",
       "group_id": null,
       "group_name": null
