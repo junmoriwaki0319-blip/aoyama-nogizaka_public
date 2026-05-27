@@ -692,10 +692,13 @@
     /* ===== DATA & AI SECTIONS ===== */
     .data-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 960px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1120px;
       margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+      .data-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .data-card {
       text-decoration: none;
