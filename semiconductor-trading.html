@@ -4,6 +4,7 @@
   <!-- Google Analytics: 3秒遅延読み込み -->
   <script src="/js/ga-loader.js" defer></script>
   <link rel="stylesheet" href="/css/mobile-nav.css">
+  <link rel="stylesheet" href="/css/site-chrome.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.edinet-fsa.go.jp https://*.supabase.co;">
@@ -68,9 +69,6 @@
       --radius: 4px; --radius-lg: 8px;
     }
     body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
-    .site-header { background: var(--navy); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; }
-    .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
     .report-cover { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%); padding: 40px 48px 32px; position: relative; }
     .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
     .report-cover-inner { max-width: 1200px; margin: 0 auto; }
@@ -178,30 +176,14 @@
     .prose-list li { margin-bottom: 4px; }
     .prose-list strong { color: var(--navy); }
     .footnote { font-size: 0.7rem; color: var(--text-light); line-height: 1.7; margin-top: 8px; }
-    .header-right { display: flex; align-items: center; gap: 20px; }
-    .cross-nav { display: flex; align-items: center; gap: 6px; }
-    .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
-    .cross-nav-link { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: all 0.15s; }
-    .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
-    .cross-nav-link.active { color: var(--gold-light); background: rgba(155,139,110,0.15); }
-    .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white, #fff); transition: all 0.3s; }
-    @media (max-width: 900px) { .nav-hamburger { display: flex; } }
-    .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold-light); font-size: 0.9rem; }
     .preview-banner { background: rgba(155,139,110,0.12); border-bottom: 1px solid rgba(155,139,110,0.3); color: var(--gold-dim); font-size: 0.72rem; padding: 8px 48px; text-align: center; letter-spacing: 0.3px; }
     .preview-banner strong { color: var(--navy); font-weight: 700; }
     @media print { .site-header, .nav-bar, .site-footer, .preview-banner { display: none !important; } .section { display: block !important; page-break-before: always; } }
     @media (max-width: 900px) {
-      .nav-auth-btns .btn-register { display: none; }
-      .site-header, .report-cover, .nav-bar, .main, .site-footer, .preview-banner { padding-left: 20px; padding-right: 20px; }
+      .report-cover, .nav-bar, .main, .preview-banner { padding-left: 20px; padding-right: 20px; }
       .chart-row, .chart-row.tri { grid-template-columns: 1fr; }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .archetype-grid, .scenario-grid { grid-template-columns: 1fr; }
-      .header-right { gap: 10px; }
-      .cross-nav { display: none; }
       .report-cover::after { left: 20px; right: 20px; }
     }
     @media (max-width: 768px) {
@@ -210,14 +192,13 @@
       .chart-area.tall { height: 340px; }
       .chart-panel { padding: 18px 16px; }
       .commentary { padding: 16px 18px; }
-      .footer-inner { flex-direction: column; text-align: center; }
     }
     @media (max-width: 600px) {
       .dl-btns { flex-direction: column; gap: 8px; }
       .dl-btn { width: 100%; justify-content: center; padding: 10px 14px; }
     }
     @media (max-width: 480px) {
-      .site-header, .report-cover, .nav-bar, .main, .site-footer, .preview-banner { padding-left: 16px; padding-right: 16px; }
+      .report-cover, .nav-bar, .main, .preview-banner { padding-left: 16px; padding-right: 16px; }
       .report-cover::after { left: 16px; right: 16px; }
       .report-title { font-size: 1.2rem; }
       .report-subtitle { font-size: 0.8rem; }
@@ -253,6 +234,7 @@
       <span class="cross-nav-sep"></span>
       <span class="cross-nav-cat">アクティビスト</span>
       <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/risk-assessment.html" class="cross-nav-link">機会評価</a>
       <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
     </nav>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
@@ -278,6 +260,7 @@
     <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">アクティビスト <span class="mobile-accordion-arrow">&#9660;</span></button>
     <div class="mobile-accordion-panel" data-accordion-panel>
       <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
       <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
     </div>
   </div>

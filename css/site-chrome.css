@@ -214,7 +214,7 @@
    ダッシュボード系ヘッダー  header.site-header
    ============================================================ */
 .site-header { background: var(--navy, #0f1a2e); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-.site-header .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; }
+.site-header .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; white-space: nowrap; }
 .site-header .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light, #c8b99a); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
 .site-header .header-right { display: flex; align-items: center; gap: 20px; }
 .site-header .cross-nav { display: flex; align-items: center; gap: 6px; }
@@ -229,9 +229,9 @@
 .site-header #navUserInfo button:hover { color: #fff; }
 
 /* 認証ボタン (ヘッダー + モバイルメニュー共通) */
-.btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius, 4px); font-family: inherit; }
+.btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius, 4px); font-family: inherit; white-space: nowrap; }
 .btn-login:hover { border-color: var(--gold-light, #c8b99a); color: #fff; }
-.btn-register { background: var(--gold, #9b8b6e); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius, 4px); font-family: inherit; transition: all 0.2s; }
+.btn-register { background: var(--gold, #9b8b6e); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius, 4px); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
 .btn-register:hover { background: var(--gold-dim, #8a7c62); }
 
 @media (max-width: 900px) {
