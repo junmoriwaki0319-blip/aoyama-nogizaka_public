@@ -101,7 +101,7 @@
 #navbar .nav-dropdown-menu li a:hover { color: var(--gold, #9b8b6e); background: rgba(255,255,255,.06); }
 #navbar .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 #navbar .nav-cta {
-  background: var(--gold, #9b8b6e);
+  background: var(--cta-accent, #c2912e);
   color: var(--white, #fff) !important;
   border: none;
   cursor: pointer;
@@ -231,17 +231,19 @@
 /* 認証ボタン (ヘッダー + モバイルメニュー共通) */
 .btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius, 4px); font-family: inherit; white-space: nowrap; }
 .btn-login:hover { border-color: var(--gold-light, #c8b99a); color: #fff; }
-.btn-register { background: var(--gold, #9b8b6e); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius, 4px); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
-.btn-register:hover { background: var(--gold-dim, #8a7c62); }
+.btn-register { background: var(--cta-accent, #c2912e); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius, 4px); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
+.btn-register:hover { background: var(--cta-accent-dim, #a87a24); }
 
 @media (max-width: 900px) {
   /* ハンバーガー表示時はヘッダーの cross-nav と認証ボタンを隠し、
      ナビ・認証はモバイルドロワー(.mobile-menu の .m-auth)に集約する */
   .site-header { padding-left: 20px; padding-right: 20px; }
-  .site-header .nav-hamburger { display: flex; }
-  .site-header .cross-nav { display: none; }
+  .site-header .nav-hamburger { display: flex !important; }
+  .site-header .cross-nav { display: none !important; }
+  /* 認証JSがインラインstyleで display を付与するため !important で確実に隠す
+     （ログイン/ログアウト等の認証導線はモバイルドロワー側に集約） */
   .site-header .nav-auth-btns,
-  .site-header #navUserInfo { display: none; }
+  .site-header #navUserInfo { display: none !important; }
 }
 @media (max-width: 600px) {
   .site-header .header-right { gap: 10px; }
