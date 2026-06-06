@@ -1,0 +1,270 @@
+/**
+ * site-chrome.css — サイト共通クローム (ヘッダー / フッター / ハンバーガー)
+ *
+ * 用途別2テンプレートを1ファイルで統一管理:
+ *   - コーポレート系  : #navbar (ロゴ+ナビ+データドロップダウン) / footer.footer-corp
+ *   - ダッシュボード系: header.site-header (ロゴ+cross-nav+認証) / footer.site-footer
+ *
+ * モバイルドロワー本体は /css/mobile-nav.css、開閉制御は /js/nav-handler.js を併用。
+ * カラー変数 (--navy 等) は各ページの :root を参照 (fallback 同梱)。
+ *
+ * 読み込み: <link rel="stylesheet" href="/css/site-chrome.css">  (各ページ <head> 内)
+ */
+
+/* ============================================================
+   共通: ハンバーガーボタン (両テンプレート統一)
+   ============================================================ */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white, #fff);
+  transition: all 0.3s;
+}
+/* is-active 時の X アニメーションは mobile-nav.css 側で定義 */
+
+/* ============================================================
+   コーポレート系ヘッダー  #navbar
+   ============================================================ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--navy, #0f1a2e);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+#navbar .nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#navbar .nav-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+#navbar .nav-logo-jp {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.75rem;
+  color: var(--mid-gray, #9aa3b2);
+  letter-spacing: 0.1em;
+}
+#navbar .nav-logo-en {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  color: var(--white, #fff);
+  letter-spacing: 0.08em;
+}
+#navbar .nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+}
+#navbar .nav-links a {
+  color: var(--mid-gray, #9aa3b2);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+#navbar .nav-links a:hover,
+#navbar .nav-links a.active { color: var(--gold, #9b8b6e); }
+#navbar .nav-links a.active { border-bottom: 1px solid var(--gold, #9b8b6e); padding-bottom: 2px; }
+#navbar .nav-dropdown { position: relative; }
+#navbar .nav-dropdown-toggle { cursor: pointer; padding-bottom: 18px; margin-bottom: -18px; }
+#navbar .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: -16px; background: var(--navy, #0f1a2e); border-radius: 8px; padding: 10px 0; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
+#navbar .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+#navbar .nav-dropdown-cat { padding: 8px 24px 4px; font-size: 0.65rem; color: var(--gold-light, #c8b99a); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
+#navbar .nav-dropdown-cat:first-child { border-top: none; }
+#navbar .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
+#navbar .nav-dropdown-menu li a:hover { color: var(--gold, #9b8b6e); background: rgba(255,255,255,.06); }
+#navbar .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+#navbar .nav-cta {
+  background: var(--gold, #9b8b6e);
+  color: var(--white, #fff) !important;
+  border: none;
+  cursor: pointer;
+  padding: 8px 20px;
+  font-size: 0.78rem;
+  font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
+  letter-spacing: 0.06em;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+#navbar .nav-cta:hover { opacity: 0.85; }
+
+@media (max-width: 860px) {
+  #navbar .nav-inner { padding: 0 20px; }
+  #navbar .nav-links { display: none; }
+  #navbar .nav-hamburger { display: flex; }
+}
+@media (max-width: 480px) {
+  #navbar .nav-inner { padding: 0 16px; }
+}
+
+/* タップターゲット 44px 確保 (WCAG 2.5.5) */
+@media (max-width: 860px) {
+  #navbar .nav-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 16px; font-size: 14px; }
+  #navbar .nav-dropdown-menu li a { display: flex; align-items: center; min-height: 44px; padding: 12px 24px; font-size: 14px; }
+}
+
+/* ============================================================
+   コーポレート系フッター  footer.footer-corp
+   ============================================================ */
+.footer-corp {
+  background: var(--navy, #0f1a2e);
+  color: rgba(255,255,255,0.6);
+  padding: 48px 0 32px;
+}
+.footer-corp .footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.footer-corp .footer-top {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-corp .footer-brand {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--white, #fff);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.footer-corp .footer-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--gold, #9b8b6e);
+}
+.footer-corp .footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px 24px;
+  list-style: none;
+  align-items: center;
+}
+.footer-corp .footer-nav a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+.footer-corp .footer-nav a:hover { color: var(--white, #fff); }
+.footer-corp .footer-nav a.active { color: rgba(255,255,255,0.85); }
+.footer-corp .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-corp .footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+}
+.footer-corp .footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
+}
+@media (max-width: 860px) {
+  .footer-corp .footer-top { grid-template-columns: 1fr; gap: 24px; }
+  .footer-corp .footer-nav { grid-template-columns: repeat(2, 1fr); }
+  .footer-corp .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-corp .footer-inner { padding: 0 20px; }
+  .footer-corp .footer-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; font-size: 14px; }
+  .footer-corp .footer-address, .footer-corp .footer-copy { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .footer-corp .footer-inner { padding: 0 16px; }
+}
+
+/* ============================================================
+   ダッシュボード系ヘッダー  header.site-header
+   ============================================================ */
+.site-header { background: var(--navy, #0f1a2e); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.site-header .site-logo { font-family: 'Cormorant Garamond', Georgia, serif; color: #fff; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; white-space: nowrap; }
+.site-header .site-logo small { display: block; font-size: 0.6rem; color: var(--gold-light, #c8b99a); letter-spacing: 2px; font-weight: 400; font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif; }
+.site-header .header-right { display: flex; align-items: center; gap: 20px; }
+.site-header .cross-nav { display: flex; align-items: center; gap: 6px; }
+.site-header .cross-nav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; }
+.site-header .cross-nav-link { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-decoration: none; padding: 3px 8px; border-radius: 3px; transition: all 0.15s; }
+.site-header .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.site-header .cross-nav-link.active { color: var(--gold-light, #c8b99a); background: rgba(155,139,110,0.15); }
+.site-header .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
+.site-header .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
+.site-header #navUserInfo { color: #fff; font-size: 0.78rem; }
+.site-header #navUserInfo button { background: none; border: none; color: var(--gold-light, #c8b99a); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
+.site-header #navUserInfo button:hover { color: #fff; }
+
+/* 認証ボタン (ヘッダー + モバイルメニュー共通) */
+.btn-login { background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0dcd5; padding: 6px 16px; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; border-radius: var(--radius, 4px); font-family: inherit; white-space: nowrap; }
+.btn-login:hover { border-color: var(--gold-light, #c8b99a); color: #fff; }
+.btn-register { background: var(--gold, #9b8b6e); border: none; color: #fff; padding: 7px 16px; font-size: 0.72rem; cursor: pointer; border-radius: var(--radius, 4px); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
+.btn-register:hover { background: var(--gold-dim, #8a7c62); }
+
+@media (max-width: 900px) {
+  /* ハンバーガー表示時はヘッダーの cross-nav と認証ボタンを隠し、
+     ナビ・認証はモバイルドロワー(.mobile-menu の .m-auth)に集約する */
+  .site-header { padding-left: 20px; padding-right: 20px; }
+  .site-header .nav-hamburger { display: flex; }
+  .site-header .cross-nav { display: none; }
+  .site-header .nav-auth-btns,
+  .site-header #navUserInfo { display: none; }
+}
+@media (max-width: 600px) {
+  .site-header .header-right { gap: 10px; }
+}
+@media (max-width: 480px) {
+  .site-header { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ダッシュボード系モバイルメニューの認証ボタン群 */
+.mobile-menu .m-auth { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.mobile-menu .m-auth .btn-login,
+.mobile-menu .m-auth .btn-register { width: 100%; padding: 14px; font-size: 0.9rem; text-align: center; }
+
+/* ============================================================
+   ダッシュボード系フッター  footer.site-footer
+   ============================================================ */
+.site-footer { background: var(--navy, #0f1a2e); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
+.site-footer .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.site-footer .footer-brand { font-family: 'Cormorant Garamond', Georgia, serif; color: var(--gold-light, #c8b99a); font-size: 0.9rem; }
+@media (max-width: 600px) {
+  .site-footer { padding-left: 20px; padding-right: 20px; }
+  .site-footer .footer-inner { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .site-footer { padding-left: 16px; padding-right: 16px; }
+}

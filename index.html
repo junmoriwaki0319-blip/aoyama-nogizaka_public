@@ -45,6 +45,7 @@
   }
   </script>
   <link rel="stylesheet" href="/css/mobile-nav.css">
+  <link rel="stylesheet" href="/css/site-chrome.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,88 +78,6 @@
       background: var(--white);
       overflow-x: hidden;
       line-height: 1.6;
-    }
-
-    /* ===== NAVIGATION ===== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: var(--navy);
-      height: 64px;
-      display: flex;
-      align-items: center;
-    }
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-    .nav-logo-jp {
-      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-      font-size: 0.75rem;
-      color: var(--mid-gray);
-      letter-spacing: 0.1em;
-    }
-    .nav-logo-en {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1rem;
-      color: var(--white);
-      letter-spacing: 0.08em;
-    }
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      align-items: center;
-    }
-    .nav-links a {
-      color: var(--mid-gray);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown-toggle { cursor: pointer; padding-bottom: 18px; margin-bottom: -18px; }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: -16px; background: var(--navy); border-radius: 8px; padding: 10px 0; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
-    .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
-    .nav-dropdown-cat { padding: 8px 24px 4px; font-size: 0.65rem; color: var(--gold-light); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
-    .nav-dropdown-cat:first-child { border-top: none; }
-    .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
-    .nav-dropdown-menu li a:hover { color: var(--gold); background: rgba(255,255,255,.06); }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-cta {
-      background: var(--gold);
-      color: var(--white) !important;
-      border: none;
-      cursor: pointer;
-      padding: 8px 20px;
-      font-size: 0.78rem;
-      font-family: 'Noto Sans JP', system-ui, -apple-system, 'Hiragino Sans', sans-serif;
-      letter-spacing: 0.06em;
-      transition: opacity 0.2s;
-      text-decoration: none;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
-    @media (max-width: 860px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
     }
 
     /* ===== HERO ===== */
@@ -604,74 +523,6 @@
       text-decoration: underline;
     }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.6);
-      padding: 48px 0 32px;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .footer-brand {
-      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-      font-size: 16px;
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-    .footer-tagline {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-    }
-    .footer-nav {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 8px 24px;
-      list-style: none;
-      align-items: center;
-    }
-    .footer-nav a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.5);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-    .footer-nav a:hover { color: var(--white); }
-    .footer-nav a.active { color: rgba(255,255,255,0.85); }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-address {
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.06em;
-    }
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.05em;
-    }
-
     /* ===== SCROLL REVEAL ===== */
     .reveal {
       opacity: 0;
@@ -742,11 +593,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .about-layout { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 24px; }
-      .footer-nav { grid-template-columns: repeat(2, 1fr); }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
       .section-inner { padding: 0 24px; }
-      .footer-inner { padding: 0 20px; }
       /* Data & AI sections responsive */
       .data-grid { grid-template-columns: 1fr; }
       .ai-grid { grid-template-columns: 1fr; }
@@ -767,23 +614,16 @@
       .ai-card { padding: 24px 20px; }
       .ai-evidence { padding: 24px 20px; }
       .ai-evidence a { width: 100%; text-align: center; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-      /* タッチターゲット: ナビ・フッター（!important で既存 display を確実に上書き） */
-      #navbar .nav-links a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 12px 16px; font-size: 14px; }
-      #navbar .nav-dropdown-menu li a { display: flex !important; align-items: center; min-height: 44px; padding: 12px 24px; font-size: 14px; }
-      .footer-nav a { display: inline-flex !important; align-items: center; min-height: 44px; padding: 8px 12px; font-size: 14px; }
-      .footer-address, .footer-copy { font-size: 14px; }
     }
     @media (max-width: 480px) {
       section { padding: 48px 0; }
       .hero-title { font-size: 24px; }
       .section-inner { padding: 0 16px; }
-      .footer-inner { padding: 0 16px; }
       /* Data & AI sections small mobile */
       #data { padding: 48px 0 !important; }
       #ai-consulting { padding: 48px 0 !important; }
       .data-grid { gap: 20px; }
       .ai-grid { gap: 16px; }
-      .nav-inner { padding: 0 16px; }
     }
   </style>
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print">
@@ -826,7 +666,7 @@
             <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
           </ul>
         </li>
-        <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+        <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
       <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
@@ -834,10 +674,10 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#philosophy" data-nav-link>企業理念</a>
-    <a href="#services" data-nav-link>提供サービス</a>
-    <a href="#ai-consulting" data-nav-link>AI × コンサルティング</a>
-    <a href="#about" data-nav-link>会社概要</a>
+    <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+    <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
+    <a href="https://aoyama-nogizaka.com/#ai-consulting" data-nav-link>AI × コンサルティング</a>
+    <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
     <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
     <a href="/news/" data-nav-link>ニュース・論考</a>
     <div class="mobile-accordion" data-accordion>
@@ -859,7 +699,7 @@
         <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
       </div>
     </div>
-    <a href="#contact" data-nav-link class="m-cta">お問い合わせ</a>
+    <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
   </div>
 
   <!-- HERO -->
@@ -1209,7 +1049,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="footer-corp">
     <div class="footer-inner">
       <div class="footer-top">
         <div>

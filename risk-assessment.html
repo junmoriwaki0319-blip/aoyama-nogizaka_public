@@ -9,6 +9,7 @@
   <title>アクティビスト対象機会評価 | 青山乃木坂パートナーズ</title>
   <meta name="description" content="上場企業のアクティビスト対象リスクを12項目で定量評価。銘柄コードを入力するだけで自動診断。IR担当者向け無料ツール。">
   <link rel="stylesheet" href="/css/mobile-nav.css">
+  <link rel="stylesheet" href="/css/site-chrome.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <!-- OGP / SNS共有 -->
   <meta property="og:type" content="website">
@@ -64,37 +65,8 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--sans); color: var(--text-dark); background: var(--off-white); line-height: 1.6; }
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); height: 64px; display: flex; align-items: center; }
-    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { text-decoration: none; display: flex; flex-direction: column; gap: 1px; }
-    .nav-logo-jp { font-family: var(--serif); font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.1em; }
-    .nav-logo-en { font-family: var(--deco); font-size: 1rem; color: var(--white); letter-spacing: 0.08em; }
-    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
-    .nav-links a { color: var(--mid-gray); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-links a.active { border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown-toggle { cursor: pointer; padding-bottom: 18px; margin-bottom: -18px; }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: -16px; background: var(--navy); border-radius: 8px; padding: 10px 0; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
-    .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
-    .nav-dropdown-cat { padding: 8px 24px 4px; font-size: 0.65rem; color: var(--gold-light); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
-    .nav-dropdown-cat:first-child { border-top: none; }
-    .nav-dropdown-menu li a { display: block; padding: 11px 24px; font-size: 0.82rem; white-space: nowrap; color: rgba(255,255,255,.65); transition: color .15s, background .15s; }
-    .nav-dropdown-menu li a:hover, .nav-dropdown-menu li a.active { color: var(--gold); background: rgba(255,255,255,.06); }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-cta { background: var(--gold); color: var(--white) !important; border: none; cursor: pointer; padding: 8px 20px; font-size: 0.78rem; font-family: var(--sans); letter-spacing: 0.06em; transition: opacity 0.2s; text-decoration: none; }
-    .nav-cta:hover { opacity: 0.85; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
-    @media (max-width: 860px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-    }
-
     /* DASHBOARD SUB-NAV */
-    .dash-subnav { background: #243b63; border-bottom: 1px solid rgba(255,255,255,0.08); margin-top: 64px; padding: 0 40px; }
+    .dash-subnav { background: #243b63; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 40px; }
     .dash-subnav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
     .dash-subnav-inner::-webkit-scrollbar { display: none; }
     .dash-subnav-cat { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-weight: 600; margin-right: 2px; white-space: nowrap; }
@@ -230,19 +202,6 @@
     .cta-secondary { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
     .cta-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* FOOTER */
-    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 0 32px; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    .footer-top { display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .footer-brand { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 16px; font-weight: 300; color: var(--white); letter-spacing: 0.06em; margin-bottom: 10px; }
-    .footer-tagline { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); }
-    .footer-nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px 24px; list-style: none; align-items: center; }
-    .footer-nav a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 0.06em; transition: color 0.2s; }
-    .footer-nav a:hover { color: var(--white); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-address { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
-
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .page-hero { padding: 56px 20px 44px; }
@@ -261,10 +220,6 @@
       .risk-score-value { font-size: 36px; }
       .risk-detail-grid { grid-template-columns: 1fr; }
       .cta-card { padding: 32px 20px; }
-      .footer-top { grid-template-columns: 1fr; gap: 24px; }
-      .footer-nav { grid-template-columns: repeat(2, 1fr); }
-      .footer-inner { padding: 0 20px; }
-      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
     @media (max-width: 480px) {
       .page-hero { padding: 48px 16px 36px; }
@@ -275,7 +230,6 @@
       .risk-score-circle { width: 100px; height: 100px; }
       .risk-score-value { font-size: 28px; }
       .cta-card { padding: 28px 16px; }
-      .footer-inner { padding: 0 16px; }
     }
   </style>
   <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
@@ -284,67 +238,52 @@
 <body>
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
-<!-- Nav -->
-<nav aria-label="メインナビゲーション">
-  <div class="nav-inner">
-    <a href="https://aoyama-nogizaka.com/" class="nav-logo">
-      <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
-      <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
-      <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
-      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
-      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-      <li><a href="/news/">ニュース・論考</a></li>
-      <li class="nav-dropdown">
-        <a href="#" class="nav-dropdown-toggle active">データ <span style="font-size:11px;">▼</span></a>
-        <ul class="nav-dropdown-menu">
-          <li class="nav-dropdown-cat">アクティビスト分析</li>
-          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
-          <li><a href="/risk-assessment.html" class="active">アクティビスト対象機会評価</a></li>
-          <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
-          <li class="nav-dropdown-cat">セクター分析レポート</li>
-          <li><a href="/food-service.html">外食産業 KPIダッシュボード</a></li>
-          <li><a href="/saas.html">SaaS企業 KPIダッシュボード</a></li>
-            <li><a href="/ad-agency.html">広告代理店 セクター分析</a></li>
-            <li><a href="/digital-media.html">デジタルメディア セクター分析</a></li>
-            <li><a href="/entertainment-sector-dashboard.html">エンタメ・ゲーム ダッシュボード</a></li>
-            <li class="nav-dropdown-cat">株主提案・エンゲージメント</li>
-            <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
-        </ul>
-      </li>
-      <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
-    </ul>
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="https://aoyama-nogizaka.com/" class="site-logo"><small>AOYAMA NOGIZAKA PARTNERS</small>Industry Research</a>
+  <div class="header-right">
+    <nav class="cross-nav" aria-label="メインナビゲーション">
+      <span class="cross-nav-cat">セクター分析</span>
+      <a href="/food-service.html" class="cross-nav-link">外食</a>
+      <a href="/saas.html" class="cross-nav-link">SaaS</a>
+      <a href="/ad-agency.html" class="cross-nav-link">広告</a>
+      <a href="/digital-media.html" class="cross-nav-link">メディア</a>
+      <a href="/entertainment-sector-dashboard.html" class="cross-nav-link">ゲーム</a>
+      <a href="/sogo-shosha.html" class="cross-nav-link">商社</a>
+      <a href="/semiconductor-trading.html" class="cross-nav-link">半導体商社</a>
+      <span class="cross-nav-sep"></span>
+      <span class="cross-nav-cat">アクティビスト</span>
+      <a href="/activist-dashboard.html" class="cross-nav-link">大量保有</a>
+      <a href="/risk-assessment.html" class="cross-nav-link active">機会評価</a>
+      <a href="/activist-screener.html" class="cross-nav-link">スクリーナー</a>
+    </nav>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
-  <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
-  <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
-  <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
-  <a href="/news/" data-nav-link>ニュース・論考</a>
+  <a href="https://aoyama-nogizaka.com/" data-nav-link>トップページ</a>
   <div class="mobile-accordion" data-accordion>
-    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">セクター分析 <span class="mobile-accordion-arrow">▼</span></button>
     <div class="mobile-accordion-panel" data-accordion-panel>
-      <div class="mobile-cat">アクティビスト分析</div>
-      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
-      <a href="/risk-assessment.html" data-nav-link class="mobile-sub active">アクティビスト対象機会評価</a>
-      <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
-      <div class="mobile-cat">セクター分析レポート</div>
       <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業 KPIダッシュボード</a>
       <a href="/saas.html" data-nav-link class="mobile-sub">SaaS企業 KPIダッシュボード</a>
       <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店 セクター分析</a>
       <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア セクター分析</a>
       <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム ダッシュボード</a>
-      <div class="mobile-cat">株主提案・エンゲージメント</div>
-      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+      <a href="/sogo-shosha.html" data-nav-link class="mobile-sub">総合商社 セクター分析</a>
+      <a href="/semiconductor-trading.html" data-nav-link class="mobile-sub">半導体商社 セクター分析</a>
     </div>
   </div>
-  <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">アクティビスト <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html" data-nav-link class="mobile-sub active">アクティビスト対象機会評価</a>
+      <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
+    </div>
+  </div>
 </div>
 
 <!-- DASHBOARD SUB-NAV -->
@@ -525,30 +464,10 @@
 </div>
 
 <!-- Footer -->
-<footer>
+<footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">青山乃木坂パートナーズ</div>
-        <div class="footer-tagline">Aoyama Nogizaka Partners</div>
-      </div>
-      <ul class="footer-nav">
-        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
-        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-        <li><a href="/news/">ニュース・論考</a></li>
-        <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
-        <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
-        <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#contact">お問い合わせ</a></li>
-        <li><a href="https://aoyama-nogizaka.com/privacy">個人情報保護方針</a></li>
-      </ul>
-    </div>
-    <div class="footer-bottom">
-      <address style="font-style:normal;" class="footer-address">〒106-0032 東京都港区六本木7-2-28-602</address>
-      <p class="footer-copy">© 2026 Aoyama Nogizaka Partners All rights reserved.</p>
-    </div>
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>本レポートは公開情報および各社IR開示等に基づき作成しています。投資判断はご自身の責任で行ってください。 &copy; 2026 Aoyama Nogizaka Partners</span>
   </div>
 </footer>
 
