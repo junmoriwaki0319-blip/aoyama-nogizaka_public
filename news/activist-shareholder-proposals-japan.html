@@ -206,11 +206,11 @@
     .trend-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.85; }
 
     /* ─── Resources ─── */
-    .resource-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .resource-list li { padding: 14px 18px; background: var(--bg-alt); border-radius: var(--radius); border: 1px solid var(--border-light); }
-    .resource-list a { display: inline-block; padding: 12px 0; min-height: 44px; font-size: 0.85rem; font-weight: 600; color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    .resource-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+    .resource-list li { padding: 8px 14px; background: var(--bg-alt); border-radius: var(--radius); border: 1px solid var(--border-light); }
+    .resource-list a { display: flex; align-items: center; min-height: 40px; padding: 2px 0; font-size: 0.8rem; font-weight: 600; line-height: 1.4; color: var(--navy); text-decoration: none; transition: color 0.2s; }
     .resource-list a:hover { color: var(--gold); }
-    .resource-desc { display: block; font-size: 0.75rem; color: var(--text-light); margin-top: 4px; }
+    .resource-desc { display: block; font-size: 0.7rem; color: var(--text-light); margin-top: 1px; line-height: 1.5; }
 
     /* ─── Footer ─── */
     .site-footer { background: var(--navy); padding: 32px 48px; color: rgba(255,255,255,0.4); font-size: 0.72rem; }
@@ -253,6 +253,7 @@
       .footer-inner { flex-direction: column; text-align: center; }
       .filter-bar { flex-direction: column; align-items: stretch; }
       .filter-count { margin-left: 0; margin-top: 4px; }
+      .resource-list { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .site-header, .report-cover, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
@@ -1505,10 +1506,16 @@
       <article class="trend-card-cta">
         <h3 class="trend-title">TMTセクター全域への波及 — ゲーム・メディア・広告</h3>
         <p>従来アクティビストが避けてきたTMT（テクノロジー・メディア・テレコム）セクター全体への介入が本格化している。<strong>ゲーム：</strong>3D×スクエニ（14.36%保有、110P超資料）、SC×ガンホー（特設サイト）、Oasis×KADOKAWA（13.76%、FromSoftware親会社の筆頭株主）と、IP資産価値の再評価がセクター共通のテーマに。<strong>メディア：</strong>ダルトン×フジ・メディアHDでは、都市開発事業が営業利益の65%超を占める「実質不動産会社」の構造にメスを入れ、サンケイビルのスピンオフ・10%自社株買い・社外取締役刷新を要求。不動産を抱えるメディア企業のコングロマリット・ディスカウント解消が論点。<strong>広告・親子上場：</strong>電通グループでは2026年3月に旧村上ファンド系（C&I Holdings）が株主に浮上し思惑が拡大。CARTA HOLDINGSは2025年12月に上場廃止済み、セプテーニHDの完全子会社化も取り沙汰され（<a href="https://www.sentaku.co.jp/articles/view/25892" target="_blank" rel="noopener" style="color:var(--gold-light);text-decoration:underline;">選択</a>）、グループ内の親子上場解消が焦点に。TMTセクターは「IP・不動産・子会社」の隠れた資産価値が大きく、バリュエーションギャップを突くアクティビストの主戦場となりつつある。</p>
-        <p style="margin-top:12px;">青山乃木坂パートナーズは、代表の戦略コンサルティングファーム出身の経歴を軸に、<strong>TMTセクターにおける企業価値評価・アクティビスト対応の知見</strong>を豊富に有しています。SaaSダッシュボードではセクター横断のKPI分析を提供し、アクティビスト動向のモニタリングも常時更新しています。</p>
+        <p style="margin-top:16px;">そして、こうした動きは<strong>TMTに限りません</strong>。PBR・資本コストを意識した経営改革は、いまや業種を問わず、すべての上場企業に共通する経営課題です。資本市場対応というと証券会社への依頼を思い浮かべがちですが、エクイティストーリーの再構築、事業ポートフォリオの見直し、PBR改善施策の立案、開示・IRの高度化、そして<strong>資本コストを意識した経営そのものの定着</strong>まで——<strong>証券会社の枠にとどまらず、むしろ経営の現場でこそできることの方が多くあります</strong>。</p>
+        <p style="margin-top:12px;">青山乃木坂パートナーズは、代表の戦略コンサルティングファーム出身の経歴を軸に、<strong>企業価値向上のドライバー特定から実行・モニタリングまで</strong>を伴走支援します。アクティビストに指摘される前に、自ら動くための備えです。たとえば——</p>
+        <ul style="margin:12px 0 0;padding-left:1.15em;color:rgba(255,255,255,0.8);font-size:0.82rem;line-height:1.95;">
+          <li><strong>経営戦略・バリューアップ</strong> — 中期経営計画の策定、事業ポートフォリオの最適化</li>
+          <li><strong>IR支援・資本市場対応</strong> — エクイティストーリー構築、PBR改善施策、投資家との対話設計</li>
+          <li><strong>財務・資本政策</strong> — 資本コストを意識した資本政策、成長投資と財務規律の両立</li>
+        </ul>
         <div class="cta-links">
-          <a href="/saas.html" class="cta-link cta-link-gold">SaaSダッシュボードを見る</a>
-          <a href="https://aoyama-nogizaka.com/#contact" class="cta-link cta-link-outline">お問い合わせ</a>
+          <a href="https://aoyama-nogizaka.com/#services" class="cta-link cta-link-gold">企業価値向上支援の内容を見る</a>
+          <a href="https://aoyama-nogizaka.com/#contact" class="cta-link cta-link-outline">まずは気軽にご相談ください</a>
         </div>
       </article>
     </div>
