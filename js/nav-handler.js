@@ -141,9 +141,26 @@
     btn.setAttribute('aria-expanded', 'false');
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, false);
-  } else {
+  /* --- モバイル固定CTAバーの注入（全ページ・スマホのみCSSで表示） --- */
+  function injectMobileCTA() {
+    if (document.querySelector('.mobile-cta-bar')) return;
+    var bar = document.createElement('a');
+    bar.className = 'mobile-cta-bar';
+    bar.href = 'https://aoyama-nogizaka.com/#contact';
+    bar.setAttribute('data-cta', 'mobile-bar');
+    bar.innerHTML = '無料相談はこちら <span class="mobile-cta-arrow" aria-hidden="true">→</span>';
+    document.body.appendChild(bar);
+    document.body.classList.add('has-mobile-cta');
+  }
+
+  function boot() {
     init();
+    injectMobileCTA();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, false);
+  } else {
+    boot();
   }
 })();
