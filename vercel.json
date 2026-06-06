@@ -25,6 +25,7 @@
     { "source": "/food-service", "destination": "/food-service.html" },
     { "source": "/saas", "destination": "/saas.html" },
     { "source": "/sogo-shosha", "destination": "/sogo-shosha.html" },
+    { "source": "/semiconductor-trading", "destination": "/semiconductor-trading.html" },
     { "source": "/api/premium-reports", "destination": "/api/premium-reports" },
     { "source": "/api/yahoo/:code", "destination": "/api/yahoo/:code" },
     { "source": "/api/stock/:code", "destination": "/api/stock/:code" },
@@ -47,6 +48,12 @@
       "source": "/(.*).png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
+      ]
+    },
+    {
+      "source": "/data/activist-materials/(.*).md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
       ]
     },
     {

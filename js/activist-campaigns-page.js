@@ -15,6 +15,7 @@ let selectedActivist = null;
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
+  let loadFailed = false;
   try {
     const resp = await fetch(DATA_URL + '?t=' + Date.now(), { cache: 'no-store' });
     if (!resp.ok) throw new Error('Failed to load');
@@ -22,12 +23,19 @@ async function init() {
   } catch (e) {
     console.error('[campaigns] Load error:', e);
     campaignData = { campaigns: [], activists: [], stats: {} };
+    loadFailed = true;
   }
 
   renderStats();
   renderActivistList();
   applyFilters();
   bindEvents();
+
+  if (loadFailed) {
+    document.getElementById('campaignList').innerHTML =
+      '<div class="empty-state"><div class="empty-state-icon">&#x26A0;&#xFE0F;</div>' +
+      '<div class="empty-state-text">データの取得に失敗しました。ネットワーク接続を確認の上、ページをリロードしてください。</div></div>';
+  }
 }
 
 // ─── Stats ───
@@ -104,6 +112,15 @@ function applyFilters() {
     results = results.filter(c => c.is_curated);
   }
 
+  // Sort: curated優先 → date_start 降順 → activist名
+  results = results.slice().sort((a, b) => {
+    if (!!b.is_curated - !!a.is_curated !== 0) return !!b.is_curated - !!a.is_curated;
+    const da = a.date_start || '';
+    const db = b.date_start || '';
+    if (db !== da) return db.localeCompare(da);
+    return (a.activist_name || '').localeCompare(b.activist_name || '');
+  });
+
   filteredCampaigns = results;
   currentPage = 1;
 
@@ -134,8 +151,10 @@ function renderCampaignCard(c, idx) {
 
   // Header
   html += '<div class="campaign-card-header">';
-  html += '<div class="campaign-card-title">' + escHtml(c.target_company || '—') + ' (' + escHtml(c.sec_code || '') + ')' +
-    ' &times; ' + escHtml(c.activist_name || '—') + '</div>';
+  const targetNorm = (c.target_company || '—').normalize('NFKC');
+  const activistNorm = (c.activist_name || '—').normalize('NFKC');
+  html += '<div class="campaign-card-title">' + escHtml(targetNorm) + ' (' + escHtml(c.sec_code || '') + ')' +
+    ' &times; ' + escHtml(activistNorm) + '</div>';
   html += '<div class="campaign-card-meta">';
   if (c.is_curated) html += '<span class="badge badge-curated">CURATED</span>';
   html += '<span class="badge ' + typeBadgeClass + '">' + typeLabel + '</span>';
@@ -166,16 +185,59 @@ function renderCampaignCard(c, idx) {
   }
   html += '</div>';
 
-  // Materials
+  // Materials (5+ items → fold into <details>)
   if (c.materials && c.materials.length) {
-    html += '<div class="campaign-materials">';
-    for (const m of c.materials) {
-      html += '<a href="' + escHtml(m.url) + '" target="_blank" rel="noopener" class="material-link">' +
-        getMaterialIcon(m.type) + ' ' + escHtml(m.label) + '</a>';
-      // Wayback Machine archive link
-      html += '<a href="https://web.archive.org/web/' + escHtml(m.url) + '" target="_blank" rel="noopener" class="material-link material-link-archive" title="Wayback Machine アーカイブ">&#x1F4BE; Archive</a>';
+    const FOLD_THRESHOLD = 5;
+    const renderMaterial = (m) => {
+      const iconLabel = getMaterialIcon(m.type);
+      // NFKC normalize the label to avoid full-width Latin (Ｎ Ｉ Ｐ Ｐ Ｏ Ｎ) display issues
+      const labelNorm = (m.label || '').normalize('NFKC');
+      // EDINET metadata badges (holding ratio + purpose)
+      let metaHtml = '';
+      const md = m.edinet_metadata;
+      if (md) {
+        if (md.holding_ratio_pct != null) {
+          let ratioTxt = md.holding_ratio_pct.toFixed(2) + '%';
+          if (md.prev_ratio_pct != null && md.prev_ratio_pct !== md.holding_ratio_pct) {
+            const delta = md.holding_ratio_pct - md.prev_ratio_pct;
+            const arrow = delta > 0 ? '▲' : '▼';
+            ratioTxt += ' <span style="font-size:10px;opacity:0.7;">(' + arrow + Math.abs(delta).toFixed(2) + 'pt)</span>';
+          }
+          metaHtml += '<span class="material-ratio-badge">' + ratioTxt + '</span>';
+        }
+        if (md.purpose_short) {
+          const cls = (md.purpose_short === '重要提案行為') ? 'material-purpose-badge important'
+                    : (md.purpose_short === '経営参画') ? 'material-purpose-badge engagement'
+                    : (md.purpose_short === '純投資') ? 'material-purpose-badge passive'
+                    : 'material-purpose-badge default';
+          metaHtml += '<span class="' + cls + '">' + escHtml(md.purpose_short) + '</span>';
+        }
+      }
+      let s = '<a href="' + escHtml(m.url) + '" target="_blank" rel="noopener" class="material-link">' +
+        '<span aria-hidden="true">' + iconLabel + '</span> ' + escHtml(labelNorm) + metaHtml + '</a>';
+      // Wayback archive link
+      s += '<a href="https://web.archive.org/web/' + escHtml(m.url) + '" target="_blank" rel="noopener" ' +
+        'class="material-link material-link-archive" aria-label="Wayback Machine アーカイブを開く" ' +
+        'title="Wayback Machine アーカイブ"><span aria-hidden="true">&#x1F4BE;</span> Archive</a>';
+      // Local backup link (separate green-tinted class)
+      if (m.backup_url) {
+        s += '<a href="' + escHtml(m.backup_url) + '" target="_blank" rel="noopener" ' +
+          'class="material-link material-link-local" aria-label="ローカルバックアップを開く" ' +
+          'title="ローカルバックアップ"><span aria-hidden="true">&#x1F5C2;&#xFE0F;</span> Local</a>';
+      }
+      return s;
+    };
+    if (c.materials.length <= FOLD_THRESHOLD) {
+      html += '<div class="campaign-materials">' + c.materials.map(renderMaterial).join('') + '</div>';
+    } else {
+      const visible = c.materials.slice(0, 3);
+      const hidden = c.materials.slice(3);
+      html += '<div class="campaign-materials">' + visible.map(renderMaterial).join('') + '</div>';
+      html += '<details class="campaign-materials-more">' +
+        '<summary>他 ' + hidden.length + ' 件の資料を表示</summary>' +
+        '<div class="campaign-materials">' + hidden.map(renderMaterial).join('') + '</div>' +
+        '</details>';
     }
-    html += '</div>';
   }
 
   // Filing history toggle
