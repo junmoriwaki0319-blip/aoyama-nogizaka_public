@@ -109,6 +109,8 @@
     .sec-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.68rem; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
     .sec-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
     .sec-desc { font-size: 0.82rem; color: var(--text-muted); }
+    .sec-title { display: flex; align-items: center; gap: 10px; }
+    .sec-icon { width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .commentary { background: var(--bg-alt); border-left: 3px solid var(--gold); padding: 18px 24px; margin-bottom: 32px; font-size: 0.85rem; color: var(--text-mid); line-height: 1.9; }
     .commentary strong { color: var(--navy); font-weight: 600; }
     .commentary.info { border-left-color: #1976d2; }
@@ -155,7 +157,8 @@
     .archetype-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px; }
     .archetype-card { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 20px 22px; position: relative; }
     .archetype-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
-    .archetype-title { font-family: 'Noto Serif JP', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .archetype-title { font-family: 'Noto Serif JP', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .archetype-icon { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: var(--navy); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     .archetype-companies { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.72rem; color: var(--gold-dim); letter-spacing: 1px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-light); }
     .archetype-body { font-size: 0.78rem; color: var(--text-mid); line-height: 1.75; }
     .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
@@ -317,8 +320,7 @@
       <div class="nav-item" data-tab="framework"><span class="nav-num">04</span>3軸フレームワーク</div>
       <div class="nav-item" data-tab="peer"><span class="nav-num">05</span>Peer Comparison</div>
       <div class="nav-item" data-tab="outlook"><span class="nav-num">06</span>2030 Outlook</div>
-      <div class="nav-item" data-tab="cyclicality"><span class="nav-num">07</span>Cyclicality</div>
-      <div class="nav-item" data-tab="issues"><span class="nav-num">08</span>長期論点</div>
+      <div class="nav-item" data-tab="cyclicality"><span class="nav-num">07</span>Cyclicality・長期論点</div>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
   </div>
@@ -380,8 +382,7 @@
       <li><strong>5類型のポジショニング</strong> — 各社の進化方向</li>
       <li><strong>ピア比較</strong> — 主要10社の財務指標横断（ROE×売上CAGR）</li>
       <li><strong>業界展望 2030</strong> — 3シナリオと再編予測</li>
-      <li><strong>シクリカリティと先行指標</strong> — サイクル耐性評価</li>
-      <li><strong>長期論点とステークホルダー含意</strong></li>
+      <li><strong>シクリカリティと長期論点</strong> — サイクル耐性評価、商社モデルの存続可能性とステークホルダー含意</li>
     </ol>
   </section>
 
@@ -561,17 +562,17 @@
         <div class="archetype-body">規模・ソリューション・自社製品すべてに投資。グローバルプラットフォーマー化を志向</div>
       </div>
       <div class="archetype-card">
-        <div class="archetype-title">規模追求型（C特化）</div>
+        <div class="archetype-title">規模統合型（C特化）</div>
         <div class="archetype-companies">加賀電子 / リョーサン菱洋HD / レスターHD</div>
         <div class="archetype-body">M&Aで規模、ソリューションは商権・カバレッジ依存。EMS統合も含む</div>
       </div>
       <div class="archetype-card">
-        <div class="archetype-title">メーカー系SI型（A×親会社依存）</div>
+        <div class="archetype-title">メーカー連携SI型（A×親会社依存）</div>
         <div class="archetype-companies">TED / RYODEN / 立花エレテック / エレマテック</div>
         <div class="archetype-body">親会社系列の商権＋ソリューション色。親子上場の整理機運が中長期論点</div>
       </div>
       <div class="archetype-card">
-        <div class="archetype-title">ニッチ高収益型（B特化）</div>
+        <div class="archetype-title">領域特化高収益型（B特化）</div>
         <div class="archetype-companies">イノテック / 丸文 / ダイトロン / PALTEK</div>
         <div class="archetype-body">特定領域で自社プロダクトを深掘り。高ROE・規模は限定的</div>
       </div>
@@ -589,7 +590,7 @@
 
     <div class="commentary info">
       <div class="commentary-title">FRAMEWORK INSIGHT</div>
-      投資家が「半導体商社セクター」として一括で見るのは誤り。<strong>類型ごとにマルチプル・成長性・リスク特性が大きく異なる</strong>。例えば「総合進化型」と「ニッチ高収益型」は同じPERでも意味が違う（成長性 vs 安定収益性）。
+      投資家が「半導体商社セクター」として一括で見るのは誤り。<strong>類型ごとにマルチプル・成長性・リスク特性が大きく異なる</strong>。例えば「総合進化型」と「領域特化高収益型」は同じPERでも意味が違う（成長性 vs 安定収益性）。
     </div>
   </section>
 
@@ -606,12 +607,30 @@
         <div class="chart-panel-title">ROE × 売上CAGR(4年) ポジショニングマップ</div>
         <div class="chart-panel-sub">右上=「高ROE×成長」の理想象限</div>
         <div class="chart-area tall">
-          <canvas id="peerScatter"></canvas>
+          <canvas id="peerScatter" role="img" aria-label="ROE×売上CAGR(4年)ポジショニングマップ。右上ほど高ROE×高成長。詳細データは下の財務スナップショット表を参照。"></canvas>
         </div>
         <p class="footnote">
           マクニカHDが成長軸（CAGR 12%超）、加賀電子・TED・イノテック・ダイトロン・第一実業が高ROEクラスタ（11-17%）を形成。RYODENは唯一のマイナス成長。
         </p>
       </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-panel">
+        <div class="chart-panel-title">売上高ランキング（FY26/3・億円）</div>
+        <div class="chart-panel-sub">マクニカHDが突出、上位への規模集中</div>
+        <div class="chart-area tall"><canvas id="salesBar" role="img" aria-label="売上高ランキング（FY26/3）。マクニカHD 12,142億円を筆頭に上位への規模集中。詳細は下の財務スナップショット表を参照。"></canvas></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title">営業利益率ランキング（営業利益 ÷ 売上・%）</div>
+        <div class="chart-panel-sub">領域特化型（緑）ほど高マージン</div>
+        <div class="chart-area tall"><canvas id="marginBar" role="img" aria-label="営業利益率ランキング（営業利益÷売上）。領域特化型のダイトロン6.8%・イノテック6.7%・第一実業6.3%が上位。詳細は下の財務スナップショット表を参照。"></canvas></div>
+      </div>
+    </div>
+
+    <div class="commentary info">
+      <div class="commentary-title">QUANT INSIGHT — 規模と収益性は逆相関</div>
+      売上トップのマクニカHD（3.5%）・リョーサン菱洋HD（2.8%）の営業利益率が3%前後にとどまる一方、領域特化型のダイトロン（6.8%）・イノテック（6.7%）・第一実業（6.3%）は<strong>6%超</strong>。<strong>「規模の商社」と「高収益の専業」への二極化</strong>が定量的に確認できる（数値は左表の営業利益÷売上から算出）。
     </div>
 
     <div class="table-panel">
@@ -634,15 +653,15 @@
           </thead>
           <tbody>
             <tr><td>マクニカHD(3132)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>12,142</td><td>419.5</td><td>277.7</td><td>9.60</td><td>39.8</td><td>12.43</td><td>総合進化型</td></tr>
-            <tr><td>加賀電子(8154)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>6,589</td><td>278.2</td><td>311.0*</td><td>16.95</td><td>45.5</td><td>7.39</td><td>規模追求型</td></tr>
-            <tr><td>リョーサン菱洋HD(167A)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>3,599</td><td>101.3</td><td>74.4</td><td>5.43</td><td>54.6</td><td>—</td><td>規模追求型(統合直後)</td></tr>
+            <tr><td>加賀電子(8154)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>6,589</td><td>278.2</td><td>311.0*</td><td>16.95</td><td>45.5</td><td>7.39</td><td>規模統合型</td></tr>
+            <tr><td>リョーサン菱洋HD(167A)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>3,599</td><td>101.3</td><td>74.4</td><td>5.43</td><td>54.6</td><td>—</td><td>規模統合型(統合直後)</td></tr>
             <tr><td>萩原電気HD(7467)</td><td><span class="badge badge-B">B</span></td><td>FY25/3</td><td>2,587</td><td>71.1</td><td>37.0</td><td>—</td><td>—</td><td>17.78†</td><td>産業特化型(車載)</td></tr>
-            <tr><td>第一実業(8059)</td><td><span class="badge badge-C">C</span></td><td>FY26/3</td><td>2,191</td><td>137.0</td><td>99.5</td><td>11.00</td><td>51.5</td><td>10.31</td><td>ニッチ(プラントエンジ)</td></tr>
-            <tr><td>丸文(7537)</td><td><span class="badge badge-B">B</span></td><td>FY26/3</td><td>2,134</td><td>77.0</td><td>33.0</td><td>5.26</td><td>39.2</td><td>6.20</td><td>ニッチ高収益型</td></tr>
-            <tr><td>RYODEN(8084)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>2,128</td><td>52.4</td><td>52.8</td><td>5.58</td><td>61.2</td><td>-1.83</td><td>メーカー系SI型</td></tr>
-            <tr><td>TED(2760)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>2,037</td><td>102.5</td><td>78.4</td><td>14.83</td><td>32.6</td><td>3.16</td><td>メーカー系SI型</td></tr>
-            <tr><td>ダイトロン(7609)</td><td><span class="badge badge-C">C</span></td><td>FY25/12</td><td>1,031</td><td>70.1</td><td>49.2</td><td>13.77</td><td>44.8</td><td>9.30</td><td>ニッチ高収益型</td></tr>
-            <tr><td>イノテック(9880)</td><td><span class="badge badge-C">C</span></td><td>FY26/3</td><td>467</td><td>31.1</td><td>41.1</td><td>15.17</td><td>54.8</td><td>5.83</td><td>ニッチ高収益型</td></tr>
+            <tr><td>第一実業(8059)</td><td><span class="badge badge-C">C</span></td><td>FY26/3</td><td>2,191</td><td>137.0</td><td>99.5</td><td>11.00</td><td>51.5</td><td>10.31</td><td>領域特化(プラントエンジ)</td></tr>
+            <tr><td>丸文(7537)</td><td><span class="badge badge-B">B</span></td><td>FY26/3</td><td>2,134</td><td>77.0</td><td>33.0</td><td>5.26</td><td>39.2</td><td>6.20</td><td>領域特化高収益型</td></tr>
+            <tr><td>RYODEN(8084)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>2,128</td><td>52.4</td><td>52.8</td><td>5.58</td><td>61.2</td><td>-1.83</td><td>メーカー連携SI型</td></tr>
+            <tr><td>TED(2760)</td><td><span class="badge badge-A">A</span></td><td>FY26/3</td><td>2,037</td><td>102.5</td><td>78.4</td><td>14.83</td><td>32.6</td><td>3.16</td><td>メーカー連携SI型</td></tr>
+            <tr><td>ダイトロン(7609)</td><td><span class="badge badge-C">C</span></td><td>FY25/12</td><td>1,031</td><td>70.1</td><td>49.2</td><td>13.77</td><td>44.8</td><td>9.30</td><td>領域特化高収益型</td></tr>
+            <tr><td>イノテック(9880)</td><td><span class="badge badge-C">C</span></td><td>FY26/3</td><td>467</td><td>31.1</td><td>41.1</td><td>15.17</td><td>54.8</td><td>5.83</td><td>領域特化高収益型</td></tr>
           </tbody>
         </table>
       </div>
@@ -692,12 +711,20 @@
       <div class="scenario-card base">
         <h4>シナリオB：二極化の決定的進行</h4>
         <div class="scenario-prob">発生確率 50-55%（基準）</div>
-        <p class="scenario-body">上位5-6社が業界売上の70-80%を占有。中堅独立系の多くが統合・被買収・撤退。ニッチ高収益型は専業メーカー的に独自進化。業界全体売上は緩やかに拡大、企業数は半減。</p>
+        <p class="scenario-body">上位5-6社が業界売上の70-80%を占有。中堅独立系の多くが統合・被買収・撤退。領域特化高収益型は専業メーカー的に独自進化。業界全体売上は緩やかに拡大、企業数は半減。</p>
       </div>
       <div class="scenario-card pessimistic">
         <h4>シナリオC：商社モデルの終焉</h4>
         <div class="scenario-prob">発生確率 15-20%（悲観）</div>
         <p class="scenario-body">メーカー直販 ＋ AIエージェント ＋ カタログECで「商社中抜き」が本格化。顧客内製化も進行。純粋商社モデル消滅、自社製品型と特殊SI型のみ生き残る。業界全体売上は横ばい〜微減、企業数は3分の1に。</p>
+      </div>
+    </div>
+
+    <div class="chart-row single">
+      <div class="chart-panel">
+        <div class="chart-panel-title">3シナリオ 発生確率レンジ（%）</div>
+        <div class="chart-panel-sub">基準シナリオB（二極化）が最有力</div>
+        <div class="chart-area short"><canvas id="scenarioBar" role="img" aria-label="2030年に向けた3シナリオの発生確率レンジ。シナリオA（設計支援価値の再評価）25〜30%、シナリオB（二極化の決定的進行）50〜55%、シナリオC（商社モデルの終焉）15〜20%。"></canvas></div>
       </div>
     </div>
 
@@ -713,7 +740,7 @@
             <tr><td>メーカー系商社の親会社吸収</td><td>TED（TEL）、RYODEN（三菱電機）、立花エレテック（三菱電機）</td><td>中-高</td></tr>
             <tr><td>中堅独立系の統合・被買収</td><td>丸文、新光商事、ダイトロン</td><td>中（5-10年スパン）</td></tr>
             <tr><td>海外資本による日本企業買収</td><td>Arrow / Avnetによる中堅買収</td><td>低-中（経済安保で逆風）</td></tr>
-            <tr><td>規模追求型による更なる吸収</td><td>加賀電子・リョーサン菱洋HDが中堅取り込み</td><td>中-高</td></tr>
+            <tr><td>規模統合型による更なる吸収</td><td>加賀電子・リョーサン菱洋HDが中堅取り込み</td><td>中-高</td></tr>
             <tr><td>専業メーカー化（商社事業切り出し）</td><td>イノテック、ダイトロン</td><td>中（既に方向性明確）</td></tr>
           </tbody>
         </table>
@@ -724,9 +751,9 @@
   <!-- Section 07: Cyclicality -->
   <section class="section" id="sec-cyclicality">
     <div class="sec-header">
-      <div class="sec-num">07 &middot; CYCLICALITY</div>
-      <div class="sec-title">シクリカリティと先行指標 — サイクルの中でどう生き残るか</div>
-      <div class="sec-desc">サイクル特性、製品セグメント別振幅、先行指標</div>
+      <div class="sec-num">07 &middot; CYCLICALITY &amp; LONG-TERM ISSUES</div>
+      <div class="sec-title">シクリカリティと長期論点</div>
+      <div class="sec-desc">サイクル特性・先行指標、商社モデルの存続可能性と中期5論点</div>
     </div>
 
     <div class="sub-h3">7.1 なぜ半導体商社は半導体メーカー以上に振れるのか</div>
@@ -781,15 +808,10 @@
       <div class="commentary-title">CYCLICALITY INSIGHT</div>
       半導体商社は<strong>「在庫リスク × 為替 × 固定費」の3要因で半導体メーカー以上にサイクル振幅が大きい</strong>。AIサイクルの成熟化リスク（X1〜X3）は2026-2028年の最大論点。
     </div>
-  </section>
 
-  <!-- Section 08: Long-term Issues -->
-  <section class="section" id="sec-issues">
-    <div class="sec-header">
-      <div class="sec-num">08 &middot; LONG-TERM ISSUES</div>
-      <div class="sec-title">長期論点とステークホルダー含意</div>
-      <div class="sec-desc">商社モデルの存続可能性、中期5論点、ステークホルダー別含意</div>
-    </div>
+    <!-- 旧 Section 08: Long-term Issues（07タブに統合） -->
+    <div class="sub-h3" style="margin-top: 44px; font-size: 1.1rem; border-left-width: 4px;">長期論点とステークホルダー含意</div>
+    <p class="sec-desc" style="margin: -6px 0 20px 10px;">商社モデルの存続可能性、中期5論点、ステークホルダー別含意</p>
 
     <div class="sub-h3">8.1 商社モデルの存続可能性</div>
     <p class="prose">
@@ -843,7 +865,7 @@
     var tabToSection = {
       exec: 'sec-exec', industry: 'sec-industry', universe: 'sec-universe',
       framework: 'sec-framework', peer: 'sec-peer', outlook: 'sec-outlook',
-      cyclicality: 'sec-cyclicality', issues: 'sec-issues'
+      cyclicality: 'sec-cyclicality'
     };
     var navItems = document.querySelectorAll('.nav-item');
     var allSections = document.querySelectorAll('.section');
@@ -903,7 +925,7 @@
       var tabToSection = {
         exec: 'sec-exec', industry: 'sec-industry', universe: 'sec-universe',
         framework: 'sec-framework', peer: 'sec-peer', outlook: 'sec-outlook',
-        cyclicality: 'sec-cyclicality', issues: 'sec-issues'
+        cyclicality: 'sec-cyclicality'
       };
       var targetId = tabToSection[activeTab];
       allSections.forEach(function (sec) {
@@ -911,25 +933,15 @@
       });
     }
 
+    // 印刷時（PDFボタン / Ctrl+P 共通）: 全セクション展開 → 印刷後に単一表示へ復元。
+    // チャートの再描画は chart IIFE 側の beforeprint で実行（このリスナの後に発火する）。
+    window.addEventListener('beforeprint', showAllSections);
+    window.addEventListener('afterprint', restoreSingleSection);
+
     if (btnPDF) {
       btnPDF.addEventListener('click', function () {
-        // 全セクション表示 → 印刷ダイアログ（OS標準のPDF保存）→ 単一に戻す
-        showAllSections();
-        // 描画完了を待つ
-        setTimeout(function () {
-          window.print();
-          // 印刷ダイアログを閉じた後の復元（afterprint）
-          var restored = false;
-          var onAfter = function () {
-            if (restored) return;
-            restored = true;
-            restoreSingleSection();
-            window.removeEventListener('afterprint', onAfter);
-          };
-          window.addEventListener('afterprint', onAfter);
-          // フォールバック: 5秒後に強制復元
-          setTimeout(onAfter, 5000);
-        }, 100);
+        // beforeprint で全セクション展開＋チャート再描画、afterprint で復元される
+        window.print();
       });
     }
 
@@ -975,7 +987,7 @@
   (function () {
     var canvas = document.getElementById('peerScatter');
     if (!canvas || typeof Chart === 'undefined') return;
-    new Chart(canvas, {
+    var peerChart = new Chart(canvas, {
       type: 'scatter',
       data: {
         datasets: [
@@ -1020,6 +1032,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
         plugins: {
           legend: { position: 'bottom', labels: { font: { size: 11, family: "'Noto Sans JP', sans-serif" }, color: '#444' } },
           tooltip: {
@@ -1050,6 +1063,173 @@
         }
       },
       plugins: (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : []
+    });
+    // 印刷直前にコンテナの実サイズへ再描画（PDFでチャートが潰れる問題の対策）。
+    // PDF IIFE の beforeprint(showAllSections) の後に発火するため、この時点で
+    // セクションは表示済みになっており resize() が正しいサイズを取得できる。
+    window.addEventListener('beforeprint', function () {
+      try { peerChart.resize(); } catch (e) {}
+    });
+  })();
+
+  // ===== 売上高 / 営業利益率 バー（Peer Comparison） =====
+  (function () {
+    if (typeof Chart === 'undefined') return;
+    var C_NAVY = 'rgba(26,45,79,0.85)', C_GOLD = 'rgba(155,139,110,0.85)', C_GREEN = 'rgba(45,122,79,0.85)';
+    var dl = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
+    var made = [];
+
+    function barAxes(xCallback) {
+      return {
+        x: { ticks: { color: '#777', font: { size: 9 }, callback: xCallback }, grid: { color: 'rgba(224,221,214,0.6)' } },
+        y: { ticks: { color: '#444', font: { size: 9.5 } }, grid: { display: false } }
+      };
+    }
+
+    var salesCanvas = document.getElementById('salesBar');
+    if (salesCanvas) {
+      made.push(new Chart(salesCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['マクニカHD', '加賀電子', 'リョーサン菱洋HD', '萩原電気HD', '第一実業', '丸文', 'RYODEN', 'TED', 'ダイトロン', 'イノテック'],
+          datasets: [{
+            data: [12142, 6589, 3599, 2587, 2191, 2134, 2128, 2037, 1031, 467],
+            backgroundColor: [C_NAVY, C_NAVY, C_NAVY, C_GOLD, C_GREEN, C_GOLD, C_NAVY, C_NAVY, C_GREEN, C_GREEN],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: false,
+          layout: { padding: { right: 38 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: function (ctx) { return ctx.parsed.x.toLocaleString() + ' 億円'; } } },
+            datalabels: {
+              anchor: 'end', align: 'end', clamp: true,
+              font: { size: 9, family: "'Noto Sans JP', sans-serif", weight: 600 }, color: '#444',
+              formatter: function (v) { return v.toLocaleString(); }
+            }
+          },
+          scales: barAxes()
+        },
+        plugins: dl
+      }));
+    }
+
+    var marginCanvas = document.getElementById('marginBar');
+    if (marginCanvas) {
+      made.push(new Chart(marginCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['ダイトロン', 'イノテック', '第一実業', 'TED', '加賀電子', '丸文', 'マクニカHD', 'リョーサン菱洋HD', '萩原電気HD', 'RYODEN'],
+          datasets: [{
+            data: [6.80, 6.66, 6.25, 5.03, 4.22, 3.61, 3.46, 2.81, 2.75, 2.46],
+            backgroundColor: [C_GREEN, C_GREEN, C_GREEN, C_NAVY, C_NAVY, C_GOLD, C_NAVY, C_NAVY, C_GOLD, C_NAVY],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: false,
+          layout: { padding: { right: 30 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: function (ctx) { return ctx.parsed.x.toFixed(2) + ' %'; } } },
+            datalabels: {
+              anchor: 'end', align: 'end', clamp: true,
+              font: { size: 9, family: "'Noto Sans JP', sans-serif", weight: 600 }, color: '#444',
+              formatter: function (v) { return v.toFixed(1) + '%'; }
+            }
+          },
+          scales: barAxes(function (v) { return v + '%'; })
+        },
+        plugins: dl
+      }));
+    }
+
+    if (made.length) {
+      window.addEventListener('beforeprint', function () {
+        made.forEach(function (c) { try { c.resize(); } catch (e) {} });
+      });
+    }
+  })();
+
+  // ===== 3シナリオ 発生確率レンジ（Outlook） =====
+  (function () {
+    var canvas = document.getElementById('scenarioBar');
+    if (!canvas || typeof Chart === 'undefined') return;
+    var dl = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
+    function rangeLabel(ctx) { var r = ctx.chart.data.datasets[0].data[ctx.dataIndex]; return r[0] + '–' + r[1] + '%'; }
+    var chart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: ['A 設計支援価値の再評価', 'B 二極化の決定的進行', 'C 商社モデルの終焉'],
+        datasets: [{
+          data: [[25, 30], [50, 55], [15, 20]],
+          backgroundColor: ['rgba(45,122,79,0.85)', 'rgba(26,45,79,0.85)', 'rgba(181,58,58,0.85)'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false, animation: false,
+        layout: { padding: { right: 40 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: function (ctx) { var r = ctx.raw; return r[0] + '–' + r[1] + '%'; } } },
+          datalabels: {
+            anchor: 'end', align: 'end', clamp: true,
+            font: { size: 10, family: "'Noto Sans JP', sans-serif", weight: 700 }, color: '#1a2d4f',
+            formatter: function (v, ctx) { return rangeLabel(ctx); }
+          }
+        },
+        scales: {
+          x: { min: 0, max: 65, ticks: { color: '#777', font: { size: 9 }, callback: function (v) { return v + '%'; } }, grid: { color: 'rgba(224,221,214,0.6)' } },
+          y: { ticks: { color: '#444', font: { size: 10 } }, grid: { display: false } }
+        }
+      },
+      plugins: dl
+    });
+    window.addEventListener('beforeprint', function () { try { chart.resize(); } catch (e) {} });
+  })();
+
+  // ===== セクション見出し・5類型カードへの装飾SVGアイコン注入 =====
+  (function () {
+    var SECTION_ICONS = {
+      'sec-exec': '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4.5"/>',
+      'sec-industry': '<path d="M3 21h18"/><path d="M6 21V7l5-3v17"/><path d="M11 21V11l7 2.5V21"/>',
+      'sec-universe': '<path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/>',
+      'sec-framework': '<circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 12h10"/><path d="M6.7 10.8 16.8 5.8"/><path d="M6.7 13.2 16.8 18.2"/>',
+      'sec-peer': '<path d="M4 20h16"/><rect x="5.5" y="11" width="3" height="7"/><rect x="10.5" y="6" width="3" height="12"/><rect x="15.5" y="9" width="3" height="9"/>',
+      'sec-outlook': '<path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/>',
+      'sec-cyclicality': '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/>'
+    };
+    var ARCH_KEYS = ['総合進化型', '規模統合型', 'メーカー連携SI型', '領域特化高収益型', '産業特化型', '専門特化型'];
+    var ARCH_ICONS = {
+      '総合進化型': '<path d="M12 3.5l2.4 5 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/>',
+      '規模統合型': '<path d="M4 5h4l4 4M4 19h4l4-4"/><path d="M12 12h8"/><path d="M17 9l3 3-3 3"/>',
+      'メーカー連携SI型': '<path d="M10 14a4 4 0 0 1 0-5.6l2-2a4 4 0 0 1 5.6 5.6l-1 1"/><path d="M14 10a4 4 0 0 1 0 5.6l-2 2a4 4 0 0 1-5.6-5.6l1-1"/>',
+      '領域特化高収益型': '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>',
+      '産業特化型': '<path d="M3 21h18M5 21V12l5 3v-3l5 3V8l4 2v11"/>',
+      '専門特化型': '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.8-4.8"/>'
+    };
+    function svgEl(cls, inner) {
+      return '<svg class="' + cls + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + inner + '</svg>';
+    }
+    Object.keys(SECTION_ICONS).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      var title = sec.querySelector('.sec-title');
+      if (!title || title.querySelector('.sec-icon')) return;
+      title.insertAdjacentHTML('afterbegin', svgEl('sec-icon', SECTION_ICONS[id]));
+    });
+    document.querySelectorAll('.archetype-title').forEach(function (el) {
+      if (el.querySelector('.archetype-icon')) return;
+      var txt = (el.textContent || '').replace(/^\s+/, '');
+      for (var i = 0; i < ARCH_KEYS.length; i++) {
+        if (txt.indexOf(ARCH_KEYS[i]) === 0) {
+          el.insertAdjacentHTML('afterbegin', svgEl('archetype-icon', ARCH_ICONS[ARCH_KEYS[i]]));
+          break;
+        }
+      }
     });
   })();
 </script>
