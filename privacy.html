@@ -380,11 +380,15 @@
         <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
       </a>
       <ul class="nav-links">
-        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-toggle">会社情報 <span style="font-size:11px;">▼</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+            <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+            <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+          </ul>
+        </li>
         <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
-        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-        <li><a href="/news/">ニュース・論考</a></li>
         <li class="nav-dropdown">
           <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
           <ul class="nav-dropdown-menu">
@@ -403,6 +407,7 @@
             <li><a href="/semiconductor-trading.html">半導体商社</a></li>
           </ul>
         </li>
+        <li><a href="/news/">ニュース・論考</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
       <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
@@ -411,11 +416,16 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+    <div class="mobile-accordion" data-accordion>
+      <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">会社情報 <span class="mobile-accordion-arrow">▼</span></button>
+      <div class="mobile-accordion-panel" data-accordion-panel>
+        <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link class="mobile-sub">企業理念</a>
+        <a href="https://aoyama-nogizaka.com/#about" data-nav-link class="mobile-sub">会社概要</a>
+        <a href="https://aoyama-nogizaka.com/team" data-nav-link class="mobile-sub">チーム</a>
+      </div>
+    </div>
     <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
     <a href="https://aoyama-nogizaka.com/#ai-consulting" data-nav-link>AI × コンサルティング</a>
-    <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
-    <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
     <a href="/news/" data-nav-link>ニュース・論考</a>
     <div class="mobile-accordion" data-accordion>
       <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>

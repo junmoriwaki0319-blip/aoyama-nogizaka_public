@@ -70,6 +70,8 @@
       --text-dark: #1a1a1a;
       --text-mid: #444444;
       --text-light: #888888;
+      --cta-accent: #c2912e;
+      --cta-accent-dim: #a87a24;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -159,20 +161,27 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--navy);
+      background: var(--cta-accent, #c2912e);
       color: var(--white);
       text-decoration: none;
       padding: 16px 36px;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 600;
       letter-spacing: 0.12em;
+      box-shadow: 0 6px 20px rgba(194,145,46,0.28);
       transition: all 0.3s;
     }
     .hero-cta:hover {
-      background: var(--navy-light);
+      background: var(--cta-accent-dim, #a87a24);
       gap: 20px;
     }
     .hero-cta-arrow { font-size: 16px; transition: transform 0.3s; }
     .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .hero-tag { font-size: 11px; letter-spacing: 0.04em; color: var(--navy); background: rgba(155,139,110,0.14); border: 1px solid rgba(155,139,110,0.32); padding: 5px 12px; border-radius: 999px; }
+    .hero-stats { display: flex; gap: 36px; margin-top: 36px; flex-wrap: wrap; }
+    .hero-stat-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 600; color: var(--cta-accent, #c2912e); line-height: 1; }
+    .hero-stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-top: 6px; }
     .hero-visual {
       position: relative;
       height: 380px;
@@ -563,6 +572,11 @@
       background: rgba(255,255,255,0.1);
       transform: translateY(-4px);
     }
+    .data-card.is-hidden { display: none; }
+    .showcase-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+    .showcase-tab { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; min-height: 40px; }
+    .showcase-tab:hover { color: #fff; border-color: var(--gold-light); }
+    .showcase-tab.active { background: var(--gold-light); border-color: var(--gold-light); color: var(--navy); font-weight: 600; }
     .ai-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -642,11 +656,15 @@
         <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
       </a>
       <ul class="nav-links">
-        <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-dropdown-toggle">会社情報 <span style="font-size:11px;">▼</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+            <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+            <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+          </ul>
+        </li>
         <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
-        <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
-        <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-        <li><a href="/news/">ニュース・論考</a></li>
         <li class="nav-dropdown">
           <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
           <ul class="nav-dropdown-menu">
@@ -665,6 +683,7 @@
             <li><a href="/semiconductor-trading.html">半導体商社</a></li>
           </ul>
         </li>
+        <li><a href="/news/">ニュース・論考</a></li>
         <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
       <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
@@ -673,11 +692,16 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+    <div class="mobile-accordion" data-accordion>
+      <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">会社情報 <span class="mobile-accordion-arrow">▼</span></button>
+      <div class="mobile-accordion-panel" data-accordion-panel>
+        <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link class="mobile-sub">企業理念</a>
+        <a href="https://aoyama-nogizaka.com/#about" data-nav-link class="mobile-sub">会社概要</a>
+        <a href="https://aoyama-nogizaka.com/team" data-nav-link class="mobile-sub">チーム</a>
+      </div>
+    </div>
     <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
     <a href="https://aoyama-nogizaka.com/#ai-consulting" data-nav-link>AI × コンサルティング</a>
-    <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
-    <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
     <a href="/news/" data-nav-link>ニュース・論考</a>
     <div class="mobile-accordion" data-accordion>
       <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
@@ -718,10 +742,26 @@
           すべてを任せられるパートナーとして<br>
           企業の変革に伴走します。
         </p>
+        <div class="hero-tags reveal reveal-delay-2">
+          <span class="hero-tag">AI × 経営コンサルティング</span>
+          <span class="hero-tag">超高速PMI</span>
+          <span class="hero-tag">IR・資本市場対応</span>
+          <span class="hero-tag">独自セクターダッシュボード</span>
+        </div>
         <a href="#contact" class="hero-cta reveal reveal-delay-3">
           まずはお気軽にご相談ください
           <span class="hero-cta-arrow">→</span>
         </a>
+        <div class="hero-stats reveal reveal-delay-3">
+          <div>
+            <div class="hero-stat-num">7</div>
+            <div class="hero-stat-label">公開セクター分析</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100<span style="font-size:1.1rem;">+</span></div>
+            <div class="hero-stat-label">上場企業を横断分析</div>
+          </div>
+        </div>
       </div>
       <div class="hero-visual reveal reveal-delay-2">
         <div class="hero-visual-box">
@@ -845,7 +885,7 @@
   </section>
 
   <!-- DATA SHOWCASE -->
-  <section style="background:var(--navy);padding:56px 0;" id="data">
+  <section style="background:var(--navy);padding:80px 0;" id="data">
     <div class="section-inner">
       <p class="section-label reveal" style="color:var(--gold-light);">Data & Insights</p>
       <h2 class="section-title-jp reveal reveal-delay-1" style="color:var(--white);">独自の分析プラットフォーム</h2>
@@ -853,8 +893,15 @@
         セクター分析レポートやKPIダッシュボードを自社で構築・運用。<br>
         同様の分析基盤を、お客様の事業・投資先に合わせて迅速に立ち上げます。
       </p>
+      <div class="showcase-tabs reveal reveal-delay-2" role="tablist" aria-label="レポートのカテゴリ">
+        <button type="button" class="showcase-tab active" data-filter="all">すべて</button>
+        <button type="button" class="showcase-tab" data-filter="it">IT・SaaS・広告</button>
+        <button type="button" class="showcase-tab" data-filter="food">飲食・小売</button>
+        <button type="button" class="showcase-tab" data-filter="mfg">製造・商社</button>
+        <button type="button" class="showcase-tab" data-filter="activist">アクティビスト</button>
+      </div>
       <div class="data-grid reveal reveal-delay-2">
-        <a href="/semiconductor-trading.html" class="data-card" style="border-color: rgba(200, 185, 154, 0.4); background: linear-gradient(135deg, rgba(155,139,110,0.08) 0%, transparent 70%);">
+        <a href="/semiconductor-trading.html" class="data-card" data-cat="mfg" style="border-color: rgba(200, 185, 154, 0.4); background: linear-gradient(135deg, rgba(155,139,110,0.08) 0%, transparent 70%);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
             <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);">SECTOR REPORT</div>
             <div style="font-size:0.62rem;font-weight:600;letter-spacing:1px;color:var(--gold-light);background:rgba(155,139,110,0.2);padding:3px 8px;border-radius:3px;">期間限定・登録不要</div>
@@ -863,35 +910,53 @@
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">日本の上場半導体・電子部品商社23社を「ソリューション化／自社プロダクト化／M&A」の3軸で横断比較。FY2026/3実績、Group A/B/Cポジショニング、2030年展望を収録。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
         </a>
-        <a href="/food-service.html" class="data-card">
+        <a href="/food-service.html" class="data-card" data-cat="food">
           <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
           <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">外食産業</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">主要35社の月次KPI・株価パフォーマンス・バリュエーションを横断分析。既存店売上高の3年推移も追跡。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
         </a>
-        <a href="/saas.html" class="data-card">
+        <a href="/saas.html" class="data-card" data-cat="it">
           <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
           <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">国内SaaS</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">SaaS主要企業のARR成長率・チャーンレート・Rule of 40等の重要KPIをダッシュボード形式で提供。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
         </a>
-        <a href="/sogo-shosha.html" class="data-card">
+        <a href="/sogo-shosha.html" class="data-card" data-cat="mfg">
           <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
           <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">総合商社</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">5大商社+双日・豊田通商の株主還元・資本効率・財務健全性・アクティビスト・シグナルを19 KPIで横断比較。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
         </a>
-        <a href="/ad-agency.html" class="data-card">
+        <a href="/ad-agency.html" class="data-card" data-cat="it">
           <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
           <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">広告代理店</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">広告代理店120社超の時価総額・財務指標・M&A動向を網羅。デジタルシフト・業界再編を詳細分析。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
         </a>
-        <a href="/entertainment-sector-dashboard.html" class="data-card">
+        <a href="/entertainment-sector-dashboard.html" class="data-card" data-cat="it">
           <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
           <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">エンタメ・ゲーム</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">日本上場エンタメ・ゲーム企業の大量保有報告分析。3D Investment×スクエニHD、SC×ガンホー等のアクティビスト動向。</div>
           <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
+        </a>
+        <a href="/digital-media.html" class="data-card" data-cat="it">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">SECTOR REPORT</div>
+          <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">デジタルメディア</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">国内デジタルメディア企業の収益構造・成長性・バリュエーションを横断分析。</div>
+          <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">レポートを見る →</div>
+        </a>
+        <a href="/activist-dashboard.html" class="data-card" data-cat="activist">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">ACTIVIST</div>
+          <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">大量保有報告ダッシュボード</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">EDINETベースの大量保有報告を可視化。投資家別・銘柄別にアクティビストの保有動向を追跡。</div>
+          <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">ダッシュボードを見る →</div>
+        </a>
+        <a href="/risk-assessment.html" class="data-card" data-cat="activist">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:12px;">ACTIVIST</div>
+          <div style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:8px;">アクティビスト対象機会評価</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:16px;">上場企業のアクティビスト対象リスクを12項目で定量診断。銘柄コード入力で自動評価。</div>
+          <div style="font-size:0.78rem;color:var(--gold-light);letter-spacing:0.5px;">評価ツールを見る →</div>
         </a>
       </div>
       <p style="text-align:center;margin-top:24px;font-size:0.75rem;color:rgba(255,255,255,0.35);" class="reveal reveal-delay-3">※ 半導体商社レポートは登録不要・期間限定で公開中。その他レポートの詳細データは会員登録（無料）後にご覧いただけます。</p>
@@ -899,7 +964,7 @@
   </section>
 
   <!-- AI × CONSULTING -->
-  <section style="background:var(--off-white);padding:56px 0;" id="ai-consulting">
+  <section style="background:var(--off-white);padding:80px 0;" id="ai-consulting">
     <div class="section-inner">
       <p class="section-label reveal">AI × Consulting</p>
       <h2 class="section-title-jp reveal reveal-delay-1">生成AI活用で、支援のスピードとコストを変える</h2>
@@ -1087,6 +1152,7 @@
 
   <script src="/js/reveal.js"></script>
   <script src="/js/index-page.js"></script>
+  <script src="/js/showcase-tabs.js"></script>
   <script src="/js/nav-handler.js"></script>
 </body>
 </html>
