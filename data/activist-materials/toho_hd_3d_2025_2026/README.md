@@ -49,8 +49,17 @@ verification_status: fully-verified (TDnet+3D BusinessWire リリース複数で
 
 ## 主資料 (ローカル保存)
 
+- [20260500_3d_toho_manga_jp.pdf](./20260500_3d_toho_manga_jp.pdf) (8.9MB、3D 漫画「5分でわかる 東邦HDの現状」2026-05)
+- [20260500_3d_toho_presentation_jp_202605.pdf](./20260500_3d_toho_presentation_jp_202605.pdf) (3D 最新プレゼン資料 2026-05)
 - [20251106_toho_hd_defense_announcement.pdf](./20251106_toho_hd_defense_announcement.pdf) (1.3MB、会社側 補足説明資料)
 - [20251114_toho_hd_supplement.pdf](./20251114_toho_hd_supplement.pdf) (1.9MB、会社側 追加補足)
+
+## ビジュアルキャンペーン資料 (3D、2026-05)
+
+- 漫画「5分でわかる 東邦HDの現状」: https://www.3dipartners.com/wp-content/uploads/toho-manga-jp-202605.pdf
+- 特設サイト「東邦の企業価値創造のために」: https://www.compoundtoho.com/
+- PR動画 (YouTube): https://www.youtube.com/watch?v=hr15d3Hxawk
+- 最新プレゼン資料: https://www.3dipartners.com/wp-content/uploads/toho-presentation-material-jp-202605.pdf
 
 ## 関連リンク
 
