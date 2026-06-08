@@ -103,7 +103,7 @@
     .btn-register:hover { background: var(--gold-dim); }
 
     /* ─── Report Cover ─── */
-    .report-cover { background: var(--navy); padding: 40px 48px 32px; position: relative; }
+    .report-cover { background: var(--navy); padding: 30px 48px 26px; position: relative; }
     .report-cover::after { content: ''; position: absolute; bottom: 0; left: 48px; right: 48px; height: 2px; background: var(--gold); }
     .report-cover-inner { max-width: 1200px; margin: 0 auto; }
     .report-label { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
@@ -122,23 +122,24 @@
     .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
 
     /* ─── Article Sections ─── */
-    .article-section { margin-bottom: 48px; }
-    .section-heading { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
+    .article-section { margin-bottom: 0; }
+    .article-section + .article-section { border-top: 1px solid var(--border-light); padding-top: 34px; }
+    .section-heading { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; padding-bottom: 11px; border-bottom: 2px solid var(--gold); }
 
     /* ─── Intro Box ─── */
-    .intro-box { background: var(--bg-alt); border-left: 3px solid var(--gold); padding: 18px 24px; margin-bottom: 32px; font-size: 0.85rem; color: var(--text-mid); line-height: 1.9; }
+    .intro-box { background: var(--bg-alt); border-left: 3px solid var(--gold); padding: 16px 20px; margin-bottom: 22px; font-size: 0.84rem; color: var(--text-mid); line-height: 1.85; }
     .intro-box strong { color: var(--navy); font-weight: 600; }
     .intro-heading { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
     .intro-box p { margin-bottom: 8px; }
     .intro-box p:last-child { margin-bottom: 0; }
 
     /* ─── Case Cards ─── */
-    .case-card { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 24px; overflow: hidden; transition: box-shadow 0.2s; }
+    .case-card { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 14px; overflow: hidden; transition: box-shadow 0.2s; }
     .case-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
     .case-highlight { border-left: 4px solid var(--gold); }
 
-    .case-header { padding: 24px 28px 18px; border-bottom: 1px solid var(--border-light); }
-    .case-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .case-header { padding: 18px 24px 12px; border-bottom: 1px solid var(--border-light); }
+    .case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
     .case-date { font-size: 0.75rem; color: var(--text-light); }
     .case-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; font-size: 0.65rem; font-weight: 600; border-radius: 3px; }
     .case-badge .bicon { width: 13px; height: 13px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; opacity: 0.8; }
@@ -152,11 +153,15 @@
     .badge-mfg { background: rgba(60,60,60,0.08); color: #555; }
     .badge-auto { background: rgba(30,80,160,0.08); color: #1e50a0; }
     .badge-semi { background: var(--navy); color: var(--gold-light); }
+    .fmt-tag { display: inline-flex; align-items: center; font-size: 0.62rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.02em; }
+    .fmt-proposal { background: rgba(155,139,110,0.20); color: var(--gold-dim); }
+    .fmt-engagement { background: rgba(26,45,79,0.10); color: var(--navy); }
+    .fmt-accumulation { background: rgba(90,90,90,0.10); color: #555; }
 
     .case-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .case-tagline { font-size: 0.82rem; color: var(--gold); font-weight: 500; }
 
-    .case-body { padding: 20px 28px 24px; }
+    .case-body { padding: 14px 24px 18px; }
 
     .case-summary { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
     .case-detail { display: flex; flex-direction: column; min-width: 200px; }
@@ -215,15 +220,15 @@
     .cta-link-outline:hover { border-color: var(--gold-light); color: #fff; }
 
     /* ─── Trend Cards ─── */
-    .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .trend-card { padding: 24px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+    .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .trend-card { padding: 16px 18px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
     .trend-title { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .trend-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.85; }
 
     /* ─── Resources ─── */
-    .resource-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
-    .resource-list li { padding: 6px 12px; background: var(--bg-alt); border-radius: var(--radius); border: 1px solid var(--border-light); }
-    .resource-list a { display: flex; align-items: center; min-height: 40px; padding: 2px 0; font-size: 0.8rem; font-weight: 600; line-height: 1.4; color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    .resource-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 12px; }
+    .resource-list li { padding: 4px 11px; background: var(--bg-alt); border-radius: var(--radius); border: 1px solid var(--border-light); }
+    .resource-list a { display: flex; align-items: center; min-height: 30px; padding: 3px 0; font-size: 0.74rem; font-weight: 600; line-height: 1.35; color: var(--navy); text-decoration: none; transition: color 0.2s; }
     .resource-list a:hover { color: var(--gold); }
     .resource-desc { display: none; }
 
@@ -267,7 +272,7 @@
       .footer-inner { flex-direction: column; text-align: center; }
       .filter-bar { flex-direction: column; align-items: stretch; }
       .filter-count { margin-left: 0; margin-top: 4px; }
-      .resource-list { grid-template-columns: 1fr; }
+      .resource-list { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .site-header, .report-cover, .main, .site-footer { padding-left: 16px; padding-right: 16px; }
@@ -399,6 +404,7 @@
       <div class="intro-heading">「プレゼンテーション・キャンペーンを含む株主提案」とは</div>
       <p>従来の株主提案は、株主総会の招集通知に数行の提案理由が記載されるだけの「テキストベース」が主流だった。しかし近年、日本市場でもアクティビストが100ページ超のプレゼンテーション資料や特設Webサイトを公開し、データ・グラフ・ベンチマーク比較を駆使した「ビジュアルキャンペーン」を展開する事例が急増している。</p>
       <p>本ページでは、2023年以降に日本企業に対して行われた株主提案のうち、公開資料がビジュアル面で特に充実したものを「プレゼンテーション・キャンペーンを含む株主提案」として整理し、資料への直接リンクとともに紹介する。</p>
+      <p style="margin-top:10px;font-size:0.8rem;color:var(--text-light);line-height:1.7;">各事例には<strong>提案の形態</strong>を表示しています — <strong>株主提案</strong>（会社法上の正式な議案として採決）／<strong>公開提言・対話</strong>（プレゼン・書簡による提言で、議案ではない）／<strong>大量保有・思惑</strong>（株式取得による圧力）。</p>
     </div>
   </section>
 
@@ -427,6 +433,12 @@
         <option value="axium">アクシウム・キャピタル（旧スイスアジア）</option>
         <option value="murakami">旧村上系（シティインデックス／村上FO）</option>
         <option value="palliser">Palliser Capital</option>
+      </select>
+      <select id="filter-format" class="filter-select" aria-label="提案形態で絞り込み">
+        <option value="">すべての形態</option>
+        <option value="proposal">株主提案（正式議案）</option>
+        <option value="engagement">公開提言・対話</option>
+        <option value="accumulation">大量保有・思惑</option>
       </select>
       <select id="filter-sector" class="filter-select" aria-label="業種で絞り込み">
         <option value="">すべての業種</option>
@@ -2616,15 +2628,15 @@
         <span class="resource-desc">投資先への提言・書簡・株主総会対応を時系列で公開</span>
       </li>
       <li>
-        <a href="https://www.dir.co.jp/report/consulting/governance/20251031_025387.html" target="_blank" rel="noopener">大和総研 — 2025年6月株主総会シーズンの総括と示唆</a>
+        <a href="https://www.dir.co.jp/report/consulting/governance/20251031_025387.html" target="_blank" rel="noopener">大和総研 — 2025年6月総会の総括</a>
         <span class="resource-desc">吉川英徳ほか。アクティビスト投資家等による株主提案111社の包括分析</span>
       </li>
       <li>
-        <a href="https://www.ey.com/ja_jp/newsroom/2025/09/ey-japan-news-release-2025-09-16" target="_blank" rel="noopener">EY-Parthenon — 2025年株主提案動向分析</a>
+        <a href="https://www.ey.com/ja_jp/newsroom/2025/09/ey-japan-news-release-2025-09-16" target="_blank" rel="noopener">EY-Parthenon — 2025年提案動向</a>
         <span class="resource-desc">アクティビスト・株主視点の戦略的対応準備</span>
       </li>
       <li>
-        <a href="https://www.dir.co.jp/report/consulting/governance/20250210_024908.html" target="_blank" rel="noopener">大和総研 — アクティビスト投資家動向（2024年総括と2025年への示唆）</a>
+        <a href="https://www.dir.co.jp/report/consulting/governance/20250210_024908.html" target="_blank" rel="noopener">大和総研 — アクティビスト動向(2024→2025)</a>
         <span class="resource-desc">統計データに基づく年次分析</span>
       </li>
     </ul>
@@ -2647,6 +2659,7 @@
   var sectorSel = document.getElementById('filter-sector');
   var yearSel = document.getElementById('filter-year');
   var angleSel = document.getElementById('filter-angle');
+  var formatSel = document.getElementById('filter-format');
   var resetBtn = document.getElementById('filter-reset');
   var countEl = document.getElementById('filter-count');
 
@@ -2696,6 +2709,7 @@
     var a = activistSel.value;
     var s = sectorSel.value;
     var g = angleSel.value;
+    var fmt = formatSel.value;
     var y = yearSel.value;
     var vis = 0;
     for (var i = 0; i < cards.length; i++) {
@@ -2706,8 +2720,9 @@
       var ma = !a || ca === a;
       var ms = !s || (s === 'semi' ? cards[i].getAttribute('data-semi') === '1' : cs === s);
       var mg = !g || cg.indexOf(g) !== -1;
+      var mf = !fmt || cards[i].getAttribute('data-format') === fmt;
       var my = !y || cy.indexOf(y) !== -1;
-      if (ma && ms && mg && my) {
+      if (ma && ms && mg && mf && my) {
         cards[i].classList.remove('filter-hidden');
         vis++;
       } else {
@@ -2720,11 +2735,13 @@
   activistSel.addEventListener('change', applyFilters);
   sectorSel.addEventListener('change', applyFilters);
   angleSel.addEventListener('change', applyFilters);
+  formatSel.addEventListener('change', applyFilters);
   yearSel.addEventListener('change', applyFilters);
   resetBtn.addEventListener('click', function() {
     activistSel.value = '';
     sectorSel.value = '';
     angleSel.value = '';
+    formatSel.value = '';
     yearSel.value = '';
     applyFilters();
   });
@@ -2771,6 +2788,8 @@
   var ANGLES = {"5233":["pl-portfolio","bs-realestate","bs-crosshold","gov"],"6178":["bs-realestate","bs-capital","gov"],"5105":["gov","bs-capital"],"6273":["pl-profit","gov"],"2802":["pl-portfolio","pl-profit","gov"],"5332":["pl-portfolio","bs-crosshold","gov"],"2664":["gov","fraud","bs-capital"],"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
   var FEATURED = ["8129","5821","2664"];
   var SEMI = ["5332","2802","6273","6890","6707","7912"];
+  var FORMAT = {"2206":"proposal","2327":"engagement","2501":"proposal","2664":"proposal","2802":"engagement","3302":"proposal","3391":"proposal","3593":"proposal","3765":"proposal","4298":"engagement","4452":"proposal","4549":"proposal","4626":"proposal","4676":"proposal","4902":"accumulation","4967":"proposal","4972":"engagement","4973":"engagement","5105":"engagement","5233":"engagement","5331":"proposal","5332":"engagement","5449":"proposal","5451":"proposal","5741":"accumulation","5821":"proposal","5930":"proposal","5943":"proposal","6178":"engagement","6201":"engagement","6273":"engagement","6328":"proposal","6516":"proposal","6707":"accumulation","6727":"proposal","6772":"proposal","6794":"engagement","6890":"accumulation","6960":"proposal","6971":"proposal","7201":"proposal","7250":"accumulation","7912":"proposal","7952":"engagement","8129":"engagement","8818":"proposal","9006":"accumulation","9009":"proposal","9409":"accumulation","9468":"accumulation","9531":"engagement","9684":"engagement","9749":"engagement","9882":"proposal"};
+  var FMT_LABEL = {"proposal":"株主提案","engagement":"公開提言・対話","accumulation":"大量保有・思惑"};
   var LABELS = {"pl-profit":"本業の収益性","pl-portfolio":"事業ポートフォリオ","pl-consolidation":"業界再編","bs-capital":"子会社・親子上場","bs-crosshold":"持合い・有価証券","bs-realestate":"不動産","gov":"ガバナンス","fraud":"不正問題"};
   function grp(k){ if(k.indexOf("pl-")===0)return"pl"; if(k.indexOf("bs-")===0)return"bs"; if(k==="fraud")return"fraud"; return"gov"; }
   function codeOf(card){ var t=(card.querySelector(".case-title")||{}).textContent||""; var m=t.match(/\((\d{3,5})\)/); if(m)return m[1]; if(t.indexOf("NSソリューションズ")>=0)return"2327"; return ""; }
@@ -2788,6 +2807,15 @@
       }
     }
     if (FEATURED.indexOf(code)!==-1) card.classList.add("featured");
+    var fmt = FORMAT[code];
+    if (fmt){
+      card.setAttribute("data-format", fmt);
+      var fmeta = card.querySelector(".case-meta");
+      if (fmeta && !fmeta.querySelector(".fmt-tag")){
+        var ft = document.createElement("span"); ft.className = "fmt-tag fmt-"+fmt; ft.textContent = FMT_LABEL[fmt];
+        fmeta.insertBefore(ft, fmeta.firstChild);
+      }
+    }
     if (SEMI.indexOf(code)!==-1){
       card.setAttribute("data-semi","1");
       var meta=card.querySelector(".case-meta"), pb=card.querySelector(".case-badge");
