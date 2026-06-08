@@ -223,6 +223,21 @@
 .site-header .cross-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .site-header .cross-nav-link.active { color: var(--gold-light, #c8b99a); background: rgba(155,139,110,0.15); }
 .site-header .cross-nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 6px; }
+
+/* レポート一覧ドロップダウン（横並びcross-navの置換・トップの「データ」タブと同UI） */
+.site-header .data-dropdown { position: relative; }
+.site-header .data-dropdown-toggle { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.78); font-size: 0.78rem; letter-spacing: 0.04em; text-decoration: none; cursor: pointer; padding: 8px 4px; white-space: nowrap; }
+.site-header .data-dropdown-toggle:hover { color: #fff; }
+.site-header .data-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); right: 0; background: var(--navy, #0f1a2e); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 0; min-width: 260px; box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 100; list-style: none; }
+.site-header .data-dropdown-menu::before { content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+.site-header .data-dropdown:hover .data-dropdown-menu,
+.site-header .data-dropdown:focus-within .data-dropdown-menu { display: block; }
+.site-header .data-dropdown-cat { padding: 8px 20px 4px; font-size: 0.6rem; color: var(--gold-light, #c8b99a); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; white-space: nowrap; border-top: 1px solid rgba(255,255,255,.08); }
+.site-header .data-dropdown-cat:first-child { border-top: none; }
+.site-header .data-dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.8rem; white-space: nowrap; color: rgba(255,255,255,.65); text-decoration: none; transition: color .15s, background .15s; }
+.site-header .data-dropdown-menu li a:hover { color: #fff; background: rgba(255,255,255,.06); }
+.site-header .data-dropdown-menu li a.active { color: var(--gold-light, #c8b99a); background: rgba(155,139,110,0.12); }
+
 .site-header .nav-auth-btns { display: flex; gap: 10px; align-items: center; }
 .site-header #navUserInfo { color: #fff; font-size: 0.78rem; }
 .site-header #navUserInfo button { background: none; border: none; color: var(--gold-light, #c8b99a); cursor: pointer; font-size: 0.72rem; font-family: inherit; }
@@ -240,6 +255,7 @@
   .site-header { padding-left: 20px; padding-right: 20px; }
   .site-header .nav-hamburger { display: flex !important; }
   .site-header .cross-nav { display: none !important; }
+  .site-header .data-nav { display: none !important; }
   /* 認証JSがインラインstyleで display を付与するため !important で確実に隠す
      （ログイン/ログアウト等の認証導線はモバイルドロワー側に集約） */
   .site-header .nav-auth-btns,
