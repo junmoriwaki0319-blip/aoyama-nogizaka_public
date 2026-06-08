@@ -182,6 +182,9 @@
     .filter-reset:hover { background: var(--bg-warm); border-color: var(--gold-light); }
     .filter-count { font-size: 0.75rem; color: var(--text-light); margin-left: auto; }
     .case-card.filter-hidden { display: none; }
+    .cases.view-featured .case-card .case-content { display: none; }
+    .featured-note { font-size: 0.82rem; color: var(--text-mid); background: var(--bg-warm); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 var(--radius) var(--radius) 0; margin: 0 0 22px; line-height: 1.75; }
+    .cases.view-all .featured-note { display: none; }
     /* tabs + angle chips */
     .cases-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border-light); }
     .case-tab { font-family: inherit; font-size: 0.85rem; font-weight: 600; padding: 10px 18px; min-height: 44px; border: none; background: none; color: var(--text-mid); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
@@ -356,7 +359,7 @@
         <span class="stat-label">同 議案数（三井住友信託銀行調べ・日経）</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-number">47件</span>
+        <span class="stat-number">48件</span>
         <span class="stat-label">本ページ掲載のリッチ提案</span>
       </div>
     </div>
@@ -403,8 +406,10 @@
     <h2 class="section-heading">主要事例</h2>
     <div class="cases-tabs">
       <button class="case-tab active" type="button" data-view="featured">注目の事例</button>
-      <button class="case-tab" type="button" data-view="all">全件を見る (47)</button>
+      <button class="case-tab" type="button" data-view="all">全件を見る (48)</button>
     </div>
+
+    <p class="featured-note"><strong>編集部の注目：</strong>時価総額1,000億円未満の企業にも、準大手のアクティビストが本格的なキャンペーンを仕掛けています（例：平河ヒューテック・カワチ薬品）。各事例の詳細やその他の案件は「全件を見る」から。</p>
 
     <div class="filter-bar">
       <span class="filter-label">絞り込み:</span>
@@ -2140,6 +2145,44 @@
       </div>
     </article>
 
+    <!-- Case: カワチ薬品 (2664) × カナメ・キャピタル -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2026年4月〜（定時株主総会6/11）</span>
+          <span class="case-badge badge-retail">小売・ドラッグストア</span>
+        </div>
+        <h3 class="case-title">カワチ薬品 (2664) × カナメ・キャピタル</h3>
+        <p class="case-tagline">婿養子社長24年でPBR0.59倍・時価240億円消失／創業家へ158億円還流 — 100ページ白書で社長解任を要求</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">カナメ・キャピタル（Kaname Capital）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">論点</span>
+            <span class="detail-value">時価総額約628億円の小型株。PBR0.59倍（上場同業中最低）・19期連続簿価割れ</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">100ページ 投資家向けホワイトペーパー＋株主提案</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>1960年創業の国内ドラッグストアの草分けカワチ薬品に対し、カナメは2026年6月11日の第59回定時株主総会で、河内伸二社長と渡辺林治・社外取締役の解任、および取締役任期の2年→1年への短縮を株主提案。婿養子の河内社長の在任24年でPBRは19期連続1倍割れ（0.59倍）、約240億円の株主価値が失われた一方、関連当事者取引・役員報酬・配当を通じ創業家側に約158億円の経済的利益が移転したと指摘。独立した戦略検討委員会の設置（非公開化・売却を含む全面評価）とDOE5%へのコミットを求めた。</p>
+          <h4>資料の特徴・経緯</h4>
+          <p>ボストンのカナメが100ページの投資家向けホワイトペーパーを公開。コスモス薬品・ツルハ等の同業が大きく成長する中でカワチの売上は1.7倍にとどまり、PBR・ROE・ROIC・成長率など全指標で上場同業10社中最下位である点をデータで詳述した。時価総額1,000億円未満の地方小型株にも、準大手アクティビストがフル規模のキャンペーンを仕掛ける典型例。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://www.businesswire.com/news/home/20260526427229/ja" target="_blank" rel="noopener" class="link-primary">Kaname プレスリリース（解任要求・白書公表）</a>
+          <a href="https://9b5cc9f0-1871-48d4-9379-a0f7002dcedd.usrfiles.com/ugd/9b5cc9_951fe4597f6e40ef8303688365c76bcc.pdf" target="_blank" rel="noopener" class="link-secondary">100ページ ホワイトペーパー (PDF)</a>
+        </div>
+      </div>
+    </article>
+
   </section>
 
   <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
@@ -2291,7 +2334,7 @@
       </article>
       <article class="trend-card-cta">
         <h3 class="trend-title">まとめ — アクティビズムは全業種・全規模へ。問われるのは「資本コストを意識した経営」</h3>
-        <p>本ページの47事例が示すのは、株主提案・エンゲージメントがもはや特定の業種や大型株に限られないという事実です。3D・オアシス・エリオット・パリサーといった国内外の大型ファンドから、ストラテジックキャピタル・ダルトン・カナメ・アクシウムのように中小型を主戦場とするファンドまで、製造・素材・医薬・小売・不動産・金融・サービスと対象は業種を問わず広がり、手法も買収防衛策の発動局面・MBOの価格交渉・社外取締役の選任・第三者委員会の設置要求へと多様化しています。</p>
+        <p>本ページの48事例が示すのは、株主提案・エンゲージメントがもはや特定の業種や大型株に限られないという事実です。3D・オアシス・エリオット・パリサーといった国内外の大型ファンドから、ストラテジックキャピタル・ダルトン・カナメ・アクシウムのように中小型を主戦場とするファンドまで、製造・素材・医薬・小売・不動産・金融・サービスと対象は業種を問わず広がり、手法も買収防衛策の発動局面・MBOの価格交渉・社外取締役の選任・第三者委員会の設置要求へと多様化しています。</p>
         <p style="margin-top:12px;">そして、狙われる切り口は驚くほど共通しています。<strong>PL面</strong>では本業の収益性・不採算事業の切り離し・業界再編余地、<strong>BS面</strong>では親子上場や子会社の資本問題、政策保有株・有価証券の含み益、そして不動産の含み益。ここに<strong>ガバナンス体制</strong>と<strong>不正・私物化</strong>が加わります。いずれも「事業が本来持つ価値に対して、株価・資本効率が見合っているか」という一点に帰着します。</p>
         <p style="margin-top:12px;">提案手法も、数行の提案理由から100ページ超のプレゼン・特設サイト・漫画・PR動画へとリッチ化が進み、一般株主や従業員まで巻き込む情報戦の様相を帯びています。<strong>これは一部のファンドや特定業種だけの話ではありません。</strong>PBR・資本コストを意識した経営改革は、いまや業種・規模を問わず、すべての上場企業に共通する経営課題です。資本市場対応というと証券会社への依頼を思い浮かべがちですが、エクイティストーリーの再構築、事業ポートフォリオの見直し、PBR改善施策の立案、開示・IRの高度化、そして<strong>資本コストを意識した経営そのものの定着</strong>まで——<strong>証券会社の枠にとどまらず、むしろ経営の現場でこそできることの方が多くあります</strong>。</p>
         <p style="margin-top:12px;">青山乃木坂パートナーズは、代表の戦略コンサルティングファーム出身の経歴を軸に、<strong>企業価値向上のドライバー特定から実行・モニタリングまで</strong>を伴走支援します。アクティビストに指摘される前に、自ら動くための備えです。たとえば——</p>
@@ -2493,8 +2536,8 @@
 <script>
 // 狙いのアングル: コード→タグのマップでチップ描画＋data-angles付与（絞り込み用）。注目カード指定とタブ切替も担当。
 (function(){
-  var ANGLES = {"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
-  var FEATURED = ["8129","9684","4676","9531","9009"];
+  var ANGLES = {"2664":["gov","fraud","bs-capital"],"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
+  var FEATURED = ["8129","5821","2664"];
   var LABELS = {"pl-profit":"本業の収益性","pl-portfolio":"事業ポートフォリオ","pl-consolidation":"業界再編","bs-capital":"子会社・親子上場","bs-crosshold":"持合い・有価証券","bs-realestate":"不動産","gov":"ガバナンス","fraud":"不正問題"};
   function grp(k){ if(k.indexOf("pl-")===0)return"pl"; if(k.indexOf("bs-")===0)return"bs"; if(k==="fraud")return"fraud"; return"gov"; }
   function codeOf(card){ var t=(card.querySelector(".case-title")||{}).textContent||""; var m=t.match(/\((\d{3,5})\)/); if(m)return m[1]; if(t.indexOf("NSソリューションズ")>=0)return"2327"; return ""; }
