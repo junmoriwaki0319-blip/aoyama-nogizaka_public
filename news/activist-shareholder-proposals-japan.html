@@ -378,6 +378,19 @@
         <option value="hibiki">ひびき・パース・アドバイザーズ</option>
         <option value="axium">アクシウム・キャピタル（旧スイスアジア）</option>
       </select>
+      <select id="filter-sector" class="filter-select" aria-label="業種で絞り込み">
+        <option value="">すべての業種</option>
+        <option value="health">ヘルスケア・医薬</option>
+        <option value="tech">テクノロジー・電子</option>
+        <option value="materials">素材・化学・建材</option>
+        <option value="realestate">不動産</option>
+        <option value="auto">自動車</option>
+        <option value="consumer">食品・消費財</option>
+        <option value="retail">小売</option>
+        <option value="energy">エネルギー</option>
+        <option value="game">エンタメ・ゲーム</option>
+        <option value="media">メディア</option>
+      </select>
       <select id="filter-year" class="filter-select" aria-label="時期で絞り込み">
         <option value="">すべての時期</option>
         <option value="2026">2026年</option>
@@ -1582,6 +1595,7 @@
 (function() {
   var cards = document.querySelectorAll('.case-card');
   var activistSel = document.getElementById('filter-activist');
+  var sectorSel = document.getElementById('filter-sector');
   var yearSel = document.getElementById('filter-year');
   var resetBtn = document.getElementById('filter-reset');
   var countEl = document.getElementById('filter-count');
@@ -1600,6 +1614,22 @@
     return '';
   }
 
+  function getSector(card) {
+    var b = card.querySelector('.case-badge');
+    var t = b ? (b.textContent || '') : '';
+    if (t.indexOf('医') !== -1) return 'health';
+    if (t.indexOf('不動産') !== -1) return 'realestate';
+    if (t.indexOf('電子') !== -1 || t.indexOf('IT') !== -1) return 'tech';
+    if (t.indexOf('鉄鋼') !== -1 || t.indexOf('ガラス') !== -1 || t.indexOf('セラミック') !== -1 || t.indexOf('建材') !== -1 || t.indexOf('化学') !== -1) return 'materials';
+    if (t.indexOf('自動車') !== -1) return 'auto';
+    if (t.indexOf('食品') !== -1 || t.indexOf('菓子') !== -1 || t.indexOf('楽器') !== -1 || t.indexOf('消費財') !== -1) return 'consumer';
+    if (t.indexOf('エネルギー') !== -1) return 'energy';
+    if (t.indexOf('ゲーム') !== -1 || t.indexOf('エンタメ') !== -1) return 'game';
+    if (t.indexOf('メディア') !== -1) return 'media';
+    if (t.indexOf('小売') !== -1) return 'retail';
+    return '';
+  }
+
   function getYears(card) {
     var d = (card.querySelector('.case-date') || {}).textContent || '';
     var m = d.match(/20\d{2}/g);
@@ -1608,14 +1638,17 @@
 
   function applyFilters() {
     var a = activistSel.value;
+    var s = sectorSel.value;
     var y = yearSel.value;
     var vis = 0;
     for (var i = 0; i < cards.length; i++) {
       var ca = getActivist(cards[i]);
+      var cs = getSector(cards[i]);
       var cy = getYears(cards[i]);
       var ma = !a || ca === a;
+      var ms = !s || cs === s;
       var my = !y || cy.indexOf(y) !== -1;
-      if (ma && my) {
+      if (ma && ms && my) {
         cards[i].classList.remove('filter-hidden');
         vis++;
       } else {
@@ -1626,9 +1659,11 @@
   }
 
   activistSel.addEventListener('change', applyFilters);
+  sectorSel.addEventListener('change', applyFilters);
   yearSel.addEventListener('change', applyFilters);
   resetBtn.addEventListener('click', function() {
     activistSel.value = '';
+    sectorSel.value = '';
     yearSel.value = '';
     applyFilters();
   });
