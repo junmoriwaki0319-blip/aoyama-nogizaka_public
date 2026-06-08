@@ -151,6 +151,7 @@
     .badge-retail { background: rgba(100,60,150,0.08); color: #6a3d9a; }
     .badge-mfg { background: rgba(60,60,60,0.08); color: #555; }
     .badge-auto { background: rgba(30,80,160,0.08); color: #1e50a0; }
+    .badge-semi { background: var(--navy); color: var(--gold-light); }
 
     .case-title { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .case-tagline { font-size: 0.82rem; color: var(--gold); font-weight: 500; }
@@ -439,6 +440,7 @@
         <option value="energy">エネルギー</option>
         <option value="game">エンタメ・ゲーム</option>
         <option value="media">メディア</option>
+        <option value="semi">半導体（隠れ含む）</option>
       </select>
       <select id="filter-angle" class="filter-select" aria-label="狙いのアングルで絞り込み">
         <option value="">すべてのアングル</option>
@@ -2702,7 +2704,7 @@
       var cy = getYears(cards[i]);
       var cg = getAngles(cards[i]);
       var ma = !a || ca === a;
-      var ms = !s || cs === s;
+      var ms = !s || (s === 'semi' ? cards[i].getAttribute('data-semi') === '1' : cs === s);
       var mg = !g || cg.indexOf(g) !== -1;
       var my = !y || cy.indexOf(y) !== -1;
       if (ma && ms && mg && my) {
@@ -2768,6 +2770,7 @@
 (function(){
   var ANGLES = {"5233":["pl-portfolio","bs-realestate","bs-crosshold","gov"],"6178":["bs-realestate","bs-capital","gov"],"5105":["gov","bs-capital"],"6273":["pl-profit","gov"],"2802":["pl-portfolio","pl-profit","gov"],"5332":["pl-portfolio","bs-crosshold","gov"],"2664":["gov","fraud","bs-capital"],"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
   var FEATURED = ["8129","5821","2664"];
+  var SEMI = ["5332","2802","6273","6890","6707","7912"];
   var LABELS = {"pl-profit":"本業の収益性","pl-portfolio":"事業ポートフォリオ","pl-consolidation":"業界再編","bs-capital":"子会社・親子上場","bs-crosshold":"持合い・有価証券","bs-realestate":"不動産","gov":"ガバナンス","fraud":"不正問題"};
   function grp(k){ if(k.indexOf("pl-")===0)return"pl"; if(k.indexOf("bs-")===0)return"bs"; if(k==="fraud")return"fraud"; return"gov"; }
   function codeOf(card){ var t=(card.querySelector(".case-title")||{}).textContent||""; var m=t.match(/\((\d{3,5})\)/); if(m)return m[1]; if(t.indexOf("NSソリューションズ")>=0)return"2327"; return ""; }
@@ -2785,6 +2788,13 @@
       }
     }
     if (FEATURED.indexOf(code)!==-1) card.classList.add("featured");
+    if (SEMI.indexOf(code)!==-1){
+      card.setAttribute("data-semi","1");
+      var meta=card.querySelector(".case-meta"), pb=card.querySelector(".case-badge");
+      if (meta && pb && (pb.textContent||"").indexOf("半導体")===-1 && !card.querySelector(".badge-semi")){
+        var sb=document.createElement("span"); sb.className="case-badge badge-semi"; sb.textContent="半導体"; meta.appendChild(sb);
+      }
+    }
   }
   var sec=document.getElementById("cases");
   var tabs=document.querySelectorAll(".case-tab");
