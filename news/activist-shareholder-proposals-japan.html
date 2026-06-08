@@ -221,6 +221,15 @@
 
     /* ─── Trend Cards ─── */
     .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .section-collapse { margin: 0; }
+    .section-collapse > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .section-collapse > summary::-webkit-details-marker { display: none; }
+    .section-collapse > summary::marker { content: ""; }
+    .collapse-ind { font-family: 'Noto Sans JP', system-ui, sans-serif; font-size: 0.72rem; font-weight: 600; color: var(--gold-dim); white-space: nowrap; flex: 0 0 auto; }
+    .collapse-ind::after { content: "＋ 開く"; }
+    .section-collapse[open] .collapse-ind::after { content: "− 閉じる"; }
+    .section-collapse > summary:hover .collapse-ind { color: var(--gold); }
+    .section-collapse:not([open]) > *:not(summary) { display: none; }
     .trend-card { padding: 16px 18px; background: var(--bg-alt); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
     .trend-title { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .trend-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.85; }
@@ -2430,7 +2439,8 @@
 
   <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
   <section class="article-section">
-    <h2 class="section-heading">アクティビスト・キャンペーンマップ — 誰が、どこで、何をしているか</h2>
+    <details class="section-collapse">
+      <summary class="section-heading">アクティビスト・キャンペーンマップ — 誰が、どこで、何をしているか<span class="collapse-ind" aria-hidden="true"></span></summary>
 
     <div class="intro-box">
       <p>2023年以降にビジュアル資料・特設サイトを伴うキャンペーンを展開した主要アクティビストの一覧。<strong>日本市場ではOasis Management、3D Investment Partners、ストラテジックキャピタル、Elliott Management、ダルトン・インベストメンツの5ファンドがビジュアルキャンペーンの大半を占める。加えて、ひびき・パース・アドバイザーズ（→3D統合）やアクシウム・キャピタル（旧スイスアジア）など、中小型株を対象としたアクティビズムも活発化している。</strong></p>
@@ -2541,11 +2551,13 @@
         </tbody>
       </table>
     </div>
+    </details>
   </section>
 
   <!-- トレンド分析 -->
   <section class="article-section">
-    <h2 class="section-heading">トレンド分析 — なぜ「リッチな提案」が増えているのか</h2>
+    <details class="section-collapse">
+      <summary class="section-heading">トレンド分析 — なぜ「リッチな提案」が増えているのか<span class="collapse-ind" aria-hidden="true"></span></summary>
     <div class="trend-grid">
       <article class="trend-card">
         <h3 class="trend-title">3Dモデルの確立</h3>
@@ -2575,6 +2587,9 @@
         <h3 class="trend-title">Elliottの日本本格参入</h3>
         <p>世界最大級のアクティビストElliott Managementが、東京ガス（不動産1.5兆円売却要求）、豊田自動織機（TOB価格40%過小評価と指摘）で本格的なプレゼン資料を公開。elliottletters.comでの日本企業向け資料公開は、グローバル水準のキャンペーンが日本市場に持ち込まれたことを象徴。</p>
       </article>
+    </div>
+    </details>
+    <div class="trend-grid" style="margin-top:14px;">
       <article class="trend-card-cta">
         <h3 class="trend-title">まとめ — アクティビズムは全業種・全規模へ。問われるのは「資本コストを意識した経営」</h3>
         <p>本ページの54事例が示すのは、株主提案・エンゲージメントがもはや特定の業種や大型株に限られないという事実です。3D・オアシス・エリオット・パリサーといった国内外の大型ファンドから、ストラテジックキャピタル・ダルトン・カナメ・アクシウムのように中小型を主戦場とするファンドまで、製造・素材・医薬・小売・不動産・金融・サービスと対象は業種を問わず広がり、手法も買収防衛策の発動局面・MBOの価格交渉・社外取締役の選任・第三者委員会の設置要求へと多様化しています。</p>
