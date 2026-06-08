@@ -339,7 +339,7 @@
         <span class="stat-label">同 議案数（三井住友信託銀行調べ・日経）</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-number">43件</span>
+        <span class="stat-number">44件</span>
         <span class="stat-label">本ページ掲載のリッチ提案</span>
       </div>
     </div>
@@ -386,7 +386,7 @@
     <h2 class="section-heading">主要事例</h2>
     <div class="cases-tabs">
       <button class="case-tab active" type="button" data-view="featured">注目の事例</button>
-      <button class="case-tab" type="button" data-view="all">全件を見る (43)</button>
+      <button class="case-tab" type="button" data-view="all">全件を見る (44)</button>
     </div>
 
     <div class="filter-bar">
@@ -1968,6 +1968,44 @@
       </div>
     </article>
 
+    <!-- Case: 平河ヒューテック (5821) × アクシウム・キャピタル -->
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta">
+          <span class="case-date">2026年5月〜（定時株主総会）</span>
+          <span class="case-badge badge-tech">電線・ケーブル</span>
+        </div>
+        <h3 class="case-title">平河ヒューテック (5821) × アクシウム・キャピタル</h3>
+        <p class="case-tagline">約9%超の筆頭株主が米国太陽光の成長機会と還元拡充を要求 — 隅田会長の「院政」脱却も</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail">
+            <span class="detail-label">提案者</span>
+            <span class="detail-value">アクシウム・キャピタル（中小型株に経営参画する新興アクティビスト）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">保有比率</span>
+            <span class="detail-value">議決権 約9%超（純投資5.52%から買い増し、筆頭株主）</span>
+          </div>
+          <div class="case-detail">
+            <span class="detail-label">資料形態</span>
+            <span class="detail-value">特設ページ＋株主提案書（PDF）</span>
+          </div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>車載・医療・ソーラー・HPC向けケーブルを手掛ける独立系電線メーカーに対し、約9%超を保有する筆頭株主アクシウムが2026年5月29日に株主提案を公表。(1)拡大する米国太陽光発電市場を捉えるための生産能力の増設と営業体制の強化、(2)30〜50億円の自社株買いの即時実施と配当性向の30%→60%への引き上げ、(3)隅田会長の「院政」体制からの脱却を含むガバナンス改革、を本年の定時株主総会に向けて求めた。</p>
+          <h4>資料の特徴・経緯</h4>
+          <p>アクシウムは中小型株に経営参画する新興アクティビストで、東京コスモス電機（取締役全入れ替え・社長就任）やフォスター電機にも実績を持つ。平河ヒューテックでは純投資としての大量保有（5.52%）から約9%超へ買い増し、成長投資・株主還元・ガバナンスの3点を軸にエンゲージメントを本格化させている。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://axium-capital.com/hewtech_20260529/" target="_blank" rel="noopener" class="link-primary">特設ページ「平河ヒューテックへの株主提案」</a>
+          <a href="https://axium-capital.com/wp-content/uploads/2026/05/202605_AxiumCapital_hewtech_2.pdf" target="_blank" rel="noopener" class="link-secondary">株主提案書 (PDF)</a>
+        </div>
+      </div>
+    </article>
+
   </section>
 
   <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
@@ -2221,7 +2259,7 @@
     var t = b ? (b.textContent || '') : '';
     if (t.indexOf('医') !== -1) return 'health';
     if (t.indexOf('不動産') !== -1) return 'realestate';
-    if (t.indexOf('電子') !== -1 || t.indexOf('IT') !== -1) return 'tech';
+    if (t.indexOf('電子') !== -1 || t.indexOf('IT') !== -1 || t.indexOf('電線') !== -1 || t.indexOf('ケーブル') !== -1) return 'tech';
     if (t.indexOf('鉄鋼') !== -1 || t.indexOf('ガラス') !== -1 || t.indexOf('セラミック') !== -1 || t.indexOf('建材') !== -1 || t.indexOf('化学') !== -1) return 'materials';
     if (t.indexOf('自動車') !== -1) return 'auto';
     if (t.indexOf('食品') !== -1 || t.indexOf('菓子') !== -1 || t.indexOf('楽器') !== -1 || t.indexOf('消費財') !== -1) return 'consumer';
@@ -2318,7 +2356,7 @@
 <script>
 // 狙いのアングル: コード→タグのマップでチップ描画＋data-angles付与（絞り込み用）。注目カード指定とタブ切替も担当。
 (function(){
-  var ANGLES = {"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
+  var ANGLES = {"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"]};
   var FEATURED = ["8129","9684","4676","9531","9009"];
   var LABELS = {"pl-profit":"本業の収益性","pl-portfolio":"事業ポートフォリオ","pl-consolidation":"業界再編","bs-capital":"子会社・親子上場","bs-crosshold":"持合い・有価証券","bs-realestate":"不動産","gov":"ガバナンス","fraud":"不正問題"};
   function grp(k){ if(k.indexOf("pl-")===0)return"pl"; if(k.indexOf("bs-")===0)return"bs"; if(k==="fraud")return"fraud"; return"gov"; }
