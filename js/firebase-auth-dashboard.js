@@ -41,7 +41,13 @@
           });
         }
       }
-      updateAuthUI(user);
+      if (typeof updateAuthUI === 'function') {
+        updateAuthUI(user);
+      } else {
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof updateAuthUI === 'function') updateAuthUI(user);
+        });
+      }
     });
 
     // ログイン
