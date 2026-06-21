@@ -55,7 +55,9 @@
         affiliation: affiliation || "",
         affiliationCode: affiliationCode || "",
         jobTitle: jobTitle || "",
-        plan: "free", createdAt: serverTimestamp()
+        plan: "free", createdAt: serverTimestamp(),
+        registeredFrom: location.pathname,
+        referrer: document.referrer || "direct"
       });
       await sendEmailVerification(cred.user);
       window.sendWelcomeEmail(email, name);
@@ -82,7 +84,9 @@
           affiliationCode: "",
           jobTitle: "",
           plan: "free",
-          createdAt: serverTimestamp()
+          createdAt: serverTimestamp(),
+          registeredFrom: location.pathname,
+          referrer: document.referrer || "direct"
         });
         window.sendWelcomeEmail(user.email, user.displayName || '');
         return { user, needsProfile: true };
