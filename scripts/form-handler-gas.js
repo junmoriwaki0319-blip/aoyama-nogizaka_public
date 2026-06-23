@@ -25,6 +25,15 @@
  *
  *  ■ 通知先: jun.moriwaki@aoyama-nogizaka.com
  *
+ *  ■ セキュリティ対策（2026追加）:
+ *    - 全入力フィールドのサニタイズ（HTMLタグ無害化・制御文字除去・長さ制限）
+ *    - XSS/SQLi等の攻撃ペイロード自動検知 → ブロック＆「セキュリティログ」記録
+ *    - メールアドレス厳格検証（ヘッダーインジェクション対策）
+ *    - ハニーポット（隠しフィールド company_url）によるボット遮断
+ *    - 同一メールからの連続送信レート制限（10分で5件まで）
+ *    - 配信解除ページの出力エスケープ（反射型XSS対策）
+ *    ※ これらを有効化するには、下記手順でGASの「新しいバージョン」を再デプロイしてください。
+ *
  *  ■ コード更新手順:
  *    1. このファイルの内容をGASエディタに貼り付け → 保存
  *    2.「デプロイ」→「デプロイを管理」→ 鉛筆アイコン
@@ -37,6 +46,15 @@
 // === 設定 ===
 var NOTIFY_EMAIL = 'jun.moriwaki@aoyama-nogizaka.com';
 var SPREADSHEET_ID = '';
+
+// === セキュリティ設定 ===
+// 各フィールドの最大文字数（超過分は切り捨て）
+var MAX_LEN = { name: 100, company: 150, department: 100, furigana: 100, email: 254, message: 5000, referral: 50 };
+// ハニーポット（ボットが入力してしまう隠しフィールド名）。HTML側で CSS 非表示にしている。
+var HONEYPOT_FIELD = 'company_url';
+// 同一メールアドレスからの連続送信を制限（件数 / 秒）
+var RATE_LIMIT_MAX = 5;
+var RATE_LIMIT_WINDOW_SEC = 600; // 10分
 
 // ====================================================================
 //  共通ユーティリティ
@@ -84,20 +102,152 @@ function logActivity(email, action, detail) {
 }
 
 // ====================================================================
+//  セキュリティ・ユーティリティ
+// ====================================================================
+
+/** HTML特殊文字をエスケープ（HtmlService出力の反射型XSS対策） */
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * テキスト入力の無害化。
+ *  - 文字列化・前後空白除去・制御文字除去
+ *  - HTMLタグ／山括弧を全角化して無害化（メール本文・シート保存用）
+ *  - 最大文字数で切り捨て
+ */
+function sanitizeText(str, maxLen) {
+  var s = String(str == null ? '' : str);
+  s = s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, ''); // 制御文字除去（改行/タブは許可）
+  s = s.replace(/</g, '＜').replace(/>/g, '＞'); // タグ構文を全角化して無害化
+  s = s.trim();
+  if (maxLen && s.length > maxLen) s = s.slice(0, maxLen);
+  return s;
+}
+
+/** メールアドレスの厳格な検証（ヘッダーインジェクション対策含む） */
+function isValidEmail(email) {
+  var s = String(email == null ? '' : email).trim();
+  if (s.length === 0 || s.length > MAX_LEN.email) return false;
+  if (/[\r\n\t,;<>"'\\]/.test(s)) return false;       // 改行・区切り・引用符を拒否
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+}
+
+/**
+ * 攻撃／脆弱性診断のペイロードを検出。
+ * 1つでも一致したら不審な送信として扱う。
+ */
+function looksMalicious(values) {
+  var joined = values.join(' \n ').toLowerCase();
+  var patterns = [
+    /<\s*script/, /<\s*\/\s*script/, /<\s*img/, /<\s*svg/, /<\s*iframe/, /<\s*object/, /<\s*embed/,
+    /javascript:/, /vbscript:/, /data:text\/html/,
+    /on\w+\s*=/,                       // onerror= onload= onclick= 等
+    /alert\s*\(/, /prompt\s*\(/, /confirm\s*\(/, /eval\s*\(/, /document\.(cookie|location|domain)/, /window\.location/,
+    /<\s*[a-z][^>]*>/,                 // 任意のHTMLタグ
+    /\{\{.*\}\}/, /\$\{.*\}/,          // テンプレートインジェクション
+    /union\s+select/, /'\s*or\s*'1'\s*=\s*'1/, /;\s*drop\s+table/, /--\s*$/, // SQLi系
+    /\.\.\/\.\.\//,                    // パストラバーサル
+    /\$\(.*\)/                         // 簡易コマンド/jQuery風
+  ];
+  for (var i = 0; i < patterns.length; i++) {
+    if (patterns[i].test(joined)) return true;
+  }
+  return false;
+}
+
+/** 不審な送信をセキュリティログに記録し、管理者へ通知（自動返信はしない） */
+function logSecurityEvent(formType, email, rawData, reason) {
+  var sheet = getOrCreateSheet('セキュリティログ');
+  initHeader(sheet, ['日時', 'フォーム種別', '理由', 'メール(申告値)', '生データ(先頭500字)']);
+  var raw = '';
+  try { raw = JSON.stringify(rawData).slice(0, 500); } catch (e) { raw = '(解析不可)'; }
+  sheet.appendRow([timestamp(), formType || '', reason || '', String(email || '').slice(0, 254), raw]);
+  try {
+    GmailApp.sendEmail(NOTIFY_EMAIL,
+      '【警告】不審なフォーム送信をブロックしました',
+      '自動的にブロックされた送信があります。対応は不要です（記録目的の通知）。\n\n' +
+      '■ 種別: ' + (formType || '不明') + '\n' +
+      '■ 理由: ' + (reason || '') + '\n' +
+      '■ 申告メール: ' + String(email || '') + '\n' +
+      '■ 受信日時: ' + timestamp() + '\n\n' +
+      '詳細はスプレッドシート「セキュリティログ」をご確認ください。');
+  } catch (e) { /* 通知失敗は無視 */ }
+}
+
+/** 同一メールからの連続送信をレート制限。true=制限超過 */
+function isRateLimited(email) {
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'rl_' + Utilities.base64EncodeWebSafe(String(email || 'anon'));
+    var count = parseInt(cache.get(key) || '0', 10) + 1;
+    cache.put(key, String(count), RATE_LIMIT_WINDOW_SEC);
+    return count > RATE_LIMIT_MAX;
+  } catch (e) {
+    return false; // キャッシュ障害時は通常処理を継続
+  }
+}
+
+/** メール件名用に改行・制御文字を除去（ヘッダーインジェクション対策） */
+function safeSubject(str, maxLen) {
+  var s = String(str == null ? '' : str)
+    .replace(/[\r\n]+/g, ' ')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+    .trim();
+  return maxLen && s.length > maxLen ? s.slice(0, maxLen) : s;
+}
+
+// ====================================================================
 //  POST受信: フォーム送信の振り分け
 // ====================================================================
 
 function doPost(e) {
   try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonResponse({ success: false, message: '不正なリクエスト' });
+    }
     var data = JSON.parse(e.postData.contents);
-    switch (data._formType) {
+    var formType = data._formType;
+
+    // --- 1. ハニーポット: ボットが隠しフィールドを埋めた場合は静かに破棄 ---
+    if (data[HONEYPOT_FIELD]) {
+      logSecurityEvent(formType, data.email, data, 'ハニーポット検知');
+      return jsonResponse({ success: true }); // 攻撃者には成功を装う
+    }
+
+    // --- 2. 攻撃／脆弱性診断ペイロード検知: ブロックして記録（自動返信なし） ---
+    var allValues = [];
+    for (var k in data) { if (k.charAt(0) !== '_') allValues.push(String(data[k])); }
+    if (looksMalicious(allValues)) {
+      logSecurityEvent(formType, data.email, data, '不正ペイロード検知（XSS/インジェクション疑い）');
+      return jsonResponse({ success: true }); // プローブにシグナルを与えない
+    }
+
+    // --- 3. メール検証（全フォーム共通の必須項目）---
+    if (!isValidEmail(data.email)) {
+      return jsonResponse({ success: false, message: 'メールアドレスの形式が正しくありません。' });
+    }
+
+    // --- 4. レート制限 ---
+    if (isRateLimited(data.email)) {
+      logSecurityEvent(formType, data.email, data, 'レート制限超過');
+      return jsonResponse({ success: false, message: '送信回数が上限に達しました。しばらく時間をおいてお試しください。' });
+    }
+
+    // --- 5. 振り分け ---
+    switch (formType) {
       case 'contact':      return handleContact(data);
       case 'newsletter':   return handleNewsletter(data);
       case 'consultation': return handleConsultation(data);
       default:             return jsonResponse({ success: false, message: '不明なフォーム種別' });
     }
   } catch (err) {
-    return jsonResponse({ success: false, message: err.toString() });
+    return jsonResponse({ success: false, message: '送信処理に失敗しました。' });
   }
 }
 
@@ -108,7 +258,8 @@ function doPost(e) {
 function doGet(e) {
   var action = e && e.parameter && e.parameter.action;
   var email  = e && e.parameter && e.parameter.email;
-  if (action === 'unsubscribe' && email) return handleUnsubscribe(email);
+  // 不正な形式のメールは配信解除処理に渡さない（反射型XSS・インジェクション対策）
+  if (action === 'unsubscribe' && isValidEmail(email)) return handleUnsubscribe(email);
   return jsonResponse({ status: 'ok' });
 }
 
@@ -136,7 +287,7 @@ function unsubPage(message, success) {
     '<style>body{font-family:-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#f0eee9;}' +
     '.card{background:#fff;padding:48px 40px;max-width:440px;text-align:center;border-top:3px solid ' + color + ';}' +
     'h2{color:#1a2d4f;font-size:18px;margin-bottom:16px;}p{color:#444;font-size:14px;line-height:1.8;}a{color:#9b8b6e;}</style></head>' +
-    '<body><div class="card"><h2>' + title + '</h2><p>' + message + '</p>' +
+    '<body><div class="card"><h2>' + escapeHtml(title) + '</h2><p>' + escapeHtml(message) + '</p>' +
     '<p style="margin-top:24px;"><a href="https://aoyama-nogizaka.com">トップページへ戻る</a></p></div></body></html>';
   return HtmlService.createHtmlOutput(html).setTitle('配信解除');
 }
@@ -146,36 +297,49 @@ function unsubPage(message, success) {
 // ====================================================================
 
 function handleContact(d) {
+  // 全フィールドを無害化（HTMLタグ全角化・制御文字除去・長さ制限）
+  var company    = sanitizeText(d.company, MAX_LEN.company);
+  var department = sanitizeText(d.department, MAX_LEN.department);
+  var name       = sanitizeText(d.name, MAX_LEN.name);
+  var furigana   = sanitizeText(d.furigana, MAX_LEN.furigana);
+  var email      = String(d.email).trim();
+  var message    = sanitizeText(d.message, MAX_LEN.message);
+  var referral   = sanitizeText(d.referral, MAX_LEN.referral);
+
+  if (!company || !department || !name || !message) {
+    return jsonResponse({ success: false, message: '必須項目が未入力です。' });
+  }
+
   var sheet = getOrCreateSheet('お問い合わせ');
   initHeader(sheet, ['受信日時', '貴社名', '部署・役職', 'お名前', 'フリガナ', 'メールアドレス', 'お問い合わせ内容', '流入経路']);
   var now = timestamp();
-  sheet.appendRow([now, d.company, d.department, d.name, d.furigana || '', d.email, d.message, d.referral || '']);
+  sheet.appendRow([now, company, department, name, furigana, email, message, referral]);
 
-  logActivity(d.email, 'お問い合わせ', d.company + ' ' + d.name);
+  logActivity(email, 'お問い合わせ', company + ' ' + name);
 
   GmailApp.sendEmail(NOTIFY_EMAIL,
-    '【お問い合わせ】' + d.company + ' ' + d.name + ' 様',
+    safeSubject('【お問い合わせ】' + company + ' ' + name + ' 様', 200),
     '新しいお問い合わせがありました。\n\n' +
-    '■ 貴社名: ' + d.company + '\n' +
-    '■ 部署・役職: ' + d.department + '\n' +
-    '■ お名前: ' + d.name + '\n' +
-    '■ フリガナ: ' + (d.furigana || '未入力') + '\n' +
-    '■ メール: ' + d.email + '\n' +
-    '■ 流入経路: ' + (d.referral || '未選択') + '\n\n' +
-    '■ お問い合わせ内容:\n' + d.message + '\n\n' +
+    '■ 貴社名: ' + company + '\n' +
+    '■ 部署・役職: ' + department + '\n' +
+    '■ お名前: ' + name + '\n' +
+    '■ フリガナ: ' + (furigana || '未入力') + '\n' +
+    '■ メール: ' + email + '\n' +
+    '■ 流入経路: ' + (referral || '未選択') + '\n\n' +
+    '■ お問い合わせ内容:\n' + message + '\n\n' +
     '─────────────────────\n受信日時: ' + now);
 
-  GmailApp.sendEmail(d.email,
+  GmailApp.sendEmail(email,
     '【青山乃木坂パートナーズ】お問い合わせを受け付けました',
-    d.name + ' 様\n\n' +
+    name + ' 様\n\n' +
     'この度はお問い合わせいただき、誠にありがとうございます。\n' +
     '以下の内容で受け付けいたしました。\n' +
     '担当者より2営業日以内にご連絡差し上げます。\n\n' +
     '─────────────────────\n' +
-    '■ 貴社名: ' + d.company + '\n' +
-    '■ 部署・役職: ' + d.department + '\n' +
-    '■ お名前: ' + d.name + '\n' +
-    '■ お問い合わせ内容:\n' + d.message + '\n' +
+    '■ 貴社名: ' + company + '\n' +
+    '■ 部署・役職: ' + department + '\n' +
+    '■ お名前: ' + name + '\n' +
+    '■ お問い合わせ内容:\n' + message + '\n' +
     '─────────────────────\n\n' +
     '青山乃木坂パートナーズ合同会社\nhttps://aoyama-nogizaka.com\n',
     { name: '青山乃木坂パートナーズ' });
@@ -188,25 +352,26 @@ function handleContact(d) {
 // ====================================================================
 
 function handleNewsletter(d) {
+  var email = String(d.email).trim(); // doPostでisValidEmail検証済み
   var sheet = getOrCreateSheet('ニュースレター');
   initHeader(sheet, ['登録日時', 'メールアドレス']);
   var now = timestamp();
 
   var existing = sheet.getRange(2, 2, Math.max(sheet.getLastRow() - 1, 1), 1).getValues().flat();
-  if (existing.includes(d.email)) return jsonResponse({ success: true, message: 'already_registered' });
+  if (existing.includes(email)) return jsonResponse({ success: true, message: 'already_registered' });
 
-  sheet.appendRow([now, d.email]);
-  logActivity(d.email, 'ニュースレター登録', '');
+  sheet.appendRow([now, email]);
+  logActivity(email, 'ニュースレター登録', '');
 
-  GmailApp.sendEmail(NOTIFY_EMAIL, '【ニュースレター登録】' + d.email,
-    '新規ニュースレター登録:\n\nメール: ' + d.email + '\n登録日時: ' + now);
+  GmailApp.sendEmail(NOTIFY_EMAIL, safeSubject('【ニュースレター登録】' + email, 200),
+    '新規ニュースレター登録:\n\nメール: ' + email + '\n登録日時: ' + now);
 
-  GmailApp.sendEmail(d.email,
+  GmailApp.sendEmail(email,
     '【青山乃木坂パートナーズ】ニュースレター登録完了',
     'ニュースレターへのご登録ありがとうございます。\n\n' +
     '今後、新しい論考・プレスリリース発行時にメールでお知らせいたします。\n\n' +
     '青山乃木坂パートナーズ合同会社\nhttps://aoyama-nogizaka.com\n\n' +
-    '※ 配信停止はこちら: ' + getUnsubscribeUrl(d.email) + '\n',
+    '※ 配信停止はこちら: ' + getUnsubscribeUrl(email) + '\n',
     { name: '青山乃木坂パートナーズ' });
 
   return jsonResponse({ success: true });
@@ -217,33 +382,44 @@ function handleNewsletter(d) {
 // ====================================================================
 
 function handleConsultation(d) {
+  var name       = sanitizeText(d.name, MAX_LEN.name);
+  var company    = sanitizeText(d.company, MAX_LEN.company);
+  var department = sanitizeText(d.department, MAX_LEN.department);
+  var email      = String(d.email).trim();
+  var message    = sanitizeText(d.message, MAX_LEN.message);
+  var referral   = sanitizeText(d.referral, MAX_LEN.referral);
+
+  if (!name || !company || !department) {
+    return jsonResponse({ success: false, message: '必須項目が未入力です。' });
+  }
+
   var sheet = getOrCreateSheet('相談フォーム');
   initHeader(sheet, ['受信日時', '氏名', '会社名', '部署・役職', 'メールアドレス', 'ご相談内容', '流入経路']);
   var now = timestamp();
-  sheet.appendRow([now, d.name, d.company, d.department, d.email, d.message || '', d.referral || '']);
+  sheet.appendRow([now, name, company, department, email, message, referral]);
 
-  logActivity(d.email, 'ご相談', d.company + ' ' + d.name);
+  logActivity(email, 'ご相談', company + ' ' + name);
 
   GmailApp.sendEmail(NOTIFY_EMAIL,
-    '【ご相談】' + d.company + ' ' + d.name + ' 様',
+    safeSubject('【ご相談】' + company + ' ' + name + ' 様', 200),
     '新しいご相談がありました。\n\n' +
-    '■ 氏名: ' + d.name + '\n' +
-    '■ 会社名: ' + d.company + '\n' +
-    '■ 部署・役職: ' + d.department + '\n' +
-    '■ メール: ' + d.email + '\n' +
-    '■ 流入経路: ' + (d.referral || '未選択') + '\n\n' +
-    '■ ご相談内容:\n' + (d.message || '未入力') + '\n\n' +
+    '■ 氏名: ' + name + '\n' +
+    '■ 会社名: ' + company + '\n' +
+    '■ 部署・役職: ' + department + '\n' +
+    '■ メール: ' + email + '\n' +
+    '■ 流入経路: ' + (referral || '未選択') + '\n\n' +
+    '■ ご相談内容:\n' + (message || '未入力') + '\n\n' +
     '受信日時: ' + now);
 
-  GmailApp.sendEmail(d.email,
+  GmailApp.sendEmail(email,
     '【青山乃木坂パートナーズ】ご相談を受け付けました',
-    d.name + ' 様\n\n' +
+    name + ' 様\n\n' +
     'この度はご相談いただき、誠にありがとうございます。\n' +
     '担当者より2営業日以内にご連絡差し上げます。\n\n' +
     '─────────────────────\n' +
-    '■ 氏名: ' + d.name + '\n' +
-    '■ 会社名: ' + d.company + '\n' +
-    '■ ご相談内容:\n' + (d.message || '未入力') + '\n' +
+    '■ 氏名: ' + name + '\n' +
+    '■ 会社名: ' + company + '\n' +
+    '■ ご相談内容:\n' + (message || '未入力') + '\n' +
     '─────────────────────\n\n' +
     '青山乃木坂パートナーズ合同会社\nhttps://aoyama-nogizaka.com\n',
     { name: '青山乃木坂パートナーズ' });

@@ -1060,33 +1060,37 @@
         </div>
         <div>
           <form class="contact-form reveal reveal-delay-2" id="contactForm" method="POST" data-form-action="submitContactForm">
+            <!-- ボット対策（ハニーポット）: 通常ユーザーには非表示。入力された送信は破棄されます。 -->
+            <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <label>Company URL (入力しないでください)<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label>
+            </div>
             <div class="form-row">
               <div class="form-group">
                 <label>貴社名<span class="req">*</span></label>
-                <input type="text" name="company" required placeholder="個人の方は「個人」とご記入ください">
+                <input type="text" name="company" required maxlength="150" placeholder="個人の方は「個人」とご記入ください">
               </div>
               <div class="form-group">
                 <label>部署・役職<span class="req">*</span></label>
-                <input type="text" name="department" required placeholder="なければN/A">
+                <input type="text" name="department" required maxlength="100" placeholder="なければN/A">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>お名前<span class="req">*</span></label>
-                <input type="text" name="name" required placeholder="姓 名">
+                <input type="text" name="name" required maxlength="100" placeholder="姓 名">
               </div>
               <div class="form-group">
                 <label>フリガナ</label>
-                <input type="text" name="furigana" placeholder="セイ メイ">
+                <input type="text" name="furigana" maxlength="100" placeholder="セイ メイ">
               </div>
             </div>
             <div class="form-group">
               <label>メールアドレス<span class="req">*</span></label>
-              <input type="email" name="email" required placeholder="example@company.com">
+              <input type="email" name="email" required maxlength="254" placeholder="example@company.com">
             </div>
             <div class="form-group">
               <label>お問い合わせ内容<span class="req">*</span></label>
-              <textarea name="message" required placeholder="ご相談内容をお書きください"></textarea>
+              <textarea name="message" required maxlength="5000" placeholder="ご相談内容をお書きください"></textarea>
             </div>
             <div class="form-group">
               <label>当サイトをどちらでお知りになりましたか？</label>

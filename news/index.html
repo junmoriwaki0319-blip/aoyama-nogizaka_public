@@ -525,7 +525,11 @@
       <p>新しい論考・プレスリリース発行時にメールでお知らせします。</p>
     </div>
     <form class="newsletter-form" id="newsletterForm" data-form-action="submitNewsletter" style="width:100%;max-width:480px;">
-      <input type="email" name="email" required placeholder="メールアドレス">
+      <!-- ボット対策（ハニーポット）: 通常ユーザーには非表示。入力された送信は破棄されます。 -->
+      <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+        <label>Company URL (入力しないでください)<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <input type="email" name="email" required maxlength="254" placeholder="メールアドレス">
       <button type="submit" id="nlSubmitBtn">登録</button>
     </form>
     <div id="nlStatus" style="font-size:13px;min-height:20px;"></div>

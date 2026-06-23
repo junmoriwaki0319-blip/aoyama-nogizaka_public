@@ -29,10 +29,13 @@ async function submitNewsletter(e) {
   const btn = document.getElementById('nlSubmitBtn');
   const status = document.getElementById('nlStatus');
   const email = form.querySelector('input[name="email"]').value;
+  const hp = form.querySelector('input[name="company_url"]');
+  const payload = { _formType: 'newsletter', email };
+  if (hp) payload.company_url = hp.value; // ハニーポット値をサーバーへ渡す
   btn.disabled = true; btn.textContent = '登録中...';
   status.textContent = ''; status.style.color = '';
   try {
-    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ _formType: 'newsletter', email }), mode: 'no-cors' });
+    await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(payload), mode: 'no-cors' });
     status.textContent = '登録が完了しました。確認メールをお送りしました。';
     status.style.color = '#a3e4a3';
     form.reset();
