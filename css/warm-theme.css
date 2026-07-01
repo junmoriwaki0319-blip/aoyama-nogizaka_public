@@ -1,0 +1,140 @@
+/* =============================================================
+   warm-theme.css  —  「温めレイヤー」
+   目的: ネイビー×ゴールドの配色は維持したまま、無機質さ
+         （方眼グリッド・1px枠・直角・フラット純白）を和らげ、
+         質感と奥行きで“人の手”を加える。
+   読み込み位置: 各ページの </head> 直前（インライン<style>の後）。
+                 → :root トークン上書きが確実に効く。
+   ロールバック: このファイルを削除／<link>を外すだけで完全に元に戻る。
+   ダッシュボード非破壊: 図表・テーブル内部は触らず、ブランド共通クラス
+                         と地色トークンのみを対象にする。
+   ============================================================= */
+
+:root {
+  /* ブランドゴールド（--gold / --gold-light）は定義値を維持し、上書きしない。
+     温かみは地色・影・トーナルグラデで付与する（ブランド一貫性のため）。 */
+  /* --- 追加トークン --- */
+  --cream: #faf7f2;          /* 地色：純白→ほんのりクリーム */
+  --cream-deep: #f3ede2;
+  --brass: #b59668;          /* 装飾アクセント線のみに限定使用 */
+  --brass-deep: #a07e4f;
+  --r-card: 10px;            /* カードの角丸（premium帯: 8-12px） */
+  --r-box: 12px;             /* 大きめビジュアルの角丸 */
+  --r-cta: 8px;              /* ボタンの角丸 */
+  --shadow-card: 0 14px 30px -18px rgba(60,45,20,.35);
+  --shadow-lift: 0 26px 48px -22px rgba(60,45,20,.45);
+  --shadow-box: 0 30px 60px -20px rgba(26,45,79,.40), 0 6px 16px rgba(120,90,40,.12);
+}
+
+/* ---- 地色：クリニカルな純白を避け、わずかに暖かい紙の地に ---- */
+body {
+  background: var(--cream);
+}
+
+/* =============================================================
+   HERO — 方眼グリッド → 柔らかな暖色グロー、写真は角丸＋浮遊
+   ============================================================= */
+.hero {
+  background: radial-gradient(120% 120% at 12% 0%, #fffdf9 0%, var(--cream) 45%, var(--cream-deep) 100%);
+}
+/* 図面のような方眼線を消す（blob装飾は使わず、地色の暖色ウォッシュで温める）。 */
+.hero-grid-bg {
+  background-image: none;
+}
+.hero-bg {
+  background:
+    linear-gradient(135deg, rgba(26,45,79,0.05) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(181,150,104,0.08) 0%, transparent 60%);
+}
+.hero-title { font-weight: 400; }
+.hero-sub { color: #5a554d; }
+
+/* 主要ビジュアル枠：1px枠 → 角丸＋柔らかい影で“置いてある”質感 */
+.hero-visual-box {
+  border: none !important;
+  border-radius: var(--r-box);
+  box-shadow: var(--shadow-box);
+  overflow: hidden;
+}
+.hero-visual-box::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: var(--r-box);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
+  background: linear-gradient(160deg, rgba(181,150,104,.08), transparent 40%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* CTA：角丸＋微グラデ＋影で自然な立体感 */
+.hero-cta {
+  border-radius: var(--r-cta);
+  background: linear-gradient(135deg, var(--navy-light), var(--navy));
+  box-shadow: 0 10px 26px -8px rgba(26,45,79,.45);
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -8px rgba(26,45,79,.55);
+}
+
+/* =============================================================
+   SERVICES / VALUE カード — 1px枠 → 角丸＋柔らかい影
+   ============================================================= */
+.services { background: linear-gradient(180deg, var(--cream), var(--cream-deep)); }
+.service-card {
+  border: 1px solid rgba(181,150,104,.18);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+.service-card::before { background: linear-gradient(var(--brass), var(--gold-light)); }
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+.value-item { border-radius: 10px; }
+
+/* =============================================================
+   ABOUT / CONTACT — ビジュアル枠とフォームを角丸＋やわらかく
+   ============================================================= */
+.about-visual {
+  border: none !important;
+  border-radius: var(--r-box);
+  box-shadow: var(--shadow-card);
+}
+.contact-form {
+  border: 1px solid rgba(181,150,104,.16);
+  border-radius: var(--r-box);
+  box-shadow: var(--shadow-card);
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form select { border-radius: 8px; }
+.contact-form button { border-radius: var(--r-cta); }
+
+/* =============================================================
+   NAVY セクション — フラット → 奥行きのあるグラデ＋ゴールドの細線
+   （クラス指定のもののみ。inline styleの帯は対象外）
+   ============================================================= */
+.philosophy {
+  background: radial-gradient(130% 120% at 80% 0%, #27406b 0%, var(--navy) 55%, #13203a 100%);
+}
+footer {
+  background: linear-gradient(180deg, var(--navy), #13203a);
+}
+
+/* =============================================================
+   セクション区切り線 — ハイライン → 丸みのあるゴールドのバー
+   ============================================================= */
+.section-divider {
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--brass), var(--gold-light));
+}
+
+/* =============================================================
+   アクセシビリティ配慮：動きを抑える設定を尊重する
+   ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta:hover,
+  .service-card:hover { transform: none; }
+}
