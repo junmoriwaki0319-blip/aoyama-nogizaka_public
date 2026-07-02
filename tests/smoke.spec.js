@@ -32,6 +32,8 @@ test.describe('トップページ', () => {
   test('ハンバーガーメニューが開閉する (モバイル)', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('/');
+    // ナビ初期化を待つ（並列実行時の低速ロードでハンドラ未装着になる対策）
+    await page.locator('[data-nav-toggle]').waitFor({ state: 'visible' });
     const menu = page.locator('#mobileMenu');
     await expect(menu).not.toHaveClass(/open/);
 
@@ -45,10 +47,13 @@ test.describe('トップページ', () => {
   test('ナビリンクでメニューが閉じる (モバイル)', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('/');
+    await page.locator('[data-nav-toggle]').waitFor({ state: 'visible' });
     await page.locator('[data-nav-toggle]').click();
     await expect(page.locator('#mobileMenu')).toHaveClass(/open/);
 
-    await page.locator('#mobileMenu [data-nav-link]').first().click();
+    // 直下の可視トップレベルリンクを押す。先頭の [data-nav-link] は
+    // 「会社情報」アコーディオン内に畳まれ非表示のため対象から外す。
+    await page.locator('#mobileMenu > a[data-nav-link]').first().click();
     await expect(page.locator('#mobileMenu')).not.toHaveClass(/open/);
   });
 
