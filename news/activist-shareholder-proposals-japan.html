@@ -373,7 +373,7 @@
         <span class="stat-label">同 議案数（三井住友信託銀行調べ・日経）</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-number">73件</span>
+        <span class="stat-number">74件</span>
         <span class="stat-label">本ページ掲載のリッチ提案</span>
       </div>
     </div>
@@ -444,6 +444,7 @@
         <option value="palliser">Palliser Capital</option>
         <option value="monex">マネックス・アクティビスト・ファンド</option>
         <option value="nanahoshi">ナナホシマネジメント</option>
+        <option value="jac">Japan Activation Capital</option>
       </select>
       <select id="filter-format" class="filter-select" aria-label="提案形態で絞り込み">
         <option value="">すべての形態</option>
@@ -2952,6 +2953,31 @@
       </div>
     </article>
 
+    <article class="case-card">
+      <div class="case-header">
+        <div class="case-meta"><span class="case-date">2026年（6月総会・否決）</span><span class="case-badge badge-consumer">食品</span></div>
+        <h3 class="case-title">明治ホールディングス (2269) × Japan Activation Capital</h3>
+        <p class="case-tagline">大型株特化ファンドが食×薬のコングロ・ディスカウントに挑む — 医薬スピンオフ検討委ほか5議案、全否決</p>
+      </div>
+      <div class="case-body">
+        <div class="case-summary">
+          <div class="case-detail"><span class="detail-label">提案者</span><span class="detail-value">Japan Activation Capital（ジャパン・アクティベーション・キャピタル／JAC）。2026年2月に企業価値向上パートナーシップ契約を公表</span></div>
+          <div class="case-detail"><span class="detail-label">提案議案</span><span class="detail-value">第4号 戦略検討委員会設置（医薬スピンオフ等検討）／第5号 自己株式取得（最大2,720万株・1,070億円≒約10%）／第6号 譲渡制限付株式報酬／第7号 社外取締役を過半数化／第8号 基準日変更（3/31→5/15）</span></div>
+          <div class="case-detail"><span class="detail-label">結果</span><span class="detail-value">取締役会は全議案に反対、6/26総会で第4〜8号すべて否決</span></div>
+        </div>
+        <div class="case-content">
+          <h4>提案の核心</h4>
+          <p>JACは食品事業と医薬品事業のコングロマリット・ディスカウントを問題視し、医薬事業のスピンオフを含む事業ポートフォリオ最適化を検討する委員会の設置、約10%の自己株式取得、社外取締役の過半数化などを5議案で要求。会社側は「食と薬の知見融合こそ中長期の企業価値向上に資する」として全議案に反対し、いずれも否決された。</p>
+          <h4>注目点</h4>
+          <p>Daltonなど中小型・要求型とは一線を画す、約1,300億円規模の大型株特化・対話型ファンド（JAC）による大企業エンゲージメント。ライオン・オムロン・島津製作所などと並ぶ投資先。大和総研 図表6のLONGCHAMP表記は誤りで、提案者はJACが正しい。</p>
+        </div>
+        <div class="case-links">
+          <a href="https://jac-prd.cdn.prismic.io/jac-prd/aZLTRlWLo0XkEh4m%5FMeiji%5Fjp.pdf" target="_blank" rel="noopener" class="link-primary">JAC「明治HDとのパートナーシップ契約締結について」(2026/2/15)</a>
+          <a href="https://www.meiji.com/pdf/investor/stock_info/shareholders_meeting-shareholders_meeting_2026_01.pdf" target="_blank" rel="noopener" class="link-secondary">明治HD 第17回招集ご通知（株主提案 第4〜8号）</a>
+        </div>
+      </div>
+    </article>
+
   </section>
 
   <!-- ━━━━ アクティビスト・キャンペーンマップ ━━━━ -->
@@ -3211,6 +3237,7 @@
     if (t.indexOf('Palliser') !== -1 || t.indexOf('パリサー') !== -1) return 'palliser';
     if (t.indexOf('マネックス') !== -1) return 'monex';
     if (t.indexOf('ナナホシ') !== -1) return 'nanahoshi';
+    if (t.indexOf('Japan Activation Capital') !== -1 || t.indexOf('アクティベーション') !== -1) return 'jac';
     return '';
   }
 
@@ -3320,10 +3347,10 @@
 <script>
 // 狙いのアングル: コード→タグのマップでチップ描画＋data-angles付与（絞り込み用）。注目カード指定とタブ切替も担当。
 (function(){
-  var ANGLES = {"4527":["pl-portfolio","gov"],"9742":["bs-realestate","gov"],"9104":["bs-realestate","bs-capital","gov"],"5233":["pl-portfolio","bs-realestate","bs-crosshold","gov"],"6178":["bs-realestate","bs-capital","gov"],"5105":["gov","bs-capital"],"6273":["pl-profit","gov"],"2802":["pl-portfolio","pl-profit","gov"],"5332":["pl-portfolio","bs-crosshold","gov"],"2664":["gov","fraud","bs-capital"],"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"],"2267":["gov"],"8411":["bs-capital", "gov"],"9401":["pl-profit", "bs-crosshold", "gov"],"5991":["gov"],"2875":["pl-profit", "gov"],"5947":["gov"],"8585":["bs-capital", "gov"],"7222":["pl-profit", "bs-capital", "gov"],"1721":["gov"],"1951":["gov"],"1417":["gov"],"1921":["gov"],"6035":["gov"],"3106":["bs-crosshold", "gov"],"4512":["gov"]};
+  var ANGLES = {"4527":["pl-portfolio","gov"],"9742":["bs-realestate","gov"],"9104":["bs-realestate","bs-capital","gov"],"5233":["pl-portfolio","bs-realestate","bs-crosshold","gov"],"6178":["bs-realestate","bs-capital","gov"],"5105":["gov","bs-capital"],"6273":["pl-profit","gov"],"2802":["pl-portfolio","pl-profit","gov"],"5332":["pl-portfolio","bs-crosshold","gov"],"2664":["gov","fraud","bs-capital"],"9409":["bs-realestate","bs-crosshold","gov"],"6794":["gov"],"4972":["gov"],"5821":["pl-profit","gov"],"2206":["gov"],"2327":["bs-capital","gov"],"2501":["pl-portfolio","bs-realestate","gov"],"3302":["gov","bs-crosshold"],"3391":["pl-consolidation","gov"],"3593":["gov"],"3765":["gov"],"4298":["bs-capital","gov","fraud"],"4452":["pl-profit","gov"],"4549":["gov","bs-capital"],"4626":["bs-capital","gov"],"4676":["pl-portfolio","bs-realestate","gov"],"4902":["pl-consolidation"],"4967":["gov","fraud"],"4973":["gov"],"5331":["pl-portfolio","bs-crosshold","gov"],"5449":["gov","bs-capital","bs-crosshold","pl-profit"],"5451":["bs-crosshold","gov"],"5741":["gov"],"5930":["gov"],"5943":["gov"],"6201":["bs-capital","bs-crosshold","gov"],"6328":["gov","bs-crosshold"],"6516":["gov"],"6707":["pl-portfolio","bs-crosshold","gov"],"6727":["pl-profit","gov"],"6772":["gov"],"6890":["bs-capital"],"6960":["gov","fraud"],"6971":["pl-profit","bs-crosshold","gov"],"7201":["bs-capital","gov"],"7250":["gov","bs-capital"],"7912":["gov","pl-profit"],"7952":["bs-crosshold","gov"],"8129":["gov"],"8818":["bs-realestate","gov"],"9006":["bs-realestate","gov"],"9009":["bs-capital","bs-crosshold","pl-profit","gov"],"9468":["bs-capital","gov"],"9531":["bs-realestate","gov"],"9684":["pl-profit","gov"],"9749":["bs-capital","bs-realestate","gov"],"9882":["gov"],"2267":["gov"],"8411":["bs-capital", "gov"],"9401":["pl-profit", "bs-crosshold", "gov"],"5991":["gov"],"2875":["pl-profit", "gov"],"5947":["gov"],"8585":["bs-capital", "gov"],"7222":["pl-profit", "bs-capital", "gov"],"1721":["gov"],"1951":["gov"],"1417":["gov"],"1921":["gov"],"6035":["gov"],"3106":["bs-crosshold", "gov"],"4512":["gov"],"2269":["pl-portfolio","pl-profit","gov"]};
   var FEATURED = ["8129","5821","2664"];
   var SEMI = ["5332","2802","6273","6890","6707","7912"];
-  var FORMAT = {"4527":"proposal","9742":"accumulation","9104":"engagement","2206":"proposal","2327":"engagement","2501":"proposal","2664":"proposal","2802":"engagement","3302":"proposal","3391":"proposal","3593":"proposal","3765":"proposal","4298":"engagement","4452":"proposal","4549":"proposal","4626":"proposal","4676":"proposal","4902":"accumulation","4967":"proposal","4972":"engagement","4973":"engagement","5105":"engagement","5233":"engagement","5331":"proposal","5332":"engagement","5449":"proposal","5451":"proposal","5741":"accumulation","5821":"proposal","5930":"proposal","5943":"proposal","6178":"engagement","6201":"engagement","6273":"engagement","6328":"proposal","6516":"proposal","6707":"accumulation","6727":"proposal","6772":"proposal","6794":"engagement","6890":"accumulation","6960":"proposal","6971":"proposal","7201":"proposal","7250":"accumulation","7912":"proposal","7952":"engagement","8129":"engagement","8818":"proposal","9006":"accumulation","9009":"proposal","9409":"accumulation","9468":"accumulation","9531":"engagement","9684":"engagement","9749":"engagement","9882":"proposal","2267":"proposal","8411":"proposal","9401":"proposal","5991":"proposal","2875":"proposal","5947":"proposal","8585":"proposal","7222":"proposal","1721":"proposal","1951":"proposal","1417":"proposal","1921":"proposal","6035":"proposal","3106":"proposal","4512":"proposal"};
+  var FORMAT = {"4527":"proposal","9742":"accumulation","9104":"engagement","2206":"proposal","2327":"engagement","2501":"proposal","2664":"proposal","2802":"engagement","3302":"proposal","3391":"proposal","3593":"proposal","3765":"proposal","4298":"engagement","4452":"proposal","4549":"proposal","4626":"proposal","4676":"proposal","4902":"accumulation","4967":"proposal","4972":"engagement","4973":"engagement","5105":"engagement","5233":"engagement","5331":"proposal","5332":"engagement","5449":"proposal","5451":"proposal","5741":"accumulation","5821":"proposal","5930":"proposal","5943":"proposal","6178":"engagement","6201":"engagement","6273":"engagement","6328":"proposal","6516":"proposal","6707":"accumulation","6727":"proposal","6772":"proposal","6794":"engagement","6890":"accumulation","6960":"proposal","6971":"proposal","7201":"proposal","7250":"accumulation","7912":"proposal","7952":"engagement","8129":"engagement","8818":"proposal","9006":"accumulation","9009":"proposal","9409":"accumulation","9468":"accumulation","9531":"engagement","9684":"engagement","9749":"engagement","9882":"proposal","2267":"proposal","8411":"proposal","9401":"proposal","5991":"proposal","2875":"proposal","5947":"proposal","8585":"proposal","7222":"proposal","1721":"proposal","1951":"proposal","1417":"proposal","1921":"proposal","6035":"proposal","3106":"proposal","4512":"proposal","2269":"proposal"};
   var FMT_LABEL = {"proposal":"株主提案","engagement":"公開提言・対話","accumulation":"大量保有・思惑"};
   var LABELS = {"pl-profit":"本業の収益性","pl-portfolio":"事業ポートフォリオ","pl-consolidation":"業界再編","bs-capital":"子会社・親子上場","bs-crosshold":"持合い・有価証券","bs-realestate":"不動産","gov":"ガバナンス","fraud":"不正問題"};
   function grp(k){ if(k.indexOf("pl-")===0)return"pl"; if(k.indexOf("bs-")===0)return"bs"; if(k==="fraud")return"fraud"; return"gov"; }
