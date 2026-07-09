@@ -1,8 +1,440 @@
 {
-  "last_updated": "2026-07-09T09:00:04+09:00",
-  "total_reports": 29108,
-  "activist_reports": 1482,
+  "last_updated": "2026-07-09T19:25:25+09:00",
+  "total_reports": 29136,
+  "activist_reports": 1486,
   "reports": [
+    {
+      "doc_id": "S100YP7V",
+      "date": "2026-07-09",
+      "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+      "issuer_name": "E02350",
+      "sec_code": "6266",
+      "target_company": "タツモ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YP7V",
+      "holding_ratio": 1.8,
+      "purpose": "その他",
+      "purpose_detail": "投資信託契約、投資一任契約に基づく運用を目的として保有するもの。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "sumitomo_mitsui_trust",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YPIY",
+      "date": "2026-07-09",
+      "filer_name": "Ｓｅａｃａｓｔｌｅ　Ｓｉｎｇａｐｏｒｅ　Ｐｔｅ．Ｌｔｄ",
+      "issuer_name": "E03740",
+      "sec_code": "8783",
+      "target_company": "abc株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPIY",
+      "holding_ratio": 28.21,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPN9",
+      "date": "2026-07-09",
+      "filer_name": "株式会社リメディア",
+      "issuer_name": "E30998",
+      "sec_code": "6029",
+      "target_company": "アトラグループ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPN9",
+      "holding_ratio": 5.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPOQ",
+      "date": "2026-07-09",
+      "filer_name": "福田　卓也",
+      "issuer_name": "E02960",
+      "sec_code": "2776",
+      "target_company": "新都ホールディングス株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPOQ",
+      "holding_ratio": 11.24,
+      "purpose": "その他",
+      "purpose_detail": "企業価値向上を見据えた長期保有目的",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPOM",
+      "date": "2026-07-09",
+      "filer_name": "梅田　裕真",
+      "issuer_name": "E41542",
+      "sec_code": "590A",
+      "target_company": "ギフティグループ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPOM",
+      "holding_ratio": 5.73,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPHY",
+      "date": "2026-07-09",
+      "filer_name": "ＳＭＢＣ日興証券株式会社",
+      "issuer_name": "E36133",
+      "sec_code": "4935",
+      "target_company": "株式会社リベルタ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPHY",
+      "holding_ratio": 16.91,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る一時保有のため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPR3",
+      "date": "2026-07-09",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01824",
+      "sec_code": "6976",
+      "target_company": "太陽誘電株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPR3",
+      "holding_ratio": 68.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPHF",
+      "date": "2026-07-09",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E33868",
+      "sec_code": "6573",
+      "target_company": "CRAVIA株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPHF",
+      "holding_ratio": 29.57,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPRL",
+      "date": "2026-07-09",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E31633",
+      "sec_code": "4980",
+      "target_company": "デクセリアルズ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPRL",
+      "holding_ratio": 27.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPFM",
+      "date": "2026-07-09",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E26596",
+      "sec_code": "3664",
+      "target_company": "株式会社WIZE",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPFM",
+      "holding_ratio": 36.19,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第１提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPLB",
+      "date": "2026-07-09",
+      "filer_name": "片山晃",
+      "issuer_name": "E41144",
+      "sec_code": "472A",
+      "target_company": "株式会社ミラティブ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPLB",
+      "holding_ratio": 14.27,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "katayama_akira",
+      "activist_type": "individual_investor"
+    },
+    {
+      "doc_id": "S100YPBH",
+      "date": "2026-07-09",
+      "filer_name": "ひびき・パース・アドバイザーズ・エスピーシー",
+      "issuer_name": "E01060",
+      "sec_code": "4973",
+      "target_company": "日本高純度化学株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPBH",
+      "holding_ratio": 7.47,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて経営陣への助言、重要提案行為等を行うこと。提出者1は、投資先である発行者に対して、研究開発型で高いROICを有する本業の実力が適切に反映された資本効率を実現するために、資本政策の",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YONU",
+      "date": "2026-07-09",
+      "filer_name": "シンフォニー・フィナンシャル・パートナーズ（シンガポール）ピーティーイー・リミテッド",
+      "issuer_name": "E04848",
+      "sec_code": "9699",
+      "target_company": "ニシオホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YONU",
+      "holding_ratio": 13.37,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為を行うこともありうる",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPBU",
+      "date": "2026-07-09",
+      "filer_name": "ひびき・パース・アドバイザーズ・エスピーシー",
+      "issuer_name": "E02363",
+      "sec_code": "7952",
+      "target_company": "株式会社河合楽器製作所",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPBU",
+      "holding_ratio": 6.23,
+      "purpose": "純投資",
+      "purpose_detail": "企業価値向上のための建設的な対話を含む純投資。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPNZ",
+      "date": "2026-07-09",
+      "filer_name": "マイルストーン・キャピタル・マネジメント株式会社",
+      "issuer_name": "E05622",
+      "sec_code": "3815",
+      "target_company": "株式会社メディア工房",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPNZ",
+      "holding_ratio": 11.81,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPES",
+      "date": "2026-07-09",
+      "filer_name": "田代　正美",
+      "issuer_name": "E03207",
+      "sec_code": "9956",
+      "target_company": "株式会社バローホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPES",
+      "holding_ratio": 2.5,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役会長兼CEOであり、安定株主として株式を保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPC1",
+      "date": "2026-07-09",
+      "filer_name": "光通信株式会社",
+      "issuer_name": "E36905",
+      "sec_code": "4372",
+      "target_company": "ユミルリンク株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPC1",
+      "holding_ratio": 7.42,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "hikari_tsushin",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YPI4",
+      "date": "2026-07-09",
+      "filer_name": "株式会社ＦＡＲＯＵＴ",
+      "issuer_name": "E40934",
+      "sec_code": "485A",
+      "target_company": "株式会社パワーエックス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPI4",
+      "holding_ratio": 12.4,
+      "purpose": "その他",
+      "purpose_detail": "発行者の代表取締役の資産管理会社であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPDN",
+      "date": "2026-07-09",
+      "filer_name": "ＳｉｌｖｅｒＣａｐｅ　Ｉｎｖｅｓｔｍｅｎｔｓ　Ｌｉｍｉｔｅｄ",
+      "issuer_name": "E02356",
+      "sec_code": "6656",
+      "target_company": "インスペック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPDN",
+      "holding_ratio": 8.6,
+      "purpose": "株主提案",
+      "purpose_detail": "提出者は、発行会社の企業価値及び株主価値の向上を目的として、発行会社の財務状況、株価水準、提出者における他の投資機会、株式市場の状況及び全般的な経済状況等を考慮し、提出者が適切と判断した時期に、金融商",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPSS",
+      "date": "2026-07-09",
+      "filer_name": "グロース・キャピタル株式会社",
+      "issuer_name": "E27208",
+      "sec_code": "4586",
+      "target_company": "株式会社メドレックス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPSS",
+      "holding_ratio": 18.91,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPJI",
+      "date": "2026-07-09",
+      "filer_name": "株式会社ＦＡＲＯＵＴ",
+      "issuer_name": "E40934",
+      "sec_code": "485A",
+      "target_company": "株式会社パワーエックス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPJI",
+      "holding_ratio": 12.26,
+      "purpose": "その他",
+      "purpose_detail": "発行者の代表取締役の資産管理会社であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPT1",
+      "date": "2026-07-09",
+      "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+      "issuer_name": "E04154",
+      "sec_code": "9024",
+      "target_company": "株式会社西武ホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPT1",
+      "holding_ratio": 13.91,
+      "purpose": "純投資",
+      "purpose_detail": "純投資、及び、状況に応じて、発行会社の中長期的な企業価値の向上を目的とし、発行会社の取締役会、取締役、経営陣その他の関係者との間で建設的な対話や取締役会、取締役、経営陣その他の関係者に対する助言・提案",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "3d_investment",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YPNN",
+      "date": "2026-07-09",
+      "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+      "issuer_name": "E05192",
+      "sec_code": "4849",
+      "target_company": "エン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPNN",
+      "holding_ratio": 10.32,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者は、発行者におけるコーポレートガバナンスの改善及び発行者の企業価値と株主価値の保護、向上を目的として、金融商品取引法施行令（以下「施行令」という。）第14条の8の2第1項第10号（発行する有価証",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "oasis",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YOYQ",
+      "date": "2026-07-09",
+      "filer_name": "株式会社ミツバ",
+      "issuer_name": "E04855",
+      "sec_code": "7280",
+      "target_company": "株式会社両毛システムズ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOYQ",
+      "holding_ratio": 79.74,
+      "purpose": "その他",
+      "purpose_detail": "親会社として安定的に保有。提出者１は、発行者の株主を提出者１及び提出者３（以下提出者１と併せて「公開買付者ら」と総称します。）のみとし、発行者の普通株式（以下「発行者株式」といいます。）の非公開化後に",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPSF",
+      "date": "2026-07-09",
+      "filer_name": "アイフル株式会社",
+      "issuer_name": "E31905",
+      "sec_code": "8515",
+      "target_company": "あんしん保証株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPSF",
+      "holding_ratio": 35.65,
+      "purpose": "経営関与",
+      "purpose_detail": "グループ経営の一環としての保有を目的としております。なお、提出者３は発行者の普通株式（以下「発行者株式」といいます。）及び新株予約権の全て（ただし、提出者１が所有する発行者株式及び発行者が所有する自己",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPPW",
+      "date": "2026-07-09",
+      "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+      "issuer_name": "E38714",
+      "sec_code": "5844",
+      "target_company": "株式会社京都フィナンシャルグループ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPPW",
+      "holding_ratio": 4.36,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者は、発行者に対し、企業価値及び株主価値の向上を目的として、資本政策の変更、資本効率の向上、事業構造の見直し、及びコーポレート・ガバナンスの強化等に関する提案（重要提案行為等に該当し得るものを含む",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "silchester",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YPSV",
+      "date": "2026-07-09",
+      "filer_name": "アイフル株式会社",
+      "issuer_name": "E31905",
+      "sec_code": "8515",
+      "target_company": "あんしん保証株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPSV",
+      "holding_ratio": 0.0,
+      "purpose": "その他",
+      "purpose_detail": "該当事項はありません。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPSB",
+      "date": "2026-07-09",
+      "filer_name": "ケンブリッジフィルターコーポレーション株式会社",
+      "issuer_name": "E02421",
+      "sec_code": "6291",
+      "target_company": "日本エアーテック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPSB",
+      "holding_ratio": 2.27,
+      "purpose": "その他",
+      "purpose_detail": "発行者との長年の取引関係および事業への理解を背景に投資判断したものであり、中長期的に株式を保有する方針です。",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YIXC",
       "date": "2026-07-08",
@@ -439703,6 +440135,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "4372",
+          "filer_name": "光通信株式会社",
+          "target_company": "ユミルリンク株式会社",
+          "date": "2026-07-09",
+          "holding_ratio": 7.42,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "1766",
           "filer_name": "光通信株式会社",
           "target_company": "東建コーポレーション株式会社",
@@ -440374,15 +440815,6 @@
           "target_company": "ブリッジインターナショナルグループ株式会社",
           "date": "2026-04-03",
           "holding_ratio": 5.7,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4372",
-          "filer_name": "光通信株式会社",
-          "target_company": "ユミルリンク株式会社",
-          "date": "2026-04-02",
-          "holding_ratio": 6.46,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -441755,8 +442187,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 976,
-      "latest_date": "2026-07-08",
+      "report_count": 977,
+      "latest_date": "2026-07-09",
       "member_ids": [
         "hikari_tsushin"
       ]
@@ -441770,6 +442202,15 @@
       "description": "信託銀行系の大手運用会社。機関投資家として多数の上場株を大量保有。",
       "focus_sectors": [],
       "holdings": [
+        {
+          "sec_code": "6266",
+          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+          "target_company": "タツモ株式会社",
+          "date": "2026-07-09",
+          "holding_ratio": 1.8,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "3661",
           "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
@@ -442136,15 +442577,6 @@
           "target_company": "大阪有機化学工業株式会社",
           "date": "2026-05-11",
           "holding_ratio": 1.76,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6266",
-          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
-          "target_company": "タツモ株式会社",
-          "date": "2026-04-27",
-          "holding_ratio": 1.73,
           "purpose": "その他",
           "report_type": "変更報告"
         },
@@ -444453,8 +444885,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 823,
-      "latest_date": "2026-07-06"
+      "report_count": 824,
+      "latest_date": "2026-07-09"
     },
     "nomura_am": {
       "id": "nomura_am",
@@ -449015,6 +449447,437 @@
       "report_count": 137,
       "latest_date": "2026-07-07"
     },
+    "oasis": {
+      "id": "oasis",
+      "name": "オアシス・マネジメント",
+      "type": "activist",
+      "representative": "Seth Fischer",
+      "headquarters": "香港",
+      "description": "アジア太平洋地域のアクティビスト。企業統治改善と株主還元拡大を求める。TOB関連でも積極的に発言。",
+      "focus_sectors": [
+        "IT・通信",
+        "不動産",
+        "金融"
+      ],
+      "holdings": [
+        {
+          "sec_code": "4849",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "エン株式会社",
+          "date": "2026-07-09",
+          "holding_ratio": 10.32,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4819",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社カカクコム",
+          "date": "2026-07-08",
+          "holding_ratio": 19.52,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8750",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社インフォマート",
+          "date": "2026-07-02",
+          "holding_ratio": 5.07,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "9432",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社インターネットイニシアティブ",
+          "date": "2026-07-01",
+          "holding_ratio": 9.07,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8698",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "マネックスグループ株式会社",
+          "date": "2026-06-30",
+          "holding_ratio": 5.15,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "9627",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社アインホールディングス",
+          "date": "2026-06-29",
+          "holding_ratio": 17.74,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6104",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "芝浦機械株式会社",
+          "date": "2026-06-25",
+          "holding_ratio": 6.76,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6890",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社フェローテック",
+          "date": "2026-06-25",
+          "holding_ratio": 6.57,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3923",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社プラスアルファ・コンサルティング",
+          "date": "2026-06-24",
+          "holding_ratio": 16.29,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9468",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社ＫＡＤＯＫＡＷＡ",
+          "date": "2026-06-23",
+          "holding_ratio": 15.25,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4088",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "エア・ウォーター株式会社",
+          "date": "2026-06-22",
+          "holding_ratio": 6.05,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "7122",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "近畿車輛株式会社",
+          "date": "2026-06-17",
+          "holding_ratio": 6.96,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "4071",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社プラスアルファ・コンサルティング",
+          "date": "2026-06-16",
+          "holding_ratio": 11.85,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9433",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "データセクション株式会社",
+          "date": "2026-06-02",
+          "holding_ratio": 9.76,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社ニチレイ",
+          "date": "2026-05-29",
+          "holding_ratio": 5.01,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "2168",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社パソナグループ",
+          "date": "2026-05-21",
+          "holding_ratio": 19.0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2371",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社カカクコム",
+          "date": "2026-05-13",
+          "holding_ratio": 19.52,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2175",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社エス・エム・エス",
+          "date": "2026-05-13",
+          "holding_ratio": 18.3,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4967",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "小林製薬株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 13.37,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2229",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "カルビー株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 7.12,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8570",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "イオンフィナンシャルサービス株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 9.78,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5423",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "東京製鐵株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 8.65,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8267",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社クスリのアオキホールディングス",
+          "date": "2026-05-13",
+          "holding_ratio": 14.05,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4631",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "DIC株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 11.58,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6736",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "サン電子株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 18.45,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6856",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社堀場製作所",
+          "date": "2026-05-13",
+          "holding_ratio": 9.9,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7984",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "コクヨ株式会社",
+          "date": "2026-05-13",
+          "holding_ratio": 10.52,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7004",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "カナデビア株式会社",
+          "date": "2026-05-12",
+          "holding_ratio": 5.44,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "7244",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "市光工業株式会社",
+          "date": "2026-05-12",
+          "holding_ratio": 5.39,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "6706",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "電気興業株式会社",
+          "date": "2026-05-11",
+          "holding_ratio": 12.91,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7203",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "カヤバ株式会社",
+          "date": "2026-05-11",
+          "holding_ratio": 5.63,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "1861",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社熊谷組",
+          "date": "2026-05-01",
+          "holding_ratio": 1.49,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4293",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社セプテーニ・ホールディングス",
+          "date": "2026-05-01",
+          "holding_ratio": 6.84,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6707",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "サンケン電気株式会社",
+          "date": "2026-05-01",
+          "holding_ratio": 2.83,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9072",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "ニッコンホールディングス株式会社",
+          "date": "2026-04-16",
+          "holding_ratio": 17.66,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3880",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "北越コーポレーション株式会社",
+          "date": "2026-03-30",
+          "holding_ratio": 4.8,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1721",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "コムシスホールディングス株式会社",
+          "date": "2026-03-03",
+          "holding_ratio": 5.61,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "6952",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "カシオ計算機株式会社",
+          "date": "2026-02-26",
+          "holding_ratio": 1,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6406",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "フジテック株式会社",
+          "date": "2025-12-26",
+          "holding_ratio": 0.0,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "8308",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社デジタルガレージ",
+          "date": "2025-09-30",
+          "holding_ratio": 17.88,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4626",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "太陽ホールディングス株式会社",
+          "date": "2025-06-20",
+          "holding_ratio": 14.89,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3978",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社マクロミル",
+          "date": "2025-03-26",
+          "holding_ratio": 0.0,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3865",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "北越コーポレーション株式会社",
+          "date": "2025-03-19",
+          "holding_ratio": 9.92,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6701",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "日本電気株式会社",
+          "date": "2025-01-27",
+          "holding_ratio": 15.22,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3569",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "セーレン株式会社",
+          "date": "2024-11-14",
+          "holding_ratio": 70.0,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4385",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社メルカリ",
+          "date": "2024-11-13",
+          "holding_ratio": 5.37,
+          "purpose": "株主提案",
+          "report_type": "新規報告"
+        }
+      ],
+      "report_count": 134,
+      "latest_date": "2026-07-09"
+    },
     "fidelity": {
       "id": "fidelity",
       "name": "フィデリティ投信",
@@ -449338,437 +450201,6 @@
       "report_count": 134,
       "latest_date": "2026-07-07"
     },
-    "oasis": {
-      "id": "oasis",
-      "name": "オアシス・マネジメント",
-      "type": "activist",
-      "representative": "Seth Fischer",
-      "headquarters": "香港",
-      "description": "アジア太平洋地域のアクティビスト。企業統治改善と株主還元拡大を求める。TOB関連でも積極的に発言。",
-      "focus_sectors": [
-        "IT・通信",
-        "不動産",
-        "金融"
-      ],
-      "holdings": [
-        {
-          "sec_code": "4819",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社カカクコム",
-          "date": "2026-07-08",
-          "holding_ratio": 19.52,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8750",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社インフォマート",
-          "date": "2026-07-02",
-          "holding_ratio": 5.07,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "9432",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社インターネットイニシアティブ",
-          "date": "2026-07-01",
-          "holding_ratio": 9.07,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8698",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "マネックスグループ株式会社",
-          "date": "2026-06-30",
-          "holding_ratio": 5.15,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "9627",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社アインホールディングス",
-          "date": "2026-06-29",
-          "holding_ratio": 17.74,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6104",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "芝浦機械株式会社",
-          "date": "2026-06-25",
-          "holding_ratio": 6.76,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6890",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社フェローテック",
-          "date": "2026-06-25",
-          "holding_ratio": 6.57,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3923",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社プラスアルファ・コンサルティング",
-          "date": "2026-06-24",
-          "holding_ratio": 16.29,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9468",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社ＫＡＤＯＫＡＷＡ",
-          "date": "2026-06-23",
-          "holding_ratio": 15.25,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4088",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "エア・ウォーター株式会社",
-          "date": "2026-06-22",
-          "holding_ratio": 6.05,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "7122",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "近畿車輛株式会社",
-          "date": "2026-06-17",
-          "holding_ratio": 6.96,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "4071",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社プラスアルファ・コンサルティング",
-          "date": "2026-06-16",
-          "holding_ratio": 11.85,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9433",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "データセクション株式会社",
-          "date": "2026-06-02",
-          "holding_ratio": 9.76,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社ニチレイ",
-          "date": "2026-05-29",
-          "holding_ratio": 5.01,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "2168",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社パソナグループ",
-          "date": "2026-05-21",
-          "holding_ratio": 19.0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2371",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社カカクコム",
-          "date": "2026-05-13",
-          "holding_ratio": 19.52,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2175",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社エス・エム・エス",
-          "date": "2026-05-13",
-          "holding_ratio": 18.3,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4967",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "小林製薬株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 13.37,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2229",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "カルビー株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 7.12,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8570",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "イオンフィナンシャルサービス株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 9.78,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5423",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "東京製鐵株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 8.65,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8267",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社クスリのアオキホールディングス",
-          "date": "2026-05-13",
-          "holding_ratio": 14.05,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4631",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "DIC株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 11.58,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6736",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "サン電子株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 18.45,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6856",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社堀場製作所",
-          "date": "2026-05-13",
-          "holding_ratio": 9.9,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7984",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "コクヨ株式会社",
-          "date": "2026-05-13",
-          "holding_ratio": 10.52,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7004",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "カナデビア株式会社",
-          "date": "2026-05-12",
-          "holding_ratio": 5.44,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "7244",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "市光工業株式会社",
-          "date": "2026-05-12",
-          "holding_ratio": 5.39,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "4849",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "エン株式会社",
-          "date": "2026-05-11",
-          "holding_ratio": 9.94,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6706",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "電気興業株式会社",
-          "date": "2026-05-11",
-          "holding_ratio": 12.91,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7203",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "カヤバ株式会社",
-          "date": "2026-05-11",
-          "holding_ratio": 5.63,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "1861",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社熊谷組",
-          "date": "2026-05-01",
-          "holding_ratio": 1.49,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4293",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社セプテーニ・ホールディングス",
-          "date": "2026-05-01",
-          "holding_ratio": 6.84,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6707",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "サンケン電気株式会社",
-          "date": "2026-05-01",
-          "holding_ratio": 2.83,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9072",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "ニッコンホールディングス株式会社",
-          "date": "2026-04-16",
-          "holding_ratio": 17.66,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3880",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "北越コーポレーション株式会社",
-          "date": "2026-03-30",
-          "holding_ratio": 4.8,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1721",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "コムシスホールディングス株式会社",
-          "date": "2026-03-03",
-          "holding_ratio": 5.61,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "6952",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "カシオ計算機株式会社",
-          "date": "2026-02-26",
-          "holding_ratio": 1,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6406",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "フジテック株式会社",
-          "date": "2025-12-26",
-          "holding_ratio": 0.0,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "8308",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社デジタルガレージ",
-          "date": "2025-09-30",
-          "holding_ratio": 17.88,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4626",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "太陽ホールディングス株式会社",
-          "date": "2025-06-20",
-          "holding_ratio": 14.89,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3978",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社マクロミル",
-          "date": "2025-03-26",
-          "holding_ratio": 0.0,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3865",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "北越コーポレーション株式会社",
-          "date": "2025-03-19",
-          "holding_ratio": 9.92,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6701",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "日本電気株式会社",
-          "date": "2025-01-27",
-          "holding_ratio": 15.22,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3569",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "セーレン株式会社",
-          "date": "2024-11-14",
-          "holding_ratio": 70.0,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4385",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社メルカリ",
-          "date": "2024-11-13",
-          "holding_ratio": 5.37,
-          "purpose": "株主提案",
-          "report_type": "新規報告"
-        }
-      ],
-      "report_count": 133,
-      "latest_date": "2026-07-08"
-    },
     "silchester": {
       "id": "silchester",
       "name": "シルチェスター・インターナショナル・インベスターズ",
@@ -449782,6 +450214,15 @@
         "消費財"
       ],
       "holdings": [
+        {
+          "sec_code": "5844",
+          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+          "target_company": "株式会社京都フィナンシャルグループ",
+          "date": "2026-07-09",
+          "holding_ratio": 4.36,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "5232",
           "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
@@ -449833,15 +450274,6 @@
           "target_company": "三菱マテリアル株式会社",
           "date": "2026-06-02",
           "holding_ratio": 5.64,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5844",
-          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
-          "target_company": "株式会社京都フィナンシャルグループ",
-          "date": "2026-05-27",
-          "holding_ratio": 5.37,
           "purpose": "政策投資",
           "report_type": "変更報告"
         },
@@ -450053,8 +450485,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 130,
-      "latest_date": "2026-07-07"
+      "report_count": 131,
+      "latest_date": "2026-07-09"
     },
     "strategic_capital": {
       "id": "strategic_capital",
@@ -451266,20 +451698,20 @@
       ],
       "holdings": [
         {
+          "sec_code": "9024",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "株式会社西武ホールディングス",
+          "date": "2026-07-09",
+          "holding_ratio": 13.91,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "3086",
           "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
           "target_company": "Ｊ. フロント リテイリング株式会社",
           "date": "2026-07-08",
           "holding_ratio": 9.23,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9024",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "株式会社西武ホールディングス",
-          "date": "2026-07-03",
-          "holding_ratio": 12.86,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -451374,8 +451806,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 49,
-      "latest_date": "2026-07-08"
+      "report_count": 50,
+      "latest_date": "2026-07-09"
     },
     "nippon_life": {
       "id": "nippon_life",
@@ -453245,6 +453677,41 @@
       "report_count": 9,
       "latest_date": "2026-04-03"
     },
+    "katayama_akira": {
+      "id": "katayama_akira",
+      "name": "片山晃",
+      "type": "individual_investor",
+      "representative": "片山 晃",
+      "headquarters": "東京",
+      "description": "ハンドルネーム「五月」で知られる個人投資家。65万円を12億円に増やし、現在資産150〜300億円規模。中小型成長株への集中投資で約25銘柄を大量保有。",
+      "focus_sectors": [
+        "IT・通信",
+        "サービス",
+        "消費財"
+      ],
+      "holdings": [
+        {
+          "sec_code": "472A",
+          "filer_name": "片山晃",
+          "target_company": "株式会社ミラティブ",
+          "date": "2026-07-09",
+          "holding_ratio": 14.27,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "6235",
+          "filer_name": "片山晃",
+          "target_company": "ＡＩメカテック株式会社",
+          "date": "2026-02-02",
+          "holding_ratio": 6.53,
+          "purpose": "",
+          "report_type": "新規報告"
+        }
+      ],
+      "report_count": 2,
+      "latest_date": "2026-07-09"
+    },
     "harris_associates": {
       "id": "harris_associates",
       "name": "ハリス・アソシエイツ",
@@ -453270,32 +453737,6 @@
       ],
       "report_count": 2,
       "latest_date": "2025-12-03"
-    },
-    "katayama_akira": {
-      "id": "katayama_akira",
-      "name": "片山晃",
-      "type": "individual_investor",
-      "representative": "片山 晃",
-      "headquarters": "東京",
-      "description": "ハンドルネーム「五月」で知られる個人投資家。65万円を12億円に増やし、現在資産150〜300億円規模。中小型成長株への集中投資で約25銘柄を大量保有。",
-      "focus_sectors": [
-        "IT・通信",
-        "サービス",
-        "消費財"
-      ],
-      "holdings": [
-        {
-          "sec_code": "6235",
-          "filer_name": "片山晃",
-          "target_company": "ＡＩメカテック株式会社",
-          "date": "2026-02-02",
-          "holding_ratio": 6.53,
-          "purpose": "",
-          "report_type": "新規報告"
-        }
-      ],
-      "report_count": 1,
-      "latest_date": "2026-02-02"
     },
     "jac": {
       "id": "jac",
