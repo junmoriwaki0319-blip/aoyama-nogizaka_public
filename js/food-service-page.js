@@ -48,10 +48,11 @@ const SECTOR_AVG_SSS = [105.0,104.5,111.2,103.8,108.1,107.6,104.6,110.5,110.6,10
 
 // ---------- データ基準日 ----------
 const DATA_AS_OF = {
-  stockPrice: '2026年3月13日終値',
+  // stockPrice / topixPeriod は loadPremiumData で実データ(updatedAt / INDEX_MONTHS)から動的設定する
+  stockPrice: '各社最新株価',
   financials: '各社直近本決算(Yahoo!ファイナンス自動取得)',
   sameStoreSales: '2024年4月～2025年3月',
-  topixPeriod: '2025年3月19日～2026年3月13日',
+  topixPeriod: '直近1年',
   minimumWage: '2024年10月改定(厚生労働省)',
 };
 // ---------- TOPIX Performance ----------
@@ -190,12 +191,26 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
         INDEX_MONTHS = m.INDEX_MONTHS;
         if (m.SECTOR_AVG_SSS_FY2023) SECTOR_AVG_SSS_HISTORY['FY2023'] = m.SECTOR_AVG_SSS_FY2023;
         if (m.SECTOR_AVG_SSS_FY2022) SECTOR_AVG_SSS_HISTORY['FY2022'] = m.SECTOR_AVG_SSS_FY2022;
+        // TOPIX比較期間ラベルを INDEX_MONTHS の直近1年(13点)から動的生成
+        if (Array.isArray(INDEX_MONTHS) && INDEX_MONTHS.length) {
+          const fmtM = s => { const p = String(s).split('/'); return p.length === 2 ? `20${p[0]}年${parseInt(p[1], 10)}月` : s; };
+          const n = INDEX_MONTHS.length, s0 = n >= 13 ? n - 13 : 0;
+          DATA_AS_OF.topixPeriod = `${fmtM(INDEX_MONTHS[s0])}～${fmtM(INDEX_MONTHS[n - 1])}`;
+        }
       }
       // 企業データ取得
       const compSnap = await getDoc(doc(db, 'premiumContent', 'food-companies'));
       if (compSnap.exists()) {
-        companies = compSnap.data().companies || [];
+        const cd = compSnap.data();
+        companies = cd.companies || [];
+        // 株価基準日ラベルを doc の updatedAt(=アップロード日)から動的設定
+        if (cd.updatedAt) {
+          const d = new Date(cd.updatedAt);
+          if (!isNaN(d)) DATA_AS_OF.stockPrice = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日時点`;
+        }
       }
+      const asOfEl = document.getElementById('stockAsOf');
+      if (asOfEl) asOfEl.textContent = DATA_AS_OF.stockPrice;
       recalcYutai();
       document.getElementById('companyCount').textContent = companies.length;
       render();
@@ -246,13 +261,19 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
     const aOP=avg(companies,'opMargin'), aROE=avg(companies,'roe'), aPER=avg(companies,'per');
     const aYut=(companies.reduce((s,c)=>s+c.totalYutaiYield,0)/companies.length).toFixed(2);
     const topMC=topN(companies,'marketCap',3), topOP=topN(companies,'opMargin',3), topROE=topN(companies,'roe',3);
+    // TOPIX比較の動的算出(データ連動・ハードコード排除)
+    const rrV=companies.map(c=>c.relativeReturn).filter(v=>v!=null), exAbove=rrV.filter(v=>v>0).length, exValid=rrV.length;
+    const restPt=Array.isArray(RESTAURANT_INDEX_MONTHLY)&&RESTAURANT_INDEX_MONTHLY.length?RESTAURANT_INDEX_MONTHLY[RESTAURANT_INDEX_MONTHLY.length-1]:null;
+    const topixPt=Array.isArray(TOPIX_MONTHLY)&&TOPIX_MONTHLY.length?TOPIX_MONTHLY[TOPIX_MONTHLY.length-1]:null;
+    const exPt=(restPt!=null&&topixPt!=null)?+(restPt-topixPt).toFixed(1):null;
+    const topPerf=[...companies].filter(c=>c.stockReturn1Y!=null).sort((a,b)=>b.stockReturn1Y-a.stockReturn1Y).slice(0,3);
 
     el.innerHTML = `
       ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
-        外食セクターは直近1年間(${DATA_AS_OF.topixPeriod})で<strong>TOPIX並み(+0.2pt)</strong>のパフォーマンス。TOPIX超過は35社中<strong>7社</strong>に留まり、企業間の格差が顕著。
-        F&LC(スシロー)が+121.7%と突出、サイゼリヤ+48.2%、物語コーポレーション+43.1%が続く。<br><br>
+        外食セクター指数(時価総額加重)は直近(${DATA_AS_OF.topixPeriod})で${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'<strong>TOPIX比 —</strong>'}。一方でTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は${exValid}社中<strong>${exAbove}社</strong>に留まり、上昇は大型株に集中(企業間格差が顕著)。
+        ${topPerf.length?`1年騰落率の上位は${topPerf.map(c=>`${shortName(c.name)}(${sv(c.stockReturn1Y)})`).join('、')}。`:''}<br><br>
         <strong>足元のリスク要因:</strong>
         (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
         (2) <strong>郊外型ファミリーレストラン</strong>における客数減少トレンド(人口動態変化・デリバリーサービスの代替進行)、
@@ -267,7 +288,7 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
         ${kpi('平均営業利益率',aOP+'%','','c-green')}
         ${kpi('平均ROE',aROE+'%','セクター平均','c-gold')}
         ${kpi('平均PER',aPER+'倍','FY+1ベース','c-navy')}
-        ${kpi('vs TOPIX (1Y)','+0.2pt','ほぼ同水準','c-navy')}
+        ${kpi('vs TOPIX(加重指数)',exPt!=null?`${exPt>=0?'+':''}${exPt}pt`:'-','','c-navy')}
         ${kpi('総店舗数',ts.toLocaleString(),'','c-navy')}
       </div>
       <div class="chart-row">
@@ -297,20 +318,24 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
   // ============ 02 STOCK MARKET PERFORMANCE ============
   function rMarket() {
     const el = g('sec-market');
-    const sorted = [...companies].sort((a,b)=>b.relativeReturn-a.relativeReturn);
-    const above = companies.filter(c=>c.relativeReturn>0).length;
+    const sorted = [...companies].sort((a,b)=>(b.relativeReturn??-1e9)-(a.relativeReturn??-1e9));
+    const above = companies.filter(c=>c.relativeReturn!=null&&c.relativeReturn>0).length;
+    const validN = companies.filter(c=>c.relativeReturn!=null).length;
+    const restPt=Array.isArray(RESTAURANT_INDEX_MONTHLY)&&RESTAURANT_INDEX_MONTHLY.length?RESTAURANT_INDEX_MONTHLY[RESTAURANT_INDEX_MONTHLY.length-1]:null;
+    const topixPt=Array.isArray(TOPIX_MONTHLY)&&TOPIX_MONTHLY.length?TOPIX_MONTHLY[TOPIX_MONTHLY.length-1]:null;
+    const exPt=(restPt!=null&&topixPt!=null)?+(restPt-topixPt).toFixed(1):null;
+    const baseM=Array.isArray(INDEX_MONTHS)&&INDEX_MONTHS.length?INDEX_MONTHS[0]:'起点';
     el.innerHTML = `
       ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と企業別騰落率')}
       <div class="commentary">
-        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクターは直近1年で<strong>130.0pt</strong>(TOPIX:129.8pt)とほぼ同水準(<strong>+0.2pt</strong>)。
-        TOPIX超過は35社中7社に留まる。F&LC(+121.7%)が突出するが、多くの企業はTOPIXを下回った。
-        TOPIXを上回ったのは<strong>${above}企業</strong>、下回ったのは${companies.length-above}企業。
+        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクター指数(時価総額加重)は<strong>${nv(restPt,'pt')}</strong>(TOPIX ${nv(topixPt,'pt')}、${baseM}=100基準)で、${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'TOPIX比 —'}。
+        ただし個別ではTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は<strong>${above}社</strong>(有効${validN}社中)に留まり、多くの企業はTOPIXを下回った(上昇の大型株集中)。
       </div>
       <div class="kpi-grid">
-        ${kpi('外食セクター','130.0pt','直近1年','c-navy')}
-        ${kpi('TOPIX','129.8pt','同期間','c-navy')}
-        ${kpi('超過リターン','+0.2pt','ほぼ同水準','c-navy')}
-        ${kpi('TOPIX超過企業',above+'/'+companies.length+'社','','c-gold')}
+        ${kpi('外食セクター',nv(restPt,'pt'),'加重指数','c-navy')}
+        ${kpi('TOPIX',nv(topixPt,'pt'),'同期間','c-navy')}
+        ${kpi('超過(指数)',exPt!=null?`${exPt>=0?'+':''}${exPt}pt`:'-','','c-navy')}
+        ${kpi('TOPIX超過企業',above+'/'+validN+'社','1年騰落率','c-gold')}
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">TOPIX-17セクター別パフォーマンス比較</div><div class="chart-panel-sub">直近1年騰落率 / 100基準</div><div class="chart-area tall"><canvas id="mkT17"></canvas></div></div>
