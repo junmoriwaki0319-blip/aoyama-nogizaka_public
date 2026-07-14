@@ -4,6 +4,8 @@ node_modules
 scripts/fetch_edinet.py
 scripts/fetch_edinet_financials.py
 scripts/upload-premium-data.js
+scripts/refresh-saas-food.js
+scripts/update-food-market-index.js
 scripts/gas-firestore-to-sheets.js
 __pycache__
 *.pyc
