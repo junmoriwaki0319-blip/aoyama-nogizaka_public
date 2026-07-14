@@ -9,3 +9,9 @@ __pycache__/
 tests/.auth/
 test-results/
 playwright-report/
+# プレミアム会員データ(food/saas)は公開リポジトリに置かない(正本=Firestore)。
+# refresh-saas-food.js が生成する中間成果物。復元は同スクリプト再実行 + Firestore。
+data/food-companies.json
+data/saas-companies.json
+data/food-companies.backup-*.json
+data/saas-companies.backup-*.json

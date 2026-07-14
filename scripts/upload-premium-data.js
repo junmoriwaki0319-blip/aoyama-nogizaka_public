@@ -137,54 +137,32 @@ async function main() {
 
   // === SaaS ダッシュボード ===
   console.log('=== SaaS ダッシュボードデータをアップロード中... ===');
-  const saasPath = path.join(basePath, 'saas.html');
-
-  if (fs.existsSync(saasPath)) {
-    // マーケットデータ
-    const marketData = {};
-    for (const name of ['TOPIX_RETURN_1Y', 'TOPIX_MONTHLY', 'SAAS_INDEX_MONTHLY', 'INDEX_MONTHS', 'SAAS_EVENTS', 'QUARTERS']) {
-      const val = extractDataFromHtml(saasPath, name);
-      if (val !== null) marketData[name] = val;
-    }
-    if (Object.keys(marketData).length > 0) {
-      await firestoreWrite(token, 'premiumContent', 'saas-market', marketData);
-      console.log(`  saas-market: ${Object.keys(marketData).length} フィールドをアップロード`);
-    }
-
-    // 企業データ
-    const companies = extractDataFromHtml(saasPath, 'companies');
-    if (companies) {
-      await firestoreWrite(token, 'premiumContent', 'saas-companies', {
-        companies: companies,
-        count: companies.length
-      });
-      console.log(`  saas-companies: ${companies.length}社のデータをアップロード`);
-    }
+  const saasJsonPath = path.join(basePath, 'data', 'saas-companies.json');
+  if (fs.existsSync(saasJsonPath)) {
+    const saasCompanies = JSON.parse(fs.readFileSync(saasJsonPath, 'utf8'));
+    await firestoreWrite(token, 'premiumContent', 'saas-companies', {
+      companies: saasCompanies,
+      count: saasCompanies.length,
+      updatedAt: new Date().toISOString(),
+    });
+    console.log(`  saas-companies: ${saasCompanies.length}社のデータをアップロード`);
+  } else {
+    console.log('  ⚠ data/saas-companies.json が見つかりません（スキップ）');
   }
 
   // === 外食産業ダッシュボード ===
   console.log('\n=== 外食産業ダッシュボードデータをアップロード中... ===');
-  const foodPath = path.join(basePath, 'food-service.html');
-
-  if (fs.existsSync(foodPath)) {
-    const companies = extractDataFromHtml(foodPath, 'companies');
-    if (companies) {
-      await firestoreWrite(token, 'premiumContent', 'food-companies', {
-        companies: companies,
-        count: companies.length
-      });
-      console.log(`  food-companies: ${companies.length}社のデータをアップロード`);
-    }
-
-    const marketData = {};
-    for (const name of ['TOPIX_RETURN_1Y', 'TOPIX_MONTHLY', 'RESTAURANT_INDEX_MONTHLY', 'INDEX_MONTHS', 'FOOD_EVENTS', 'QUARTERS', 'SEGMENTS']) {
-      const val = extractDataFromHtml(foodPath, name);
-      if (val !== null) marketData[name] = val;
-    }
-    if (Object.keys(marketData).length > 0) {
-      await firestoreWrite(token, 'premiumContent', 'food-market', marketData);
-      console.log(`  food-market: ${Object.keys(marketData).length} フィールドをアップロード`);
-    }
+  const foodJsonPath = path.join(basePath, 'data', 'food-companies.json');
+  if (fs.existsSync(foodJsonPath)) {
+    const foodCompanies = JSON.parse(fs.readFileSync(foodJsonPath, 'utf8'));
+    await firestoreWrite(token, 'premiumContent', 'food-companies', {
+      companies: foodCompanies,
+      count: foodCompanies.length,
+      updatedAt: new Date().toISOString(),
+    });
+    console.log(`  food-companies: ${foodCompanies.length}社のデータをアップロード`);
+  } else {
+    console.log('  ⚠ data/food-companies.json が見つかりません（スキップ）');
   }
 
   // === 広告セクター ダッシュボード ===
