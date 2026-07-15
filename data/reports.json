@@ -1,8 +1,438 @@
 {
-  "last_updated": "2026-07-15T08:42:37+09:00",
-  "total_reports": 29248,
-  "activist_reports": 1493,
+  "last_updated": "2026-07-15T18:09:38+09:00",
+  "total_reports": 29276,
+  "activist_reports": 1496,
   "reports": [
+    {
+      "doc_id": "S100YQ45",
+      "date": "2026-07-15",
+      "filer_name": "土井　正太郎",
+      "issuer_name": "E01166",
+      "sec_code": "5237",
+      "target_company": "株式会社ノザワ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ45",
+      "holding_ratio": 6.15,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の取引先が取引先持株会に加入し、株式を取得することにより発行会社との協力関係を強固なものにするため。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQ17",
+      "date": "2026-07-15",
+      "filer_name": "倉田将志",
+      "issuer_name": "E35767",
+      "sec_code": "7352",
+      "target_company": "株式会社TWOSTONE&amp;Sons",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ17",
+      "holding_ratio": 6.19,
+      "purpose": "純投資",
+      "purpose_detail": "純投資のため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQI2",
+      "date": "2026-07-15",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E37488",
+      "sec_code": "6525",
+      "target_company": "株式会社ＫＯＫＵＳＡＩ　ＥＬＥＣＴＲＩＣ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQI2",
+      "holding_ratio": 10.17,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQIP",
+      "date": "2026-07-15",
+      "filer_name": "八木通商株式会社",
+      "issuer_name": "E00604",
+      "sec_code": "8306",
+      "target_company": "株式会社ルックホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQIP",
+      "holding_ratio": 9.81,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQPM",
+      "date": "2026-07-15",
+      "filer_name": "エスクリプトエナジー株式会社",
+      "issuer_name": "E02762",
+      "sec_code": "5721",
+      "target_company": "太洋物産株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQPM",
+      "holding_ratio": 11.58,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQO6",
+      "date": "2026-07-15",
+      "filer_name": "Ｓｅａｃａｓｔｌｅ　Ｓｉｎｇａｐｏｒｅ　Ｐｔｅ．Ｌｔｄ",
+      "issuer_name": "E34748",
+      "sec_code": "7063",
+      "target_company": "株式会社Birdman",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQO6",
+      "holding_ratio": 9.4,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YNH5",
+      "date": "2026-07-15",
+      "filer_name": "アトミクス取引先持株会　理事長　楠本慶太",
+      "issuer_name": "E00911",
+      "sec_code": "4625",
+      "target_company": "アトミクス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YNH5",
+      "holding_ratio": 14.35,
+      "purpose": "その他",
+      "purpose_detail": "アトミクス株式会社と取引関係にある企業との緊密化を図る一助とするため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQOB",
+      "date": "2026-07-15",
+      "filer_name": "大國　順彦",
+      "issuer_name": "E02501",
+      "sec_code": "8007",
+      "target_company": "高島株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQOB",
+      "holding_ratio": 13.56,
+      "purpose": "その他",
+      "purpose_detail": "高島株式会社とその取引先との関係緊密化、および取引先の長期安定資産の形成をはかる一助として、高島株式会社の株式の保有を奨励し、その実行をならしめることを目的とする。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQJ7",
+      "date": "2026-07-15",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E26596",
+      "sec_code": "3664",
+      "target_company": "株式会社WIZE",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQJ7",
+      "holding_ratio": 33.71,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第１提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQPH",
+      "date": "2026-07-15",
+      "filer_name": "山碕　峻太郎",
+      "issuer_name": "E37936",
+      "sec_code": "9560",
+      "target_company": "株式会社プログリット",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQPH",
+      "holding_ratio": 91.0,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQ7K",
+      "date": "2026-07-15",
+      "filer_name": "ＳＭＢＣ日興証券株式会社",
+      "issuer_name": "E36133",
+      "sec_code": "4935",
+      "target_company": "株式会社リベルタ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ7K",
+      "holding_ratio": 13.86,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る一時保有のため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQRT",
+      "date": "2026-07-15",
+      "filer_name": "モルガン・スタンレーＭＵＦＧ証券株式会社",
+      "issuer_name": "E03476",
+      "sec_code": "3034",
+      "target_company": "クオールホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQRT",
+      "holding_ratio": 3.81,
+      "purpose": "その他",
+      "purpose_detail": "証券業務等にかかる保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQJC",
+      "date": "2026-07-15",
+      "filer_name": "黄　聖博",
+      "issuer_name": "E01647",
+      "sec_code": "6408",
+      "target_company": "小倉クラッチ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQJC",
+      "holding_ratio": 5.59,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQJS",
+      "date": "2026-07-15",
+      "filer_name": "成成株式会社",
+      "issuer_name": "E01647",
+      "sec_code": "6408",
+      "target_company": "小倉クラッチ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQJS",
+      "holding_ratio": 1.93,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為などを行うこと。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQN4",
+      "date": "2026-07-15",
+      "filer_name": "Ｌｏｎｇ　Ｃｏｒｒｉｄｏｒ　Ａｓｓｅｔ　Ｍａｎａｇｅｍｅｎｔ　Ｌｉｍｉｔｅｄ",
+      "issuer_name": "E03740",
+      "sec_code": "8783",
+      "target_company": "ａｂｃ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQN4",
+      "holding_ratio": 3.67,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQ1F",
+      "date": "2026-07-15",
+      "filer_name": "光通信株式会社",
+      "issuer_name": "E37130",
+      "sec_code": "4414",
+      "target_company": "株式会社フレクト",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ1F",
+      "holding_ratio": 5.06,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "hikari_tsushin",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YPX2",
+      "date": "2026-07-15",
+      "filer_name": "ダルトン　インベストメンツ　インク",
+      "issuer_name": "E31167",
+      "sec_code": "3132",
+      "target_company": "マクニカホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPX2",
+      "holding_ratio": 9.18,
+      "purpose": "株主提案",
+      "purpose_detail": "提出者は、発行者の株価が過小評価されており魅力的な投資機会であると考えて、発行者の株式を取得し長期的に保有する。提出者は、発行者の財務状況、戦略的決定、取締役会の決定、株価水準、他の投資機会、投資ポー",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "dalton",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YQM3",
+      "date": "2026-07-15",
+      "filer_name": "飯岡　孝之",
+      "issuer_name": "E00679",
+      "sec_code": "7987",
+      "target_company": "ナカバヤシ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQM3",
+      "holding_ratio": 0.0,
+      "purpose": "その他",
+      "purpose_detail": "該当事項はありません。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YOEI",
+      "date": "2026-07-15",
+      "filer_name": "ＥＮＥＯＳホールディングス株式会社",
+      "issuer_name": "E01081",
+      "sec_code": "5020",
+      "target_company": "JX金属株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOEI",
+      "holding_ratio": 35.28,
+      "purpose": "その他",
+      "purpose_detail": "関係継続のため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQ1E",
+      "date": "2026-07-15",
+      "filer_name": "光通信株式会社",
+      "issuer_name": "E04855",
+      "sec_code": "7280",
+      "target_company": "株式会社両毛システムズ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ1E",
+      "holding_ratio": 0.0,
+      "purpose": "株主提案",
+      "purpose_detail": "（３）【重要提案行為等】\n\n\n\n\n\n\n\n\n\n（４）【上記提出者の保有株券等の内訳】\n①【保有株券等の数】\n\n\n\n\n法第27条の23\n第3項本文\n\n\n法第27条の23\n第3項第1号\n\n\n法第27条の23",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "hikari_tsushin",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YQE9",
+      "date": "2026-07-15",
+      "filer_name": "ＶＩＳ　Ａｄｖｉｓｏｒｓ，ＬＰ",
+      "issuer_name": "E27051",
+      "sec_code": "8306",
+      "target_company": "シュッピン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQE9",
+      "holding_ratio": 9.29,
+      "purpose": "純投資",
+      "purpose_detail": "純投資を主たる保有目的とするが、ガバナンスの強化および資本効率の改善を図るため、取締役・監査役の選任・解任を求める臨時株主総会招集請求または株主提案権行使等の重要提案行為等を行うことをも従たる保有目的",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQHO",
+      "date": "2026-07-15",
+      "filer_name": "株式会社マキリ",
+      "issuer_name": "E03166",
+      "sec_code": "9890",
+      "target_company": "株式会社マキヤ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQHO",
+      "holding_ratio": 0.0,
+      "purpose": "経営関与",
+      "purpose_detail": "発行者の元経営者一族の資産管理会社であり、安定株主として保有していました。但し、後記「（６）当該株券等に関する担保契約等重要な契約」のとおり、提出者１は、令和８年５月26日付で公表された発行者による発",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQ2Y",
+      "date": "2026-07-15",
+      "filer_name": "株式会社シティインデックスイレブンス",
+      "issuer_name": "E05460",
+      "sec_code": "2432",
+      "target_company": "株式会社ディー・エヌ・エー",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQ2Y",
+      "holding_ratio": 1.02,
+      "purpose": "政策投資",
+      "purpose_detail": "株式の追加取得または売却の可能性について：提出者として発行会社の株価が割安であると判断した場合、今後3ヶ月以内で5％超保有割合を増加する株式取得を行う可能性がある。当該増加は市場内外における取引を通じ",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "city_index_elevens",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YQN2",
+      "date": "2026-07-15",
+      "filer_name": "ＳＨ　Ｉｎｖｅｓｔｍｅｎｔ，　Ｉｎｃ",
+      "issuer_name": "E00780",
+      "sec_code": "4078",
+      "target_company": "堺化学工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQN2",
+      "holding_ratio": 12.46,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQRP",
+      "date": "2026-07-15",
+      "filer_name": "古川　良太",
+      "issuer_name": "E05168",
+      "sec_code": "9432",
+      "target_company": "株式会社ＡＣＣＥＳＳ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQRP",
+      "holding_ratio": 5.33,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQUG",
+      "date": "2026-07-15",
+      "filer_name": "明秀株式会社",
+      "issuer_name": "E03498",
+      "sec_code": "3083",
+      "target_company": "スターシーズ 株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQUG",
+      "holding_ratio": 54.84,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YQJM",
+      "date": "2026-07-15",
+      "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+      "issuer_name": "E30481",
+      "sec_code": "6740",
+      "target_company": "株式会社ジャパンディスプレイ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQJM",
+      "holding_ratio": 87.99,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として長期保有。提出者は日本株の長期投資に特化した独立系機関投資家であり、投資先企業の中長期的な価値創造を尊重し、投資を通じて支えることにより、日本社会に貢献することを投資理念としている。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "ichigo_asset",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YQTN",
+      "date": "2026-07-15",
+      "filer_name": "株式会社デベロップ",
+      "issuer_name": "E37595",
+      "sec_code": "2997",
+      "target_company": "株式会社ストレージ王",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQTN",
+      "holding_ratio": 9.85,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として長期保有",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YQDB",
       "date": "2026-07-14",
@@ -441837,6 +442267,24 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "4414",
+          "filer_name": "光通信株式会社",
+          "target_company": "株式会社フレクト",
+          "date": "2026-07-15",
+          "holding_ratio": 5.06,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "7280",
+          "filer_name": "光通信株式会社",
+          "target_company": "株式会社両毛システムズ",
+          "date": "2026-07-15",
+          "holding_ratio": 0.0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "3850",
           "filer_name": "光通信株式会社",
           "target_company": "株式会社エヌ・ティ・ティ・データ・イントラマート",
@@ -443898,8 +444346,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 980,
-      "latest_date": "2026-07-14",
+      "report_count": 982,
+      "latest_date": "2026-07-15",
       "member_ids": [
         "hikari_tsushin"
       ]
@@ -450554,6 +451002,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "2432",
+          "filer_name": "株式会社シティインデックスイレブンス",
+          "target_company": "株式会社ディー・エヌ・エー",
+          "date": "2026-07-15",
+          "holding_ratio": 1.02,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "8306",
           "filer_name": "株式会社シティインデックスイレブンス",
           "target_company": "サンケイリアルエステート投資法人",
@@ -450570,15 +451027,6 @@
           "holding_ratio": 0.0,
           "purpose": "政策投資",
           "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2432",
-          "filer_name": "株式会社シティインデックスイレブンス",
-          "target_company": "株式会社ディー・エヌ・エー",
-          "date": "2026-07-01",
-          "holding_ratio": 2.32,
-          "purpose": "政策投資",
-          "report_type": "新規報告"
         },
         {
           "sec_code": "9257",
@@ -450905,8 +451353,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 222,
-      "latest_date": "2026-07-14",
+      "report_count": 223,
+      "latest_date": "2026-07-15",
       "member_ids": [
         "city_index_elevens",
         "yoshiko_murakami",
@@ -454111,6 +454559,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "3132",
+          "filer_name": "ダルトン　インベストメンツ　インク",
+          "target_company": "マクニカホールディングス株式会社",
+          "date": "2026-07-15",
+          "holding_ratio": 9.18,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "8923",
           "filer_name": "ダルトン　インベストメンツ　インク",
           "target_company": "トーセイ株式会社",
@@ -454135,15 +454592,6 @@
           "date": "2026-06-18",
           "holding_ratio": 13.71,
           "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3132",
-          "filer_name": "ダルトン・インベストメンツ・エルエルシー",
-          "target_company": "マクニカホールディングス株式会社",
-          "date": "2026-03-18",
-          "holding_ratio": 8.18,
-          "purpose": "経営関与",
           "report_type": "変更報告"
         },
         {
@@ -454201,8 +454649,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 39,
-      "latest_date": "2026-07-13"
+      "report_count": 40,
+      "latest_date": "2026-07-15"
     },
     "sparx": {
       "id": "sparx",
@@ -454490,6 +454938,113 @@
       "report_count": 29,
       "latest_date": "2026-07-03"
     },
+    "ichigo_asset": {
+      "id": "ichigo_asset",
+      "name": "いちごアセットマネジメント",
+      "type": "activist",
+      "representative": "スコット キャロン",
+      "headquarters": "東京",
+      "description": "「心働き」を掲げるエンゲージメント投資家。持続的な企業価値向上を目指し、建設的対話を重視。運用資産は約7,700億円規模。",
+      "focus_sectors": [
+        "不動産",
+        "金融",
+        "製造業"
+      ],
+      "holdings": [
+        {
+          "sec_code": "6740",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社ジャパンディスプレイ",
+          "date": "2026-07-15",
+          "holding_ratio": 87.99,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3923",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社ラクス",
+          "date": "2026-06-22",
+          "holding_ratio": 9.8,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4443",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "Sansan株式会社",
+          "date": "2026-06-19",
+          "holding_ratio": 11.57,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1808",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社長谷工コーポレーション",
+          "date": "2026-05-19",
+          "holding_ratio": 18.1,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3288",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社オープンハウスグループ",
+          "date": "2026-05-19",
+          "holding_ratio": 13.3,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3626",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "TIS株式会社",
+          "date": "2026-05-19",
+          "holding_ratio": 12.3,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6042",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社ニッキ",
+          "date": "2026-05-19",
+          "holding_ratio": 21.7,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6915",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "千代田インテグレ株式会社",
+          "date": "2026-05-19",
+          "holding_ratio": 30.51,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8185",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社チヨダ",
+          "date": "2026-05-19",
+          "holding_ratio": 19.18,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6361",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "株式会社荏原製作所",
+          "date": "2026-01-21",
+          "holding_ratio": 0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 26,
+      "latest_date": "2026-07-15"
+    },
     "lim_advisors": {
       "id": "lim_advisors",
       "name": "LIMアドバイザーズ",
@@ -454735,113 +455290,6 @@
       ],
       "report_count": 25,
       "latest_date": "2026-07-06"
-    },
-    "ichigo_asset": {
-      "id": "ichigo_asset",
-      "name": "いちごアセットマネジメント",
-      "type": "activist",
-      "representative": "スコット キャロン",
-      "headquarters": "東京",
-      "description": "「心働き」を掲げるエンゲージメント投資家。持続的な企業価値向上を目指し、建設的対話を重視。運用資産は約7,700億円規模。",
-      "focus_sectors": [
-        "不動産",
-        "金融",
-        "製造業"
-      ],
-      "holdings": [
-        {
-          "sec_code": "6740",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社ジャパンディスプレイ",
-          "date": "2026-06-26",
-          "holding_ratio": 88.99,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3923",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社ラクス",
-          "date": "2026-06-22",
-          "holding_ratio": 9.8,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4443",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "Sansan株式会社",
-          "date": "2026-06-19",
-          "holding_ratio": 11.57,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1808",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社長谷工コーポレーション",
-          "date": "2026-05-19",
-          "holding_ratio": 18.1,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3288",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社オープンハウスグループ",
-          "date": "2026-05-19",
-          "holding_ratio": 13.3,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3626",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "TIS株式会社",
-          "date": "2026-05-19",
-          "holding_ratio": 12.3,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6042",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社ニッキ",
-          "date": "2026-05-19",
-          "holding_ratio": 21.7,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6915",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "千代田インテグレ株式会社",
-          "date": "2026-05-19",
-          "holding_ratio": 30.51,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8185",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社チヨダ",
-          "date": "2026-05-19",
-          "holding_ratio": 19.18,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6361",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "株式会社荏原製作所",
-          "date": "2026-01-21",
-          "holding_ratio": 0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 25,
-      "latest_date": "2026-06-26"
     },
     "marathon_am": {
       "id": "marathon_am",
