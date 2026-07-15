@@ -131,7 +131,7 @@
       font-size: 1rem; letter-spacing: .1em; margin-bottom: 18px;
     }
     .hero h1 {
-      font-family: var(--serif); font-weight: 300; color: var(--white);
+      font-family: var(--serif); font-weight: 600; color: var(--white);
       font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.5; margin-bottom: 24px;
       max-width: 700px;
     }
@@ -490,35 +490,41 @@
 <div class="progress-bar" id="progress"></div>
 
 <!-- Navigation -->
-<nav aria-label="メインナビゲーション">
+<nav id="navbar" aria-label="メインナビゲーション">
   <div class="nav-inner">
     <a href="https://aoyama-nogizaka.com/" class="nav-logo">
       <span class="nav-logo-jp">青山乃木坂パートナーズ</span>
       <span class="nav-logo-en">Aoyama Nogizaka Partners</span>
     </a>
     <ul class="nav-links">
-      <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">会社情報 <span style="font-size:11px;">▼</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="https://aoyama-nogizaka.com/#philosophy">企業理念</a></li>
+          <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
+          <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
+        </ul>
+      </li>
       <li><a href="https://aoyama-nogizaka.com/#services">提供サービス</a></li>
-      <li><a href="https://aoyama-nogizaka.com/#about">会社概要</a></li>
-      <li><a href="https://aoyama-nogizaka.com/team">チーム</a></li>
-      <li><a href="/news/" class="active">ニュース・論考</a></li>
       <li class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">データ <span style="font-size:11px;">▼</span></a>
         <ul class="nav-dropdown-menu">
-          <li class="nav-dropdown-cat">アクティビスト分析</li>
+          <li class="nav-dropdown-cat">株主提案・エンゲージメント</li>
+          <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
           <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
           <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
           <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
           <li class="nav-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/semiconductor-trading.html">半導体商社</a></li>
           <li><a href="/food-service.html">外食産業</a></li>
           <li><a href="/saas.html">国内SaaS</a></li>
-            <li><a href="/ad-agency.html">広告代理店</a></li>
-            <li><a href="/digital-media.html">デジタルメディア</a></li>
-            <li><a href="/entertainment-sector-dashboard.html">エンタメ・ゲーム</a></li>
-            <li class="nav-dropdown-cat">株主提案・エンゲージメント</li>
-            <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
+          <li><a href="/ad-agency.html">広告代理店</a></li>
+          <li><a href="/digital-media.html">デジタルメディア</a></li>
+          <li><a href="/entertainment-sector-dashboard.html">エンタメ・ゲーム</a></li>
+          <li><a href="/sogo-shosha.html">総合商社</a></li>
         </ul>
       </li>
+      <li><a href="/news/" class="active">ニュース・論考</a></li>
       <li><a href="https://aoyama-nogizaka.com/#contact" class="nav-cta">お問い合わせ</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
@@ -527,26 +533,32 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link>企業理念</a>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">会社情報 <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="https://aoyama-nogizaka.com/#philosophy" data-nav-link class="mobile-sub">企業理念</a>
+      <a href="https://aoyama-nogizaka.com/#about" data-nav-link class="mobile-sub">会社概要</a>
+      <a href="https://aoyama-nogizaka.com/team" data-nav-link class="mobile-sub">チーム</a>
+    </div>
+  </div>
   <a href="https://aoyama-nogizaka.com/#services" data-nav-link>提供サービス</a>
-  <a href="https://aoyama-nogizaka.com/#about" data-nav-link>会社概要</a>
-  <a href="https://aoyama-nogizaka.com/team" data-nav-link>チーム</a>
   <a href="/news/" data-nav-link class="active">ニュース・論考</a>
   <div class="mobile-accordion" data-accordion>
     <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">データ <span class="mobile-accordion-arrow">▼</span></button>
     <div class="mobile-accordion-panel" data-accordion-panel>
-      <div class="mobile-cat">アクティビスト分析</div>
+      <div class="mobile-cat">株主提案・エンゲージメント</div>
+      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
       <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
       <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
       <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
       <div class="mobile-cat">セクター分析レポート</div>
+      <a href="/semiconductor-trading.html" data-nav-link class="mobile-sub">半導体商社</a>
       <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業</a>
       <a href="/saas.html" data-nav-link class="mobile-sub">国内SaaS</a>
       <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店</a>
       <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア</a>
       <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム</a>
-      <div class="mobile-cat">株主提案・エンゲージメント</div>
-      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+      <a href="/sogo-shosha.html" data-nav-link class="mobile-sub">総合商社</a>
     </div>
   </div>
   <a href="https://aoyama-nogizaka.com/#contact" data-nav-link class="m-cta">お問い合わせ</a>
