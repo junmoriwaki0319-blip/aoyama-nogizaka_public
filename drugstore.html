@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics: 3秒遅延読み込み -->
+  <script src="/js/ga-loader.js" defer></script>
+  <link rel="stylesheet" href="/css/mobile-nav.css">
+  <link rel="stylesheet" href="/css/site-chrome.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ドラッグストア セクター分析レポート【ドラフト】 | 青山乃木坂パートナーズ</title>
+  <meta name="description" content="国内ドラッグストアの主要KPIを網羅的に分析。既存店売上高・客数・客単価推移をダッシュボード形式で提供。【ドラフト版・数値は仮置き】">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <!-- OGP / SNS共有 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="青山乃木坂パートナーズ">
+  <meta property="og:title" content="ドラッグストア セクター分析レポート【ドラフト】 | 青山乃木坂パートナーズ">
+  <meta property="og:description" content="国内ドラッグストアの主要KPIを網羅的に分析。既存店売上高・客数・客単価推移をダッシュボード形式で提供。【ドラフト版・数値は仮置き】">
+  <meta property="og:url" content="https://aoyama-nogizaka.com/drugstore">
+  <meta property="og:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ドラッグストア セクター分析レポート【ドラフト】 | 青山乃木坂パートナーズ">
+  <meta name="twitter:description" content="国内ドラッグストアの主要KPIを網羅的に分析。既存店売上高・客数・客単価推移をダッシュボード形式で提供。【ドラフト版・数値は仮置き】">
+  <meta name="twitter:image" content="https://aoyama-nogizaka.com/og-image.png">
+  <meta name="keywords" content="ドラッグストア,セクター分析,既存店売上高,調剤,ツルハ,ウエルシア,マツキヨココカラ,コスモス薬品,月次KPI,配当利回り,PER,PBR,ROE">
+  <link rel="canonical" href="https://aoyama-nogizaka.com/drugstore">
+  <link rel="alternate" hreflang="ja" href="https://aoyama-nogizaka.com/drugstore">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ドラッグストア セクター分析レポート【ドラフト】",
+    "description": "国内ドラッグストアの主要KPIを網羅的に分析。既存店売上高・客数・客単価推移をダッシュボード形式で提供。【ドラフト版・数値は仮置き】",
+    "url": "https://aoyama-nogizaka.com/drugstore",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+    "provider": {
+      "@type": "Organization",
+      "name": "青山乃木坂パートナーズ",
+      "url": "https://aoyama-nogizaka.com"
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" integrity="sha384-y49Zu59jZHJL/PLKgZPv3k2WI9c0Yp3pWB76V8OBVCb0QBKS8l4Ff3YslzHVX76Y" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet" media="print">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+    .skip-link { position: absolute; top: -100px; left: 0; background: var(--navy, #1a2d4f); color: #fff; padding: 8px 16px; z-index: 10000; font-size: 14px; transition: top 0.2s; min-height: 44px; display: inline-flex; align-items: center; }
+    .skip-link:focus { top: 0; }
+
+    :root {
+      /* aoyama-nogizaka.com カラースキーム */
+      --navy: #1a2d4f;
+      --navy-dark: #0f1a30;
+      --navy-light: #2a4470;
+      --gold: #9b8b6e;
+      --gold-light: #c8b99a;
+      --gold-dim: #7a6d55;
+      --bg: #ffffff;
+      --bg-alt: #f8f7f5;
+      --bg-warm: #f0eee9;
+      --text: #1a1a1a;
+      --text-mid: #444444;
+      --text-muted: #777777;
+      --text-light: #999999;
+      --border: #e0ddd6;
+      --border-light: #eae7e1;
+      --green: #2d7a4f;
+      --red: #b53a3a;
+      --radius: 4px;
+      --radius-lg: 8px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* === Report Header === */
+    .report-cover {
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+      padding: 40px 48px 32px;
+      position: relative;
+    }
+    .report-cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 48px; right: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .report-cover-inner { max-width: 1200px; margin: 0 auto; }
+    .report-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .report-title {
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .report-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+    }
+    .report-meta {
+      display: flex; gap: 36px; flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+    }
+    .report-meta strong { color: rgba(255,255,255,0.7); }
+
+    /* === Navigation === */
+    .nav-bar {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 48px;
+    }
+    .nav-wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; position: relative; }
+    .nav-inner {
+      display: flex;
+      overflow-x: auto;
+      flex: 1;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-scroll-btn { background: linear-gradient(90deg, var(--bg-alt) 60%, transparent); border: none; color: var(--text-muted); cursor: pointer; padding: 10px 6px; font-size: 1rem; z-index: 2; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-scroll-btn:hover { color: var(--navy); }
+    .nav-scroll-btn.right { background: linear-gradient(270deg, var(--bg-alt) 60%, transparent); }
+    .nav-scroll-btn.hidden { opacity: 0; pointer-events: none; }
+    .nav-item {
+      padding: 13px 22px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+    .nav-item:hover { color: var(--text); }
+    .nav-item.active {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+      font-weight: 600;
+    }
+    .nav-item .nav-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.65rem;
+      color: var(--gold);
+      margin-right: 6px;
+      font-weight: 700;
+    }
+
+    /* === Main === */
+    .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 60px; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* === Section Headers === */
+    .sec-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .sec-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .sec-title {
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .sec-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* === Analyst Commentary === */
+    .commentary {
+      background: var(--bg-alt);
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin-bottom: 32px;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+    .commentary strong { color: var(--navy); font-weight: 600; }
+
+    /* === KPI Cards === */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .kpi-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      position: relative;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    }
+    .kpi-card.c-navy::before { background: var(--navy); }
+    .kpi-card.c-gold::before { background: var(--gold); }
+    .kpi-card.c-green::before { background: var(--green); }
+    .kpi-card.c-red::before { background: var(--red); }
+    .kpi-label { font-size: 0.68rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .kpi-value { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .kpi-unit { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
+    .kpi-sub { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; }
+    .v-green { color: var(--green); }
+    .v-red { color: var(--red); }
+    .v-gold { color: var(--gold-dim); }
+    .v-navy { color: var(--navy); }
+
+    /* === Charts === */
+    .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .chart-row.single { grid-template-columns: 1fr; }
+    .chart-row.wide-left { grid-template-columns: 3fr 2fr; }
+    .chart-row.tri { grid-template-columns: 1fr 1fr 1fr; }
+    .chart-panel {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .chart-panel-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .chart-panel-sub { font-size: 0.7rem; color: var(--text-light); margin-bottom: 16px; }
+    .chart-area { position: relative; height: 320px; }
+    .chart-area.tall { height: 420px; }
+    .chart-area.short { height: 260px; }
+
+    /* === Tables === */
+    .table-panel {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .table-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .table-header-title { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead th {
+      background: var(--bg-warm);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: right;
+      padding: 9px 10px;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.7rem;
+      letter-spacing: 0.2px;
+    }
+    thead th:first-child, thead th:nth-child(2) { text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); text-align: right; white-space: nowrap; }
+    td:first-child, td:nth-child(2) { text-align: left; }
+    tr:hover td { background: rgba(155,139,110,0.04); }
+    tr.row-hl td { background: rgba(26,45,79,0.04); font-weight: 500; }
+    .pos { color: var(--green); }
+    .neg { color: var(--red); }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      background: rgba(26,45,79,0.06);
+      color: var(--navy);
+    }
+    .clickable-row { cursor: pointer; }
+
+    /* === Chip Select === */
+    .chip-wrap { margin-bottom: 20px; }
+    .chip-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .chip-select { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 500;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .chip:hover { border-color: var(--gold-light); color: var(--text); }
+    .chip.selected { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+    /* === Ranking === */
+    .ranking-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .ranking-title { font-size: 0.72rem; color: var(--gold-dim); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .ranking-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.82rem; }
+    .ranking-num { color: var(--gold); font-weight: 700; margin-right: 8px; }
+
+    /* === Heatmap === */
+    .heatmap-table td { text-align: center; font-weight: 600; font-size: 0.72rem; padding: 7px 5px; min-width: 50px; }
+    .heatmap-table td:first-child { text-align: left; min-width: 130px; font-weight: 500; }
+
+    /* === Filters === */
+    .inline-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+    .f-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+    select, input[type="text"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-family: inherit;
+      outline: none;
+    }
+    select:focus, input:focus { border-color: var(--gold); }
+
+    /* === Modals === */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 48px 40px; max-width: 440px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal h2 { font-size: 20px; color: var(--navy); margin-bottom: 24px; text-align: center; font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+    .modal .form-group { margin-bottom: 16px; }
+    .modal .form-group label { display: block; font-size: 0.78rem; color: var(--text-mid); margin-bottom: 4px; font-weight: 500; }
+    .modal .form-group input, .modal .form-group select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: inherit; }
+    .modal .form-group input:focus, .modal .form-group select:focus { border-color: var(--gold); outline: none; }
+    .btn-submit { width: 100%; padding: 12px; background: var(--navy); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-top: 8px; }
+    .btn-submit:hover { background: var(--navy-light); }
+    .btn-google { width: 100%; padding: 12px; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-google:hover { background: var(--bg-alt); }
+    .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
+    .modal-footer span[data-auth-action] { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    /* === Premium / Login Wall === */
+    .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
+    .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
+    .login-wall h3 { font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .login-wall p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .login-wall .btn-cta { display: inline-block; background: var(--cta-accent, #c2912e); color: #fff; padding: 14px 40px; border: none; border-radius: var(--radius); font-size: 0.9rem; cursor: pointer; font-family: inherit; font-weight: 600; letter-spacing: 0.5px; }
+    .login-wall .btn-cta:hover { background: var(--cta-accent-dim, #a87a24); }
+    .login-wall .btn-login-link { display: inline-block; margin-top: 12px; color: var(--text-muted); font-size: 0.78rem; cursor: pointer; text-decoration: underline; }
+
+    /* === Download Buttons === */
+    .dl-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7); padding: 8px 18px; border-radius: var(--radius);
+      font-size: 0.75rem; font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .dl-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold-light); color: #fff; }
+    .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* === Print === */
+    @media print {
+      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; }
+      .main { padding: 0 !important; }
+      .section { display: block !important; page-break-before: always; }
+      .section:first-child { page-break-before: avoid; }
+      .premium-blur { filter: none !important; pointer-events: auto !important; user-select: auto !important; }
+      .report-cover { padding: 32px 24px 24px; }
+      .chart-panel { break-inside: avoid; }
+      .table-panel { break-inside: avoid; }
+      body { font-size: 11px; }
+    }
+    @media (max-width: 900px) {
+      .report-cover, .nav-bar, .main { padding-left: 20px; padding-right: 20px; }
+      .report-cover::after { left: 20px; right: 20px; }
+      .chart-row, .chart-row.tri, .chart-row.wide-left { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .login-wall { padding: 72px 20px 36px; }
+    }
+    @media (max-width: 768px) {
+      .report-title { font-size: 1.4rem; }
+      .chart-area { height: 260px; }
+      .chart-area.tall { height: 340px; }
+      .chart-panel { padding: 18px 16px; }
+      .commentary { padding: 16px 18px; }
+      .modal { padding: 32px 24px; }
+      .modal .form-group input, .modal .form-group select { min-height: 44px; font-size: 16px; }
+      .btn-submit, .btn-google { min-height: 44px; }
+    }
+    @media (max-width: 480px) {
+      .report-cover, .nav-bar, .main { padding-left: 16px; padding-right: 16px; }
+      .report-cover::after { left: 16px; right: 16px; }
+      .report-title { font-size: 1.2rem; }
+      .report-subtitle { font-size: 0.8rem; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .kpi-value { font-size: 1.1rem; }
+      .chart-area { height: 220px; }
+      .chart-area.tall { height: 280px; }
+      .login-wall { padding: 60px 16px 32px; }
+      .login-wall h3 { font-size: 1.1rem; }
+      .heatmap-table td:first-child { min-width: 90px; }
+      .heatmap-table td { min-width: 40px; }
+      .modal .form-group input { min-height: 44px; }
+    }
+
+    /* === Scrollbar === */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+  <link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css" media="print"><noscript><link rel="stylesheet" href="/css/mobile-touch-font-fix.min.css"></noscript>
+  <script src="/js/css-loader.js" defer></script>
+  <link rel="stylesheet" href="/css/print.css" media="print">
+  <!-- 温めレイヤー: 配色は維持しつつ質感・奥行きを付与（削除で元に戻る） -->
+  <link rel="stylesheet" href="/css/warm-theme.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="https://aoyama-nogizaka.com/" class="site-logo"><small>AOYAMA NOGIZAKA PARTNERS</small>Industry Research</a>
+  <div class="header-right">
+    <nav class="data-nav" aria-label="メインナビゲーション">
+      <div class="data-dropdown">
+        <a href="#" class="data-dropdown-toggle" aria-haspopup="true">レポート一覧 <span style="font-size:11px;">▼</span></a>
+        <ul class="data-dropdown-menu">
+          <li class="data-dropdown-cat">株主提案・エンゲージメント</li>
+          <li><a href="/news/activist-shareholder-proposals-japan.html">株主提案ビジュアルアーカイブ</a></li>
+          <li><a href="/activist-dashboard.html">大量保有報告ダッシュボード</a></li>
+          <li><a href="/risk-assessment.html">アクティビスト対象機会評価</a></li>
+          <li><a href="/activist-screener.html">スクリーニング・ランキング</a></li>
+          <li class="data-dropdown-cat">セクター分析レポート</li>
+          <li><a href="/semiconductor-trading.html">半導体商社</a></li>
+          <li><a href="/food-service.html">外食産業</a></li>
+          <li><a href="/saas.html">国内SaaS</a></li>
+          <li><a href="/ad-agency.html">広告代理店</a></li>
+          <li><a href="/digital-media.html">デジタルメディア</a></li>
+          <li><a href="/entertainment-sector-dashboard.html">エンタメ・ゲーム</a></li>
+          <li><a href="/sogo-shosha.html">総合商社</a></li>
+          <li class="data-dropdown-cat">小売セクター(ドラフト)</li>
+          <li><a href="/department-store.html">百貨店</a></li>
+          <li><a href="/drugstore.html" class="active">ドラッグストア</a></li>
+          <li><a href="/supermarket.html">スーパーマーケット</a></li>
+          <li><a href="/used-car.html">中古車小売</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="nav-auth-btns" id="navAuthBtns">
+      <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+      <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+    </div>
+    <div id="navUserInfo" style="display:none; align-items:center; gap:12px;">
+      <span id="navUserName"></span>
+      <button data-auth-action="openMyPage">マイページ</button>
+      <button data-auth-action="handleLogout">ログアウト</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" data-nav-toggle aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://aoyama-nogizaka.com/" data-nav-link>トップページ</a>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">セクター分析レポート <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="/semiconductor-trading.html" data-nav-link class="mobile-sub">半導体商社</a>
+      <a href="/food-service.html" data-nav-link class="mobile-sub">外食産業</a>
+      <a href="/saas.html" data-nav-link class="mobile-sub">国内SaaS</a>
+      <a href="/ad-agency.html" data-nav-link class="mobile-sub">広告代理店</a>
+      <a href="/digital-media.html" data-nav-link class="mobile-sub">デジタルメディア</a>
+      <a href="/entertainment-sector-dashboard.html" data-nav-link class="mobile-sub">エンタメ・ゲーム</a>
+      <a href="/sogo-shosha.html" data-nav-link class="mobile-sub">総合商社</a>
+      <a href="/department-store.html" data-nav-link class="mobile-sub">百貨店(ドラフト)</a>
+      <a href="/drugstore.html" data-nav-link class="mobile-sub active">ドラッグストア(ドラフト)</a>
+      <a href="/supermarket.html" data-nav-link class="mobile-sub">スーパーマーケット(ドラフト)</a>
+      <a href="/used-car.html" data-nav-link class="mobile-sub">中古車小売(ドラフト)</a>
+    </div>
+  </div>
+  <div class="mobile-accordion" data-accordion>
+    <button class="mobile-accordion-toggle" data-accordion-toggle aria-expanded="false">株主提案・エンゲージメント <span class="mobile-accordion-arrow">▼</span></button>
+    <div class="mobile-accordion-panel" data-accordion-panel>
+      <a href="/news/activist-shareholder-proposals-japan.html" data-nav-link class="mobile-sub">株主提案ビジュアルアーカイブ</a>
+      <a href="/activist-dashboard.html" data-nav-link class="mobile-sub">大量保有報告ダッシュボード</a>
+      <a href="/risk-assessment.html" data-nav-link class="mobile-sub">アクティビスト対象機会評価</a>
+      <a href="/activist-screener.html" data-nav-link class="mobile-sub">スクリーニング・ランキング</a>
+    </div>
+  </div>
+  <div class="m-auth" id="mobileAuthBtns">
+    <button class="btn-login" data-auth-action="openModal:login">ログイン</button>
+    <button class="btn-register" data-auth-action="openModal:register">無料会員登録</button>
+  </div>
+</div>
+
+<!-- Report Cover -->
+<div class="report-cover">
+  <div class="report-cover-inner">
+    <div class="report-label">Sector Analysis Report</div>
+    <div class="report-title">ドラッグストア セクター分析 KPIダッシュボード</div>
+    <div class="report-subtitle">上場ドラッグストア11社のファンダメンタルズ・バリュエーション・月次KPI横断分析【ドラフト版】</div>
+    <div class="report-meta">
+      <span>ステータス: <strong>ドラフト(数値は仮置き)</strong></span>
+      <span>対象: <strong id="companyCount">0</strong>社</span>
+      <span>基準日: <strong id="stockAsOf">実データ反映時に設定</strong></span>
+      <span>出所(予定): <strong>各社IR・決算短信, 各社IR月次開示(既存店売上・客数・客単価), 経済産業省 商業動態統計, 厚生労働省(調剤医療費), SPEEDA(予定)</strong></span>
+    </div>
+    <div class="dl-btns">
+      <button class="dl-btn" data-action="downloadPDF">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm3-7h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+        PDFダウンロード
+      </button>
+      <button class="dl-btn" data-action="downloadCSV">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12z"/></svg>
+        CSVダウンロード
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Draft Banner -->
+<div style="background:#fdf6e3;border-bottom:1px solid #e0c97f;color:#7a5c00;padding:10px 48px;font-size:0.78rem;line-height:1.7;">
+  <strong>DRAFT</strong> — 本レポートはドラフト版です。掲載数値はレポート構成確認用の仮置き値であり、SPEEDA・各社IR等の実データ受領後にすべて差し替えます。
+</div>
+
+<!-- Navigation -->
+<h1 class="sr-only">ドラッグストアセクター分析 — 既存店売上高・客数・客単価の月次KPIダッシュボード【ドラフト】</h1>
+<nav class="nav-bar">
+  <div class="nav-wrap">
+    <button class="nav-scroll-btn left hidden" id="navScrollLeft" aria-label="左へスクロール">&#9664;</button>
+    <div class="nav-inner" id="mainNav">
+      <div class="nav-item active" data-tab="exec"><span class="nav-num">01</span>Executive Summary</div>
+      <div class="nav-item" data-tab="financial"><span class="nav-num">02</span>財務指標・バリュエーション</div>
+      <div class="nav-item" data-tab="monthly"><span class="nav-num">03</span>月次KPI横断比較</div>
+      <div class="nav-item" data-tab="detail"><span class="nav-num">04</span>個別企業分析</div>
+      <div class="nav-item" data-tab="macro"><span class="nav-num">A</span>業界統計・マクロ付録</div>
+    </div>
+    <button class="nav-scroll-btn right" id="navScrollRight" aria-label="右へスクロール">&#9654;</button>
+  </div>
+</nav>
+
+<!-- Main -->
+<div class="main premium-blur" id="dashboardContent">
+  <div class="section active" id="sec-exec"></div>
+  <div class="section" id="sec-financial"></div>
+  <div class="section" id="sec-monthly"></div>
+  <div class="section" id="sec-detail"></div>
+  <div class="section" id="sec-macro"></div>
+</div>
+
+<!-- Login Wall (shown when not authenticated) -->
+<div id="loginWall" class="login-wall">
+  <h3>会員限定コンテンツ</h3>
+  <p>ドラッグストアセクター分析レポート(ドラフト)の全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
+  <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
+  <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Aoyama Nogizaka Partners</span>
+    <span>本レポートはドラフト版であり、掲載数値はレポート構成確認用の仮置き値です。SPEEDA・各社IR開示情報等の実データ確定後に更新します。投資判断の責任は利用者に帰属します。 &copy; 2026 Aoyama Nogizaka Partners All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Auth Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:login">&times;</button>
+    <h2>ログイン</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:login">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleでログイン
+    </button>
+    <div id="loginError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleLogin">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="loginEmail" required></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="loginPassword" required></div>
+      <button type="submit" class="btn-submit" id="loginBtn">ログイン</button>
+    </form>
+    <div class="modal-footer">
+      <span data-auth-action="switchModal:resetPassword" style="cursor:pointer;">パスワードをお忘れの方</span><br>
+      <span>アカウントをお持ちでない方は <span data-auth-action="switchModal:register" style="cursor:pointer;">新規登録</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:register">&times;</button>
+    <h2>無料会員登録</h2>
+    <button class="btn-google" data-auth-action="handleGoogleLogin:register">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg>
+      Googleで登録
+    </button>
+    <div id="registerError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="registerSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleRegister">
+      <div class="form-group"><label>お名前</label><input type="text" id="regName" required></div>
+      <div class="form-group"><label>所属種別</label>
+        <select id="regAffiliation" data-auth-change="toggleAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group" id="affiliationCodeGroup" style="display:none;"><label>証券コード</label><input type="text" id="regAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="regJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="regCompany" required></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="regEmail" required></div>
+      <div class="form-group"><label>パスワード (8文字以上)</label><input type="password" id="regPassword" required minlength="8"></div>
+      <button type="submit" class="btn-submit" id="registerBtn">無料で登録する</button>
+    </form>
+    <div class="modal-footer"><span>既にアカウントをお持ちの方は <span data-auth-action="switchModal:login" style="cursor:pointer;">ログイン</span></span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resetPasswordModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:resetPassword">&times;</button>
+    <h2>パスワードリセット</h2>
+    <div id="resetError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div id="resetSuccess" style="display:none;background:#d1fae5;color:#065f46;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleResetPassword">
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="resetEmail" required></div>
+      <button type="submit" class="btn-submit" id="resetBtn">リセットメールを送信</button>
+    </form>
+    <div class="modal-footer"><span data-auth-action="switchToLogin" style="cursor:pointer;">ログインに戻る</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="completeProfileModal">
+  <div class="modal">
+    <h2>プロフィール登録</h2>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px;">ご利用開始にあたり、以下の情報をご登録ください。</p>
+    <div id="completeProfileError" style="display:none;background:#fee2e2;color:#991b1b;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <form data-auth-submit="handleCompleteProfile">
+      <div class="form-group"><label>所属種別</label>
+        <select id="cpAffiliation" data-auth-change="toggleCpAffiliationCode" required>
+          <option value="">選択してください</option>
+          <option value="listed_company">上場企業</option>
+          <option value="institutional_investor">機関投資家</option>
+          <option value="individual_investor">個人投資家</option>
+          <option value="consulting">コンサルティングファーム</option>
+          <option value="legal">法律事務所・弁護士</option>
+          <option value="media">メディア・報道機関</option>
+          <option value="academic">学術・研究機関</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>証券コード (上場企業の場合)</label><input type="text" id="cpAffiliationCode"></div>
+      <div class="form-group"><label>役職</label>
+        <select id="cpJobTitle" required>
+          <option value="">選択してください</option>
+          <option value="executive">経営者・役員</option>
+          <option value="department_head">部長・本部長</option>
+          <option value="manager">課長・マネージャー</option>
+          <option value="ir_officer">IR担当</option>
+          <option value="legal_compliance">法務・コンプライアンス</option>
+          <option value="finance">経理・財務</option>
+          <option value="analyst">アナリスト・ファンドマネージャー</option>
+          <option value="consultant">コンサルタント・アドバイザー</option>
+          <option value="individual">個人</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group"><label>会社名・組織名</label><input type="text" id="cpCompany" required></div>
+      <button type="submit" class="btn-submit" id="completeProfileBtn">登録して利用開始</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myPageModal">
+  <div class="modal">
+    <button class="modal-close" data-auth-action="closeModal:myPage">&times;</button>
+    <h2>アカウント情報</h2>
+    <div id="myPageMsg" style="display:none;padding:10px;border-radius:4px;margin:12px 0;font-size:12px;"></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">お名前</label><div id="myName" style="font-weight:600;">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール</label><div id="myEmail">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">所属</label><div id="myAffiliation">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">役職</label><div id="myJobTitle">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">会社名</label><div id="myCompany">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">登録日</label><div id="myCreatedAt">-</div></div>
+    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;color:var(--text-muted);">メール認証</label><div id="myEmailVerified">-</div>
+      <button id="btnResendVerify" class="btn-submit" data-auth-action="handleResendVerification" style="display:none;margin-top:8px;padding:8px;font-size:0.78rem;">認証メールを再送</button>
+    </div>
+    <button id="btnChangePassword" class="btn-submit" data-auth-action="handleMyPageResetPassword" style="display:none;margin-top:8px;">パスワードを変更</button>
+    <button id="btnSetPassword" class="btn-submit" data-auth-action="showSetPasswordForm" style="display:none;margin-top:8px;">パスワードを設定</button>
+    <div id="setPasswordForm" style="display:none;margin:16px 0;padding:12px;background:var(--bg-alt);border-radius:4px;">
+      <input type="password" id="setPasswordInput" placeholder="新しいパスワード (8文字以上)" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <input type="password" id="setPasswordConfirm" placeholder="確認用パスワード" style="width:100%;padding:8px;margin-bottom:8px;border:1px solid var(--border);border-radius:4px;font-family:inherit;">
+      <button type="button" data-auth-action="handleSetPassword" class="btn-submit">パスワード設定</button>
+    </div>
+    <hr style="margin:24px 0 16px;border:none;border-top:1px solid var(--border);">
+    <div id="deleteAccountSection">
+      <button data-auth-action="handleDeleteAccount" style="background:none;border:1px solid #b53a3a;color:#b53a3a;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会（アカウント削除）</button>
+    </div>
+    <div id="deleteConfirm" style="display:none;margin-top:12px;padding:16px;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;">
+      <p style="font-size:0.82rem;color:#991b1b;margin-bottom:12px;line-height:1.7;">退会するとアカウント情報がすべて削除され、元に戻すことはできません。本当に退会しますか？</p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <button data-auth-action="confirmDeleteAccount" style="background:#b53a3a;color:#fff;border:none;padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">退会する</button>
+        <button data-auth-action="cancelDeleteAccount" style="background:var(--bg-alt);color:var(--text-mid);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:0.78rem;cursor:pointer;font-family:inherit;">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/nav-handler.js"></script>
+<script src="/js/auth.js"></script>
+<!-- Firebase Auth -->
+<script type="module" src="/js/firebase-auth-retail.js"></script>
+
+<script src="/js/drugstore-page.js"></script>
+<script src="/js/retail-sector-common.js"></script>
+
+</body>
+</html>
