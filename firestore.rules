@@ -11,8 +11,10 @@ service cloud.firestore {
     }
 
     // プレミアムコンテンツ: 認証済みユーザーのみ読み取り可能
+    // ただし公開サンプル（外食・SaaS）の4ドキュメントは登録不要で読み取り可能
     match /premiumContent/{docId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null
+        || docId in ['food-market', 'food-companies', 'saas-market', 'saas-companies'];
       allow write: if false;
     }
 
