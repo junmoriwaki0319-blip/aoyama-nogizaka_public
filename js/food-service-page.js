@@ -86,34 +86,42 @@ const TOPIX17_SECTORS = [
 // ---------- マクロ指標 ----------
 const MACRO_DATA = {
   // 主要食品価格指数 (2015年10月=100)
+  // 2025年はCPI品目別(2020年基準)の2025年平均前年比(米類+67.5%/鶏卵+10.3%/鶏肉+6.3%/輸入牛肉+5.6%/国産豚肉+5.3%/輸入豚肉+5.2%)を2024年値に乗じて延長。輸入鶏肉はCPIに区分品目がないためnull
   foodPrices: {
-    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
     items: {
-      '米':        [100,101,102,103,104,103,105,108,120,166],
-      '鶏卵':      [100,98,99,101,103,110,115,125,118,110],
-      'ブロイラー(国産)': [100,99,100,101,103,102,105,110,108,101],
-      'ブロイラー(輸入)': [100,98,99,102,105,108,115,128,125,122],
-      '牛肉(輸入)':  [100,102,105,108,112,110,118,135,140,138],
-      '豚肉(国産)':  [100,101,103,105,108,112,120,132,136,134],
-      '豚肉(輸入)':  [100,99,101,104,108,110,118,130,132,130],
-    }
-  },
-  // 家計調査 二人以上世帯 年間飲食費(万円)
-  householdSpending: {
-    years: ['2015','2017','2019','2021','2023'],
-    categories: {
-      '日本そば・うどん':  [0.6,0.6,0.7,0.5,0.7],
-      '中華そば':          [0.6,0.6,0.6,0.7,0.6],
-      'すし(外食)':        [1.5,1.5,1.5,1.3,1.6],
-      '和食':              [2.3,2.3,2.3,1.8,2.4],
-      '中華食':            [0.5,0.5,0.5,0.4,0.5],
-      '洋食':              [1.3,1.3,1.2,0.8,1.2],
-      '焼肉':              [0.6,0.7,0.7,0.6,0.8],
-      'ハンバーガー':      [0.3,0.4,0.5,0.6,0.6],
-      '喫茶代':            [0.6,0.6,0.8,0.6,0.9],
-      '飲酒代':            [1.9,1.8,2.0,0.5,1.6],
+      '米':        [100,101,102,103,104,103,105,108,120,166,278],
+      '鶏卵':      [100,98,99,101,103,110,115,125,118,110,121],
+      'ブロイラー(国産)': [100,99,100,101,103,102,105,110,108,101,107],
+      'ブロイラー(輸入)': [100,98,99,102,105,108,115,128,125,122,null],
+      '牛肉(輸入)':  [100,102,105,108,112,110,118,135,140,138,146],
+      '豚肉(国産)':  [100,101,103,105,108,112,120,132,136,134,141],
+      '豚肉(輸入)':  [100,99,101,104,108,110,118,130,132,130,137],
     },
-    totals: [13.4, 13.5, 13.9, 10.4, 14.0],
+    // 2025年平均の絶対価格(小売物価統計調査・東京都区部年平均)
+    absNote: '2025年平均の店頭価格(東京都区部): 米(コシヒカリ)5kg 4,928円 / 鶏卵10個 307円 / 鶏もも肉100g 153円 / 輸入牛肉100g 362円 / 国産豚バラ100g 283円 / 輸入豚ロース100g 176円 (出所: 総務省 小売物価統計調査)',
+  },
+  // 家計調査 二人以上世帯 年間飲食費(万円) 2025年は品目別年間支出金額(e-Stat 第4-1表)実数を万円換算
+  householdSpending: {
+    years: ['2015','2017','2019','2021','2023','2025'],
+    categories: {
+      '日本そば・うどん':  [0.6,0.6,0.7,0.5,0.7,0.8],
+      '中華そば':          [0.6,0.6,0.6,0.7,0.6,1.0],
+      'すし(外食)':        [1.5,1.5,1.5,1.3,1.6,1.8],
+      '和食':              [2.3,2.3,2.3,1.8,2.4,2.8],
+      '中華食':            [0.5,0.5,0.5,0.4,0.5,0.5],
+      '洋食':              [1.3,1.3,1.2,0.8,1.2,1.5],
+      '焼肉':              [0.6,0.7,0.7,0.6,0.8,0.9],
+      'ハンバーガー':      [0.3,0.4,0.5,0.6,0.6,0.7],
+      '喫茶代':            [0.6,0.6,0.8,0.6,0.9,1.2],
+      '飲酒代':            [1.9,1.8,2.0,0.5,1.6,1.9],
+    },
+    totals: [13.4, 13.5, 13.9, 10.4, 14.0, 13.1],
+  },
+  // 外食産業市場規模(狭義・外食産業計、兆円) 出所: 食の安全・安心財団推計。2024・2025年推計は2026年7月時点で未公表
+  marketSize: {
+    years: ['2019','2020','2021','2022','2023'],
+    values: [26.3, 18.2, 17.0, 20.1, 24.2],
   },
   // 外食産業主要指標推移 (2019/12=100)
   // 25/06・25/12はJF月次調査の前年同月比(25/06: 売上106.0/店舗100.7/客数101.9/客単価104.1、25/12: 売上106.0/店舗101.1/客数102.4/客単価103.5)を前年点に乗じて延長
@@ -633,24 +641,30 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
     el.innerHTML = `
       ${secH('A','マクロ指標付録','家計支出・原材料価格・人件費等の外部環境データ')}
       <div class="commentary">
-        <strong>外部環境:</strong> 米価は2024年に<strong>指数166</strong>(2015年10月=100基準、前年比+38%)と急騰(「令和の米騒動」、小売店頭価格ベースでは約1.8倍)。
+        <strong>外部環境:</strong> 米価は2025年平均で<strong>前年比+67.5%</strong>(CPI米類)と一段と急騰し、指数は<strong>278</strong>(2015年10月=100基準)に到達(東京都区部の店頭価格でコシヒカリ5kg 4,928円)。
         最低賃金は2025年度改定で<strong>全国加重平均1,121円</strong>(前年度比+66円、目安制度開始以降で最大の引き上げ)に到達し、人件費上昇がオペレーションコストを圧迫。
         外食産業全体の売上は2025年も前年比107.3%(JF会員社全店ベース)と拡大が続くが、押し上げの主因は客単価上昇(104.3%)で、客数の伸び(102.9%)には頭打ち感。
-        家計支出ベースでは食事代はCovid前水準を回復したが、<strong>飲酒代は回復が鈍い</strong>。
+        家計の外食支出(二人以上世帯)は2025年に<strong>年間198,759円</strong>(前年比+6.0%)と増加が続く一方、<strong>飲酒代(19,498円)はCovid前(2019年約2.0万円)水準どまり</strong>。
+        市場規模(狭義)は2023年に24.2兆円まで回復したが、なお2019年比△8.1%。
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">主要食品価格指数推移</div><div class="chart-panel-sub">2015年10月=100 / 出所: 農畜産業振興機構, 農林水産省</div><div class="chart-area tall"><canvas id="maFood"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">二人以上世帯 年間飲食費推移</div><div class="chart-panel-sub">出所: 総務省「家計調査」(万円)</div><div class="chart-area tall"><canvas id="maHH"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">主要食品価格指数推移</div><div class="chart-panel-sub">2015年10月=100 / 出所: 農畜産業振興機構, 農林水産省 (2025年は総務省CPI品目別前年比で延長。輸入鶏肉はCPI区分なしのため2024年まで)</div><div class="chart-area tall"><canvas id="maFood"></canvas></div><div style="font-size:0.68rem;color:#999;margin-top:8px;line-height:1.6;">${md.foodPrices.absNote}</div></div>
+        <div class="chart-panel"><div class="chart-panel-title">二人以上世帯 年間飲食費推移</div><div class="chart-panel-sub">1世帯当たり年間支出金額(万円) / 出所: 総務省「家計調査」品目分類(全国・二人以上の世帯)</div><div class="chart-area tall"><canvas id="maHH"></canvas></div></div>
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">外食産業主要指標推移</div><div class="chart-panel-sub">2019/12=100 / 出所: 日本フードサービス協会 月次「外食産業市場動向調査」(全店ベース。協会公表値は前年比のため2019/12起点の累積指数として表示)</div><div class="chart-area"><canvas id="maInd"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">最低賃金推移 (全国加重平均)</div><div class="chart-panel-sub">出所: 厚生労働省</div><div class="chart-area"><canvas id="maWage"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">外食産業主要指標推移</div><div class="chart-panel-sub">2019/12=100 / 出所: 日本フードサービス協会 月次「外食産業市場動向調査」(全店ベース。協会公表値は前年比のため2019/12起点の累積指数として表示。金額の絶対水準は下の市場規模チャート参照)</div><div class="chart-area"><canvas id="maInd"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">最低賃金推移 (全国加重平均)</div><div class="chart-panel-sub">各年度改定額(円) / 出所: 厚生労働省</div><div class="chart-area"><canvas id="maWage"></canvas></div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-panel"><div class="chart-panel-title">外食産業市場規模推移 (絶対額)</div><div class="chart-panel-sub">狭義・外食産業計(兆円、消費税込) / 出所: 食の安全・安心財団「外食産業市場規模推計」。2024・2025年推計は未公表(2026年7月時点、公表され次第更新)</div><div class="chart-area"><canvas id="maSize"></canvas></div></div>
       </div>`;
-    dc(['maFood','maHH','maInd','maWage']);
+    dc(['maFood','maHH','maInd','maWage','maSize']);
     const fp=md.foodPrices;
     mc('maFood','line',{labels:fp.years,datasets:Object.entries(fp.items).map(([k,v],i)=>({label:k,data:v,borderColor:P[i%P.length],fill:false,tension:0.3,pointRadius:3,borderWidth:2}))},{});
     const hs=md.householdSpending;
     mc('maHH','bar',{labels:hs.years,datasets:Object.entries(hs.categories).map(([k,v],i)=>({label:k,data:v,backgroundColor:P[i%P.length]+'cc'}))},{scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'万円'}}}});
+    const ms=md.marketSize;
+    mc('maSize','bar',{labels:ms.years,datasets:[{label:'市場規模(兆円)',data:ms.values,backgroundColor:'rgba(155,139,110,0.55)',borderWidth:0}]},{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#777',font:{size:10},formatter:v=>v.toFixed(1)+'兆円'}}});
     const ii=md.industryIndex;
     mc('maInd','line',{labels:ii.months,datasets:[{label:'売上高',data:ii.sales,borderColor:'#1a2d4f',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'店舗数',data:ii.stores,borderColor:'#9b8b6e',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'客数',data:ii.customers,borderColor:'#5a7fa8',tension:0.3,pointRadius:3,borderWidth:2,fill:false},{label:'客単価',data:ii.unitPrice,borderColor:'#2d7a4f',tension:0.3,pointRadius:3,borderWidth:2,fill:false}]},{});
     const lc=md.laborCost;
