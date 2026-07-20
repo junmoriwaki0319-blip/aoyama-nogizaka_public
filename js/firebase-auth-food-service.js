@@ -102,8 +102,8 @@
     const authBtns = document.getElementById('navAuthBtns');
     const userInfo = document.getElementById('navUserInfo');
     const userName = document.getElementById('navUserName');
-    const dashContent = document.getElementById('dashboardContent');
-    const loginWall = document.getElementById('loginWall');
+    // 公開サンプル: 認証状態に関わらずデータを取得（Firestoreルール側で公開読み取り許可済み）
+    if(window.loadPremiumData&&companies.length===0)window.loadPremiumData();
     if (user) {
       try {
         const profile = await window.firebaseGetProfile(user.uid);
@@ -115,15 +115,10 @@
       authBtns.style.display = 'none';
       userInfo.style.display = 'flex';
       userName.textContent = displayName;
-      dashContent.classList.remove('premium-blur');
-      if(window.loadPremiumData&&companies.length===0)window.loadPremiumData();
-      if (loginWall) loginWall.style.display = 'none';
     } else {
       authBtns.style.display = 'flex';
       userInfo.style.display = 'none';
       userName.textContent = '';
-      dashContent.classList.add('premium-blur');
-      if (loginWall) loginWall.style.display = 'block';
     }
   }
 

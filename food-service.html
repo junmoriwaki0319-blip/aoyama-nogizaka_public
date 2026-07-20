@@ -368,6 +368,9 @@
     .modal-footer { text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--text-muted); line-height: 2; }
     .modal-footer span[data-auth-action] { color: var(--navy); font-weight: 600; text-decoration: underline; }
 
+    /* === Public Sample Banner === */
+    .preview-banner { background: rgba(155,139,110,0.12); border-bottom: 1px solid rgba(155,139,110,0.3); color: var(--gold-dim); font-size: 0.72rem; padding: 8px 48px; text-align: center; letter-spacing: 0.3px; }
+    .preview-banner strong { color: var(--navy); font-weight: 700; }
     /* === Premium / Login Wall === */
     .premium-blur { filter: blur(5px); pointer-events: none; user-select: none; }
     .login-wall { position: relative; margin-top: -60px; padding: 80px 48px 40px; text-align: center; background: linear-gradient(to bottom, transparent 0%, var(--bg) 30%, var(--bg) 100%); z-index: 50; }
@@ -391,7 +394,7 @@
 
     /* === Print === */
     @media print {
-      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns { display: none !important; }
+      .site-header, .nav-bar, .site-footer, .login-wall, .modal-overlay, .dl-btns, .preview-banner { display: none !important; }
       .main { padding: 0 !important; }
       .section { display: block !important; page-break-before: always; }
       .section:first-child { page-break-before: avoid; }
@@ -402,7 +405,7 @@
       body { font-size: 11px; }
     }
     @media (max-width: 900px) {
-      .report-cover, .nav-bar, .main { padding-left: 20px; padding-right: 20px; }
+      .report-cover, .nav-bar, .main, .preview-banner { padding-left: 20px; padding-right: 20px; }
       .report-cover::after { left: 20px; right: 20px; }
       .chart-row, .chart-row.tri, .chart-row.wide-left { grid-template-columns: 1fr; }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
@@ -419,7 +422,7 @@
       .btn-submit, .btn-google { min-height: 44px; }
     }
     @media (max-width: 480px) {
-      .report-cover, .nav-bar, .main { padding-left: 16px; padding-right: 16px; }
+      .report-cover, .nav-bar, .main, .preview-banner { padding-left: 16px; padding-right: 16px; }
       .report-cover::after { left: 16px; right: 16px; }
       .report-title { font-size: 1.2rem; }
       .report-subtitle { font-size: 0.8rem; }
@@ -514,6 +517,10 @@
   </div>
 </div>
 
+<div class="preview-banner">
+  <strong>PUBLIC SAMPLE</strong> &nbsp;期間限定公開 &middot; 会員登録不要 &middot; 本レポートは弊社サービスの公開サンプルです
+</div>
+
 <!-- Report Cover -->
 <div class="report-cover">
   <div class="report-cover-inner">
@@ -559,7 +566,7 @@
 </nav>
 
 <!-- Main -->
-<div class="main premium-blur" id="dashboardContent">
+<div class="main" id="dashboardContent">
   <div class="section active" id="sec-exec"></div>
   <div class="section" id="sec-market"></div>
   <div class="section" id="sec-financial"></div>
@@ -568,14 +575,6 @@
   <div class="section" id="sec-monthly"></div>
   <div class="section" id="sec-detail"></div>
   <div class="section" id="sec-macro"></div>
-</div>
-
-<!-- Login Wall (shown when not authenticated) -->
-<div id="loginWall" class="login-wall">
-  <h3>会員限定コンテンツ</h3>
-  <p>外食セクター分析レポートの全データ・チャートをご覧いただくには、無料会員登録が必要です。</p>
-  <button class="btn-cta" data-auth-action="openModal:register">無料会員登録</button><br>
-  <span class="btn-login-link" data-auth-action="openModal:login">既にアカウントをお持ちの方はログイン</span>
 </div>
 
 <!-- Footer -->
