@@ -7,7 +7,8 @@ function topN(arr,key,n){return[...arr].filter(c=>c[key]!=null).sort((a,b)=>b[ke
 function nv(v,suf='',fmt){if(v==null)return'-';if(fmt==='loc')return v.toLocaleString()+suf;if(fmt==='f1')return v.toFixed(1)+suf;if(fmt==='f2')return v.toFixed(2)+suf;return v+suf;}
 function hasData(arr,key){return arr.some(c=>c[key]!=null);}
 const DATA_AS_OF = {
-  stockPrice: '2026年3月19日終値',
+  // stockPrice は loadPremiumData で実データ(updatedAt=データ取得日)から動的設定する
+  stockPrice: '各社最新株価',
   financials: '各社直近本決算(kabutan.jp)',
   saasKPI: '各社直近決算説明資料',
 };
@@ -57,8 +58,16 @@ let companies = [];
       // 企業データ取得
       const compSnap = await getDoc(doc(db, 'premiumContent', 'saas-companies'));
       if (compSnap.exists()) {
-        companies = compSnap.data().companies || [];
+        const cd = compSnap.data();
+        companies = cd.companies || [];
+        // 株価基準日ラベルを doc の updatedAt(=データ取得日)から動的設定
+        if (cd.updatedAt) {
+          const d = new Date(cd.updatedAt);
+          if (!isNaN(d)) DATA_AS_OF.stockPrice = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日時点`;
+        }
       }
+      const asOfEl = document.getElementById('stockAsOf');
+      if (asOfEl) asOfEl.textContent = DATA_AS_OF.stockPrice;
       document.getElementById('companyCount').textContent = companies.length;
       initNav(); render();
     } catch (e) {
@@ -160,7 +169,7 @@ let companies = [];
     el.innerHTML=`
       ${secH('01','Executive Summary','国内SaaS セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
-        <strong>セクター概況 (2026年3月基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}</strong>。
+        <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtM(tm)}</strong>、売上高合計<strong>${fmtB(tr)}</strong>。
         SaaSインデックスは直近15ヶ月(2025年1月起点)で<strong>${saasIdx}pt</strong>(TOPIX:${topixIdx}pt)と<strong>${idxDiffStr}pt</strong>のアンダーパフォーム。
         TOPIX超過は${above}/${companies.length}社。平均営業利益率${aOP}%、平均ROE${aROE}%。
         <strong>株価の低迷にもかかわらず、業績ファンダメンタルズは堅調</strong>であり、AI代替懸念による過度なディスカウントが示唆される。<br><br>

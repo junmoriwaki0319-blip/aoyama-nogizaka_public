@@ -116,18 +116,19 @@ const MACRO_DATA = {
     totals: [13.4, 13.5, 13.9, 10.4, 14.0],
   },
   // 外食産業主要指標推移 (2019/12=100)
+  // 25/06・25/12はJF月次調査の前年同月比(25/06: 売上106.0/店舗100.7/客数101.9/客単価104.1、25/12: 売上106.0/店舗101.1/客数102.4/客単価103.5)を前年点に乗じて延長
   industryIndex: {
-    months: ['19/12','20/06','20/12','21/06','21/12','22/06','22/12','23/06','23/12','24/06','24/12'],
-    sales:     [100,62,78,72,85,90,95,100,105,112,118.8],
-    stores:    [100,97,95,93,92,91,91,91.5,92,93,93.2],
-    customers: [100,58,72,68,80,84,88,90,92,93,94.4],
-    unitPrice: [100,107,108,106,106,107,108,111,114,120,125.9],
+    months: ['19/12','20/06','20/12','21/06','21/12','22/06','22/12','23/06','23/12','24/06','24/12','25/06','25/12'],
+    sales:     [100,62,78,72,85,90,95,100,105,112,118.8,118.7,125.9],
+    stores:    [100,97,95,93,92,91,91,91.5,92,93,93.2,93.7,94.2],
+    customers: [100,58,72,68,80,84,88,90,92,93,94.4,94.8,96.7],
+    unitPrice: [100,107,108,106,106,107,108,111,114,120,125.9,124.9,130.3],
   },
   // 人件費指数(2019=100)
   laborCost: {
-    years: ['2019','2020','2021','2022','2023','2024'],
-    minWage: [901,902,930,961,1004,1055],  // 全国加重平均最低賃金(円)
-    index:   [100,100.1,103.2,106.7,111.4,117.1],
+    years: ['2019','2020','2021','2022','2023','2024','2025'],
+    minWage: [901,902,930,961,1004,1055,1121],  // 全国加重平均最低賃金(円) 各年度改定額
+    index:   [100,100.1,103.2,106.7,111.4,117.1,124.4],
   },
 };
 
@@ -394,26 +395,30 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
   function rDupont() {
     const el = g('sec-dupont');
     const sorted=[...companies].sort((a,b)=>b.roe-a.roe);
+    // エー・ピーHD(3175)は自己資本が僅少でROE・レバレッジが発散する外れ値のため、グラフと平均から除外(一覧表には掲載)
+    const dpComps=companies.filter(c=>c.code!=='3175');
+    const dpSorted=sorted.filter(c=>c.code!=='3175');
     el.innerHTML = `
       ${secH('04','DuPont分解','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
       <div class="commentary">
-        <strong>DuPont分解:</strong> ROE平均は<strong>${avg(companies,'roe')}%</strong>、売上高純利益率平均<strong>${avg(companies,'netMargin')}%</strong>、
-        総資産回転率平均<strong>${avg(companies,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(companies,'leverage')}x</strong>。
+        <strong>DuPont分解:</strong> ROE平均は<strong>${avg(dpComps,'roe')}%</strong>、売上高純利益率平均<strong>${avg(dpComps,'netMargin')}%</strong>、
+        総資産回転率平均<strong>${avg(dpComps,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(dpComps,'leverage')}x</strong>。
         エターナルホスピタリティG(ROE${companies.find(c=>c.code==='3193')?.roe}%)やクリエイト・レストランツHD等は高レバレッジが高ROEに寄与。
         一方、コメダHDは純利益率${companies.find(c=>c.code==='3543')?.netMargin}%と突出するが回転率は0.5xと低い(FCモデルの特性)。
+        ※エー・ピーHD(3175)は自己資本が僅少でROE(212%)・財務レバレッジが発散するため、グラフ・平均値から除外(一覧表には掲載)。
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">ROE(FY) DuPont分解</div><div class="chart-panel-sub">ROE順 / 3要素の寄与</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">純利益率 vs 総資産回転率</div><div class="chart-panel-sub">バブルサイズ=ROE</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">ROE(FY) DuPont分解</div><div class="chart-panel-sub">ROE順 / 3要素の寄与 / エー・ピーHDは外れ値のため除外</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">純利益率 vs 総資産回転率</div><div class="chart-panel-sub">バブルサイズ=ROE / エー・ピーHDは外れ値のため除外</div><div class="chart-area tall"><canvas id="dpScatter"></canvas></div></div>
       </div>
       <div class="table-panel"><div class="table-header"><div class="table-header-title">DuPont分解一覧 (ROE順)</div><div style="font-size:0.72rem;color:#999;margin-top:2px;">財務データ: ${DATA_AS_OF.financials}</div></div><div class="table-scroll"><table>
         <thead><tr><th style="text-align:left">コード</th><th style="text-align:left">企業名</th><th>決算期</th><th>ROE</th><th>純利益率</th><th>総資産回転率</th><th>財務レバレッジ</th><th>D/E</th><th>Net D/E</th></tr></thead>
         <tbody>${sorted.map(c=>`<tr class="clickable-row ${c.code==='8163'?'row-hl':''}" data-code="${c.code}"><td>${c.code}</td><td><strong>${shortName(c.name)}</strong></td><td style="font-size:0.75rem;white-space:nowrap">${c.fiscalYear||'-'}</td><td class="${c.roe!=null&&c.roe>=15?'pos':''}" style="font-weight:700">${nv(c.roe,'%')}</td><td>${c.netMargin}%</td><td>${nv(c.assetTurnover,'x','f1')}</td><td>${nv(c.leverage,'x','f1')}</td><td>${nv(c.deRatio,'','f2')}</td><td>${nv(c.netDeRatio,'','f2')}</td></tr>`).join('')}</tbody>
       </table></div></div>`;
     bindRows(el); dc(['dpBar','dpScatter']);
-    mc('dpBar','bar',{labels:sorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:sorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'回転率(x)',data:sorted.map(c=>c.assetTurnover*5),backgroundColor:'#9b8b6e'},{label:'レバレッジ(x)',data:sorted.map(c=>c.leverage),backgroundColor:'#5a7fa8'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
-    const maxROE=Math.max(...companies.map(c=>c.roe));
-    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:companies.filter(c=>c.segment===seg).map(c=>({x:c.netMargin,y:c.assetTurnover,r:Math.max(4,c.roe/maxROE*30),name:c.name,roe:c.roe})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'総資産回転率 (x)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / 回転率${x.raw.y}x / ROE${x.raw.roe}%`}}}});
+    mc('dpBar','bar',{labels:dpSorted.map(c=>shortName(c.name)),datasets:[{label:'純利益率(%)',data:dpSorted.map(c=>c.netMargin),backgroundColor:'#1a2d4f'},{label:'回転率(x)',data:dpSorted.map(c=>c.assetTurnover*5),backgroundColor:'#9b8b6e'},{label:'レバレッジ(x)',data:dpSorted.map(c=>c.leverage),backgroundColor:'#5a7fa8'}]},{indexAxis:'y',scales:{x:{stacked:false}},plugins:{legend:{position:'top'}}});
+    const maxROE=Math.max(...dpComps.map(c=>c.roe));
+    mc('dpScatter','bubble',{datasets:Object.keys(SEGMENTS).map(seg=>({label:SEGMENTS[seg],data:dpComps.filter(c=>c.segment===seg).map(c=>({x:c.netMargin,y:c.assetTurnover,r:Math.max(4,c.roe/maxROE*30),name:c.name,roe:c.roe})),backgroundColor:SC[seg]+'77',borderColor:SC[seg],borderWidth:1}))},{scales:{x:{title:{display:true,text:'売上高純利益率 (%)'}},y:{title:{display:true,text:'総資産回転率 (x)'}}},plugins:{tooltip:{callbacks:{label:x=>`${x.raw.name}: 純利益率${x.raw.x}% / 回転率${x.raw.y}x / ROE${x.raw.roe}%`}}}});
   }
 
   // ============ 05 SHAREHOLDER ============
@@ -595,7 +600,7 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
       <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">${c.code} / ${SEGMENTS[c.segment]} / ${c.stores.toLocaleString()}店舗 / 決算期: ${c.fiscalYear||'-'}</div>
       <div class="chip-select" style="margin-bottom:24px;">${c.brands.map(b=>`<span class="chip selected">${b}</span>`).join('')}</div>
       <div class="kpi-grid">
-        ${kpi('株価',c.stockPrice.toLocaleString()+'円','','c-navy')}
+        ${kpi('株価',c.stockPrice.toLocaleString()+'円',DATA_AS_OF.stockPrice,'c-navy')}
         ${kpi('時価総額',Math.round(c.marketCap/10000).toLocaleString()+'百億円','','c-navy')}
         ${kpi('営業利益率',c.opMargin+'%','','c-green')}
         ${kpi('ROE',c.roe+'%','','c-gold')}
@@ -629,7 +634,8 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
       ${secH('A','マクロ指標付録','家計支出・原材料価格・人件費等の外部環境データ')}
       <div class="commentary">
         <strong>外部環境:</strong> 米価は2024年に<strong>指数166</strong>(2015年10月=100基準、前年比+38%)と急騰(「令和の米騒動」、小売店頭価格ベースでは約1.8倍)。
-        最低賃金は2024年に<strong>全国加重平均1,055円</strong>に到達し、人件費上昇がオペレーションコストを圧迫。
+        最低賃金は2025年度改定で<strong>全国加重平均1,121円</strong>(前年度比+66円、目安制度開始以降で最大の引き上げ)に到達し、人件費上昇がオペレーションコストを圧迫。
+        外食産業全体の売上は2025年も前年比107.3%(JF会員社全店ベース)と拡大が続くが、押し上げの主因は客単価上昇(104.3%)で、客数の伸び(102.9%)には頭打ち感。
         家計支出ベースでは食事代はCovid前水準を回復したが、<strong>飲酒代は回復が鈍い</strong>。
       </div>
       <div class="chart-row">
@@ -637,7 +643,7 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
         <div class="chart-panel"><div class="chart-panel-title">二人以上世帯 年間飲食費推移</div><div class="chart-panel-sub">出所: 総務省「家計調査」(万円)</div><div class="chart-area tall"><canvas id="maHH"></canvas></div></div>
       </div>
       <div class="chart-row">
-        <div class="chart-panel"><div class="chart-panel-title">外食産業主要指標推移</div><div class="chart-panel-sub">2019/12=100 / 出所: 日本フードサービス協会</div><div class="chart-area"><canvas id="maInd"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">外食産業主要指標推移</div><div class="chart-panel-sub">2019/12=100 / 出所: 日本フードサービス協会 月次「外食産業市場動向調査」(全店ベース。協会公表値は前年比のため2019/12起点の累積指数として表示)</div><div class="chart-area"><canvas id="maInd"></canvas></div></div>
         <div class="chart-panel"><div class="chart-panel-title">最低賃金推移 (全国加重平均)</div><div class="chart-panel-sub">出所: 厚生労働省</div><div class="chart-area"><canvas id="maWage"></canvas></div></div>
       </div>`;
     dc(['maFood','maHH','maInd','maWage']);
