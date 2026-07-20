@@ -404,16 +404,18 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
     const el = g('sec-dupont');
     const sorted=[...companies].sort((a,b)=>b.roe-a.roe);
     // エー・ピーHD(3175)は自己資本が僅少でROE・レバレッジが発散する外れ値のため、グラフと平均から除外(一覧表には掲載)
-    const dpComps=companies.filter(c=>c.code!=='3175');
     const dpSorted=sorted.filter(c=>c.code!=='3175');
+    const dpComps=companies.filter(c=>c.code!=='3175');
+    // 平均値はROEが±100%超に発散する銘柄(KOZO HD・SANKO等)も除外して算出
+    const dpAvgComps=companies.filter(c=>c.roe!=null&&Math.abs(c.roe)<100);
     el.innerHTML = `
       ${secH('04','DuPont分解','ROE = 売上高純利益率 × 総資産回転率 × 財務レバレッジ')}
       <div class="commentary">
-        <strong>DuPont分解:</strong> ROE平均は<strong>${avg(dpComps,'roe')}%</strong>、売上高純利益率平均<strong>${avg(dpComps,'netMargin')}%</strong>、
-        総資産回転率平均<strong>${avg(dpComps,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(dpComps,'leverage')}x</strong>。
+        <strong>DuPont分解:</strong> ROE平均は<strong>${avg(dpAvgComps,'roe')}%</strong>、売上高純利益率平均<strong>${avg(dpAvgComps,'netMargin')}%</strong>、
+        総資産回転率平均<strong>${avg(dpAvgComps,'assetTurnover')}x</strong>、財務レバレッジ平均<strong>${avg(dpAvgComps,'leverage')}x</strong>。
         エターナルホスピタリティG(ROE${companies.find(c=>c.code==='3193')?.roe}%)やクリエイト・レストランツHD等は高レバレッジが高ROEに寄与。
         一方、コメダHDは純利益率${companies.find(c=>c.code==='3543')?.netMargin}%と突出するが回転率は0.5xと低い(FCモデルの特性)。
-        ※エー・ピーHD(3175)は自己資本が僅少でROE(212%)・財務レバレッジが発散するため、グラフ・平均値から除外(一覧表には掲載)。
+        ※自己資本僅少でROEが発散するエー・ピーHD(212%)はグラフ・平均から、ROEが±100%を超えるKOZO HD(-213%)・SANKO MARKETING FOODS(-304%)は平均から除外(いずれも一覧表には掲載)。
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">ROE(FY) DuPont分解</div><div class="chart-panel-sub">ROE順 / 3要素の寄与 / エー・ピーHDは外れ値のため除外</div><div class="chart-area tall"><canvas id="dpBar"></canvas></div></div>
