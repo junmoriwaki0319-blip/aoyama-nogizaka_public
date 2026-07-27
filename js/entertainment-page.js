@@ -66,7 +66,7 @@ function rExec(){
   el.innerHTML=
     secH('01','Executive Summary','日本上場ゲーム・コンテンツ企業の全体概況と投資機会')+
     '<div class="commentary">'+
-      '<strong>セクター概況 (2026年4月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
+      '<strong>セクター概況 (2026年7月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
       '日本ゲーム市場は2025年約2.6兆円（ファミ通ゲーム白書）、モバイルIAP収益が1.6兆円超と市場中核。'+
       'ユニークユーザー推定5,000万人超、グローバルiOS収益でアジア2位。'+
       '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br>'+
@@ -335,7 +335,7 @@ function rSource(){
     secH('A','データソース・方法論','データ取得元と更新方針')+
     '<div class="commentary">'+
       '<strong>データソース:</strong> 株価・時価総額・営業利益率・ROE・PER・PBRはYahoo Finance (yahoo-finance2)から取得した実データ。'+
-      '基準日: 2026年4月取得時点の直近終値。<br>'+
+      '基準日: 2026年7月取得時点の直近終値。<br>'+
       '<strong>カテゴリ分類:</strong> 各社の主力事業に基づき5カテゴリに分類（コンソール・PC / モバイルゲーム / アニメ・映像・IP / VTuber・配信 / ゲーム支援）。<br>'+
       '<strong>コングロマリット注記:</strong> ソニーグループ（G&NS事業）、オリエンタルランド（テーマパーク）、サンリオ（キャラクターIP）等の多角化企業は、ゲーム・コンテンツ事業との接点を中心に分析。時価総額・財務指標は連結ベースのため、セクター平均値に影響することに留意。<br>'+
       '<strong>更新頻度:</strong> 四半期ごとにyahoo-finance2でデータ更新 → Firestoreへアップロード。<br>'+

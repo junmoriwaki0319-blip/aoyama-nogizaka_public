@@ -66,7 +66,7 @@ function rExec(){
   el.innerHTML=
     secH('01','Executive Summary','日本上場デジタルメディア企業の全体概況と投資機会')+
     '<div class="commentary">'+
-      '<strong>セクター概況 (2026年4月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
+      '<strong>セクター概況 (2026年7月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
       '放送・出版・デジタルプラットフォーム・映像制作・音楽・印刷DXの8カテゴリを横断的にカバー。'+
       '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br><br>'+
       '<strong>構造変化の3つの潮流:</strong><br>'+
@@ -324,7 +324,7 @@ function rSource(){
     secH('A','データソース・方法論','データ取得元と更新方針')+
     '<div class="commentary">'+
       '<strong>データソース:</strong> 株価・時価総額・営業利益率・ROE・PER・PBRはYahoo Finance (yahoo-finance2)から取得した実データ。'+
-      '基準日: 2026年4月取得時点の直近終値。<br>'+
+      '基準日: 2026年7月取得時点の直近終値。<br>'+
       '<strong>カテゴリ分類:</strong> 各社の主力事業に基づき8カテゴリに分類（放送 / 出版 / プラットフォーム / 動画・映像 / 音楽 / 広告テック / 印刷・DX / ニュース）。一部企業は他セクターDB（広告・ゲーム）にも重複掲載。<br>'+
       '<strong>更新頻度:</strong> 四半期ごとにyahoo-finance2でデータ更新 → Firestoreへアップロード。<br>'+
       '<strong>注意事項:</strong> 本レポートは情報提供を目的としたものであり、特定の金融商品の売買を推奨するものではありません。投資判断はご自身の責任においてお願いいたします。'+

@@ -67,7 +67,7 @@ function rExec(){
   el.innerHTML=
     secH('01','Executive Summary','日本の広告代理店'+companies.length+'社の時価総額・財務指標・業界動向を網羅的に分析')+
     '<div class="commentary">'+
-      '<strong>セクター概況 (2026年4月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
+      '<strong>セクター概況 (2026年7月基準):</strong> 対象<strong>'+companies.length+'社</strong>の合計時価総額は<strong>'+fmtM(tm)+'</strong>。'+
       '日本の広告市場2025年7.7兆円、インターネット広告が約48%を占め、従来型マス広告からデジタルへの不可逆的シフトが続く。'+
       'Tier1（大手'+t1+'社）が時価総額の大半を占めるが、Tier3（グロース'+t3+'社）は企業数で過半。'+
       '平均営業利益率<strong>'+aOP+'%</strong>、平均ROE<strong>'+aROE+'%</strong>。<br><br>'+
@@ -315,7 +315,7 @@ function rSource(){
   el.innerHTML=
     secH('A','データソース・方法論','データ取得元と更新方針')+
     '<div class="commentary">'+
-      '<strong>データソース:</strong> 株価・時価総額・営業利益率・ROE・PER・PBRはYahoo Finance (yahoo-finance2)から取得した実データ。基準日: 2026年4月取得時点の直近終値。<br>'+
+      '<strong>データソース:</strong> 株価・時価総額・営業利益率・ROE・PER・PBRはYahoo Finance (yahoo-finance2)から取得した実データ。基準日: 2026年7月取得時点の直近終値。<br>'+
       '<strong>Tier分類:</strong> Tier1=大手総合代理店、Tier2=デジタル広告・ネット広告中堅、Tier3=グロース・スタンダード市場の中小型株。<br>'+
       '<strong>更新頻度:</strong> 四半期ごとにyahoo-finance2でデータ更新 → Firestoreへアップロード。<br>'+
       '<strong>注意事項:</strong> 本レポートは情報提供を目的としたものであり、特定の金融商品の売買を推奨するものではありません。投資判断はご自身の責任においてお願いいたします。'+
