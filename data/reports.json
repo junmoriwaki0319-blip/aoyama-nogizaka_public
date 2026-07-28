@@ -1,8 +1,682 @@
 {
-  "last_updated": "2026-07-28T08:55:42+09:00",
-  "total_reports": 29736,
-  "activist_reports": 1520,
+  "last_updated": "2026-07-28T18:37:22+09:00",
+  "total_reports": 29780,
+  "activist_reports": 1524,
   "reports": [
+    {
+      "doc_id": "S100YSEX",
+      "date": "2026-07-28",
+      "filer_name": "Ｏｌｄ　Ｐｅａｋ　Ｇｒｏｕｐ　Ｌｔｄ．",
+      "issuer_name": "E37147",
+      "sec_code": "4417",
+      "target_company": "グローバルセキュリティエキスパート株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSEX",
+      "holding_ratio": 7.21,
+      "purpose": "株主提案",
+      "purpose_detail": "長期投資並びに株主価値の向上及び保全のため重要提案行為等を行うことがある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS5B",
+      "date": "2026-07-28",
+      "filer_name": "Ｈａｓｈ　Ｇｌｏｂａｌ　Ａｌｐｈａ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+      "issuer_name": "E04039",
+      "sec_code": "8946",
+      "target_company": "株式会社ＡＳＩＡＮ　ＳＴＡＲ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS5B",
+      "holding_ratio": 11.19,
+      "purpose": "その他",
+      "purpose_detail": "中長期投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSBZ",
+      "date": "2026-07-28",
+      "filer_name": "合同会社ＡＳＹＣ",
+      "issuer_name": "E41993",
+      "sec_code": "602A",
+      "target_company": "株式会社レックスアドバイザーズ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSBZ",
+      "holding_ratio": 9.42,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS5C",
+      "date": "2026-07-28",
+      "filer_name": "Ｓｔｅｒｌｉｎｇ　Ｏａｋ　Ｉｎｖｅｓｔｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ",
+      "issuer_name": "E04039",
+      "sec_code": "8946",
+      "target_company": "株式会社ＡＳＩＡＮ　ＳＴＡＲ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS5C",
+      "holding_ratio": 5.96,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSET",
+      "date": "2026-07-28",
+      "filer_name": "タドラナ・マネジメント・ウンド・アセット・ゲーエムベーハー",
+      "issuer_name": "E02804",
+      "sec_code": "7438",
+      "target_company": "コンドーテック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSET",
+      "holding_ratio": 7.04,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSJE",
+      "date": "2026-07-28",
+      "filer_name": "中山　輝也",
+      "issuer_name": "E05015",
+      "sec_code": "4707",
+      "target_company": "株式会社キタック",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSJE",
+      "holding_ratio": 13.74,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者であり、安定株主として長期保有を目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSLK",
+      "date": "2026-07-28",
+      "filer_name": "森田　和彦",
+      "issuer_name": "E41993",
+      "sec_code": "602A",
+      "target_company": "株式会社レックスアドバイザーズ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSLK",
+      "holding_ratio": 14.13,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSK9",
+      "date": "2026-07-28",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E05241",
+      "sec_code": "2721",
+      "target_company": "株式会社ジェイホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSK9",
+      "holding_ratio": 26.71,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSMI",
+      "date": "2026-07-28",
+      "filer_name": "イーストプロパティーズ株式会社",
+      "issuer_name": "E41998",
+      "sec_code": "601A",
+      "target_company": "ラックス建設株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSMI",
+      "holding_ratio": 99.98,
+      "purpose": "株主提案",
+      "purpose_detail": "当社は、発行会社の創業者であり代表取締役である山田哲矢の資産管理会社として、発行会社株式を長期安定的に保有することを目的としております。経営の安定を図るため保有するものであり、現時点において重要提案行",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSM4",
+      "date": "2026-07-28",
+      "filer_name": "日本鉱泉株式会社",
+      "issuer_name": "E01366",
+      "sec_code": "5974",
+      "target_company": "中国工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSM4",
+      "holding_ratio": 4.24,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSAE",
+      "date": "2026-07-28",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E03404",
+      "sec_code": "2762",
+      "target_company": "株式会社SANKO MARKETING FOODS",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSAE",
+      "holding_ratio": 27.26,
+      "purpose": "純投資",
+      "purpose_detail": "純投資であり、状況に応じて、第１提出者は発行者の経営陣に対して経営の助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSBF",
+      "date": "2026-07-28",
+      "filer_name": "株式会社ＪＣＣ",
+      "issuer_name": "E41081",
+      "sec_code": "462A",
+      "target_company": "株式会社ＦＵＮＤＩＮＮＯ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSBF",
+      "holding_ratio": 20.04,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役の資産管理会社であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS9S",
+      "date": "2026-07-28",
+      "filer_name": "株式会社みみっく",
+      "issuer_name": "E01408",
+      "sec_code": "5905",
+      "target_company": "日本製罐株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS9S",
+      "holding_ratio": 10.59,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSMO",
+      "date": "2026-07-28",
+      "filer_name": "大和企業投資株式会社",
+      "issuer_name": "E39161",
+      "sec_code": "149A",
+      "target_company": "株式会社シンカ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSMO",
+      "holding_ratio": 8.41,
+      "purpose": "純投資",
+      "purpose_detail": "大和企業投資株式会社が無限責任組合員となっているDCIベンチャー成長支援投資事業有限責任組合からの純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSH7",
+      "date": "2026-07-28",
+      "filer_name": "ありあけキャピタル株式会社",
+      "issuer_name": "E30746",
+      "sec_code": "7173",
+      "target_company": "株式会社東京きらぼしフィナンシャルグループ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSH7",
+      "holding_ratio": 7.97,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（投資一任契約に基づく運用を目的としている。）を基本とし、投資先企業の中長期的な企業価値向上に資すると判断した場合には、経営陣との建設的な対話を通じて助言を行うほか、当該企業の状況等を踏まえ、資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS0H",
+      "date": "2026-07-28",
+      "filer_name": "三田証券株式会社",
+      "issuer_name": "E02402",
+      "sec_code": "7957",
+      "target_company": "フジコピアン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS0H",
+      "holding_ratio": 16.49,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSDC",
+      "date": "2026-07-28",
+      "filer_name": "スパークス・アセット・マネジメント株式会社",
+      "issuer_name": "E02470",
+      "sec_code": "7839",
+      "target_company": "株式会社ＳＨＯＥＩ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSDC",
+      "holding_ratio": 10.98,
+      "purpose": "純投資",
+      "purpose_detail": "「投資一任契約」及び「投資信託委託契約」に基づく純投資",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "sparx",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YRYG",
+      "date": "2026-07-28",
+      "filer_name": "株式会社ヴァレックス・パートナーズ",
+      "issuer_name": "E27051",
+      "sec_code": "8306",
+      "target_company": "シュッピン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRYG",
+      "holding_ratio": 13.52,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（投資一任契約その他契約に係る顧客の資産運用）及び状況に応じて重要提案行為等を行うこと。なお、金融商品取引法施行令第14条の8の2第1項第7号および株券等の大量保有の状況の開示に関する内閣府令第",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSKI",
+      "date": "2026-07-28",
+      "filer_name": "ハイツ・キャピタル・マネジメント・インク",
+      "issuer_name": "E27585",
+      "sec_code": "4978",
+      "target_company": "株式会社リプロセル",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSKI",
+      "holding_ratio": 5.95,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YRYQ",
+      "date": "2026-07-28",
+      "filer_name": "アセンダー・キャピタル・リミテッド",
+      "issuer_name": "E36648",
+      "sec_code": "7373",
+      "target_company": "株式会社アイドマ・ホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRYQ",
+      "holding_ratio": 3.89,
+      "purpose": "株主提案",
+      "purpose_detail": "重要提案行為等を行うこと",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSMV",
+      "date": "2026-07-28",
+      "filer_name": "Ｌｏｎｇ　Ｃｏｒｒｉｄｏｒ　Ａｓｓｅｔ　Ｍａｎａｇｅｍｅｎｔ　Ｌｉｍｉｔｅｄ",
+      "issuer_name": "E03740",
+      "sec_code": "8783",
+      "target_company": "ａｂｃ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSMV",
+      "holding_ratio": 37.93,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（提出者は投資一任契約に基づき投資権限を有する）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS65",
+      "date": "2026-07-28",
+      "filer_name": "重田　光時",
+      "issuer_name": "E00571",
+      "sec_code": "2668",
+      "target_company": "株式会社ナイガイ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS65",
+      "holding_ratio": 9.54,
+      "purpose": "純投資",
+      "purpose_detail": "純投資および中長期的な企業価値の向上を期待して保有しております。現時点で具体的な重要提案行為等の予定はありませんが、今後の業績や対話の状況等に応じて、株主還元や役員選任などの提案を検討する可能性があり",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS6X",
+      "date": "2026-07-28",
+      "filer_name": "アセット・バリュー・インベスターズ・リミテッド",
+      "issuer_name": "E02059",
+      "sec_code": "6727",
+      "target_company": "株式会社ワコム",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS6X",
+      "holding_ratio": 15.91,
+      "purpose": "純投資",
+      "purpose_detail": "提出者の保有目的は純投資であり、発行者の持続的な企業価値の向上に必要であると判断した場合には以下の重要提案行為等を行う可能性がある。・重要な財産の処分又は譲受け・代表取締役の選定若しくは解職・特定の者",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YRL8",
+      "date": "2026-07-28",
+      "filer_name": "Ｂｅ　Ｂｒａｖｅ株式会社",
+      "issuer_name": "E00708",
+      "sec_code": "3948",
+      "target_company": "光ビジネスフォーム株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRL8",
+      "holding_ratio": 10.34,
+      "purpose": "純投資",
+      "purpose_detail": "提出者は、発行会社の企業価値および株主価値の向上を目的として当該株式を保有しており、純投資として長期的に保有することを基本方針とするが、発行者の経営方針、財務状況、事業環境、業績見通し、コーポレートガ",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS3E",
+      "date": "2026-07-28",
+      "filer_name": "光通信株式会社",
+      "issuer_name": "E36420",
+      "sec_code": "7361",
+      "target_company": "株式会社ヒューマンクリエイションホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS3E",
+      "holding_ratio": 6.63,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "hikari_tsushin",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YSGY",
+      "date": "2026-07-28",
+      "filer_name": "ＡＸＩＵＭ　ＣＡＰＩＴＡＬ　ＰＴＥ．ＬＴＤ．",
+      "issuer_name": "E01352",
+      "sec_code": "8306",
+      "target_company": "平河ヒューテック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSGY",
+      "holding_ratio": 9.01,
+      "purpose": "純投資",
+      "purpose_detail": "提出者は、建設的対話をもとに株主価値・企業価値向上を目指す純投資として長期的に保有することを基本方針とするが、発行者の経営方針、財務状況、事業環境、業績見通し、コーポレートガバナンス・コードの遵守状況",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSMU",
+      "date": "2026-07-28",
+      "filer_name": "加藤　真平",
+      "issuer_name": "E41887",
+      "sec_code": "593A",
+      "target_company": "株式会社ティアフォー",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSMU",
+      "holding_ratio": 8.95,
+      "purpose": "経営関与",
+      "purpose_detail": "発行者の創業者であり、発行者の役員として経営に参加すること、また、安定株主として長期保有することを目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS77",
+      "date": "2026-07-28",
+      "filer_name": "ＳＢＩ　Ｖｅｎｔｕｒｅｓ　Ｔｗｏ株式会社",
+      "issuer_name": "E40500",
+      "sec_code": "402A",
+      "target_company": "株式会社アクセルスペースホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS77",
+      "holding_ratio": 25.0,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSA5",
+      "date": "2026-07-28",
+      "filer_name": "ジャフコ　グループ株式会社",
+      "issuer_name": "E39184",
+      "sec_code": "8595",
+      "target_company": "株式会社ＪＳＨ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSA5",
+      "holding_ratio": 8.32,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（投資育成目的で保有した株券等）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSOD",
+      "date": "2026-07-28",
+      "filer_name": "赤松　哲典",
+      "issuer_name": "E41917",
+      "sec_code": "598A",
+      "target_company": "チャットプラス株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSOD",
+      "holding_ratio": 6.55,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の取締役であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS1J",
+      "date": "2026-07-28",
+      "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+      "issuer_name": "E04896",
+      "sec_code": "9627",
+      "target_company": "株式会社アインホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS1J",
+      "holding_ratio": 18.75,
+      "purpose": "純投資",
+      "purpose_detail": "純投資提出者は報告義務の発生日時点において、ポートフォリオ投資の一環として、市場内外の取引を通じて発行者の普通株式の株券等保有割合を100分の5を超える割合増加させる行為（以下「5%超取得行為」という",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "oasis",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YSGQ",
+      "date": "2026-07-28",
+      "filer_name": "株式会社シティインデックスイレブンス",
+      "issuer_name": "E03139",
+      "sec_code": "9831",
+      "target_company": "株式会社ヤマダホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSGQ",
+      "holding_ratio": 0.0,
+      "purpose": "政策投資",
+      "purpose_detail": "株式の追加取得または売却の可能性について：提出者として発行会社の株価が割安であると判断した場合、今後3ヶ月以内で5％超保有割合を増加する株式取得を行う可能性がある。当該増加は市場内外における取引を通じ",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "city_index_elevens",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YS4W",
+      "date": "2026-07-28",
+      "filer_name": "株式会社Ｃ＆Ｉ　Ｈｏｌｄｉｎｇｓ",
+      "issuer_name": "E00784",
+      "sec_code": "8306",
+      "target_company": "日本化学工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS4W",
+      "holding_ratio": 7.84,
+      "purpose": "政策投資",
+      "purpose_detail": "株式の追加取得または売却の可能性について：提出者として発行会社の株価が割安であると判断した場合、今後3ヶ月以内で5％超保有割合を増加する株式取得を行う可能性がある。当該増加は市場内外における取引を通じ",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSPK",
+      "date": "2026-07-28",
+      "filer_name": "株式会社テンポスホールディングス",
+      "issuer_name": "E03278",
+      "sec_code": "2751",
+      "target_company": "マルシェ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSPK",
+      "holding_ratio": 48.98,
+      "purpose": "経営関与",
+      "purpose_detail": "当該企業の親会社として、経営参画を目的としています当社は2026年6月29日にマルシェ株式会社の第三者割当増資（普通株式600万株）を996,000千円で引受け、当社の連結子会社と致しました",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSM9",
+      "date": "2026-07-28",
+      "filer_name": "アースエレメンツ・キャピタル株式会社",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSM9",
+      "holding_ratio": 9.75,
+      "purpose": "その他",
+      "purpose_detail": "First&#160;Plus&#160;Financial&#160;Holdings&#160;Pte.&#160;Ltd.（以下「First&#160;Plus社」といいます。）の保有する発行者",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSPT",
+      "date": "2026-07-28",
+      "filer_name": "ＦＩＲＳＴ　ＰＬＵＳ　ＦＩＮＡＮＣＩＡＬ　ＨＯＬＤＩＮＧＳ　ＰＴＥ．　ＬＴＤ．",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSPT",
+      "holding_ratio": 65.95,
+      "purpose": "純投資",
+      "purpose_detail": "純投資重要提案行為等として株主価値向上のため取締役2名の指名提案を行う可能性がある",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSK4",
+      "date": "2026-07-28",
+      "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+      "issuer_name": "E34960",
+      "sec_code": "4443",
+      "target_company": "Sansan株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSK4",
+      "holding_ratio": 12.64,
+      "purpose": "純投資",
+      "purpose_detail": "純投資。提出者1及び提出者2（以下総称して「いちご」という。）は日本株の長期投資に特化した独立系機関投資家であり、投資先企業の中長期的な価値創造を尊重し、投資を通じて支えることにより、日本社会に貢献す",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "ichigo_asset",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YSMD",
+      "date": "2026-07-28",
+      "filer_name": "アースエレメンツ・キャピタル株式会社",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSMD",
+      "holding_ratio": 15.12,
+      "purpose": "その他",
+      "purpose_detail": "First&#160;Plus&#160;Financial&#160;Holdings&#160;Pte.&#160;Ltd.（以下「First&#160;Plus社」といいます。）の保有する発行者",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSQ2",
+      "date": "2026-07-28",
+      "filer_name": "ＦＩＲＳＴ　ＰＬＵＳ　ＦＩＮＡＮＣＩＡＬ　ＨＯＬＤＩＮＧＳ　ＰＴＥ．　ＬＴＤ．",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSQ2",
+      "holding_ratio": 64.29,
+      "purpose": "純投資",
+      "purpose_detail": "純投資重要提案行為等として株主価値向上のため取締役2名の指名提案を行う可能性がある",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSQ8",
+      "date": "2026-07-28",
+      "filer_name": "ＦＩＲＳＴ　ＰＬＵＳ　ＦＩＮＡＮＣＩＡＬ　ＨＯＬＤＩＮＧＳ　ＰＴＥ．　ＬＴＤ．",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSQ8",
+      "holding_ratio": 60.68,
+      "purpose": "純投資",
+      "purpose_detail": "純投資重要提案行為等として株主価値向上のため取締役2名の指名提案を行う可能性がある",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS1S",
+      "date": "2026-07-28",
+      "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+      "issuer_name": "E40175",
+      "sec_code": "280A",
+      "target_company": "株式会社ＴＭＨ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS1S",
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約または投資信託委託契約に基づく純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "simplex",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YSGK",
+      "date": "2026-07-28",
+      "filer_name": "中野邦人",
+      "issuer_name": "E35514",
+      "sec_code": "3668",
+      "target_company": "アディッシュ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSGK",
+      "holding_ratio": 6.4,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YS4O",
+      "date": "2026-07-28",
+      "filer_name": "シンプレクス・キャピタル・インベストメント株式会社",
+      "issuer_name": "E40175",
+      "sec_code": "280A",
+      "target_company": "株式会社ＴＭＨ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS4O",
+      "holding_ratio": 14.84,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（発行者の中長期的な企業価値向上及び株式価値の最大化を通じたキャピタルゲインの獲得を目的とするものであり、重要提案行為等を行うことを目的とするものではありません。）",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "simplex",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YSQG",
+      "date": "2026-07-28",
+      "filer_name": "ＦＩＲＳＴ　ＰＬＵＳ　ＦＩＮＡＮＣＩＡＬ　ＨＯＬＤＩＮＧＳ　ＰＴＥ．　ＬＴＤ．",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSQG",
+      "holding_ratio": 59.94,
+      "purpose": "純投資",
+      "purpose_detail": "純投資重要提案行為等として株主価値向上のため取締役2名の指名提案を行う可能性がある",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YRXI",
       "date": "2026-07-27",
@@ -449303,6 +449977,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "7361",
+          "filer_name": "光通信株式会社",
+          "target_company": "株式会社ヒューマンクリエイションホールディングス",
+          "date": "2026-07-28",
+          "holding_ratio": 6.63,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "6224",
           "filer_name": "光通信株式会社",
           "target_company": "株式会社ＪＲＣ",
@@ -449632,15 +450315,6 @@
           "target_company": "株式会社マルゼン",
           "date": "2026-06-15",
           "holding_ratio": 5.98,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7361",
-          "filer_name": "光通信株式会社",
-          "target_company": "株式会社ヒューマンクリエイションホールディングス",
-          "date": "2026-06-12",
-          "holding_ratio": 6.63,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -451391,8 +452065,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 990,
-      "latest_date": "2026-07-24",
+      "report_count": 991,
+      "latest_date": "2026-07-28",
       "member_ids": [
         "hikari_tsushin"
       ]
@@ -458128,6 +458802,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "9831",
+          "filer_name": "株式会社シティインデックスイレブンス",
+          "target_company": "株式会社ヤマダホールディングス",
+          "date": "2026-07-28",
+          "holding_ratio": 0.0,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "3863",
           "filer_name": "株式会社シティインデックスイレブンス",
           "target_company": "日本製紙株式会社",
@@ -458140,15 +458823,6 @@
           "sec_code": "3864",
           "filer_name": "株式会社シティインデックスイレブンス",
           "target_company": "三菱製紙株式会社",
-          "date": "2026-07-21",
-          "holding_ratio": 0.0,
-          "purpose": "政策投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "9831",
-          "filer_name": "株式会社シティインデックスイレブンス",
-          "target_company": "株式会社ヤマダホールディングス",
           "date": "2026-07-21",
           "holding_ratio": 0.0,
           "purpose": "政策投資",
@@ -458497,8 +459171,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 226,
-      "latest_date": "2026-07-23",
+      "report_count": 227,
+      "latest_date": "2026-07-28",
       "member_ids": [
         "city_index_elevens",
         "yoshiko_murakami",
@@ -458773,6 +459447,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "9627",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社アインホールディングス",
+          "date": "2026-07-28",
+          "holding_ratio": 18.75,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "8306",
           "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
           "target_company": "株式会社ニチレイ",
@@ -458843,15 +459526,6 @@
           "holding_ratio": 5.15,
           "purpose": "純投資",
           "report_type": "新規報告"
-        },
-        {
-          "sec_code": "9627",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社アインホールディングス",
-          "date": "2026-06-29",
-          "holding_ratio": 17.74,
-          "purpose": "純投資",
-          "report_type": "変更報告"
         },
         {
           "sec_code": "6104",
@@ -459187,8 +459861,8 @@
           "report_type": "新規報告"
         }
       ],
-      "report_count": 138,
-      "latest_date": "2026-07-24"
+      "report_count": 139,
+      "latest_date": "2026-07-28"
     },
     "fidelity": {
       "id": "fidelity",
@@ -461121,6 +461795,229 @@
       "report_count": 50,
       "latest_date": "2026-07-09"
     },
+    "simplex": {
+      "id": "simplex",
+      "name": "シンプレクス・アセット・マネジメント",
+      "type": "notable_holder",
+      "representative": "—",
+      "headquarters": "東京",
+      "description": "定量運用を主体とする国内大手資産運用会社。大量保有報告の提出頻度が高い。",
+      "focus_sectors": [
+        "金融",
+        "IT・通信"
+      ],
+      "holdings": [
+        {
+          "sec_code": "280A",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社ＴＭＨ",
+          "date": "2026-07-28",
+          "holding_ratio": 14.84,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6971",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "日本航空電子工業株式会社",
+          "date": "2026-07-17",
+          "holding_ratio": 10.45,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5903",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "シンポ株式会社",
+          "date": "2026-06-23",
+          "holding_ratio": 0.0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5941",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社中西製作所",
+          "date": "2026-06-18",
+          "holding_ratio": 9.66,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "436A",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社網屋",
+          "date": "2026-06-01",
+          "holding_ratio": 14.0,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "4462",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "石原ケミカル株式会社",
+          "date": "2026-05-26",
+          "holding_ratio": 10.68,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9780",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社ハリマビステム",
+          "date": "2026-04-07",
+          "holding_ratio": 3.97,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7105",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "三菱ロジスネクスト株式会社",
+          "date": "2026-03-06",
+          "holding_ratio": 7.97,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4094",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "日本化学産業株式会社",
+          "date": "2026-03-06",
+          "holding_ratio": 8.43,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9632",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "スバル興業株式会社",
+          "date": "2026-02-20",
+          "holding_ratio": 5.37,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "霞が関ホテルリート投資法人",
+          "date": "2025-12-22",
+          "holding_ratio": 6.88,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "401A",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "霞が関ホテルリート投資法人",
+          "date": "2025-11-21",
+          "holding_ratio": 5.03,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "5597",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "ブルーイノベーション株式会社",
+          "date": "2025-11-07",
+          "holding_ratio": 0.12,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "4373",
+          "filer_name": "シンプレクス・ホールディングス株式会社",
+          "target_company": "シンプレクス・ホールディングス株式会社",
+          "date": "2025-08-26",
+          "holding_ratio": 0.0,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1436",
+          "filer_name": "シンプレクス・キャピタル・インベストメント株式会社",
+          "target_company": "株式会社 グリーンエナジー＆カンパニー",
+          "date": "2025-07-07",
+          "holding_ratio": 11.28,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "1884",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "日本道路株式会社",
+          "date": "2025-07-07",
+          "holding_ratio": 5.82,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8070",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "東京産業株式会社",
+          "date": "2025-04-08",
+          "holding_ratio": 0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4464",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社 ソフト９９コーポレーション",
+          "date": "2025-03-17",
+          "holding_ratio": 0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4078",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "堺化学工業株式会社",
+          "date": "2025-02-17",
+          "holding_ratio": 5.0,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "4719",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "株式会社アルファシステムズ",
+          "date": "2025-01-28",
+          "holding_ratio": 15.13,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6267",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "ゼネラルパッカー株式会社",
+          "date": "2025-01-10",
+          "holding_ratio": 4.68,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8732",
+          "filer_name": "シンプレクス株式会社",
+          "target_company": "株式会社マネーパートナーズグループ",
+          "date": "2024-12-27",
+          "holding_ratio": 0,
+          "purpose": "",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "5395",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "理研コランダム株式会社",
+          "date": "2024-10-07",
+          "holding_ratio": 9.63,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 47,
+      "latest_date": "2026-07-28"
+    },
     "nippon_life": {
       "id": "nippon_life",
       "name": "日本生命保険",
@@ -461413,229 +462310,6 @@
       "report_count": 46,
       "latest_date": "2026-07-23"
     },
-    "simplex": {
-      "id": "simplex",
-      "name": "シンプレクス・アセット・マネジメント",
-      "type": "notable_holder",
-      "representative": "—",
-      "headquarters": "東京",
-      "description": "定量運用を主体とする国内大手資産運用会社。大量保有報告の提出頻度が高い。",
-      "focus_sectors": [
-        "金融",
-        "IT・通信"
-      ],
-      "holdings": [
-        {
-          "sec_code": "6971",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "日本航空電子工業株式会社",
-          "date": "2026-07-17",
-          "holding_ratio": 10.45,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5903",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "シンポ株式会社",
-          "date": "2026-06-23",
-          "holding_ratio": 0.0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5941",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "株式会社中西製作所",
-          "date": "2026-06-18",
-          "holding_ratio": 9.66,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "436A",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "株式会社網屋",
-          "date": "2026-06-01",
-          "holding_ratio": 14.0,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "4462",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "石原ケミカル株式会社",
-          "date": "2026-05-26",
-          "holding_ratio": 10.68,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "280A",
-          "filer_name": "シンプレクス・キャピタル・インベストメント株式会社",
-          "target_company": "株式会社TMH",
-          "date": "2026-05-19",
-          "holding_ratio": 98.0,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "9780",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "株式会社ハリマビステム",
-          "date": "2026-04-07",
-          "holding_ratio": 3.97,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7105",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "三菱ロジスネクスト株式会社",
-          "date": "2026-03-06",
-          "holding_ratio": 7.97,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4094",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "日本化学産業株式会社",
-          "date": "2026-03-06",
-          "holding_ratio": 8.43,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9632",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "スバル興業株式会社",
-          "date": "2026-02-20",
-          "holding_ratio": 5.37,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "霞が関ホテルリート投資法人",
-          "date": "2025-12-22",
-          "holding_ratio": 6.88,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "401A",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "霞が関ホテルリート投資法人",
-          "date": "2025-11-21",
-          "holding_ratio": 5.03,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "5597",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "ブルーイノベーション株式会社",
-          "date": "2025-11-07",
-          "holding_ratio": 0.12,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "4373",
-          "filer_name": "シンプレクス・ホールディングス株式会社",
-          "target_company": "シンプレクス・ホールディングス株式会社",
-          "date": "2025-08-26",
-          "holding_ratio": 0.0,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1436",
-          "filer_name": "シンプレクス・キャピタル・インベストメント株式会社",
-          "target_company": "株式会社 グリーンエナジー＆カンパニー",
-          "date": "2025-07-07",
-          "holding_ratio": 11.28,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "1884",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "日本道路株式会社",
-          "date": "2025-07-07",
-          "holding_ratio": 5.82,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8070",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "東京産業株式会社",
-          "date": "2025-04-08",
-          "holding_ratio": 0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4464",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "株式会社 ソフト９９コーポレーション",
-          "date": "2025-03-17",
-          "holding_ratio": 0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4078",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "堺化学工業株式会社",
-          "date": "2025-02-17",
-          "holding_ratio": 5.0,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "4719",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "株式会社アルファシステムズ",
-          "date": "2025-01-28",
-          "holding_ratio": 15.13,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6267",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "ゼネラルパッカー株式会社",
-          "date": "2025-01-10",
-          "holding_ratio": 4.68,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8732",
-          "filer_name": "シンプレクス株式会社",
-          "target_company": "株式会社マネーパートナーズグループ",
-          "date": "2024-12-27",
-          "holding_ratio": 0,
-          "purpose": "",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "5395",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "理研コランダム株式会社",
-          "date": "2024-10-07",
-          "holding_ratio": 9.63,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 45,
-      "latest_date": "2026-07-17"
-    },
     "taiyo_pacific": {
       "id": "taiyo_pacific",
       "name": "タイヨウ・パシフィック・パートナーズ",
@@ -461837,6 +462511,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "7839",
+          "filer_name": "スパークス・アセット・マネジメント株式会社",
+          "target_company": "株式会社ＳＨＯＥＩ",
+          "date": "2026-07-28",
+          "holding_ratio": 10.98,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
           "sec_code": "378A",
           "filer_name": "スパークス・アセット・マネジメント株式会社",
           "target_company": "株式会社ヒット",
@@ -461869,15 +462552,6 @@
           "target_company": "前田工繊株式会社",
           "date": "2026-06-17",
           "holding_ratio": 7.16,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7839",
-          "filer_name": "スパークス・アセット・マネジメント株式会社",
-          "target_company": "株式会社ＳＨＯＥＩ",
-          "date": "2026-05-28",
-          "holding_ratio": 10.98,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -462017,8 +462691,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 35,
-      "latest_date": "2026-07-21"
+      "report_count": 36,
+      "latest_date": "2026-07-28"
     },
     "valueact": {
       "id": "valueact",
@@ -462123,6 +462797,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "4443",
+          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
+          "target_company": "Sansan株式会社",
+          "date": "2026-07-28",
+          "holding_ratio": 12.64,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "6740",
           "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
           "target_company": "株式会社ジャパンディスプレイ",
@@ -462137,15 +462820,6 @@
           "target_company": "株式会社ラクス",
           "date": "2026-06-22",
           "holding_ratio": 9.8,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4443",
-          "filer_name": "いちごアセットマネジメント・インタ－ナショナル・ピ－ティ－イ－・リミテッド",
-          "target_company": "Sansan株式会社",
-          "date": "2026-06-19",
-          "holding_ratio": 11.57,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -462213,8 +462887,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 26,
-      "latest_date": "2026-07-15"
+      "report_count": 27,
+      "latest_date": "2026-07-28"
     },
     "lim_advisors": {
       "id": "lim_advisors",
