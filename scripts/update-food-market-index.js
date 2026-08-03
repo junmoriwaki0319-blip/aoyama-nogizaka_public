@@ -4,7 +4,9 @@
  *
  * v2 (2026-07): update-saas-market-index.js と同設計に全面改修。旧版の問題点を解消:
  *   - 旧: 構成15社・ウェイトをスクリプト内ハードコード → 新: Firestore premiumContent/food-companies
- *     の全社から動的取得（時価総額加重、shares = marketCap/stockPrice 固定株数）
+ *     から「更新時点の時価総額上位15社」を自動選定（時価総額加重、shares = marketCap/stockPrice 固定株数）。
+ *     ハードコードと違い銘柄リストが陳腐化せず、選定基準（時価総額上位）が機械的で説明可能。
+ *     上位15社で収録全社の時価総額ウェイト約8割をカバーする（ページ側の指数定義の記載と対応）
  *   - 旧: TOPIX=1306.T月次のみ（約1/10グリッチが混入、2026-02〜04の系列歪みの原因）
  *     → 新: TOPIX連動ETF 3本（1306/1305/1308）の日次月末終値を正規化し中央値
  *   - 旧: フィールド全置換PATCH（SECTOR_AVG_SSS_* が消える事故源）→ 新: updateMask付きPATCH
@@ -254,9 +256,16 @@ async function main() {
   console.log(`既存シリーズ: ${stored.months.length}点 (${baseLabel} ～ ${stored.months[stored.months.length - 1]})`);
 
   const companiesDoc = await firestoreRead(token, 'food-companies');
-  const companies = companiesDoc.companies || [];
-  console.log(`構成銘柄: food-companies から ${companies.length}社\n`);
-  if (companies.length < 10) throw new Error('構成銘柄が少なすぎます');
+  const allCompanies = (companiesDoc.companies || []).filter(c => typeof c.marketCap === 'number' && c.marketCap > 0);
+  if (allCompanies.length < 15) throw new Error('収録銘柄が少なすぎます');
+  // 更新時点の時価総額上位15社を自動選定（弊社収録ユニバースの代表指数）
+  const TOP_N = 15;
+  const companies = [...allCompanies].sort((a, b) => b.marketCap - a.marketCap).slice(0, TOP_N);
+  const totalMcap = allCompanies.reduce((a, c) => a + c.marketCap, 0);
+  const topMcap = companies.reduce((a, c) => a + c.marketCap, 0);
+  console.log(`構成銘柄: 収録${allCompanies.length}社中 時価総額上位${TOP_N}社を自動選定（全体ウェイトの${(topMcap / totalMcap * 100).toFixed(1)}%をカバー）`);
+  companies.forEach((c, i) => console.log(`  ${String(i + 1).padStart(2)}. ${c.code} ${c.name} (${(c.marketCap / totalMcap * 100).toFixed(1)}%)`));
+  console.log('');
 
   // 2. 月次データ取得（基準月の前月15日から）
   const period1 = labelToDate(baseLabel);
