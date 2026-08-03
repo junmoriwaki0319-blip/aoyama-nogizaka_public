@@ -281,7 +281,7 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
       ${secH('01','Executive Summary','外食セクター全体概況と主要指標ハイライト')}
       <div class="commentary">
         <strong>セクター概況 (${DATA_AS_OF.stockPrice}基準):</strong> 対象${companies.length}社の合計時価総額は<strong>${fmtBil(tm)}</strong>、売上高合計<strong>${fmtBil(tr)}</strong>。
-        外食セクター指数(時価総額加重)は直近(${DATA_AS_OF.topixPeriod})で${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'<strong>TOPIX比 —</strong>'}。一方でTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は${exValid}社中<strong>${exAbove}社</strong>に留まり、上昇は大型株に集中(企業間格差が顕著)。
+        外食セクター指数(時価総額上位15社・加重)は直近(${DATA_AS_OF.topixPeriod})で${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'<strong>TOPIX比 —</strong>'}。一方でTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は${exValid}社中<strong>${exAbove}社</strong>に留まり、上昇は大型株に集中(企業間格差が顕著)。
         ${topPerf.length?`1年騰落率の上位は${topPerf.map(c=>`${shortName(c.name)}(${sv(c.stockReturn1Y)})`).join('、')}。`:''}<br><br>
         <strong>足元のリスク要因:</strong>
         (1) <strong>中東情勢の緊迫化</strong>(イラン紛争)に伴う原油価格上昇が輸送費・包材費・光熱費のコスト増として波及するリスク、
@@ -337,8 +337,9 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
     el.innerHTML = `
       ${secH('02','株式市場パフォーマンス','TOPIX対比の相対株価推移と企業別騰落率')}
       <div class="commentary">
-        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクター指数(時価総額加重)は<strong>${nv(restPt,'pt')}</strong>(TOPIX ${nv(topixPt,'pt')}、${baseM}=100基準)で、${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'TOPIX比 —'}。
-        ただし個別ではTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は<strong>${above}社</strong>(有効${validN}社中)に留まり、多くの企業はTOPIXを下回った(上昇の大型株集中)。
+        <strong>市場動向 (${DATA_AS_OF.topixPeriod}):</strong> 外食セクター指数(時価総額上位15社・加重)は<strong>${nv(restPt,'pt')}</strong>(TOPIX ${nv(topixPt,'pt')}、${baseM}=100基準)で、${exPt!=null?`TOPIXを<strong>${exPt>=0?'+':''}${exPt}pt</strong>${exPt>=0?'上回る':'下回る'}`:'TOPIX比 —'}。
+        ただし個別ではTOPIX(1年騰落率 ${nv(TOPIX_RETURN_1Y,'%')})を上回った企業は<strong>${above}社</strong>(有効${validN}社中)に留まり、多くの企業はTOPIXを下回った(上昇の大型株集中)。<br>
+        <span style="font-size:0.75rem;color:#888;">※ 外食セクター指数の定義: 弊社収録${companies.length}社のうち更新時点の<strong>時価総額上位15社</strong>を構成銘柄とする時価総額加重指数(${baseM}=100基準、構成15社で収録全社の時価総額の約8割をカバー)。上位企業への絞り込みは、小型株の流動性に起因するノイズを抑えながらセクターの実勢を代表させるための弊社選定基準による。構成銘柄は各回の更新時に時価総額基準で自動的に見直される。</span>
       </div>
       <div class="kpi-grid">
         ${kpi('外食セクター',nv(restPt,'pt'),'加重指数','c-navy')}
@@ -348,7 +349,7 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
       </div>
       <div class="chart-row">
         <div class="chart-panel"><div class="chart-panel-title">TOPIX-17セクター別パフォーマンス比較</div><div class="chart-panel-sub">直近1年騰落率 / 100基準</div><div class="chart-area tall"><canvas id="mkT17"></canvas></div></div>
-        <div class="chart-panel"><div class="chart-panel-title">外食産業 vs TOPIX 推移</div><div class="chart-panel-sub">月次指数 (起点=100) / ${DATA_AS_OF.topixPeriod}</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
+        <div class="chart-panel"><div class="chart-panel-title">外食産業 vs TOPIX 推移</div><div class="chart-panel-sub">時価総額上位15社・月次指数 (起点=100) / ${DATA_AS_OF.topixPeriod}</div><div class="chart-area tall"><canvas id="mkIdx"></canvas></div></div>
       </div>
       <div class="chart-row single">
         <div class="chart-panel"><div class="chart-panel-title">企業別 株価騰落率 (1年)</div><div class="chart-panel-sub">紺色=TOPIX超過 / 赤色=TOPIX未達 / 赤点線=TOPIX (${TOPIX_RETURN_1Y}%)</div><div class="chart-area tall"><canvas id="mkStocks"></canvas></div></div>
