@@ -1,8 +1,481 @@
 {
-  "last_updated": "2026-08-06T20:59:34+09:00",
-  "total_reports": 30154,
+  "last_updated": "2026-08-07T10:41:06+09:00",
+  "total_reports": 30185,
   "activist_reports": 1561,
   "reports": [
+    {
+      "doc_id": "S100YUMH",
+      "date": "2026-08-07",
+      "filer_name": "株式会社こうどうホールディングス",
+      "issuer_name": "E30841",
+      "sec_code": "2768",
+      "target_company": "株式会社ジャパンインベストメントアドバイザー",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUMH",
+      "holding_ratio": 34.91,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長の資産管理会社であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUBC",
+      "date": "2026-08-07",
+      "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+      "issuer_name": "E33350",
+      "sec_code": "3481",
+      "target_company": "三菱地所物流リート投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUBC",
+      "holding_ratio": 6.66,
+      "purpose": "その他",
+      "purpose_detail": "投資信託契約、投資一任契約に基づく運用を目的として保有するもの。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "sumitomo_mitsui_trust",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YUBB",
+      "date": "2026-08-07",
+      "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+      "issuer_name": "E31280",
+      "sec_code": "3455",
+      "target_company": "ヘルスケア＆メディカル投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUBB",
+      "holding_ratio": 8.58,
+      "purpose": "その他",
+      "purpose_detail": "投資信託契約、投資一任契約に基づく運用を目的として保有するもの。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "sumitomo_mitsui_trust",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YUZ2",
+      "date": "2026-08-07",
+      "filer_name": "Ｃｏｌｕｍｂｉａ　Ｍａｎａｇｅｍｅｎｔ　Ｉｎｖｅｓｔｍｅｎｔ　Ａｄｖｉｓｅｒｓ，　ＬＬＣ",
+      "issuer_name": "E39892",
+      "sec_code": "268A",
+      "target_company": "リガク・ホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUZ2",
+      "holding_ratio": 10.52,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約に基づく純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUE8",
+      "date": "2026-08-07",
+      "filer_name": "ツェナ・インベストメント・マネジメント・エルエルシー（Ｐｚｅｎａ　Ｉｎｖｅｓｔｍｅｎｔ　Ｍａｎａｇｅｍｅｎｔ，　ＬＬＣ）",
+      "issuer_name": "E27622",
+      "sec_code": "2587",
+      "target_company": "サントリービバレッジ＆フード株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUE8",
+      "holding_ratio": 5.08,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUJA",
+      "date": "2026-08-07",
+      "filer_name": "リーガル・アンド・ジェネラル・インベストメント・マネジメント・リミテッド",
+      "issuer_name": "E05303",
+      "sec_code": "2326",
+      "target_company": "デジタルアーツ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUJA",
+      "holding_ratio": 0.0,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約による純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUD2",
+      "date": "2026-08-07",
+      "filer_name": "日本製鉄株式会社",
+      "issuer_name": "E04239",
+      "sec_code": "5401",
+      "target_company": "ＮＳユナイテッド海運株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUD2",
+      "holding_ratio": 32.8,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資(事業活動の円滑な推進)。但し、提出者は、日本郵船株式会社（以下「共同保有者」といいます。）と共同して、本基本契約及び本株主間契約（以下に定義します。）に定める権利行使を通じた重要提案行為等を",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YRCF",
+      "date": "2026-08-07",
+      "filer_name": "エバーコア株式会社",
+      "issuer_name": "E22049",
+      "sec_code": "2186",
+      "target_company": "ソーバル株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRCF",
+      "holding_ratio": 21.3,
+      "purpose": "その他",
+      "purpose_detail": "安定株主としての長期保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUMV",
+      "date": "2026-08-07",
+      "filer_name": "ＮＥＸＣＯＲＥ株式会社",
+      "issuer_name": "E22049",
+      "sec_code": "2186",
+      "target_company": "ソーバル株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUMV",
+      "holding_ratio": 21.3,
+      "purpose": "その他",
+      "purpose_detail": "安定株主としての長期保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YTMB",
+      "date": "2026-08-07",
+      "filer_name": "日本郵船株式会社",
+      "issuer_name": "E04239",
+      "sec_code": "9101",
+      "target_company": "ＮＳユナイテッド海運株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTMB",
+      "holding_ratio": 18.04,
+      "purpose": "経営関与",
+      "purpose_detail": "支配権の取得",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YSG6",
+      "date": "2026-08-07",
+      "filer_name": "日本郵船株式会社",
+      "issuer_name": "E04239",
+      "sec_code": "9101",
+      "target_company": "ＮＳユナイテッド海運株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSG6",
+      "holding_ratio": 18.04,
+      "purpose": "株主提案",
+      "purpose_detail": "提出者1は、発行者の非公開化を目的とした重要提案行為等、並びに、日本製鉄株式会社（以下「共同保有者」といいます。）と共同して、本基本契約及び本株主間契約（以下に定義します。）に定める権利行使を通じた重",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUL6",
+      "date": "2026-08-07",
+      "filer_name": "三井金属株式会社",
+      "issuer_name": "E00260",
+      "sec_code": "5706",
+      "target_company": "株式会社ナカボーテック",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUL6",
+      "holding_ratio": 11.16,
+      "purpose": "その他",
+      "purpose_detail": "関係会社株式として保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUXD",
+      "date": "2026-08-07",
+      "filer_name": "三井金属株式会社",
+      "issuer_name": "E00260",
+      "sec_code": "5706",
+      "target_company": "株式会社ナカボーテック",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUXD",
+      "holding_ratio": 3.86,
+      "purpose": "その他",
+      "purpose_detail": "関係会社株式として保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUCH",
+      "date": "2026-08-07",
+      "filer_name": "ゴールドマン・サックス・インターナショナル",
+      "issuer_name": "E00760",
+      "sec_code": "8306",
+      "target_company": "ラサ工業株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUCH",
+      "holding_ratio": 5.15,
+      "purpose": "その他",
+      "purpose_detail": "有価証券関連業務の一部としてのトレーディング・有価証券の借入等",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUA4",
+      "date": "2026-08-07",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E03470",
+      "sec_code": "3399",
+      "target_company": "株式会社丸千代山岡家",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUA4",
+      "holding_ratio": 7.59,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUPX",
+      "date": "2026-08-07",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E40060",
+      "sec_code": "278A",
+      "target_company": "Ｔｅｒｒａ&#0160;&#0160;Ｄｒｏｎｅ（株）",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUPX",
+      "holding_ratio": 4.73,
+      "purpose": "その他",
+      "purpose_detail": "・ディーリング(短期売買)目的で保有するもの・レンディングその他取引に基づく一時的保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUPW",
+      "date": "2026-08-07",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E00222",
+      "sec_code": "1994",
+      "target_company": "高橋カーテンウォール工業（株）",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUPW",
+      "holding_ratio": 7.43,
+      "purpose": "その他",
+      "purpose_detail": "・ディーリング(短期売買)目的で保有するもの・レンディングその他取引に基づく一時的保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUPZ",
+      "date": "2026-08-07",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E02329",
+      "sec_code": "4088",
+      "target_company": "長野計器（株）",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUPZ",
+      "holding_ratio": 1.14,
+      "purpose": "政策投資",
+      "purpose_detail": "・政策投資目的にて保有するもの・ディーリング(短期売買)目的で保有するもの・レンディングその他取引に基づく一時的保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUPY",
+      "date": "2026-08-07",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E01902",
+      "sec_code": "8306",
+      "target_company": "ＫＯＡ（株）",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUPY",
+      "holding_ratio": 0.03,
+      "purpose": "その他",
+      "purpose_detail": "・ディーリング(短期売買)目的で保有するもの・レンディングその他取引に基づく一時的保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUQ0",
+      "date": "2026-08-07",
+      "filer_name": "みずほ証券株式会社",
+      "issuer_name": "E03040",
+      "sec_code": "8306",
+      "target_company": "（株）丸井グループ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUQ0",
+      "holding_ratio": 0.4,
+      "purpose": "その他",
+      "purpose_detail": "・ディーリング(短期売買)目的で保有するもの・レンディングその他取引に基づく一時的保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUK2",
+      "date": "2026-08-07",
+      "filer_name": "野村アセットマネジメント株式会社",
+      "issuer_name": "E02350",
+      "sec_code": "6266",
+      "target_company": "タツモ株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUK2",
+      "holding_ratio": 63.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係わる商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "nomura_am",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YUQ8",
+      "date": "2026-08-07",
+      "filer_name": "アセットマネジメントＯｎｅ株式会社",
+      "issuer_name": "E00056",
+      "sec_code": "1861",
+      "target_company": "（株）熊谷組",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUQ8",
+      "holding_ratio": 5.54,
+      "purpose": "その他",
+      "purpose_detail": "・投資信託または投資一任契約に基づき投資権限を有するもの",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUQ9",
+      "date": "2026-08-07",
+      "filer_name": "アセットマネジメントＯｎｅ株式会社",
+      "issuer_name": "E37466",
+      "sec_code": "5027",
+      "target_company": "ＡｎｙＭｉｎｄ&#0160;&#0160;Ｇｒｏｕｐ（株）",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUQ9",
+      "holding_ratio": 7.56,
+      "purpose": "その他",
+      "purpose_detail": "・投資信託または投資一任契約に基づき投資権限を有するもの",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUK5",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E27159",
+      "sec_code": "3282",
+      "target_company": "コンフォリア・レジデンシャル投資法人　投資証券",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUK5",
+      "holding_ratio": 1.36,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUK7",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E25148",
+      "sec_code": "3480",
+      "target_company": "株式会社ジェイ・エス・ビー",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUK7",
+      "holding_ratio": 2.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YTWG",
+      "date": "2026-08-07",
+      "filer_name": "フィデリティ投信株式会社",
+      "issuer_name": "E34083",
+      "sec_code": "3492",
+      "target_company": "ＭＩＲＡＲＴＨ不動産投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTWG",
+      "holding_ratio": 6.13,
+      "purpose": "その他",
+      "purpose_detail": "顧客の財産を投資信託約款および投資一任契約等に基づき運用するために保有。しかしながら、当該保有証券の名義人は弊社ではなく、顧客の選択した銀行等（カストディアンバンク又は信託銀行等）になります。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "fidelity",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YUK9",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01481",
+      "sec_code": "8306",
+      "target_company": "オークマ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUK9",
+      "holding_ratio": 0.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUKD",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01536",
+      "sec_code": "6331",
+      "target_company": "三菱化工機株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUKD",
+      "holding_ratio": 2.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUKG",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01570",
+      "sec_code": "8306",
+      "target_company": "ダイキン工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUKG",
+      "holding_ratio": 29.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YUKH",
+      "date": "2026-08-07",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01600",
+      "sec_code": "6471",
+      "target_company": "日本精工株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUKH",
+      "holding_ratio": 24.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YTVD",
+      "date": "2026-08-07",
+      "filer_name": "Ｆｉｄｅｌｉｔｙ　Ｍａｎａｇｅｍｅｎｔ　＆　Ｒｅｓｅａｒｃｈ　Ｃｏｍｐａｎｙ　ＬＬＣ",
+      "issuer_name": "E02706",
+      "sec_code": "9842",
+      "target_company": "アークランズ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTVD",
+      "holding_ratio": 5.74,
+      "purpose": "その他",
+      "purpose_detail": "当該有価証券は、グループの資産運用および管理機能に関連して保有されているものです。",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YU5R",
       "date": "2026-08-06",
@@ -457877,6 +458350,24 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "3481",
+          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+          "target_company": "三菱地所物流リート投資法人",
+          "date": "2026-08-07",
+          "holding_ratio": 6.66,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3455",
+          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+          "target_company": "ヘルスケア＆メディカル投資法人",
+          "date": "2026-08-07",
+          "holding_ratio": 8.58,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "4061",
           "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
           "target_company": "デンカ株式会社",
@@ -458179,15 +458670,6 @@
           "target_company": "ＮＩＳＳＨＡ株式会社",
           "date": "2026-06-30",
           "holding_ratio": 2.0,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3455",
-          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
-          "target_company": "ヘルスケア＆メディカル投資法人",
-          "date": "2026-06-25",
-          "holding_ratio": 9.6,
           "purpose": "その他",
           "report_type": "変更報告"
         },
@@ -460109,15 +460591,6 @@
           "report_type": "変更報告"
         },
         {
-          "sec_code": "3481",
-          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
-          "target_company": "三菱地所物流リート投資法人",
-          "date": "2025-09-05",
-          "holding_ratio": 7.56,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
           "sec_code": "3487",
           "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
           "target_company": "ＣＲＥロジスティクスファンド投資法人",
@@ -460586,8 +461059,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 850,
-      "latest_date": "2026-08-06"
+      "report_count": 852,
+      "latest_date": "2026-08-07"
     },
     "nomura_am": {
       "id": "nomura_am",
@@ -460598,6 +461071,15 @@
       "description": "日本最大手の資産運用会社。インデックス・アクティブ運用で幅広い上場株を大量保有。",
       "focus_sectors": [],
       "holdings": [
+        {
+          "sec_code": "6266",
+          "filer_name": "野村アセットマネジメント株式会社",
+          "target_company": "タツモ株式会社",
+          "date": "2026-08-07",
+          "holding_ratio": 63.0,
+          "purpose": "その他",
+          "report_type": "新規報告"
+        },
         {
           "sec_code": "4063",
           "filer_name": "野村アセットマネジメント株式会社",
@@ -462417,8 +462899,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 400,
-      "latest_date": "2026-08-06"
+      "report_count": 401,
+      "latest_date": "2026-08-07"
     },
     "blackrock": {
       "id": "blackrock",
@@ -465687,6 +466169,329 @@
       "report_count": 145,
       "latest_date": "2026-08-06"
     },
+    "fidelity": {
+      "id": "fidelity",
+      "name": "フィデリティ投信",
+      "type": "notable_holder",
+      "representative": "—",
+      "headquarters": "英国・ロンドン",
+      "description": "世界有数の資産運用会社。日本株のアクティブ運用で多数の銘柄を大量保有。",
+      "focus_sectors": [
+        "製造業",
+        "IT・通信",
+        "金融"
+      ],
+      "holdings": [
+        {
+          "sec_code": "3492",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ＭＩＲＡＲＴＨ不動産投資法人",
+          "date": "2026-08-07",
+          "holding_ratio": 6.13,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7173",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社東京きらぼしフィナンシャルグループ",
+          "date": "2026-07-07",
+          "holding_ratio": 6.36,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5243",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社ココナラ",
+          "date": "2026-06-22",
+          "holding_ratio": 9.18,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "1959",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社クラフティア",
+          "date": "2026-06-22",
+          "holding_ratio": 6.21,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6094",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社フリークアウト・ホールディングス",
+          "date": "2026-06-12",
+          "holding_ratio": 1.55,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6268",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ナブテスコ株式会社",
+          "date": "2026-06-12",
+          "holding_ratio": 34.0,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ウシオ電機株式会社",
+          "date": "2026-06-12",
+          "holding_ratio": 4.5,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4449",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社ギフティ",
+          "date": "2026-06-10",
+          "holding_ratio": 1.14,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3788",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ＧＭＯグローバルサイン・ホールディングス株式会社",
+          "date": "2026-06-09",
+          "holding_ratio": 5.26,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "4046",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社大阪ソーダ",
+          "date": "2026-06-08",
+          "holding_ratio": 4.08,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "3661",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社エムアップホールディングス",
+          "date": "2026-06-05",
+          "holding_ratio": 2.04,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6728",
+          "filer_name": "ＦＩＬ　Ｉｎｖｅｓｔｍｅｎｔｓ　Ｉｎｔｅｒｎａｔｉｏｎａｌ",
+          "target_company": "株式会社　アルバック",
+          "date": "2026-06-05",
+          "holding_ratio": 8.01,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4379",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社Ｐｈｏｔｏｓｙｎｔｈ",
+          "date": "2026-06-05",
+          "holding_ratio": 8.53,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "5110",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "住友ゴム工業株式会社",
+          "date": "2026-06-04",
+          "holding_ratio": 5.57,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "7186",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社横浜フィナンシャルグループ",
+          "date": "2026-06-04",
+          "holding_ratio": 5.04,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "1951",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "エクシオグループ株式会社",
+          "date": "2026-03-23",
+          "holding_ratio": 6.35,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4384",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ラクスル株式会社",
+          "date": "2025-10-07",
+          "holding_ratio": 3.53,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4966",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "上村工業株式会社",
+          "date": "2025-09-22",
+          "holding_ratio": 3.49,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9338",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社ＩＮＦＯＲＩＣＨ",
+          "date": "2025-09-22",
+          "holding_ratio": 4.03,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7033",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社マネジメントソリューションズ",
+          "date": "2025-09-22",
+          "holding_ratio": 4.17,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3989",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "シェアリングテクノロジー株式会社",
+          "date": "2025-09-22",
+          "holding_ratio": 4.35,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6036",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "KeePer技研株式会社",
+          "date": "2025-09-05",
+          "holding_ratio": 4.17,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6626",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ＳＥＭＩＴＥＣ株式会社",
+          "date": "2025-09-05",
+          "holding_ratio": 4.83,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7906",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ヨネックス株式会社",
+          "date": "2025-08-22",
+          "holding_ratio": 4.05,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8473",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社フジ・メディア・ホールディングス",
+          "date": "2025-08-07",
+          "holding_ratio": 4.72,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4593",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社ヘリオス",
+          "date": "2025-08-07",
+          "holding_ratio": 3.25,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7745",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
+          "date": "2025-07-23",
+          "holding_ratio": 3.51,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7734",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "理研計器株式会社",
+          "date": "2025-06-20",
+          "holding_ratio": 4.57,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6957",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社芝浦電子",
+          "date": "2025-02-21",
+          "holding_ratio": 4.06,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6961",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社エンプラス",
+          "date": "2025-01-10",
+          "holding_ratio": 4.91,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3104",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "富士紡ホールディングス株式会社",
+          "date": "2024-12-06",
+          "holding_ratio": 4.07,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9229",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社サンウェルズ",
+          "date": "2024-12-06",
+          "holding_ratio": 2.75,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6191",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "株式会社エアトリ",
+          "date": "2024-11-22",
+          "holding_ratio": 3.3,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6481",
+          "filer_name": "フィデリティ投信株式会社",
+          "target_company": "ＴＨＫ株式会社",
+          "date": "2024-11-22",
+          "holding_ratio": 3.3,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 135,
+      "latest_date": "2026-08-07"
+    },
     "silchester": {
       "id": "silchester",
       "name": "シルチェスター・インターナショナル・インベスターズ",
@@ -466134,329 +466939,6 @@
       ],
       "report_count": 134,
       "latest_date": "2026-08-03"
-    },
-    "fidelity": {
-      "id": "fidelity",
-      "name": "フィデリティ投信",
-      "type": "notable_holder",
-      "representative": "—",
-      "headquarters": "英国・ロンドン",
-      "description": "世界有数の資産運用会社。日本株のアクティブ運用で多数の銘柄を大量保有。",
-      "focus_sectors": [
-        "製造業",
-        "IT・通信",
-        "金融"
-      ],
-      "holdings": [
-        {
-          "sec_code": "7173",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社東京きらぼしフィナンシャルグループ",
-          "date": "2026-07-07",
-          "holding_ratio": 6.36,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5243",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社ココナラ",
-          "date": "2026-06-22",
-          "holding_ratio": 9.18,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "1959",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社クラフティア",
-          "date": "2026-06-22",
-          "holding_ratio": 6.21,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6094",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社フリークアウト・ホールディングス",
-          "date": "2026-06-12",
-          "holding_ratio": 1.55,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6268",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ナブテスコ株式会社",
-          "date": "2026-06-12",
-          "holding_ratio": 34.0,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ウシオ電機株式会社",
-          "date": "2026-06-12",
-          "holding_ratio": 4.5,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4449",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社ギフティ",
-          "date": "2026-06-10",
-          "holding_ratio": 1.14,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3788",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ＧＭＯグローバルサイン・ホールディングス株式会社",
-          "date": "2026-06-09",
-          "holding_ratio": 5.26,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "4046",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社大阪ソーダ",
-          "date": "2026-06-08",
-          "holding_ratio": 4.08,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "3661",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社エムアップホールディングス",
-          "date": "2026-06-05",
-          "holding_ratio": 2.04,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3492",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ＭＩＲＡＲＴＨ不動産投資法人",
-          "date": "2026-06-05",
-          "holding_ratio": 5.01,
-          "purpose": "その他",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "6728",
-          "filer_name": "ＦＩＬ　Ｉｎｖｅｓｔｍｅｎｔｓ　Ｉｎｔｅｒｎａｔｉｏｎａｌ",
-          "target_company": "株式会社　アルバック",
-          "date": "2026-06-05",
-          "holding_ratio": 8.01,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4379",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社Ｐｈｏｔｏｓｙｎｔｈ",
-          "date": "2026-06-05",
-          "holding_ratio": 8.53,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "5110",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "住友ゴム工業株式会社",
-          "date": "2026-06-04",
-          "holding_ratio": 5.57,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "7186",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社横浜フィナンシャルグループ",
-          "date": "2026-06-04",
-          "holding_ratio": 5.04,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "1951",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "エクシオグループ株式会社",
-          "date": "2026-03-23",
-          "holding_ratio": 6.35,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4384",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ラクスル株式会社",
-          "date": "2025-10-07",
-          "holding_ratio": 3.53,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4966",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "上村工業株式会社",
-          "date": "2025-09-22",
-          "holding_ratio": 3.49,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9338",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社ＩＮＦＯＲＩＣＨ",
-          "date": "2025-09-22",
-          "holding_ratio": 4.03,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7033",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社マネジメントソリューションズ",
-          "date": "2025-09-22",
-          "holding_ratio": 4.17,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3989",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "シェアリングテクノロジー株式会社",
-          "date": "2025-09-22",
-          "holding_ratio": 4.35,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6036",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "KeePer技研株式会社",
-          "date": "2025-09-05",
-          "holding_ratio": 4.17,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6626",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ＳＥＭＩＴＥＣ株式会社",
-          "date": "2025-09-05",
-          "holding_ratio": 4.83,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7906",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ヨネックス株式会社",
-          "date": "2025-08-22",
-          "holding_ratio": 4.05,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8473",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社フジ・メディア・ホールディングス",
-          "date": "2025-08-07",
-          "holding_ratio": 4.72,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4593",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社ヘリオス",
-          "date": "2025-08-07",
-          "holding_ratio": 3.25,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7745",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
-          "date": "2025-07-23",
-          "holding_ratio": 3.51,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7734",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "理研計器株式会社",
-          "date": "2025-06-20",
-          "holding_ratio": 4.57,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6957",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社芝浦電子",
-          "date": "2025-02-21",
-          "holding_ratio": 4.06,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6961",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社エンプラス",
-          "date": "2025-01-10",
-          "holding_ratio": 4.91,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3104",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "富士紡ホールディングス株式会社",
-          "date": "2024-12-06",
-          "holding_ratio": 4.07,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9229",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社サンウェルズ",
-          "date": "2024-12-06",
-          "holding_ratio": 2.75,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6191",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "株式会社エアトリ",
-          "date": "2024-11-22",
-          "holding_ratio": 3.3,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6481",
-          "filer_name": "フィデリティ投信株式会社",
-          "target_company": "ＴＨＫ株式会社",
-          "date": "2024-11-22",
-          "holding_ratio": 3.3,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 134,
-      "latest_date": "2026-07-07"
     },
     "effissimo": {
       "id": "effissimo",
