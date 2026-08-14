@@ -1,8 +1,466 @@
 {
-  "last_updated": "2026-08-14T08:31:17+09:00",
-  "total_reports": 30412,
-  "activist_reports": 1575,
+  "last_updated": "2026-08-14T17:15:13+09:00",
+  "total_reports": 30442,
+  "activist_reports": 1578,
   "reports": [
+    {
+      "doc_id": "S100YSKQ",
+      "date": "2026-08-14",
+      "filer_name": "日本電設工業株式会社",
+      "issuer_name": "E01816",
+      "sec_code": "1950",
+      "target_company": "大同信号株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSKQ",
+      "holding_ratio": 13.29,
+      "purpose": "その他",
+      "purpose_detail": "発行者と提出者は取引関係において密接な関係にあり、今後の関係強化を図るため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YPD2",
+      "date": "2026-08-14",
+      "filer_name": "日本電設工業株式会社",
+      "issuer_name": "E01816",
+      "sec_code": "1950",
+      "target_company": "大同信号株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPD2",
+      "holding_ratio": 10.52,
+      "purpose": "その他",
+      "purpose_detail": "発行者と提出者は取引関係において密接な関係にあり、今後の関係強化を図るため",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWNT",
+      "date": "2026-08-14",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01824",
+      "sec_code": "6976",
+      "target_company": "太陽誘電株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWNT",
+      "holding_ratio": 26.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWSG",
+      "date": "2026-08-14",
+      "filer_name": "Ａｐｒｉｃｕｓ　Ｐａｒｔｎｅｒｓ合同会社",
+      "issuer_name": "E01308",
+      "sec_code": "5707",
+      "target_company": "東邦亜鉛株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWSG",
+      "holding_ratio": 14.59,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVS9",
+      "date": "2026-08-14",
+      "filer_name": "ソニーセミコンダクタソリューションズ株式会社",
+      "issuer_name": "E40400",
+      "sec_code": "8439",
+      "target_company": "ミーク株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVS9",
+      "holding_ratio": 6.12,
+      "purpose": "政策投資",
+      "purpose_detail": "発行会社との連携を目的とする政策投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWBK",
+      "date": "2026-08-14",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E33868",
+      "sec_code": "6573",
+      "target_company": "CRAVIA株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBK",
+      "holding_ratio": 23.65,
+      "purpose": "純投資",
+      "purpose_detail": "純投資。特定の状況は想定されていないが、第１提出者は発行者に対しその時々の状況に応じて適切な助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVQK",
+      "date": "2026-08-14",
+      "filer_name": "須田　忠雄",
+      "issuer_name": "E36405",
+      "sec_code": "9327",
+      "target_company": "株式会社イー･ロジット",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVQK",
+      "holding_ratio": 32.35,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWJH",
+      "date": "2026-08-14",
+      "filer_name": "Ｅｖｏ　Ｆｕｎｄ",
+      "issuer_name": "E03313",
+      "sec_code": "8185",
+      "target_company": "ジーイエット株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWJH",
+      "holding_ratio": 20.22,
+      "purpose": "純投資",
+      "purpose_detail": "純投資。特定の状況は想定されていないが、第１提出者は発行者に対しその時々の状況に応じて適切な助言を行う場合がある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWYT",
+      "date": "2026-08-14",
+      "filer_name": "Ｓａｎｄ　Ｇｒｏｖｅ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ　ＬＬＰ",
+      "issuer_name": "E02664",
+      "sec_code": "8154",
+      "target_company": "新光商事株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWYT",
+      "holding_ratio": 2.5,
+      "purpose": "純投資",
+      "purpose_detail": "投資運用契約に基づく、純投資の目的での保有。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YX0B",
+      "date": "2026-08-14",
+      "filer_name": "山本裕治",
+      "issuer_name": "E02798",
+      "sec_code": "8089",
+      "target_company": "株式会社山大",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX0B",
+      "holding_ratio": 20.41,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWXH",
+      "date": "2026-08-14",
+      "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+      "issuer_name": "E01613",
+      "sec_code": "6395",
+      "target_company": "株式会社タダノ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWXH",
+      "holding_ratio": 5.78,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者は、発行者に対し、企業価値及び株主価値の向上を目的として、資本政策の変更、資本効率の向上、事業構造の見直し、及びコーポレート・ガバナンスの強化等に関する提案（重要提案行為等に該当し得るものを含む",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "silchester",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YX2G",
+      "date": "2026-08-14",
+      "filer_name": "三井化学株式会社",
+      "issuer_name": "E00829",
+      "sec_code": "4183",
+      "target_company": "フクビ化学工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX2G",
+      "holding_ratio": 6.12,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資同社との間で、事業戦略上密接な関係を維持するため、従来から保有。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YW1Y",
+      "date": "2026-08-14",
+      "filer_name": "Ｒａｎｇｅｌｅｙ　Ｃａｐｉｔａｌ，　ＬＬＣ",
+      "issuer_name": "E01427",
+      "sec_code": "5951",
+      "target_company": "ダイニチ工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YW1Y",
+      "holding_ratio": 5.79,
+      "purpose": "株主提案",
+      "purpose_detail": "投資及び株式価値向上のために状況に応じて経営陣への助言、重要提案行為等を行うこと。提出者は、当該目的を達成するために、重要提案行為等として、24ヶ月間にわたり合計70億円の自己株式取得の実施、2027",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWT5",
+      "date": "2026-08-14",
+      "filer_name": "ＡＸＩＵＭ　ＣＡＰＩＴＡＬ　ＰＴＥ．ＬＴＤ．",
+      "issuer_name": "E05233",
+      "sec_code": "4320",
+      "target_company": "株式会社ＣＥホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWT5",
+      "holding_ratio": 12.92,
+      "purpose": "純投資",
+      "purpose_detail": "提出者は、建設的対話をもとに株主価値・企業価値向上を目指す純投資として長期的に保有することを基本方針とするが、発行者の経営方針、財務状況、事業環境、業績見通し、コーポレートガバナンス・コードの遵守状況",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YX2L",
+      "date": "2026-08-14",
+      "filer_name": "清水　祐孝",
+      "issuer_name": "E31871",
+      "sec_code": "8630",
+      "target_company": "株式会社鎌倉新書",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX2L",
+      "holding_ratio": 1.94,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役であり、安定株主として株式を保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YU08",
+      "date": "2026-08-14",
+      "filer_name": "岡田　陽介",
+      "issuer_name": "E38109",
+      "sec_code": "5574",
+      "target_company": "株式会社ABEJA",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU08",
+      "holding_ratio": 14.47,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の代表取締役CEOとして経営に参加するため、また経営の安定化を図るため所有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YX0H",
+      "date": "2026-08-14",
+      "filer_name": "清水　祐孝",
+      "issuer_name": "E31871",
+      "sec_code": "8630",
+      "target_company": "株式会社鎌倉新書",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX0H",
+      "holding_ratio": 1.94,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役であり、安定株主として株式を保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YX2O",
+      "date": "2026-08-14",
+      "filer_name": "グロース・キャピタル株式会社",
+      "issuer_name": "E37069",
+      "sec_code": "8306",
+      "target_company": "株式会社ティムス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX2O",
+      "holding_ratio": 4.36,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVYM",
+      "date": "2026-08-14",
+      "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+      "issuer_name": "E04896",
+      "sec_code": "9627",
+      "target_company": "株式会社アインホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVYM",
+      "holding_ratio": 20.93,
+      "purpose": "純投資",
+      "purpose_detail": "純投資提出者は報告義務の発生日時点において、ポートフォリオ投資の一環として、市場内外の取引を通じて発行者の普通株式の株券等保有割合を100分の5を超える割合増加させる行為（以下「5%超取得行為」という",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "oasis",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YWAX",
+      "date": "2026-08-14",
+      "filer_name": "グロースパートナーズ株式会社",
+      "issuer_name": "E33825",
+      "sec_code": "4381",
+      "target_company": "ビープラッツ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWAX",
+      "holding_ratio": 25.78,
+      "purpose": "その他",
+      "purpose_detail": "発行者との業務資本提携を目的とした保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWBF",
+      "date": "2026-08-14",
+      "filer_name": "グロースパートナーズ株式会社",
+      "issuer_name": "E33825",
+      "sec_code": "4381",
+      "target_company": "ビープラッツ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBF",
+      "holding_ratio": 25.4,
+      "purpose": "その他",
+      "purpose_detail": "発行者との業務資本提携を目的とした保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVSS",
+      "date": "2026-08-14",
+      "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+      "issuer_name": "E01897",
+      "sec_code": "6706",
+      "target_company": "電気興業",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVSS",
+      "holding_ratio": 14.14,
+      "purpose": "株主提案",
+      "purpose_detail": "株式会社Kaihouの投資助言に基づき投資信託の信託財産の運用のため保有。スチュワードシップ・コードに則り建設的な対話により、IR・資本効率・ガバナンスの高度化と企業価値向上を促す。但し、受益者の利益",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "fundnote",
+      "activist_type": "individual_investor"
+    },
+    {
+      "doc_id": "S100YWBI",
+      "date": "2026-08-14",
+      "filer_name": "ＳＨ　Ｉｎｖｅｓｔｍｅｎｔ，　Ｉｎｃ",
+      "issuer_name": "E00780",
+      "sec_code": "4078",
+      "target_company": "堺化学工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBI",
+      "holding_ratio": 13.66,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWC0",
+      "date": "2026-08-14",
+      "filer_name": "ＳＨ　Ｉｎｖｅｓｔｍｅｎｔ，　Ｉｎｃ",
+      "issuer_name": "E00780",
+      "sec_code": "4078",
+      "target_company": "堺化学工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWC0",
+      "holding_ratio": 9.84,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWBX",
+      "date": "2026-08-14",
+      "filer_name": "ＳＨ　Ｉｎｖｅｓｔｍｅｎｔ，　Ｉｎｃ",
+      "issuer_name": "E00780",
+      "sec_code": "4078",
+      "target_company": "堺化学工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBX",
+      "holding_ratio": 11.09,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWBQ",
+      "date": "2026-08-14",
+      "filer_name": "ＳＨ　Ｉｎｖｅｓｔｍｅｎｔ，　Ｉｎｃ",
+      "issuer_name": "E00780",
+      "sec_code": "4078",
+      "target_company": "堺化学工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBQ",
+      "holding_ratio": 12.46,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWUP",
+      "date": "2026-08-14",
+      "filer_name": "アースエレメンツ・キャピタル株式会社",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWUP",
+      "holding_ratio": 8.62,
+      "purpose": "その他",
+      "purpose_detail": "First&#160;Plus&#160;Financial&#160;Holdings&#160;Pte.&#160;Ltd.（以下「First&#160;Plus社」といいます。）の保有する発行者",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YWV2",
+      "date": "2026-08-14",
+      "filer_name": "アースエレメンツ・キャピタル株式会社",
+      "issuer_name": "E31131",
+      "sec_code": "9433",
+      "target_company": "データセクション株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWV2",
+      "holding_ratio": 13.85,
+      "purpose": "その他",
+      "purpose_detail": "First&#160;Plus&#160;Financial&#160;Holdings&#160;Pte.&#160;Ltd.（以下「First&#160;Plus社」といいます。）の保有する発行者",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVWV",
+      "date": "2026-08-14",
+      "filer_name": "加藤　公一レオ",
+      "issuer_name": "E36421",
+      "sec_code": "9235",
+      "target_company": "売れるネット広告社グループ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVWV",
+      "holding_ratio": 23.87,
+      "purpose": "経営関与",
+      "purpose_detail": "発行会社の社員であり、発行会社の経営の安定化に資することを目的として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YVH7",
+      "date": "2026-08-14",
+      "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+      "issuer_name": "E02672",
+      "sec_code": "8151",
+      "target_company": "東陽テクニカ株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVH7",
+      "holding_ratio": 8.77,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約または投資信託委託契約に基づく純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "simplex",
+      "activist_type": "notable_holder"
+    },
     {
       "doc_id": "S100YVMF",
       "date": "2026-08-13",
@@ -469229,6 +469687,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "9627",
+          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
+          "target_company": "株式会社アインホールディングス",
+          "date": "2026-08-14",
+          "holding_ratio": 20.93,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "8316",
           "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
           "target_company": "株式会社トクヤマ",
@@ -469271,15 +469738,6 @@
           "date": "2026-08-06",
           "holding_ratio": 20.31,
           "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9627",
-          "filer_name": "Ｏａｓｉｓ　Ｍａｎａｇｅｍｅｎｔ　Ｃｏｍｐａｎｙ　Ｌｔｄ．",
-          "target_company": "株式会社アインホールディングス",
-          "date": "2026-08-05",
-          "holding_ratio": 19.8,
-          "purpose": "純投資",
           "report_type": "変更報告"
         },
         {
@@ -469661,8 +470119,8 @@
           "report_type": "新規報告"
         }
       ],
-      "report_count": 149,
-      "latest_date": "2026-08-12"
+      "report_count": 150,
+      "latest_date": "2026-08-14"
     },
     "silchester": {
       "id": "silchester",
@@ -469677,6 +470135,15 @@
         "消費財"
       ],
       "holdings": [
+        {
+          "sec_code": "6395",
+          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+          "target_company": "株式会社タダノ",
+          "date": "2026-08-14",
+          "holding_ratio": 5.78,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "6302",
           "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
@@ -469773,15 +470240,6 @@
           "target_company": "関西ペイント株式会社",
           "date": "2026-05-19",
           "holding_ratio": 7.21,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6395",
-          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
-          "target_company": "株式会社タダノ",
-          "date": "2026-04-09",
-          "holding_ratio": 6.82,
           "purpose": "政策投資",
           "report_type": "変更報告"
         },
@@ -469948,8 +470406,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 135,
-      "latest_date": "2026-08-10"
+      "report_count": 136,
+      "latest_date": "2026-08-14"
     },
     "strategic_capital": {
       "id": "strategic_capital",
@@ -470900,6 +471358,159 @@
         "ueshima_kankuro"
       ]
     },
+    "imura_group": {
+      "id": "imura_group",
+      "name": "井村俊哉 / Kaihouグループ",
+      "type": "individual_investor",
+      "representative": "井村 俊哉",
+      "headquarters": "",
+      "description": "井村俊哉氏が個人名義・株式会社Kaihou・fundnote株式会社の三系統で大量保有報告を提出。公募投信fundnote日本株Kaihouファンドも運用。",
+      "focus_sectors": [],
+      "holdings": [
+        {
+          "sec_code": "6706",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "電気興業",
+          "date": "2026-08-14",
+          "holding_ratio": 14.14,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6470",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "大豊工業",
+          "date": "2026-08-13",
+          "holding_ratio": 12.83,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6798",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "SMK",
+          "date": "2026-08-06",
+          "holding_ratio": 10.88,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "日本シイエムケイ",
+          "date": "2026-08-05",
+          "holding_ratio": 14.18,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6928",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "エノモト",
+          "date": "2026-08-05",
+          "holding_ratio": 8.53,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8065",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "佐藤商事",
+          "date": "2026-07-07",
+          "holding_ratio": 6.29,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1967",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "ヤマト",
+          "date": "2026-07-07",
+          "holding_ratio": 8.77,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9726",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "ＫＮＴ－ＣＴホールディングス",
+          "date": "2026-06-05",
+          "holding_ratio": 7.44,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6072",
+          "filer_name": "株式会社Ｋａｉｈｏｕ",
+          "target_company": "地盤ネットホールディングス株式会社",
+          "date": "2026-03-06",
+          "holding_ratio": 9.47,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8361",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "大垣共立銀行",
+          "date": "2025-12-22",
+          "holding_ratio": 6.65,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "1814",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "大末建設株式会社",
+          "date": "2025-11-21",
+          "holding_ratio": 3.44,
+          "purpose": "",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "241A",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "（株）ＲＯＸＸ",
+          "date": "2025-11-10",
+          "holding_ratio": 7.56,
+          "purpose": "その他",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "4771",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "株式会社エフアンドエム",
+          "date": "2025-11-10",
+          "holding_ratio": 5.8,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6203",
+          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
+          "target_company": "豊和工業株式会社",
+          "date": "2025-09-24",
+          "holding_ratio": 5.66,
+          "purpose": "その他",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "5243",
+          "filer_name": "ｎｏｔｅ株式会社",
+          "target_company": "note株式会社",
+          "date": "2025-07-01",
+          "holding_ratio": 9.13,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 86,
+      "latest_date": "2026-08-14",
+      "member_ids": [
+        "imura_toshiya",
+        "kaihou",
+        "fundnote"
+      ]
+    },
     "daiwa_am": {
       "id": "daiwa_am",
       "name": "大和アセットマネジメント",
@@ -471327,159 +471938,6 @@
       "report_count": 86,
       "latest_date": "2026-08-06"
     },
-    "imura_group": {
-      "id": "imura_group",
-      "name": "井村俊哉 / Kaihouグループ",
-      "type": "individual_investor",
-      "representative": "井村 俊哉",
-      "headquarters": "",
-      "description": "井村俊哉氏が個人名義・株式会社Kaihou・fundnote株式会社の三系統で大量保有報告を提出。公募投信fundnote日本株Kaihouファンドも運用。",
-      "focus_sectors": [],
-      "holdings": [
-        {
-          "sec_code": "6470",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "大豊工業",
-          "date": "2026-08-13",
-          "holding_ratio": 12.83,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6798",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "SMK",
-          "date": "2026-08-06",
-          "holding_ratio": 10.88,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "日本シイエムケイ",
-          "date": "2026-08-05",
-          "holding_ratio": 14.18,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6928",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "エノモト",
-          "date": "2026-08-05",
-          "holding_ratio": 8.53,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6706",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "電気興業",
-          "date": "2026-07-21",
-          "holding_ratio": 13.11,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8065",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "佐藤商事",
-          "date": "2026-07-07",
-          "holding_ratio": 6.29,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1967",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "ヤマト",
-          "date": "2026-07-07",
-          "holding_ratio": 8.77,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9726",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "ＫＮＴ－ＣＴホールディングス",
-          "date": "2026-06-05",
-          "holding_ratio": 7.44,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6072",
-          "filer_name": "株式会社Ｋａｉｈｏｕ",
-          "target_company": "地盤ネットホールディングス株式会社",
-          "date": "2026-03-06",
-          "holding_ratio": 9.47,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8361",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "大垣共立銀行",
-          "date": "2025-12-22",
-          "holding_ratio": 6.65,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "1814",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "大末建設株式会社",
-          "date": "2025-11-21",
-          "holding_ratio": 3.44,
-          "purpose": "",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "241A",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "（株）ＲＯＸＸ",
-          "date": "2025-11-10",
-          "holding_ratio": 7.56,
-          "purpose": "その他",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "4771",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "株式会社エフアンドエム",
-          "date": "2025-11-10",
-          "holding_ratio": 5.8,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6203",
-          "filer_name": "ｆｕｎｄｎｏｔｅ株式会社",
-          "target_company": "豊和工業株式会社",
-          "date": "2025-09-24",
-          "holding_ratio": 5.66,
-          "purpose": "その他",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "5243",
-          "filer_name": "ｎｏｔｅ株式会社",
-          "target_company": "note株式会社",
-          "date": "2025-07-01",
-          "holding_ratio": 9.13,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 85,
-      "latest_date": "2026-08-13",
-      "member_ids": [
-        "imura_toshiya",
-        "kaihou",
-        "fundnote"
-      ]
-    },
     "3d_investment": {
       "id": "3d_investment",
       "name": "3Dインベストメント・パートナーズ",
@@ -471616,6 +472074,15 @@
         "IT・通信"
       ],
       "holdings": [
+        {
+          "sec_code": "8151",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "東陽テクニカ株式会社",
+          "date": "2026-08-14",
+          "holding_ratio": 8.77,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "5941",
           "filer_name": "シンプレクス・アセット・マネジメント株式会社",
@@ -471824,8 +472291,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 49,
-      "latest_date": "2026-08-07"
+      "report_count": 50,
+      "latest_date": "2026-08-14"
     },
     "nippon_life": {
       "id": "nippon_life",
