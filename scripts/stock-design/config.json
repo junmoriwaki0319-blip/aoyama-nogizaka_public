@@ -1,0 +1,87 @@
+{
+  "_comment": "依頼者フレームの固定パラメータと、銘柄ごとの人手入力。株価・出来高・信用残・決算数値はスクリプトが一次ソースから取得する。",
+  "framework": {
+    "max_loss_per_name_jpy": 450000,
+    "atr_stop_multiple_min": 1.5,
+    "atr_stop_multiple_max": 2.0,
+    "liquidity_cap_pct_of_adv20": 5.0,
+    "decision_deadline_days_before_earnings": 14,
+    "lot_size": 100,
+    "conservatism_ratio_target": 1.4,
+    "conservatism_ratio_exclude_below": 1.15,
+    "support_cluster_tolerance_pct": 1.2,
+    "support_cluster_tolerance_atr": 0.5,
+    "swing_window": 3,
+    "lookback_bars_for_support": 120,
+    "stop_buffer_atr": 0.35
+  },
+  "names": [
+    {
+      "code": "2962",
+      "name": "テクニスコ",
+      "close_20260820": 1605,
+      "fiscal_year_end": "06",
+      "existing_condition": "1,425ブレイクのみ",
+      "existing_condition_status": "無効（現値が1,425を大きく上抜け済み、条件が発火しない）",
+      "redesign_mode": "from_scratch",
+      "notes": "6月期決算。2026/6期は営業赤字→2027/6期は大幅増益ガイダンス。DC向け。信用は貸借銘柄でない可能性あり（売残ゼロ）→要確認。",
+      "next_earnings_hint": "2027/6期 1Q（9月〜11月中旬想定）",
+      "known_support_bands": []
+    },
+    {
+      "code": "8159",
+      "name": "立花エレテック",
+      "close_20260820": 3975,
+      "fiscal_year_end": "03",
+      "existing_condition": "4,050〜4,120 × 1,000株",
+      "existing_condition_status": "無効（8/19に-7.1%急落し下限4,050を割れた。買い指値が現値より上に取り残されている）",
+      "redesign_mode": "pullback",
+      "notes": "8/19 -7.1%急落。",
+      "next_earnings_hint": "2026-11-10",
+      "known_support_bands": [
+        {"low": 3780, "high": 3815, "basis": "8/5〜8/6 安値帯", "source": "依頼者提供"},
+        {"low": 3560, "high": 3635, "basis": "その下の支持帯", "source": "依頼者提供"}
+      ]
+    },
+    {
+      "code": "6617",
+      "name": "東光高岳",
+      "close_20260820": 7250,
+      "fiscal_year_end": "03",
+      "existing_condition": "撤退ライン 終値7,330",
+      "existing_condition_status": "矛盾（撤退ライン7,330が現値7,250より上。設定時点で即撤退条件を満たしている）",
+      "redesign_mode": "from_scratch",
+      "notes": "カタリスト=10月末2Qでの上方修正。送配電網テーマ。信用残の買残/売残分解が未取得。",
+      "next_earnings_hint": "2026-10-30",
+      "known_support_bands": []
+    },
+    {
+      "code": "3763",
+      "name": "プロシップ",
+      "close_20260820": 2430,
+      "fiscal_year_end": "03",
+      "existing_condition": "なし",
+      "existing_condition_status": "未設計",
+      "redesign_mode": "pullback_no_chase",
+      "no_chase": true,
+      "notes": "8/14 Q1（経常+57.6%・通期進捗27.7%）で+29.9%急騰。急騰を追って条件を引き上げるのは禁止。エントリーは必ず現値2,430より下。",
+      "next_earnings_hint": "2026-11-中旬",
+      "known_support_bands": []
+    },
+    {
+      "code": "4368",
+      "name": "扶桑化学工業",
+      "close_20260820": 3230,
+      "fiscal_year_end": "03",
+      "existing_condition": "なし（8/19に逆指値で手仕舞い済 @3,218.6）",
+      "existing_condition_status": "再エントリー未設計",
+      "redesign_mode": "reentry_after_stopout",
+      "last_exit_price": 3218.6,
+      "notes": "8月安値3,180の再テストで下げ止まり確認を条件とする。11月2Qの2週前までに判断。",
+      "next_earnings_hint": "2026-11-上旬",
+      "known_support_bands": [
+        {"low": 3180, "high": 3180, "basis": "8月安値", "source": "依頼者提供"}
+      ]
+    }
+  ]
+}
