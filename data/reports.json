@@ -1,8 +1,70 @@
 {
-  "last_updated": "2026-08-24T16:58:27+09:00",
-  "total_reports": 30816,
-  "activist_reports": 1604,
+  "last_updated": "2026-08-24T19:32:37+09:00",
+  "total_reports": 30820,
+  "activist_reports": 1605,
   "reports": [
+    {
+      "doc_id": "S100YYCJ",
+      "date": "2026-08-24",
+      "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+      "issuer_name": "E00021",
+      "sec_code": "5711",
+      "target_company": "三菱マテリアル株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YYCJ",
+      "holding_ratio": 4.62,
+      "purpose": "政策投資",
+      "purpose_detail": "提出者は、発行者に対し、企業価値及び株主価値の向上を目的として、資本政策の変更、資本効率の向上、事業構造の見直し、及びコーポレート・ガバナンスの強化等に関する提案（重要提案行為等に該当し得るものを含む",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "silchester",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YYFM",
+      "date": "2026-08-24",
+      "filer_name": "エス・エヌ・ホールディングス有限会社",
+      "issuer_name": "E40334",
+      "sec_code": "324A",
+      "target_company": "株式会社ブッキングリゾート",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YYFM",
+      "holding_ratio": 30.37,
+      "purpose": "株主提案",
+      "purpose_detail": "経営の安定を図る安定株主として保有しており、重要提案行為等を行う予定はありません。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YYEX",
+      "date": "2026-08-24",
+      "filer_name": "ＫＷＯＮ　ＫＹＯＵＮＧＨＯＯＮ",
+      "issuer_name": "E02325",
+      "sec_code": "7771",
+      "target_company": "日本精密株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YYEX",
+      "holding_ratio": 6.93,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YYFN",
+      "date": "2026-08-24",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01232",
+      "sec_code": "5631",
+      "target_company": "株式会社日本製鋼所",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YYFN",
+      "holding_ratio": 83.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫、及び累積投資業務の運営目的として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YY5U",
       "date": "2026-08-24",
@@ -475966,6 +476028,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "5711",
+          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
+          "target_company": "三菱マテリアル株式会社",
+          "date": "2026-08-24",
+          "holding_ratio": 4.62,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "6005",
           "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
           "target_company": "三浦工業株式会社",
@@ -476061,15 +476132,6 @@
           "target_company": "ＤＯＷＡホールディングス株式会社",
           "date": "2026-06-02",
           "holding_ratio": 5.8,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5711",
-          "filer_name": "シルチェスター・インターナショナル・インベスターズ・エルエルピー",
-          "target_company": "三菱マテリアル株式会社",
-          "date": "2026-06-02",
-          "holding_ratio": 5.64,
           "purpose": "政策投資",
           "report_type": "変更報告"
         },
@@ -476254,7 +476316,7 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 138,
+      "report_count": 139,
       "latest_date": "2026-08-24"
     },
     "strategic_capital": {
