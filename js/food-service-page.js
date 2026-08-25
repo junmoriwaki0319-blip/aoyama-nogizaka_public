@@ -678,9 +678,26 @@ function sv(v, d=1) { return v == null ? '-' : (v > 0 ? '+' : '') + v.toFixed(d)
   function g(id){return document.getElementById(id);}
   function mc(id,type,data,opts={}){
     const ctx=g(id);if(!ctx)return;
+    fitBarHeight(ctx,data,opts);
     const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#777',font:{size:10}}},datalabels:{display:false}}};
     if(['bar','line','scatter','bubble'].includes(type))base.scales={x:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}},y:{ticks:{color:'#999',font:{size:9}},grid:{color:'#eae7e1'}}};
     C[id]=new Chart(ctx,{type,data,options:dm(base,opts)});
+  }
+  /* 横棒グラフ(indexAxis:'y')の高さを項目数に合わせて確保する。
+     .chart-area はモバイルで 240px / .tall で 300px（480px以下では 200/260px）に
+     固定されるため、54社の企業別騰落率などは1本あたり5px未満に潰れ、
+     Chart.js が目盛ラベルを大量に間引いて判読不能になっていた。
+     モバイル幅でのみ、1項目あたり20pxを確保した高さへ引き上げる。
+     .chart-area の高さは mobile-touch-font-fix.min.css が !important で
+     指定しているため、インラインでも priority 'important' が必要。 */
+  function fitBarHeight(canvas,data,opts){
+    if(opts.indexAxis!=='y')return;
+    if(window.innerWidth>768)return;
+    const n=(data.labels||[]).length;
+    if(n<=12)return;
+    const area=canvas.closest('.chart-area');
+    if(!area)return;
+    area.style.setProperty('height',(n*20+60)+'px','important');
   }
   function dc(ids){ids.forEach(id=>{if(C[id]){C[id].destroy();delete C[id];}});}
   function dm(t,s){const o={...t};for(const k of Object.keys(s)){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=dm(o[k]||{},s[k]);else o[k]=s[k];}return o;}
