@@ -1,8 +1,40 @@
 {
-  "last_updated": "2026-08-25T16:43:16+09:00",
-  "total_reports": 30863,
+  "last_updated": "2026-08-25T19:26:04+09:00",
+  "total_reports": 30865,
   "activist_reports": 1607,
   "reports": [
+    {
+      "doc_id": "S100YXOQ",
+      "date": "2026-08-25",
+      "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+      "issuer_name": "E01828",
+      "sec_code": "6971",
+      "target_company": "日本航空電子工業株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXOQ",
+      "holding_ratio": 12.74,
+      "purpose": "純投資",
+      "purpose_detail": "投資一任契約または投資信託委託契約に基づく純投資",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "simplex",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100YXNP",
+      "date": "2026-08-25",
+      "filer_name": "株式会社Ｏｒｃｈｅｓｔｒａ　Ｈｏｌｄｉｎｇｓ",
+      "issuer_name": "E36366",
+      "sec_code": "6533",
+      "target_company": "株式会社Ｓｈａｒｉｎｇ　Ｉｎｎｏｖａｔｉｏｎｓ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXNP",
+      "holding_ratio": 70.52,
+      "purpose": "その他",
+      "purpose_detail": "提出者は、発行者との間で締結した2026年８月25日付の株式交換契約（以下「本株式交換契約」といいます。）に基づく株式交換（以下「本株式交換」といいます。）により、発行者の発行済株式（ただし、提出者が",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100YY9I",
       "date": "2026-08-25",
@@ -478505,130 +478537,6 @@
         "fundnote"
       ]
     },
-    "3d_investment": {
-      "id": "3d_investment",
-      "name": "3Dインベストメント・パートナーズ",
-      "type": "activist",
-      "representative": "—",
-      "headquarters": "シンガポール",
-      "description": "東芝への投資で知られる。日本の大型株にも積極的に関与。",
-      "focus_sectors": [
-        "電機",
-        "製造業"
-      ],
-      "holdings": [
-        {
-          "sec_code": "6952",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "カシオ計算機株式会社",
-          "date": "2026-08-13",
-          "holding_ratio": 3.99,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9024",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "株式会社西武ホールディングス",
-          "date": "2026-07-09",
-          "holding_ratio": 13.91,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3086",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "Ｊ. フロント リテイリング株式会社",
-          "date": "2026-07-08",
-          "holding_ratio": 9.23,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9684",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "株式会社スクウェア・エニックス・ホールディングス",
-          "date": "2026-03-03",
-          "holding_ratio": 18.53,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8801",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "三井倉庫ホールディングス株式会社",
-          "date": "2025-09-12",
-          "holding_ratio": 11.15,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8129",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "東邦ホールディングス株式会社",
-          "date": "2025-08-27",
-          "holding_ratio": 21.19,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2327",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "日鉄ソリューションズ株式会社",
-          "date": "2025-02-14",
-          "holding_ratio": 9.4,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2501",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "サッポロホールディングス株式会社",
-          "date": "2025-01-23",
-          "holding_ratio": 19.44,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "2329",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "株式会社東北新社",
-          "date": "2024-11-14",
-          "holding_ratio": 17.36,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3591",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "株式会社ワコールホールディングス",
-          "date": "2024-11-14",
-          "holding_ratio": 10.77,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4875",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "メディシノバ・インク",
-          "date": "2024-11-14",
-          "holding_ratio": 11.22,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9749",
-          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
-          "target_company": "富士ソフト株式会社",
-          "date": "2024-11-12",
-          "holding_ratio": 0.0,
-          "purpose": "株主提案",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 51,
-      "latest_date": "2026-08-13"
-    },
     "simplex": {
       "id": "simplex",
       "name": "シンプレクス・アセット・マネジメント",
@@ -478641,6 +478549,15 @@
         "IT・通信"
       ],
       "holdings": [
+        {
+          "sec_code": "6971",
+          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
+          "target_company": "日本航空電子工業株式会社",
+          "date": "2026-08-25",
+          "holding_ratio": 12.74,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
         {
           "sec_code": "8151",
           "filer_name": "シンプレクス・アセット・マネジメント株式会社",
@@ -478656,15 +478573,6 @@
           "target_company": "株式会社中西製作所",
           "date": "2026-08-07",
           "holding_ratio": 8.43,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6971",
-          "filer_name": "シンプレクス・アセット・マネジメント株式会社",
-          "target_company": "日本航空電子工業株式会社",
-          "date": "2026-08-06",
-          "holding_ratio": 11.68,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -478858,8 +478766,132 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 50,
-      "latest_date": "2026-08-14"
+      "report_count": 51,
+      "latest_date": "2026-08-25"
+    },
+    "3d_investment": {
+      "id": "3d_investment",
+      "name": "3Dインベストメント・パートナーズ",
+      "type": "activist",
+      "representative": "—",
+      "headquarters": "シンガポール",
+      "description": "東芝への投資で知られる。日本の大型株にも積極的に関与。",
+      "focus_sectors": [
+        "電機",
+        "製造業"
+      ],
+      "holdings": [
+        {
+          "sec_code": "6952",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "カシオ計算機株式会社",
+          "date": "2026-08-13",
+          "holding_ratio": 3.99,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9024",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "株式会社西武ホールディングス",
+          "date": "2026-07-09",
+          "holding_ratio": 13.91,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3086",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "Ｊ. フロント リテイリング株式会社",
+          "date": "2026-07-08",
+          "holding_ratio": 9.23,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9684",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "株式会社スクウェア・エニックス・ホールディングス",
+          "date": "2026-03-03",
+          "holding_ratio": 18.53,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8801",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "三井倉庫ホールディングス株式会社",
+          "date": "2025-09-12",
+          "holding_ratio": 11.15,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8129",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "東邦ホールディングス株式会社",
+          "date": "2025-08-27",
+          "holding_ratio": 21.19,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2327",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "日鉄ソリューションズ株式会社",
+          "date": "2025-02-14",
+          "holding_ratio": 9.4,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2501",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "サッポロホールディングス株式会社",
+          "date": "2025-01-23",
+          "holding_ratio": 19.44,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "2329",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "株式会社東北新社",
+          "date": "2024-11-14",
+          "holding_ratio": 17.36,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3591",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "株式会社ワコールホールディングス",
+          "date": "2024-11-14",
+          "holding_ratio": 10.77,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "4875",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "メディシノバ・インク",
+          "date": "2024-11-14",
+          "holding_ratio": 11.22,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9749",
+          "filer_name": "３Ｄ　Ｉｎｖｅｓｔｍｅｎｔ　Ｐａｒｔｎｅｒｓ　Ｐｔｅ．　Ｌｔｄ．",
+          "target_company": "富士ソフト株式会社",
+          "date": "2024-11-12",
+          "holding_ratio": 0.0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 51,
+      "latest_date": "2026-08-13"
     },
     "nippon_life": {
       "id": "nippon_life",
