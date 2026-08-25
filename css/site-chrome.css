@@ -280,34 +280,5 @@
   .site-footer { padding-left: 16px; padding-right: 16px; }
 }
 
-/* ============================================================
-   モバイル固定CTAバー（全ページ・nav-handler.js が注入）
-   高意図導線を常時画面下部に固定（スマホのみ表示）
-   ============================================================ */
-.mobile-cta-bar {
-  display: none;
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 600;
-  background: var(--cta-accent, #c2912e);
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 15px 16px;
-  min-height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.18);
-}
-.mobile-cta-bar:hover,
-.mobile-cta-bar:focus { background: var(--cta-accent-dim, #a87a24); color: #fff; }
-.mobile-cta-bar .mobile-cta-arrow { font-size: 1rem; }
-@media (max-width: 768px) {
-  .mobile-cta-bar { display: flex; }
-  /* バーで隠れないよう下部に余白を確保 */
-  body.has-mobile-cta { padding-bottom: 56px; }
-}
+/* モバイル固定CTAバー（無料相談）は 2026-08 に全ページから撤去。
+   HPからのリード獲得を目的としないため、nav-handler.js の注入処理とあわせて削除。 */
