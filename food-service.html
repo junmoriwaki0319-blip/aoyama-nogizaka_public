@@ -437,6 +437,29 @@
       .modal .form-group input { min-height: 44px; }
     }
 
+    /* === モバイル: 表の可読性 === */
+    @media (max-width: 768px) {
+      /* 表題と基準日が横並びで潰れるため縦積みにする */
+      .table-header { flex-direction: column; align-items: flex-start; gap: 2px; }
+      /* 列数が多く横スクロールが必要なことを明示する */
+      .table-header::after {
+        content: '← 横にスクロールできます →';
+        font-size: 12px;
+        color: var(--text-light);
+        margin-top: 2px;
+      }
+      /* ヒートマップは企業名列を固定し、月次セルだけを流す */
+      .heatmap-table th:first-child,
+      .heatmap-table td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        box-shadow: 1px 0 0 var(--border-light);
+      }
+      .heatmap-table td:first-child { background: var(--bg); }
+      .heatmap-table th:first-child { background: var(--bg-warm); }
+    }
+
     /* === Scrollbar === */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
