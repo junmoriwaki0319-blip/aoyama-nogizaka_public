@@ -1,8 +1,115 @@
 {
-  "last_updated": "2026-09-01T02:21:59+09:00",
-  "total_reports": 31057,
+  "last_updated": "2026-09-01T10:31:44+09:00",
+  "total_reports": 31064,
   "activist_reports": 1618,
   "reports": [
+    {
+      "doc_id": "S100YZGN",
+      "date": "2026-09-01",
+      "filer_name": "野村證券株式会社",
+      "issuer_name": "E01162",
+      "sec_code": "8306",
+      "target_company": "東海カーボン株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZGN",
+      "holding_ratio": 1.0,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZFV",
+      "date": "2026-09-01",
+      "filer_name": "疋田耕造",
+      "issuer_name": "E03273",
+      "sec_code": "7516",
+      "target_company": "コーナン商事株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZFV",
+      "holding_ratio": 5.21,
+      "purpose": "その他",
+      "purpose_detail": "創業者であり、長期安定株主として保有しております",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZPK",
+      "date": "2026-09-01",
+      "filer_name": "Ｂｌａｃｋｗｅｌｌ　Ｃｌｏｕｄ　Ｃｏ．，　Ｌｉｍｉｔｅｄ",
+      "issuer_name": "E05315",
+      "sec_code": "2338",
+      "target_company": "クオンタムソリューションズ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZPK",
+      "holding_ratio": 21.34,
+      "purpose": "純投資",
+      "purpose_detail": "純投資、および事業およびコーポレート・ガバナンスの状況に応じて、役員候補者の指名を含む、会社の経営に関する重要提案を行う可能性があります。また、保有者の関係者が当該上場会社の役員に就任する可能性があり",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZRG",
+      "date": "2026-09-01",
+      "filer_name": "有限会社イワサキコーポレーション",
+      "issuer_name": "E04988",
+      "sec_code": "0467",
+      "target_company": "株式会社クレスコ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZRG",
+      "holding_ratio": 17.28,
+      "purpose": "経営関与",
+      "purpose_detail": "創業者一族の出資会社で、創業者一族の経営参加を助成し、安定株主として長期保有することを目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZQK",
+      "date": "2026-09-01",
+      "filer_name": "有限会社イワサキコーポレーション",
+      "issuer_name": "E04988",
+      "sec_code": "0467",
+      "target_company": "株式会社クレスコ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZQK",
+      "holding_ratio": 17.28,
+      "purpose": "経営関与",
+      "purpose_detail": "創業者一族の出資会社で、創業者一族の経営参加を助成し、安定株主として長期保有することを目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZFD",
+      "date": "2026-09-01",
+      "filer_name": "Ｏｌｄ　Ｐｅａｋ　Ｇｒｏｕｐ　Ｌｔｄ．",
+      "issuer_name": "E05156",
+      "sec_code": "8308",
+      "target_company": "株式会社デジタルガレージ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZFD",
+      "holding_ratio": 7.31,
+      "purpose": "株主提案",
+      "purpose_detail": "長期投資並びに株主価値の向上及び保全のため重要提案行為等を行うことがある。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZ9R",
+      "date": "2026-09-01",
+      "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+      "issuer_name": "E01327",
+      "sec_code": "5406",
+      "target_company": "株式会社大阪チタニウムテクノロジーズ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZ9R",
+      "holding_ratio": 1.98,
+      "purpose": "その他",
+      "purpose_detail": "投資信託契約、投資一任契約に基づく運用を目的として保有するもの。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "sumitomo_mitsui_trust",
+      "activist_type": "notable_holder"
+    },
     {
       "doc_id": "S100YZIY",
       "date": "2026-08-31",
@@ -471683,6 +471790,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "5406",
+          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+          "target_company": "株式会社大阪チタニウムテクノロジーズ",
+          "date": "2026-09-01",
+          "holding_ratio": 1.98,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "3455",
           "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
           "target_company": "ヘルスケア＆メディカル投資法人",
@@ -474419,8 +474535,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 862,
-      "latest_date": "2026-08-28"
+      "report_count": 863,
+      "latest_date": "2026-09-01"
     },
     "nomura_am": {
       "id": "nomura_am",
