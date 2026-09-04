@@ -1,8 +1,104 @@
 {
-  "last_updated": "2026-09-03T23:04:12+09:00",
-  "total_reports": 31186,
+  "last_updated": "2026-09-04T09:32:31+09:00",
+  "total_reports": 31192,
   "activist_reports": 1631,
   "reports": [
+    {
+      "doc_id": "S100Z02E",
+      "date": "2026-09-04",
+      "filer_name": "マサチューセッツ・ファイナンシャル・サービセズ・カンパニー",
+      "issuer_name": "E03344",
+      "sec_code": "7649",
+      "target_company": "スギホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z02E",
+      "holding_ratio": 2.78,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（資産運用契約に基づき、顧客資産の運用のために保有している。）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z07H",
+      "date": "2026-09-04",
+      "filer_name": "岡三証券株式会社",
+      "issuer_name": "E37709",
+      "sec_code": "7794",
+      "target_company": "株式会社イーディーピー",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z07H",
+      "holding_ratio": 3.25,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z02Y",
+      "date": "2026-09-04",
+      "filer_name": "株式会社伊予鉄グループ",
+      "issuer_name": "E04505",
+      "sec_code": "9507",
+      "target_company": "四国電力株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z02Y",
+      "holding_ratio": 11.24,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z02D",
+      "date": "2026-09-04",
+      "filer_name": "大和アセットマネジメント株式会社",
+      "issuer_name": "E27092",
+      "sec_code": "8306",
+      "target_company": "ＧＬＰ投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z02D",
+      "holding_ratio": 6.82,
+      "purpose": "その他",
+      "purpose_detail": "証券投資信託の財産及び投資一任契約による顧客資金として保有",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "daiwa_am",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100Z028",
+      "date": "2026-09-04",
+      "filer_name": "大和アセットマネジメント株式会社",
+      "issuer_name": "E31931",
+      "sec_code": "3462",
+      "target_company": "野村不動産マスターファンド投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z028",
+      "holding_ratio": 6.73,
+      "purpose": "その他",
+      "purpose_detail": "証券投資信託の財産及び投資一任契約による顧客資金として保有",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "daiwa_am",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100Z04E",
+      "date": "2026-09-04",
+      "filer_name": "大和アセットマネジメント株式会社",
+      "issuer_name": "E32549",
+      "sec_code": "6532",
+      "target_company": "株式会社ベイカレント",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z04E",
+      "holding_ratio": 5.27,
+      "purpose": "その他",
+      "purpose_detail": "証券投資信託の財産及び投資一任契約による顧客資金として保有",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "daiwa_am",
+      "activist_type": "notable_holder"
+    },
     {
       "doc_id": "S100YZYO",
       "date": "2026-09-03",
@@ -482887,6 +482983,33 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "8306",
+          "filer_name": "大和アセットマネジメント株式会社",
+          "target_company": "ＧＬＰ投資法人",
+          "date": "2026-09-04",
+          "holding_ratio": 6.82,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3462",
+          "filer_name": "大和アセットマネジメント株式会社",
+          "target_company": "野村不動産マスターファンド投資法人",
+          "date": "2026-09-04",
+          "holding_ratio": 6.73,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6532",
+          "filer_name": "大和アセットマネジメント株式会社",
+          "target_company": "株式会社ベイカレント",
+          "date": "2026-09-04",
+          "holding_ratio": 5.27,
+          "purpose": "その他",
+          "report_type": "新規報告"
+        },
+        {
           "sec_code": "3269",
           "filer_name": "大和アセットマネジメント株式会社",
           "target_company": "アドバンス・レジデンス投資法人",
@@ -482901,15 +483024,6 @@
           "target_company": "三菱地所物流リート投資法人",
           "date": "2026-08-20",
           "holding_ratio": 7.18,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "大和アセットマネジメント株式会社",
-          "target_company": "三井不動産商業ファンド投資法人",
-          "date": "2026-08-20",
-          "holding_ratio": 6.05,
           "purpose": "その他",
           "report_type": "変更報告"
         },
@@ -483049,15 +483163,6 @@
           "report_type": "変更報告"
         },
         {
-          "sec_code": "3462",
-          "filer_name": "大和アセットマネジメント株式会社",
-          "target_company": "野村不動産マスターファンド投資法人",
-          "date": "2026-03-19",
-          "holding_ratio": 5.34,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
           "sec_code": "4021",
           "filer_name": "大和アセットマネジメント株式会社",
           "target_company": "日産化学株式会社",
@@ -483072,15 +483177,6 @@
           "target_company": "ＡＲＥホールディングス株式会社",
           "date": "2026-03-19",
           "holding_ratio": 4.52,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6532",
-          "filer_name": "大和アセットマネジメント株式会社",
-          "target_company": "株式会社ベイカレント",
-          "date": "2026-03-19",
-          "holding_ratio": 4.46,
           "purpose": "その他",
           "report_type": "変更報告"
         },
@@ -483301,8 +483397,8 @@
           "report_type": "新規報告"
         }
       ],
-      "report_count": 89,
-      "latest_date": "2026-08-20"
+      "report_count": 92,
+      "latest_date": "2026-09-04"
     },
     "imura_group": {
       "id": "imura_group",
