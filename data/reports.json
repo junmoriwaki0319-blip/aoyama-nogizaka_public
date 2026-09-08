@@ -1,8 +1,134 @@
 {
-  "last_updated": "2026-09-08T00:28:03+09:00",
-  "total_reports": 31462,
-  "activist_reports": 1642,
+  "last_updated": "2026-09-08T09:49:05+09:00",
+  "total_reports": 31470,
+  "activist_reports": 1644,
   "reports": [
+    {
+      "doc_id": "S100Z0I8",
+      "date": "2026-09-08",
+      "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+      "issuer_name": "E31038",
+      "sec_code": "3309",
+      "target_company": "積水ハウス・リート投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0I8",
+      "holding_ratio": 6.79,
+      "purpose": "その他",
+      "purpose_detail": "投資信託契約、投資一任契約に基づく運用を目的として保有するもの。",
+      "is_activist": false,
+      "is_notable": true,
+      "activist_id": "sumitomo_mitsui_trust",
+      "activist_type": "notable_holder"
+    },
+    {
+      "doc_id": "S100Z080",
+      "date": "2026-09-08",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E00066",
+      "sec_code": "1882",
+      "target_company": "東亜道路工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z080",
+      "holding_ratio": 11.64,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z09M",
+      "date": "2026-09-08",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E00066",
+      "sec_code": "1882",
+      "target_company": "東亜道路工業株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z09M",
+      "holding_ratio": 10.51,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z0WK",
+      "date": "2026-09-08",
+      "filer_name": "岩本　秀成",
+      "issuer_name": "E38202",
+      "sec_code": "7116",
+      "target_company": "ダイワ通信株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0WK",
+      "holding_ratio": 19.88,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z0WS",
+      "date": "2026-09-08",
+      "filer_name": "岩本　秀成",
+      "issuer_name": "E38202",
+      "sec_code": "7116",
+      "target_company": "ダイワ通信株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0WS",
+      "holding_ratio": 18.57,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100YZZ5",
+      "date": "2026-09-08",
+      "filer_name": "オリックス株式会社",
+      "issuer_name": "E32697",
+      "sec_code": "8591",
+      "target_company": "株式会社バロックジャパンリミテッド",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZZ5",
+      "holding_ratio": 11.96,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z0WV",
+      "date": "2026-09-08",
+      "filer_name": "岩本　秀成",
+      "issuer_name": "E38202",
+      "sec_code": "7116",
+      "target_company": "ダイワ通信株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0WV",
+      "holding_ratio": 17.55,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役社長であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z0VX",
+      "date": "2026-09-08",
+      "filer_name": "志村　晶",
+      "issuer_name": "E39892",
+      "sec_code": "268A",
+      "target_company": "リガク・ホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0VX",
+      "holding_ratio": 9.48,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z0NN",
       "date": "2026-09-07",
@@ -477894,6 +478020,15 @@
       "focus_sectors": [],
       "holdings": [
         {
+          "sec_code": "3309",
+          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
+          "target_company": "積水ハウス・リート投資法人",
+          "date": "2026-09-08",
+          "holding_ratio": 6.79,
+          "purpose": "その他",
+          "report_type": "変更報告"
+        },
+        {
           "sec_code": "3455",
           "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
           "target_company": "ヘルスケア＆メディカル投資法人",
@@ -478808,15 +478943,6 @@
           "target_company": "株式会社高島屋",
           "date": "2026-03-05",
           "holding_ratio": 2.14,
-          "purpose": "その他",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3309",
-          "filer_name": "三井住友トラスト・アセットマネジメント株式会社",
-          "target_company": "積水ハウス・リート投資法人",
-          "date": "2026-03-05",
-          "holding_ratio": 7.79,
           "purpose": "その他",
           "report_type": "変更報告"
         },
@@ -480648,8 +480774,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 874,
-      "latest_date": "2026-09-07"
+      "report_count": 875,
+      "latest_date": "2026-09-08"
     },
     "blackrock": {
       "id": "blackrock",
@@ -485901,8 +486027,8 @@
           "sec_code": "1882",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "東亜道路工業株式会社",
-          "date": "2026-09-07",
-          "holding_ratio": 12.76,
+          "date": "2026-09-08",
+          "holding_ratio": 10.51,
           "purpose": "純投資",
           "report_type": "訂正報告"
         },
@@ -486042,8 +486168,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 144,
-      "latest_date": "2026-09-07"
+      "report_count": 146,
+      "latest_date": "2026-09-08"
     },
     "silchester": {
       "id": "silchester",
