@@ -1,8 +1,89 @@
 {
-  "last_updated": "2026-09-15T01:07:13+09:00",
-  "total_reports": 31653,
-  "activist_reports": 1663,
+  "last_updated": "2026-09-15T10:04:38+09:00",
+  "total_reports": 31658,
+  "activist_reports": 1666,
   "reports": [
+    {
+      "doc_id": "S100Z1P1",
+      "date": "2026-09-15",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E05474",
+      "sec_code": "3765",
+      "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1P1",
+      "holding_ratio": 7.5,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z1UE",
+      "date": "2026-09-15",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E05474",
+      "sec_code": "3765",
+      "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1UE",
+      "holding_ratio": 8.51,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z1T1",
+      "date": "2026-09-15",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E05474",
+      "sec_code": "3765",
+      "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1T1",
+      "holding_ratio": 7.5,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100YVEV",
+      "date": "2026-09-15",
+      "filer_name": "福岡地所株式会社",
+      "issuer_name": "E14079",
+      "sec_code": "8968",
+      "target_company": "福岡リート投資法人",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVEV",
+      "holding_ratio": 12.01,
+      "purpose": "その他",
+      "purpose_detail": "発行者のメインスポンサーとして、長期保有を前提に安定投資主となることを目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z1WE",
+      "date": "2026-09-15",
+      "filer_name": "後藤　清孝",
+      "issuer_name": "E41485",
+      "sec_code": "4432",
+      "target_company": "株式会社システムエグゼ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1WE",
+      "holding_ratio": 5.55,
+      "purpose": "その他",
+      "purpose_detail": "発行者の取締役であり、安定株主として保有しています。",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z1YZ",
       "date": "2026-09-14",
@@ -488867,6 +488948,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "3765",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
+          "date": "2026-09-15",
+          "holding_ratio": 7.5,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
           "sec_code": "2001",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社ニップン",
@@ -488890,15 +488980,6 @@
           "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
           "date": "2026-09-03",
           "holding_ratio": 16.72,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "3765",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
-          "date": "2026-08-27",
-          "holding_ratio": 13.67,
           "purpose": "純投資",
           "report_type": "変更報告"
         },
@@ -489011,8 +489092,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 153,
-      "latest_date": "2026-09-14"
+      "report_count": 156,
+      "latest_date": "2026-09-15"
     },
     "silchester": {
       "id": "silchester",
