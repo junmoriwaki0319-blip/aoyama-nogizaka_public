@@ -1,8 +1,57 @@
 {
-  "last_updated": "2026-09-16T23:32:41+09:00",
-  "total_reports": 31746,
-  "activist_reports": 1678,
+  "last_updated": "2026-09-17T09:58:15+09:00",
+  "total_reports": 31749,
+  "activist_reports": 1680,
   "reports": [
+    {
+      "doc_id": "S100Z2BC",
+      "date": "2026-09-17",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E32642",
+      "sec_code": "4189",
+      "target_company": "KHネオケム株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2BC",
+      "holding_ratio": 5.49,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z2CJ",
+      "date": "2026-09-17",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E32642",
+      "sec_code": "4189",
+      "target_company": "ＫＨネオケム株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2CJ",
+      "holding_ratio": 7.85,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z2SH",
+      "date": "2026-09-17",
+      "filer_name": "日清紡ホールディングス株式会社",
+      "issuer_name": "E00841",
+      "sec_code": "3105",
+      "target_company": "四国化成ホールディングス株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2SH",
+      "holding_ratio": 6.96,
+      "purpose": "その他",
+      "purpose_detail": "事業の拡大に向けた取引関係の開拓・強化",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z27P",
       "date": "2026-09-16",
@@ -490055,6 +490104,167 @@
       "report_count": 181,
       "latest_date": "2026-09-16"
     },
+    "strategic_capital": {
+      "id": "strategic_capital",
+      "name": "ストラテジックキャピタル",
+      "type": "activist",
+      "representative": "丸木 強",
+      "headquarters": "東京",
+      "description": "株主提案を積極的に行い、取締役選任・資本政策の改善を要求。PBR1倍割れの中小型株を主なターゲットとする。",
+      "focus_sectors": [
+        "製造業",
+        "建設",
+        "不動産"
+      ],
+      "holdings": [
+        {
+          "sec_code": "4189",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "KHネオケム株式会社",
+          "date": "2026-09-17",
+          "holding_ratio": 7.85,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "3765",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
+          "date": "2026-09-16",
+          "holding_ratio": 9.54,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "2001",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ニップン",
+          "date": "2026-09-14",
+          "holding_ratio": 7.09,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "1882",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "東亜道路工業株式会社",
+          "date": "2026-09-11",
+          "holding_ratio": 3.97,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "7745",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
+          "date": "2026-09-03",
+          "holding_ratio": 16.72,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6516",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "山洋電気株式会社",
+          "date": "2026-08-19",
+          "holding_ratio": 12.15,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "9882",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社イエローハット",
+          "date": "2026-08-07",
+          "holding_ratio": 12.74,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8818",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "京阪神ビルディング株式会社",
+          "date": "2026-08-03",
+          "holding_ratio": 9.17,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8871",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ゴールドクレスト",
+          "date": "2026-07-07",
+          "holding_ratio": 16.28,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5331",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "ノリタケ株式会社",
+          "date": "2026-06-11",
+          "holding_ratio": 4.36,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "547A",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社オリエントコーポレーション",
+          "date": "2026-06-08",
+          "holding_ratio": 12.8,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5451",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ヨドコウ",
+          "date": "2026-04-16",
+          "holding_ratio": 5.63,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8585",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社オリエントコーポレーション",
+          "date": "2026-03-17",
+          "holding_ratio": 11.78,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5449",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "大阪製鐵株式会社",
+          "date": "2026-02-06",
+          "holding_ratio": 12.37,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8125",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ワキタ",
+          "date": "2025-08-29",
+          "holding_ratio": 4.7,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "7226",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "極東開発工業株式会社",
+          "date": "2024-12-09",
+          "holding_ratio": 4.96,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        }
+      ],
+      "report_count": 161,
+      "latest_date": "2026-09-17"
+    },
     "nippon_active_value": {
       "id": "nippon_active_value",
       "name": "ニッポン・アクティブ・バリュー・ファンド",
@@ -490314,167 +490524,6 @@
       ],
       "report_count": 161,
       "latest_date": "2026-09-09"
-    },
-    "strategic_capital": {
-      "id": "strategic_capital",
-      "name": "ストラテジックキャピタル",
-      "type": "activist",
-      "representative": "丸木 強",
-      "headquarters": "東京",
-      "description": "株主提案を積極的に行い、取締役選任・資本政策の改善を要求。PBR1倍割れの中小型株を主なターゲットとする。",
-      "focus_sectors": [
-        "製造業",
-        "建設",
-        "不動産"
-      ],
-      "holdings": [
-        {
-          "sec_code": "3765",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "ガンホー・オンライン・エンターテイメント株式会社",
-          "date": "2026-09-16",
-          "holding_ratio": 9.54,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "2001",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ニップン",
-          "date": "2026-09-14",
-          "holding_ratio": 7.09,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "1882",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "東亜道路工業株式会社",
-          "date": "2026-09-11",
-          "holding_ratio": 3.97,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "7745",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
-          "date": "2026-09-03",
-          "holding_ratio": 16.72,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6516",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "山洋電気株式会社",
-          "date": "2026-08-19",
-          "holding_ratio": 12.15,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "9882",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社イエローハット",
-          "date": "2026-08-07",
-          "holding_ratio": 12.74,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "4189",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "ＫＨネオケム株式会社",
-          "date": "2026-08-03",
-          "holding_ratio": 18.24,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8818",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "京阪神ビルディング株式会社",
-          "date": "2026-08-03",
-          "holding_ratio": 9.17,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8871",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ゴールドクレスト",
-          "date": "2026-07-07",
-          "holding_ratio": 16.28,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5331",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "ノリタケ株式会社",
-          "date": "2026-06-11",
-          "holding_ratio": 4.36,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "547A",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社オリエントコーポレーション",
-          "date": "2026-06-08",
-          "holding_ratio": 12.8,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5451",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ヨドコウ",
-          "date": "2026-04-16",
-          "holding_ratio": 5.63,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8585",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社オリエントコーポレーション",
-          "date": "2026-03-17",
-          "holding_ratio": 11.78,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5449",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "大阪製鐵株式会社",
-          "date": "2026-02-06",
-          "holding_ratio": 12.37,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8125",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ワキタ",
-          "date": "2025-08-29",
-          "holding_ratio": 4.7,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "7226",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "極東開発工業株式会社",
-          "date": "2024-12-09",
-          "holding_ratio": 4.96,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        }
-      ],
-      "report_count": 159,
-      "latest_date": "2026-09-16"
     },
     "silchester": {
       "id": "silchester",
