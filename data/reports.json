@@ -1,8 +1,87 @@
 {
-  "last_updated": "2026-10-05T00:06:24+09:00",
-  "total_reports": 32372,
-  "activist_reports": 1724,
+  "last_updated": "2026-10-05T10:25:04+09:00",
+  "total_reports": 32377,
+  "activist_reports": 1726,
   "reports": [
+    {
+      "doc_id": "S100Z5NO",
+      "date": "2026-10-05",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01139",
+      "sec_code": "5331",
+      "target_company": "ノリタケ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5NO",
+      "holding_ratio": 9.38,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z5OL",
+      "date": "2026-10-05",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01139",
+      "sec_code": "5331",
+      "target_company": "ノリタケ株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5OL",
+      "holding_ratio": 9.22,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z649",
+      "date": "2026-10-05",
+      "filer_name": "石井　滋久",
+      "issuer_name": "E36002",
+      "sec_code": "4172",
+      "target_company": "Hiクラテス株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z649",
+      "holding_ratio": 56.88,
+      "purpose": "その他",
+      "purpose_detail": "代表取締役本人であり、安定株主として長期保有を目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z64C",
+      "date": "2026-10-05",
+      "filer_name": "石井　滋久",
+      "issuer_name": "E36002",
+      "sec_code": "4172",
+      "target_company": "Hiクラテス株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z64C",
+      "holding_ratio": 56.88,
+      "purpose": "その他",
+      "purpose_detail": "代表取締役本人であり、安定株主として長期保有を目的としております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z5LR",
+      "date": "2026-10-05",
+      "filer_name": "阪和興業株式会社",
+      "issuer_name": "E01229",
+      "sec_code": "8078",
+      "target_company": "株式会社中山製鋼所",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5LR",
+      "holding_ratio": 20.0,
+      "purpose": "その他",
+      "purpose_detail": "発行者との資本業務提携及び新電気炉プロジェクトを含むGX・脱炭素関連分野での連携強化",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z5WV",
       "date": "2026-10-02",
@@ -499775,6 +499854,15 @@
       ],
       "holdings": [
         {
+          "sec_code": "5331",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "ノリタケ株式会社",
+          "date": "2026-10-05",
+          "holding_ratio": 9.22,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
           "sec_code": "9882",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社イエローハット",
@@ -499782,15 +499870,6 @@
           "holding_ratio": 11.73,
           "purpose": "純投資",
           "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5331",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "ノリタケ株式会社",
-          "date": "2026-10-02",
-          "holding_ratio": 9.38,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
         },
         {
           "sec_code": "8818",
@@ -499919,8 +499998,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 180,
-      "latest_date": "2026-10-02"
+      "report_count": 182,
+      "latest_date": "2026-10-05"
     },
     "nippon_active_value": {
       "id": "nippon_active_value",
