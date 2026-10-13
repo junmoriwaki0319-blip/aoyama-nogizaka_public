@@ -1,8 +1,104 @@
 {
-  "last_updated": "2026-10-13T04:34:46+09:00",
-  "total_reports": 32809,
-  "activist_reports": 1750,
+  "last_updated": "2026-10-13T12:16:52+09:00",
+  "total_reports": 32815,
+  "activist_reports": 1753,
   "reports": [
+    {
+      "doc_id": "S100Z6ZO",
+      "date": "2026-10-13",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01247",
+      "sec_code": "5451",
+      "target_company": "株式会社ヨドコウ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6ZO",
+      "holding_ratio": 5.63,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z6ZR",
+      "date": "2026-10-13",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01806",
+      "sec_code": "6516",
+      "target_company": "山洋電気株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6ZR",
+      "holding_ratio": 11.1,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z6ZS",
+      "date": "2026-10-13",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01806",
+      "sec_code": "6516",
+      "target_company": "山洋電気株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6ZS",
+      "holding_ratio": 12.07,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z6RQ",
+      "date": "2026-10-13",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E00751",
+      "sec_code": "4004",
+      "target_company": "株式会社レゾナック・ホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6RQ",
+      "holding_ratio": 12.78,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z7BI",
+      "date": "2026-10-13",
+      "filer_name": "パシフィックコンサルタンツホールディングス株式会社",
+      "issuer_name": "E05646",
+      "sec_code": "2498",
+      "target_company": "株式会社オリエンタルコンサルタンツホールディングス",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7BI",
+      "holding_ratio": 5.42,
+      "purpose": "政策投資",
+      "purpose_detail": "政策投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z6GF",
+      "date": "2026-10-13",
+      "filer_name": "宮田　宏章",
+      "issuer_name": "E01649",
+      "sec_code": "6496",
+      "target_company": "株式会社中北製作所",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6GF",
+      "holding_ratio": 2.77,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として長期保有",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z6W3",
       "date": "2026-10-09",
@@ -506056,9 +506152,18 @@
         {
           "sec_code": "5451",
           "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社淀川製鋼所",
-          "date": "2026-10-09",
-          "holding_ratio": 6.63,
+          "target_company": "株式会社ヨドコウ",
+          "date": "2026-10-13",
+          "holding_ratio": 5.63,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "6516",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "山洋電気株式会社",
+          "date": "2026-10-13",
+          "holding_ratio": 12.07,
           "purpose": "純投資",
           "report_type": "訂正報告"
         },
@@ -506144,15 +506249,6 @@
           "report_type": "変更報告"
         },
         {
-          "sec_code": "6516",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "山洋電気株式会社",
-          "date": "2026-08-19",
-          "holding_ratio": 12.15,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
           "sec_code": "8871",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社ゴールドクレスト",
@@ -506198,8 +506294,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 194,
-      "latest_date": "2026-10-09"
+      "report_count": 197,
+      "latest_date": "2026-10-13"
     },
     "oasis": {
       "id": "oasis",
