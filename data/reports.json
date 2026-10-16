@@ -1,8 +1,104 @@
 {
-  "last_updated": "2026-10-15T23:37:40+09:00",
-  "total_reports": 32935,
-  "activist_reports": 1770,
+  "last_updated": "2026-10-16T09:54:29+09:00",
+  "total_reports": 32941,
+  "activist_reports": 1773,
   "reports": [
+    {
+      "doc_id": "S100Z7P5",
+      "date": "2026-10-16",
+      "filer_name": "岡三証券株式会社",
+      "issuer_name": "E38453",
+      "sec_code": "4893",
+      "target_company": "ノイルイミューン・バイオテック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7P5",
+      "holding_ratio": 18.26,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z7G5",
+      "date": "2026-10-16",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E01806",
+      "sec_code": "6516",
+      "target_company": "山洋電気株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7G5",
+      "holding_ratio": 13.18,
+      "purpose": "純投資",
+      "purpose_detail": "株主価値向上のために発行者との建設的対話及び発行者への重要提案行為等を行うこと、並びに純投資。重要提案行為等：当該目的を達成するため、資本政策に関する重要な変更（有利子負債の活用及び株主資本の抑制を通",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z7G6",
+      "date": "2026-10-16",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E02344",
+      "sec_code": "7745",
+      "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7G6",
+      "holding_ratio": 5.24,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z7G8",
+      "date": "2026-10-16",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E02344",
+      "sec_code": "7745",
+      "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7G8",
+      "holding_ratio": 6.36,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z893",
+      "date": "2026-10-16",
+      "filer_name": "赤羽根　康男",
+      "issuer_name": "E42222",
+      "sec_code": "645A",
+      "target_company": "株式会社デジタルベリー",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z893",
+      "holding_ratio": 95.39,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の代表取締役であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z8KO",
+      "date": "2026-10-16",
+      "filer_name": "品香事業有限公司",
+      "issuer_name": "E01446",
+      "sec_code": "5987",
+      "target_company": "株式会社オーネックス",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8KO",
+      "holding_ratio": 45.95,
+      "purpose": "純投資",
+      "purpose_detail": "純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z83L",
       "date": "2026-10-15",
@@ -508015,8 +508111,17 @@
           "sec_code": "6516",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "山洋電気株式会社",
-          "date": "2026-10-15",
-          "holding_ratio": 13.75,
+          "date": "2026-10-16",
+          "holding_ratio": 13.18,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "7745",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
+          "date": "2026-10-16",
+          "holding_ratio": 6.36,
           "purpose": "純投資",
           "report_type": "訂正報告"
         },
@@ -508102,15 +508207,6 @@
           "report_type": "訂正報告"
         },
         {
-          "sec_code": "7745",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
-          "date": "2026-09-03",
-          "holding_ratio": 16.72,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
           "sec_code": "8871",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社ゴールドクレスト",
@@ -508156,8 +508252,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 204,
-      "latest_date": "2026-10-15"
+      "report_count": 207,
+      "latest_date": "2026-10-16"
     },
     "oasis": {
       "id": "oasis",
