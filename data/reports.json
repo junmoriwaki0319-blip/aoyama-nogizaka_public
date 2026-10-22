@@ -1,8 +1,226 @@
 {
-  "last_updated": "2026-10-21T23:49:06+09:00",
-  "total_reports": 33208,
-  "activist_reports": 1791,
+  "last_updated": "2026-10-22T10:06:08+09:00",
+  "total_reports": 33222,
+  "activist_reports": 1795,
   "reports": [
+    {
+      "doc_id": "S100Z94Q",
+      "date": "2026-10-22",
+      "filer_name": "ＢｏｆＡ証券株式会社",
+      "issuer_name": "E27585",
+      "sec_code": "4978",
+      "target_company": "株式会社リプロセル",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z94Q",
+      "holding_ratio": 0.0,
+      "purpose": "その他",
+      "purpose_detail": "金融商品取引業務等による保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z95G",
+      "date": "2026-10-22",
+      "filer_name": "岡三証券株式会社",
+      "issuer_name": "E38453",
+      "sec_code": "4893",
+      "target_company": "ノイルイミューン・バイオテック株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z95G",
+      "holding_ratio": 17.51,
+      "purpose": "その他",
+      "purpose_detail": "証券業務に係る商品在庫として保有している。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z8VG",
+      "date": "2026-10-22",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E02618",
+      "sec_code": "8125",
+      "target_company": "株式会社ワキタ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8VG",
+      "holding_ratio": 6.56,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z8VH",
+      "date": "2026-10-22",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E02618",
+      "sec_code": "8125",
+      "target_company": "株式会社ワキタ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8VH",
+      "holding_ratio": 5.48,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z8VI",
+      "date": "2026-10-22",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E02618",
+      "sec_code": "8125",
+      "target_company": "株式会社ワキタ",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8VI",
+      "holding_ratio": 4.7,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z9DW",
+      "date": "2026-10-22",
+      "filer_name": "ＴＡＫ株式会社",
+      "issuer_name": "E42147",
+      "sec_code": "648A",
+      "target_company": "株式会社ルクレ",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z9DW",
+      "holding_ratio": 40.0,
+      "purpose": "その他",
+      "purpose_detail": "発行会社の創業者の資産管理会社であり、安定株主として保有しております。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z90Y",
+      "date": "2026-10-22",
+      "filer_name": "Ｍ＆Ｇインベストメント・マネジメント・リミテッド",
+      "issuer_name": "E00703",
+      "sec_code": "7915",
+      "target_company": "NISSHA株式会社",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z90Y",
+      "holding_ratio": 5.33,
+      "purpose": "純投資",
+      "purpose_detail": "純投資（投資一任契約に基づく顧客資産の運用に係るもの）",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z999",
+      "date": "2026-10-22",
+      "filer_name": "ＢｏｆＡ証券株式会社",
+      "issuer_name": "E02978",
+      "sec_code": "3350",
+      "target_company": "株式会社メタプラネット",
+      "report_type": "新規報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z999",
+      "holding_ratio": 65.0,
+      "purpose": "その他",
+      "purpose_detail": "金融商品取引業務等による保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z966",
+      "date": "2026-10-22",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E02128",
+      "sec_code": "7013",
+      "target_company": "株式会社ＩＨＩ",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z966",
+      "holding_ratio": 8.87,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z96C",
+      "date": "2026-10-22",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E04410",
+      "sec_code": "9404",
+      "target_company": "日本テレビホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z96C",
+      "holding_ratio": 5.03,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z8Y1",
+      "date": "2026-10-22",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E03610",
+      "sec_code": "8308",
+      "target_company": "株式会社りそなホールディングス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8Y1",
+      "holding_ratio": 3.83,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資。",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z8Y2",
+      "date": "2026-10-22",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E00897",
+      "sec_code": "8306",
+      "target_company": "中国塗料株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8Y2",
+      "holding_ratio": 8.21,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z2JF",
+      "date": "2026-10-22",
+      "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+      "issuer_name": "E00396",
+      "sec_code": "2531",
+      "target_company": "宝ホールディングス株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2JF",
+      "holding_ratio": 0.0,
+      "purpose": "株主提案",
+      "purpose_detail": "提出者１は、発行者の株式は本来の価値に比して過小評価されており、コーポレート・ガバナンス及び資本配分の改善を通じてその価値を実現できると考え、投資一任運用権限に基づき発行者の株式を長期投資として運用し",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "valueact",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z942",
+      "date": "2026-10-22",
+      "filer_name": "キャピタル・リサーチ・アンド・マネージメント・カンパニー",
+      "issuer_name": "E04908",
+      "sec_code": "9616",
+      "target_company": "株式会社共立メンテナンス",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z942",
+      "holding_ratio": 7.89,
+      "purpose": "純投資",
+      "purpose_detail": "顧客である日本国外の投資信託のための純投資",
+      "is_activist": false,
+      "is_notable": false
+    },
     {
       "doc_id": "S100Z8VU",
       "date": "2026-10-21",
@@ -512270,20 +512488,20 @@
       ],
       "holdings": [
         {
+          "sec_code": "8125",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ワキタ",
+          "date": "2026-10-22",
+          "holding_ratio": 4.7,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
           "sec_code": "7745",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社Ａ＆Ｄホロンホールディングス",
           "date": "2026-10-21",
           "holding_ratio": 15.01,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "8125",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ワキタ",
-          "date": "2026-10-21",
-          "holding_ratio": 7.59,
           "purpose": "純投資",
           "report_type": "訂正報告"
         },
@@ -512414,8 +512632,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 217,
-      "latest_date": "2026-10-21"
+      "report_count": 220,
+      "latest_date": "2026-10-22"
     },
     "oasis": {
       "id": "oasis",
@@ -515894,6 +516112,95 @@
       "report_count": 41,
       "latest_date": "2025-11-27"
     },
+    "valueact": {
+      "id": "valueact",
+      "name": "バリューアクト・キャピタル",
+      "type": "activist",
+      "representative": "Mason Morfit",
+      "headquarters": "米国・サンフランシスコ",
+      "description": "協調的アクティビズムを掲げ、取締役派遣を通じた企業変革を推進。日本市場にも注力。",
+      "focus_sectors": [
+        "IT・通信",
+        "製造業",
+        "ヘルスケア"
+      ],
+      "holdings": [
+        {
+          "sec_code": "2531",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "宝ホールディングス株式会社",
+          "date": "2026-10-22",
+          "holding_ratio": 0.0,
+          "purpose": "株主提案",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "3994",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "株式会社マネーフォワード",
+          "date": "2026-07-03",
+          "holding_ratio": 0.0,
+          "purpose": "政策投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "8306",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "三和ホールディングス株式会社",
+          "date": "2026-06-10",
+          "holding_ratio": 0.0,
+          "purpose": "政策投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "6736",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "サン電子株式会社",
+          "date": "2026-05-08",
+          "holding_ratio": 0.0,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "6454",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "マックス株式会社",
+          "date": "2026-03-12",
+          "holding_ratio": 7.31,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        },
+        {
+          "sec_code": "5334",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "日本特殊陶業株式会社",
+          "date": "2026-02-13",
+          "holding_ratio": 3.5,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "4704",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｓｔｅｒ　Ｆｕｎｄ，　Ｌ．Ｐ．",
+          "target_company": "トレンドマイクロ株式会社",
+          "date": "2025-09-29",
+          "holding_ratio": 3.68,
+          "purpose": "純投資",
+          "report_type": "変更報告"
+        },
+        {
+          "sec_code": "5929",
+          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
+          "target_company": "三和ホールディングス株式会社",
+          "date": "2024-09-25",
+          "holding_ratio": 2.84,
+          "purpose": "純投資",
+          "report_type": "新規報告"
+        }
+      ],
+      "report_count": 30,
+      "latest_date": "2026-10-22"
+    },
     "ichigo_asset": {
       "id": "ichigo_asset",
       "name": "いちごアセットマネジメント",
@@ -516184,95 +516491,6 @@
       ],
       "report_count": 29,
       "latest_date": "2026-10-06"
-    },
-    "valueact": {
-      "id": "valueact",
-      "name": "バリューアクト・キャピタル",
-      "type": "activist",
-      "representative": "Mason Morfit",
-      "headquarters": "米国・サンフランシスコ",
-      "description": "協調的アクティビズムを掲げ、取締役派遣を通じた企業変革を推進。日本市場にも注力。",
-      "focus_sectors": [
-        "IT・通信",
-        "製造業",
-        "ヘルスケア"
-      ],
-      "holdings": [
-        {
-          "sec_code": "3994",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "株式会社マネーフォワード",
-          "date": "2026-07-03",
-          "holding_ratio": 0.0,
-          "purpose": "政策投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "8306",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "三和ホールディングス株式会社",
-          "date": "2026-06-10",
-          "holding_ratio": 0.0,
-          "purpose": "政策投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "2531",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "宝ホールディングス株式会社",
-          "date": "2026-05-12",
-          "holding_ratio": 0.0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6736",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "サン電子株式会社",
-          "date": "2026-05-08",
-          "holding_ratio": 0.0,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "6454",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "マックス株式会社",
-          "date": "2026-03-12",
-          "holding_ratio": 7.31,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        },
-        {
-          "sec_code": "5334",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "日本特殊陶業株式会社",
-          "date": "2026-02-13",
-          "holding_ratio": 3.5,
-          "purpose": "純投資",
-          "report_type": "訂正報告"
-        },
-        {
-          "sec_code": "4704",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｓｔｅｒ　Ｆｕｎｄ，　Ｌ．Ｐ．",
-          "target_company": "トレンドマイクロ株式会社",
-          "date": "2025-09-29",
-          "holding_ratio": 3.68,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
-          "sec_code": "5929",
-          "filer_name": "ＶａｌｕｅＡｃｔ　Ｃａｐｉｔａｌ　Ｍａｎａｇｅｍｅｎｔ，　Ｌ．Ｐ．",
-          "target_company": "三和ホールディングス株式会社",
-          "date": "2024-09-25",
-          "holding_ratio": 2.84,
-          "purpose": "純投資",
-          "report_type": "新規報告"
-        }
-      ],
-      "report_count": 29,
-      "latest_date": "2026-07-03"
     },
     "lim_advisors": {
       "id": "lim_advisors",
