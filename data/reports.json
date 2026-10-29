@@ -1,8 +1,89 @@
 {
-  "last_updated": "2026-10-29T01:24:50+09:00",
-  "total_reports": 33505,
-  "activist_reports": 1822,
+  "last_updated": "2026-10-29T11:00:44+09:00",
+  "total_reports": 33510,
+  "activist_reports": 1825,
   "reports": [
+    {
+      "doc_id": "S100Z9LZ",
+      "date": "2026-10-29",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E03867",
+      "sec_code": "8818",
+      "target_company": "京阪神ビルディング株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z9LZ",
+      "holding_ratio": 10.66,
+      "purpose": "純投資",
+      "purpose_detail": "株主価値向上のために発行者との建設的対話及び発行者への重要提案行為等を行うこと、並びに純投資。重要提案行為等：当該目的を達成するため、重要な財産の処分（賃貸等不動産の処分）、株主還元（特定の株主（提出",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100ZA48",
+      "date": "2026-10-29",
+      "filer_name": "株式会社フロンティアインターナショナル",
+      "issuer_name": "E34657",
+      "sec_code": "7050",
+      "target_company": "",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZA48",
+      "holding_ratio": 48.67,
+      "purpose": "その他",
+      "purpose_detail": "安定株主として保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z9PX",
+      "date": "2026-10-29",
+      "filer_name": "株式会社ワイエムシィ",
+      "issuer_name": "E00882",
+      "sec_code": "4406",
+      "target_company": "新日本理化株式会社",
+      "report_type": "変更報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z9PX",
+      "holding_ratio": 10.35,
+      "purpose": "純投資",
+      "purpose_detail": "純投資として保有",
+      "is_activist": false,
+      "is_notable": false
+    },
+    {
+      "doc_id": "S100Z9M0",
+      "date": "2026-10-29",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E03867",
+      "sec_code": "8818",
+      "target_company": "京阪神ビルディング株式会社",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z9M0",
+      "holding_ratio": 9.44,
+      "purpose": "純投資",
+      "purpose_detail": "株主価値向上のために発行者との建設的対話及び発行者への重要提案行為等を行うこと、並びに純投資。重要提案行為等：当該目的を達成するため、重要な財産の処分（賃貸等不動産の処分）、株主還元（特定の株主（提出",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
+    {
+      "doc_id": "S100Z9M1",
+      "date": "2026-10-29",
+      "filer_name": "株式会社ストラテジックキャピタル",
+      "issuer_name": "E03971",
+      "sec_code": "8871",
+      "target_company": "株式会社ゴールドクレスト",
+      "report_type": "訂正報告",
+      "edinet_url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z9M1",
+      "holding_ratio": 13.1,
+      "purpose": "純投資",
+      "purpose_detail": "純投資及び状況に応じて重要提案行為等を行うこと。",
+      "is_activist": true,
+      "is_notable": false,
+      "activist_id": "strategic_capital",
+      "activist_type": "activist"
+    },
     {
       "doc_id": "S100ZA28",
       "date": "2026-10-28",
@@ -516846,8 +516927,17 @@
           "sec_code": "8818",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "京阪神ビルディング株式会社",
-          "date": "2026-10-28",
-          "holding_ratio": 11.99,
+          "date": "2026-10-29",
+          "holding_ratio": 9.44,
+          "purpose": "純投資",
+          "report_type": "訂正報告"
+        },
+        {
+          "sec_code": "8871",
+          "filer_name": "株式会社ストラテジックキャピタル",
+          "target_company": "株式会社ゴールドクレスト",
+          "date": "2026-10-29",
+          "holding_ratio": 13.1,
           "purpose": "純投資",
           "report_type": "訂正報告"
         },
@@ -516960,15 +517050,6 @@
           "report_type": "訂正報告"
         },
         {
-          "sec_code": "8871",
-          "filer_name": "株式会社ストラテジックキャピタル",
-          "target_company": "株式会社ゴールドクレスト",
-          "date": "2026-07-07",
-          "holding_ratio": 16.28,
-          "purpose": "純投資",
-          "report_type": "変更報告"
-        },
-        {
           "sec_code": "8585",
           "filer_name": "株式会社ストラテジックキャピタル",
           "target_company": "株式会社オリエントコーポレーション",
@@ -516987,8 +517068,8 @@
           "report_type": "変更報告"
         }
       ],
-      "report_count": 232,
-      "latest_date": "2026-10-28"
+      "report_count": 235,
+      "latest_date": "2026-10-29"
     },
     "oasis": {
       "id": "oasis",
